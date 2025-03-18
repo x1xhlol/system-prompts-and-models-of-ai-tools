@@ -4,7 +4,7 @@ I managed to get ~~a big part of~~ FULL official v0, Manus anf Cursor (Sonnet-3.
 
 # What do you want to see next? ---> Open an issue.
 
-LATEST UPDATE: 11/03/2025
+LATEST UPDATE: 11/03/2025 (Updating tomorrow)
 
 You can check it out in v0.txt, v0 model.txt, v0 tools.txt, cursor agent.txt, cursor ask.txt (soon), cursor edit.txt (soon) and Manus folder.
 
