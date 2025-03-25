@@ -19,7 +19,7 @@ Have suggestions? Open an [issue](../../issues).
 🆕 **LATEST UPDATE:** 11/03/2025 *(Next update: tomorrow!)*  
 
 ## 📊 **Star History**
-[<iframe style="width:100%;height:auto;min-width:600px;min-height:400px;" src="https://www.star-history.com/embed?secret=Z2hwXzRqVmR1ZE5reGdwOWpzUTVuOG8xYXEwMXpSbU1kMDRPSzhGeg==#x1xhlol/system-prompts-and-models-of-ai-tools&Date" frameBorder="0"></iframe>](https://www.star-history.com/embed?secret=Z2hwXzRqVmR1ZE5reGdwOWpzUTVuOG8xYXEwMXpSbU1kMDRPSzhGeg==#x1xhlol/system-prompts-and-models-of-ai-tools&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=x1xhlol/system-prompts-and-models-of-ai-tools&type=Date)](https://www.star-history.com/#x1xhlol/system-prompts-and-models-of-ai-tools&Date)
 
 
 ## 🔗 **Connect With Me**  
