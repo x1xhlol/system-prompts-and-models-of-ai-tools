@@ -4,14 +4,14 @@
 📜 Over **5,000+ lines** of insights into their structure and functionality.  
 
 ## 📂 **Available Files**
-🔹 **FULL v0**  
+🔹 **v0.txt**  
 🔹 **v0 model.txt**  
 🔹 **v0 tools.txt**  
+🔹 **Manus Folder** *(multiple files inside)*  
 🔹 **Cursor**  
    - cursor agent.txt  
    - cursor ask.txt *(coming soon!)*  
    - cursor edit.txt *(coming soon!)*  
-🔹 **Manus Folder** *(multiple files inside)*  
 
 ## 🛠 **What Do You Want to See Next?**
 Have suggestions? Open an [issue](../../issues).  
