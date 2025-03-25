@@ -6,7 +6,6 @@
 ## 📂 **Available Files**
 🔹 **v0 Folder**  
 🔹 **Manus Folder**
-
 🔹 **Cursor Folder**  
    - cursor ask.txt *(coming soon!)*  
    - cursor edit.txt *(coming soon!)*  
