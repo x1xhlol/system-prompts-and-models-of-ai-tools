@@ -4,9 +4,9 @@
 📜 Over **5,000+ lines** of insights into their structure and functionality.  
 
 ## 📂 **Available Files**
-🔹 **v0 Folder**  
-🔹 **Manus Folder**
-🔹 **Cursor Folder**  
+- **v0 Folder**  
+- **Manus Folder**
+- **Cursor Folder**  
    - cursor ask.txt *(coming soon!)*  
    - cursor edit.txt *(coming soon!)*  
 
