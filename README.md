@@ -5,9 +5,8 @@
 
 ## 📂 **Available Files**
 🔹 **v0 Folder**  
-🔹 **Manus Folder** *(multiple files inside)*  
+🔹 **Manus Folder**
 🔹 **Cursor Folder**  
-   - cursor agent.txt  
    - cursor ask.txt *(coming soon!)*  
    - cursor edit.txt *(coming soon!)*  
 
