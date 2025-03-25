@@ -19,8 +19,15 @@ Have suggestions? Open an [issue](../../issues).
 🆕 **LATEST UPDATE:** 11/03/2025 *(Next update: tomorrow!)*  
 
 ## 📊 **Star History**
-[![Star History Chart](https://api.star-history.com/svg?repos=x1xhlol/system-prompts-and-models-of-ai-tools&type=Date)](https://www.star-history.com/#x1xhlol/system-prompts-and-models-of-ai-tools&Date)
+## Star History
 
+<a href="https://www.star-history.com/#x1xhlol/system-prompts-and-models-of-ai-tools&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=x1xhlol/system-prompts-and-models-of-ai-tools&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=x1xhlol/system-prompts-and-models-of-ai-tools&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=x1xhlol/system-prompts-and-models-of-ai-tools&type=Date" />
+ </picture>
+</a>
 
 ## 🔗 **Connect With Me**  
 ✖ **GitHub:** [NotLucknite](https://github.com/NotLucknite)  
