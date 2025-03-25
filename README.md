@@ -30,7 +30,7 @@ Have suggestions? Open an [issue](../../issues).
 </a>
 
 ## 🔗 **Connect With Me**  
-✖ **GitHub:** [NotLucknite](https://github.com/NotLucknite)  
+✖ **X:** [NotLucknite](https://x.com/NotLucknite)  
 💬 **Discord:** `x1xh`  
 
 ⭐ **Drop a star if you find this useful!**  
