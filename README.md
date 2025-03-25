@@ -19,7 +19,8 @@ Have suggestions? Open an [issue](../../issues).
 🆕 **LATEST UPDATE:** 11/03/2025 *(Next update: tomorrow!)*  
 
 ## 📊 **Star History**
-[![Star History Chart](<iframe style="width:100%;height:auto;min-width:600px;min-height:400px;" src="https://www.star-history.com/embed?secret=Z2hwXzRqVmR1ZE5reGdwOWpzUTVuOG8xYXEwMXpSbU1kMDRPSzhGeg==#x1xhlol/system-prompts-and-models-of-ai-tools&Date" frameBorder="0"></iframe>)  
+<iframe style="width:100%;height:auto;min-width:600px;min-height:400px;" src="https://www.star-history.com/embed?secret=Z2hwXzRqVmR1ZE5reGdwOWpzUTVuOG8xYXEwMXpSbU1kMDRPSzhGeg==#x1xhlol/system-prompts-and-models-of-ai-tools&Date" frameBorder="0"></iframe>
+
 
 ## 🔗 **Connect With Me**  
 ✖ **GitHub:** [NotLucknite](https://github.com/NotLucknite)  
