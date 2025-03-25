@@ -13,7 +13,7 @@
 ## 🛠 **What Do You Want to See Next?**
 Have suggestions? Open an [issue](../../issues).  
 
-🆕 **LATEST UPDATE:** 11/03/2025 *(Next update: tomorrow!)*  
+🆕 **LATEST UPDATE:** 25/03/2025 *(Next update: tomorrow!)*  
 
 ## 📊 **Star History**
 ## Star History
