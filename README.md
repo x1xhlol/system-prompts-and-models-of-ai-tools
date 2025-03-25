@@ -1,6 +1,6 @@
 # **FULL v0, Cursor & Manus System Prompts & AI Models**  
 
-🚀 **I managed to obtain a significant portion of the FULL official v0, Manus, and Cursor (Sonnet-3.7 based) system prompts and AI models.**  
+🚀 **I managed to obtain FULL official v0, Manus, and Cursor (Sonnet-3.7 based) system prompts and AI models.**  
 📜 Over **5,000+ lines** of insights into their structure and functionality.  
 
 ## 📂 **Available Files**
