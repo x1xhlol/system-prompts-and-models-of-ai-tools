@@ -1,0 +1,114 @@
+#!/bin/bash
+
+# USAGE: create_fastapi_app [app_name]
+
+APP_NAME=$1
+
+# Check for help flag or missing argument
+if [ "$1" == "--help" ] || [ "$1" == "-h" ] || [ -z "$1" ] || [ "$1" == "." ]; then
+  echo "Creates a new FastAPI application template for Cloudflare Workers"
+  echo
+  echo "USAGE:"
+  echo "  create_fastapi_app [app_name]"
+  echo
+  echo "ARGUMENTS:"
+  echo "  app_name    Name of the FastAPI application to create"
+  echo
+  echo "EXAMPLE:"
+  echo "  create_fastapi_app my_api"
+  exit 1
+fi
+
+# Create project directory
+mkdir -p $APP_NAME/src
+pushd $APP_NAME > /dev/null
+
+# Create wrangler.toml
+cat <<EOF > wrangler.toml
+name = "$APP_NAME"
+main = "src/worker.py"
+compatibility_flags = ["python_workers"]
+compatibility_date = "2023-12-18"
+
+[vars]
+MESSAGE = "Welcome to FastAPI on Cloudflare Workers!"
+EOF
+
+# Create src/worker.py
+cat <<EOF > src/worker.py
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+import asgi
+
+# Initialize FastAPI app
+app = FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Worker entry point
+async def on_fetch(request, env):
+    return await asgi.fetch(app, request, env)
+
+# Basic health check endpoint
+@app.get("/healthz")
+async def healthz():
+    return {"status": "ok"}
+
+# Example of accessing environment variables
+@app.get("/env")
+async def get_env(req: Request):
+    env = req.scope["env"]
+    return {
+        "message": env.MESSAGE
+    }
+
+# Example data model
+class Item(BaseModel):
+    name: str
+    description: str | None = None
+    price: float
+    tax: float | None = None
+
+# CRUD endpoints examples
+@app.post("/items/")
+async def create_item(item: Item):
+    return item
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: int):
+    return {"item_id": item_id}
+
+@app.put("/items/{item_id}")
+async def update_item(item_id: int, item: Item, q: str | None = None):
+    result = {"item_id": item_id, **item.model_dump()}
+    if q:
+        result.update({"q": q})
+    return result
+EOF
+
+# Create requirements.txt
+cat <<EOF > requirements.txt
+fastapi
+pydantic
+EOF
+
+APP_PATH="$(pwd)"
+popd > /dev/null
+
+echo "Created new FastAPI Cloudflare Worker app $APP_NAME at $APP_PATH"
+echo
+echo "Project structure:"
+echo "├── wrangler.toml"
+echo "└── src/"
+echo "    └── worker.py"
+echo
+echo "To deploy this FastAPI application, use the deploy_websites command."
+echo "The project root is at: $APP_PATH"

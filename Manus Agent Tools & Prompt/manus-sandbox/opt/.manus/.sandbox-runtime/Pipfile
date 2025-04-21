@@ -1,0 +1,36 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = ">=0.68.0"
+uvicorn = ">=0.15.0"
+websockets = ">=10.0"
+bashlex = "*"
+pexpect = "*"
+pydantic = "*"
+httpx = "*"
+browser-use = "0.1.36"
+# nuitka = "2.6.7"
+
+[dev-packages]
+pytest-asyncio = ">=0.18.0"
+isort = ">=5.10.1"
+mypy = ">=0.981"
+flake8 = ">=4.0.1"
+pytest = "*"
+ruff = "*"
+
+[requires]
+python_version = "3.11"
+
+[scripts]
+start = "python start_server.py"
+# start_bin = "python start_server.bin"
+test = "pytest"
+format = "black ."
+lint = "flake8 ."
+sort = "isort ."
+typecheck = "mypy ."
+init_playwright="playwright install chrome"

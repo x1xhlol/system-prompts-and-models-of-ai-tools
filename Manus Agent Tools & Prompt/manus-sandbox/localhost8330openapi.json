@@ -1,0 +1,1176 @@
+{
+    "openapi": "3.1.0",
+    "info": { "title": "FastAPI", "version": "0.1.0" },
+    "paths": {
+        "/file/upload_to_s3": {
+            "post": {
+                "summary": "Upload File",
+                "description": "Upload a file to S3. If file size exceeds threshold, return size information instead.\n\nRequest body:\n{\n    \"file_path\": str,         # The local file path to upload\n    \"presigned_url\": str      # The presigned URL to upload to\n}\n\nReturns:\n- For small files: Uploads the file and returns success response\n- For large files: Returns file information for multipart upload",
+                "operationId": "upload_file_file_upload_to_s3_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FileUploadRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": { "application/json": { "schema": {} } }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/file/multipart_upload_to_s3": {
+            "post": {
+                "summary": "Multipart Upload",
+                "description": "使用预签名URLs上传文件分片\n\nRequest body:\n{\n    \"file_path\": str,              # 要上传的文件路径\n    \"presigned_urls\": [            # 预签名URL列表\n        {\n            \"part_number\": int,    # 分片编号（从1开始）\n            \"url\": str             # 该分片的预签名URL\n        },\n        ...\n    ],\n    \"part_size\": int              # 每个分片的大小（字节）\n}",
+                "operationId": "multipart_upload_file_multipart_upload_to_s3_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MultipartUploadRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": { "application/json": { "schema": {} } }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/file": {
+            "get": {
+                "summary": "Get File",
+                "description": "Download file endpoint\nQuery params:\n    path: str - The file path to download",
+                "operationId": "get_file_file_get",
+                "parameters": [
+                    {
+                        "name": "path",
+                        "in": "query",
+                        "required": true,
+                        "schema": { "type": "string", "title": "Path" }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": { "application/json": { "schema": {} } }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/request-download-attachments": {
+            "post": {
+                "summary": "Batch Download",
+                "description": "Batch download files endpoint\nRequest body:\n{\n    \"files\": [\n        {\n            \"url\": \"https://example.com/file1.pdf\",\n            \"filename\": \"file1.pdf\"\n        },\n        ...\n    ],\n    \"folder\": \"optional/subfolder/path\"  # Optional folder to save files /home/ubuntu/upload/optional/subfolder/\n}",
+                "operationId": "batch_download_request_download_attachments_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DownloadRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": { "application/json": { "schema": {} } }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/browser/status": {
+            "get": {
+                "summary": "Browser Status",
+                "description": "Endpoint for browser status",
+                "operationId": "browser_status_browser_status_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": { "application/json": { "schema": {} } }
+                    }
+                }
+            }
+        },
+        "/browser/action": {
+            "post": {
+                "summary": "Browser Action",
+                "description": "Endpoint for browser action",
+                "operationId": "browser_action_browser_action_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BrowserActionRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": { "application/json": { "schema": {} } }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/text_editor": {
+            "post": {
+                "summary": "Text Editor Endpoint",
+                "description": "Endpoint for text editor",
+                "operationId": "text_editor_endpoint_text_editor_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TextEditorAction"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": { "application/json": { "schema": {} } }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/terminal/{terminal_id}/reset": {
+            "post": {
+                "summary": "Reset Terminal",
+                "description": "Reset a specific terminal",
+                "operationId": "reset_terminal_terminal__terminal_id__reset_post",
+                "parameters": [
+                    {
+                        "name": "terminal_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "string", "title": "Terminal Id" }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": { "application/json": { "schema": {} } }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/terminal/reset-all": {
+            "post": {
+                "summary": "Reset All Terminals",
+                "description": "Reset all terminals",
+                "operationId": "reset_all_terminals_terminal_reset_all_post",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": { "application/json": { "schema": {} } }
+                    }
+                }
+            }
+        },
+        "/terminal/{terminal_id}/view": {
+            "get": {
+                "summary": "View Terminal",
+                "description": "View terminal history\n\nArgs:\n    terminal_id: The terminal ID\n    full_history: If True, returns full history. If False, returns only last command output",
+                "operationId": "view_terminal_terminal__terminal_id__view_get",
+                "parameters": [
+                    {
+                        "name": "terminal_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "string", "title": "Terminal Id" }
+                    },
+                    {
+                        "name": "full",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "default": true,
+                            "title": "Full"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": { "application/json": { "schema": {} } }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/terminal/{terminal_id}/kill": {
+            "post": {
+                "summary": "Kill Terminal Process",
+                "description": "Kill the current process in a terminal",
+                "operationId": "kill_terminal_process_terminal__terminal_id__kill_post",
+                "parameters": [
+                    {
+                        "name": "terminal_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "string", "title": "Terminal Id" }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": { "application/json": { "schema": {} } }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/terminal/{terminal_id}/write": {
+            "post": {
+                "summary": "Write Terminal Process",
+                "description": "write text to terminal process",
+                "operationId": "write_terminal_process_terminal__terminal_id__write_post",
+                "parameters": [
+                    {
+                        "name": "terminal_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "string", "title": "Terminal Id" }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TerminalWriteApiRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": { "application/json": { "schema": {} } }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/init-sandbox": {
+            "post": {
+                "summary": "Init Sandbox",
+                "description": "初始化沙箱环境\n\n接收 secrets 并写入到用户的 .secrets 目录下，每个 secret 作为单独的文件\n- secrets 目录会在 $HOME/.secrets 下创建\n- 每个 secret 的 key 作为文件名\n- 如果文件已存在且内容不同，会将原文件备份（添加时间戳后缀）\n\nArgs:\n    request: InitSandboxRequest containing secrets dictionary\n\nReturns:\n    Dict with status and processed files info\n\nRaises:\n    HTTPException: If HOME environment variable is not set or other errors",
+                "operationId": "init_sandbox_init_sandbox_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InitSandboxRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": { "application/json": { "schema": {} } }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/healthz": {
+            "get": {
+                "summary": "Healthz",
+                "operationId": "healthz_healthz_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": { "application/json": { "schema": {} } }
+                    }
+                }
+            }
+        },
+        "/zip-and-upload": {
+            "post": {
+                "summary": "Zip And Upload",
+                "description": "Zip a directory (excluding node_modules) and upload to S3\nRequest body:\n{\n    \"directory\": \"/path/to/directory\",\n    \"upload_url\": \"https://s3-presigned-url...\",\n    \"project_type\": \"frontend\" | \"backend\" | \"nextjs\"\n}",
+                "operationId": "zip_and_upload_zip_and_upload_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ZipAndUploadRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": { "application/json": { "schema": {} } }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BrowserAction": {
+                "properties": {
+                    "view": {
+                        "anyOf": [
+                            { "$ref": "#/components/schemas/ViewAction" },
+                            { "type": "null" }
+                        ]
+                    },
+                    "save_image": {
+                        "anyOf": [
+                            { "$ref": "#/components/schemas/SaveImageAction" },
+                            { "type": "null" }
+                        ]
+                    },
+                    "save_screenshot": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/SaveScreenshotAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "extract_content": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/ExtractPageContentAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "search_google": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/SearchGoogleAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "go_to_url": {
+                        "anyOf": [
+                            { "$ref": "#/components/schemas/GoToUrlAction" },
+                            { "type": "null" }
+                        ]
+                    },
+                    "click_element": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/ClickElementAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "input_text": {
+                        "anyOf": [
+                            { "$ref": "#/components/schemas/InputTextAction" },
+                            { "type": "null" }
+                        ]
+                    },
+                    "switch_tab": {
+                        "anyOf": [
+                            { "$ref": "#/components/schemas/SwitchTabAction" },
+                            { "type": "null" }
+                        ]
+                    },
+                    "open_tab": {
+                        "anyOf": [
+                            { "$ref": "#/components/schemas/OpenTabAction" },
+                            { "type": "null" }
+                        ]
+                    },
+                    "scroll_down": {
+                        "anyOf": [
+                            { "$ref": "#/components/schemas/ScrollAction" },
+                            { "type": "null" }
+                        ]
+                    },
+                    "scroll_up": {
+                        "anyOf": [
+                            { "$ref": "#/components/schemas/ScrollAction" },
+                            { "type": "null" }
+                        ]
+                    },
+                    "send_keys": {
+                        "anyOf": [
+                            { "$ref": "#/components/schemas/SendKeysAction" },
+                            { "type": "null" }
+                        ]
+                    },
+                    "go_back": {
+                        "anyOf": [
+                            { "$ref": "#/components/schemas/NoParamAction" },
+                            { "type": "null" }
+                        ]
+                    },
+                    "scroll_to_text": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/ScrollToTextAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "get_dropdown_options": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/GetDropdownOptionsAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "select_dropdown_option": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/SelectDropdownOptionAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "browser_navigate": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/BrowserNavigateAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "browser_view": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/BrowserViewAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "browser_screenshot": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/BrowserScreenshotAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "browser_restart": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/BrowserRestartAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "browser_click": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/BrowserClickAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "browser_move_mouse": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/BrowserMoveMouseAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "browser_input": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/BrowserInputAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "browser_press_key": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/BrowserPressKeyAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "browser_scroll_up": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/BrowserScrollUpAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "browser_scroll_down": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/BrowserScrollDownAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "browser_select_option": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/BrowserSelectOptionAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "browser_console_exec": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/BrowserConsoleExecAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    },
+                    "browser_console_view": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/BrowserConsoleViewAction"
+                            },
+                            { "type": "null" }
+                        ]
+                    }
+                },
+                "type": "object",
+                "title": "BrowserAction"
+            },
+            "BrowserActionRequest": {
+                "properties": {
+                    "action": { "$ref": "#/components/schemas/BrowserAction" },
+                    "screenshot_presigned_url": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Screenshot Presigned Url"
+                    },
+                    "clean_screenshot_presigned_url": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Clean Screenshot Presigned Url"
+                    }
+                },
+                "type": "object",
+                "required": ["action"],
+                "title": "BrowserActionRequest"
+            },
+            "BrowserClickAction": {
+                "properties": {
+                    "index": {
+                        "anyOf": [{ "type": "integer" }, { "type": "null" }],
+                        "title": "Index"
+                    },
+                    "coordinate_x": {
+                        "anyOf": [{ "type": "number" }, { "type": "null" }],
+                        "title": "Coordinate X"
+                    },
+                    "coordinate_y": {
+                        "anyOf": [{ "type": "number" }, { "type": "null" }],
+                        "title": "Coordinate Y"
+                    }
+                },
+                "type": "object",
+                "title": "BrowserClickAction"
+            },
+            "BrowserConsoleExecAction": {
+                "properties": {
+                    "javascript": { "type": "string", "title": "Javascript" }
+                },
+                "type": "object",
+                "required": ["javascript"],
+                "title": "BrowserConsoleExecAction"
+            },
+            "BrowserConsoleViewAction": {
+                "properties": {
+                    "max_lines": {
+                        "anyOf": [{ "type": "integer" }, { "type": "null" }],
+                        "title": "Max Lines"
+                    }
+                },
+                "type": "object",
+                "title": "BrowserConsoleViewAction"
+            },
+            "BrowserInputAction": {
+                "properties": {
+                    "index": {
+                        "anyOf": [{ "type": "integer" }, { "type": "null" }],
+                        "title": "Index"
+                    },
+                    "coordinate_x": {
+                        "anyOf": [{ "type": "number" }, { "type": "null" }],
+                        "title": "Coordinate X"
+                    },
+                    "coordinate_y": {
+                        "anyOf": [{ "type": "number" }, { "type": "null" }],
+                        "title": "Coordinate Y"
+                    },
+                    "text": { "type": "string", "title": "Text" },
+                    "press_enter": { "type": "boolean", "title": "Press Enter" }
+                },
+                "type": "object",
+                "required": ["text", "press_enter"],
+                "title": "BrowserInputAction"
+            },
+            "BrowserMoveMouseAction": {
+                "properties": {
+                    "coordinate_x": {
+                        "type": "number",
+                        "title": "Coordinate X"
+                    },
+                    "coordinate_y": {
+                        "type": "number",
+                        "title": "Coordinate Y"
+                    }
+                },
+                "type": "object",
+                "required": ["coordinate_x", "coordinate_y"],
+                "title": "BrowserMoveMouseAction"
+            },
+            "BrowserNavigateAction": {
+                "properties": { "url": { "type": "string", "title": "Url" } },
+                "type": "object",
+                "required": ["url"],
+                "title": "BrowserNavigateAction"
+            },
+            "BrowserPressKeyAction": {
+                "properties": { "key": { "type": "string", "title": "Key" } },
+                "type": "object",
+                "required": ["key"],
+                "title": "BrowserPressKeyAction"
+            },
+            "BrowserRestartAction": {
+                "properties": { "url": { "type": "string", "title": "Url" } },
+                "type": "object",
+                "required": ["url"],
+                "title": "BrowserRestartAction"
+            },
+            "BrowserScreenshotAction": {
+                "properties": {
+                    "file": { "type": "string", "title": "File" },
+                    "reload": {
+                        "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+                        "title": "Reload"
+                    }
+                },
+                "type": "object",
+                "required": ["file"],
+                "title": "BrowserScreenshotAction"
+            },
+            "BrowserScrollDownAction": {
+                "properties": {
+                    "to_bottom": {
+                        "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+                        "title": "To Bottom"
+                    }
+                },
+                "type": "object",
+                "title": "BrowserScrollDownAction"
+            },
+            "BrowserScrollUpAction": {
+                "properties": {
+                    "to_top": {
+                        "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+                        "title": "To Top"
+                    }
+                },
+                "type": "object",
+                "title": "BrowserScrollUpAction"
+            },
+            "BrowserSelectOptionAction": {
+                "properties": {
+                    "index": { "type": "integer", "title": "Index" },
+                    "option": { "type": "integer", "title": "Option" }
+                },
+                "type": "object",
+                "required": ["index", "option"],
+                "title": "BrowserSelectOptionAction"
+            },
+            "BrowserViewAction": {
+                "properties": {
+                    "reload": {
+                        "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+                        "title": "Reload"
+                    }
+                },
+                "type": "object",
+                "title": "BrowserViewAction"
+            },
+            "ClickElementAction": {
+                "properties": {
+                    "index": { "type": "integer", "title": "Index" },
+                    "xpath": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Xpath"
+                    }
+                },
+                "type": "object",
+                "required": ["index"],
+                "title": "ClickElementAction"
+            },
+            "DownloadItem": {
+                "properties": {
+                    "url": { "type": "string", "title": "Url" },
+                    "filename": { "type": "string", "title": "Filename" }
+                },
+                "type": "object",
+                "required": ["url", "filename"],
+                "title": "DownloadItem"
+            },
+            "DownloadRequest": {
+                "properties": {
+                    "files": {
+                        "items": {
+                            "$ref": "#/components/schemas/DownloadItem"
+                        },
+                        "type": "array",
+                        "title": "Files"
+                    },
+                    "folder": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Folder"
+                    }
+                },
+                "type": "object",
+                "required": ["files"],
+                "title": "DownloadRequest"
+            },
+            "ExtractPageContentAction": {
+                "properties": {
+                    "save_to_file_path": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Save To File Path"
+                    }
+                },
+                "type": "object",
+                "title": "ExtractPageContentAction"
+            },
+            "FileUploadRequest": {
+                "properties": {
+                    "file_path": { "type": "string", "title": "File Path" },
+                    "presigned_url": {
+                        "type": "string",
+                        "title": "Presigned Url"
+                    }
+                },
+                "type": "object",
+                "required": ["file_path", "presigned_url"],
+                "title": "FileUploadRequest"
+            },
+            "GetDropdownOptionsAction": {
+                "properties": {
+                    "index": { "type": "integer", "title": "Index" }
+                },
+                "type": "object",
+                "required": ["index"],
+                "title": "GetDropdownOptionsAction"
+            },
+            "GoToUrlAction": {
+                "properties": { "url": { "type": "string", "title": "Url" } },
+                "type": "object",
+                "required": ["url"],
+                "title": "GoToUrlAction"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "InitSandboxRequest": {
+                "properties": {
+                    "secrets": {
+                        "additionalProperties": { "type": "string" },
+                        "type": "object",
+                        "title": "Secrets"
+                    }
+                },
+                "type": "object",
+                "required": ["secrets"],
+                "title": "InitSandboxRequest"
+            },
+            "InputTextAction": {
+                "properties": {
+                    "index": { "type": "integer", "title": "Index" },
+                    "text": { "type": "string", "title": "Text" },
+                    "xpath": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Xpath"
+                    }
+                },
+                "type": "object",
+                "required": ["index", "text"],
+                "title": "InputTextAction"
+            },
+            "MultipartUploadRequest": {
+                "properties": {
+                    "file_path": { "type": "string", "title": "File Path" },
+                    "presigned_urls": {
+                        "items": {
+                            "$ref": "#/components/schemas/PresignedUrlPart"
+                        },
+                        "type": "array",
+                        "title": "Presigned Urls"
+                    },
+                    "part_size": { "type": "integer", "title": "Part Size" }
+                },
+                "type": "object",
+                "required": ["file_path", "presigned_urls", "part_size"],
+                "title": "MultipartUploadRequest"
+            },
+            "NoParamAction": {
+                "properties": {},
+                "type": "object",
+                "title": "NoParamAction"
+            },
+            "OpenTabAction": {
+                "properties": { "url": { "type": "string", "title": "Url" } },
+                "type": "object",
+                "required": ["url"],
+                "title": "OpenTabAction"
+            },
+            "PresignedUrlPart": {
+                "properties": {
+                    "part_number": {
+                        "type": "integer",
+                        "title": "Part Number"
+                    },
+                    "url": { "type": "string", "title": "Url" }
+                },
+                "type": "object",
+                "required": ["part_number", "url"],
+                "title": "PresignedUrlPart"
+            },
+            "ProjectType": {
+                "type": "string",
+                "enum": ["frontend", "backend", "nextjs"],
+                "title": "ProjectType"
+            },
+            "SaveImageAction": {
+                "properties": {
+                    "url": { "type": "string", "title": "Url" },
+                    "file_path": { "type": "string", "title": "File Path" }
+                },
+                "type": "object",
+                "required": ["url", "file_path"],
+                "title": "SaveImageAction"
+            },
+            "SaveScreenshotAction": {
+                "properties": {
+                    "file_path": { "type": "string", "title": "File Path" }
+                },
+                "type": "object",
+                "required": ["file_path"],
+                "title": "SaveScreenshotAction"
+            },
+            "ScrollAction": {
+                "properties": {
+                    "amount": {
+                        "anyOf": [{ "type": "integer" }, { "type": "null" }],
+                        "title": "Amount"
+                    }
+                },
+                "type": "object",
+                "title": "ScrollAction"
+            },
+            "ScrollToTextAction": {
+                "properties": { "text": { "type": "string", "title": "Text" } },
+                "type": "object",
+                "required": ["text"],
+                "title": "ScrollToTextAction"
+            },
+            "SearchGoogleAction": {
+                "properties": {
+                    "query": { "type": "string", "title": "Query" }
+                },
+                "type": "object",
+                "required": ["query"],
+                "title": "SearchGoogleAction"
+            },
+            "SelectDropdownOptionAction": {
+                "properties": {
+                    "index": { "type": "integer", "title": "Index" },
+                    "text": { "type": "string", "title": "Text" }
+                },
+                "type": "object",
+                "required": ["index", "text"],
+                "title": "SelectDropdownOptionAction"
+            },
+            "SendKeysAction": {
+                "properties": { "keys": { "type": "string", "title": "Keys" } },
+                "type": "object",
+                "required": ["keys"],
+                "title": "SendKeysAction"
+            },
+            "SwitchTabAction": {
+                "properties": {
+                    "page_id": { "type": "integer", "title": "Page Id" }
+                },
+                "type": "object",
+                "required": ["page_id"],
+                "title": "SwitchTabAction"
+            },
+            "TerminalWriteApiRequest": {
+                "properties": {
+                    "text": { "type": "string", "title": "Text" },
+                    "enter": {
+                        "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+                        "title": "Enter"
+                    }
+                },
+                "type": "object",
+                "required": ["text"],
+                "title": "TerminalWriteApiRequest"
+            },
+            "TextEditorAction": {
+                "properties": {
+                    "command": {
+                        "type": "string",
+                        "enum": [
+                            "view",
+                            "create",
+                            "write",
+                            "str_replace",
+                            "find_content",
+                            "find_file"
+                        ],
+                        "title": "Command"
+                    },
+                    "path": { "type": "string", "title": "Path" },
+                    "sudo": {
+                        "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+                        "title": "Sudo"
+                    },
+                    "file_text": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "File Text"
+                    },
+                    "view_range": {
+                        "anyOf": [
+                            { "items": { "type": "integer" }, "type": "array" },
+                            { "type": "null" }
+                        ],
+                        "title": "View Range"
+                    },
+                    "old_str": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Old Str"
+                    },
+                    "new_str": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "New Str"
+                    },
+                    "insert_line": {
+                        "anyOf": [{ "type": "integer" }, { "type": "null" }],
+                        "title": "Insert Line"
+                    },
+                    "glob": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Glob"
+                    },
+                    "regex": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Regex"
+                    },
+                    "append": {
+                        "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+                        "title": "Append"
+                    },
+                    "trailing_newline": {
+                        "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+                        "title": "Trailing Newline"
+                    },
+                    "leading_newline": {
+                        "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+                        "title": "Leading Newline"
+                    }
+                },
+                "type": "object",
+                "required": ["command", "path"],
+                "title": "TextEditorAction"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                { "type": "string" },
+                                { "type": "integer" }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": { "type": "string", "title": "Message" },
+                    "type": { "type": "string", "title": "Error Type" }
+                },
+                "type": "object",
+                "required": ["loc", "msg", "type"],
+                "title": "ValidationError"
+            },
+            "ViewAction": {
+                "properties": {
+                    "delay": { "type": "number", "title": "Delay" }
+                },
+                "type": "object",
+                "required": ["delay"],
+                "title": "ViewAction"
+            },
+            "ZipAndUploadRequest": {
+                "properties": {
+                    "directory": { "type": "string", "title": "Directory" },
+                    "upload_url": { "type": "string", "title": "Upload Url" },
+                    "project_type": {
+                        "$ref": "#/components/schemas/ProjectType"
+                    }
+                },
+                "type": "object",
+                "required": ["directory", "upload_url", "project_type"],
+                "title": "ZipAndUploadRequest"
+            }
+        }
+    }
+}

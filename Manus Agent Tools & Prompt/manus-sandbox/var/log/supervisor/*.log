@@ -1,0 +1,104 @@
+ubuntu@0108eab2bc5f:~/manus-sandbox$ tail -f /var/log/supervisor/*.log
+==> /var/log/supervisor/Xvfb.err.log <==
+
+==> /var/log/supervisor/Xvfb.log <==
+
+==> /var/log/supervisor/chrome.err.log <==
+[448:495:0309/192100.982737:ERROR:bus.cc(408)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[448:495:0309/192100.982747:ERROR:bus.cc(408)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[448:448:0312/194656.409380:ERROR:CONSOLE(275)] "Uncaught TypeError: Cannot read properties of undefined (reading 'recordValue')", source: chrome://new-tab-page/new_tab_page.js (275)
+[548:559:0312/194700.459787:ERROR:socket_posix.cc(93)] CreatePlatformSocket() failed: Address family not supported by protocol (97)
+[548:559:0312/194701.638975:ERROR:socket_posix.cc(93)] CreatePlatformSocket() failed: Address family not supported by protocol (97)
+[548:559:0312/194706.655053:ERROR:socket_posix.cc(93)] CreatePlatformSocket() failed: Address family not supported by protocol (97)
+[548:559:0312/194707.564584:ERROR:socket_posix.cc(93)] CreatePlatformSocket() failed: Address family not supported by protocol (97)
+[548:559:0312/194708.593869:ERROR:socket_posix.cc(93)] CreatePlatformSocket() failed: Address family not supported by protocol (97)
+[548:559:0312/194713.613541:ERROR:socket_posix.cc(93)] CreatePlatformSocket() failed: Address family not supported by protocol (97)
+[548:559:0312/194746.995438:ERROR:socket_posix.cc(93)] CreatePlatformSocket() failed: Address family not supported by protocol (97)
+
+==> /var/log/supervisor/chrome.log <==
+[chrome] Waiting for sandbox-runtime to be ready...
+[chrome] Waiting for sandbox-runtime to be ready...
+[chrome] Waiting for sandbox-runtime to be ready...
+[chrome] Waiting for sandbox-runtime to be ready...
+[chrome] Waiting for sandbox-runtime to be ready...
+[chrome] Waiting for sandbox-runtime to be ready...
+[chrome] Waiting for sandbox-runtime to be ready...
+sandbox-runtime is ready, starting chrome...
+
+==> /var/log/supervisor/code-server.err.log <==
+File not found: /usr/lib/code-server/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /usr/lib/code-server/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[19:39:05] [File Watcher (node.js)] Watcher shutdown because watched path got deleted
+File not found: /usr/lib/code-server/lib/vscode/node_modules/vsda/rust/web/vsda.js
+File not found: /usr/lib/code-server/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+
+==> /var/log/supervisor/code-server.log <==
+
+[19:30:51] Extension host agent started.
+[19:30:51] Started initializing default profile extensions in extensions installation folder. file:///home/ubuntu/.local/share/code-server/extensions
+[19:30:51] Completed initializing default profile extensions in extensions installation folder. file:///home/ubuntu/.local/share/code-server/extensions
+[19:30:53] [10.31.200.1][427648eb][ManagementConnection] New connection established.
+[19:30:54] [10.31.200.1][965db1bf][ExtensionHostConnection] New connection established.
+[19:30:55] [10.31.200.1][965db1bf][ExtensionHostConnection] <3678> Launched Extension Host Process.
+[19:45:19] [10.167.231.1][114aa6f7][ManagementConnection] New connection established.
+[19:45:20] [10.167.231.1][6fdc2f64][ExtensionHostConnection] New connection established.
+[19:45:20] [10.167.231.1][6fdc2f64][ExtensionHostConnection] <8156> Launched Extension Host Process.
+
+==> /var/log/supervisor/sandbox-runtime.err.log <==
+INFO:     Started server process [385]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8330 (Press CTRL+C to quit)
+
+==> /var/log/supervisor/sandbox-runtime.log <==
+2025-03-12 19:46:56,437 - DEBUG - New page opened: chrome://new-tab-page/
+2025-03-12 19:47:15,829 - INFO - [>>] GET /healthz
+2025-03-12 19:47:15,830 - INFO - [<<] Finished handling GET /healthz in 0.14901161193847656ms
+INFO:     127.0.0.1:45128 - "GET /healthz HTTP/1.1" 200 OK
+2025-03-12 19:47:35,842 - INFO - [>>] GET /healthz
+2025-03-12 19:47:35,842 - INFO - [<<] Finished handling GET /healthz in 0.16069412231445312ms
+INFO:     127.0.0.1:54594 - "GET /healthz HTTP/1.1" 200 OK
+2025-03-12 19:47:55,051 - INFO - [>>] GET /healthz
+2025-03-12 19:47:55,051 - INFO - [<<] Finished handling GET /healthz in 0.2079010009765625ms
+INFO:     127.0.0.1:39562 - "GET /healthz HTTP/1.1" 200 OK
+
+==> /var/log/supervisor/supervisord.log <==
+2025-03-07 15:55:08,161 INFO success: sandbox-runtime entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-03-07 15:55:08,163 INFO success: Xvfb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-03-07 15:55:17,205 INFO success: chrome entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2025-03-07 10:55:31,439 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-03-07 10:55:31,439 INFO Included extra file "/etc/supervisor/conf.d/1-sandbox-runtime.conf" during parsing
+2025-03-07 10:55:31,439 INFO Included extra file "/etc/supervisor/conf.d/2-xvfb.conf" during parsing
+2025-03-07 10:55:31,439 INFO Included extra file "/etc/supervisor/conf.d/4-chrome.conf" during parsing
+2025-03-07 10:55:31,439 INFO Included extra file "/etc/supervisor/conf.d/5-x11vnc.conf" during parsing
+2025-03-07 10:55:31,439 INFO Included extra file "/etc/supervisor/conf.d/6-websockify.conf" during parsing
+2025-03-07 10:55:31,439 INFO Included extra file "/etc/supervisor/conf.d/7-code-server.conf" during parsing
+
+==> /var/log/supervisor/websockify.err.log <==
+INFO New connection target=127.0.0.1:5900
+Mar  9 19:20:28: new connection to target 127.0.0.1:5900
+INFO New connection target=127.0.0.1:5900
+Mar  9 19:20:29: new connection to target 127.0.0.1:5900
+Mar  9 19:21:57: reading from WS failed: repeated read on failed websocket connection
+Mar  9 19:21:57: reading from TCP failed: read tcp 127.0.0.1:33764->127.0.0.1:5900: use of closed network connection
+Mar  9 19:21:57: reading from WS failed: repeated read on failed websocket connection
+Mar  9 19:21:57: reading from TCP failed: read tcp 127.0.0.1:33780->127.0.0.1:5900: use of closed network connection
+INFO New connection target=127.0.0.1:5900
+Mar 12 19:46:50: new connection to target 127.0.0.1:5900
+
+==> /var/log/supervisor/websockify.log <==
+
+==> /var/log/supervisor/x11vnc.err.log <==
+12/03/2025 19:46:51 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0xC0A1E5CE)
+12/03/2025 19:46:51 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x574D5664)
+12/03/2025 19:46:51 Enabling full-color cursor updates for client 127.0.0.1
+12/03/2025 19:46:51 Using tight encoding for client 127.0.0.1
+12/03/2025 19:46:51 Sending rfbEncodingExtDesktopSize for size (1280x1029) 
+12/03/2025 19:46:51 client_set_net: 127.0.0.1  0.0001
+12/03/2025 19:46:56 client 20 network rate 84.5 KB/sec (11802.3 eff KB/sec)
+12/03/2025 19:46:56 client 20 latency:  121.6 ms
+12/03/2025 19:46:56 dt1: 0.0021, dt2: 0.2589 dt3: 0.1216 bytes: 16922
+12/03/2025 19:46:56 link_rate: LR_BROADBAND - 121 ms, 84 KB/s
+
+==> /var/log/supervisor/x11vnc.log <==
+PORT=5900

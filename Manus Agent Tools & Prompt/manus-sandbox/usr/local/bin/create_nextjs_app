@@ -1,0 +1,88 @@
+#!/bin/bash
+
+# USAGE: create_nextjs_app [app_name]
+
+APP_NAME=$1
+TEMPLATE_DIR="/opt/.manus/deploy/templates/next"
+
+# Check for help flag or missing argument
+if [ "$1" == "--help" ] || [ "$1" == "-h" ] || [ -z "$1" ] || [ "$1" == "." ]; then
+  echo "Creates a new Next.js application configured for Cloudflare Workers from template"
+  echo
+  echo "USAGE:"
+  echo "  create_nextjs_app [app_name]"
+  echo
+  echo "ARGUMENTS:"
+  echo "  app_name    Name of the Next.js application to create"
+  echo
+  echo "EXAMPLE:"
+  echo "  create_nextjs_app my_app"
+  exit 1
+fi
+
+# Check if template directory exists
+if [ ! -d "$TEMPLATE_DIR" ]; then
+  echo "Error: Template directory not found at $TEMPLATE_DIR"
+  exit 1
+fi
+
+echo "Starting setup..."
+echo "Creating Next.js app for Cloudflare Workers: $APP_NAME"
+
+# Create destination directory
+mkdir -p "$APP_NAME"
+APP_PATH="$(cd "$APP_NAME" && pwd)"
+
+# Copy template files
+cp -r "$TEMPLATE_DIR/"* "$APP_PATH/"
+
+pushd $APP_NAME > /dev/null
+# Update project name in various files
+sed -i "s/next-cloudflare-template/$APP_NAME/g" "package.json"
+sed -i "s/next-cloudflare-template/$APP_NAME/g" "wrangler.toml"
+
+# Install dependencies
+echo "Installing dependencies..."
+pnpm install > /dev/null 2>&1
+echo "Initializing git repository..."
+wrangler d1 execute DB --local --file=migrations/0001_initial.sql > /dev/null 2>&1
+git init > /dev/null 2>&10
+git add . > /dev/null 2>&1
+git commit -m "init" > /dev/null 2>&1
+popd > /dev/null
+
+
+echo "Created new Next.js app $APP_NAME at $APP_PATH"
+echo
+echo "=== Project Structure ==="
+echo "├── migrations/              # D1 database migration files"
+echo "│   └── 0001_initial.sql    # Initialize database tables"
+echo "├── src/"
+echo "│   ├── app/                # Next.js pages"
+echo "│   │   └── counter.ts      # Server operation examples"
+echo "│   ├── components/"
+echo "│   ├── hooks/"
+echo "│   └── lib/"
+echo "└── wrangler.toml           # Cloudflare configuration"
+echo
+echo "=== D1 Database Operations Guide ==="
+echo "1. Local development database config (wrangler.toml):"
+echo "   [[d1_databases]]"
+echo "   binding = \"DB\"                # Environment variable name"
+echo "   database_name = \"local-db\"    # Database name"
+echo "   database_id = \"local\"         # ID for local development"
+echo
+echo "2. Execute SQL file to reset database:"
+echo "   wrangler d1 execute DB --local --file=migrations/0001_initial.sql"
+echo
+echo "3. Apply new migrations:"
+echo "   wrangler d1 migrations apply DB --local"
+echo
+echo "Example counter.ts demonstrates how to:"
+echo "- Insert and update counters"
+echo "- Record access logs"
+echo "- Query recent access records"
+echo
+echo "Tip: To reset local database, simply rm -rf .wrangler/state/v3 and re-execute SQL file"
+echo "Happy coding! 🚀"
+

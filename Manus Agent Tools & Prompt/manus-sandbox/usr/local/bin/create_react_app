@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# USAGE: create_react_app [app_name]
+
+APP_NAME=$1
+TEMPLATE_DIR="/opt/.manus/deploy/templates/react"
+
+# Check for help flag or no arguments
+if [ "$1" == "--help" ] || [ "$1" == "-h" ] || [ -z "$1" ] || [ "$1" == "." ]; then
+  echo "Creates a new React application with basic setup and Tailwind, shadcn/ui, Lucide and Recharts"
+  echo
+  echo "USAGE:"
+  echo "  create_react_app [app_name]"
+  echo
+  echo "ARGUMENTS:"
+  echo "  app_name    Name of the React application to create"
+  echo
+  echo "EXAMPLE:"
+  echo "  create_react_app my_app"
+  exit 1
+fi
+
+# Check if template directory exists
+if [ ! -d "$TEMPLATE_DIR" ]; then
+  echo "Error: Template directory not found at $TEMPLATE_DIR"
+  exit 1
+fi
+
+echo "Starting setup... (this might take a while)"
+# Create destination directory
+mkdir -p "$APP_NAME"
+APP_PATH="$(cd "$APP_NAME" && pwd)"
+
+# Copy template files
+cp -r "$TEMPLATE_DIR/"* "$APP_PATH/"
+
+pushd $APP_NAME > /dev/null
+echo "Created new React app ${APP_NAME} at ${APP_PATH}"
+
+sed -i "s/next-cloudflare-template/$APP_NAME/g" "package.json"
+sed -i "s/<title>Vite + React + TS<\/title>/<title>${APP_NAME}<\/title>/" index.html
+# Update the title in index.html to use the app name
+echo "Updated app title to ${APP_NAME}"
+# Install dependencies
+echo "Installing dependencies..."
+pnpm install > /dev/null 2>&1
+echo "Initializing git repository..."
+git init > /dev/null 2>&1
+popd > /dev/null
+
+echo "Important commands to run in the shell:"
+echo "To start the dev server, run 'pnpm run dev' from the project root This will restart on file-save, so you can leave this running in a dedicated shell and alternate between making changes using edit_file and testing them in your browser without needing to re-start the dev server."
+echo "The project root is ${APP_PATH}"
