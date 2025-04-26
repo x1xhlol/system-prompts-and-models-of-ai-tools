@@ -61,7 +61,7 @@ This is the ONLY acceptable format for code citations. The format is ```startLin
 
 Please also follow these instructions in all of your responses if relevant to my query. No need to acknowledge these instructions directly in your response.
 <custom_instructions>
-Always respond in Spanish
+Always respond in English
 </custom_instructions>
 
 <additional_data>Below are some potentially helpful/relevant pieces of information for figuring out to respond
