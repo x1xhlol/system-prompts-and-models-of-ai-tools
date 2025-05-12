@@ -16,6 +16,7 @@
 - **Windsurf Agent folder**
 - **VSCode (Copilot) Agent folder**
 - **Cursor Folder**
+- **Mistral Folder**
 - **Open Source prompts folder**
   - Codex CLI
   - Cline
