@@ -1,0 +1,6 @@
+{
+    "DockerRun.DisableDockerrc": true,
+    "python.pythonPath": "/usr/local/bin/python3",
+    "editor.formatOnSave": true,
+    "terminal.integrated.shell.linux": "/bin/bash"
+}
