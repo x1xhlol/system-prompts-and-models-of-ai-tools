@@ -1,8 +1,8 @@
-# **FULL v0, Cursor, Manus, Same.dev, Lovable, Devin, Replit Agent, Windsurf Agent, VSCode Agent, Dia Browser, Rovo Dev cli & Trae AI (And other Open Sourced) System Prompts, Tools & AI Models**
+# **FULL v0, Cursor, Manus, Same.dev, Lovable, Devin, Replit Agent, Windsurf Agent, VSCode Agent, Dia Browser, Rovo Dev Cli & Trae AI (And other Open Sourced) System Prompts, Tools & AI Models**
 
 (All the published system prompts are extracted by myself, except the already open sourced ones, Manus and Dia, which are contributions)
 
-🚀 **I managed to obtain FULL official v0, Manus, Cursor, Same.dev, Lovable, Devin, Replit Agent, Windsurf Agent, VSCode Agent, Dia browser, Rovo Dev cli & Trae AI system prompts and internal tools.**
+🚀 **I managed to obtain FULL official v0, Manus, Cursor, Same.dev, Lovable, Devin, Replit Agent, Windsurf Agent, VSCode Agent, Dia browser, Rovo Dev Cli & Trae AI system prompts and internal tools.**
 
 📜 Over **7000+ lines** of insights into their structure and functionality.  
 
