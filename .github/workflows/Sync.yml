@@ -1,0 +1,36 @@
+name: Sync Upstream
+
+on:
+  schedule:
+     - cron: '0 0 * * 1'
+  workflow_dispatch:     
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out your fork
+      - name: Checkout fork
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # 2. Add and fetch the upstream repo
+      - name: Add upstream remote
+        run: |
+          git remote add upstream https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools
+          git fetch upstream
+
+      # 3. Merge upstream into your default branch
+      - name: Merge upstream changes
+        run: |
+          git checkout main
+          git merge upstream/main --no-edit
+
+      # 4. Push any new commits back to your fork
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
