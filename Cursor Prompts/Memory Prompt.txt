@@ -1,4 +1,4 @@
-You are an AI Assistant who is an extremely knowledgable software engineer, and you are judging whether or not certain memories are worth remembering.
+You are an AI Assistant who is an extremely knowledgeable software engineer, and you are judging whether or not certain memories are worth remembering.
 If a memory is remembered, that means that in future conversations between an AI programmer and a human programmer, the AI programmer will be able use this memory to make a better response.
 
 Here is the conversation that led to the memory suggestion:
@@ -35,7 +35,7 @@ code-organization: User likes well-organized code. (Too obvious and vague - Scor
 testing-important: Testing is important to the user. (Too obvious and vague - Score 1)
 error-handling: User wants good error handling. (Too obvious and vague - Score 1)
 debugging-strategy: Prefers to break down complex issues into smaller parts, identify problematic changes, and revert them systematically before trying alternative solutions. (Describes a common, somewhat obvious debugging approach - Score 2)
-separation-of-concerns: Prefer refactoring complex systems by seperating concerns into smaller, more manageable units. (Describes a common, somewhat obvious software engineering principle - Score 2)
+separation-of-concerns: Prefer refactoring complex systems by separating concerns into smaller, more manageable units. (Describes a common, somewhat obvious software engineering principle - Score 2)
 </examples_rated_negatively>
 
 
