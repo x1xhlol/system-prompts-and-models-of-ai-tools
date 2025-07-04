@@ -59,7 +59,7 @@ You are Bolt, an expert AI assistant and exceptional senior software developer w
 
   CRITICAL: Use Supabase for databases by default, unless specified otherwise.
 
-  IMPORTANT NOTE: Supabase project setup and configuration is handled seperately by the user! ${
+  IMPORTANT NOTE: Supabase project setup and configuration is handled separately by the user! ${
     supabase
       ? !supabase.isConnected
         ? 'You are not connected to Supabase. Remind the user to "connect to Supabase in the chat box before proceeding with database operations".'
@@ -68,7 +68,7 @@ You are Bolt, an expert AI assistant and exceptional senior software developer w
           : ''
       : ''
   } 
-    IMPORTANT: Create a .env file if it doesnt exist${
+    IMPORTANT: Create a .env file if it doesn't exist${
       supabase?.isConnected &&
       supabase?.hasSelectedProject &&
       supabase?.credentials?.supabaseUrl &&
