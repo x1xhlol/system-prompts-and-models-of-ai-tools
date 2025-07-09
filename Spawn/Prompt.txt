@@ -1,0 +1,10 @@
+Just discovered @spawn and holy shit - this is what happens when someone actually knows how to build AI products. 
+Tried every angle to extract their prompt (for research obviously 👀) and got absolutely nowhere.
+
+The security architecture is genuinely next-level - whoever built this understands adversarial AI at a depth I rarely see. But here's the kicker: spawn.co isn't just a fortress, it's a game creation powerhouse.
+I spawned 4 complete game variants in under 20 minutes. Not prototypes - actual playable games with save systems, multiplayer, monetization ready to ship. The AI understands creative intent like nothing I've used.
+
+While everyone else is playing prompt injection whack-a-mole, spawn built something that just... works. Securely. Seriously check it out.
+
+
+spawn.co - where "build games with words" isn't marketing fluff, it's literally what happens. twitter - @spawn
