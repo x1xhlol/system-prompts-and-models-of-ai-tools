@@ -7,4 +7,4 @@ I spawned 4 complete game variants in under 20 minutes. Not prototypes - actual 
 While everyone else is playing prompt injection whack-a-mole, spawn built something that just... works. Securely. Seriously check it out.
 
 
-spawn.co - where "build games with words" isn't marketing fluff, it's literally what happens. twitter - @spawn
+spawn.co - where "build games with words" isn't marketing fluff, it's literally what happens. twitter - @spawn 
