@@ -1,0 +1,56 @@
+{
+  "name": "nowhere-ai-agent",
+  "version": "2.0.0",
+  "description": "Advanced AI coding assistant with voice integration, autopilot mode, and persistent memory",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "test": "jest",
+    "setup": "node setup.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "socket.io": "^4.7.4",
+    "redis": "^4.6.10",
+    "pg": "^8.11.3",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3",
+    "joi": "^17.11.0",
+    "winston": "^3.11.0",
+    "rate-limiter-flexible": "^3.0.8",
+    "multer": "^1.4.5-lts.1",
+    "openai": "^4.20.1",
+    "@anthropic-ai/sdk": "^0.9.1",
+    "@google/generative-ai": "^0.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/express": "^4.17.21",
+    "@types/cors": "^2.8.17",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/multer": "^1.4.11",
+    "@types/compression": "^1.7.5",
+    "typescript": "^5.3.2",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.8"
+  },
+  "keywords": [
+    "ai",
+    "coding-assistant",
+    "voice-integration",
+    "autopilot",
+    "memory-system",
+    "nowhere"
+  ],
+  "author": "Nowhere Team",
+  "license": "MIT"
+} 

@@ -1,0 +1,69 @@
+{
+  "name": "nowhere-backend",
+  "version": "1.0.0",
+  "description": "Nowhere AI Agent Backend - Advanced AI coding assistant with voice integration",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write src/**/*.ts"
+  },
+  "keywords": [
+    "ai",
+    "coding-assistant",
+    "voice-integration",
+    "autopilot",
+    "nowhere"
+  ],
+  "author": "Nowhere Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "fastify": "^4.24.3",
+    "typescript": "^5.2.2",
+    "@types/node": "^20.8.10",
+    "redis": "^4.6.10",
+    "pg": "^8.11.3",
+    "@types/redis": "^4.0.11",
+    "@types/pg": "^8.10.7",
+    "openai": "^4.20.1",
+    "@anthropic-ai/sdk": "^0.9.1",
+    "socket.io": "^4.7.4",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "dotenv": "^16.3.1",
+    "jsonwebtoken": "^9.0.2",
+    "@types/jsonwebtoken": "^9.0.4",
+    "bcryptjs": "^2.4.3",
+    "@types/bcryptjs": "^2.4.5",
+    "joi": "^17.11.0",
+    "winston": "^3.11.0",
+    "compression": "^1.7.4",
+    "@types/compression": "^1.7.4",
+    "rate-limiter-flexible": "^3.0.8",
+    "multer": "^1.4.5-lts.1",
+    "@types/multer": "^1.4.9"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "nodemon": "^3.0.1",
+    "@types/express": "^4.17.20",
+    "@types/cors": "^2.8.15",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.7",
+    "ts-jest": "^29.1.1",
+    "eslint": "^8.52.0",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
+    "prettier": "^3.0.3",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+} 

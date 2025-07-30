@@ -1,0 +1,137 @@
+{
+  "Voice": {
+    "Enabled": true,
+    "RecognitionSensitivity": 0.8,
+    "ResponseSpeed": "normal",
+    "Language": "en-US",
+    "VoiceGender": "Female",
+    "VoiceRate": 0,
+    "VoiceVolume": 100,
+    "WakeWord": "PowerShell",
+    "CommandTimeout": 30
+  },
+  "Autopilot": {
+    "Enabled": false,
+    "AutonomyLevel": "medium",
+    "ConfirmationThreshold": "high",
+    "RiskTolerance": "low",
+    "MaxConcurrentTasks": 3,
+    "TaskTimeout": 300,
+    "LearningRate": 0.1,
+    "ProactiveMonitoring": true,
+    "AutoOptimization": true
+  },
+  "Memory": {
+    "Enabled": true,
+    "MaxEntries": 1000,
+    "PersistencePath": ".\\data\\memory.json",
+    "AutoCleanup": true,
+    "CleanupThreshold": 800,
+    "MemoryTypes": [
+      "command",
+      "response",
+      "error",
+      "learning",
+      "preference",
+      "context"
+    ],
+    "RetentionDays": 30
+  },
+  "AI": {
+    "Model": "gpt-4",
+    "Temperature": 0.7,
+    "MaxTokens": 4000,
+    "APIEndpoint": "https://api.openai.com/v1/chat/completions",
+    "APIKey": "",
+    "FallbackModel": "gpt-3.5-turbo",
+    "ContextWindow": 8000,
+    "ResponseFormat": "text",
+    "EnableStreaming": false
+  },
+  "Security": {
+    "ExecutionPolicy": "RemoteSigned",
+    "RequireConfirmation": true,
+    "DangerousCommands": [
+      "Remove-Item",
+      "Format-Volume",
+      "Invoke-Expression",
+      "powershell.exe"
+    ],
+    "SafeMode": true,
+    "AuditLogging": true,
+    "AuditLogPath": ".\\logs\\audit.log"
+  },
+  "Performance": {
+    "MaxConcurrentJobs": 5,
+    "JobTimeout": 300,
+    "MemoryLimit": 512,
+    "CPUThreshold": 80,
+    "EnableCaching": true,
+    "CacheExpiration": 3600,
+    "EnableProfiling": false
+  },
+  "Logging": {
+    "Enabled": true,
+    "LogLevel": "Information",
+    "LogPath": ".\\logs\\agent.log",
+    "MaxLogSize": 10485760,
+    "LogRetention": 30,
+    "EnableConsoleLogging": true,
+    "EnableFileLogging": true
+  },
+  "Interface": {
+    "Theme": "default",
+    "Colors": {
+      "Primary": "#667eea",
+      "Secondary": "#764ba2",
+      "Success": "#28a745",
+      "Warning": "#ffc107",
+      "Error": "#dc3545",
+      "Info": "#17a2b8"
+    },
+    "ShowProgress": true,
+    "ShowTimestamps": true,
+    "ShowMemoryUsage": true,
+    "EnableAnimations": true
+  },
+  "Modules": {
+    "AI-Integration": {
+      "Enabled": true,
+      "AutoLoad": true,
+      "Version": "1.0"
+    },
+    "Voice-Processing": {
+      "Enabled": true,
+      "AutoLoad": true,
+      "Version": "1.0"
+    },
+    "Security-Scanning": {
+      "Enabled": true,
+      "AutoLoad": true,
+      "Version": "1.0"
+    }
+  },
+  "Features": {
+    "VoiceRecognition": true,
+    "TextToSpeech": true,
+    "AutopilotMode": true,
+    "MemorySystem": true,
+    "CodeGeneration": true,
+    "CodeAnalysis": true,
+    "SecurityScanning": true,
+    "PerformanceMonitoring": true,
+    "RemoteExecution": false,
+    "Collaboration": false
+  },
+  "Advanced": {
+    "EnableExperimental": false,
+    "DebugMode": false,
+    "VerboseLogging": false,
+    "CustomPrompts": {},
+    "CustomCommands": {},
+    "PluginSystem": {
+      "Enabled": false,
+      "PluginPath": ".\\plugins"
+    }
+  }
+} 

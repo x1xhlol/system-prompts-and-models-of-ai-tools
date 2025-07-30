@@ -1,0 +1,24 @@
+{
+    "AI":  {
+               "MaxTokens":  4000,
+               "Model":  "gpt-4",
+               "Temperature":  0.7
+           },
+    "Voice":  {
+                  "ResponseSpeed":  "normal",
+                  "RecognitionSensitivity":  0.8,
+                  "Language":  "en-US",
+                  "Enabled":  true
+              },
+    "Memory":  {
+                   "MaxEntries":  1000,
+                   "PersistencePath":  ".\\data\\memory.json",
+                   "Enabled":  true
+               },
+    "Autopilot":  {
+                      "ConfirmationThreshold":  "high",
+                      "RiskTolerance":  "low",
+                      "AutonomyLevel":  "medium",
+                      "Enabled":  false
+                  }
+}

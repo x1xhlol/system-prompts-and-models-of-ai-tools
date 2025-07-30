@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt Evolution Visualizer</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .timeline {
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .timeline-container {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideIn 0.8s ease forwards;
+        }
+
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            margin-right: 20px;
+            position: relative;
+        }
+
+        .timeline-dot::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            width: 2px;
+            height: 30px;
+            background: #ddd;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item:last-child .timeline-dot::after {
+            display: none;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .timeline-title {
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .timeline-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .ai-tool-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .ai-tool-card:hover {
+            transform: scale(1.05);
+        }
+
+        .tool-score {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .tool-features {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .tool-features li {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 20px 0;
+        }
+
+        .feature-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 1s ease;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 AI Prompt Evolution Visualizer</h1>
+            <p>Discover the fascinating journey of AI assistant evolution from 2019 to 2024</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="showTimeline()">Timeline View</button>
+            <button class="btn" onclick="showComparison()">Tool Comparison</button>
+            <button class="btn" onclick="showFeatures()">Feature Evolution</button>
+        </div>
+
+        <div class="dashboard">
+            <div class="card">
+                <h2>📈 Innovation Timeline</h2>
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2019-2021</div>
+                            <div class="timeline-title">Early Era</div>
+                            <div class="timeline-description">Basic Q&A, limited tools, formal language</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2022-2023</div>
+                            <div class="timeline-title">Growth Era</div>
+                            <div class="timeline-description">Markdown formatting, tool expansion, conversational tone</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2024</div>
+                            <div class="timeline-title">Autonomous Era</div>
+                            <div class="timeline-description">Memory systems, semantic search, browser integration</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2025</div>
+                            <div class="timeline-title">Future Era</div>
+                            <div class="timeline-description">Multi-modal memory, AI ecosystems, predictive assistance</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🎯 Innovation Scorecard</h2>
+                <div class="chart-container">
+                    <canvas id="scoreChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🚀 AI Tool Comparison</h2>
+            <div class="comparison-grid">
+                <div class="ai-tool-card">
+                    <h3>Cursor v1.2</h3>
+                    <div class="tool-score">95/100</div>
+                    <ul class="tool-features">
+                        <li>⭐⭐⭐⭐⭐ Context Understanding</li>
+                        <li>⭐⭐⭐⭐⭐ Tool Integration</li>
+                        <li>⭐⭐⭐⭐ Memory Systems</li>
+                        <li>⭐⭐⭐⭐⭐ Autonomy Level</li>
+                    </ul>
+                </div>
+                <div class="ai-tool-card">
+                    <h3>Devin AI</h3>
+                    <div class="tool-score">90/100</div>
+                    <ul class="tool-features">
+                        <li>⭐⭐⭐⭐ Context Understanding</li>
+                        <li>⭐⭐⭐⭐⭐ Tool Integration</li>
+                        <li>⭐⭐⭐ Memory Systems</li>
+                        <li>⭐⭐⭐⭐⭐ Autonomy Level</li>
+                    </ul>
+                </div>
+                <div class="ai-tool-card">
+                    <h3>Perplexity</h3>
+                    <div class="tool-score">60/100</div>
+                    <ul class="tool-features">
+                        <li>⭐⭐⭐ Context Understanding</li>
+                        <li>⭐⭐⭐ Tool Integration</li>
+                        <li>⭐⭐ Memory Systems</li>
+                        <li>⭐⭐ Autonomy Level</li>
+                    </ul>
+                </div>
+                <div class="ai-tool-card">
+                    <h3>Replit</h3>
+                    <div class="tool-score">70/100</div>
+                    <ul class="tool-features">
+                        <li>⭐⭐⭐ Context Understanding</li>
+                        <li>⭐⭐⭐⭐ Tool Integration</li>
+                        <li>⭐⭐ Memory Systems</li>
+                        <li>⭐⭐⭐ Autonomy Level</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🔧 Feature Evolution</h2>
+            <div class="feature-comparison">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Context Understanding</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                    <p>File → Codebase → Project → User Intent</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>Tool Integration</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                    <p>3-5 tools → 20+ specialized tools</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Memory Systems</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                    <p>None → Session → Cross-session → Multi-modal</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Autonomy Level</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                    <p>Guided → Assisted → Autonomous → Predictive</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline">
+            <h2>📊 Key Metrics Evolution</h2>
+            <div class="chart-container">
+                <canvas id="metricsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize charts
+        function initCharts() {
+            // Score Chart
+            const scoreCtx = document.getElementById('scoreChart').getContext('2d');
+            new Chart(scoreCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Context Understanding', 'Tool Integration', 'Memory Systems', 'Autonomy Level', 'Response Richness'],
+                    datasets: [{
+                        label: 'Cursor v1.2',
+                        data: [5, 5, 4, 5, 5],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.2)',
+                        pointBackgroundColor: '#667eea'
+                    }, {
+                        label: 'Devin AI',
+                        data: [4, 5, 3, 5, 4],
+                        borderColor: '#f093fb',
+                        backgroundColor: 'rgba(240, 147, 251, 0.2)',
+                        pointBackgroundColor: '#f093fb'
+                    }, {
+                        label: 'Perplexity',
+                        data: [3, 3, 2, 2, 4],
+                        borderColor: '#f5576c',
+                        backgroundColor: 'rgba(245, 87, 108, 0.2)',
+                        pointBackgroundColor: '#f5576c'
+                    }, {
+                        label: 'Replit',
+                        data: [3, 4, 2, 3, 3],
+                        borderColor: '#764ba2',
+                        backgroundColor: 'rgba(118, 75, 162, 0.2)',
+                        pointBackgroundColor: '#764ba2'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 5,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // Metrics Chart
+            const metricsCtx = document.getElementById('metricsChart').getContext('2d');
+            new Chart(metricsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                    datasets: [{
+                        label: 'Tool Count',
+                        data: [4, 6, 8, 12, 16, 22, 30],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'Context Levels',
+                        data: [1, 1.5, 2, 2.5, 3, 4, 5],
+                        borderColor: '#f093fb',
+                        backgroundColor: 'rgba(240, 147, 251, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'Autonomy Level',
+                        data: [1, 1.5, 2, 2.5, 3.5, 4, 4.5],
+                        borderColor: '#f5576c',
+                        backgroundColor: 'rgba(245, 87, 108, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Animation functions
+        function showTimeline() {
+            document.querySelectorAll('.timeline-item').forEach((item, index) => {
+                item.style.animation = 'none';
+                setTimeout(() => {
+                    item.style.animation = `slideIn 0.8s ease forwards ${index * 0.2}s`;
+                }, 10);
+            });
+        }
+
+        function showComparison() {
+            document.querySelectorAll('.ai-tool-card').forEach((card, index) => {
+                card.style.animation = 'none';
+                setTimeout(() => {
+                    card.style.animation = `slideIn 0.8s ease forwards ${index * 0.1}s`;
+                }, 10);
+            });
+        }
+
+        function showFeatures() {
+            document.querySelectorAll('.feature-card').forEach((card, index) => {
+                card.style.animation = 'none';
+                setTimeout(() => {
+                    card.style.animation = `slideIn 0.8s ease forwards ${index * 0.1}s`;
+                }, 10);
+            });
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initCharts();
+            showTimeline();
+        });
+
+        // Add some interactive animations
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html> 

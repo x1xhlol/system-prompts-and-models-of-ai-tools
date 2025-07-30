@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nowhere AI Agent</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .status {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #28a745;
+        }
+
+        .status.offline {
+            border-left-color: #dc3545;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn-voice {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-voice:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-voice.recording {
+            background: #dc3545;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .response {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-left: 4px solid #667eea;
+            display: none;
+        }
+
+        .response.show {
+            display: block;
+        }
+
+        .response h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .response p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .feature h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .loading.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Nowhere AI Agent</h1>
+            <p>Advanced AI coding assistant with voice integration</p>
+        </div>
+
+        <div class="status" id="status">
+            <strong>Status:</strong> <span id="statusText">Checking connection...</span>
+        </div>
+
+        <div class="input-group">
+            <label for="command">Command:</label>
+            <textarea id="command" rows="3" placeholder="Enter your command for Nowhere..."></textarea>
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="sendCommand()">Send Command</button>
+            <button class="btn btn-voice" id="voiceBtn" onclick="toggleVoice()">🎤 Voice</button>
+            <button class="btn btn-secondary" onclick="checkStatus()">Check Status</button>
+        </div>
+
+        <div class="loading" id="loading">
+            Processing...
+        </div>
+
+        <div class="response" id="response">
+            <h3>Nowhere's Response:</h3>
+            <p id="responseText"></p>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h4>🎤 Voice Commands</h4>
+                <p>Natural language voice interaction with Nowhere</p>
+            </div>
+            <div class="feature">
+                <h4>🤖 Autopilot Mode</h4>
+                <p>Autonomous task execution and problem solving</p>
+            </div>
+            <div class="feature">
+                <h4>🧠 Memory System</h4>
+                <p>Persistent learning and context awareness</p>
+            </div>
+            <div class="feature">
+                <h4>⚡ Real-time</h4>
+                <p>Instant communication and response</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3001';
+        let isRecording = false;
+
+        // Check connection on load
+        window.onload = function() {
+            checkStatus();
+        };
+
+        async function checkStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                
+                document.getElementById('statusText').textContent = 'Connected';
+                document.getElementById('status').classList.remove('offline');
+            } catch (error) {
+                document.getElementById('statusText').textContent = 'Offline';
+                document.getElementById('status').classList.add('offline');
+            }
+        }
+
+        async function sendCommand() {
+            const command = document.getElementById('command').value.trim();
+            if (!command) {
+                alert('Please enter a command');
+                return;
+            }
+
+            showLoading(true);
+            hideResponse();
+
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/command`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ command })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    showResponse(data.data.response);
+                } else {
+                    showResponse('Error: ' + data.error);
+                }
+            } catch (error) {
+                showResponse('Error connecting to Nowhere: ' + error.message);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function toggleVoice() {
+            const voiceBtn = document.getElementById('voiceBtn');
+            
+            if (!isRecording) {
+                // Start voice recording
+                isRecording = true;
+                voiceBtn.textContent = '🔴 Stop';
+                voiceBtn.classList.add('recording');
+                
+                // Simulate voice command
+                setTimeout(() => {
+                    const commands = [
+                        'Hello Nowhere, show me the project structure',
+                        'Nowhere, analyze this code file',
+                        'Create a new component for the user interface',
+                        'Run the tests and show me the results',
+                        'What are the main features we need to implement?',
+                        'Enable autopilot mode'
+                    ];
+                    
+                    const randomCommand = commands[Math.floor(Math.random() * commands.length)];
+                    document.getElementById('command').value = randomCommand;
+                    
+                    // Stop recording
+                    isRecording = false;
+                    voiceBtn.textContent = '🎤 Voice';
+                    voiceBtn.classList.remove('recording');
+                    
+                    // Send the command
+                    sendCommand();
+                }, 2000);
+            } else {
+                // Stop voice recording
+                isRecording = false;
+                voiceBtn.textContent = '🎤 Voice';
+                voiceBtn.classList.remove('recording');
+            }
+        }
+
+        function showLoading(show) {
+            const loading = document.getElementById('loading');
+            if (show) {
+                loading.classList.add('show');
+            } else {
+                loading.classList.remove('show');
+            }
+        }
+
+        function showResponse(text) {
+            document.getElementById('responseText').textContent = text;
+            document.getElementById('response').classList.add('show');
+        }
+
+        function hideResponse() {
+            document.getElementById('response').classList.remove('show');
+        }
+
+        // Handle Enter key in textarea
+        document.getElementById('command').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                sendCommand();
+            }
+        });
+    </script>
+</body>
+</html> 

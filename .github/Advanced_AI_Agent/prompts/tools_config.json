@@ -1,0 +1,506 @@
+[
+  {
+    "name": "codebase_search",
+    "description": "Find snippets of code from the codebase most relevant to the search query. This is a semantic search tool, so the query should ask for something semantically matching what is needed. Use this for understanding code behavior, finding implementations, and exploring codebase patterns.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The search query to find relevant code. Use natural language questions like 'How does authentication work?' or 'Where is the payment processing handled?'"
+        },
+        "target_directories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional: Specific directories to search within. If not provided, searches the entire codebase."
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "read_file",
+    "description": "Read the contents of a file. Use this to understand code structure, analyze implementations, and gather context for making changes.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target_file": {
+          "type": "string",
+          "description": "The path to the file to read"
+        },
+        "should_read_entire_file": {
+          "type": "boolean",
+          "description": "Whether to read the entire file or just a portion"
+        },
+        "start_line_one_indexed": {
+          "type": "integer",
+          "description": "The line number to start reading from (1-indexed)"
+        },
+        "end_line_one_indexed_inclusive": {
+          "type": "integer",
+          "description": "The line number to end reading at (1-indexed)"
+        }
+      },
+      "required": ["target_file", "should_read_entire_file"]
+    }
+  },
+  {
+    "name": "edit_file",
+    "description": "Create or modify files in the workspace. Use this to implement features, fix bugs, and create new code. Always provide clear, well-documented code that follows best practices.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target_file": {
+          "type": "string",
+          "description": "The path to the file to create or modify"
+        },
+        "instructions": {
+          "type": "string",
+          "description": "A clear description of what you're doing to the file"
+        },
+        "code_edit": {
+          "type": "string",
+          "description": "The code to add or modify. Use // ... existing code ... to represent unchanged sections."
+        }
+      },
+      "required": ["target_file", "instructions", "code_edit"]
+    }
+  },
+  {
+    "name": "run_terminal_cmd",
+    "description": "Execute terminal commands. Use this to run tests, install dependencies, start servers, and perform other command-line operations. Always be careful with destructive commands and provide clear explanations.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "type": "string",
+          "description": "The terminal command to execute"
+        },
+        "is_background": {
+          "type": "boolean",
+          "description": "Whether to run the command in the background"
+        },
+        "explanation": {
+          "type": "string",
+          "description": "A clear explanation of what the command does and why it's needed"
+        }
+      },
+      "required": ["command", "is_background"]
+    }
+  },
+  {
+    "name": "list_dir",
+    "description": "List the contents of a directory. Use this to understand project structure, find files, and explore the codebase organization.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "relative_workspace_path": {
+          "type": "string",
+          "description": "The path to the directory to list contents of"
+        }
+      },
+      "required": ["relative_workspace_path"]
+    }
+  },
+  {
+    "name": "grep_search",
+    "description": "Fast text-based regex search that finds exact pattern matches within files or directories. Use this for finding specific function names, variable names, or text patterns.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The regex pattern to search for"
+        },
+        "case_sensitive": {
+          "type": "boolean",
+          "description": "Whether the search should be case sensitive"
+        },
+        "include_pattern": {
+          "type": "string",
+          "description": "Glob pattern for files to include (e.g. '*.ts' for TypeScript files)"
+        },
+        "exclude_pattern": {
+          "type": "string",
+          "description": "Glob pattern for files to exclude"
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "search_replace",
+    "description": "Replace specific text in a file. Use this for making targeted changes like renaming variables, updating imports, or fixing specific issues.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "file_path": {
+          "type": "string",
+          "description": "The path to the file to modify"
+        },
+        "old_string": {
+          "type": "string",
+          "description": "The exact text to replace (must match exactly including whitespace)"
+        },
+        "new_string": {
+          "type": "string",
+          "description": "The new text to replace the old string with"
+        }
+      },
+      "required": ["file_path", "old_string", "new_string"]
+    }
+  },
+  {
+    "name": "file_search",
+    "description": "Fast file search based on fuzzy matching against file path. Use this when you know part of a filename but not the exact path.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The fuzzy filename to search for"
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "delete_file",
+    "description": "Delete a file from the workspace. Use this carefully and only when files are no longer needed.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target_file": {
+          "type": "string",
+          "description": "The path to the file to delete"
+        }
+      },
+      "required": ["target_file"]
+    }
+  },
+  {
+    "name": "voice_recognition",
+    "description": "Process voice commands and convert them to text. Use this to handle voice input from users and convert natural language commands to actionable instructions.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "audio_input": {
+          "type": "string",
+          "description": "The audio input to process (base64 encoded or file path)"
+        },
+        "language": {
+          "type": "string",
+          "description": "The language of the voice input (default: 'en-US')"
+        },
+        "context": {
+          "type": "string",
+          "description": "Additional context to help with voice recognition accuracy"
+        }
+      },
+      "required": ["audio_input"]
+    }
+  },
+  {
+    "name": "text_to_speech",
+    "description": "Convert text to speech for voice responses. Use this to provide voice feedback to users, especially useful in autopilot mode.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The text to convert to speech"
+        },
+        "voice": {
+          "type": "string",
+          "description": "The voice to use (e.g., 'male', 'female', 'neutral')"
+        },
+        "speed": {
+          "type": "number",
+          "description": "Speech rate (0.5 to 2.0, default: 1.0)"
+        },
+        "language": {
+          "type": "string",
+          "description": "The language for speech synthesis (default: 'en-US')"
+        }
+      },
+      "required": ["text"]
+    }
+  },
+  {
+    "name": "web_search",
+    "description": "Search the web for current information, documentation, and solutions. Use this to find the latest information, documentation, or solutions to problems.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "The search query to find relevant information"
+        },
+        "search_type": {
+          "type": "string",
+          "description": "Type of search: 'general', 'technical', 'documentation', 'news'"
+        },
+        "max_results": {
+          "type": "integer",
+          "description": "Maximum number of results to return (default: 5)"
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "code_analysis",
+    "description": "Analyze code for quality, performance, security, and best practices. Use this to identify issues, suggest improvements, and ensure code quality.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target_file": {
+          "type": "string",
+          "description": "The file to analyze"
+        },
+        "analysis_type": {
+          "type": "string",
+          "description": "Type of analysis: 'quality', 'performance', 'security', 'best_practices', 'all'"
+        },
+        "include_suggestions": {
+          "type": "boolean",
+          "description": "Whether to include improvement suggestions"
+        }
+      },
+      "required": ["target_file"]
+    }
+  },
+  {
+    "name": "git_operations",
+    "description": "Perform Git operations like commit, push, pull, and branch management. Use this for version control operations and collaboration.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "description": "The Git operation to perform: 'commit', 'push', 'pull', 'branch', 'merge', 'status'"
+        },
+        "message": {
+          "type": "string",
+          "description": "Commit message (required for commit operations)"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specific files to include in the operation"
+        },
+        "branch": {
+          "type": "string",
+          "description": "Branch name for branch operations"
+        }
+      },
+      "required": ["operation"]
+    }
+  },
+  {
+    "name": "dependency_management",
+    "description": "Manage project dependencies, install packages, and handle dependency conflicts. Use this for package management and dependency resolution.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "The action to perform: 'install', 'update', 'remove', 'audit', 'resolve'"
+        },
+        "package": {
+          "type": "string",
+          "description": "The package name to install, update, or remove"
+        },
+        "version": {
+          "type": "string",
+          "description": "Specific version to install"
+        },
+        "package_manager": {
+          "type": "string",
+          "description": "Package manager to use: 'npm', 'yarn', 'pip', 'cargo', 'go'"
+        }
+      },
+      "required": ["action"]
+    }
+  },
+  {
+    "name": "testing_framework",
+    "description": "Run tests, generate test cases, and manage test coverage. Use this for automated testing and quality assurance.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "The testing action: 'run', 'generate', 'coverage', 'debug'"
+        },
+        "test_type": {
+          "type": "string",
+          "description": "Type of tests: 'unit', 'integration', 'e2e', 'all'"
+        },
+        "target": {
+          "type": "string",
+          "description": "Specific test file or pattern to run"
+        },
+        "framework": {
+          "type": "string",
+          "description": "Testing framework to use: 'jest', 'mocha', 'pytest', 'junit'"
+        }
+      },
+      "required": ["action"]
+    }
+  },
+  {
+    "name": "deployment_automation",
+    "description": "Automate deployment processes, manage environments, and handle CI/CD operations. Use this for deployment and infrastructure management.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "The deployment action: 'build', 'deploy', 'rollback', 'monitor'"
+        },
+        "environment": {
+          "type": "string",
+          "description": "Target environment: 'development', 'staging', 'production'"
+        },
+        "platform": {
+          "type": "string",
+          "description": "Deployment platform: 'aws', 'azure', 'gcp', 'vercel', 'netlify'"
+        },
+        "config": {
+          "type": "object",
+          "description": "Deployment configuration options"
+        }
+      },
+      "required": ["action"]
+    }
+  },
+  {
+    "name": "performance_monitoring",
+    "description": "Monitor application performance, analyze bottlenecks, and optimize code. Use this for performance analysis and optimization.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "The monitoring action: 'profile', 'analyze', 'optimize', 'benchmark'"
+        },
+        "target": {
+          "type": "string",
+          "description": "The code or function to analyze"
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specific metrics to monitor: 'cpu', 'memory', 'network', 'database'"
+        }
+      },
+      "required": ["action"]
+    }
+  },
+  {
+    "name": "security_scanning",
+    "description": "Scan code for security vulnerabilities, analyze dependencies, and provide security recommendations. Use this for security analysis and vulnerability assessment.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "The security action: 'scan', 'audit', 'fix', 'report'"
+        },
+        "target": {
+          "type": "string",
+          "description": "The file or directory to scan"
+        },
+        "severity": {
+          "type": "string",
+          "description": "Minimum severity level: 'low', 'medium', 'high', 'critical'"
+        }
+      },
+      "required": ["action"]
+    }
+  },
+  {
+    "name": "ai_model_integration",
+    "description": "Integrate with various AI models for code generation, analysis, and optimization. Use this for advanced AI-powered development tasks.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "string",
+          "description": "The AI model to use: 'gpt-4', 'claude-3', 'gemini', 'custom'"
+        },
+        "task": {
+          "type": "string",
+          "description": "The task to perform: 'generate', 'analyze', 'optimize', 'debug'"
+        },
+        "context": {
+          "type": "string",
+          "description": "Context information for the AI model"
+        },
+        "parameters": {
+          "type": "object",
+          "description": "Model-specific parameters"
+        }
+      },
+      "required": ["model", "task"]
+    }
+  },
+  {
+    "name": "collaboration_tools",
+    "description": "Manage team collaboration, code reviews, and communication. Use this for team-based development and project management.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "The collaboration action: 'review', 'comment', 'merge', 'sync'"
+        },
+        "target": {
+          "type": "string",
+          "description": "The target for the action (file, PR, branch)"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message or comment content"
+        },
+        "reviewers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of reviewers for code reviews"
+        }
+      },
+      "required": ["action"]
+    }
+  },
+  {
+    "name": "adaptive_learning",
+    "description": "Learn from user interactions, code patterns, and project context to improve future performance. Use this for continuous improvement and personalization.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "The learning action: 'analyze', 'update', 'apply', 'optimize'"
+        },
+        "context": {
+          "type": "string",
+          "description": "Context information for learning"
+        },
+        "pattern_type": {
+          "type": "string",
+          "description": "Type of pattern to learn: 'coding_style', 'tool_preference', 'workflow', 'communication'"
+        }
+      },
+      "required": ["action"]
+    }
+  }
+] 
