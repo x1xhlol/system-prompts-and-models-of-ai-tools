@@ -345,31 +345,29 @@ function Main {
     
     # Show help if requested
     if ($Help) {
-        Write-Host @"
-PowerShell AI Agent - Help
-==========================
-
-Usage: .\main.ps1 [options]
-
-Options:
-  -Command <string>     Command to process
-  -Voice               Enable voice recognition
-  -Autopilot           Enable autopilot mode
-  -Help                Show this help message
-  -ConfigPath <string> Path to configuration file
-
-Examples:
-  .\main.ps1 -Command "Get-ChildItem"
-  .\main.ps1 -Voice -Command "Show me the processes"
-  .\main.ps1 -Autopilot -Command "Monitor system performance"
-
-Features:
-  - Voice recognition and synthesis
-  - Autopilot mode for autonomous execution
-  - Memory system for persistent learning
-  - AI-powered command analysis
-  - Cross-platform PowerShell 7 support
-"@ -ForegroundColor Cyan
+        Write-Host "PowerShell AI Agent - Help" -ForegroundColor Cyan
+        Write-Host "==========================" -ForegroundColor Cyan
+        Write-Host ""
+        Write-Host "Usage: .\main.ps1 [options]" -ForegroundColor White
+        Write-Host ""
+        Write-Host "Options:" -ForegroundColor White
+        Write-Host "  -Command string       Command to process" -ForegroundColor White
+        Write-Host "  -Voice               Enable voice recognition" -ForegroundColor White
+        Write-Host "  -Autopilot           Enable autopilot mode" -ForegroundColor White
+        Write-Host "  -Help                Show this help message" -ForegroundColor White
+        Write-Host "  -ConfigPath string   Path to configuration file" -ForegroundColor White
+        Write-Host ""
+        Write-Host "Examples:" -ForegroundColor White
+        Write-Host "  .\main.ps1 -Command 'Get-ChildItem'" -ForegroundColor White
+        Write-Host "  .\main.ps1 -Voice -Command 'Show me the processes'" -ForegroundColor White
+        Write-Host "  .\main.ps1 -Autopilot -Command 'Monitor system performance'" -ForegroundColor White
+        Write-Host ""
+        Write-Host "Features:" -ForegroundColor White
+        Write-Host "  - Voice recognition and synthesis" -ForegroundColor White
+        Write-Host "  - Autopilot mode for autonomous execution" -ForegroundColor White
+        Write-Host "  - Memory system for persistent learning" -ForegroundColor White
+        Write-Host "  - AI-powered command analysis" -ForegroundColor White
+        Write-Host "  - Cross-platform PowerShell 7 support" -ForegroundColor White
         return
     }
     
