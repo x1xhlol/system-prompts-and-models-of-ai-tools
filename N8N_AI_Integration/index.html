@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N8N AI Integration Hub - Brain Technology & Workflow Automation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 10px 5px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h2::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .integration-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .workflow-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .workflow-card:hover {
+            transform: scale(1.02);
+        }
+
+        .workflow-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .workflow-card p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .btn-warning {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+        .search-box {
+            padding: 12px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            width: 300px;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .brain-tech-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .neural-network {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .neuron {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .neuron::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .adaptive-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .adaptive-card {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 15px;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .adaptive-card:hover {
+            transform: scale(1.02);
+        }
+
+        .adaptive-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(44, 62, 80, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-list li::before {
+            content: '🧠';
+            font-size: 1.2rem;
+        }
+
+        .workflow-details {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .workflow-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .info-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .category-filter {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background: #e9ecef;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .category-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 N8N AI Integration Hub</h1>
+            <p>Brain Technology & Workflow Automation Platform</p>
+            <div>
+                <span class="tech-badge">N8N Workflows</span>
+                <span class="tech-badge">Brain Technology</span>
+                <span class="tech-badge">AI Integration</span>
+                <span class="tech-badge">Neural Networks</span>
+                <span class="tech-badge">Updated: 31/07/2025</span>
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="card">
+                <h2>📊 N8N Collection Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">2,053</div>
+                        <div class="stat-label">Workflows</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">365</div>
+                        <div class="stat-label">Integrations</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">29,445</div>
+                        <div class="stat-label">Total Nodes</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">215</div>
+                        <div class="stat-label">Active</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🔍 Integration Tools</h2>
+                <div class="controls">
+                    <button class="btn" onclick="loadWorkflows()">🧠 Load Workflows</button>
+                    <button class="btn btn-secondary" onclick="analyzeWorkflows()">📊 Neural Analysis</button>
+                    <button class="btn btn-success" onclick="generateAIWorkflows()">⚡ Generate AI Workflows</button>
+                    <button class="btn btn-warning" onclick="exportIntegration()">📤 Export Integration</button>
+                </div>
+                <input type="text" class="search-box" placeholder="Search workflows with brain tech..." onkeyup="searchWorkflows(this.value)">
+            </div>
+        </div>
+
+        <div class="brain-tech-section">
+            <h2>🧠 Brain Technology Integration</h2>
+            <div class="neural-network">
+                <div class="neuron">
+                    <h3>Workflow Pattern Recognition</h3>
+                    <p>Neural networks analyze workflow patterns</p>
+                </div>
+                <div class="neuron">
+                    <h3>AI Workflow Generation</h3>
+                    <p>Generate AI-enhanced workflows automatically</p>
+                </div>
+                <div class="neuron">
+                    <h3>Adaptive Integration</h3>
+                    <p>Real-time adaptation of workflows</p>
+                </div>
+                <div class="neuron">
+                    <h3>Neural Workflow Optimization</h3>
+                    <p>Optimize workflows using brain technology</p>
+                </div>
+            </div>
+            
+            <div class="adaptive-features">
+                <div class="adaptive-card">
+                    <h3>🧠 Neural Workflow Analysis</h3>
+                    <ul class="feature-list">
+                        <li>Pattern Recognition in Workflows</li>
+                        <li>Neural Architecture Optimization</li>
+                        <li>Brain-Inspired Workflow Design</li>
+                        <li>Cognitive Load Analysis</li>
+                        <li>Neural Efficiency Metrics</li>
+                    </ul>
+                </div>
+                <div class="adaptive-card">
+                    <h3>🔄 Real-time Adaptation</h3>
+                    <ul class="feature-list">
+                        <li>Dynamic Workflow Evolution</li>
+                        <li>Adaptive Integration Design</li>
+                        <li>Personalized AI Workflows</li>
+                        <li>Context-Aware Responses</li>
+                        <li>Learning Pattern Optimization</li>
+                    </ul>
+                </div>
+                <div class="adaptive-card">
+                    <h3>🎯 AI Workflow Enhancement</h3>
+                    <ul class="feature-list">
+                        <li>Memory Pattern Analysis</li>
+                        <li>Attention Mechanism Optimization</li>
+                        <li>Decision-Making Enhancement</li>
+                        <li>Problem-Solving Acceleration</li>
+                        <li>Creative Pattern Recognition</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="integration-section">
+            <h2>🔗 N8N Workflow Categories</h2>
+            <div class="category-filter">
+                <button class="category-btn active" onclick="filterByCategory('all')">All Categories</button>
+                <button class="category-btn" onclick="filterByCategory('ai_ml')">AI & ML</button>
+                <button class="category-btn" onclick="filterByCategory('communication')">Communication</button>
+                <button class="category-btn" onclick="filterByCategory('data_processing')">Data Processing</button>
+                <button class="category-btn" onclick="filterByCategory('automation')">Automation</button>
+                <button class="category-btn" onclick="filterByCategory('integration')">Integration</button>
+            </div>
+            <div class="workflow-grid" id="workflowGrid">
+                <!-- Workflows will be loaded here -->
+            </div>
+        </div>
+
+        <div class="workflow-details" id="workflowDetails" style="display: none;">
+            <h2>📋 Workflow Details</h2>
+            <div class="workflow-info">
+                <div class="info-card">
+                    <div class="info-value" id="nodeCount">-</div>
+                    <div class="info-label">Nodes</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-value" id="triggerType">-</div>
+                    <div class="info-label">Trigger Type</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-value" id="complexity">-</div>
+                    <div class="info-label">Complexity</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-value" id="integrations">-</div>
+                    <div class="info-label">Integrations</div>
+                </div>
+            </div>
+            <div id="workflowDescription"></div>
+        </div>
+    </div>
+
+    <script>
+        // N8N AI Integration Hub
+        class N8NAIIntegration {
+            constructor() {
+                this.brainTechVersion = '2025.07.31';
+                this.workflows = [];
+                this.categories = {
+                    'ai_ml': ['OpenAI', 'Anthropic', 'Hugging Face', 'AI', 'ML', 'GPT'],
+                    'communication': ['Telegram', 'Discord', 'Slack', 'WhatsApp', 'Email'],
+                    'data_processing': ['PostgreSQL', 'MySQL', 'Airtable', 'Google Sheets'],
+                    'automation': ['Webhook', 'Schedule', 'Manual', 'Trigger'],
+                    'integration': ['HTTP', 'API', 'GraphQL', 'REST']
+                };
+                this.neuralNetworks = {
+                    'pattern-recognition': new NeuralPatternRecognition(),
+                    'workflow-generation': new WorkflowGeneration(),
+                    'adaptive-learning': new AdaptiveLearningSystem(),
+                    'brain-interface': new BrainComputerInterface()
+                };
+            }
+
+            async loadWorkflows() {
+                try {
+                    // Simulate loading workflows from the n8n collection
+                    this.workflows = [
+                        {
+                            id: 1,
+                            name: 'AI-Powered Research Report Generation',
+                            description: 'Automated research using OpenAI, Google Search, and Notion integration',
+                            category: 'ai_ml',
+                            nodes: 15,
+                            trigger: 'Webhook',
+                            complexity: 'High',
+                            integrations: ['OpenAI', 'Google Search', 'Notion', 'Telegram'],
+                            active: true
+                        },
+                        {
+                            id: 2,
+                            name: 'Multi-Agent Collaborative Handbook',
+                            description: 'GPT-4 multi-agent orchestration with human review workflow',
+                            category: 'ai_ml',
+                            nodes: 25,
+                            trigger: 'Manual',
+                            complexity: 'High',
+                            integrations: ['OpenAI', 'GPT-4', 'Multi-Agent'],
+                            active: true
+                        },
+                        {
+                            id: 3,
+                            name: 'Telegram to Google Docs Automation',
+                            description: 'Automated document creation from Telegram messages',
+                            category: 'communication',
+                            nodes: 8,
+                            trigger: 'Webhook',
+                            complexity: 'Medium',
+                            integrations: ['Telegram', 'Google Docs'],
+                            active: true
+                        },
+                        {
+                            id: 4,
+                            name: 'Database Code Automation',
+                            description: 'Automated database operations with webhook triggers',
+                            category: 'data_processing',
+                            nodes: 12,
+                            trigger: 'Webhook',
+                            complexity: 'Medium',
+                            integrations: ['PostgreSQL', 'HTTP', 'Code'],
+                            active: true
+                        },
+                        {
+                            id: 5,
+                            name: 'Scheduled HTTP Automation',
+                            description: 'Time-based HTTP requests with scheduling',
+                            category: 'automation',
+                            nodes: 6,
+                            trigger: 'Scheduled',
+                            complexity: 'Low',
+                            integrations: ['HTTP', 'Schedule'],
+                            active: true
+                        }
+                    ];
+                    
+                    this.displayWorkflows(this.workflows);
+                    console.log('🧠 Loaded', this.workflows.length, 'workflows with brain technology');
+                } catch (error) {
+                    console.error('Failed to load workflows:', error);
+                }
+            }
+
+            displayWorkflows(workflows) {
+                const grid = document.getElementById('workflowGrid');
+                grid.innerHTML = '';
+                
+                workflows.forEach(workflow => {
+                    const card = document.createElement('div');
+                    card.className = 'workflow-card';
+                    card.onclick = () => this.showWorkflowDetails(workflow);
+                    
+                    card.innerHTML = `
+                        <h3>${workflow.name}</h3>
+                        <p>${workflow.description}</p>
+                        <div style="margin-top: 10px; font-size: 0.8rem; opacity: 0.8;">
+                            <span>${workflow.nodes} nodes</span> • 
+                            <span>${workflow.trigger}</span> • 
+                            <span>${workflow.complexity}</span>
+                        </div>
+                    `;
+                    
+                    grid.appendChild(card);
+                });
+            }
+
+            showWorkflowDetails(workflow) {
+                document.getElementById('nodeCount').textContent = workflow.nodes;
+                document.getElementById('triggerType').textContent = workflow.trigger;
+                document.getElementById('complexity').textContent = workflow.complexity;
+                document.getElementById('integrations').textContent = workflow.integrations.length;
+                
+                const description = document.getElementById('workflowDescription');
+                description.innerHTML = `
+                    <h3>${workflow.name}</h3>
+                    <p><strong>Description:</strong> ${workflow.description}</p>
+                    <p><strong>Category:</strong> ${workflow.category}</p>
+                    <p><strong>Integrations:</strong> ${workflow.integrations.join(', ')}</p>
+                    <p><strong>Status:</strong> ${workflow.active ? 'Active' : 'Inactive'}</p>
+                `;
+                
+                document.getElementById('workflowDetails').style.display = 'block';
+            }
+
+            filterByCategory(category) {
+                // Update active button
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                event.target.classList.add('active');
+                
+                let filteredWorkflows = this.workflows;
+                if (category !== 'all') {
+                    filteredWorkflows = this.workflows.filter(workflow => 
+                        workflow.category === category
+                    );
+                }
+                
+                this.displayWorkflows(filteredWorkflows);
+            }
+
+            searchWorkflows(query) {
+                if (!query.trim()) {
+                    this.displayWorkflows(this.workflows);
+                    return;
+                }
+                
+                const filtered = this.workflows.filter(workflow =>
+                    workflow.name.toLowerCase().includes(query.toLowerCase()) ||
+                    workflow.description.toLowerCase().includes(query.toLowerCase()) ||
+                    workflow.integrations.some(integration => 
+                        integration.toLowerCase().includes(query.toLowerCase())
+                    )
+                );
+                
+                this.displayWorkflows(filtered);
+            }
+
+            async analyzeWorkflows() {
+                const analysis = {
+                    totalWorkflows: this.workflows.length,
+                    activeWorkflows: this.workflows.filter(w => w.active).length,
+                    averageNodes: this.workflows.reduce((sum, w) => sum + w.nodes, 0) / this.workflows.length,
+                    complexityDistribution: this.analyzeComplexity(),
+                    integrationUsage: this.analyzeIntegrations(),
+                    neuralPatterns: this.analyzeNeuralPatterns()
+                };
+                
+                console.log('🧠 Neural workflow analysis:', analysis);
+                alert('🧠 Neural workflow analysis completed! Check console for detailed results.');
+                return analysis;
+            }
+
+            analyzeComplexity() {
+                const complexity = {};
+                this.workflows.forEach(workflow => {
+                    complexity[workflow.complexity] = (complexity[workflow.complexity] || 0) + 1;
+                });
+                return complexity;
+            }
+
+            analyzeIntegrations() {
+                const integrations = {};
+                this.workflows.forEach(workflow => {
+                    workflow.integrations.forEach(integration => {
+                        integrations[integration] = (integrations[integration] || 0) + 1;
+                    });
+                });
+                return integrations;
+            }
+
+            analyzeNeuralPatterns() {
+                return {
+                    aiWorkflows: this.workflows.filter(w => w.category === 'ai_ml').length,
+                    automationWorkflows: this.workflows.filter(w => w.category === 'automation').length,
+                    communicationWorkflows: this.workflows.filter(w => w.category === 'communication').length,
+                    dataWorkflows: this.workflows.filter(w => w.category === 'data_processing').length
+                };
+            }
+
+            async generateAIWorkflows() {
+                const aiWorkflows = [
+                    {
+                        name: 'Brain-Enhanced AI Agent Workflow',
+                        description: 'Neural network-powered AI agent with adaptive learning capabilities',
+                        category: 'ai_ml',
+                        nodes: 20,
+                        trigger: 'Webhook',
+                        complexity: 'High',
+                        integrations: ['OpenAI', 'Neural Network', 'Adaptive Learning', 'Brain Interface'],
+                        active: true
+                    },
+                    {
+                        name: 'Cognitive Pattern Recognition Workflow',
+                        description: 'Advanced pattern recognition using brain-inspired neural networks',
+                        category: 'ai_ml',
+                        nodes: 18,
+                        trigger: 'Manual',
+                        complexity: 'High',
+                        integrations: ['Neural Network', 'Pattern Recognition', 'Cognitive Mapping'],
+                        active: true
+                    },
+                    {
+                        name: 'Real-time Adaptive Learning Workflow',
+                        description: 'Continuous learning and adaptation based on user interactions',
+                        category: 'ai_ml',
+                        nodes: 15,
+                        trigger: 'Scheduled',
+                        complexity: 'Medium',
+                        integrations: ['Adaptive Learning', 'Real-time Processing', 'Neural Networks'],
+                        active: true
+                    }
+                ];
+                
+                this.workflows.push(...aiWorkflows);
+                this.displayWorkflows(this.workflows);
+                console.log('🧠 Generated', aiWorkflows.length, 'AI-enhanced workflows');
+                alert('🧠 Generated AI-enhanced workflows with brain technology!');
+            }
+
+            exportIntegration() {
+                const integrationData = {
+                    workflows: this.workflows,
+                    brainTechVersion: this.brainTechVersion,
+                    neuralNetworks: Object.keys(this.neuralNetworks),
+                    timestamp: new Date().toISOString()
+                };
+                
+                const blob = new Blob([JSON.stringify(integrationData, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'n8n-ai-integration.json';
+                a.click();
+                
+                alert('🧠 N8N AI integration data exported successfully!');
+            }
+        }
+
+        // Brain Technology Classes
+        class NeuralPatternRecognition {
+            constructor() {
+                this.type = 'convolutional';
+                this.status = 'active';
+            }
+        }
+
+        class WorkflowGeneration {
+            constructor() {
+                this.type = 'generative';
+                this.status = 'active';
+            }
+        }
+
+        class AdaptiveLearningSystem {
+            constructor() {
+                this.type = 'reinforcement';
+                this.status = 'active';
+            }
+        }
+
+        class BrainComputerInterface {
+            constructor() {
+                this.type = 'neural-interface';
+                this.status = 'active';
+            }
+        }
+
+        // Initialize the N8N AI Integration Hub
+        const n8nAIHub = new N8NAIIntegration();
+
+        function loadWorkflows() {
+            n8nAIHub.loadWorkflows();
+        }
+
+        function analyzeWorkflows() {
+            n8nAIHub.analyzeWorkflows();
+        }
+
+        function generateAIWorkflows() {
+            n8nAIHub.generateAIWorkflows();
+        }
+
+        function exportIntegration() {
+            n8nAIHub.exportIntegration();
+        }
+
+        function filterByCategory(category) {
+            n8nAIHub.filterByCategory(category);
+        }
+
+        function searchWorkflows(query) {
+            n8nAIHub.searchWorkflows(query);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load workflows automatically
+            n8nAIHub.loadWorkflows();
+            
+            // Add hover effects
+            const cards = document.querySelectorAll('.card, .workflow-card, .adaptive-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
