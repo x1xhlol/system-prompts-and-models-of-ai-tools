@@ -206,13 +206,13 @@ function Start-VoiceRecognition {
         if ($script:SpeechRecognizer) {
             $script:SpeechRecognizer.SpeechRecognized += {
                 param($sender, $e)
-                $command = $e.Result.Text
-                Write-Host "🎤 Recognized: $command" -ForegroundColor Cyan
-                & $OnRecognized $command
+                $recognizedText = $e.Result.Text
+                Write-Host "🎤 Recognized: $recognizedText" -ForegroundColor Cyan
+                & $OnRecognized -RecognizedCommand $recognizedText
             }
             
             $script:SpeechRecognizer.RecognizeAsync()
-            Write-Host "🎤 Voice recognition started. Speak your command..." -ForegroundColor Green
+            Write-Host "🎤 Voice recognition started. Speak your commands..." -ForegroundColor Green
         }
     }
     catch {
