@@ -252,17 +252,15 @@ function Disable-AutopilotMode {
     param([object]$Config)
     
     try {
-        $Config.Autopilot.Enabled = $false
+        $script:AutopilotEnabled = $false
         Write-Host "🤖 Autopilot mode disabled" -ForegroundColor Yellow
-        return $true
     }
     catch {
         Write-Error "Failed to disable autopilot mode: $_"
-        return $false
     }
 }
 
-# Main command processing
+# Command processing function
 function Process-Command {
     param(
         [string]$Command,
