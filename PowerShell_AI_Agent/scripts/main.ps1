@@ -19,6 +19,11 @@ if ($PSVersionTable.PSVersion.Major -lt 7) {
     exit 1
 }
 
+# Global variables
+$script:SpeechRecognizer = $null
+$script:SpeechSynthesizer = $null
+$script:AutopilotEnabled = $false
+
 # Load configuration
 function Load-Configuration {
     param([string]$ConfigPath)
