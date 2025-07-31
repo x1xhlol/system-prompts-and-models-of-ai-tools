@@ -269,57 +269,67 @@ function Process-Command {
     )
     
     try {
-        Write-Host "🔄 Processing command: $Command" -ForegroundColor Cyan
+        Write-Host "`n🔍 Processing command: $Command" -ForegroundColor Yellow
         
         # Add command to memory
-        $memoryId = Add-MemoryEntry -Type "command" -Content $Command -MemoryPath $MemoryPath
+        Add-MemoryEntry -Type "command" -Content $Command -MemoryPath $MemoryPath
         
-        # Analyze command with AI
-        $analysis = Invoke-AIAnalysis -Command $Command -Config $Config
+        # Analyze command intent
+        $commandLower = $Command.ToLower()
         
-        # Generate response
-        $response = @"
-🤖 PowerShell AI Agent Response
-===============================
-
-Command: $Command
-Intent: $($analysis.intent)
-Confidence: $($analysis.confidence)
-
-$($analysis.response)
-
-Suggested Actions:
-$(($analysis.suggestedActions | ForEach-Object { "- $_" }) -join "`n")
-
-Memory ID: $memoryId
-"@
-        
-        Write-Host $response -ForegroundColor White
-        
-        # Speak response if voice is enabled
-        if ($Config.Voice.Enabled) {
-            Speak-Response -Text $analysis.response
+        # Simple intent detection
+        if ($commandLower -match "get-childitem|ls|dir|show|list") {
+            Write-Host "📁 Navigation command detected" -ForegroundColor Green
+            $result = Invoke-Expression $Command
+            Write-Host "Navigation completed successfully" -ForegroundColor Green
         }
-        
-        # Execute suggested actions if autopilot is enabled
-        if ($Config.Autopilot.Enabled) {
-            Write-Host "🤖 Autopilot: Executing suggested actions..." -ForegroundColor Green
-            foreach ($action in $analysis.suggestedActions) {
-                try {
-                    Write-Host "Executing: $action" -ForegroundColor Yellow
-                    Invoke-Expression $action | Out-Null
-                }
-                catch {
-                    Write-Warning "Failed to execute $action : $_"
+        elseif ($commandLower -match "start|run|execute|invoke") {
+            Write-Host "⚡ Execution command detected" -ForegroundColor Green
+            $result = Invoke-Expression $Command
+            Write-Host "Command executed successfully" -ForegroundColor Green
+        }
+        elseif ($commandLower -match "analyze|check|review|test") {
+            Write-Host "🔍 Analysis command detected" -ForegroundColor Green
+            $result = Invoke-Expression $Command
+            Write-Host "Analysis completed" -ForegroundColor Green
+        }
+        elseif ($commandLower -match "create|new|add|build") {
+            Write-Host "🛠️ Creation command detected" -ForegroundColor Green
+            $result = Invoke-Expression $Command
+            Write-Host "Creation completed" -ForegroundColor Green
+        }
+        elseif ($commandLower -match "modify|change|update|edit") {
+            Write-Host "✏️ Modification command detected" -ForegroundColor Green
+            $result = Invoke-Expression $Command
+            Write-Host "Modification completed" -ForegroundColor Green
+        }
+        elseif ($commandLower -match "delete|remove|clear") {
+            Write-Host "🗑️ Deletion command detected" -ForegroundColor Green
+            Write-Warning "⚠️ Deletion command detected"
+            if ($Config.Security.RequireConfirmation) {
+                $confirmation = Read-Host "Are you sure you want to delete? (y/N)"
+                if ($confirmation -ne "y") {
+                    Write-Host "Deletion cancelled" -ForegroundColor Yellow
+                    return
                 }
             }
+            $result = Invoke-Expression $Command
+            Write-Host "Deletion completed" -ForegroundColor Green
+        }
+        else {
+            Write-Host "❓ General command execution" -ForegroundColor Yellow
+            $result = Invoke-Expression $Command
+            Write-Host "Command completed" -ForegroundColor Green
         }
         
-        return $analysis
+        # Add response to memory
+        Add-MemoryEntry -Type "response" -Content "Command processed successfully" -Context $Command -MemoryPath $MemoryPath
+        
+        return $result
     }
     catch {
         Write-Error "Failed to process command: $_"
-        return $null
+        Add-MemoryEntry -Type "error" -Content "Error: $_" -Context $Command -MemoryPath $MemoryPath
     }
 }
 
