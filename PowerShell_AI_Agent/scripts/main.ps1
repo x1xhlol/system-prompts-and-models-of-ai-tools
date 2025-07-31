@@ -462,7 +462,7 @@ function Main {
                     Write-Host "System Status:" -ForegroundColor Green
                     Write-Host "  PowerShell Version: $($PSVersionTable.PSVersion)" -ForegroundColor White
                     Write-Host "  Voice Recognition: $($config.Voice.Enabled)" -ForegroundColor White
-                    Write-Host "  Autopilot Mode: $($config.Autopilot.Enabled)" -ForegroundColor White
+                    Write-Host "  Autopilot Mode: $($script:AutopilotEnabled)" -ForegroundColor White
                     Write-Host "  Memory Entries: $(($entries = Get-MemoryEntries -MemoryPath $memoryPath).Count)" -ForegroundColor White
                 }
                 else {
@@ -482,7 +482,6 @@ function Main {
     
     Write-Host "PowerShell AI Agent shutting down..." -ForegroundColor Green
 }
-
 
 # Execute main function with parameters
 Main -Command $Command -Voice $Voice -Autopilot $Autopilot -Help $Help -ConfigPath $ConfigPath
