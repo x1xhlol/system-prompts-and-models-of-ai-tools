@@ -1,0 +1,53 @@
+{
+	"name": "slice-ansi",
+	"version": "5.0.0",
+	"description": "Slice a string with ANSI escape codes",
+	"license": "MIT",
+	"repository": "chalk/slice-ansi",
+	"funding": "https://github.com/chalk/slice-ansi?sponsor=1",
+	"type": "module",
+	"exports": "./index.js",
+	"engines": {
+		"node": ">=12"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"slice",
+		"string",
+		"ansi",
+		"styles",
+		"color",
+		"colour",
+		"colors",
+		"terminal",
+		"console",
+		"cli",
+		"tty",
+		"escape",
+		"formatting",
+		"rgb",
+		"256",
+		"shell",
+		"xterm",
+		"log",
+		"logging",
+		"command-line",
+		"text"
+	],
+	"dependencies": {
+		"ansi-styles": "^6.0.0",
+		"is-fullwidth-code-point": "^4.0.0"
+	},
+	"devDependencies": {
+		"ava": "^3.15.0",
+		"chalk": "^4.1.0",
+		"random-item": "^4.0.0",
+		"strip-ansi": "^7.0.0",
+		"xo": "^0.38.2"
+	}
+}

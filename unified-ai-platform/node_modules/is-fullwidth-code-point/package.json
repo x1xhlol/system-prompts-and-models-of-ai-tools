@@ -1,0 +1,45 @@
+{
+	"name": "is-fullwidth-code-point",
+	"version": "4.0.0",
+	"description": "Check if the character represented by a given Unicode code point is fullwidth",
+	"license": "MIT",
+	"repository": "sindresorhus/is-fullwidth-code-point",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": "./index.js",
+	"engines": {
+		"node": ">=12"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"fullwidth",
+		"full-width",
+		"full",
+		"width",
+		"unicode",
+		"character",
+		"string",
+		"codepoint",
+		"code",
+		"point",
+		"is",
+		"detect",
+		"check"
+	],
+	"devDependencies": {
+		"ava": "^3.15.0",
+		"tsd": "^0.14.0",
+		"xo": "^0.38.2"
+	}
+}

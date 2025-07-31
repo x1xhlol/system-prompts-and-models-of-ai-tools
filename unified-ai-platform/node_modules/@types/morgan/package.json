@@ -1,0 +1,43 @@
+{
+    "name": "@types/morgan",
+    "version": "1.9.10",
+    "description": "TypeScript definitions for morgan",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/morgan",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "James Roland Cabresos",
+            "githubUsername": "staticfunction",
+            "url": "https://github.com/staticfunction"
+        },
+        {
+            "name": "Paolo Scanferla",
+            "githubUsername": "pscanf",
+            "url": "https://github.com/pscanf"
+        },
+        {
+            "name": "Piotr Błażejewicz",
+            "githubUsername": "peterblazejewicz",
+            "url": "https://github.com/peterblazejewicz"
+        },
+        {
+            "name": "Sebastian Beltran",
+            "githubUsername": "bjohansebas",
+            "url": "https://github.com/bjohansebas"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/morgan"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/node": "*"
+    },
+    "peerDependencies": {},
+    "typesPublisherContentHash": "14873954e80ecab6fc13b0143fc6c38093e9c8f0355d7dd413a9217bc8bd776a",
+    "typeScriptVersion": "5.1"
+}

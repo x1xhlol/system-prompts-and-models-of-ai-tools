@@ -1,0 +1,133 @@
+{
+  "name": "unified-ai-platform",
+  "version": "1.0.0",
+  "description": "A comprehensive AI platform that combines the best patterns and architectures from leading AI systems",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest",
+    "lint": "eslint src/",
+    "build": "webpack --mode production",
+    "setup": "npm install && npm run build",
+    "clean": "rm -rf dist/ node_modules/",
+    "docs": "jsdoc src/ -d docs/",
+    "memory:export": "node scripts/export-memories.js",
+    "memory:import": "node scripts/import-memories.js",
+    "memory:cleanup": "node scripts/cleanup-memories.js"
+  },
+  "keywords": [
+    "ai",
+    "artificial-intelligence",
+    "platform",
+    "unified",
+    "cursor",
+    "devin",
+    "manus",
+    "v0",
+    "memory-system",
+    "tool-system",
+    "planning",
+    "decision-making"
+  ],
+  "author": "AI Platform Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4",
+    "morgan": "^1.10.0",
+    "dotenv": "^16.3.1",
+    "sqlite3": "^5.1.6",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^9.0.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "winston": "^3.11.0",
+    "joi": "^17.11.0",
+    "axios": "^1.6.0",
+    "node-cron": "^3.0.3",
+    "multer": "^1.4.5-lts.1",
+    "sharp": "^0.32.6",
+    "openai": "^4.20.1",
+    "@anthropic-ai/sdk": "^0.9.0",
+    "socket.io": "^4.7.4",
+    "ws": "^8.14.2",
+    "node-fetch": "^3.3.2",
+    "form-data": "^4.0.0",
+    "mime-types": "^2.1.35",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1",
+    "inquirer": "^8.2.6",
+    "commander": "^11.1.0",
+    "yargs": "^17.7.2",
+    "glob": "^10.3.10",
+    "fs-extra": "^11.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.10",
+    "@types/express": "^4.17.20",
+    "@types/cors": "^2.8.15",
+    "@types/compression": "^1.7.4",
+    "@types/morgan": "^1.9.9",
+    "@types/bcryptjs": "^2.4.5",
+    "@types/jsonwebtoken": "^9.0.4",
+    "@types/uuid": "^9.0.6",
+    "@types/lodash": "^4.14.199",
+    "@types/moment": "^2.13.0",
+    "@types/multer": "^1.4.9",
+    "@types/ws": "^8.5.8",
+    "@types/node-fetch": "^2.6.4",
+    "@types/mime-types": "^2.1.4",
+    "@types/glob": "^8.1.0",
+    "@types/fs-extra": "^11.0.1",
+    "@types/inquirer": "^8.2.10",
+    "typescript": "^5.2.2",
+    "ts-node": "^10.9.1",
+    "nodemon": "^3.0.1",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.6",
+    "eslint": "^8.51.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "prettier": "^3.0.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-node-externals": "^3.0.0",
+    "ts-loader": "^9.4.4",
+    "jsdoc": "^4.0.2",
+    "typedoc": "^0.25.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.2",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/unified-ai-platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/unified-ai-platform/issues"
+  },
+  "homepage": "https://github.com/your-org/unified-ai-platform#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  }
+} 

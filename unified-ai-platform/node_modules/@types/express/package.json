@@ -1,0 +1,46 @@
+{
+    "name": "@types/express",
+    "version": "4.17.23",
+    "description": "TypeScript definitions for express",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/express",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Boris Yankov",
+            "githubUsername": "borisyankov",
+            "url": "https://github.com/borisyankov"
+        },
+        {
+            "name": "Puneet Arora",
+            "githubUsername": "puneetar",
+            "url": "https://github.com/puneetar"
+        },
+        {
+            "name": "Dylan Frankland",
+            "githubUsername": "dfrankland",
+            "url": "https://github.com/dfrankland"
+        },
+        {
+            "name": "Sebastian Beltran",
+            "githubUsername": "bjohansebas",
+            "url": "https://github.com/bjohansebas"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/express"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/body-parser": "*",
+        "@types/express-serve-static-core": "^4.17.33",
+        "@types/qs": "*",
+        "@types/serve-static": "*"
+    },
+    "peerDependencies": {},
+    "typesPublisherContentHash": "c7c276342e7f5808be5916c5dec3e614fa8b6e60b3323e369f793c389ee6f860",
+    "typeScriptVersion": "5.1"
+}

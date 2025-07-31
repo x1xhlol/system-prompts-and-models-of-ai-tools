@@ -1,0 +1,45 @@
+{
+  "author": "GitHub Inc.",
+  "name": "ini",
+  "description": "An ini encoder/decoder for node",
+  "version": "4.1.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npm/ini.git"
+  },
+  "main": "lib/ini.js",
+  "scripts": {
+    "eslint": "eslint",
+    "lint": "eslint \"**/*.js\"",
+    "lintfix": "npm run lint -- --fix",
+    "test": "tap",
+    "snap": "tap",
+    "posttest": "npm run lint",
+    "postlint": "template-oss-check",
+    "template-oss-apply": "template-oss-apply --force"
+  },
+  "devDependencies": {
+    "@npmcli/eslint-config": "^4.0.0",
+    "@npmcli/template-oss": "4.15.1",
+    "tap": "^16.0.1"
+  },
+  "license": "ISC",
+  "files": [
+    "bin/",
+    "lib/"
+  ],
+  "engines": {
+    "node": "^14.17.0 || ^16.13.0 || >=18.0.0"
+  },
+  "templateOSS": {
+    "//@npmcli/template-oss": "This file is partially managed by @npmcli/template-oss. Edits may be overwritten.",
+    "version": "4.15.1",
+    "publish": "true"
+  },
+  "tap": {
+    "nyc-arg": [
+      "--exclude",
+      "tap-snapshots/**"
+    ]
+  }
+}
