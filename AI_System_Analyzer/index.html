@@ -367,6 +367,225 @@
             opacity: 0.9;
         }
 
+        .analysis-results {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .result-item {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .detailed-comparison {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-details {
+            display: flex;
+            gap: 20px;
+        }
+
+        .comparison-category {
+            flex: 1;
+        }
+
+        .comparison-category h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .system-item {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #2c3e50;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .system-item strong {
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .report-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .report-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .report-header h3 {
+            color: #2c3e50;
+            font-size: 2rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .report-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .report-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .report-section h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .report-section p {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .report-section ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .report-section ul li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .search-results {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-results h3 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .results-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .result-item {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-item strong {
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .result-item div {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        .live-analysis-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .live-analysis-section h3 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .analysis-content {
+            display: flex;
+            gap: 20px;
+        }
+
+        .insights, .recommendations {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .insights h4, .recommendations h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .insights ul, .recommendations ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .insights ul li, .recommendations ul li {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .insights ul li::before, .recommendations ul li::before {
+            content: '💡';
+            font-size: 1rem;
+            margin-right: 8px;
+        }
+
+        .recommendations ul li::before {
+            content: '🎯';
+        }
+
         @media (max-width: 768px) {
             .dashboard {
                 grid-template-columns: 1fr;
@@ -382,6 +601,14 @@
             
             .search-box {
                 width: 100%;
+            }
+
+            .analysis-content {
+                flex-direction: column;
+            }
+
+            .comparison-details {
+                flex-direction: column;
             }
         }
     </style>
@@ -610,6 +837,179 @@
                     learningSpeed: 15.7,
                     uptime: 99.9
                 };
+                this.realTimeData = [];
+                this.analysisHistory = [];
+            }
+
+            // NEW: Real-time data collection
+            collectRealTimeData(interaction) {
+                this.realTimeData.push({
+                    ...interaction,
+                    timestamp: new Date().toISOString(),
+                    neuralLoad: this.calculateNeuralLoad(interaction),
+                    cognitiveComplexity: this.analyzeCognitiveComplexity(interaction)
+                });
+                
+                // Keep only last 1000 interactions for performance
+                if (this.realTimeData.length > 1000) {
+                    this.realTimeData = this.realTimeData.slice(-1000);
+                }
+                
+                this.updateAdaptationMetrics();
+            }
+
+            // NEW: Calculate neural load based on interaction complexity
+            calculateNeuralLoad(interaction) {
+                let load = 0;
+                if (interaction.query) load += interaction.query.length * 0.1;
+                if (interaction.type === 'search') load += 5;
+                if (interaction.type === 'analyze') load += 15;
+                if (interaction.type === 'compare') load += 20;
+                return Math.min(load, 100);
+            }
+
+            // NEW: Analyze cognitive complexity
+            analyzeCognitiveComplexity(interaction) {
+                const complexity = {
+                    low: 0,
+                    medium: 0,
+                    high: 0
+                };
+                
+                if (interaction.query && interaction.query.length > 50) complexity.high++;
+                else if (interaction.query && interaction.query.length > 20) complexity.medium++;
+                else complexity.low++;
+                
+                return complexity;
+            }
+
+            // NEW: Update adaptation metrics in real-time
+            updateAdaptationMetrics() {
+                const recentData = this.realTimeData.slice(-100);
+                if (recentData.length === 0) return;
+                
+                const avgNeuralLoad = recentData.reduce((sum, item) => sum + item.neuralLoad, 0) / recentData.length;
+                const avgResponseTime = recentData.length * 0.5; // Simulated response time
+                
+                this.adaptationMetrics = {
+                    accuracy: Math.max(95, 100 - (avgNeuralLoad * 0.05)),
+                    responseTime: Math.max(1, avgResponseTime),
+                    learningSpeed: Math.min(20, 10 + (avgNeuralLoad * 0.1)),
+                    uptime: 99.9
+                };
+                
+                this.updateUI();
+            }
+
+            // NEW: Update UI with real-time metrics
+            updateUI() {
+                const metricElements = document.querySelectorAll('.metric-value');
+                if (metricElements.length >= 4) {
+                    metricElements[0].textContent = `${this.adaptationMetrics.accuracy.toFixed(1)}%`;
+                    metricElements[1].textContent = `${this.adaptationMetrics.responseTime.toFixed(1)}ms`;
+                    metricElements[2].textContent = `${this.adaptationMetrics.learningSpeed.toFixed(1)}x`;
+                    metricElements[3].textContent = `${this.adaptationMetrics.uptime}%`;
+                }
+            }
+
+            // NEW: Live pattern analysis
+            performLiveAnalysis() {
+                const patterns = this.analyzeNeuralPatterns(this.getSystemData());
+                const analysis = {
+                    timestamp: new Date().toISOString(),
+                    patterns: patterns,
+                    insights: this.generateInsights(patterns),
+                    recommendations: this.generateRecommendations(patterns)
+                };
+                
+                this.analysisHistory.push(analysis);
+                this.displayLiveAnalysis(analysis);
+                return analysis;
+            }
+
+            // NEW: Get comprehensive system data
+            getSystemData() {
+                return [
+                    { name: 'Cursor v1.2', type: 'autonomous', capabilities: ['code-generation', 'file-editing', 'debugging'], tools: ['file-system', 'terminal', 'git'], memory: true, planning: true },
+                    { name: 'Devin AI', type: 'autonomous', capabilities: ['full-stack-development', 'project-management', 'deployment'], tools: ['browser', 'terminal', 'code-editor'], memory: true, planning: true },
+                    { name: 'Replit Agent', type: 'guided', capabilities: ['code-assistance', 'learning-support'], tools: ['replit-ide', 'collaboration'], memory: false, planning: false },
+                    { name: 'Perplexity', type: 'guided', capabilities: ['information-gathering', 'research'], tools: ['web-search', 'document-analysis'], memory: false, planning: false },
+                    { name: 'Cluely', type: 'guided', capabilities: ['conversation', 'task-assistance'], tools: ['chat-interface'], memory: true, planning: false },
+                    { name: 'Lovable', type: 'guided', capabilities: ['relationship-building', 'emotional-support'], tools: ['conversation', 'memory'], memory: true, planning: false },
+                    { name: 'Same.dev', type: 'specialized', capabilities: ['code-review', 'best-practices'], tools: ['code-analysis', 'suggestions'], memory: false, planning: false },
+                    { name: 'Windsurf', type: 'autonomous', capabilities: ['project-execution', 'task-automation'], tools: ['file-system', 'api-integration'], memory: true, planning: true },
+                    { name: 'Nowhere AI', type: 'autonomous', capabilities: ['creative-writing', 'story-generation'], tools: ['text-generation', 'plot-development'], memory: true, planning: true },
+                    { name: 'PowerShell AI', type: 'specialized', capabilities: ['system-administration', 'automation'], tools: ['powershell', 'system-commands'], memory: true, planning: false }
+                ];
+            }
+
+            // NEW: Generate insights from patterns
+            generateInsights(patterns) {
+                const insights = [];
+                
+                if (patterns.autonomous.length > patterns.guided.length) {
+                    insights.push('Autonomous AI systems dominate the collection, indicating a trend toward self-directed AI');
+                }
+                
+                const avgComplexity = [...patterns.autonomous, ...patterns.guided, ...patterns.specialized]
+                    .reduce((sum, system) => sum + system.neuralComplexity, 0) / 
+                    (patterns.autonomous.length + patterns.guided.length + patterns.specialized.length);
+                
+                if (avgComplexity > 70) {
+                    insights.push('High neural complexity suggests sophisticated AI architectures');
+                }
+                
+                return insights;
+            }
+
+            // NEW: Generate recommendations
+            generateRecommendations(patterns) {
+                const recommendations = [];
+                
+                if (patterns.autonomous.length < 3) {
+                    recommendations.push('Consider adding more autonomous AI systems for comprehensive coverage');
+                }
+                
+                if (patterns.specialized.length < 2) {
+                    recommendations.push('Domain-specific AI tools could enhance specialized use cases');
+                }
+                
+                return recommendations;
+            }
+
+            // NEW: Display live analysis results
+            displayLiveAnalysis(analysis) {
+                const analysisContainer = document.getElementById('live-analysis');
+                if (!analysisContainer) {
+                    const container = document.createElement('div');
+                    container.id = 'live-analysis';
+                    container.className = 'live-analysis-section';
+                    container.innerHTML = `
+                        <h3>🧠 Live Neural Analysis</h3>
+                        <div class="analysis-content">
+                            <div class="insights">
+                                <h4>💡 Insights</h4>
+                                <ul id="insights-list"></ul>
+                            </div>
+                            <div class="recommendations">
+                                <h4>🎯 Recommendations</h4>
+                                <ul id="recommendations-list"></ul>
+                            </div>
+                        </div>
+                    `;
+                    document.querySelector('.container').appendChild(container);
+                }
+                
+                const insightsList = document.getElementById('insights-list');
+                const recommendationsList = document.getElementById('recommendations-list');
+                
+                if (insightsList) {
+                    insightsList.innerHTML = analysis.insights.map(insight => `<li>${insight}</li>`).join('');
+                }
+                
+                if (recommendationsList) {
+                    recommendationsList.innerHTML = analysis.recommendations.map(rec => `<li>${rec}</li>`).join('');
+                }
             }
 
             analyzeNeuralPatterns(systems) {
@@ -814,25 +1214,166 @@
         // Initialize the brain tech analyzer
         const brainAnalyzer = new BrainTechAnalyzer();
 
+        // ENHANCED: Real-time analysis functions
         function analyzePatterns() {
-            alert('🧠 Neural pattern analysis feature coming soon! This will use advanced brain technology to analyze AI system patterns.');
+            const analysis = brainAnalyzer.performLiveAnalysis();
+            console.log('🧠 Neural pattern analysis completed:', analysis);
+            
+            // Update UI with results
+            updateAnalysisDisplay(analysis);
+        }
+
+        function updateAnalysisDisplay(analysis) {
+            const analysisContainer = document.querySelector('.brain-tech-section');
+            if (analysisContainer) {
+                const resultsDiv = document.createElement('div');
+                resultsDiv.className = 'analysis-results';
+                resultsDiv.innerHTML = `
+                    <h3>📊 Analysis Results</h3>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <strong>Autonomous Systems:</strong> ${analysis.patterns.autonomous.length}
+                        </div>
+                        <div class="result-item">
+                            <strong>Guided Systems:</strong> ${analysis.patterns.guided.length}
+                        </div>
+                        <div class="result-item">
+                            <strong>Specialized Systems:</strong> ${analysis.patterns.specialized.length}
+                        </div>
+                    </div>
+                `;
+                analysisContainer.appendChild(resultsDiv);
+            }
         }
 
         function compareSystems() {
-            alert('🔄 Adaptive system comparison tool coming soon! This will allow real-time adaptation based on user behavior.');
+            const systems = brainAnalyzer.getSystemData();
+            const comparison = brainAnalyzer.analyzeNeuralPatterns(systems);
+            
+            // Create detailed comparison view
+            displaySystemComparison(comparison);
+        }
+
+        function displaySystemComparison(comparison) {
+            const comparisonContainer = document.querySelector('.comparison-section');
+            if (comparisonContainer) {
+                const detailedComparison = document.createElement('div');
+                detailedComparison.className = 'detailed-comparison';
+                detailedComparison.innerHTML = `
+                    <h3>🔄 Detailed System Comparison</h3>
+                    <div class="comparison-details">
+                        <div class="comparison-category">
+                            <h4>Autonomous Systems (${comparison.autonomous.length})</h4>
+                            ${comparison.autonomous.map(system => `
+                                <div class="system-item">
+                                    <strong>${system.name}</strong>
+                                    <div>Neural Complexity: ${system.neuralComplexity}%</div>
+                                    <div>Cognitive Load: ${system.cognitiveLoad}</div>
+                                    <div>Adaptation Rate: ${system.adaptationRate}%</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="comparison-category">
+                            <h4>Guided Systems (${comparison.guided.length})</h4>
+                            ${comparison.guided.map(system => `
+                                <div class="system-item">
+                                    <strong>${system.name}</strong>
+                                    <div>Neural Complexity: ${system.neuralComplexity}%</div>
+                                    <div>Cognitive Load: ${system.cognitiveLoad}</div>
+                                    <div>Adaptation Rate: ${system.adaptationRate}%</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                comparisonContainer.appendChild(detailedComparison);
+            }
         }
 
         function generateReport() {
-            alert('📊 Brain tech report generation feature coming soon! This will create comprehensive neural analysis reports.');
+            const systems = brainAnalyzer.getSystemData();
+            const analysis = brainAnalyzer.analyzeNeuralPatterns(systems);
+            const insights = brainAnalyzer.generateInsights(analysis);
+            const recommendations = brainAnalyzer.generateRecommendations(analysis);
+            
+            const report = {
+                timestamp: new Date().toISOString(),
+                totalSystems: systems.length,
+                analysis: analysis,
+                insights: insights,
+                recommendations: recommendations,
+                metrics: brainAnalyzer.adaptationMetrics
+            };
+            
+            console.log('📊 Brain tech report generated:', report);
+            displayReport(report);
+        }
+
+        function displayReport(report) {
+            const reportContainer = document.createElement('div');
+            reportContainer.className = 'report-container';
+            reportContainer.innerHTML = `
+                <div class="report-header">
+                    <h3>📊 Brain Tech Analysis Report</h3>
+                    <p>Generated: ${new Date(report.timestamp).toLocaleString()}</p>
+                </div>
+                <div class="report-content">
+                    <div class="report-section">
+                        <h4>📈 Overview</h4>
+                        <p>Total Systems Analyzed: ${report.totalSystems}</p>
+                        <p>Analysis Accuracy: ${report.metrics.accuracy}%</p>
+                    </div>
+                    <div class="report-section">
+                        <h4>💡 Key Insights</h4>
+                        <ul>
+                            ${report.insights.map(insight => `<li>${insight}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="report-section">
+                        <h4>🎯 Recommendations</h4>
+                        <ul>
+                            ${report.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+            
+            document.querySelector('.container').appendChild(reportContainer);
         }
 
         function exportData() {
-            alert('📤 Data export feature coming soon! This will allow exporting brain tech analysis data in various formats.');
+            const systems = brainAnalyzer.getSystemData();
+            const analysis = brainAnalyzer.analyzeNeuralPatterns(systems);
+            const exportData = {
+                systems: systems,
+                analysis: analysis,
+                realTimeData: brainAnalyzer.realTimeData,
+                adaptationMetrics: brainAnalyzer.adaptationMetrics,
+                timestamp: new Date().toISOString()
+            };
+            
+            const dataStr = JSON.stringify(exportData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `ai-system-analysis-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            
+            console.log('📤 Data exported successfully');
         }
 
         function searchSystems(query) {
             // Advanced search with brain tech
             console.log('🧠 Searching with brain technology:', query);
+            
+            // Collect real-time data
+            brainAnalyzer.collectRealTimeData({
+                type: 'search',
+                query: query,
+                timestamp: new Date().toISOString()
+            });
             
             // Simulate real-time adaptation
             const adaptation = brainAnalyzer.adaptToUserBehavior([
@@ -840,6 +1381,38 @@
             ]);
             
             console.log('🔄 Adaptation factors:', adaptation);
+            
+            // Display search results
+            displaySearchResults(query, adaptation);
+        }
+
+        function displaySearchResults(query, adaptation) {
+            const systems = brainAnalyzer.getSystemData();
+            const filteredSystems = systems.filter(system => 
+                system.name.toLowerCase().includes(query.toLowerCase()) ||
+                system.capabilities.some(cap => cap.toLowerCase().includes(query.toLowerCase()))
+            );
+            
+            const resultsContainer = document.createElement('div');
+            resultsContainer.className = 'search-results';
+            resultsContainer.innerHTML = `
+                <h3>🔍 Search Results for "${query}"</h3>
+                <div class="results-list">
+                    ${filteredSystems.map(system => `
+                        <div class="result-item">
+                            <strong>${system.name}</strong>
+                            <div>Type: ${system.type}</div>
+                            <div>Capabilities: ${system.capabilities.join(', ')}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            // Remove previous results and add new ones
+            const existingResults = document.querySelector('.search-results');
+            if (existingResults) existingResults.remove();
+            
+            document.querySelector('.container').appendChild(resultsContainer);
         }
 
         // Add event listeners for real-time adaptation
@@ -850,6 +1423,11 @@
                 { type: 'view', systemType: 'cursor', timestamp: new Date().toISOString() },
                 { type: 'analyze', systemType: 'devin', timestamp: new Date().toISOString() }
             ];
+            
+            // Collect initial data
+            mockInteractions.forEach(interaction => {
+                brainAnalyzer.collectRealTimeData(interaction);
+            });
             
             const adaptation = brainAnalyzer.adaptToUserBehavior(mockInteractions);
             console.log('🧠 Initial adaptation:', adaptation);
@@ -864,6 +1442,11 @@
                     this.style.transform = 'translateY(0)';
                 });
             });
+            
+            // Start real-time analysis
+            setInterval(() => {
+                brainAnalyzer.performLiveAnalysis();
+            }, 30000); // Update every 30 seconds
         });
     </script>
 </body>
