@@ -232,105 +232,19 @@ function Stop-VoiceRecognition {
     }
 }
 
-function Speak-Response {
-    param([string]$Text)
-    
-    try {
-        if ($script:SpeechSynthesizer) {
-            $script:SpeechSynthesizer.SpeakAsync($Text) | Out-Null
-        }
-    }
-    catch {
-        Write-Warning "Failed to speak response: $_"
-    }
-}
-
-# AI integration functions
-function Invoke-AIAnalysis {
-    param(
-        [string]$Command,
-        [object]$Context = @{},
-        [object]$Config
-    )
-    
-    try {
-        # Simulate AI analysis (in a real implementation, this would call an AI API)
-        $analysis = @{
-            intent = "unknown"
-            confidence = 0.8
-            suggestedActions = @()
-            response = ""
-        }
-        
-        # Basic intent recognition
-        $commandLower = $Command.ToLower()
-        
-        if ($commandLower -match "get-childitem|show|list|find") {
-            $analysis.intent = "navigation"
-            $analysis.suggestedActions = @("Get-ChildItem", "Get-Process", "Get-Service")
-            $analysis.response = "I'll help you navigate the system. Here are some useful commands:"
-        }
-        elseif ($commandLower -match "start|run|execute|invoke") {
-            $analysis.intent = "execution"
-            $analysis.suggestedActions = @("Start-Process", "Invoke-Expression", "Start-Service")
-            $analysis.response = "I'll help you execute commands. Here are some execution options:"
-        }
-        elseif ($commandLower -match "analyze|check|review|test") {
-            $analysis.intent = "analysis"
-            $analysis.suggestedActions = @("Get-Process", "Get-Service", "Test-Path")
-            $analysis.response = "I'll help you analyze the system. Here are some analysis commands:"
-        }
-        elseif ($commandLower -match "create|new|add|build") {
-            $analysis.intent = "creation"
-            $analysis.suggestedActions = @("New-Item", "New-Object", "Add-Content")
-            $analysis.response = "I'll help you create new items. Here are some creation commands:"
-        }
-        else {
-            $analysis.intent = "general"
-            $analysis.suggestedActions = @("Get-Help", "Get-Command", "Get-Module")
-            $analysis.response = "I understand your request. Here are some general PowerShell commands:"
-        }
-        
-        return $analysis
-    }
-    catch {
-        Write-Error "Failed to analyze command: $_"
-        return @{
-            intent = "error"
-            confidence = 0.0
-            suggestedActions = @()
-            response = "Sorry, I encountered an error while analyzing your command."
-        }
-    }
-}
-
-# Autopilot mode functions
+# Autopilot functions
 function Enable-AutopilotMode {
     param([object]$Config)
     
     try {
-        $Config.Autopilot.Enabled = $true
+        $script:AutopilotEnabled = $true
         Write-Host "🤖 Autopilot mode enabled" -ForegroundColor Green
-        
-        # Start monitoring for autonomous actions
-        Start-Job -ScriptBlock {
-            while ($true) {
-                # Monitor system for opportunities to help
-                Start-Sleep -Seconds 30
-                
-                # Check for common issues and suggest solutions
-                $processes = Get-Process | Where-Object { $_.CPU -gt 10 }
-                if ($processes) {
-                    Write-Host "🤖 Autopilot: High CPU usage detected. Consider optimizing processes." -ForegroundColor Yellow
-                }
-            }
-        } | Out-Null
-        
-        return $true
+        Write-Host "  Autonomy Level: $($Config.Autopilot.AutonomyLevel)" -ForegroundColor Cyan
+        Write-Host "  Risk Tolerance: $($Config.Autopilot.RiskTolerance)" -ForegroundColor Cyan
+        Write-Host "  Max Concurrent Tasks: $($Config.Autopilot.MaxConcurrentTasks)" -ForegroundColor Cyan
     }
     catch {
         Write-Error "Failed to enable autopilot mode: $_"
-        return $false
     }
 }
 
