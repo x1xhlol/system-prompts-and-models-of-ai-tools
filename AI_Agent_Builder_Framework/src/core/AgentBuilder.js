@@ -2,6 +2,9 @@ const fs = require('fs').promises;
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const Logger = require('../utils/Logger');
+const RealTimeAnalytics = require('./RealTimeAnalytics');
+const NeuralOptimizer = require('./NeuralOptimizer');
+const CognitiveEnhancer = require('./CognitiveEnhancer');
 
 class AgentBuilder {
     constructor() {
