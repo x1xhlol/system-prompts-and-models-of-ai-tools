@@ -57,6 +57,7 @@ You can show your support via:
 ## 📂 Available Files
 
 - **v0 Folder**
+- **Mindbox Folder**
 - **Spawn Folder**  
 - **Manus Folder**  
 - **Lovable Folder**  
