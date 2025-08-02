@@ -1,0 +1,16 @@
+{
+  "name": "ai-coding-agent",
+  "version": "1.0.0",
+  "description": "A full-stack AI coding agent.",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=packages/frontend",
+    "build": "npm run build --workspace=packages/frontend",
+    "start": "npm run start --workspace=packages/backend"
+  },
+  "author": "",
+  "license": "ISC"
+}
