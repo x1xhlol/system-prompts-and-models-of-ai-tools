@@ -1,0 +1,20 @@
+{
+	"image": "mcr.microsoft.com/devcontainers/universal:2",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.azure-account",
+				"ms-python.python",
+				"ms-toolsai.jupyter",
+				"ms-vscode.cpptools",
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	},
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"python.pythonPath": "/usr/local/bin/python3",
+		"editor.formatOnSave": true
+	},
+	"postCreateCommand": "pip install -r requirements.txt"
+}
