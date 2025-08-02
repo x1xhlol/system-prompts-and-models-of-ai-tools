@@ -1,122 +1,85 @@
-# **FULL v0, Cursor, Manus, Same.dev, Lovable, Devin, Replit Agent, Windsurf Agent, VSCode Agent, Dia Browser, Trae AI, Cluely, Perplexity, Xcode, Spawn & Orchids.app (And other Open Sourced) System Prompts, Tools & AI Models**  
+# Full Stack AI Coding Agent
 
+This project is a full-stack AI coding agent built with the following technologies:
+
+- **Frontend:** Vite, React, TypeScript, Tailwind CSS
+- **Backend:** Serverless Functions (for Vercel), TypeScript
+- **AI:** Google Gemini Pro
+
+This agent is inspired by the collection of system prompts and tool definitions found in this repository.
+
+## Project Structure
+
+This project is a monorepo using npm workspaces.
+
+- `packages/frontend`: The Vite/React frontend application.
+- `packages/backend`: The serverless backend.
+  - `packages/backend/api`: Contains the serverless function for Vercel.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or later)
+- npm (v8 or later)
+- A Google Gemini API Key
+
+### 1. Get a Gemini API Key
+
+1.  Go to the [Google AI Studio](https://aistudio.google.com/).
+2.  Sign in with your Google account.
+3.  Click on **"Get API key"**.
+4.  Create a new API key.
+5.  Copy the key and keep it safe.
+
+### 2. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
+
+### 3. Install Dependencies
+
+```bash
+npm install
+```
+
+### 4. Set Up Environment Variables
+
+When deploying to Vercel, you will need to set this environment variable in the Vercel project settings. You do not need a `.env` file for local development, as the frontend and backend are served from the same origin.
+
+### 5. Running the Development Server
+
+This command will start the Vite development server for the frontend.
+
+```bash
+npm run dev
+```
+
+The frontend will be available at `http://localhost:5173`. The backend serverless function will be available at `http://localhost:5173/api`.
+
+## Deployment to Vercel
+
+1.  **Push to GitHub:** Create a new repository on GitHub and push your code.
+
+2.  **Import to Vercel:**
+    - Go to your Vercel dashboard.
+    - Click on **"Add New... > Project"**.
+    - Import your GitHub repository.
+
+3.  **Configure the Project:**
+    - **Framework Preset:** Vercel should automatically detect that this is a Vite project.
+    - **Root Directory:** Make sure the root directory is set to `packages/frontend`.
+    - **Build and Output Settings:** These should be configured automatically by the Vite preset.
+    - **Environment Variables:**
+        - Go to the **"Settings"** tab of your new Vercel project.
+        - Click on **"Environment Variables"**.
+        - Add a new variable with the name `GEMINI_API_KEY` and the value of your API key.
+
+4.  **Deploy:** Click the **"Deploy"** button.
+
+Vercel will build and deploy your application. The serverless function in `packages/backend/api` will be automatically deployed as well.
 ---
 
-# Tired of buiding trash games with generic AI tools?
-<a href="https://spawn.co" target="_blank" rel="noopener noreferrer">
-  <img width="200" height="200" alt="Spawn.co Logo" src="https://github.com/user-attachments/assets/669cef9b-eec1-4add-9a02-fb7e12602126" align="right" />
-</a>
-
-Stop **prototyping**. Start **shipping**.
-
-While other tools get stuck on prompts, [spawn.co](https://www.spawn.co/) uses cutting-edge AI to build and deploy complete games. I've spawned 4 complete game variants in under 20 minutes. Not prototypes - actual playable games with save systems, multiplayer, monetization ready to ship.
-
-It’s not marketing fluff, it’s just a better way to build.
-
-**Build. Ship. Done.**
-
----
-
-<a href="https://trendshift.io/repositories/14084" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14084" alt="x1xhlol%2Fsystem-prompts-and-models-of-ai-tools | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
-
-📜 Over **8500+ lines** of insights into their structure and functionality.  
-
-[![Build Status](https://app.cloudback.it/badge/x1xhlol/system-prompts-and-models-of-ai-tools)](https://cloudback.it)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/x1xhlol/system-prompts-and-models-of-ai-tools)
-
-<!-- GitAds-Verify: 1XH3NPLCWBUSIAJ4V7BN4OSH4LXN21WW -->
-
----
-
-## ❤️ Support the Project
-
-If you find this collection valuable and appreciate the effort involved in obtaining and sharing these insights, please consider supporting the project. Your contribution helps keep this resource updated and allows for further exploration.
-
-You can show your support via:
-
-- **PayPal:** `lucknitelol@proton.me`
-- **Cryptocurrency:**  
-  - **BTC:** `bc1q7zldmzjwspnaa48udvelwe6k3fef7xrrhg5625`  
-  - **LTC:** `LRWgqwEYDwqau1WeiTs6Mjg85NJ7m3fsdQ`  
-  - **ETH:** `0x3f844B2cc3c4b7242964373fB0A41C4fdffB192A`
-- **Patreon:** https://patreon.com/lucknite
-
-🙏 Thank you for your support!
-
-
----
-
-## 📑 Table of Contents
-
-1. [Available Files](#-available-files)  
-2. [Roadmap & Feedback](#-roadmap--feedback)  
-3. [Connect With Me](#-connect-with-me)  
-4. [Security Notice for AI Startups](#%EF%B8%8F-security-notice-for-ai-startups)  
-5. [Star History](#-star-history) 
-
----
-
-## 📂 Available Files
-
-- **v0 Folder**
-- **Spawn Folder**  
-- **Manus Folder**  
-- **Lovable Folder**  
-- **Devin Folder**  
-- **Same.dev Folder**  
-- **Replit Folder**  
-- **Windsurf Agent Folder**  
-- **VSCode (Copilot) Agent Folder**  
-- **Cursor Folder**  
-- **Dia Folder**  
-- **Trae AI Folder**
-- **Perplexity Folder**  
-- **Cluely Folder**
-- **Xcode Folder**
-- **Orchids.app Folder**
-- **Open Source prompts Folder**  
-  - Codex CLI  
-  - Cline  
-  - Bolt  
-  - RooCode
-  - Lumo
-
----
-
-## 🛠 Roadmap & Feedback
-
-> Open an issue.
-
-> **Latest Update:** 31/07/2025
-
----
-
-## 🔗 Connect With Me
-
-- **X:** [NotLucknite](https://x.com/NotLucknite)
-- **Discord**: `x1xh`
-
----
-
-## 🛡️ Security Notice for AI Startups
-
-> ⚠️ **Warning:** If you're an AI startup, make sure your data is secure. Exposed prompts or AI models can easily become a target for hackers.
-
-> 🔐 **Important:** Interested in securing your AI systems?  
-> Check out **[ZeroLeaks](https://zeroleaks.io/)**, a service designed to help startups **identify and secure** leaks in system instructions, internal tools, and model configurations. **Get a free AI security audit** to ensure your AI is protected from vulnerabilities.
-
-*The company is mine, this is NOT a 3rd party AD.*
-
----
-
-## 📊 Star History
-
-<a href="https://www.star-history.com/#x1xhlol/system-prompts-and-models-of-ai-tools&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=x1xhlol/system-prompts-and-models-of-ai-tools&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=x1xhlol/system-prompts-and-models-of-ai-tools&type=Date" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=x1xhlol/system-prompts-and-models-of-ai-tools&type=Date" />
-  </picture>
-</a>
-
-⭐ **Drop a star if you find this useful!**
+*This README was generated by Jules, an AI assistant.*
