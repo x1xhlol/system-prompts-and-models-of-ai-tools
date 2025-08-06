@@ -1,0 +1,71 @@
+# Core FastAPI and web framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+aiofiles==23.2.1
+jinja2==3.1.2
+pydantic==2.5.0
+python-multipart==0.0.6
+
+# AI and Machine Learning
+openai==1.3.0
+anthropic==0.7.0
+replicate==0.22.0
+transformers==4.35.0
+torch==2.1.0
+numpy==1.24.3
+pandas==2.1.0
+scikit-learn==1.3.0
+
+# Image and Media Processing
+Pillow==10.0.0
+opencv-python==4.8.1.78
+moviepy==1.0.3
+librosa==0.10.1
+
+# Data Processing and Analysis
+matplotlib==3.7.2
+seaborn==0.12.2
+plotly==5.17.0
+jupyter==1.0.0
+
+# Database and Storage
+sqlite3
+sqlalchemy==2.0.23
+alembic==1.12.1
+redis==5.0.1
+
+# HTTP and API
+requests==2.31.0
+httpx==0.25.0
+aiohttp==3.9.0
+
+# Workflow and Automation
+n8n==1.0.0
+celery==5.3.0
+redis==5.0.1
+
+# Utilities
+python-dotenv==1.0.0
+click==8.1.7
+rich==13.7.0
+tqdm==4.66.1
+pyyaml==6.0.1
+toml==0.10.2
+
+# Development and Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+black==23.11.0
+flake8==6.1.0
+mypy==1.7.1
+
+# Security
+cryptography==41.0.7
+bcrypt==4.1.2
+
+# Monitoring and Logging
+structlog==23.2.0
+prometheus-client==0.19.0
+
+# Optional: GPU Support
+# torch==2.1.0+cu118 --index-url https://download.pytorch.org/whl/cu118

@@ -1,0 +1,74 @@
+FROM python:3.11-slim
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    git \
+    curl \
+    wget \
+    ffmpeg \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    libglib2.0-0 \
+    libgl1-mesa-glx \
+    libgomp1 \
+    libgthread-2.0-0 \
+    libgtk-3-0 \
+    libavcodec-dev \
+    libavformat-dev \
+    libswscale-dev \
+    libv4l-dev \
+    libxvidcore-dev \
+    libx264-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libtiff-dev \
+    libatlas-base-dev \
+    gfortran \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements and install Python dependencies
+COPY ultimate_ai_agent_requirements.txt .
+RUN pip install --no-cache-dir -r ultimate_ai_agent_requirements.txt
+
+# Copy application code
+COPY ultimate_ai_agent.py .
+COPY static/ ./static/
+COPY templates/ ./templates/
+
+# Create necessary directories
+RUN mkdir -p static/workflows templates logs data
+
+# Copy AI agent frameworks and tools
+COPY "Cursor Prompts/" ./Cursor\ Prompts/
+COPY "Manus Agent Tools & Prompt/" ./Manus\ Agent\ Tools\ \&\ Prompt/
+COPY "Devin AI/" ./Devin\ AI/
+COPY "AI_Agent_Builder_Framework/" ./AI_Agent_Builder_Framework/
+
+# Copy workflow files if they exist
+COPY n8n-workflows/ ./n8n-workflows/ 2>/dev/null || true
+
+# Create non-root user
+RUN useradd --create-home --shell /bin/bash agent && \
+    chown -R agent:agent /app
+USER agent
+
+# Expose port
+EXPOSE 8000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8000/api/health || exit 1
+
+# Run the application
+CMD ["python", "ultimate_ai_agent.py"]

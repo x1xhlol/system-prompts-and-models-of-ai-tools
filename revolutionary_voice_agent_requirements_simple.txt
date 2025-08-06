@@ -1,0 +1,21 @@
+# Revolutionary AI Agent System - Simplified Requirements
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+aiofiles>=23.2.0
+jinja2>=3.1.0
+pydantic>=2.5.0
+python-multipart>=0.0.6
+
+# AI and Machine Learning
+openai>=1.3.0
+anthropic>=0.7.0
+replicate>=0.22.0
+requests>=2.31.0
+
+# Voice and Audio Processing
+elevenlabs>=0.2.26
+edge-tts>=6.1.9
+
+# Utilities
+python-dotenv>=1.0.0
+rich>=13.7.0

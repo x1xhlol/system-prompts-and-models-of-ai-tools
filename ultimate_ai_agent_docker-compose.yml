@@ -1,0 +1,115 @@
+version: '3.8'
+
+services:
+  ultimate-ai-agent:
+    build:
+      context: .
+      dockerfile: ultimate_ai_agent_Dockerfile
+    container_name: ultimate-ai-agent
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./static:/app/static
+      - ./templates:/app/templates
+    environment:
+      - PYTHONUNBUFFERED=1
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - REPLICATE_API_KEY=${REPLICATE_API_KEY}
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+      - postgres
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  redis:
+    image: redis:7-alpine
+    container_name: ultimate-ai-agent-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: ultimate-ai-agent-postgres
+    environment:
+      - POSTGRES_DB=ultimate_agent
+      - POSTGRES_USER=agent
+      - POSTGRES_PASSWORD=agent_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: ultimate-ai-agent-n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=admin
+      - N8N_HOST=0.0.0.0
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - N8N_USER_MANAGEMENT_DISABLED=true
+      - N8N_DIAGNOSTICS_ENABLED=false
+      - WEBHOOK_URL=http://localhost:5678/
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ./n8n-workflows:/home/node/.n8n/workflows
+    restart: unless-stopped
+    depends_on:
+      - postgres
+
+  monitoring:
+    image: prom/prometheus:latest
+    container_name: ultimate-ai-agent-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: ultimate-ai-agent-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    restart: unless-stopped
+    depends_on:
+      - monitoring
+
+volumes:
+  redis_data:
+  postgres_data:
+  n8n_data:
+  prometheus_data:
+  grafana_data:
