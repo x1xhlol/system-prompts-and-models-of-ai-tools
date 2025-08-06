@@ -1,17 +1,17 @@
 import { URL } from 'url'
 import Pool from './pool'
-import Dispatcher from "./dispatcher";
+import Dispatcher from './dispatcher'
 
 export default Agent
 
-declare class Agent extends Dispatcher{
-  constructor(opts?: Agent.Options)
+declare class Agent extends Dispatcher {
+  constructor (opts?: Agent.Options)
   /** `true` after `dispatcher.close()` has been called. */
-  closed: boolean;
+  closed: boolean
   /** `true` after `dispatcher.destroyed()` has been called or `dispatcher.close()` has been called and the dispatcher shutdown has completed. */
-  destroyed: boolean;
+  destroyed: boolean
   /** Dispatches a request. */
-  dispatch(options: Agent.DispatchOptions, handler: Dispatcher.DispatchHandlers): boolean;
+  dispatch (options: Agent.DispatchOptions, handler: Dispatcher.DispatchHandler): boolean
 }
 
 declare namespace Agent {
@@ -21,7 +21,7 @@ declare namespace Agent {
     /** Integer. Default: `0` */
     maxRedirections?: number;
 
-    interceptors?: { Agent?: readonly Dispatcher.DispatchInterceptor[] } & Pool.Options["interceptors"]
+    interceptors?: { Agent?: readonly Dispatcher.DispatchInterceptor[] } & Pool.Options['interceptors']
   }
 
   export interface DispatchOptions extends Dispatcher.DispatchOptions {
