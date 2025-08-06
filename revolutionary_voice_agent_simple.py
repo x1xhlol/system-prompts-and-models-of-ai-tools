@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Revolutionary AI Agent System - Simplified Version
-The Most Advanced AI Agent with Voice Actor Capabilities
+Ultimate AI Agent System - Full Stack Development
+The Most Advanced AI Agent with Complete Development Capabilities
 """
 
 import os
@@ -116,11 +116,11 @@ class RevolutionaryAIAgent:
         self.video_processor = self._init_video_processor()
         
     def _load_capabilities(self) -> Dict[str, AgentCapability]:
-        """Load revolutionary agent capabilities"""
+        """Load ultimate agent capabilities"""
         return {
             "voice_acting": AgentCapability(
                 name="Professional Voice Acting",
-                description="Revolutionary voice synthesis with emotional expression",
+                description="Ultimate voice synthesis with emotional expression",
                 tools=["voice_synthesis", "character_voice", "emotion_analysis"],
                 models=["elevenlabs", "openai_tts", "edge_tts"],
                 workflows=["voice_generation", "character_development"],
@@ -143,8 +143,8 @@ class RevolutionaryAIAgent:
                 voice_enabled=True
             ),
             "code_generation": AgentCapability(
-                name="Revolutionary Code Generation",
-                description="Advanced code generation with voice explanations",
+                name="Ultimate Code Generation",
+                description="Ultimate code generation with voice explanations",
                 tools=["code_generation", "architecture_design", "code_review"],
                 models=["gpt-4", "claude-3-sonnet", "codellama"],
                 workflows=["software_development", "code_analysis"],
@@ -177,7 +177,7 @@ class RevolutionaryAIAgent:
         }
     
     def _load_tools(self) -> Dict[str, Any]:
-        """Load revolutionary tools"""
+        """Load ultimate tools"""
         return {
             "voice_synthesis": {
                 "name": "Voice Synthesis",
@@ -212,7 +212,7 @@ class RevolutionaryAIAgent:
         }
     
     def _load_models(self) -> Dict[str, Any]:
-        """Load available AI models"""
+        """Load ultimate AI models"""
         return {
             "gpt-4": {
                 "provider": "openai",
@@ -237,7 +237,7 @@ class RevolutionaryAIAgent:
         }
     
     def _load_voice_models(self) -> Dict[str, Any]:
-        """Load voice models"""
+        """Load ultimate voice models"""
         return {
             "elevenlabs": {
                 "voices": {
@@ -286,7 +286,7 @@ class RevolutionaryAIAgent:
         return None  # Will be implemented with available libraries
     
     async def execute_task(self, task: AgentTask) -> AgentResponse:
-        """Execute a revolutionary task"""
+        """Execute an ultimate task"""
         try:
             logger.info(f"Executing task: {task.task_type}")
             
@@ -460,7 +460,7 @@ async def root():
     <!DOCTYPE html>
     <html>
     <head>
-        <title>🎭 Revolutionary AI Agent System</title>
+        <title>🚀 Ultimate AI Agent System</title>
         <style>
             body { 
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -835,34 +835,64 @@ async def generate_video(request: VideoGenerationRequest):
 @app.get("/api/capabilities")
 async def get_capabilities():
     """Get all ultimate capabilities"""
-    return {
-        "capabilities": {
-            name: {
-                "name": cap.name,
-                "description": cap.description,
-                "tools": cap.tools,
-                "models": cap.models,
-                "workflows": cap.workflows,
-                "voice_enabled": cap.voice_enabled
-            }
-            for name, cap in revolutionary_agent.capabilities.items()
+    try:
+        return {
+            "capabilities": {
+                name: {
+                    "name": cap.name,
+                    "description": cap.description,
+                    "tools": cap.tools,
+                    "models": cap.models,
+                    "workflows": cap.workflows,
+                    "voice_enabled": cap.voice_enabled
+                }
+                for name, cap in revolutionary_agent.capabilities.items()
+            },
+            "total_capabilities": len(revolutionary_agent.capabilities),
+            "status": "ultimate"
         }
-    }
+    except Exception as e:
+        logger.error(f"Error getting capabilities: {e}")
+        raise HTTPException(status_code=500, detail="Failed to get capabilities")
 
 @app.get("/api/tools")
 async def get_tools():
-    """Get all available tools"""
-    return {"tools": revolutionary_agent.tools}
+    """Get all ultimate tools"""
+    try:
+        return {
+            "tools": revolutionary_agent.tools,
+            "total_tools": len(revolutionary_agent.tools),
+            "status": "ultimate"
+        }
+    except Exception as e:
+        logger.error(f"Error getting tools: {e}")
+        raise HTTPException(status_code=500, detail="Failed to get tools")
 
 @app.get("/api/models")
 async def get_models():
-    """Get all available AI models"""
-    return {"models": revolutionary_agent.models}
+    """Get all ultimate AI models"""
+    try:
+        return {
+            "models": revolutionary_agent.models,
+            "total_models": len(revolutionary_agent.models),
+            "status": "ultimate"
+        }
+    except Exception as e:
+        logger.error(f"Error getting models: {e}")
+        raise HTTPException(status_code=500, detail="Failed to get models")
 
 @app.get("/api/voice/models")
 async def get_voice_models():
-    """Get all available voice models"""
-    return {"voice_models": revolutionary_agent.voice_models}
+    """Get all ultimate voice models"""
+    try:
+        return {
+            "voice_models": revolutionary_agent.voice_models,
+            "total_voice_models": len(revolutionary_agent.voice_models),
+            "status": "ultimate"
+        }
+    except Exception as e:
+        logger.error(f"Error getting voice models: {e}")
+        raise HTTPException(status_code=500, detail="Failed to get voice models")
 
 @app.post("/api/fullstack/generate")
 async def generate_fullstack(request: FullStackRequest):
@@ -939,8 +969,8 @@ async def health_check():
     }
 
 if __name__ == "__main__":
-    print("🎭 Starting Revolutionary AI Agent System...")
-    print("🚀 The Most Advanced AI Agent with Voice Actor Capabilities")
+    print("🚀 Starting Ultimate AI Agent System...")
+    print("🚀 The Most Advanced AI Agent with Full Stack Development Capabilities")
     print("🌟 This is the future of AI interaction!")
     print("📡 Server starting on http://localhost:8000")
     print("🔗 API Documentation: http://localhost:8000/docs")
