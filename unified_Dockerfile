@@ -1,0 +1,33 @@
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements and install Python dependencies
+COPY unified_requirements.txt .
+RUN pip install --no-cache-dir -r unified_requirements.txt
+
+# Copy application code
+COPY unified_app.py .
+COPY static/ ./static/
+
+# Create necessary directories
+RUN mkdir -p static/workflows templates
+
+# Copy workflow files if they exist
+COPY static/workflows/*.json ./static/workflows/ 2>/dev/null || true
+
+# Expose port
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8080/api/stats || exit 1
+
+# Run the application
+CMD ["python", "unified_app.py"]

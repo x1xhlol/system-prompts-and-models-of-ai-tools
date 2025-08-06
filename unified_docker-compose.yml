@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  unified-workflows:
+    build:
+      context: .
+      dockerfile: unified_Dockerfile
+    container_name: unified-n8n-workflows
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./static:/app/static
+      - ./unified_workflows.db:/app/unified_workflows.db
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/stats"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
