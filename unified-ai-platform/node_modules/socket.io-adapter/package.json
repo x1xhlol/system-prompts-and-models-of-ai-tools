@@ -1,0 +1,39 @@
+{
+  "name": "socket.io-adapter",
+  "version": "2.5.5",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/socketio/socket.io-adapter.git"
+  },
+  "files": [
+    "dist/"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "description": "default socket.io in-memory adapter",
+  "dependencies": {
+    "debug": "~4.3.4",
+    "ws": "~8.17.1"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/expect.js": "^0.3.32",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^14.11.2",
+    "expect.js": "^0.3.1",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
+    "prettier": "^2.8.1",
+    "socket.io": "^4.7.4",
+    "socket.io-client": "^4.7.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  },
+  "scripts": {
+    "test": "npm run format:check && tsc && nyc mocha --require ts-node/register test/*.ts",
+    "format:check": "prettier --parser typescript --check 'lib/**/*.ts' 'test/**/*.ts'",
+    "format:fix": "prettier --parser typescript --write 'lib/**/*.ts' 'test/**/*.ts'",
+    "prepack": "tsc"
+  }
+}

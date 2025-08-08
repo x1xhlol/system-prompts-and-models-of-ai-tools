@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified AI Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-online {
+            background-color: #4CAF50;
+        }
+
+        .status-offline {
+            background-color: #f44336;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .response-area {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e9ecef;
+        }
+
+        .response-area pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li:before {
+            content: "✅ ";
+            margin-right: 8px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        .error {
+            color: #f44336;
+            background: #ffebee;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .success {
+            color: #4CAF50;
+            background: #e8f5e8;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Unified AI Platform</h1>
+            <p>A comprehensive AI platform combining the best patterns from leading AI systems</p>
+        </div>
+
+        <div class="dashboard">
+            <div class="card">
+                <h3><span class="status-indicator status-online"></span>Platform Status</h3>
+                <p>Monitor the health and status of the Unified AI Platform</p>
+                <button class="btn" onclick="checkHealth()">Check Health</button>
+                <div id="health-response" class="response-area" style="display: none;"></div>
+            </div>
+
+            <div class="card">
+                <h3>🎯 Platform Demo</h3>
+                <p>Explore the features and capabilities of the platform</p>
+                <button class="btn" onclick="getDemo()">View Demo</button>
+                <div id="demo-response" class="response-area" style="display: none;"></div>
+            </div>
+
+            <div class="card">
+                <h3>🛠️ Available Tools</h3>
+                <p>Browse the comprehensive tool system</p>
+                <button class="btn" onclick="getTools()">View Tools</button>
+                <div id="tools-response" class="response-area" style="display: none;"></div>
+            </div>
+
+            <div class="card">
+                <h3>🧠 Memory System</h3>
+                <p>Manage context-aware memory and user preferences</p>
+                <button class="btn" onclick="getMemory()">View Memory</button>
+                <button class="btn" onclick="addMemory()">Add Memory</button>
+                <div id="memory-response" class="response-area" style="display: none;"></div>
+            </div>
+
+            <div class="card">
+                <h3>📋 Planning System</h3>
+                <p>Create and manage execution plans for complex tasks</p>
+                <button class="btn" onclick="getPlans()">View Plans</button>
+                <button class="btn" onclick="addPlan()">Add Plan</button>
+                <div id="plans-response" class="response-area" style="display: none;"></div>
+            </div>
+
+            <div class="card">
+                <h3>⚙️ Platform Capabilities</h3>
+                <p>Explore the full range of platform capabilities</p>
+                <button class="btn" onclick="getCapabilities()">View Capabilities</button>
+                <div id="capabilities-response" class="response-area" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000';
+
+        async function makeRequest(endpoint, method = 'GET', data = null) {
+            try {
+                const options = {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                };
+
+                if (data) {
+                    options.body = JSON.stringify(data);
+                }
+
+                const response = await fetch(`${API_BASE}${endpoint}`, options);
+                const result = await response.json();
+                return { success: true, data: result };
+            } catch (error) {
+                return { success: false, error: error.message };
+            }
+        }
+
+        function showResponse(elementId, result) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            
+            if (result.success) {
+                element.innerHTML = `<pre>${JSON.stringify(result.data, null, 2)}</pre>`;
+            } else {
+                element.innerHTML = `<div class="error">Error: ${result.error}</div>`;
+            }
+        }
+
+        async function checkHealth() {
+            const result = await makeRequest('/health');
+            showResponse('health-response', result);
+        }
+
+        async function getDemo() {
+            const result = await makeRequest('/api/v1/demo');
+            showResponse('demo-response', result);
+        }
+
+        async function getTools() {
+            const result = await makeRequest('/api/v1/tools');
+            showResponse('tools-response', result);
+        }
+
+        async function getMemory() {
+            const result = await makeRequest('/api/v1/memory');
+            showResponse('memory-response', result);
+        }
+
+        async function addMemory() {
+            const key = prompt('Enter memory key:');
+            const value = prompt('Enter memory value:');
+            
+            if (key && value) {
+                const result = await makeRequest('/api/v1/memory', 'POST', { key, value });
+                showResponse('memory-response', result);
+            }
+        }
+
+        async function getPlans() {
+            const result = await makeRequest('/api/v1/plans');
+            showResponse('plans-response', result);
+        }
+
+        async function addPlan() {
+            const taskDescription = prompt('Enter task description:');
+            
+            if (taskDescription) {
+                const result = await makeRequest('/api/v1/plans', 'POST', { 
+                    task_description: taskDescription,
+                    steps: ['Step 1: Analyze task', 'Step 2: Execute plan', 'Step 3: Review results']
+                });
+                showResponse('plans-response', result);
+            }
+        }
+
+        async function getCapabilities() {
+            const result = await makeRequest('/api/v1/capabilities');
+            showResponse('capabilities-response', result);
+        }
+
+        // Auto-check health on page load
+        window.onload = function() {
+            checkHealth();
+        };
+    </script>
+</body>
+</html> 
