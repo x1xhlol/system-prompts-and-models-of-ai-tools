@@ -19,6 +19,11 @@ if ($PSVersionTable.PSVersion.Major -lt 7) {
     exit 1
 }
 
+# Global variables
+$script:SpeechRecognizer = $null
+$script:SpeechSynthesizer = $null
+$script:AutopilotEnabled = $false
+
 # Load configuration
 function Load-Configuration {
     param([string]$ConfigPath)
@@ -201,13 +206,13 @@ function Start-VoiceRecognition {
         if ($script:SpeechRecognizer) {
             $script:SpeechRecognizer.SpeechRecognized += {
                 param($sender, $e)
-                $command = $e.Result.Text
-                Write-Host "🎤 Recognized: $command" -ForegroundColor Cyan
-                & $OnRecognized $command
+                $recognizedText = $e.Result.Text
+                Write-Host "🎤 Recognized: $recognizedText" -ForegroundColor Cyan
+                & $OnRecognized -RecognizedCommand $recognizedText
             }
             
             $script:SpeechRecognizer.RecognizeAsync()
-            Write-Host "🎤 Voice recognition started. Speak your command..." -ForegroundColor Green
+            Write-Host "🎤 Voice recognition started. Speak your commands..." -ForegroundColor Green
         }
     }
     catch {
@@ -227,105 +232,19 @@ function Stop-VoiceRecognition {
     }
 }
 
-function Speak-Response {
-    param([string]$Text)
-    
-    try {
-        if ($script:SpeechSynthesizer) {
-            $script:SpeechSynthesizer.SpeakAsync($Text) | Out-Null
-        }
-    }
-    catch {
-        Write-Warning "Failed to speak response: $_"
-    }
-}
-
-# AI integration functions
-function Invoke-AIAnalysis {
-    param(
-        [string]$Command,
-        [object]$Context = @{},
-        [object]$Config
-    )
-    
-    try {
-        # Simulate AI analysis (in a real implementation, this would call an AI API)
-        $analysis = @{
-            intent = "unknown"
-            confidence = 0.8
-            suggestedActions = @()
-            response = ""
-        }
-        
-        # Basic intent recognition
-        $commandLower = $Command.ToLower()
-        
-        if ($commandLower -match "get-childitem|show|list|find") {
-            $analysis.intent = "navigation"
-            $analysis.suggestedActions = @("Get-ChildItem", "Get-Process", "Get-Service")
-            $analysis.response = "I'll help you navigate the system. Here are some useful commands:"
-        }
-        elseif ($commandLower -match "start|run|execute|invoke") {
-            $analysis.intent = "execution"
-            $analysis.suggestedActions = @("Start-Process", "Invoke-Expression", "Start-Service")
-            $analysis.response = "I'll help you execute commands. Here are some execution options:"
-        }
-        elseif ($commandLower -match "analyze|check|review|test") {
-            $analysis.intent = "analysis"
-            $analysis.suggestedActions = @("Get-Process", "Get-Service", "Test-Path")
-            $analysis.response = "I'll help you analyze the system. Here are some analysis commands:"
-        }
-        elseif ($commandLower -match "create|new|add|build") {
-            $analysis.intent = "creation"
-            $analysis.suggestedActions = @("New-Item", "New-Object", "Add-Content")
-            $analysis.response = "I'll help you create new items. Here are some creation commands:"
-        }
-        else {
-            $analysis.intent = "general"
-            $analysis.suggestedActions = @("Get-Help", "Get-Command", "Get-Module")
-            $analysis.response = "I understand your request. Here are some general PowerShell commands:"
-        }
-        
-        return $analysis
-    }
-    catch {
-        Write-Error "Failed to analyze command: $_"
-        return @{
-            intent = "error"
-            confidence = 0.0
-            suggestedActions = @()
-            response = "Sorry, I encountered an error while analyzing your command."
-        }
-    }
-}
-
-# Autopilot mode functions
+# Autopilot functions
 function Enable-AutopilotMode {
     param([object]$Config)
     
     try {
-        $Config.Autopilot.Enabled = $true
+        $script:AutopilotEnabled = $true
         Write-Host "🤖 Autopilot mode enabled" -ForegroundColor Green
-        
-        # Start monitoring for autonomous actions
-        Start-Job -ScriptBlock {
-            while ($true) {
-                # Monitor system for opportunities to help
-                Start-Sleep -Seconds 30
-                
-                # Check for common issues and suggest solutions
-                $processes = Get-Process | Where-Object { $_.CPU -gt 10 }
-                if ($processes) {
-                    Write-Host "🤖 Autopilot: High CPU usage detected. Consider optimizing processes." -ForegroundColor Yellow
-                }
-            }
-        } | Out-Null
-        
-        return $true
+        Write-Host "  Autonomy Level: $($Config.Autopilot.AutonomyLevel)" -ForegroundColor Cyan
+        Write-Host "  Risk Tolerance: $($Config.Autopilot.RiskTolerance)" -ForegroundColor Cyan
+        Write-Host "  Max Concurrent Tasks: $($Config.Autopilot.MaxConcurrentTasks)" -ForegroundColor Cyan
     }
     catch {
         Write-Error "Failed to enable autopilot mode: $_"
-        return $false
     }
 }
 
@@ -333,17 +252,15 @@ function Disable-AutopilotMode {
     param([object]$Config)
     
     try {
-        $Config.Autopilot.Enabled = $false
+        $script:AutopilotEnabled = $false
         Write-Host "🤖 Autopilot mode disabled" -ForegroundColor Yellow
-        return $true
     }
     catch {
         Write-Error "Failed to disable autopilot mode: $_"
-        return $false
     }
 }
 
-# Main command processing
+# Command processing function
 function Process-Command {
     param(
         [string]$Command,
@@ -352,57 +269,67 @@ function Process-Command {
     )
     
     try {
-        Write-Host "🔄 Processing command: $Command" -ForegroundColor Cyan
+        Write-Host "`n🔍 Processing command: $Command" -ForegroundColor Yellow
         
         # Add command to memory
-        $memoryId = Add-MemoryEntry -Type "command" -Content $Command -MemoryPath $MemoryPath
+        Add-MemoryEntry -Type "command" -Content $Command -MemoryPath $MemoryPath
         
-        # Analyze command with AI
-        $analysis = Invoke-AIAnalysis -Command $Command -Config $Config
+        # Analyze command intent
+        $commandLower = $Command.ToLower()
         
-        # Generate response
-        $response = @"
-🤖 PowerShell AI Agent Response
-===============================
-
-Command: $Command
-Intent: $($analysis.intent)
-Confidence: $($analysis.confidence)
-
-$($analysis.response)
-
-Suggested Actions:
-$(($analysis.suggestedActions | ForEach-Object { "- $_" }) -join "`n")
-
-Memory ID: $memoryId
-"@
-        
-        Write-Host $response -ForegroundColor White
-        
-        # Speak response if voice is enabled
-        if ($Config.Voice.Enabled) {
-            Speak-Response -Text $analysis.response
+        # Simple intent detection
+        if ($commandLower -match "get-childitem|ls|dir|show|list") {
+            Write-Host "📁 Navigation command detected" -ForegroundColor Green
+            $result = Invoke-Expression $Command
+            Write-Host "Navigation completed successfully" -ForegroundColor Green
         }
-        
-        # Execute suggested actions if autopilot is enabled
-        if ($Config.Autopilot.Enabled) {
-            Write-Host "🤖 Autopilot: Executing suggested actions..." -ForegroundColor Green
-            foreach ($action in $analysis.suggestedActions) {
-                try {
-                    Write-Host "Executing: $action" -ForegroundColor Yellow
-                    Invoke-Expression $action | Out-Null
-                }
-                catch {
-                    Write-Warning "Failed to execute $action : $_"
+        elseif ($commandLower -match "start|run|execute|invoke") {
+            Write-Host "⚡ Execution command detected" -ForegroundColor Green
+            $result = Invoke-Expression $Command
+            Write-Host "Command executed successfully" -ForegroundColor Green
+        }
+        elseif ($commandLower -match "analyze|check|review|test") {
+            Write-Host "🔍 Analysis command detected" -ForegroundColor Green
+            $result = Invoke-Expression $Command
+            Write-Host "Analysis completed" -ForegroundColor Green
+        }
+        elseif ($commandLower -match "create|new|add|build") {
+            Write-Host "🛠️ Creation command detected" -ForegroundColor Green
+            $result = Invoke-Expression $Command
+            Write-Host "Creation completed" -ForegroundColor Green
+        }
+        elseif ($commandLower -match "modify|change|update|edit") {
+            Write-Host "✏️ Modification command detected" -ForegroundColor Green
+            $result = Invoke-Expression $Command
+            Write-Host "Modification completed" -ForegroundColor Green
+        }
+        elseif ($commandLower -match "delete|remove|clear") {
+            Write-Host "🗑️ Deletion command detected" -ForegroundColor Green
+            Write-Warning "⚠️ Deletion command detected"
+            if ($Config.Security.RequireConfirmation) {
+                $confirmation = Read-Host "Are you sure you want to delete? (y/N)"
+                if ($confirmation -ne "y") {
+                    Write-Host "Deletion cancelled" -ForegroundColor Yellow
+                    return
                 }
             }
+            $result = Invoke-Expression $Command
+            Write-Host "Deletion completed" -ForegroundColor Green
+        }
+        else {
+            Write-Host "❓ General command execution" -ForegroundColor Yellow
+            $result = Invoke-Expression $Command
+            Write-Host "Command completed" -ForegroundColor Green
         }
         
-        return $analysis
+        # Add response to memory
+        Add-MemoryEntry -Type "response" -Content "Command processed successfully" -Context $Command -MemoryPath $MemoryPath
+        
+        return $result
     }
     catch {
         Write-Error "Failed to process command: $_"
-        return $null
+        Add-MemoryEntry -Type "error" -Content "Error: $_" -Context $Command -MemoryPath $MemoryPath
     }
 }
 
@@ -418,31 +345,29 @@ function Main {
     
     # Show help if requested
     if ($Help) {
-        Write-Host @"
-PowerShell AI Agent - Help
-==========================
-
-Usage: .\main.ps1 [options]
-
-Options:
-  -Command <string>     Command to process
-  -Voice               Enable voice recognition
-  -Autopilot           Enable autopilot mode
-  -Help                Show this help message
-  -ConfigPath <string> Path to configuration file
-
-Examples:
-  .\main.ps1 -Command "Get-ChildItem"
-  .\main.ps1 -Voice -Command "Show me the processes"
-  .\main.ps1 -Autopilot -Command "Monitor system performance"
-
-Features:
-  - Voice recognition and synthesis
-  - Autopilot mode for autonomous execution
-  - Memory system for persistent learning
-  - AI-powered command analysis
-  - Cross-platform PowerShell 7 support
-"@ -ForegroundColor Cyan
+        Write-Host "PowerShell AI Agent - Help" -ForegroundColor Cyan
+        Write-Host "==========================" -ForegroundColor Cyan
+        Write-Host ""
+        Write-Host "Usage: .\main.ps1 [options]" -ForegroundColor White
+        Write-Host ""
+        Write-Host "Options:" -ForegroundColor White
+        Write-Host "  -Command string       Command to process" -ForegroundColor White
+        Write-Host "  -Voice               Enable voice recognition" -ForegroundColor White
+        Write-Host "  -Autopilot           Enable autopilot mode" -ForegroundColor White
+        Write-Host "  -Help                Show this help message" -ForegroundColor White
+        Write-Host "  -ConfigPath string   Path to configuration file" -ForegroundColor White
+        Write-Host ""
+        Write-Host "Examples:" -ForegroundColor White
+        Write-Host "  .\main.ps1 -Command 'Get-ChildItem'" -ForegroundColor White
+        Write-Host "  .\main.ps1 -Voice -Command 'Show me the processes'" -ForegroundColor White
+        Write-Host "  .\main.ps1 -Autopilot -Command 'Monitor system performance'" -ForegroundColor White
+        Write-Host ""
+        Write-Host "Features:" -ForegroundColor White
+        Write-Host "  - Voice recognition and synthesis" -ForegroundColor White
+        Write-Host "  - Autopilot mode for autonomous execution" -ForegroundColor White
+        Write-Host "  - Memory system for persistent learning" -ForegroundColor White
+        Write-Host "  - AI-powered command analysis" -ForegroundColor White
+        Write-Host "  - Cross-platform PowerShell 7 support" -ForegroundColor White
         return
     }
     
@@ -537,7 +462,7 @@ Features:
                     Write-Host "System Status:" -ForegroundColor Green
                     Write-Host "  PowerShell Version: $($PSVersionTable.PSVersion)" -ForegroundColor White
                     Write-Host "  Voice Recognition: $($config.Voice.Enabled)" -ForegroundColor White
-                    Write-Host "  Autopilot Mode: $($config.Autopilot.Enabled)" -ForegroundColor White
+                    Write-Host "  Autopilot Mode: $($script:AutopilotEnabled)" -ForegroundColor White
                     Write-Host "  Memory Entries: $(($entries = Get-MemoryEntries -MemoryPath $memoryPath).Count)" -ForegroundColor White
                 }
                 else {
@@ -557,7 +482,6 @@ Features:
     
     Write-Host "PowerShell AI Agent shutting down..." -ForegroundColor Green
 }
-
 
 # Execute main function with parameters
 Main -Command $Command -Voice $Voice -Autopilot $Autopilot -Help $Help -ConfigPath $ConfigPath

@@ -11,6 +11,7 @@ if (Test-Path $configPath) {
     Write-Host "✅ Configuration file exists" -ForegroundColor Green
     $config = Get-Content $configPath | ConvertFrom-Json
     Write-Host "✅ Configuration loaded successfully" -ForegroundColor Green
+    Write-Host "   Configuration properties: $($config.PSObject.Properties.Name -join ', ')" -ForegroundColor Cyan
 } else {
     Write-Host "❌ Configuration file not found" -ForegroundColor Red
 }
