@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "/"
+  functions = "functions"
+
+[[redirects]]
+  from = "/*"
+  to = "/server.js"
+  status = 200
+
+[dev]
+  command = "node server.js"
+  port = 3000
+  targetPort = 3001
+  publish = "/"
+  autoLaunch = true
