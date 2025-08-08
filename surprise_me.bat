@@ -1,0 +1,3 @@
+@echo off
+echo 🎲 Opening Surprise Launcher...
+start "" "%~dp0surprise_me_launcher.html"
