@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Ecosystem – Surprise Launcher</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #111a33;
+      --accent: #7c5cff;
+      --accent2: #2ee6a6;
+      --text: #e8ebf7;
+      --muted: #9aa4c7;
+      --card: #0f1530;
+      --card2: #101a3d;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: radial-gradient(1000px 600px at 80% -10%, rgba(124,92,255,.2), transparent),
+                  radial-gradient(1200px 800px at -10% 120%, rgba(46,230,166,.12), transparent),
+                  var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", "Noto Sans", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px; }
+    header { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; justify-content: space-between; }
+    .title {
+      display: flex; align-items: center; gap: 12px;
+      background: linear-gradient(120deg, #fff, #cdd7ff);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      font-weight: 800; font-size: 28px; letter-spacing: .3px;
+    }
+    .pill {
+      padding: 6px 10px; border-radius: 999px; font-size: 12px; letter-spacing: .2px;
+      color: #cfd6ff; background: linear-gradient(180deg, #18224a, #121a36); border: 1px solid #1b2655;
+    }
+    .hero { margin-top: 18px; background: linear-gradient(180deg, rgba(16,26,61,.6), rgba(12,18,40,.6)); border: 1px solid #1a244d; border-radius: 16px; padding: 18px; }
+    .hero-inner { display: grid; grid-template-columns: 1.2fr .8fr; gap: 16px; }
+    .hero h1 { margin: 0 0 8px; font-size: 22px; letter-spacing: .2px; }
+    .hero p { margin: 0; color: var(--muted); font-size: 14px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .btn {
+      background: linear-gradient(180deg, #2a3a7a, #24336a);
+      border: 1px solid #2a3a7a; box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+      color: #ebefff; padding: 10px 14px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 14px;
+      display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+    }
+    .btn:hover { filter: brightness(1.05); }
+    .btn.primary { background: linear-gradient(180deg, #7c5cff, #5c3cff); border-color: #6e51ff; }
+    .btn.ghost { background: transparent; border-color: #2a3a7a; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+    .card { background: linear-gradient(180deg, var(--card2), var(--card)); border: 1px solid #1b2555; border-radius: 14px; padding: 14px; }
+    .card h3 { margin: 0 0 8px; font-size: 16px; }
+    .card p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .footer { margin-top: 24px; color: var(--muted); font-size: 12px; text-align: center; }
+
+    @media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; } .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="title">AI Ecosystem <span class="pill">Surprise Launcher</span></div>
+      <div class="pill">Local Time: <span id="time"></span></div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <h1>One click. Be surprised.</h1>
+          <p>Launch a curated experience from this repository: analyze systems, optimize prompts, or dive into agent frameworks. Hit “Surprise Me” to let chance choose.</p>
+          <div class="actions">
+            <button class="btn primary" id="surpriseBtn">🎲 Surprise Me</button>
+            <a class="btn" href="AI_System_Analyzer/index.html" target="_blank">📊 Open Analyzer</a>
+            <a class="btn" href="Prompt_Optimization_Engine/index.html" target="_blank">🧩 Open Optimizer</a>
+            <a class="btn" href="AI_Agent_Builder_Framework/README.md" target="_blank">🏗️ Agent Builder Docs</a>
+            <a class="btn ghost" href="README.md" target="_blank">📚 Main README</a>
+            <a class="btn ghost" href="NEW_FEATURES_SUMMARY.md" target="_blank">✨ What’s New</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>What can happen?</h3>
+          <p>We might open analysis dashboards, run optimizers, deep-dive docs, or surface gems from the collection like Windsurf, Cursor, Devin, Perplexity and more.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h3>AI System Analyzer</h3>
+        <p>Compare, visualize, and understand patterns across agents.</p>
+      </div>
+      <div class="card">
+        <h3>Prompt Optimization Engine</h3>
+        <p>Score prompts on clarity, specificity, and structure; auto-improve.</p>
+      </div>
+      <div class="card">
+        <h3>Agent Builder Framework</h3>
+        <p>Modular templates, tools, and memory for rapid agent prototyping.</p>
+      </div>
+    </section>
+
+    <div class="footer">Built for exploration • No external dependencies • Local-first</div>
+  </div>
+
+  <script>
+    const timeEl = document.getElementById('time');
+    const fmt = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const update = () => timeEl.textContent = fmt.format(new Date());
+    update(); setInterval(update, 1000);
+
+    const targets = [
+      'AI_System_Analyzer/index.html',
+      'Prompt_Optimization_Engine/index.html',
+      'AI_Agent_Builder_Framework/README.md',
+      'Nowhere_AI_Agent/README.md',
+      'PowerShell_AI_Agent/README.md',
+      'NEW_FEATURES_SUMMARY.md',
+      'README.md'
+    ];
+    document.getElementById('surpriseBtn').addEventListener('click', () => {
+      const pick = targets[Math.floor(Math.random() * targets.length)];
+      window.open(pick, '_blank');
+    });
+  </script>
+</body>
+</html>
