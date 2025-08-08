@@ -1,0 +1,58 @@
+{
+  "name": "socket.io-parser",
+  "version": "4.2.4",
+  "description": "socket.io protocol parser",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/socketio/socket.io-parser.git"
+  },
+  "files": [
+    "build/"
+  ],
+  "main": "./build/cjs/index.js",
+  "module": "./build/esm/index.js",
+  "types": "./build/esm/index.d.ts",
+  "exports": {
+    "import": {
+      "node": "./build/esm-debug/index.js",
+      "default": "./build/esm/index.js"
+    },
+    "require": "./build/cjs/index.js"
+  },
+  "dependencies": {
+    "@socket.io/component-emitter": "~3.1.0",
+    "debug": "~4.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "~7.9.6",
+    "@babel/preset-env": "~7.9.6",
+    "@babel/register": "^7.18.9",
+    "@types/debug": "^4.1.5",
+    "@types/node": "^14.11.1",
+    "@wdio/cli": "^7.26.0",
+    "@wdio/local-runner": "^7.26.0",
+    "@wdio/mocha-framework": "^7.26.0",
+    "@wdio/sauce-service": "^7.26.0",
+    "@wdio/spec-reporter": "^7.26.0",
+    "benchmark": "2.1.2",
+    "expect.js": "0.3.1",
+    "mocha": "^10.1.0",
+    "prettier": "^2.1.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.0.3",
+    "wdio-geckodriver-service": "^4.0.0"
+  },
+  "scripts": {
+    "compile": "rimraf ./build && tsc && tsc -p tsconfig.esm.json && ./postcompile.sh",
+    "test": "npm run format:check && npm run compile && if test \"$BROWSERS\" = \"1\" ; then npm run test:browser; else npm run test:node; fi",
+    "test:node": "mocha --reporter dot --bail test/index.js",
+    "test:browser": "wdio",
+    "format:fix": "prettier --write --parser typescript '*.js' 'lib/**/*.ts' 'test/**/*.js'",
+    "format:check": "prettier --check --parser typescript '*.js' 'lib/**/*.ts' 'test/**/*.js'",
+    "prepack": "npm run compile"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}

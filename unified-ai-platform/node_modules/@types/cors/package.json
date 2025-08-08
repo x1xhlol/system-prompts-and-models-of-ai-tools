@@ -1,0 +1,38 @@
+{
+    "name": "@types/cors",
+    "version": "2.8.19",
+    "description": "TypeScript definitions for cors",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/cors",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Alan Plum",
+            "githubUsername": "pluma",
+            "url": "https://github.com/pluma"
+        },
+        {
+            "name": "Gaurav Sharma",
+            "githubUsername": "gtpan77",
+            "url": "https://github.com/gtpan77"
+        },
+        {
+            "name": "Sebastian Beltran",
+            "githubUsername": "bjohansebas",
+            "url": "https://github.com/bjohansebas"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/cors"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/node": "*"
+    },
+    "peerDependencies": {},
+    "typesPublisherContentHash": "a090e558c5f443573318c2955deecddc840bd8dfaac7cdedf31c7f6ede8d0b47",
+    "typeScriptVersion": "5.1"
+}

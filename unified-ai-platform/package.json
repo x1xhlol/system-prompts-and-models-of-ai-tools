@@ -1,0 +1,70 @@
+{
+  "name": "unified-ai-platform",
+  "version": "1.0.0",
+  "description": "A comprehensive AI platform that combines the best patterns and architectures from leading AI systems",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "ai",
+    "artificial-intelligence",
+    "platform",
+    "unified",
+    "cursor",
+    "devin",
+    "manus",
+    "v0",
+    "memory-system",
+    "tool-system",
+    "planning",
+    "decision-making"
+  ],
+  "author": "AI Platform Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4",
+    "morgan": "^1.10.0",
+    "dotenv": "^16.3.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^9.0.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "winston": "^3.11.0",
+    "joi": "^17.11.0",
+    "axios": "^1.6.0",
+    "socket.io": "^4.7.4",
+    "ws": "^8.14.2",
+    "node-fetch": "^3.3.2",
+    "form-data": "^4.0.0",
+    "mime-types": "^2.1.35",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1",
+    "inquirer": "^8.2.6",
+    "commander": "^11.1.0",
+    "yargs": "^17.7.2",
+    "glob": "^10.3.10",
+    "fs-extra": "^11.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/unified-ai-platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/unified-ai-platform/issues"
+  },
+  "homepage": "https://github.com/your-org/unified-ai-platform#readme"
+} 

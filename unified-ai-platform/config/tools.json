@@ -1,0 +1,466 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "codebase_search",
+      "description": "Find snippets of code from the codebase most relevant to the search query. This is a semantic search tool, so the query should ask for something semantically matching what is needed.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "The search query to find relevant code. You should reuse the user's exact query/most recent message with their wording unless there is a clear reason not to."
+          },
+          "target_directories": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Glob patterns for directories to search over"
+          },
+          "explanation": {
+            "type": "string",
+            "description": "One sentence explanation as to why this tool is being used, and how it contributes to the goal."
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "read_file",
+      "description": "Read the contents of a file. The output will be the 1-indexed file contents from start_line_one_indexed to end_line_one_indexed_inclusive.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "target_file": {
+            "type": "string",
+            "description": "The path of the file to read. You can use either a relative path in the workspace or an absolute path."
+          },
+          "should_read_entire_file": {
+            "type": "boolean",
+            "description": "Whether to read the entire file. Defaults to false."
+          },
+          "start_line_one_indexed": {
+            "type": "integer",
+            "description": "The one-indexed line number to start reading from (inclusive)."
+          },
+          "end_line_one_indexed_inclusive": {
+            "type": "integer",
+            "description": "The one-indexed line number to end reading at (inclusive)."
+          },
+          "explanation": {
+            "type": "string",
+            "description": "One sentence explanation as to why this tool is being used, and how it contributes to the goal."
+          }
+        },
+        "required": ["target_file", "should_read_entire_file", "start_line_one_indexed", "end_line_one_indexed_inclusive"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "run_terminal_cmd",
+      "description": "Propose a command to run on behalf of the user. The user will have to approve the command before it is executed.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "command": {
+            "type": "string",
+            "description": "The terminal command to execute"
+          },
+          "explanation": {
+            "type": "string",
+            "description": "One sentence explanation as to why this command needs to be run and how it contributes to the goal."
+          },
+          "is_background": {
+            "type": "boolean",
+            "description": "Whether the command should be run in the background"
+          }
+        },
+        "required": ["command", "is_background"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "list_dir",
+      "description": "List the contents of a directory. Useful for understanding the file structure before diving deeper into specific files.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "relative_workspace_path": {
+            "type": "string",
+            "description": "Path to list contents of, relative to the workspace root."
+          },
+          "explanation": {
+            "type": "string",
+            "description": "One sentence explanation as to why this tool is being used, and how it contributes to the goal."
+          }
+        },
+        "required": ["relative_workspace_path"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "grep_search",
+      "description": "Fast text-based regex search that finds exact pattern matches within files or directories.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "The regex pattern to search for"
+          },
+          "case_sensitive": {
+            "type": "boolean",
+            "description": "Whether the search should be case sensitive"
+          },
+          "include_pattern": {
+            "type": "string",
+            "description": "Glob pattern for files to include (e.g. '*.ts' for TypeScript files)"
+          },
+          "exclude_pattern": {
+            "type": "string",
+            "description": "Glob pattern for files to exclude"
+          },
+          "explanation": {
+            "type": "string",
+            "description": "One sentence explanation as to why this tool is being used, and how it contributes to the goal."
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "edit_file",
+      "description": "Use this tool to propose an edit to an existing file.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "target_file": {
+            "type": "string",
+            "description": "The target file to modify. Always specify the target file as the first argument and use the relative path in the workspace of the file to edit"
+          },
+          "instructions": {
+            "type": "string",
+            "description": "A single sentence instruction describing what you are going to do for the sketched edit."
+          },
+          "code_edit": {
+            "type": "string",
+            "description": "Specify ONLY the precise lines of code that you wish to edit. Use // ... existing code ... to represent unchanged code."
+          }
+        },
+        "required": ["target_file", "instructions", "code_edit"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "search_replace",
+      "description": "Use this tool to propose a search and replace operation on an existing file.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "The path to the file you want to search and replace in."
+          },
+          "old_string": {
+            "type": "string",
+            "description": "The text to replace (must be unique within the file, and must match the file contents exactly, including all whitespace and indentation)"
+          },
+          "new_string": {
+            "type": "string",
+            "description": "The edited text to replace the old_string (must be different from the old_string)"
+          }
+        },
+        "required": ["file_path", "old_string", "new_string"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "file_search",
+      "description": "Fast file search based on fuzzy matching against file path. Use if you know part of the file path but don't know where it's located exactly.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Fuzzy filename to search for"
+          },
+          "explanation": {
+            "type": "string",
+            "description": "One sentence explanation as to why this tool is being used, and how it contributes to the goal."
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "delete_file",
+      "description": "Deletes a file at the specified path. The operation will fail gracefully if the file doesn't exist or cannot be deleted.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "target_file": {
+            "type": "string",
+            "description": "The path of the file to delete, relative to the workspace root."
+          },
+          "explanation": {
+            "type": "string",
+            "description": "One sentence explanation as to why this tool is being used, and how it contributes to the goal."
+          }
+        },
+        "required": ["target_file"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "message_notify_user",
+      "description": "Send a message to user without requiring a response. Use for acknowledging receipt of messages, providing progress updates, reporting task completion, or explaining changes in approach.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Message text to display to user"
+          },
+          "attachments": {
+            "anyOf": [
+              {"type": "string"},
+              {"items": {"type": "string"}, "type": "array"}
+            ],
+            "description": "(Optional) List of attachments to show to user, can be file paths or URLs"
+          }
+        },
+        "required": ["text"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "message_ask_user",
+      "description": "Ask user a question and wait for response. Use for requesting clarification, asking for confirmation, or gathering additional information.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Question text to present to user"
+          },
+          "attachments": {
+            "anyOf": [
+              {"type": "string"},
+              {"items": {"type": "string"}, "type": "array"}
+            ],
+            "description": "(Optional) List of question-related files or reference materials"
+          },
+          "suggest_user_takeover": {
+            "type": "string",
+            "enum": ["none", "browser"],
+            "description": "(Optional) Suggested operation for user takeover"
+          }
+        },
+        "required": ["text"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "file_read",
+      "description": "Read file content. Use for checking file contents, analyzing logs, or reading configuration files.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "Absolute path of the file to read"
+          },
+          "start_line": {
+            "type": "integer",
+            "description": "(Optional) Starting line to read from, 0-based"
+          },
+          "end_line": {
+            "type": "integer",
+            "description": "(Optional) Ending line number (exclusive)"
+          },
+          "sudo": {
+            "type": "boolean",
+            "description": "(Optional) Whether to use sudo privileges"
+          }
+        },
+        "required": ["file"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "file_write",
+      "description": "Overwrite or append content to a file. Use for creating new files, appending content, or modifying existing files.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "Absolute path of the file to write to"
+          },
+          "content": {
+            "type": "string",
+            "description": "Text content to write"
+          },
+          "append": {
+            "type": "boolean",
+            "description": "(Optional) Whether to append content instead of overwriting"
+          }
+        },
+        "required": ["file", "content"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "shell",
+      "description": "Run command(s) in a bash shell. This command will return the shell output. For commands that take longer than a few seconds, the command will return the most recent shell output but keep the shell process running.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this shell instance. Defaults to 'default'."
+          },
+          "exec_dir": {
+            "type": "string",
+            "description": "Absolute path to directory where command should be executed"
+          },
+          "command": {
+            "type": "string",
+            "description": "Command(s) to execute. Use `&&` for multi-line commands."
+          }
+        },
+        "required": ["exec_dir", "command"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "view_shell",
+      "description": "View the latest output of a shell. The shell may still be running or have finished running.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifier of the shell instance to view"
+          }
+        },
+        "required": ["id"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "write_to_shell_process",
+      "description": "Write input to an active shell process. Use this to interact with shell processes that need user input.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifier of the shell instance to write to"
+          },
+          "press_enter": {
+            "type": "boolean",
+            "description": "Whether to press enter after writing to the shell process"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content to write to the shell process"
+          }
+        },
+        "required": ["id"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "kill_shell_process",
+      "description": "Kill a running shell process. Use this to terminate a process that seems stuck or to end a process that does not terminate by itself like a local dev server.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifier of the shell instance to kill"
+          }
+        },
+        "required": ["id"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "think",
+      "description": "Freely describe and reflect on what you know so far, things that you tried, and how that aligns with your objective and the user's intent. The user will not see any of your thoughts here, so you can think freely.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "thoughts": {
+            "type": "string",
+            "description": "Your internal thoughts and reasoning process"
+          }
+        },
+        "required": ["thoughts"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "update_memory",
+      "description": "Create, update, or delete memories based on user interactions and feedback.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "memory_id": {
+            "type": "string",
+            "description": "Unique identifier for the memory"
+          },
+          "content": {
+            "type": "string",
+            "description": "The memory content to store"
+          },
+          "action": {
+            "type": "string",
+            "enum": ["create", "update", "delete"],
+            "description": "The action to perform on the memory"
+          }
+        },
+        "required": ["memory_id", "action"]
+      }
+    }
+  }
+] 
