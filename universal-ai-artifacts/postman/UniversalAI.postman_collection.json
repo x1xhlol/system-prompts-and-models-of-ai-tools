@@ -1,0 +1,205 @@
+{
+  "info": {
+    "name": "Universal AI Agent API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "c0a1d6b2-1111-4a22-9c9e-abcde1234567"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://your-domain.com", "type": "string" },
+    { "key": "token", "value": "YOUR_TOKEN", "type": "string" }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [ { "key": "token", "value": "{{token}}", "type": "string" } ]
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": { "method": "GET", "url": "{{baseUrl}}/health" }
+    },
+    {
+      "name": "System Info",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ],
+        "url": "{{baseUrl}}/system/info"
+      }
+    },
+    {
+      "name": "Auth Login",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": "{{baseUrl}}/auth/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"secure_password\",\n  \"mfaCode\": \"123456\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Chat",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/chat",
+        "body": { "mode": "raw", "raw": "{\n  \"message\": \"Hello, how can you help me?\",\n  \"optimizePrompt\": true\n}" }
+      }
+    },
+    {
+      "name": "Conversations",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ],
+        "url": {
+          "raw": "{{baseUrl}}/conversations?limit=50&offset=0",
+          "host": [ "{{baseUrl}}" ],
+          "path": [ "conversations" ],
+          "query": [
+            { "key": "limit", "value": "50" },
+            { "key": "offset", "value": "0" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "RAG Ingest",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/rag/ingest",
+        "body": { "mode": "raw", "raw": "{\n  \"documents\": [\n    {\n      \"id\": \"doc1\",\n      \"content\": \"This is a sample document content...\",\n      \"metadata\": {\n        \"title\": \"Sample Document\",\n        \"author\": \"John Doe\",\n        \"category\": \"technical\"\n      }\n    }\n  ],\n  \"collection\": \"knowledge_base\"\n}" }
+      }
+    },
+    {
+      "name": "RAG Search",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/rag/search",
+        "body": { "mode": "raw", "raw": "{\n  \"query\": \"machine learning algorithms\",\n  \"collection\": \"knowledge_base\",\n  \"limit\": 5,\n  \"threshold\": 0.7\n}" }
+      }
+    },
+    {
+      "name": "RAG Answer",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/rag/answer",
+        "body": { "mode": "raw", "raw": "{\n  \"question\": \"What are the best machine learning algorithms?\",\n  \"collection\": \"knowledge_base\",\n  \"maxContext\": 3,\n  \"includeContext\": true\n}" }
+      }
+    },
+    {
+      "name": "Agents Execute",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/agents/execute",
+        "body": { "mode": "raw", "raw": "{\n  \"task\": \"Analyze the performance of our web application and suggest optimizations\",\n  \"agents\": [\"planner\", \"critic\", \"executor\"],\n  \"parallel\": false,\n  \"maxIterations\": 3\n}" }
+      }
+    },
+    {
+      "name": "Agent Task Status",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ],
+        "url": "{{baseUrl}}/agents/task/task_123"
+      }
+    },
+    {
+      "name": "Voice TTS",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/voice/tts",
+        "body": { "mode": "raw", "raw": "{\n  \"text\": \"Hello, this is your AI assistant speaking.\",\n  \"voice\": \"neural\",\n  \"language\": \"en-US\",\n  \"speed\": 1.0,\n  \"format\": \"mp3\"\n}" }
+      }
+    },
+    {
+      "name": "Voice Command",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/voice/command",
+        "body": { "mode": "raw", "raw": "{\n  \"command\": \"analyze the latest sales data\",\n  \"context\": \"dashboard\",\n  \"userId\": \"user123\"\n}" }
+      }
+    },
+    {
+      "name": "Voice Autopilot",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/voice/autopilot",
+        "body": { "mode": "raw", "raw": "{\n  \"mode\": \"start\",\n  \"context\": \"development\",\n  \"preferences\": {\n    \"verbosity\": \"medium\",\n    \"autoExecute\": false\n  }\n}" }
+      }
+    },
+    {
+      "name": "Plugins List",
+      "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": "{{baseUrl}}/plugins" }
+    },
+    {
+      "name": "Plugin Execute",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/plugins/web-scraper/execute",
+        "body": { "mode": "raw", "raw": "{\n  \"action\": \"scrape\",\n  \"parameters\": {\n    \"url\": \"https://example.com\",\n    \"selector\": ".content",\n    \"format\": \"text\"\n  }\n}" }
+      }
+    },
+    {
+      "name": "Plugin Install",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/plugins/install",
+        "body": { "mode": "raw", "raw": "{\n  \"source\": \"npm\",\n  \"package\": \"@universal-ai/plugin-example\",\n  \"version\": \"1.0.0\"\n}" }
+      }
+    },
+    {
+      "name": "Analytics Dashboard",
+      "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": "{{baseUrl}}/analytics/dashboard" }
+    },
+    {
+      "name": "Analytics Metrics",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ],
+        "url": "{{baseUrl}}/analytics/metrics?timeRange=24h&metric=requests"
+      }
+    },
+    {
+      "name": "Analytics Export",
+      "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": "{{baseUrl}}/analytics/export?format=json&timeRange=24h" }
+    }
+  ]
+}

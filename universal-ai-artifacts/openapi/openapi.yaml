@@ -1,0 +1,928 @@
+openapi: 3.0.3
+info:
+  title: Universal AI Agent API
+  version: "1.0.0"
+  description: |
+    OpenAPI 3.0 specification generated from the Universal AI Agent API reference.
+servers:
+  - url: https://your-domain.com
+    description: Production server
+security:
+  - bearerAuth: []
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      description: Returns service health and connected subsystems.
+      responses:
+        '200':
+          description: Health status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /system/info:
+    get:
+      summary: System information
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: System information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemInfoResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /auth/login:
+    post:
+      summary: Login and obtain JWT tokens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Login success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /chat:
+    post:
+      summary: Standard chat
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatRequest'
+      responses:
+        '200':
+          description: Chat response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /stream:
+    get:
+      summary: Streaming chat (SSE)
+      description: Server-Sent Events stream of chat tokens/chunks.
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: message
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: optimizePrompt
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: text/event-stream output
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                description: Stream of SSE events with `data: {"type": "start|chunk|end", ...}`
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /conversations:
+    get:
+      summary: List conversation history
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: limit
+          schema: { type: integer, default: 50, minimum: 1 }
+        - in: query
+          name: offset
+          schema: { type: integer, default: 0, minimum: 0 }
+        - in: query
+          name: userId
+          schema: { type: string }
+      responses:
+        '200':
+          description: Conversation list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationsResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /rag/ingest:
+    post:
+      summary: Ingest documents to the RAG collection
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RagIngestRequest'
+      responses:
+        '200':
+          description: Ingest result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RagIngestResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /rag/search:
+    post:
+      summary: Semantic search over RAG documents
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RagSearchRequest'
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RagSearchResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /rag/answer:
+    post:
+      summary: RAG-enhanced answer generation
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RagAnswerRequest'
+      responses:
+        '200':
+          description: Generated answer with sources and context
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RagAnswerResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /agents/execute:
+    post:
+      summary: Execute a multi-agent task
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentsExecuteRequest'
+      responses:
+        '200':
+          description: Task execution results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentsExecuteResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /agents/task/{taskId}:
+    get:
+      summary: Get multi-agent task status
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: taskId
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Task status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentTaskStatusResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /voice/tts:
+    post:
+      summary: Text to speech
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TTSRequest'
+      responses:
+        '200':
+          description: TTS result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TTSResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /voice/command:
+    post:
+      summary: Process a voice command (text intent processing)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceCommandRequest'
+      responses:
+        '200':
+          description: Intent and action
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoiceCommandResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /voice/autopilot:
+    post:
+      summary: Control autopilot mode
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceAutopilotRequest'
+      responses:
+        '200':
+          description: Autopilot status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoiceAutopilotResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /plugins:
+    get:
+      summary: List available plugins
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Plugin list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginsListResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /plugins/{pluginName}/execute:
+    post:
+      summary: Execute a plugin action
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: pluginName
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginExecuteRequest'
+      responses:
+        '200':
+          description: Plugin execution result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginExecuteResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /plugins/install:
+    post:
+      summary: Install a plugin
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginInstallRequest'
+      responses:
+        '200':
+          description: Installation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginInstallResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /analytics/dashboard:
+    get:
+      summary: Get dashboard analytics
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Dashboard data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsDashboardResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /analytics/metrics:
+    get:
+      summary: Get system metrics timeseries
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: timeRange
+          schema:
+            type: string
+            enum: ["1h", "24h", "7d", "30d"]
+            default: "24h"
+        - in: query
+          name: metric
+          schema:
+            type: string
+            enum: ["requests", "performance", "errors", "users"]
+      responses:
+        '200':
+          description: Metrics timeseries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsMetricsResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /analytics/export:
+    get:
+      summary: Export analytics data
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum: ["json", "csv"]
+            default: "json"
+        - in: query
+          name: timeRange
+          schema:
+            type: string
+            enum: ["1h", "24h", "7d", "30d"]
+            default: "24h"
+      responses:
+        '200':
+          description: File download
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  responses:
+    UnauthorizedError:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFoundError:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ValidationError:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: boolean
+          example: true
+        message:
+          type: string
+        code:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        requestId:
+          type: string
+
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: healthy
+        uptime:
+          type: integer
+        memory:
+          type: string
+        connections:
+          type: object
+          additionalProperties: { type: string }
+        features:
+          type: object
+          properties:
+            rag: { type: boolean }
+            voice: { type: boolean }
+            plugins: { type: boolean }
+            multiAgent: { type: boolean }
+
+    SystemInfoResponse:
+      type: object
+      properties:
+        version: { type: string }
+        nodeVersion: { type: string }
+        platform: { type: string }
+        architecture: { type: string }
+        environment: { type: string }
+        features:
+          type: array
+          items: { type: string }
+        limits:
+          type: object
+          properties:
+            maxRequestSize: { type: string }
+            rateLimit:
+              type: object
+              properties:
+                window: { type: integer }
+                max: { type: integer }
+
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email: { type: string, format: email }
+        password: { type: string }
+        mfaCode: { type: string, nullable: true }
+
+    LoginResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        accessToken: { type: string }
+        refreshToken: { type: string }
+        sessionId: { type: string }
+        user:
+          type: object
+          properties:
+            id: { type: string }
+            email: { type: string }
+            roles:
+              type: array
+              items: { type: string }
+            mfaEnabled: { type: boolean }
+
+    ChatRequest:
+      type: object
+      required: [message]
+      properties:
+        message: { type: string }
+        optimizePrompt: { type: boolean, default: false }
+        context: { type: string, nullable: true }
+        userId: { type: string, nullable: true }
+
+    ChatResponse:
+      type: object
+      properties:
+        response: { type: string }
+        metadata:
+          type: object
+          properties:
+            model: { type: string }
+            tokens: { type: integer }
+            responseTime: { type: integer }
+            optimized: { type: boolean }
+        conversationId: { type: string }
+
+    ConversationsResponse:
+      type: object
+      properties:
+        conversations:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              userId: { type: string }
+              messages:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    role: { type: string, enum: [user, assistant, system] }
+                    content: { type: string }
+                    timestamp: { type: string, format: date-time }
+              createdAt: { type: string, format: date-time }
+              updatedAt: { type: string, format: date-time }
+        total: { type: integer }
+        hasMore: { type: boolean }
+
+    RagIngestRequest:
+      type: object
+      required: [documents, collection]
+      properties:
+        documents:
+          type: array
+          items:
+            type: object
+            required: [id, content]
+            properties:
+              id: { type: string }
+              content: { type: string }
+              metadata:
+                type: object
+                additionalProperties: {}
+        collection: { type: string }
+
+    RagIngestResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        ingested: { type: integer }
+        failed: { type: integer }
+        collection: { type: string }
+        processingTime: { type: integer }
+
+    RagSearchRequest:
+      type: object
+      required: [query, collection]
+      properties:
+        query: { type: string }
+        collection: { type: string }
+        limit: { type: integer, default: 5 }
+        threshold: { type: number, format: float, nullable: true }
+
+    RagSearchResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              content: { type: string }
+              score: { type: number, format: float }
+              metadata:
+                type: object
+                additionalProperties: {}
+        query: { type: string }
+        totalResults: { type: integer }
+        searchTime: { type: integer }
+
+    RagAnswerRequest:
+      type: object
+      required: [question, collection]
+      properties:
+        question: { type: string }
+        collection: { type: string }
+        maxContext: { type: integer, default: 3 }
+        includeContext: { type: boolean, default: true }
+
+    RagAnswerResponse:
+      type: object
+      properties:
+        answer: { type: string }
+        sources:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              title: { type: string }
+              relevanceScore: { type: number, format: float }
+        context:
+          type: array
+          items:
+            type: object
+            properties:
+              content: { type: string }
+              source: { type: string }
+        confidence: { type: number, format: float }
+
+    AgentsExecuteRequest:
+      type: object
+      required: [task, agents]
+      properties:
+        task: { type: string }
+        agents:
+          type: array
+          items: { type: string }
+        parallel: { type: boolean, default: false }
+        maxIterations: { type: integer, default: 3 }
+
+    AgentsExecuteResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        taskId: { type: string }
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              agent: { type: string }
+              role: { type: string }
+              response: { type: string }
+              executionTime: { type: integer }
+        finalSynthesis: { type: string }
+        totalExecutionTime: { type: integer }
+        confidence: { type: number, format: float }
+
+    AgentTaskStatusResponse:
+      type: object
+      properties:
+        taskId: { type: string }
+        status: { type: string, enum: [queued, running, completed, failed] }
+        progress: { type: integer }
+        currentAgent: { type: string, nullable: true }
+        results:
+          type: array
+          items: { type: object }
+        startTime: { type: string, format: date-time }
+        endTime: { type: string, format: date-time, nullable: true }
+
+    TTSRequest:
+      type: object
+      required: [text, voice, language, speed, format]
+      properties:
+        text: { type: string }
+        voice: { type: string, example: neural }
+        language: { type: string, example: en-US }
+        speed: { type: number, default: 1.0 }
+        format: { type: string, enum: [mp3, wav, ogg], default: mp3 }
+
+    TTSResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        audioUrl: { type: string }
+        duration: { type: number }
+        format: { type: string }
+        size: { type: integer }
+
+    VoiceCommandRequest:
+      type: object
+      required: [command]
+      properties:
+        command: { type: string }
+        context: { type: string, nullable: true }
+        userId: { type: string, nullable: true }
+
+    VoiceCommandResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        command: { type: string }
+        intent: { type: string }
+        entities:
+          type: array
+          items: { type: string }
+        action: { type: string }
+        response: { type: string }
+        audioResponse: { type: string }
+
+    VoiceAutopilotRequest:
+      type: object
+      required: [mode]
+      properties:
+        mode:
+          type: string
+          enum: [start, stop, status]
+        context: { type: string, nullable: true }
+        preferences:
+          type: object
+          properties:
+            verbosity: { type: string, enum: [low, medium, high] }
+            autoExecute: { type: boolean }
+
+    VoiceAutopilotResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        mode: { type: string }
+        sessionId: { type: string }
+        status: { type: string }
+        capabilities:
+          type: array
+          items: { type: string }
+
+    PluginsListResponse:
+      type: object
+      properties:
+        plugins:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              version: { type: string }
+              description: { type: string }
+              category: { type: string }
+              status: { type: string }
+              permissions:
+                type: array
+                items: { type: string }
+        total: { type: integer }
+
+    PluginExecuteRequest:
+      type: object
+      required: [action, parameters]
+      properties:
+        action: { type: string }
+        parameters:
+          type: object
+          additionalProperties: {}
+
+    PluginExecuteResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        plugin: { type: string }
+        action: { type: string }
+        result:
+          type: object
+          additionalProperties: {}
+        executionTime: { type: integer }
+
+    PluginInstallRequest:
+      type: object
+      required: [source, package, version]
+      properties:
+        source: { type: string, enum: [npm, git, url] }
+        package: { type: string }
+        version: { type: string }
+
+    PluginInstallResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        plugin: { type: string }
+        version: { type: string }
+        status: { type: string }
+        message: { type: string }
+
+    AnalyticsDashboardResponse:
+      type: object
+      properties:
+        overview:
+          type: object
+          properties:
+            uptime: { type: integer }
+            totalRequests: { type: integer }
+            successRate: { type: string }
+            averageResponseTime: { type: integer }
+            activeUsers: { type: integer }
+            healthScore: { type: integer }
+        requests:
+          type: object
+          properties:
+            total: { type: integer }
+            successful: { type: integer }
+            failed: { type: integer }
+            byHour:
+              type: array
+              items: { type: integer }
+            topEndpoints:
+              type: array
+              items:
+                type: object
+                properties:
+                  endpoint: { type: string }
+                  requests: { type: integer }
+                  averageTime: { type: integer }
+                  errorRate: { type: number }
+        ai:
+          type: object
+          properties:
+            totalTokens: { type: integer }
+            totalCost: { type: number }
+            averageResponseTime: { type: integer }
+            topModels:
+              type: array
+              items:
+                type: object
+                properties:
+                  model: { type: string }
+                  requests: { type: integer }
+                  tokens: { type: integer }
+                  cost: { type: number }
+
+    AnalyticsMetricsResponse:
+      type: object
+      properties:
+        timeRange: { type: string }
+        metrics:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              timestamps:
+                type: array
+                items: { type: string, format: date-time }
+              values:
+                type: array
+                items: { type: number }
+
+x-websocket:
+  url: wss://your-domain.com
+  description: |
+    WebSocket API supports the following client messages: `auth`, `stream_chat`, `voice_command`, `plugin_execute`.
+    Server messages include: `auth_success`, `chat_response`, `stream_chunk`, `error`.
