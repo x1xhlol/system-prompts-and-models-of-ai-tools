@@ -80,7 +80,7 @@ You can show your support via:
 
 > Open an issue.
 
-> **Latest Update:** 17/08/2025
+> **Latest Update:** 18/08/2025
 
 ---
 
