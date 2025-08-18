@@ -1,4 +1,4 @@
-# **FULL v0, Cursor, Manus, Same.dev, Lovable, Devin, Replit Agent, Windsurf Agent, VSCode Agent, Dia Browser, Trae AI, Cluely, Perplexity, Xcode, Spawn & Orchids.app (And other Open Sourced) System Prompts, Tools & AI Models**  
+# **FULL v0, Cursor, Manus, Same.dev, Lovable, Devin, Replit Agent, Windsurf Agent, VSCode Agent, Dia Browser, Trae AI, Cluely, Perplexity, Xcode, Augment Code, Spawn & Orchids.app (And other Open Sourced) System Prompts, Tools & AI Models**  
 
 ---
 <a href="https://discord.gg/NwzrWErdMU" target="_blank">
@@ -50,6 +50,7 @@ You can show your support via:
 - [**v0 Folder**](./v0%20Prompts%20and%20Tools/)
 - [**Spawn Folder**](./-Spawn/)
 - [**Manus Folder**](./Manus%20Agent%20Tools%20&%20Prompt/)
+- [**Augment Code**](./Augment%20Code/)
 - [**Lovable Folder**](./Lovable/)
 - [**Devin Folder**](./Devin%20AI/)
 - [**Same.dev Folder**](./Same.dev/)
