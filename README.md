@@ -1,4 +1,4 @@
-# **FULL v0, Cursor, Manus, Same.dev, Lovable, Devin, Replit Agent, Windsurf Agent, VSCode Agent, Dia Browser, Trae AI, Cluely, Perplexity, Xcode, Augment Code, Spawn & Orchids.app (And other Open Sourced) System Prompts, Tools & AI Models**  
+# **System Prompts and Models of AI Tools**  
 
 ---
 <a href="https://discord.gg/NwzrWErdMU" target="_blank">
