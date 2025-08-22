@@ -37,11 +37,14 @@ You can show your support via:
 
 ## 📑 Table of Contents
 
-1. [Available Files](#-available-files)  
-2. [Roadmap & Feedback](#-roadmap--feedback)  
-3. [Connect With Me](#-connect-with-me)  
-4. [Security Notice for AI Startups](#%EF%B8%8F-security-notice-for-ai-startups)  
-5. [Star History](#-star-history) 
+- [**System Prompts and Models of AI Tools**](#system-prompts-and-models-of-ai-tools)
+  - [❤️ Support the Project](#️-support-the-project)
+  - [📑 Table of Contents](#-table-of-contents)
+  - [📂 Available Files](#-available-files)
+  - [🛠 Roadmap \& Feedback](#-roadmap--feedback)
+  - [🔗 Connect With Me](#-connect-with-me)
+  - [🛡️ Security Notice for AI Startups](#️-security-notice-for-ai-startups)
+  - [📊 Star History](#-star-history)
 
 ---
 
@@ -76,6 +79,7 @@ You can show your support via:
   - [RooCode](./Open%20Source%20prompts/RooCode/)
   - [Lumo](./Open%20Source%20prompts/Lumo/)
   - [Gemini CLI](./Open%20Source%20prompts/Gemini%20CLI/)
+- [**CodeBuddy**](./CodeBuddy%20Prompts/)
 
 ---
 
