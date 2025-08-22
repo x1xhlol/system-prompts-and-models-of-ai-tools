@@ -7,6 +7,11 @@
 
 > **Join the Conversation:** New system instructions are released on Discord **before** they appear in this repository. Get early access and discuss them in real time.
 
+## 🆕 **Latest Additions**
+
+**New in this fork:**
+- **Qoder AI Assistant** - Expert coding assistant with comprehensive programming knowledge and systematic problem-solving approach
+- **Canva AI Assistant** - Design platform AI with content creation capabilities and time zone handling
 
 <a href="https://trendshift.io/repositories/14084" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14084" alt="x1xhlol%2Fsystem-prompts-and-models-of-ai-tools | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
@@ -31,7 +36,6 @@ You can show your support via:
 - **Patreon:** https://patreon.com/lucknite
 
 🙏 Thank you for your support!
-
 
 ---
 
@@ -67,6 +71,8 @@ You can show your support via:
 - [**Kiro**](./Kiro/)
 - [**Warp.dev**](./Warp.dev/)
 - [**Z.ai Code**](./Z.ai%20Code/)
+- [**Qoder Folder**](./Qoder/) ✨ **NEW**
+- [**Canva Folder**](./Canva/) ✨ **NEW**
 - [**Open Source prompts Folder**](./Open%20Source%20prompts/)
   - [Codex CLI](./Open%20Source%20prompts/Codex%20CLI/)
   - [Cline](./Open%20Source%20prompts/Cline/)
@@ -80,7 +86,7 @@ You can show your support via:
 
 > Open an issue.
 
-> **Latest Update:** 11/08/2025
+> **Latest Update:** 22/08/2025 - Added Qoder AI Assistant and updated Canva AI Assistant prompts
 
 ---
 
