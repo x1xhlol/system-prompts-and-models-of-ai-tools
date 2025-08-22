@@ -68,12 +68,14 @@ You can show your support via:
 - [**Kiro**](./Kiro/)
 - [**Warp.dev**](./Warp.dev/)
 - [**Z.ai Code**](./Z.ai%20Code/)
+- [**Claude Code**](./Claude%20Code/)
 - [**Open Source prompts Folder**](./Open%20Source%20prompts/)
   - [Codex CLI](./Open%20Source%20prompts/Codex%20CLI/)
   - [Cline](./Open%20Source%20prompts/Cline/)
   - [Bolt](./Open%20Source%20prompts/Bolt/)
   - [RooCode](./Open%20Source%20prompts/RooCode/)
   - [Lumo](./Open%20Source%20prompts/Lumo/)
+  - [Gemini CLI](./Open%20Source%20prompts/Gemini%20CLI/)
 
 ---
 
