@@ -1,4 +1,4 @@
-# **FULL v0, Cursor, Manus, Same.dev, Lovable, Devin, Replit Agent, Windsurf Agent, VSCode Agent, Dia Browser, Trae AI, Cluely, Perplexity, Xcode, Spawn & Orchids.app (And other Open Sourced) System Prompts, Tools & AI Models**  
+# **System Prompts and Models of AI Tools**  
 
 ---
 <a href="https://discord.gg/NwzrWErdMU" target="_blank">
@@ -10,7 +10,7 @@
 
 <a href="https://trendshift.io/repositories/14084" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14084" alt="x1xhlol%2Fsystem-prompts-and-models-of-ai-tools | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
-📜 Over **9000+ lines** of insights into their structure and functionality.  
+📜 Over **10,000+ lines** of insights into their structure and functionality.  
 
 [![Build Status](https://app.cloudback.it/badge/x1xhlol/system-prompts-and-models-of-ai-tools)](https://cloudback.it)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/x1xhlol/system-prompts-and-models-of-ai-tools)
@@ -50,6 +50,7 @@ You can show your support via:
 - [**v0 Folder**](./v0%20Prompts%20and%20Tools/)
 - [**Spawn Folder**](./-Spawn/)
 - [**Manus Folder**](./Manus%20Agent%20Tools%20&%20Prompt/)
+- [**Augment Code**](./Augment%20Code/)
 - [**Lovable Folder**](./Lovable/)
 - [**Devin Folder**](./Devin%20AI/)
 - [**Same.dev Folder**](./Same.dev/)
@@ -80,7 +81,7 @@ You can show your support via:
 
 > Open an issue.
 
-> **Latest Update:** 11/08/2025
+> **Latest Update:** 18/08/2025
 
 ---
 
