@@ -37,7 +37,6 @@ You can show your support via:
 
 ## 📑 Table of Contents
 
-- [**System Prompts and Models of AI Tools**](#system-prompts-and-models-of-ai-tools)
   - [❤️ Support the Project](#️-support-the-project)
   - [📑 Table of Contents](#-table-of-contents)
   - [📂 Available Files](#-available-files)
