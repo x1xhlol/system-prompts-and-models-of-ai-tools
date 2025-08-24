@@ -120,14 +120,9 @@ When using the replace_string_in_file tool, include 3-5 lines of unchanged code 
 
 </reminderInstructions>
 <userRequest>
-use filysystem mcp to read the tasksmd
-and do the tasks in side it!
-after the tasks use filesystem to read it again.
-if same cnontent. sleep for 10 seconds.
-reaed thetasksmd agaon usingfilesystemmcp
-and do the task
+
 <|code_to_edit|>
-this cycle repeats
+
 </userRequest>
 copilot_cache_control: {"type":"ephemeral"}<|cursor|>
 <|/code_to_edit|>
