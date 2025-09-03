@@ -86,7 +86,7 @@ You can show your support via:
 
 > Open an issue.
 
-> **Latest Update:** 27/08/2025
+> **Latest Update:** 03/09/2025
 
 ---
 
