@@ -20,7 +20,6 @@
 
 ## 📑 Table of Contents
 
-  - [❤️ Support the Project](#️-support-the-project)
   - [📑 Table of Contents](#-table-of-contents)
   - [📂 Available Files](#-available-files)
   - [🛠 Roadmap \& Feedback](#-roadmap--feedback)
