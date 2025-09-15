@@ -62,6 +62,7 @@
   - [Lumo](./Open%20Source%20prompts/Lumo/)
   - [Gemini CLI](./Open%20Source%20prompts/Gemini%20CLI/)
 - [**CodeBuddy**](./CodeBuddy%20Prompts/)
+- [**Poke**](./Poke/)
 
 ---
 
