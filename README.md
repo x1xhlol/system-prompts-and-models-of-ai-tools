@@ -71,7 +71,7 @@
 
 > Open an issue.
 
-> **Latest Update:** 08/09/2025
+> **Latest Update:** 15/09/2025
 
 ---
 
