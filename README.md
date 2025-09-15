@@ -29,6 +29,7 @@ You can show your support via:
   - **LTC:** `LRWgqwEYDwqau1WeiTs6Mjg85NJ7m3fsdQ`  
   - **ETH:** `0x3f844B2cc3c4b7242964373fB0A41C4fdffB192A`
 - **Patreon:** https://patreon.com/lucknite
+- **Ko-fi:** https://ko-fi.com/lucknite
 
 🙏 Thank you for your support!
 
