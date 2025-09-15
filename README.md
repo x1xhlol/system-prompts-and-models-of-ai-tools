@@ -46,6 +46,7 @@
 - [**Perplexity**](./Perplexity/)
 - [**Cluely**](./Cluely/)
 - [**Xcode**](./Xcode/)
+- [**Leap.new**](./Leap.new/)
 - [**Notion AI**](./NotionAi/)
 - [**Orchids.app**](./Orchids.app/)
 - [**Junie**](./Junie/)
