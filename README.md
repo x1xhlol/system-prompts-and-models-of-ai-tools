@@ -15,6 +15,22 @@
 [![Build Status](https://app.cloudback.it/badge/x1xhlol/system-prompts-and-models-of-ai-tools)](https://cloudback.it)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/x1xhlol/system-prompts-and-models-of-ai-tools)
 
+---
+
+## ❤️ Support the Project
+
+If you find this collection valuable and appreciate the effort involved in obtaining and sharing these insights, please consider supporting the project. Your contribution helps keep this resource updated and allows for further exploration.
+
+You can show your support via:
+
+- **PayPal:** `lucknitelol@proton.me`
+- **Cryptocurrency:**  
+  - **BTC:** `bc1q7zldmzjwspnaa48udvelwe6k3fef7xrrhg5625`  
+  - **LTC:** `LRWgqwEYDwqau1WeiTs6Mjg85NJ7m3fsdQ`  
+  - **ETH:** `0x3f844B2cc3c4b7242964373fB0A41C4fdffB192A`
+- **Patreon:** https://patreon.com/lucknite
+
+🙏 Thank you for your support!
 
 ---
 
