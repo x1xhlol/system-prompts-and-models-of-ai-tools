@@ -1,4 +1,3 @@
-```json
 {
   "lov-add-dependency": {
     "description": "Use this tool to add a dependency to the project. The dependency should be a valid npm package name.",
