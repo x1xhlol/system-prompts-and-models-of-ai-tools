@@ -1,7 +1,7 @@
 # **System Prompts and Models of AI Tools**  
 ---
 <p align="center">
-  <sub>Sponsored by</sub>  
+  <sub>Special thanks to</sub>  
 </p>
 
 <p align="center">
