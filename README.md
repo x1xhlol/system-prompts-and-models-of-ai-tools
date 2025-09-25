@@ -100,6 +100,7 @@ You can show your support via:
   - [Gemini CLI](./Open%20Source%20prompts/Gemini%20CLI/)
 - [**CodeBuddy**](./CodeBuddy%20Prompts/)
 - [**Poke**](./Poke/)
+- [**Comet Assistant**](./Comet%20Assistant/)
 
 ---
 
@@ -107,7 +108,7 @@ You can show your support via:
 
 > Open an issue.
 
-> **Latest Update:** 16/09/2025
+> **Latest Update:** 25/09/2025
 
 ---
 
