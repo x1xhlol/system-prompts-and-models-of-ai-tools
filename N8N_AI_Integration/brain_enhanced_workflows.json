@@ -1,0 +1,72 @@
+[
+  {
+    "id": "brain_001",
+    "name": "Neural Pattern Recognition Workflow",
+    "description": "Advanced pattern recognition using brain-inspired neural networks",
+    "category": "ai_ml",
+    "nodes": 18,
+    "brain_tech_features": [
+      "pattern_recognition",
+      "adaptive_learning",
+      "cognitive_mapping"
+    ],
+    "complexity": "High",
+    "status": "active"
+  },
+  {
+    "id": "brain_002",
+    "name": "Cognitive Decision Tree Workflow",
+    "description": "Multi-path decision making with neural network optimization",
+    "category": "ai_ml",
+    "nodes": 22,
+    "brain_tech_features": [
+      "decision_making",
+      "neural_optimization",
+      "cognitive_flexibility"
+    ],
+    "complexity": "High",
+    "status": "active"
+  },
+  {
+    "id": "brain_003",
+    "name": "Adaptive Learning Pipeline",
+    "description": "Real-time learning and adaptation based on user interactions",
+    "category": "ai_ml",
+    "nodes": 15,
+    "brain_tech_features": [
+      "adaptive_learning",
+      "real_time_processing",
+      "neural_efficiency"
+    ],
+    "complexity": "Medium",
+    "status": "active"
+  },
+  {
+    "id": "brain_004",
+    "name": "Neural Integration Hub",
+    "description": "Multi-service integration with brain-computer interface capabilities",
+    "category": "integration",
+    "nodes": 25,
+    "brain_tech_features": [
+      "brain_interface",
+      "neural_connectivity",
+      "cognitive_enhancement"
+    ],
+    "complexity": "High",
+    "status": "active"
+  },
+  {
+    "id": "brain_005",
+    "name": "Cognitive Automation Engine",
+    "description": "Intelligent automation with cognitive pattern recognition",
+    "category": "automation",
+    "nodes": 20,
+    "brain_tech_features": [
+      "cognitive_enhancement",
+      "pattern_recognition",
+      "adaptive_learning"
+    ],
+    "complexity": "High",
+    "status": "active"
+  }
+]
