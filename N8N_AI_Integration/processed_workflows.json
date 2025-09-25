@@ -1,0 +1,19 @@
+{
+  "total_workflows": 2053,
+  "processed_workflows": 2053,
+  "categories": {
+    "ai_ml": 156,
+    "communication": 423,
+    "data_processing": 298,
+    "automation": 567,
+    "integration": 234,
+    "social_media": 189,
+    "cloud_storage": 145,
+    "project_management": 123,
+    "crm_sales": 98,
+    "ecommerce": 120
+  },
+  "brain_tech_compatible": 456,
+  "average_nodes": 14.3,
+  "total_nodes": 29445
+}
