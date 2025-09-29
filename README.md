@@ -54,9 +54,51 @@ You can show your support via:
 
 ---
 
+## 🚀 Installation & Deployment
+
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/sahiixx/system-prompts-and-models-of-ai-tools.git
+cd system-prompts-and-models-of-ai-tools
+
+# Install and build the website
+cd site
+npm install
+npm run build
+
+# Preview locally
+npm run preview
+```
+
+### Deployment Options
+
+- **GitHub Pages**: Automatically deployed on push to main branch
+- **Vercel/Netlify**: Connect your repository for automatic deployments  
+- **Custom hosting**: Upload the `site/dist` folder to any web server
+
+📖 **[Complete Installation Guide](./INSTALL.md)** - Detailed setup instructions
+
+---
+
+## 🌐 Live Website
+
+🔗 **[Browse System Prompts Online](https://sahiixx.github.io/system-prompts-and-models-of-ai-tools/)**
+
+The website provides an organized view of all system prompts with:
+- 📁 Directory-based navigation
+- 🔍 Individual file viewing with syntax highlighting  
+- 📊 Repository statistics and file counts
+- 📱 Mobile-friendly responsive design
+
+---
+
 ## 📑 Table of Contents
 
   - [📑 Table of Contents](#-table-of-contents)
+  - [🚀 Installation \& Deployment](#-installation--deployment)
+  - [🌐 Live Website](#-live-website)
   - [📂 Available Files](#-available-files)
   - [🛠 Roadmap \& Feedback](#-roadmap--feedback)
   - [🔗 Connect With Me](#-connect-with-me)
