@@ -102,6 +102,7 @@ You can show your support via:
 - [**Poke**](./Poke/)
 - [**Comet Assistant**](./Comet%20Assistant/)
 - [**Anthropic**](./Anthropic/)
+- [**Amp**](./AMp/)
 
 ---
 
