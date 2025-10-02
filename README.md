@@ -31,6 +31,8 @@
 
 📜 Over **20,000+ lines** of insights into their structure and functionality.  
 
+⭐ **Star to follow updates**
+
 [![Build Status](https://app.cloudback.it/badge/x1xhlol/system-prompts-and-models-of-ai-tools)](https://cloudback.it)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/x1xhlol/system-prompts-and-models-of-ai-tools)
 
@@ -142,6 +144,9 @@ The website provides an organized view of all system prompts with:
   - [Gemini CLI](./Open%20Source%20prompts/Gemini%20CLI/)
 - [**CodeBuddy**](./CodeBuddy%20Prompts/)
 - [**Poke**](./Poke/)
+- [**Comet Assistant**](./Comet%20Assistant/)
+- [**Anthropic**](./Anthropic/)
+- [**Amp**](./AMp/)
 
 ---
 
@@ -149,7 +154,7 @@ The website provides an organized view of all system prompts with:
 
 > Open an issue.
 
-> **Latest Update:** 16/09/2025
+> **Latest Update:** 29/09/2025
 
 ---
 
