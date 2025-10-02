@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AI Tools Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00f0ff;
+            --secondary: #ff00ff;
+            --accent: #7b2ff7;
+            --success: #00ff88;
+            --warning: #ffaa00;
+            --danger: #ff3366;
+            --dark: #0a0e27;
+            --darker: #060920;
+            --light: #ffffff;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100vh;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid var(--glass-border);
+            padding: 2rem 0;
+            z-index: 100;
+            overflow-y: auto;
+        }
+
+        .logo-section {
+            padding: 0 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .menu-section {
+            margin-bottom: 2rem;
+        }
+
+        .menu-title {
+            padding: 0 1.5rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item {
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background: var(--glass);
+            border-left-color: var(--primary);
+        }
+
+        .menu-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 3rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            color: var(--light);
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.5;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: scale(1.1);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            padding: 1.5rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.2);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-title {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-change {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .stat-change.positive {
+            color: var(--success);
+        }
+
+        .stat-change.negative {
+            color: var(--danger);
+        }
+
+        /* Chart Container */
+        .chart-container {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .chart-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .chart-filters {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: var(--dark);
+            border-color: var(--primary);
+        }
+
+        /* Tools Table */
+        .tools-table {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .table-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: rgba(0, 240, 255, 0.05);
+        }
+
+        th {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background: rgba(0, 240, 255, 0.05);
+        }
+
+        td {
+            padding: 1rem 1.5rem;
+        }
+
+        .tool-name-cell {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .tool-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge.active {
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--success);
+        }
+
+        .badge.beta {
+            background: rgba(255, 170, 0, 0.2);
+            color: var(--warning);
+        }
+
+        .badge.discontinued {
+            background: rgba(255, 51, 102, 0.2);
+            color: var(--danger);
+        }
+
+        .progress-bar {
+            width: 100px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        /* Feature Matrix */
+        .feature-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .feature-item {
+            padding: 1rem;
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(0, 240, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-name {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .feature-count {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            .chart-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.8rem;
+            }
+        }
+
+        /* Loading State */
+        .skeleton {
+            background: linear-gradient(90deg, var(--glass) 25%, rgba(255, 255, 255, 0.1) 50%, var(--glass) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 10px;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            opacity: 0.5;
+        }
+
+        .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Comparison View */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .comparison-card {
+            padding: 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+        }
+
+        .comparison-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .comparison-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .comparison-features {
+            list-style: none;
+        }
+
+        .comparison-features li {
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .comparison-features li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            color: var(--success);
+        }
+
+        .cross-icon {
+            color: var(--danger);
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo-section">
+            <div class="logo">⚡ AI Tools Hub</div>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-title">Main</div>
+            <a href="#overview" class="menu-item active">
+                <span class="menu-icon">📊</span>
+                <span>Overview</span>
+            </a>
+            <a href="#tools" class="menu-item">
+                <span class="menu-icon">🛠️</span>
+                <span>All Tools</span>
+            </a>
+            <a href="#features" class="menu-item">
+                <span class="menu-icon">✨</span>
+                <span>Features</span>
+            </a>
+            <a href="#compare" class="menu-item">
+                <span class="menu-icon">⚖️</span>
+                <span>Compare</span>
+            </a>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-title">Analytics</div>
+            <a href="#statistics" class="menu-item">
+                <span class="menu-icon">📈</span>
+                <span>Statistics</span>
+            </a>
+            <a href="#trends" class="menu-item">
+                <span class="menu-icon">📉</span>
+                <span>Trends</span>
+            </a>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-title">Resources</div>
+            <a href="chat.html" class="menu-item">
+                <span class="menu-icon">💬</span>
+                <span>AI Chat</span>
+            </a>
+            <a href="../api/index.json" class="menu-item" target="_blank">
+                <span class="menu-icon">🔌</span>
+                <span>API</span>
+            </a>
+            <a href="index.html" class="menu-item">
+                <span class="menu-icon">🌐</span>
+                <span>Website</span>
+            </a>
+            <a href="https://github.com/sahiixx/system-prompts-and-models-of-ai-tools" class="menu-item" target="_blank">
+                <span class="menu-icon">💻</span>
+                <span>GitHub</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Search tools, features, or documentation..." id="searchInput">
+            </div>
+            <div class="user-actions">
+                <button class="icon-btn" onclick="toggleTheme()">🌓</button>
+                <button class="icon-btn" onclick="refreshData()">🔄</button>
+                <button class="icon-btn" onclick="window.open('https://github.com/sahiixx/system-prompts-and-models-of-ai-tools/issues', '_blank')">⚙️</button>
+            </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div id="overview" class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Total Tools</div>
+                    <div class="stat-icon">🛠️</div>
+                </div>
+                <div class="stat-value" id="totalTools">--</div>
+                <div class="stat-change positive">+3 this month</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">API Endpoints</div>
+                    <div class="stat-icon">🔌</div>
+                </div>
+                <div class="stat-value">39</div>
+                <div class="stat-change positive">All operational</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Active Tools</div>
+                    <div class="stat-icon">✅</div>
+                </div>
+                <div class="stat-value" id="activeTools">--</div>
+                <div class="stat-change positive" id="activePercentage">--</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Open Source</div>
+                    <div class="stat-icon">💚</div>
+                </div>
+                <div class="stat-value" id="openSourceTools">--</div>
+                <div class="stat-change" id="openSourcePercentage">--</div>
+            </div>
+        </div>
+
+        <!-- Chart Container -->
+        <div class="chart-container">
+            <div class="chart-header">
+                <div class="chart-title">Tools by Type</div>
+                <div class="chart-filters">
+                    <button class="filter-btn active" onclick="filterChart('all')">All</button>
+                    <button class="filter-btn" onclick="filterChart('ide')">IDE</button>
+                    <button class="filter-btn" onclick="filterChart('web')">Web</button>
+                    <button class="filter-btn" onclick="filterChart('agent')">Agent</button>
+                </div>
+            </div>
+            <div id="toolsChart" style="min-height: 200px;">
+                <!-- Chart will be rendered here -->
+            </div>
+        </div>
+
+        <!-- Feature Matrix -->
+        <div id="features" class="chart-container">
+            <div class="chart-header">
+                <div class="chart-title">Feature Adoption Matrix</div>
+            </div>
+            <div class="feature-matrix" id="featureMatrix">
+                <!-- Features will be loaded dynamically -->
+            </div>
+        </div>
+
+        <!-- Tools Table -->
+        <div id="tools" class="tools-table">
+            <div class="table-header">
+                <div class="chart-title">All AI Coding Tools</div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Pricing</th>
+                        <th>Features</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="toolsTableBody">
+                    <!-- Tools will be loaded dynamically -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Comparison Section -->
+        <div id="compare" class="chart-container" style="margin-top: 2rem;">
+            <div class="chart-header">
+                <div class="chart-title">Tool Comparison</div>
+            </div>
+            <div class="comparison-grid" id="comparisonGrid">
+                <!-- Comparison cards will be loaded dynamically -->
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const API_BASE = 'https://sahiixx.github.io/system-prompts-and-models-of-ai-tools/api';
+        let allTools = [];
+        let allFeatures = {};
+
+        // Load dashboard data
+        async function loadDashboard() {
+            try {
+                // Load tools
+                const response = await fetch(`${API_BASE}/index.json`);
+                const data = await response.json();
+                allTools = data.tools;
+
+                // Update stats
+                document.getElementById('totalTools').textContent = allTools.length;
+                const activeTools = allTools.filter(t => t.status === 'active').length;
+                document.getElementById('activeTools').textContent = activeTools;
+                document.getElementById('activePercentage').textContent = `${((activeTools/allTools.length)*100).toFixed(0)}% of total`;
+
+                // Load features
+                const featuresResponse = await fetch(`${API_BASE}/features.json`);
+                allFeatures = await featuresResponse.json();
+
+                // Render components
+                renderToolsTable(allTools);
+                renderFeatureMatrix(allFeatures);
+                renderToolsChart(allTools);
+                renderComparison(['cursor', 'github-copilot', 'windsurf']);
+
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+            }
+        }
+
+        // Render tools table
+        function renderToolsTable(tools) {
+            const tbody = document.getElementById('toolsTableBody');
+            tbody.innerHTML = tools.map(tool => `
+                <tr>
+                    <td>
+                        <div class="tool-name-cell">
+                            <div class="tool-avatar">${tool.name.charAt(0)}</div>
+                            <div>
+                                <div style="font-weight: 600;">${tool.name}</div>
+                                <div style="font-size: 0.8rem; opacity: 0.6;">${tool.slug}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>${tool.type}</td>
+                    <td><span class="badge ${tool.status}">${tool.status}</span></td>
+                    <td>${tool.pricing || 'N/A'}</td>
+                    <td>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${Math.random() * 100}%"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="icon-btn" onclick="viewTool('${tool.slug}')">👁️</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Render feature matrix
+        function renderFeatureMatrix(features) {
+            const matrix = document.getElementById('featureMatrix');
+            const featureNames = ['code_completion', 'chat_interface', 'multi_file_edit', 'terminal_integration'];
+            
+            matrix.innerHTML = featureNames.map(feature => {
+                const count = Object.values(features.features || {}).filter(f => f[feature]).length;
+                return `
+                    <div class="feature-item">
+                        <div class="feature-icon">✨</div>
+                        <div class="feature-count">${count}</div>
+                        <div class="feature-name">${feature.replace(/_/g, ' ')}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render tools chart (simple text visualization)
+        function renderToolsChart(tools) {
+            const chart = document.getElementById('toolsChart');
+            const types = {};
+            tools.forEach(tool => {
+                types[tool.type] = (types[tool.type] || 0) + 1;
+            });
+
+            chart.innerHTML = Object.entries(types).map(([type, count]) => `
+                <div style="margin: 1rem 0;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="text-transform: capitalize;">${type}</span>
+                        <span style="color: var(--primary); font-weight: bold;">${count}</span>
+                    </div>
+                    <div class="progress-bar" style="width: 100%;">
+                        <div class="progress-fill" style="width: ${(count/tools.length)*100}%"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render comparison
+        async function renderComparison(slugs) {
+            const grid = document.getElementById('comparisonGrid');
+            const cards = await Promise.all(slugs.map(async slug => {
+                try {
+                    const response = await fetch(`${API_BASE}/tools/${slug}.json`);
+                    const tool = await response.json();
+                    return `
+                        <div class="comparison-card">
+                            <div class="comparison-header">
+                                <div class="comparison-name">${tool.name}</div>
+                                <div class="badge ${tool.status}">${tool.status}</div>
+                            </div>
+                            <ul class="comparison-features">
+                                <li><span class="check-icon">✓</span> Type: ${tool.type}</li>
+                                <li><span class="check-icon">✓</span> ${tool.description}</li>
+                                <li><span class="check-icon">✓</span> Pricing: ${tool.pricing || 'N/A'}</li>
+                            </ul>
+                        </div>
+                    `;
+                } catch (error) {
+                    return `<div class="comparison-card"><p>Error loading ${slug}</p></div>`;
+                }
+            }));
+            grid.innerHTML = cards.join('');
+        }
+
+        // View tool
+        function viewTool(slug) {
+            window.open(`${API_BASE}/tools/${slug}.json`, '_blank');
+        }
+
+        // Filter chart
+        function filterChart(type) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const filtered = type === 'all' ? allTools : allTools.filter(t => t.type === type);
+            renderToolsChart(filtered);
+        }
+
+        // Toggle theme
+        function toggleTheme() {
+            document.body.style.filter = document.body.style.filter === 'invert(1) hue-rotate(180deg)' ? '' : 'invert(1) hue-rotate(180deg)';
+        }
+
+        // Refresh data
+        function refreshData() {
+            const btn = event.target;
+            btn.style.animation = 'spin 1s linear infinite';
+            loadDashboard().then(() => {
+                btn.style.animation = '';
+            });
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = allTools.filter(tool => 
+                tool.name.toLowerCase().includes(query) ||
+                tool.description.toLowerCase().includes(query) ||
+                tool.type.toLowerCase().includes(query)
+            );
+            renderToolsTable(filtered);
+        });
+
+        // Smooth scroll for menu items
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (item.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    const target = document.querySelector(item.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Load dashboard on page load
+        loadDashboard();
+
+        // Add spin animation
+        const style = document.createElement('style');
+        style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

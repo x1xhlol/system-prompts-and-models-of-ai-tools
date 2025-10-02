@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Hub - Futuristic Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00f0ff;
+            --secondary: #ff00ff;
+            --accent: #7b2ff7;
+            --dark: #0a0e27;
+            --darker: #060920;
+            --light: #ffffff;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, var(--darker) 0%, var(--dark) 50%, var(--darker) 100%);
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Particle Effect */
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-100px) translateX(50px); }
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 240, 255, 0.2);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: '⚡';
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+
+        .nav-links a:hover {
+            background: var(--glass);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--light);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--glass);
+            border: 2px solid var(--primary);
+            color: var(--light);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* API Explorer */
+        .api-explorer {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .endpoint-list {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .endpoint {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: rgba(0, 240, 255, 0.05);
+            border-left: 3px solid var(--primary);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .endpoint:hover {
+            background: rgba(0, 240, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .endpoint-method {
+            padding: 0.3rem 0.8rem;
+            background: var(--primary);
+            color: var(--dark);
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .endpoint-url {
+            flex: 1;
+            margin: 0 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .endpoint-try {
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            border: none;
+            border-radius: 5px;
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .endpoint-try:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tool-card {
+            position: relative;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(255, 0, 255, 0.05));
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 240, 255, 0.3);
+            border-color: var(--primary);
+        }
+
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .tool-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .tool-type {
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 240, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .tool-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .tool-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.2rem 0.6rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            font-size: 0.7rem;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .code-lang {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .copy-btn {
+            padding: 0.3rem 0.8rem;
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            border-radius: 5px;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #a0e0ff;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--glass-border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #00ff88, #00cc66);
+            border-radius: 10px;
+            color: var(--dark);
+            font-weight: bold;
+            transform: translateY(200px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .success-message.show {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">AI Tools Hub</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#api">API</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#docs">Docs</a></li>
+                <li><a href="chat.html">💬 Chat</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>AI Coding Tools Platform</h1>
+            <p>Comprehensive metadata, REST API, and interactive platform for 32 AI coding tools</p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">32</div>
+                    <div class="stat-label">AI Tools</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">39</div>
+                    <div class="stat-label">API Endpoints</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24K+</div>
+                    <div class="stat-label">Lines of Code</div>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <a href="chat.html" class="btn btn-primary">💬 Chat with AI</a>
+                <a href="dashboard.html" class="btn btn-secondary">📊 Dashboard</a>
+                <a href="#api" class="btn btn-secondary">Explore API</a>
+                <a href="https://github.com/sahiixx/system-prompts-and-models-of-ai-tools" target="_blank" class="btn btn-secondary">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <h2 class="section-title">Platform Features</h2>
+        
+        <div class="feature-grid">
+            <div class="feature-card glass-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Structured Metadata</h3>
+                <p>32 JSON metadata files with comprehensive information about each AI coding tool, including features, pricing, and models.</p>
+            </div>
+
+            <div class="feature-card glass-card">
+                <div class="feature-icon">🔌</div>
+                <h3 class="feature-title">REST API</h3>
+                <p>39 JSON endpoints providing programmatic access to all tools, features, statistics, and search capabilities.</p>
+            </div>
+
+            <div class="feature-card glass-card">
+                <div class="feature-icon">💻</div>
+                <h3 class="feature-title">Code Examples</h3>
+                <p>Working examples in Python, JavaScript, and PowerShell demonstrating how to consume the API.</p>
+            </div>
+
+            <div class="feature-card glass-card">
+                <div class="feature-icon">🔄</div>
+                <h3 class="feature-title">Auto-Deployment</h3>
+                <p>GitHub Actions CI/CD pipeline automatically generates metadata, builds the site, and deploys on every push.</p>
+            </div>
+
+            <div class="feature-card glass-card">
+                <div class="feature-icon">📚</div>
+                <h3 class="feature-title">Documentation</h3>
+                <p>20+ comprehensive documentation files covering usage, best practices, security patterns, and evolution.</p>
+            </div>
+
+            <div class="feature-card glass-card">
+                <div class="feature-icon">🎨</div>
+                <h3 class="feature-title">Interactive UI</h3>
+                <p>Modern, responsive interface with search, filters, dark/light themes, and syntax highlighting.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Explorer Section -->
+    <section class="section" id="api">
+        <h2 class="section-title">API Explorer</h2>
+        
+        <div class="api-explorer">
+            <h3 style="color: var(--primary); margin-bottom: 1rem;">Available Endpoints</h3>
+            <p style="opacity: 0.8; margin-bottom: 2rem;">All endpoints are publicly accessible and return JSON data</p>
+            
+            <div class="endpoint-list">
+                <div class="endpoint">
+                    <span class="endpoint-method">GET</span>
+                    <span class="endpoint-url">/api/index.json</span>
+                    <button class="endpoint-try" onclick="tryEndpoint('index.json')">Try It</button>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method">GET</span>
+                    <span class="endpoint-url">/api/tools/{slug}.json</span>
+                    <button class="endpoint-try" onclick="tryEndpoint('tools/cursor.json')">Try It</button>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method">GET</span>
+                    <span class="endpoint-url">/api/by-type.json</span>
+                    <button class="endpoint-try" onclick="tryEndpoint('by-type.json')">Try It</button>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method">GET</span>
+                    <span class="endpoint-url">/api/by-pricing.json</span>
+                    <button class="endpoint-try" onclick="tryEndpoint('by-pricing.json')">Try It</button>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method">GET</span>
+                    <span class="endpoint-url">/api/features.json</span>
+                    <button class="endpoint-try" onclick="tryEndpoint('features.json')">Try It</button>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method">GET</span>
+                    <span class="endpoint-url">/api/statistics.json</span>
+                    <button class="endpoint-try" onclick="tryEndpoint('statistics.json')">Try It</button>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method">GET</span>
+                    <span class="endpoint-url">/api/search.json</span>
+                    <button class="endpoint-try" onclick="tryEndpoint('search.json')">Try It</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="section" id="tools">
+        <h2 class="section-title">AI Coding Tools</h2>
+        <p style="text-align: center; opacity: 0.8; margin-bottom: 2rem;">
+            Comprehensive collection of 32 AI-powered coding assistants
+        </p>
+        
+        <div class="tools-grid" id="toolsGrid">
+            <!-- Tools will be loaded dynamically -->
+            <div class="loading" style="margin: 2rem auto;"></div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section class="section" id="examples">
+        <h2 class="section-title">Code Examples</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-lang">Python</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>import requests
+
+# Fetch all tools
+response = requests.get('https://sahiixx.github.io/system-prompts-and-models-of-ai-tools/api/index.json')
+tools = response.json()
+
+print(f"Found {len(tools['tools'])} AI coding tools")
+
+# Get specific tool
+cursor = requests.get('https://sahiixx.github.io/system-prompts-and-models-of-ai-tools/api/tools/cursor.json').json()
+print(f"Cursor: {cursor['name']} - {cursor['type']}")</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-lang">JavaScript</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>// Fetch all tools
+fetch('https://sahiixx.github.io/system-prompts-and-models-of-ai-tools/api/index.json')
+  .then(res => res.json())
+  .then(data => {
+    console.log(`Found ${data.tools.length} AI coding tools`);
+  });
+
+// Get specific tool
+fetch('https://sahiixx.github.io/system-prompts-and-models-of-ai-tools/api/tools/cursor.json')
+  .then(res => res.json())
+  .then(cursor => {
+    console.log(`${cursor.name}: ${cursor.type}`);
+  });</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-lang">PowerShell</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code># Fetch all tools
+$tools = Invoke-RestMethod -Uri "https://sahiixx.github.io/system-prompts-and-models-of-ai-tools/api/index.json"
+Write-Host "Found $($tools.tools.Count) AI coding tools"
+
+# Get specific tool
+$cursor = Invoke-RestMethod -Uri "https://sahiixx.github.io/system-prompts-and-models-of-ai-tools/api/tools/cursor.json"
+Write-Host "$($cursor.name): $($cursor.type)"</code></pre>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section class="section" id="docs">
+        <h2 class="section-title">Documentation</h2>
+        
+        <div class="feature-grid">
+            <div class="feature-card glass-card">
+                <h3 class="feature-title">📖 API Documentation</h3>
+                <p>Complete API reference with examples and response schemas</p>
+                <a href="https://github.com/sahiixx/system-prompts-and-models-of-ai-tools/blob/main/api/README.md" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">Read More</a>
+            </div>
+
+            <div class="feature-card glass-card">
+                <h3 class="feature-title">📊 Metadata Schema</h3>
+                <p>Detailed documentation of the metadata structure and fields</p>
+                <a href="https://github.com/sahiixx/system-prompts-and-models-of-ai-tools/blob/main/metadata/README.md" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">Read More</a>
+            </div>
+
+            <div class="feature-card glass-card">
+                <h3 class="feature-title">💻 Examples Guide</h3>
+                <p>Working examples in Python, JavaScript, and PowerShell</p>
+                <a href="https://github.com/sahiixx/system-prompts-and-models-of-ai-tools/blob/main/examples/README.md" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">Read More</a>
+            </div>
+
+            <div class="feature-card glass-card">
+                <h3 class="feature-title">🚀 Deployment Guide</h3>
+                <p>Step-by-step instructions for deploying your own instance</p>
+                <a href="https://github.com/sahiixx/system-prompts-and-models-of-ai-tools/blob/main/DEPLOYMENT_GUIDE.md" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">Read More</a>
+            </div>
+
+            <div class="feature-card glass-card">
+                <h3 class="feature-title">🔧 Tool Patterns</h3>
+                <p>Common patterns and best practices from 32 AI tools</p>
+                <a href="https://github.com/sahiixx/system-prompts-and-models-of-ai-tools/blob/main/TOOL_PATTERNS.md" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">Read More</a>
+            </div>
+
+            <div class="feature-card glass-card">
+                <h3 class="feature-title">🔒 Security Patterns</h3>
+                <p>Security guidelines and patterns across AI coding tools</p>
+                <a href="https://github.com/sahiixx/system-prompts-and-models-of-ai-tools/blob/main/SECURITY_PATTERNS.md" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">Read More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div style="font-size: 1.5rem; margin-bottom: 1rem;">⚡ AI Tools Hub</div>
+        <p style="opacity: 0.7; margin-bottom: 2rem;">
+            Comprehensive platform for AI coding tools metadata and APIs
+        </p>
+        
+        <div class="footer-links">
+            <a href="https://github.com/sahiixx/system-prompts-and-models-of-ai-tools" target="_blank">GitHub</a>
+            <a href="https://github.com/sahiixx/system-prompts-and-models-of-ai-tools/blob/main/api/README.md" target="_blank">API Docs</a>
+            <a href="https://github.com/sahiixx/system-prompts-and-models-of-ai-tools/blob/main/CONTRIBUTING.md" target="_blank">Contributing</a>
+            <a href="https://github.com/sahiixx/system-prompts-and-models-of-ai-tools/issues" target="_blank">Issues</a>
+        </div>
+        
+        <p style="opacity: 0.5; font-size: 0.9rem; margin-top: 2rem;">
+            © 2025 AI Tools Hub. Built with ❤️ for the developer community.
+        </p>
+    </footer>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        API Response Loaded Successfully! ✓
+    </div>
+
+    <script>
+        // Create particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Scroll indicator
+        window.addEventListener('scroll', () => {
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / scrollHeight) * 100;
+            scrollIndicator.style.width = scrolled + '%';
+        });
+
+        // Load tools dynamically
+        async function loadTools() {
+            try {
+                const response = await fetch('https://sahiixx.github.io/system-prompts-and-models-of-ai-tools/api/index.json');
+                const data = await response.json();
+                const toolsGrid = document.getElementById('toolsGrid');
+                toolsGrid.innerHTML = '';
+                
+                data.tools.slice(0, 12).forEach(tool => {
+                    const card = document.createElement('div');
+                    card.className = 'tool-card';
+                    card.innerHTML = `
+                        <div class="tool-header">
+                            <div class="tool-name">${tool.name}</div>
+                            <div class="tool-type">${tool.type}</div>
+                        </div>
+                        <div class="tool-description">${tool.description}</div>
+                        <div class="tool-tags">
+                            <span class="tag">Status: ${tool.status}</span>
+                        </div>
+                    `;
+                    card.onclick = () => window.open(`https://github.com/sahiixx/system-prompts-and-models-of-ai-tools/blob/main/api/tools/${tool.slug}.json`, '_blank');
+                    toolsGrid.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error loading tools:', error);
+                document.getElementById('toolsGrid').innerHTML = '<p style="text-align: center; opacity: 0.7;">Error loading tools. Please check the console.</p>';
+            }
+        }
+
+        loadTools();
+
+        // Try endpoint function
+        function tryEndpoint(endpoint) {
+            const url = `https://sahiixx.github.io/system-prompts-and-models-of-ai-tools/api/${endpoint}`;
+            window.open(url, '_blank');
+            showSuccess();
+        }
+
+        // Copy code function
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+                showSuccess();
+            });
+        }
+
+        // Show success message
+        function showSuccess() {
+            const message = document.getElementById('successMessage');
+            message.classList.add('show');
+            setTimeout(() => {
+                message.classList.remove('show');
+            }, 3000);
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

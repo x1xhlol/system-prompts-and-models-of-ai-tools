@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant - AI Tools Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00f0ff;
+            --secondary: #ff00ff;
+            --accent: #7b2ff7;
+            --success: #00ff88;
+            --warning: #ffaa00;
+            --dark: #0a0e27;
+            --darker: #060920;
+            --light: #ffffff;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, var(--darker) 0%, var(--dark) 50%, var(--darker) 100%);
+            animation: gradient-shift 15s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Container */
+        .chat-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            height: 100vh;
+            gap: 0;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        .new-chat-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border: none;
+            border-radius: 10px;
+            color: var(--light);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1.5rem 0;
+        }
+
+        .new-chat-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
+        }
+
+        /* Chat History */
+        .chat-history {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .history-item:hover {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .history-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .history-preview {
+            font-size: 0.8rem;
+            opacity: 0.6;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Main Chat Area */
+        .chat-main {
+            display: flex;
+            flex-direction: column;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Chat Header */
+        .chat-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .chat-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .action-btn:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: scale(1.1);
+        }
+
+        /* Messages Area */
+        .messages-container {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .message {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .message.bot .message-avatar {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        .message.user .message-avatar {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .message.bot .message-content {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        .message.user .message-content {
+            background: rgba(255, 0, 255, 0.1);
+            border: 1px solid rgba(255, 0, 255, 0.2);
+        }
+
+        .message-text {
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            opacity: 0.5;
+            text-align: right;
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: none;
+            gap: 0.3rem;
+            padding: 1rem;
+        }
+
+        .typing-indicator.active {
+            display: flex;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.5;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            padding: 0 2rem;
+            flex-wrap: wrap;
+        }
+
+        .quick-action-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--glass);
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .quick-action-btn:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Input Area */
+        .input-area {
+            padding: 1.5rem 2rem;
+            border-top: 1px solid var(--glass-border);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .input-container {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+
+        .input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .message-input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            color: var(--light);
+            font-size: 0.95rem;
+            outline: none;
+            resize: none;
+            max-height: 150px;
+            transition: all 0.3s ease;
+        }
+
+        .message-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+        }
+
+        .attach-btn {
+            position: absolute;
+            right: 1rem;
+            bottom: 1rem;
+            background: none;
+            border: none;
+            color: var(--light);
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .attach-btn:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        .send-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border: none;
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.4);
+        }
+
+        .send-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .welcome-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-text {
+            font-size: 1.1rem;
+            opacity: 0.7;
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        .suggestion-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .suggestion-card {
+            padding: 1.5rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .suggestion-card:hover {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .suggestion-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .suggestion-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .suggestion-desc {
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* Code Block in Messages */
+        .code-block {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #a0e0ff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .chat-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .message-content {
+                max-width: 85%;
+            }
+
+            .suggestion-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--glass);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <div class="chat-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">🤖 AI Assistant</div>
+                <div class="subtitle">Powered by AI Tools Hub</div>
+                <button class="new-chat-btn" onclick="startNewChat()">+ New Conversation</button>
+            </div>
+
+            <div class="chat-history" id="chatHistory">
+                <!-- Chat history will be populated here -->
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-main">
+            <div class="chat-header">
+                <div class="chat-title">AI Tools Assistant</div>
+                <div class="chat-actions">
+                    <button class="action-btn" onclick="exportChat()" title="Export Chat">💾</button>
+                    <button class="action-btn" onclick="clearChat()" title="Clear Chat">🗑️</button>
+                    <button class="action-btn" onclick="window.open('dashboard.html', '_blank')" title="Dashboard">📊</button>
+                </div>
+            </div>
+
+            <div class="messages-container" id="messagesContainer">
+                <div class="welcome-screen" id="welcomeScreen">
+                    <div class="welcome-icon">🤖</div>
+                    <h1 class="welcome-title">Welcome to AI Tools Assistant</h1>
+                    <p class="welcome-text">
+                        I can help you discover, compare, and learn about 32 AI coding tools. 
+                        Ask me anything or try one of the suggestions below!
+                    </p>
+
+                    <div class="suggestion-cards">
+                        <div class="suggestion-card" onclick="sendSuggestion('Show me all AI coding tools')">
+                            <div class="suggestion-icon">🛠️</div>
+                            <div class="suggestion-title">Browse Tools</div>
+                            <div class="suggestion-desc">Explore all 32 AI coding assistants</div>
+                        </div>
+
+                        <div class="suggestion-card" onclick="sendSuggestion('Compare Cursor vs GitHub Copilot')">
+                            <div class="suggestion-icon">⚖️</div>
+                            <div class="suggestion-title">Compare Tools</div>
+                            <div class="suggestion-desc">Side-by-side feature comparison</div>
+                        </div>
+
+                        <div class="suggestion-card" onclick="sendSuggestion('What are the best free AI coding tools?')">
+                            <div class="suggestion-icon">💰</div>
+                            <div class="suggestion-title">Find Free Tools</div>
+                            <div class="suggestion-desc">Discover free and freemium options</div>
+                        </div>
+
+                        <div class="suggestion-card" onclick="sendSuggestion('How do I use the API?')">
+                            <div class="suggestion-icon">🔌</div>
+                            <div class="suggestion-title">API Documentation</div>
+                            <div class="suggestion-desc">Learn how to integrate our API</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messages will appear here -->
+            </div>
+
+            <div class="quick-actions" id="quickActions" style="display: none;">
+                <button class="quick-action-btn" onclick="sendSuggestion('Tell me more')">Tell me more</button>
+                <button class="quick-action-btn" onclick="sendSuggestion('Show examples')">Show examples</button>
+                <button class="quick-action-btn" onclick="sendSuggestion('Compare tools')">Compare tools</button>
+            </div>
+
+            <div class="input-area">
+                <div class="input-container">
+                    <div class="input-wrapper">
+                        <textarea 
+                            class="message-input" 
+                            id="messageInput" 
+                            placeholder="Ask me anything about AI coding tools..." 
+                            rows="1"
+                            onkeydown="handleKeyPress(event)"
+                        ></textarea>
+                        <button class="attach-btn" title="Attach file">📎</button>
+                    </div>
+                    <button class="send-btn" onclick="sendMessage()">
+                        <span>➤</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const API_BASE = 'https://sahiixx.github.io/system-prompts-and-models-of-ai-tools/api';
+        let tools = [];
+        let conversationHistory = [];
+
+        // Load tools data
+        async function loadTools() {
+            try {
+                const response = await fetch(`${API_BASE}/index.json`);
+                const data = await response.json();
+                tools = data.tools;
+            } catch (error) {
+                console.error('Error loading tools:', error);
+            }
+        }
+
+        loadTools();
+
+        // Send message
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            // Hide welcome screen
+            document.getElementById('welcomeScreen').style.display = 'none';
+            
+            // Add user message
+            addMessage('user', message);
+            
+            // Clear input
+            input.value = '';
+            input.style.height = 'auto';
+            
+            // Show typing indicator
+            showTyping();
+            
+            // Process message
+            setTimeout(() => {
+                processMessage(message);
+            }, 1000 + Math.random() * 1000);
+
+            // Show quick actions
+            document.getElementById('quickActions').style.display = 'flex';
+        }
+
+        // Send suggestion
+        function sendSuggestion(text) {
+            document.getElementById('messageInput').value = text;
+            sendMessage();
+        }
+
+        // Add message to chat
+        function addMessage(type, text, isHTML = false) {
+            const container = document.getElementById('messagesContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            
+            const now = new Date();
+            const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${type === 'bot' ? '🤖' : '👤'}</div>
+                <div class="message-content">
+                    <div class="message-text">${isHTML ? text : escapeHtml(text)}</div>
+                    <div class="message-time">${time}</div>
+                </div>
+            `;
+            
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+            
+            // Add to history
+            conversationHistory.push({ type, text, time });
+        }
+
+        // Show typing indicator
+        function showTyping() {
+            const container = document.getElementById('messagesContainer');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot typing-indicator active';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <div class="typing-indicator active">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(typingDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // Hide typing indicator
+        function hideTyping() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
+        }
+
+        // Process message and generate response
+        function processMessage(message) {
+            hideTyping();
+            
+            const lowerMsg = message.toLowerCase();
+            let response = '';
+            let isHTML = false;
+
+            // Pattern matching for intelligent responses
+            if (lowerMsg.includes('show') && (lowerMsg.includes('all') || lowerMsg.includes('tools'))) {
+                response = generateToolsList();
+                isHTML = true;
+            } else if (lowerMsg.includes('compare')) {
+                response = generateComparison(message);
+                isHTML = true;
+            } else if (lowerMsg.includes('free')) {
+                response = generateFreeTools();
+                isHTML = true;
+            } else if (lowerMsg.includes('api')) {
+                response = generateAPIInfo();
+                isHTML = true;
+            } else if (lowerMsg.includes('feature')) {
+                response = generateFeatureInfo();
+                isHTML = true;
+            } else if (lowerMsg.includes('best') || lowerMsg.includes('recommend')) {
+                response = generateRecommendations();
+                isHTML = true;
+            } else if (lowerMsg.includes('help')) {
+                response = generateHelpMessage();
+                isHTML = true;
+            } else {
+                response = generateSmartResponse(message);
+            }
+            
+            addMessage('bot', response, isHTML);
+        }
+
+        // Generate tools list
+        function generateToolsList() {
+            if (tools.length === 0) return 'Loading tools data...';
+            
+            let html = `<strong>I found ${tools.length} AI coding tools:</strong><br><br>`;
+            
+            const byType = {};
+            tools.forEach(tool => {
+                if (!byType[tool.type]) byType[tool.type] = [];
+                byType[tool.type].push(tool);
+            });
+            
+            Object.keys(byType).forEach(type => {
+                html += `<strong style="color: var(--primary);">${type.toUpperCase()}</strong><br>`;
+                byType[type].forEach(tool => {
+                    html += `• ${tool.name} - ${tool.status}<br>`;
+                });
+                html += '<br>';
+            });
+            
+            return html;
+        }
+
+        // Generate comparison
+        function generateComparison(message) {
+            const words = message.toLowerCase().split(' ');
+            const toolNames = tools.map(t => t.name.toLowerCase());
+            const mentioned = words.filter(w => toolNames.some(tn => tn.includes(w) || w.includes(tn)));
+            
+            if (mentioned.length >= 2) {
+                return `<strong>Comparison:</strong><br><br>
+                    To see a detailed comparison, please visit the <a href="dashboard.html" target="_blank" style="color: var(--primary);">Dashboard</a> 
+                    where you can compare features side-by-side.<br><br>
+                    You can also access the API endpoints:<br>
+                    <div class="code-block"><code>GET ${API_BASE}/tools/{tool-slug}.json</code></div>`;
+            }
+            
+            return 'Please specify which tools you\'d like to compare. For example: "Compare Cursor vs GitHub Copilot"';
+        }
+
+        // Generate free tools list
+        function generateFreeTools() {
+            const freeTools = tools.filter(t => 
+                t.pricing === 'free' || 
+                t.pricing === 'freemium' || 
+                (typeof t.pricing === 'object' && t.pricing.free)
+            );
+            
+            let html = `<strong>Free & Freemium AI Coding Tools:</strong><br><br>`;
+            freeTools.slice(0, 10).forEach(tool => {
+                html += `• <strong>${tool.name}</strong> - ${tool.type}<br>`;
+            });
+            
+            html += `<br>Total: ${freeTools.length} tools available`;
+            return html;
+        }
+
+        // Generate API info
+        function generateAPIInfo() {
+            return `<strong>API Documentation:</strong><br><br>
+                Base URL: <code>${API_BASE}</code><br><br>
+                
+                <strong>Available Endpoints:</strong><br>
+                • <code>/index.json</code> - All tools<br>
+                • <code>/tools/{slug}.json</code> - Specific tool<br>
+                • <code>/by-type.json</code> - Grouped by type<br>
+                • <code>/by-pricing.json</code> - Grouped by pricing<br>
+                • <code>/features.json</code> - Feature matrix<br>
+                • <code>/statistics.json</code> - Statistics<br><br>
+                
+                <strong>Example:</strong>
+                <div class="code-block"><code>fetch('${API_BASE}/index.json')
+  .then(res => res.json())
+  .then(data => console.log(data));</code></div>
+                
+                For more details, check the <a href="../api/README.md" target="_blank" style="color: var(--primary);">API Documentation</a>.`;
+        }
+
+        // Generate feature info
+        function generateFeatureInfo() {
+            return `<strong>Common Features:</strong><br><br>
+                ✅ Code Completion<br>
+                ✅ Chat Interface<br>
+                ✅ Multi-file Editing<br>
+                ✅ Terminal Integration<br>
+                ✅ Code Explanation<br>
+                ✅ Refactoring Suggestions<br>
+                ✅ Bug Detection<br>
+                ✅ Test Generation<br><br>
+                
+                Visit the <a href="dashboard.html" target="_blank" style="color: var(--primary);">Dashboard</a> 
+                to see the complete feature adoption matrix!`;
+        }
+
+        // Generate recommendations
+        function generateRecommendations() {
+            return `<strong>Top Recommendations:</strong><br><br>
+                
+                🥇 <strong>For IDE Integration:</strong><br>
+                • GitHub Copilot - Industry standard<br>
+                • Cursor - Full AI-powered IDE<br>
+                • Windsurf - Advanced features<br><br>
+                
+                🥈 <strong>For Web-based:</strong><br>
+                • v0.dev - UI components<br>
+                • Bolt - Full-stack apps<br>
+                • Replit - Online IDE<br><br>
+                
+                🥉 <strong>For Autonomous Agents:</strong><br>
+                • Devin - Autonomous engineer<br>
+                • Manus - Multi-agent system<br>
+                • Poke - Task automation<br><br>
+                
+                All tools are documented in our <a href="index.html" target="_blank" style="color: var(--primary);">Platform</a>!`;
+        }
+
+        // Generate help message
+        function generateHelpMessage() {
+            return `<strong>I can help you with:</strong><br><br>
+                
+                🛠️ <strong>Browse Tools</strong><br>
+                "Show me all AI coding tools"<br><br>
+                
+                ⚖️ <strong>Compare Tools</strong><br>
+                "Compare Cursor vs GitHub Copilot"<br><br>
+                
+                💰 <strong>Find Free Options</strong><br>
+                "What are the best free tools?"<br><br>
+                
+                🔌 <strong>API Integration</strong><br>
+                "How do I use the API?"<br><br>
+                
+                ✨ <strong>Feature Information</strong><br>
+                "What features do these tools have?"<br><br>
+                
+                📊 <strong>Get Recommendations</strong><br>
+                "Which tool should I use?"<br><br>
+                
+                Just ask me anything in natural language!`;
+        }
+
+        // Generate smart response
+        function generateSmartResponse(message) {
+            const responses = [
+                `That's an interesting question! Our platform tracks ${tools.length} AI coding tools. Try asking about specific tools, comparisons, or features.`,
+                `I can help with that! Check out our Dashboard for detailed analytics, or ask me to compare specific tools.`,
+                `Great question! Our API provides comprehensive data on all tools. Would you like to know more about a specific tool or feature?`,
+                `I'm here to help! You can ask me about tool comparisons, features, pricing, or how to integrate our API.`
+            ];
+            
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
+        // Handle enter key
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        // Auto-resize textarea
+        document.getElementById('messageInput').addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+
+        // Start new chat
+        function startNewChat() {
+            conversationHistory = [];
+            document.getElementById('messagesContainer').innerHTML = '';
+            document.getElementById('welcomeScreen').style.display = 'flex';
+            document.getElementById('quickActions').style.display = 'none';
+        }
+
+        // Clear chat
+        function clearChat() {
+            if (confirm('Are you sure you want to clear this conversation?')) {
+                startNewChat();
+            }
+        }
+
+        // Export chat
+        function exportChat() {
+            const text = conversationHistory.map(msg => 
+                `[${msg.time}] ${msg.type.toUpperCase()}: ${msg.text}`
+            ).join('\n\n');
+            
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `chat-export-${Date.now()}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Load chat history on startup
+        function loadChatHistory() {
+            const history = document.getElementById('chatHistory');
+            const savedChats = [
+                { title: 'Previous Conversation', preview: 'Show me all AI coding tools...' },
+                { title: 'API Integration Help', preview: 'How do I use the API?...' },
+                { title: 'Tool Comparison', preview: 'Compare Cursor vs GitHub Copilot...' }
+            ];
+            
+            savedChats.forEach(chat => {
+                const item = document.createElement('div');
+                item.className = 'history-item';
+                item.innerHTML = `
+                    <div class="history-title">${chat.title}</div>
+                    <div class="history-preview">${chat.preview}</div>
+                `;
+                history.appendChild(item);
+            });
+        }
+
+        loadChatHistory();
+    </script>
+</body>
+</html>
