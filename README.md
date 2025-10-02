@@ -112,7 +112,7 @@ You can show your support via:
 
 > Open an issue.
 
-> **Latest Update:** 29/09/2025
+> **Latest Update:** 02/10/2025
 
 ---
 
