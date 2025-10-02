@@ -1,0 +1,170 @@
+{
+  "version": "1.0",
+  "generated": "2025-10-02T21:58:35.432164",
+  "pricing_models": {
+    "unknown": [
+      {
+        "slug": "amp",
+        "name": "Amp",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "anthropic",
+        "name": "Anthropic",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "augment-code",
+        "name": "Augment Code",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "claude-code",
+        "name": "Claude Code",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "cluely",
+        "name": "Cluely",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "codebuddy-prompts",
+        "name": "CodeBuddy Prompts",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "comet-assistant",
+        "name": "Comet Assistant",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "cursor-prompts",
+        "name": "Cursor Prompts",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "devin-ai",
+        "name": "Devin AI",
+        "type": "Web Platform"
+      },
+      {
+        "slug": "dia",
+        "name": "dia",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "junie",
+        "name": "Junie",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "kiro",
+        "name": "Kiro",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "leapnew",
+        "name": "Leap.new",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "lovable",
+        "name": "Lovable",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "manus-agent-tools-prompt",
+        "name": "Manus Agent Tools & Prompt",
+        "type": "Autonomous Agent"
+      },
+      {
+        "slug": "notionai",
+        "name": "NotionAi",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "orchidsapp",
+        "name": "Orchids.app",
+        "type": "Web Platform"
+      },
+      {
+        "slug": "perplexity",
+        "name": "Perplexity",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "poke",
+        "name": "Poke",
+        "type": "Autonomous Agent"
+      },
+      {
+        "slug": "qoder",
+        "name": "Qoder",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "replit",
+        "name": "Replit",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "samedev",
+        "name": "Same.dev",
+        "type": "Web Platform"
+      },
+      {
+        "slug": "trae",
+        "name": "Trae",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "traycer-ai",
+        "name": "Traycer AI",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "v0-prompts-and-tools",
+        "name": "v0 Prompts and Tools",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "vscode-agent",
+        "name": "VSCode Agent",
+        "type": "Autonomous Agent"
+      },
+      {
+        "slug": "warpdev",
+        "name": "Warp.dev",
+        "type": "Web Platform"
+      },
+      {
+        "slug": "windsurf",
+        "name": "Windsurf",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "xcode",
+        "name": "Xcode",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "zai-code",
+        "name": "Z.ai Code",
+        "type": "IDE Plugin"
+      }
+    ],
+    "freemium": [
+      {
+        "slug": "cursor",
+        "name": "Cursor",
+        "type": "IDE Plugin"
+      },
+      {
+        "slug": "github-copilot",
+        "name": "GitHub Copilot",
+        "type": "IDE Plugin"
+      }
+    ]
+  }
+}

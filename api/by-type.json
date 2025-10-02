@@ -1,0 +1,172 @@
+{
+  "version": "1.0",
+  "generated": "2025-10-02T21:58:35.432164",
+  "types": {
+    "IDE Plugin": [
+      {
+        "slug": "amp",
+        "name": "Amp",
+        "description": "AI coding assistant - Amp"
+      },
+      {
+        "slug": "anthropic",
+        "name": "Anthropic",
+        "description": "AI coding assistant - Anthropic"
+      },
+      {
+        "slug": "augment-code",
+        "name": "Augment Code",
+        "description": "AI coding assistant - Augment Code"
+      },
+      {
+        "slug": "claude-code",
+        "name": "Claude Code",
+        "description": "AI coding assistant - Claude Code"
+      },
+      {
+        "slug": "cluely",
+        "name": "Cluely",
+        "description": "AI coding assistant - Cluely"
+      },
+      {
+        "slug": "codebuddy-prompts",
+        "name": "CodeBuddy Prompts",
+        "description": "AI coding assistant - CodeBuddy Prompts"
+      },
+      {
+        "slug": "comet-assistant",
+        "name": "Comet Assistant",
+        "description": "AI coding assistant - Comet Assistant"
+      },
+      {
+        "slug": "cursor-prompts",
+        "name": "Cursor Prompts",
+        "description": "AI coding assistant - Cursor Prompts"
+      },
+      {
+        "slug": "cursor",
+        "name": "Cursor",
+        "description": "AI-powered code editor built on VS Code with advanced agent mode, multi-file editing, and parallel task execution"
+      },
+      {
+        "slug": "dia",
+        "name": "dia",
+        "description": "AI coding assistant - dia"
+      },
+      {
+        "slug": "github-copilot",
+        "name": "GitHub Copilot",
+        "description": "AI pair programmer by GitHub/OpenAI with code completion, chat, and agent capabilities integrated into VS Code and other IDEs"
+      },
+      {
+        "slug": "junie",
+        "name": "Junie",
+        "description": "AI coding assistant - Junie"
+      },
+      {
+        "slug": "kiro",
+        "name": "Kiro",
+        "description": "AI coding assistant - Kiro"
+      },
+      {
+        "slug": "leapnew",
+        "name": "Leap.new",
+        "description": "AI coding assistant - Leap.new"
+      },
+      {
+        "slug": "lovable",
+        "name": "Lovable",
+        "description": "AI coding assistant - Lovable"
+      },
+      {
+        "slug": "notionai",
+        "name": "NotionAi",
+        "description": "AI coding assistant - NotionAi"
+      },
+      {
+        "slug": "perplexity",
+        "name": "Perplexity",
+        "description": "AI coding assistant - Perplexity"
+      },
+      {
+        "slug": "qoder",
+        "name": "Qoder",
+        "description": "AI coding assistant - Qoder"
+      },
+      {
+        "slug": "replit",
+        "name": "Replit",
+        "description": "AI coding assistant - Replit"
+      },
+      {
+        "slug": "trae",
+        "name": "Trae",
+        "description": "AI coding assistant - Trae"
+      },
+      {
+        "slug": "traycer-ai",
+        "name": "Traycer AI",
+        "description": "AI coding assistant - Traycer AI"
+      },
+      {
+        "slug": "v0-prompts-and-tools",
+        "name": "v0 Prompts and Tools",
+        "description": "AI coding assistant - v0 Prompts and Tools"
+      },
+      {
+        "slug": "windsurf",
+        "name": "Windsurf",
+        "description": "AI coding assistant - Windsurf"
+      },
+      {
+        "slug": "xcode",
+        "name": "Xcode",
+        "description": "AI coding assistant - Xcode"
+      },
+      {
+        "slug": "zai-code",
+        "name": "Z.ai Code",
+        "description": "AI coding assistant - Z.ai Code"
+      }
+    ],
+    "Web Platform": [
+      {
+        "slug": "devin-ai",
+        "name": "Devin AI",
+        "description": "AI coding assistant - Devin AI"
+      },
+      {
+        "slug": "orchidsapp",
+        "name": "Orchids.app",
+        "description": "AI coding assistant - Orchids.app"
+      },
+      {
+        "slug": "samedev",
+        "name": "Same.dev",
+        "description": "AI coding assistant - Same.dev"
+      },
+      {
+        "slug": "warpdev",
+        "name": "Warp.dev",
+        "description": "AI coding assistant - Warp.dev"
+      }
+    ],
+    "Autonomous Agent": [
+      {
+        "slug": "manus-agent-tools-prompt",
+        "name": "Manus Agent Tools & Prompt",
+        "description": "AI coding assistant - Manus Agent Tools & Prompt"
+      },
+      {
+        "slug": "poke",
+        "name": "Poke",
+        "description": "AI coding assistant - Poke"
+      },
+      {
+        "slug": "vscode-agent",
+        "name": "VSCode Agent",
+        "description": "AI coding assistant - VSCode Agent"
+      }
+    ]
+  }
+}

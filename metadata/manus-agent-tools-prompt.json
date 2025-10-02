@@ -1,0 +1,85 @@
+{
+  "name": "Manus Agent Tools & Prompt",
+  "slug": "manus-agent-tools-prompt",
+  "type": "Autonomous Agent",
+  "status": "active",
+  "description": "AI coding assistant - Manus Agent Tools & Prompt",
+  "version": {
+    "current": "agent",
+    "lastUpdated": "2025-01-02",
+    "history": [
+      {
+        "version": "agent",
+        "date": "2025-01-02",
+        "changes": "Version tracked"
+      }
+    ]
+  },
+  "pricing": {
+    "model": "unknown",
+    "tiers": []
+  },
+  "models": {
+    "primary": "Unknown",
+    "supported": [],
+    "customizable": false
+  },
+  "features": {
+    "codeGeneration": true,
+    "codeCompletion": true,
+    "chatInterface": true,
+    "agentMode": false,
+    "parallelExecution": false,
+    "memorySystem": true,
+    "todoTracking": false,
+    "gitIntegration": false,
+    "multiFileEditing": false,
+    "testGeneration": true,
+    "refactoring": false,
+    "debugging": false
+  },
+  "platforms": {
+    "vscode": false,
+    "jetbrains": false,
+    "web": false,
+    "cli": false,
+    "standalone": false
+  },
+  "patterns": {
+    "conciseness": "high",
+    "parallelTools": false,
+    "subAgents": false,
+    "verificationGates": true,
+    "todoSystem": false,
+    "memoryContext": true,
+    "agentsFile": false
+  },
+  "documentation": {
+    "folder": "Manus Agent Tools & Prompt",
+    "files": {
+      "systemPrompt": "Prompt.txt",
+      "tools": "tools.json",
+      "readme": null
+    },
+    "hasMultipleVersions": false,
+    "versions": [
+      "agent"
+    ]
+  },
+  "links": {
+    "website": null,
+    "docs": null,
+    "github": null,
+    "pricing": null
+  },
+  "tags": [
+    "Autonomous Agent",
+    "AI Coding"
+  ],
+  "metrics": {
+    "promptTokens": 1987.7,
+    "securityRules": 0,
+    "concisenessScore": 70,
+    "toolsCount": 29
+  }
+}

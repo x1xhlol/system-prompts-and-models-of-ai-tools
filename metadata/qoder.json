@@ -1,0 +1,84 @@
+{
+  "name": "Qoder",
+  "slug": "qoder",
+  "type": "IDE Plugin",
+  "status": "active",
+  "description": "AI coding assistant - Qoder",
+  "version": {
+    "current": "1.0",
+    "lastUpdated": "2025-01-02",
+    "history": [
+      {
+        "version": "1.0",
+        "date": "2025-01-02",
+        "changes": "Version tracked"
+      }
+    ]
+  },
+  "pricing": {
+    "model": "unknown",
+    "tiers": []
+  },
+  "models": {
+    "primary": "Unknown",
+    "supported": [],
+    "customizable": false
+  },
+  "features": {
+    "codeGeneration": true,
+    "codeCompletion": false,
+    "chatInterface": true,
+    "agentMode": true,
+    "parallelExecution": true,
+    "memorySystem": true,
+    "todoTracking": true,
+    "gitIntegration": true,
+    "multiFileEditing": false,
+    "testGeneration": true,
+    "refactoring": false,
+    "debugging": true
+  },
+  "platforms": {
+    "vscode": false,
+    "jetbrains": false,
+    "web": false,
+    "cli": false,
+    "standalone": false
+  },
+  "patterns": {
+    "conciseness": "medium",
+    "parallelTools": true,
+    "subAgents": false,
+    "verificationGates": true,
+    "todoSystem": true,
+    "memoryContext": true,
+    "agentsFile": false
+  },
+  "documentation": {
+    "folder": "Qoder",
+    "files": {
+      "systemPrompt": "prompt.txt",
+      "tools": null,
+      "readme": null
+    },
+    "hasMultipleVersions": false,
+    "versions": [
+      "1.0"
+    ]
+  },
+  "links": {
+    "website": null,
+    "docs": null,
+    "github": null,
+    "pricing": null
+  },
+  "tags": [
+    "IDE Plugin",
+    "AI Coding"
+  ],
+  "metrics": {
+    "promptTokens": 3659.5,
+    "securityRules": 3,
+    "concisenessScore": 55
+  }
+}

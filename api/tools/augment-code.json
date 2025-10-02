@@ -1,0 +1,92 @@
+{
+  "version": {
+    "current": "agent",
+    "lastUpdated": "2025-01-02",
+    "history": [
+      {
+        "version": "agent",
+        "date": "2025-01-02",
+        "changes": "Version tracked"
+      },
+      {
+        "version": "agent",
+        "date": "2025-01-02",
+        "changes": "Version tracked"
+      }
+    ]
+  },
+  "generated": "2025-10-02T21:58:35.483185",
+  "name": "Augment Code",
+  "slug": "augment-code",
+  "type": "IDE Plugin",
+  "status": "active",
+  "description": "AI coding assistant - Augment Code",
+  "pricing": {
+    "model": "unknown",
+    "tiers": []
+  },
+  "models": {
+    "primary": "Unknown",
+    "supported": [],
+    "customizable": false
+  },
+  "features": {
+    "codeGeneration": true,
+    "codeCompletion": true,
+    "chatInterface": true,
+    "agentMode": true,
+    "parallelExecution": false,
+    "memorySystem": true,
+    "todoTracking": true,
+    "gitIntegration": true,
+    "multiFileEditing": true,
+    "testGeneration": true,
+    "refactoring": false,
+    "debugging": false
+  },
+  "platforms": {
+    "vscode": false,
+    "jetbrains": false,
+    "web": false,
+    "cli": false,
+    "standalone": false
+  },
+  "patterns": {
+    "conciseness": "very-high",
+    "parallelTools": false,
+    "subAgents": false,
+    "verificationGates": true,
+    "todoSystem": true,
+    "memoryContext": true,
+    "agentsFile": false
+  },
+  "documentation": {
+    "folder": "Augment Code",
+    "files": {
+      "systemPrompt": "gpt-5-agent-prompts.txt",
+      "tools": "gpt-5-tools.json",
+      "readme": null
+    },
+    "hasMultipleVersions": true,
+    "versions": [
+      "agent",
+      "agent"
+    ]
+  },
+  "links": {
+    "website": null,
+    "docs": null,
+    "github": null,
+    "pricing": null
+  },
+  "tags": [
+    "IDE Plugin",
+    "AI Coding"
+  ],
+  "metrics": {
+    "promptTokens": 3042.0,
+    "securityRules": 1,
+    "concisenessScore": 85,
+    "toolsCount": 0
+  }
+}

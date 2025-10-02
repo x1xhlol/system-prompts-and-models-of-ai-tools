@@ -1,0 +1,84 @@
+{
+  "name": "Orchids.app",
+  "slug": "orchidsapp",
+  "type": "Web Platform",
+  "status": "active",
+  "description": "AI coding assistant - Orchids.app",
+  "version": {
+    "current": "1.0",
+    "lastUpdated": "2025-01-02",
+    "history": [
+      {
+        "version": "1.0",
+        "date": "2025-01-02",
+        "changes": "Version tracked"
+      }
+    ]
+  },
+  "pricing": {
+    "model": "unknown",
+    "tiers": []
+  },
+  "models": {
+    "primary": "Unknown",
+    "supported": [],
+    "customizable": false
+  },
+  "features": {
+    "codeGeneration": true,
+    "codeCompletion": true,
+    "chatInterface": true,
+    "agentMode": true,
+    "parallelExecution": true,
+    "memorySystem": true,
+    "todoTracking": true,
+    "gitIntegration": true,
+    "multiFileEditing": true,
+    "testGeneration": true,
+    "refactoring": true,
+    "debugging": true
+  },
+  "platforms": {
+    "vscode": false,
+    "jetbrains": false,
+    "web": true,
+    "cli": false,
+    "standalone": false
+  },
+  "patterns": {
+    "conciseness": "very-high",
+    "parallelTools": true,
+    "subAgents": false,
+    "verificationGates": true,
+    "todoSystem": true,
+    "memoryContext": true,
+    "agentsFile": false
+  },
+  "documentation": {
+    "folder": "Orchids.app",
+    "files": {
+      "systemPrompt": "System Prompt.txt",
+      "tools": null,
+      "readme": null
+    },
+    "hasMultipleVersions": false,
+    "versions": [
+      "1.0"
+    ]
+  },
+  "links": {
+    "website": null,
+    "docs": null,
+    "github": null,
+    "pricing": null
+  },
+  "tags": [
+    "Web Platform",
+    "AI Coding"
+  ],
+  "metrics": {
+    "promptTokens": 10884.9,
+    "securityRules": 5,
+    "concisenessScore": 80
+  }
+}

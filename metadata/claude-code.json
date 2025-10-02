@@ -1,0 +1,85 @@
+{
+    "name": "Claude Code",
+    "slug": "claude-code",
+    "type": "IDE Plugin",
+    "status": "active",
+    "description": "AI coding assistant - Claude Code",
+    "version": {
+        "current": "1.0",
+        "lastUpdated": "2025-01-02",
+        "history": [
+            {
+                "version": "1.0",
+                "date": "2025-01-02",
+                "changes": "Version tracked"
+            }
+        ]
+    },
+    "pricing": {
+        "model": "unknown",
+        "tiers": []
+    },
+    "models": {
+        "primary": "Unknown",
+        "supported": [],
+        "customizable": false
+    },
+    "features": {
+        "codeGeneration": true,
+        "codeCompletion": false,
+        "chatInterface": true,
+        "agentMode": true,
+        "parallelExecution": true,
+        "memorySystem": true,
+        "todoTracking": true,
+        "gitIntegration": true,
+        "multiFileEditing": false,
+        "testGeneration": true,
+        "refactoring": true,
+        "debugging": true
+    },
+    "platforms": {
+        "vscode": false,
+        "jetbrains": false,
+        "web": false,
+        "cli": false,
+        "standalone": false
+    },
+    "patterns": {
+        "conciseness": "high",
+        "parallelTools": true,
+        "subAgents": false,
+        "verificationGates": true,
+        "todoSystem": true,
+        "memoryContext": true,
+        "agentsFile": false
+    },
+    "documentation": {
+        "folder": "Claude Code",
+        "files": {
+            "systemPrompt": "claude-code-system-prompt.txt",
+            "tools": "claude-code-tools.json",
+            "readme": "README.md"
+        },
+        "hasMultipleVersions": false,
+        "versions": [
+            "1.0"
+        ]
+    },
+    "links": {
+        "website": null,
+        "docs": null,
+        "github": null,
+        "pricing": null
+    },
+    "tags": [
+        "IDE Plugin",
+        "AI Coding"
+    ],
+    "metrics": {
+        "promptTokens": 2692.3,
+        "securityRules": 3,
+        "concisenessScore": 70,
+        "toolsCount": 0
+    }
+}

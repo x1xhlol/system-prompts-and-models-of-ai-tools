@@ -1,0 +1,59 @@
+{
+  "name": "Poke",
+  "slug": "poke",
+  "type": "Autonomous Agent",
+  "status": "active",
+  "description": "AI coding assistant - Poke",
+  "version": {
+    "current": "agent",
+    "lastUpdated": "2025-01-02",
+    "history": [
+      {
+        "version": "agent",
+        "date": "2025-01-02",
+        "changes": "Version tracked"
+      }
+    ]
+  },
+  "pricing": {
+    "model": "unknown",
+    "tiers": []
+  },
+  "models": {
+    "primary": "Unknown",
+    "supported": [],
+    "customizable": false
+  },
+  "features": {},
+  "platforms": {
+    "vscode": false,
+    "jetbrains": false,
+    "web": false,
+    "cli": false,
+    "standalone": false
+  },
+  "patterns": {},
+  "documentation": {
+    "folder": "Poke",
+    "files": {
+      "systemPrompt": null,
+      "tools": null,
+      "readme": null
+    },
+    "hasMultipleVersions": false,
+    "versions": [
+      "agent"
+    ]
+  },
+  "links": {
+    "website": null,
+    "docs": null,
+    "github": null,
+    "pricing": null
+  },
+  "tags": [
+    "Autonomous Agent",
+    "AI Coding"
+  ],
+  "metrics": {}
+}

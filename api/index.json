@@ -1,0 +1,231 @@
+{
+  "version": "1.0",
+  "generated": "2025-10-02T21:58:35.432164",
+  "count": 32,
+  "tools": [
+    {
+      "slug": "amp",
+      "name": "Amp",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Amp",
+      "status": "active"
+    },
+    {
+      "slug": "anthropic",
+      "name": "Anthropic",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Anthropic",
+      "status": "active"
+    },
+    {
+      "slug": "augment-code",
+      "name": "Augment Code",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Augment Code",
+      "status": "active"
+    },
+    {
+      "slug": "claude-code",
+      "name": "Claude Code",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Claude Code",
+      "status": "active"
+    },
+    {
+      "slug": "cluely",
+      "name": "Cluely",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Cluely",
+      "status": "active"
+    },
+    {
+      "slug": "codebuddy-prompts",
+      "name": "CodeBuddy Prompts",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - CodeBuddy Prompts",
+      "status": "active"
+    },
+    {
+      "slug": "comet-assistant",
+      "name": "Comet Assistant",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Comet Assistant",
+      "status": "active"
+    },
+    {
+      "slug": "cursor-prompts",
+      "name": "Cursor Prompts",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Cursor Prompts",
+      "status": "active"
+    },
+    {
+      "slug": "cursor",
+      "name": "Cursor",
+      "type": "IDE Plugin",
+      "description": "AI-powered code editor built on VS Code with advanced agent mode, multi-file editing, and parallel task execution",
+      "status": "active"
+    },
+    {
+      "slug": "devin-ai",
+      "name": "Devin AI",
+      "type": "Web Platform",
+      "description": "AI coding assistant - Devin AI",
+      "status": "active"
+    },
+    {
+      "slug": "dia",
+      "name": "dia",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - dia",
+      "status": "active"
+    },
+    {
+      "slug": "github-copilot",
+      "name": "GitHub Copilot",
+      "type": "IDE Plugin",
+      "description": "AI pair programmer by GitHub/OpenAI with code completion, chat, and agent capabilities integrated into VS Code and other IDEs",
+      "status": "active"
+    },
+    {
+      "slug": "junie",
+      "name": "Junie",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Junie",
+      "status": "active"
+    },
+    {
+      "slug": "kiro",
+      "name": "Kiro",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Kiro",
+      "status": "active"
+    },
+    {
+      "slug": "leapnew",
+      "name": "Leap.new",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Leap.new",
+      "status": "active"
+    },
+    {
+      "slug": "lovable",
+      "name": "Lovable",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Lovable",
+      "status": "active"
+    },
+    {
+      "slug": "manus-agent-tools-prompt",
+      "name": "Manus Agent Tools & Prompt",
+      "type": "Autonomous Agent",
+      "description": "AI coding assistant - Manus Agent Tools & Prompt",
+      "status": "active"
+    },
+    {
+      "slug": "notionai",
+      "name": "NotionAi",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - NotionAi",
+      "status": "active"
+    },
+    {
+      "slug": "orchidsapp",
+      "name": "Orchids.app",
+      "type": "Web Platform",
+      "description": "AI coding assistant - Orchids.app",
+      "status": "active"
+    },
+    {
+      "slug": "perplexity",
+      "name": "Perplexity",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Perplexity",
+      "status": "active"
+    },
+    {
+      "slug": "poke",
+      "name": "Poke",
+      "type": "Autonomous Agent",
+      "description": "AI coding assistant - Poke",
+      "status": "active"
+    },
+    {
+      "slug": "qoder",
+      "name": "Qoder",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Qoder",
+      "status": "active"
+    },
+    {
+      "slug": "replit",
+      "name": "Replit",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Replit",
+      "status": "active"
+    },
+    {
+      "slug": "samedev",
+      "name": "Same.dev",
+      "type": "Web Platform",
+      "description": "AI coding assistant - Same.dev",
+      "status": "active"
+    },
+    {
+      "slug": "trae",
+      "name": "Trae",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Trae",
+      "status": "active"
+    },
+    {
+      "slug": "traycer-ai",
+      "name": "Traycer AI",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Traycer AI",
+      "status": "active"
+    },
+    {
+      "slug": "v0-prompts-and-tools",
+      "name": "v0 Prompts and Tools",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - v0 Prompts and Tools",
+      "status": "active"
+    },
+    {
+      "slug": "vscode-agent",
+      "name": "VSCode Agent",
+      "type": "Autonomous Agent",
+      "description": "AI coding assistant - VSCode Agent",
+      "status": "active"
+    },
+    {
+      "slug": "warpdev",
+      "name": "Warp.dev",
+      "type": "Web Platform",
+      "description": "AI coding assistant - Warp.dev",
+      "status": "active"
+    },
+    {
+      "slug": "windsurf",
+      "name": "Windsurf",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Windsurf",
+      "status": "active"
+    },
+    {
+      "slug": "xcode",
+      "name": "Xcode",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Xcode",
+      "status": "active"
+    },
+    {
+      "slug": "zai-code",
+      "name": "Z.ai Code",
+      "type": "IDE Plugin",
+      "description": "AI coding assistant - Z.ai Code",
+      "status": "active"
+    }
+  ]
+}

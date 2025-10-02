@@ -1,0 +1,246 @@
+{
+    "name": "GitHub Copilot",
+    "slug": "github-copilot",
+    "type": "IDE Plugin",
+    "status": "active",
+    "description": "AI pair programmer by GitHub/OpenAI with code completion, chat, and agent capabilities integrated into VS Code and other IDEs",
+    "version": {
+        "current": "1.250.0",
+        "lastUpdated": "2025-01-02",
+        "history": [
+            {
+                "version": "1.0",
+                "date": "2021-10-29",
+                "changes": "Initial public release with code completion"
+            },
+            {
+                "version": "1.100.0",
+                "date": "2023-03-22",
+                "changes": "Added chat interface"
+            },
+            {
+                "version": "1.200.0",
+                "date": "2024-06-15",
+                "changes": "Agent mode and workspace features"
+            },
+            {
+                "version": "1.250.0",
+                "date": "2025-01-02",
+                "changes": "Enhanced agent capabilities, better context handling"
+            }
+        ]
+    },
+    "pricing": {
+        "model": "freemium",
+        "tiers": [
+            {
+                "name": "Free",
+                "price": "$0/month",
+                "features": [
+                    "Code completion",
+                    "Basic chat",
+                    "2,000 completions/month",
+                    "50 chat messages/month"
+                ]
+            },
+            {
+                "name": "Individual",
+                "price": "$10/month",
+                "features": [
+                    "Unlimited completions",
+                    "Unlimited chat",
+                    "GPT-4 access",
+                    "Agent mode",
+                    "Pull request summaries"
+                ]
+            },
+            {
+                "name": "Business",
+                "price": "$19/user/month",
+                "features": [
+                    "All Individual features",
+                    "Organization management",
+                    "Policy controls",
+                    "License management"
+                ]
+            },
+            {
+                "name": "Enterprise",
+                "price": "$39/user/month",
+                "features": [
+                    "All Business features",
+                    "Enhanced security",
+                    "Audit logs",
+                    "SAML SSO",
+                    "Custom models"
+                ]
+            }
+        ]
+    },
+    "models": {
+        "primary": "GPT-4o",
+        "supported": [
+            "GPT-4o",
+            "GPT-4",
+            "Claude 3.5 Sonnet",
+            "o1-preview",
+            "o1-mini"
+        ],
+        "customizable": true
+    },
+    "features": {
+        "codeGeneration": true,
+        "codeCompletion": true,
+        "chatInterface": true,
+        "agentMode": true,
+        "parallelExecution": false,
+        "memorySystem": false,
+        "todoTracking": true,
+        "gitIntegration": true,
+        "multiFileEditing": true,
+        "testGeneration": true,
+        "refactoring": true,
+        "debugging": true,
+        "composerMode": false,
+        "prReviews": true,
+        "commitMessages": true
+    },
+    "platforms": {
+        "vscode": true,
+        "jetbrains": true,
+        "web": true,
+        "cli": true,
+        "standalone": false,
+        "visualStudio": true,
+        "neovim": true
+    },
+    "languages": {
+        "supported": [
+            "Python",
+            "JavaScript",
+            "TypeScript",
+            "Java",
+            "C++",
+            "C#",
+            "Go",
+            "Rust",
+            "Ruby",
+            "PHP",
+            "Swift",
+            "Kotlin",
+            "All major languages"
+        ],
+        "optimized": [
+            "Python",
+            "JavaScript",
+            "TypeScript",
+            "Go",
+            "Ruby"
+        ]
+    },
+    "integrations": {
+        "github": true,
+        "gitlab": false,
+        "bitbucket": false,
+        "jira": false,
+        "vscode": true,
+        "jetbrains": true
+    },
+    "security": {
+        "secretDetection": true,
+        "privateMode": true,
+        "localModel": false,
+        "dataRetention": "Configurable",
+        "soc2Compliant": true,
+        "codeFiltering": true
+    },
+    "patterns": {
+        "conciseness": "medium",
+        "parallelTools": false,
+        "subAgents": false,
+        "verificationGates": true,
+        "todoSystem": true,
+        "memoryContext": false,
+        "agentsFile": false
+    },
+    "documentation": {
+        "folder": "VSCode Agent",
+        "files": {
+            "systemPrompt": "Prompt.txt",
+            "tools": null,
+            "readme": null
+        },
+        "hasMultipleVersions": true,
+        "versions": [
+            "gpt-4.1",
+            "gpt-4o",
+            "gpt-5",
+            "claude-sonnet-4",
+            "gemini-2.5-pro"
+        ]
+    },
+    "links": {
+        "website": "https://github.com/features/copilot",
+        "docs": "https://docs.github.com/copilot",
+        "github": "https://github.com/github/copilot-docs",
+        "pricing": "https://github.com/features/copilot/plans",
+        "discord": null
+    },
+    "tags": [
+        "IDE",
+        "VS Code",
+        "JetBrains",
+        "GitHub",
+        "Enterprise",
+        "Multi-platform",
+        "Market Leader",
+        "OpenAI"
+    ],
+    "metrics": {
+        "promptTokens": 12000,
+        "toolsCount": 35,
+        "securityRules": 40,
+        "concisenessScore": 65,
+        "parallelCapability": 40
+    },
+    "analysis": {
+        "strengths": [
+            "Largest user base and community",
+            "Best IDE integration (VS Code, JetBrains, etc.)",
+            "Strong GitHub integration",
+            "Enterprise-grade security",
+            "Regular updates from Microsoft/GitHub",
+            "Most affordable premium tier"
+        ],
+        "weaknesses": [
+            "Less advanced agent mode than Cursor",
+            "No parallel task execution",
+            "Verbose responses compared to newer tools",
+            "Limited to GitHub ecosystem"
+        ],
+        "uniqueFeatures": [
+            "PR review and summaries",
+            "Multi-IDE support (VS Code, JetBrains, Neovim)",
+            "CLI tool integration",
+            "GitHub Actions integration",
+            "Commit message generation"
+        ],
+        "bestFor": [
+            "GitHub-centric workflows",
+            "Multi-IDE teams",
+            "Enterprise deployments",
+            "Budget-conscious individual developers",
+            "PR-heavy workflows"
+        ]
+    },
+    "marketPosition": {
+        "popularity": "very-high",
+        "userBase": "1,000,000+",
+        "yearLaunched": 2021,
+        "competition": [
+            "Cursor",
+            "Tabnine",
+            "Amazon CodeWhisperer"
+        ]
+    }
+}

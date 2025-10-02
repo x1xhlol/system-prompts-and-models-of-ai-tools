@@ -1,0 +1,84 @@
+{
+  "name": "Anthropic",
+  "slug": "anthropic",
+  "type": "IDE Plugin",
+  "status": "active",
+  "description": "AI coding assistant - Anthropic",
+  "version": {
+    "current": "1.0",
+    "lastUpdated": "2025-01-02",
+    "history": [
+      {
+        "version": "1.0",
+        "date": "2025-01-02",
+        "changes": "Version tracked"
+      }
+    ]
+  },
+  "pricing": {
+    "model": "unknown",
+    "tiers": []
+  },
+  "models": {
+    "primary": "Unknown",
+    "supported": [],
+    "customizable": false
+  },
+  "features": {
+    "codeGeneration": true,
+    "codeCompletion": false,
+    "chatInterface": true,
+    "agentMode": true,
+    "parallelExecution": false,
+    "memorySystem": true,
+    "todoTracking": false,
+    "gitIntegration": true,
+    "multiFileEditing": false,
+    "testGeneration": true,
+    "refactoring": false,
+    "debugging": true
+  },
+  "platforms": {
+    "vscode": false,
+    "jetbrains": false,
+    "web": false,
+    "cli": false,
+    "standalone": false
+  },
+  "patterns": {
+    "conciseness": "very-high",
+    "parallelTools": false,
+    "subAgents": true,
+    "verificationGates": true,
+    "todoSystem": false,
+    "memoryContext": true,
+    "agentsFile": false
+  },
+  "documentation": {
+    "folder": "Anthropic",
+    "files": {
+      "systemPrompt": "Sonnet 4.5 Prompt.txt",
+      "tools": null,
+      "readme": null
+    },
+    "hasMultipleVersions": false,
+    "versions": [
+      "1.0"
+    ]
+  },
+  "links": {
+    "website": null,
+    "docs": null,
+    "github": null,
+    "pricing": null
+  },
+  "tags": [
+    "IDE Plugin",
+    "AI Coding"
+  ],
+  "metrics": {
+    "promptTokens": 8269.300000000001,
+    "securityRules": 3,
+    "concisenessScore": 85
+  }
+}

@@ -1,0 +1,844 @@
+{
+  "version": "1.0",
+  "generated": "2025-10-02T21:58:35.432164",
+  "features": {
+    "codeGeneration": [
+      {
+        "slug": "anthropic",
+        "name": "Anthropic"
+      },
+      {
+        "slug": "augment-code",
+        "name": "Augment Code"
+      },
+      {
+        "slug": "claude-code",
+        "name": "Claude Code"
+      },
+      {
+        "slug": "cluely",
+        "name": "Cluely"
+      },
+      {
+        "slug": "codebuddy-prompts",
+        "name": "CodeBuddy Prompts"
+      },
+      {
+        "slug": "comet-assistant",
+        "name": "Comet Assistant"
+      },
+      {
+        "slug": "cursor-prompts",
+        "name": "Cursor Prompts"
+      },
+      {
+        "slug": "cursor",
+        "name": "Cursor"
+      },
+      {
+        "slug": "devin-ai",
+        "name": "Devin AI"
+      },
+      {
+        "slug": "dia",
+        "name": "dia"
+      },
+      {
+        "slug": "github-copilot",
+        "name": "GitHub Copilot"
+      },
+      {
+        "slug": "junie",
+        "name": "Junie"
+      },
+      {
+        "slug": "kiro",
+        "name": "Kiro"
+      },
+      {
+        "slug": "leapnew",
+        "name": "Leap.new"
+      },
+      {
+        "slug": "lovable",
+        "name": "Lovable"
+      },
+      {
+        "slug": "manus-agent-tools-prompt",
+        "name": "Manus Agent Tools & Prompt"
+      },
+      {
+        "slug": "notionai",
+        "name": "NotionAi"
+      },
+      {
+        "slug": "orchidsapp",
+        "name": "Orchids.app"
+      },
+      {
+        "slug": "perplexity",
+        "name": "Perplexity"
+      },
+      {
+        "slug": "qoder",
+        "name": "Qoder"
+      },
+      {
+        "slug": "replit",
+        "name": "Replit"
+      },
+      {
+        "slug": "samedev",
+        "name": "Same.dev"
+      },
+      {
+        "slug": "trae",
+        "name": "Trae"
+      },
+      {
+        "slug": "traycer-ai",
+        "name": "Traycer AI"
+      },
+      {
+        "slug": "v0-prompts-and-tools",
+        "name": "v0 Prompts and Tools"
+      },
+      {
+        "slug": "vscode-agent",
+        "name": "VSCode Agent"
+      },
+      {
+        "slug": "warpdev",
+        "name": "Warp.dev"
+      },
+      {
+        "slug": "windsurf",
+        "name": "Windsurf"
+      },
+      {
+        "slug": "zai-code",
+        "name": "Z.ai Code"
+      }
+    ],
+    "codeCompletion": [
+      {
+        "slug": "augment-code",
+        "name": "Augment Code"
+      },
+      {
+        "slug": "codebuddy-prompts",
+        "name": "CodeBuddy Prompts"
+      },
+      {
+        "slug": "cursor",
+        "name": "Cursor"
+      },
+      {
+        "slug": "devin-ai",
+        "name": "Devin AI"
+      },
+      {
+        "slug": "github-copilot",
+        "name": "GitHub Copilot"
+      },
+      {
+        "slug": "manus-agent-tools-prompt",
+        "name": "Manus Agent Tools & Prompt"
+      },
+      {
+        "slug": "orchidsapp",
+        "name": "Orchids.app"
+      },
+      {
+        "slug": "warpdev",
+        "name": "Warp.dev"
+      },
+      {
+        "slug": "zai-code",
+        "name": "Z.ai Code"
+      }
+    ],
+    "chatInterface": [
+      {
+        "slug": "anthropic",
+        "name": "Anthropic"
+      },
+      {
+        "slug": "augment-code",
+        "name": "Augment Code"
+      },
+      {
+        "slug": "claude-code",
+        "name": "Claude Code"
+      },
+      {
+        "slug": "cluely",
+        "name": "Cluely"
+      },
+      {
+        "slug": "codebuddy-prompts",
+        "name": "CodeBuddy Prompts"
+      },
+      {
+        "slug": "cursor-prompts",
+        "name": "Cursor Prompts"
+      },
+      {
+        "slug": "cursor",
+        "name": "Cursor"
+      },
+      {
+        "slug": "dia",
+        "name": "dia"
+      },
+      {
+        "slug": "github-copilot",
+        "name": "GitHub Copilot"
+      },
+      {
+        "slug": "kiro",
+        "name": "Kiro"
+      },
+      {
+        "slug": "leapnew",
+        "name": "Leap.new"
+      },
+      {
+        "slug": "lovable",
+        "name": "Lovable"
+      },
+      {
+        "slug": "manus-agent-tools-prompt",
+        "name": "Manus Agent Tools & Prompt"
+      },
+      {
+        "slug": "notionai",
+        "name": "NotionAi"
+      },
+      {
+        "slug": "orchidsapp",
+        "name": "Orchids.app"
+      },
+      {
+        "slug": "qoder",
+        "name": "Qoder"
+      },
+      {
+        "slug": "samedev",
+        "name": "Same.dev"
+      },
+      {
+        "slug": "trae",
+        "name": "Trae"
+      },
+      {
+        "slug": "v0-prompts-and-tools",
+        "name": "v0 Prompts and Tools"
+      },
+      {
+        "slug": "windsurf",
+        "name": "Windsurf"
+      },
+      {
+        "slug": "zai-code",
+        "name": "Z.ai Code"
+      }
+    ],
+    "agentMode": [
+      {
+        "slug": "anthropic",
+        "name": "Anthropic"
+      },
+      {
+        "slug": "augment-code",
+        "name": "Augment Code"
+      },
+      {
+        "slug": "claude-code",
+        "name": "Claude Code"
+      },
+      {
+        "slug": "comet-assistant",
+        "name": "Comet Assistant"
+      },
+      {
+        "slug": "cursor",
+        "name": "Cursor"
+      },
+      {
+        "slug": "github-copilot",
+        "name": "GitHub Copilot"
+      },
+      {
+        "slug": "kiro",
+        "name": "Kiro"
+      },
+      {
+        "slug": "notionai",
+        "name": "NotionAi"
+      },
+      {
+        "slug": "orchidsapp",
+        "name": "Orchids.app"
+      },
+      {
+        "slug": "qoder",
+        "name": "Qoder"
+      },
+      {
+        "slug": "samedev",
+        "name": "Same.dev"
+      },
+      {
+        "slug": "trae",
+        "name": "Trae"
+      },
+      {
+        "slug": "v0-prompts-and-tools",
+        "name": "v0 Prompts and Tools"
+      },
+      {
+        "slug": "vscode-agent",
+        "name": "VSCode Agent"
+      },
+      {
+        "slug": "warpdev",
+        "name": "Warp.dev"
+      },
+      {
+        "slug": "windsurf",
+        "name": "Windsurf"
+      }
+    ],
+    "parallelExecution": [
+      {
+        "slug": "claude-code",
+        "name": "Claude Code"
+      },
+      {
+        "slug": "cursor",
+        "name": "Cursor"
+      },
+      {
+        "slug": "devin-ai",
+        "name": "Devin AI"
+      },
+      {
+        "slug": "dia",
+        "name": "dia"
+      },
+      {
+        "slug": "kiro",
+        "name": "Kiro"
+      },
+      {
+        "slug": "lovable",
+        "name": "Lovable"
+      },
+      {
+        "slug": "notionai",
+        "name": "NotionAi"
+      },
+      {
+        "slug": "orchidsapp",
+        "name": "Orchids.app"
+      },
+      {
+        "slug": "qoder",
+        "name": "Qoder"
+      },
+      {
+        "slug": "replit",
+        "name": "Replit"
+      },
+      {
+        "slug": "samedev",
+        "name": "Same.dev"
+      },
+      {
+        "slug": "vscode-agent",
+        "name": "VSCode Agent"
+      }
+    ],
+    "memorySystem": [
+      {
+        "slug": "anthropic",
+        "name": "Anthropic"
+      },
+      {
+        "slug": "augment-code",
+        "name": "Augment Code"
+      },
+      {
+        "slug": "claude-code",
+        "name": "Claude Code"
+      },
+      {
+        "slug": "cluely",
+        "name": "Cluely"
+      },
+      {
+        "slug": "codebuddy-prompts",
+        "name": "CodeBuddy Prompts"
+      },
+      {
+        "slug": "comet-assistant",
+        "name": "Comet Assistant"
+      },
+      {
+        "slug": "cursor-prompts",
+        "name": "Cursor Prompts"
+      },
+      {
+        "slug": "cursor",
+        "name": "Cursor"
+      },
+      {
+        "slug": "devin-ai",
+        "name": "Devin AI"
+      },
+      {
+        "slug": "dia",
+        "name": "dia"
+      },
+      {
+        "slug": "junie",
+        "name": "Junie"
+      },
+      {
+        "slug": "kiro",
+        "name": "Kiro"
+      },
+      {
+        "slug": "leapnew",
+        "name": "Leap.new"
+      },
+      {
+        "slug": "lovable",
+        "name": "Lovable"
+      },
+      {
+        "slug": "manus-agent-tools-prompt",
+        "name": "Manus Agent Tools & Prompt"
+      },
+      {
+        "slug": "notionai",
+        "name": "NotionAi"
+      },
+      {
+        "slug": "orchidsapp",
+        "name": "Orchids.app"
+      },
+      {
+        "slug": "qoder",
+        "name": "Qoder"
+      },
+      {
+        "slug": "samedev",
+        "name": "Same.dev"
+      },
+      {
+        "slug": "trae",
+        "name": "Trae"
+      },
+      {
+        "slug": "traycer-ai",
+        "name": "Traycer AI"
+      },
+      {
+        "slug": "v0-prompts-and-tools",
+        "name": "v0 Prompts and Tools"
+      },
+      {
+        "slug": "vscode-agent",
+        "name": "VSCode Agent"
+      },
+      {
+        "slug": "warpdev",
+        "name": "Warp.dev"
+      },
+      {
+        "slug": "windsurf",
+        "name": "Windsurf"
+      },
+      {
+        "slug": "zai-code",
+        "name": "Z.ai Code"
+      }
+    ],
+    "todoTracking": [
+      {
+        "slug": "augment-code",
+        "name": "Augment Code"
+      },
+      {
+        "slug": "claude-code",
+        "name": "Claude Code"
+      },
+      {
+        "slug": "codebuddy-prompts",
+        "name": "CodeBuddy Prompts"
+      },
+      {
+        "slug": "cursor",
+        "name": "Cursor"
+      },
+      {
+        "slug": "github-copilot",
+        "name": "GitHub Copilot"
+      },
+      {
+        "slug": "leapnew",
+        "name": "Leap.new"
+      },
+      {
+        "slug": "notionai",
+        "name": "NotionAi"
+      },
+      {
+        "slug": "orchidsapp",
+        "name": "Orchids.app"
+      },
+      {
+        "slug": "qoder",
+        "name": "Qoder"
+      },
+      {
+        "slug": "samedev",
+        "name": "Same.dev"
+      },
+      {
+        "slug": "v0-prompts-and-tools",
+        "name": "v0 Prompts and Tools"
+      },
+      {
+        "slug": "zai-code",
+        "name": "Z.ai Code"
+      }
+    ],
+    "gitIntegration": [
+      {
+        "slug": "anthropic",
+        "name": "Anthropic"
+      },
+      {
+        "slug": "augment-code",
+        "name": "Augment Code"
+      },
+      {
+        "slug": "claude-code",
+        "name": "Claude Code"
+      },
+      {
+        "slug": "cluely",
+        "name": "Cluely"
+      },
+      {
+        "slug": "cursor-prompts",
+        "name": "Cursor Prompts"
+      },
+      {
+        "slug": "cursor",
+        "name": "Cursor"
+      },
+      {
+        "slug": "devin-ai",
+        "name": "Devin AI"
+      },
+      {
+        "slug": "github-copilot",
+        "name": "GitHub Copilot"
+      },
+      {
+        "slug": "kiro",
+        "name": "Kiro"
+      },
+      {
+        "slug": "notionai",
+        "name": "NotionAi"
+      },
+      {
+        "slug": "orchidsapp",
+        "name": "Orchids.app"
+      },
+      {
+        "slug": "qoder",
+        "name": "Qoder"
+      },
+      {
+        "slug": "v0-prompts-and-tools",
+        "name": "v0 Prompts and Tools"
+      },
+      {
+        "slug": "vscode-agent",
+        "name": "VSCode Agent"
+      },
+      {
+        "slug": "warpdev",
+        "name": "Warp.dev"
+      }
+    ],
+    "multiFileEditing": [
+      {
+        "slug": "augment-code",
+        "name": "Augment Code"
+      },
+      {
+        "slug": "codebuddy-prompts",
+        "name": "CodeBuddy Prompts"
+      },
+      {
+        "slug": "cursor",
+        "name": "Cursor"
+      },
+      {
+        "slug": "devin-ai",
+        "name": "Devin AI"
+      },
+      {
+        "slug": "github-copilot",
+        "name": "GitHub Copilot"
+      },
+      {
+        "slug": "kiro",
+        "name": "Kiro"
+      },
+      {
+        "slug": "lovable",
+        "name": "Lovable"
+      },
+      {
+        "slug": "orchidsapp",
+        "name": "Orchids.app"
+      },
+      {
+        "slug": "samedev",
+        "name": "Same.dev"
+      },
+      {
+        "slug": "v0-prompts-and-tools",
+        "name": "v0 Prompts and Tools"
+      }
+    ],
+    "testGeneration": [
+      {
+        "slug": "anthropic",
+        "name": "Anthropic"
+      },
+      {
+        "slug": "augment-code",
+        "name": "Augment Code"
+      },
+      {
+        "slug": "claude-code",
+        "name": "Claude Code"
+      },
+      {
+        "slug": "codebuddy-prompts",
+        "name": "CodeBuddy Prompts"
+      },
+      {
+        "slug": "cursor-prompts",
+        "name": "Cursor Prompts"
+      },
+      {
+        "slug": "cursor",
+        "name": "Cursor"
+      },
+      {
+        "slug": "devin-ai",
+        "name": "Devin AI"
+      },
+      {
+        "slug": "dia",
+        "name": "dia"
+      },
+      {
+        "slug": "github-copilot",
+        "name": "GitHub Copilot"
+      },
+      {
+        "slug": "kiro",
+        "name": "Kiro"
+      },
+      {
+        "slug": "leapnew",
+        "name": "Leap.new"
+      },
+      {
+        "slug": "lovable",
+        "name": "Lovable"
+      },
+      {
+        "slug": "manus-agent-tools-prompt",
+        "name": "Manus Agent Tools & Prompt"
+      },
+      {
+        "slug": "orchidsapp",
+        "name": "Orchids.app"
+      },
+      {
+        "slug": "qoder",
+        "name": "Qoder"
+      },
+      {
+        "slug": "replit",
+        "name": "Replit"
+      },
+      {
+        "slug": "samedev",
+        "name": "Same.dev"
+      },
+      {
+        "slug": "traycer-ai",
+        "name": "Traycer AI"
+      },
+      {
+        "slug": "v0-prompts-and-tools",
+        "name": "v0 Prompts and Tools"
+      },
+      {
+        "slug": "vscode-agent",
+        "name": "VSCode Agent"
+      },
+      {
+        "slug": "warpdev",
+        "name": "Warp.dev"
+      },
+      {
+        "slug": "windsurf",
+        "name": "Windsurf"
+      },
+      {
+        "slug": "zai-code",
+        "name": "Z.ai Code"
+      }
+    ],
+    "refactoring": [
+      {
+        "slug": "claude-code",
+        "name": "Claude Code"
+      },
+      {
+        "slug": "cursor-prompts",
+        "name": "Cursor Prompts"
+      },
+      {
+        "slug": "cursor",
+        "name": "Cursor"
+      },
+      {
+        "slug": "devin-ai",
+        "name": "Devin AI"
+      },
+      {
+        "slug": "github-copilot",
+        "name": "GitHub Copilot"
+      },
+      {
+        "slug": "lovable",
+        "name": "Lovable"
+      },
+      {
+        "slug": "orchidsapp",
+        "name": "Orchids.app"
+      },
+      {
+        "slug": "samedev",
+        "name": "Same.dev"
+      },
+      {
+        "slug": "v0-prompts-and-tools",
+        "name": "v0 Prompts and Tools"
+      }
+    ],
+    "debugging": [
+      {
+        "slug": "anthropic",
+        "name": "Anthropic"
+      },
+      {
+        "slug": "claude-code",
+        "name": "Claude Code"
+      },
+      {
+        "slug": "cursor-prompts",
+        "name": "Cursor Prompts"
+      },
+      {
+        "slug": "cursor",
+        "name": "Cursor"
+      },
+      {
+        "slug": "devin-ai",
+        "name": "Devin AI"
+      },
+      {
+        "slug": "dia",
+        "name": "dia"
+      },
+      {
+        "slug": "github-copilot",
+        "name": "GitHub Copilot"
+      },
+      {
+        "slug": "kiro",
+        "name": "Kiro"
+      },
+      {
+        "slug": "lovable",
+        "name": "Lovable"
+      },
+      {
+        "slug": "orchidsapp",
+        "name": "Orchids.app"
+      },
+      {
+        "slug": "qoder",
+        "name": "Qoder"
+      },
+      {
+        "slug": "replit",
+        "name": "Replit"
+      },
+      {
+        "slug": "samedev",
+        "name": "Same.dev"
+      },
+      {
+        "slug": "trae",
+        "name": "Trae"
+      },
+      {
+        "slug": "v0-prompts-and-tools",
+        "name": "v0 Prompts and Tools"
+      },
+      {
+        "slug": "warpdev",
+        "name": "Warp.dev"
+      },
+      {
+        "slug": "windsurf",
+        "name": "Windsurf"
+      }
+    ],
+    "composerMode": [
+      {
+        "slug": "cursor",
+        "name": "Cursor"
+      }
+    ],
+    "prReviews": [
+      {
+        "slug": "github-copilot",
+        "name": "GitHub Copilot"
+      }
+    ],
+    "commitMessages": [
+      {
+        "slug": "github-copilot",
+        "name": "GitHub Copilot"
+      }
+    ]
+  }
+}

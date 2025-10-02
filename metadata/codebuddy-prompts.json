@@ -1,0 +1,84 @@
+{
+  "name": "CodeBuddy Prompts",
+  "slug": "codebuddy-prompts",
+  "type": "IDE Plugin",
+  "status": "active",
+  "description": "AI coding assistant - CodeBuddy Prompts",
+  "version": {
+    "current": "1.0",
+    "lastUpdated": "2025-01-02",
+    "history": [
+      {
+        "version": "1.0",
+        "date": "2025-01-02",
+        "changes": "Version tracked"
+      }
+    ]
+  },
+  "pricing": {
+    "model": "unknown",
+    "tiers": []
+  },
+  "models": {
+    "primary": "Unknown",
+    "supported": [],
+    "customizable": false
+  },
+  "features": {
+    "codeGeneration": true,
+    "codeCompletion": true,
+    "chatInterface": true,
+    "agentMode": false,
+    "parallelExecution": false,
+    "memorySystem": true,
+    "todoTracking": true,
+    "gitIntegration": false,
+    "multiFileEditing": true,
+    "testGeneration": true,
+    "refactoring": false,
+    "debugging": false
+  },
+  "platforms": {
+    "vscode": false,
+    "jetbrains": false,
+    "web": false,
+    "cli": false,
+    "standalone": false
+  },
+  "patterns": {
+    "conciseness": "very-high",
+    "parallelTools": false,
+    "subAgents": false,
+    "verificationGates": true,
+    "todoSystem": true,
+    "memoryContext": true,
+    "agentsFile": false
+  },
+  "documentation": {
+    "folder": "CodeBuddy Prompts",
+    "files": {
+      "systemPrompt": "Craft Prompt.txt",
+      "tools": null,
+      "readme": null
+    },
+    "hasMultipleVersions": false,
+    "versions": [
+      "1.0"
+    ]
+  },
+  "links": {
+    "website": null,
+    "docs": null,
+    "github": null,
+    "pricing": null
+  },
+  "tags": [
+    "IDE Plugin",
+    "AI Coding"
+  ],
+  "metrics": {
+    "promptTokens": 7793.5,
+    "securityRules": 1,
+    "concisenessScore": 65
+  }
+}

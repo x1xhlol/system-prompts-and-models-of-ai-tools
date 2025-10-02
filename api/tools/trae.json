@@ -1,0 +1,86 @@
+{
+  "version": {
+    "current": "1.0",
+    "lastUpdated": "2025-01-02",
+    "history": [
+      {
+        "version": "1.0",
+        "date": "2025-01-02",
+        "changes": "Version tracked"
+      }
+    ]
+  },
+  "generated": "2025-10-02T21:58:35.549370",
+  "name": "Trae",
+  "slug": "trae",
+  "type": "IDE Plugin",
+  "status": "active",
+  "description": "AI coding assistant - Trae",
+  "pricing": {
+    "model": "unknown",
+    "tiers": []
+  },
+  "models": {
+    "primary": "Unknown",
+    "supported": [],
+    "customizable": false
+  },
+  "features": {
+    "codeGeneration": true,
+    "codeCompletion": false,
+    "chatInterface": true,
+    "agentMode": true,
+    "parallelExecution": false,
+    "memorySystem": true,
+    "todoTracking": false,
+    "gitIntegration": false,
+    "multiFileEditing": false,
+    "testGeneration": false,
+    "refactoring": false,
+    "debugging": true
+  },
+  "platforms": {
+    "vscode": false,
+    "jetbrains": false,
+    "web": false,
+    "cli": false,
+    "standalone": false
+  },
+  "patterns": {
+    "conciseness": "medium",
+    "parallelTools": false,
+    "subAgents": false,
+    "verificationGates": true,
+    "todoSystem": false,
+    "memoryContext": true,
+    "agentsFile": false
+  },
+  "documentation": {
+    "folder": "Trae",
+    "files": {
+      "systemPrompt": "Chat Prompt.txt",
+      "tools": "Builder Tools.json",
+      "readme": null
+    },
+    "hasMultipleVersions": false,
+    "versions": [
+      "1.0"
+    ]
+  },
+  "links": {
+    "website": null,
+    "docs": null,
+    "github": null,
+    "pricing": null
+  },
+  "tags": [
+    "IDE Plugin",
+    "AI Coding"
+  ],
+  "metrics": {
+    "promptTokens": 1645.8,
+    "securityRules": 1,
+    "concisenessScore": 55,
+    "toolsCount": 0
+  }
+}

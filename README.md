@@ -4,7 +4,79 @@
   <sub>Special thanks to</sub>  
 </p>
 
-<p align="center">
+<## 📚 Repository Documentation
+
+This repository now includes comprehensive analysis and reference materials:
+
+### 🔍 Quick Reference & Comparison
+- **[QUICK_REFERENCE.md](./QUICK_REFERENCE.md)** - Tool finder, decision tree, budget guide
+- **[COMPARISON.md](./COMPARISON.md)** - Feature matrix comparing all 32 tools
+
+### 📚 Analysis & Patterns
+- **[TOOL_PATTERNS.md](./TOOL_PATTERNS.md)** - 26 common patterns across AI tools
+- **[BEST_PRACTICES.md](./BEST_PRACTICES.md)** - Extracted best practices from all tools
+- **[SECURITY_PATTERNS.md](./SECURITY_PATTERNS.md)** - Security guidelines and patterns
+- **[EVOLUTION.md](./EVOLUTION.md)** - How prompts evolved from 2023 to 2025
+- **[VISUALIZATIONS.md](./VISUALIZATIONS.md)** - 15+ Mermaid diagrams and architecture charts
+- **[REVERSE_ENGINEERING_GUIDE.md](./REVERSE_ENGINEERING_GUIDE.md)** - How to extract system prompts
+
+### 🤝 Contributing & Community
+- **[CONTRIBUTING.md](./CONTRIBUTING.md)** - How to contribute to this repository
+- **[MISSING_TOOLS.md](./MISSING_TOOLS.md)** - 22 notable tools we need to add
+- **[CHANGELOG.md](./CHANGELOG.md)** - Version history and updates
+
+### 🚀 New Features
+
+#### 📊 **Metadata System**
+- **32 JSON metadata files** with structured data for all tools
+- **Automated metadata generation** using `scripts/generate-metadata.py`
+- **Consistent schema** across all tools (type, pricing, features, models, patterns)
+- **Version tracking** for prompt evolution
+- **[Metadata README](./metadata/README.md)** - Complete schema documentation
+
+#### 🔌 **REST API Endpoints**
+- **39 JSON API endpoints** for programmatic access
+- **6 aggregate endpoints:** index, by-type, by-pricing, features, statistics, search
+- **32 individual tool endpoints** in `/api/tools/`
+- **Easy integration** with any programming language
+- **[API README](./api/README.md)** - Complete API documentation with examples
+
+```javascript
+// Example: Fetch all tools
+fetch('./api/index.json')
+  .then(res => res.json())
+  .then(data => console.log(data.tools));
+```
+
+#### 🎨 **Enhanced Site Generator**
+- **Modern UI** with dark/light theme toggle
+- **Full-text search** across all files and tools
+- **Advanced filters** by type, pricing, and features
+- **Three view modes:** Files, Tools, Comparison
+- **Syntax highlighting** with one-click code copying
+- **Mobile-responsive** design
+- **Run:** `cd site && npm install && node build-enhanced.js`
+
+#### 🔄 **Version Comparison Tool**
+- **Side-by-side diff viewer** for prompt versions
+- **HTML visualization** with syntax highlighting
+- **Similarity scoring** and change statistics
+- **Batch comparison** for all versions
+- **Run:** `python scripts/compare-versions.py --tool "Cursor Prompts" --all`
+
+#### 🤖 **Automation Scripts**
+- **Metadata generator:** Auto-detect patterns, features, versions
+- **API generator:** Create all 39 endpoints automatically
+- **Version comparator:** Track prompt evolution
+- **Validation scripts:** Ensure data consistency
+- **See:** `scripts/` directory for all automation tools
+
+#### 📖 **Complete Documentation**
+- **[IMPLEMENTATION_SUMMARY.md](./IMPLEMENTATION_SUMMARY.md)** - Full feature overview
+- **[metadata/README.md](./metadata/README.md)** - Metadata schema guide
+- **[api/README.md](./api/README.md)** - API usage examples
+- **[scripts/METADATA_GENERATION.md](./scripts/METADATA_GENERATION.md)** - Generator docs
+- **[scripts/VERSION_COMPARISON.md](./scripts/VERSION_COMPARISON.md)** - Comparison guide
   <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship">
     <img src="assets/Latitude_logo.png" alt="Latitude Logo" width="700"/>
   </a>
@@ -101,7 +173,11 @@ The website provides an organized view of all system prompts with:
   - [📑 Table of Contents](#-table-of-contents)
   - [🚀 Installation \& Deployment](#-installation--deployment)
   - [🌐 Live Website](#-live-website)
-  - [📂 Available Files](#-available-files)
+  - [� Repository Documentation](#-repository-documentation)
+  - [�📂 Available Files](#-available-files)
+  - [🎯 Tool Selection Guide](#-tool-selection-guide)
+  - [📈 Repository Statistics](#-repository-statistics)
+  - [🤝 Contributing](#-contributing)
   - [🛠 Roadmap \& Feedback](#-roadmap--feedback)
   - [🔗 Connect With Me](#-connect-with-me)
   - [🛡️ Security Notice for AI Startups](#️-security-notice-for-ai-startups)
@@ -109,7 +185,28 @@ The website provides an organized view of all system prompts with:
 
 ---
 
-## 📂 Available Files
+## � Repository Documentation
+
+This repository now includes comprehensive analysis and reference materials:
+
+### 🔍 Quick Reference & Comparison
+- **[QUICK_REFERENCE.md](./QUICK_REFERENCE.md)** - Tool finder, decision tree, budget guide
+- **[COMPARISON.md](./COMPARISON.md)** - Feature matrix comparing all 31 tools
+
+### 📚 Analysis & Patterns
+- **[TOOL_PATTERNS.md](./TOOL_PATTERNS.md)** - 26 common patterns across AI tools
+- **[BEST_PRACTICES.md](./BEST_PRACTICES.md)** - Extracted best practices from all tools
+- **[SECURITY_PATTERNS.md](./SECURITY_PATTERNS.md)** - Security guidelines and patterns
+- **[EVOLUTION.md](./EVOLUTION.md)** - How prompts evolved from 2023 to 2025
+
+### 🤝 Contributing & Community
+- **[CONTRIBUTING.md](./CONTRIBUTING.md)** - How to contribute to this repository
+- **[MISSING_TOOLS.md](./MISSING_TOOLS.md)** - 22 notable tools we need to add
+- **[CHANGELOG.md](./CHANGELOG.md)** - Version history and updates
+
+---
+
+## �📂 Available Files
 
 - [**v0**](./v0%20Prompts%20and%20Tools/)
 - [**Manus**](./Manus%20Agent%20Tools%20&%20Prompt/)
@@ -147,6 +244,85 @@ The website provides an organized view of all system prompts with:
 - [**Comet Assistant**](./Comet%20Assistant/)
 - [**Anthropic**](./Anthropic/)
 - [**Amp**](./AMp/)
+
+---
+
+## 🎯 Tool Selection Guide
+
+### 💡 Not Sure Which Tool to Use?
+
+**Start here:**
+1. 📖 **[QUICK_REFERENCE.md](./QUICK_REFERENCE.md)** - Decision tree and quick finder
+2. 📊 **[COMPARISON.md](./COMPARISON.md)** - Compare features, pricing, and capabilities
+3. 🔍 **[TOOL_PATTERNS.md](./TOOL_PATTERNS.md)** - Understand what makes each tool unique
+
+### Quick Recommendations:
+
+| Budget | Skill Level | Recommendation |
+|--------|-------------|----------------|
+| **Free** | Beginner | GitHub Copilot (free for students), Cline (open source) |
+| **Free** | Advanced | Codeium (unlimited free), Continue.dev (self-hosted) |
+| **$20/mo** | Any | Cursor (best all-around), Claude Code (terminal power users) |
+| **Enterprise** | Team | Cursor Business, Tabnine Enterprise, Sourcegraph Cody |
+| **Autonomous** | Advanced | Devin, Poke, Claude Code |
+
+See **[QUICK_REFERENCE.md](./QUICK_REFERENCE.md)** for detailed selection criteria.
+
+---
+
+## 📈 Repository Statistics
+
+| Metric | Count | Notes |
+|--------|-------|-------|
+| **AI Tools Documented** | 32 | Production tools with prompts |
+| **Total Files** | 140+ | Prompts, tools, docs, configs, metadata, APIs |
+| **System Prompts** | 85+ | .txt files |
+| **Tool Definitions** | 15+ | .json schemas |
+| **Metadata Files** | 32 | Structured JSON data for all tools |
+| **API Endpoints** | 39 | RESTful JSON APIs |
+| **Documentation** | 20+ | Analysis, guides, and technical docs |
+| **Lines of Content** | 50,000+ | Comprehensive insights & automation |
+| **Automation Scripts** | 9 | Python & Node.js tools |
+| **Visualizations** | 15+ | Mermaid diagrams |
+| **Coverage** | ~65% | Of major AI coding tools |
+
+### Missing Major Tools:
+- AWS CodeWhisperer/Q Developer
+- Tabnine
+- Codeium
+- Sourcegraph Cody
+- Supermaven
+- JetBrains AI
+
+**See [MISSING_TOOLS.md](./MISSING_TOOLS.md) for the full list**
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how you can help:
+
+### High-Priority Contributions:
+1. **Add missing tools** (see [MISSING_TOOLS.md](./MISSING_TOOLS.md))
+2. **Update existing tool prompts** with newer versions
+3. **Improve documentation** and analysis
+4. **Share insights** about prompt patterns
+
+### Quick Start:
+```bash
+# Fork the repository
+# Create a new branch
+git checkout -b add-new-tool
+
+# Add your files (see CONTRIBUTING.md for structure)
+# Commit and push
+git commit -m "Add [Tool Name] system prompt"
+git push origin add-new-tool
+
+# Open a Pull Request
+```
+
+📖 **[Full Contributing Guide](./CONTRIBUTING.md)** - Detailed instructions, style guide, and submission process
 
 ---
 

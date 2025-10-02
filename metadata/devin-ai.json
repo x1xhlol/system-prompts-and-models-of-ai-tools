@@ -1,0 +1,84 @@
+{
+  "name": "Devin AI",
+  "slug": "devin-ai",
+  "type": "Web Platform",
+  "status": "active",
+  "description": "AI coding assistant - Devin AI",
+  "version": {
+    "current": "1.0",
+    "lastUpdated": "2025-01-02",
+    "history": [
+      {
+        "version": "1.0",
+        "date": "2025-01-02",
+        "changes": "Version tracked"
+      }
+    ]
+  },
+  "pricing": {
+    "model": "unknown",
+    "tiers": []
+  },
+  "models": {
+    "primary": "Unknown",
+    "supported": [],
+    "customizable": false
+  },
+  "features": {
+    "codeGeneration": true,
+    "codeCompletion": true,
+    "chatInterface": false,
+    "agentMode": false,
+    "parallelExecution": true,
+    "memorySystem": true,
+    "todoTracking": false,
+    "gitIntegration": true,
+    "multiFileEditing": true,
+    "testGeneration": true,
+    "refactoring": true,
+    "debugging": true
+  },
+  "platforms": {
+    "vscode": false,
+    "jetbrains": false,
+    "web": true,
+    "cli": false,
+    "standalone": false
+  },
+  "patterns": {
+    "conciseness": "very-high",
+    "parallelTools": true,
+    "subAgents": false,
+    "verificationGates": true,
+    "todoSystem": false,
+    "memoryContext": true,
+    "agentsFile": false
+  },
+  "documentation": {
+    "folder": "Devin AI",
+    "files": {
+      "systemPrompt": "Prompt.txt",
+      "tools": null,
+      "readme": null
+    },
+    "hasMultipleVersions": false,
+    "versions": [
+      "1.0"
+    ]
+  },
+  "links": {
+    "website": null,
+    "docs": null,
+    "github": null,
+    "pricing": null
+  },
+  "tags": [
+    "Web Platform",
+    "AI Coding"
+  ],
+  "metrics": {
+    "promptTokens": 7218.900000000001,
+    "securityRules": 4,
+    "concisenessScore": 80
+  }
+}

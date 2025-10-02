@@ -1,0 +1,225 @@
+{
+    "name": "Cursor",
+    "slug": "cursor",
+    "type": "IDE Plugin",
+    "status": "active",
+    "description": "AI-powered code editor built on VS Code with advanced agent mode, multi-file editing, and parallel task execution",
+    "version": {
+        "current": "Agent Mode",
+        "lastUpdated": "2024-12-15",
+        "history": [
+            {
+                "version": "v1.0",
+                "date": "2024-07-15",
+                "changes": "Initial release with basic chat and completion"
+            },
+            {
+                "version": "v1.2",
+                "date": "2024-08-20",
+                "changes": "Added composer mode, improved context handling"
+            },
+            {
+                "version": "Agent",
+                "date": "2024-12-15",
+                "changes": "Full agent mode with parallel execution, sub-agents, AGENTS.md context"
+            }
+        ]
+    },
+    "pricing": {
+        "model": "freemium",
+        "tiers": [
+            {
+                "name": "Free",
+                "price": "$0/month",
+                "features": [
+                    "Basic code completion",
+                    "Limited AI requests",
+                    "GPT-3.5 access"
+                ]
+            },
+            {
+                "name": "Pro",
+                "price": "$20/month",
+                "features": [
+                    "Unlimited AI requests",
+                    "GPT-4 & Claude 3.5 Sonnet",
+                    "Agent mode",
+                    "Priority support",
+                    "Advanced context"
+                ]
+            },
+            {
+                "name": "Business",
+                "price": "$40/user/month",
+                "features": [
+                    "All Pro features",
+                    "Team collaboration",
+                    "Admin dashboard",
+                    "SSO integration",
+                    "Dedicated support"
+                ]
+            }
+        ]
+    },
+    "models": {
+        "primary": "Claude 3.5 Sonnet",
+        "supported": [
+            "GPT-4o",
+            "GPT-4",
+            "Claude 3.5 Sonnet",
+            "Claude 3 Opus",
+            "GPT-3.5 Turbo"
+        ],
+        "customizable": true
+    },
+    "features": {
+        "codeGeneration": true,
+        "codeCompletion": true,
+        "chatInterface": true,
+        "agentMode": true,
+        "parallelExecution": true,
+        "memorySystem": true,
+        "todoTracking": true,
+        "gitIntegration": true,
+        "multiFileEditing": true,
+        "testGeneration": true,
+        "refactoring": true,
+        "debugging": true,
+        "composerMode": true
+    },
+    "platforms": {
+        "vscode": true,
+        "jetbrains": false,
+        "web": false,
+        "cli": false,
+        "standalone": true
+    },
+    "languages": {
+        "supported": [
+            "Python",
+            "JavaScript",
+            "TypeScript",
+            "Java",
+            "C++",
+            "C#",
+            "Go",
+            "Rust",
+            "Ruby",
+            "PHP",
+            "Swift",
+            "Kotlin",
+            "All major languages"
+        ],
+        "optimized": [
+            "Python",
+            "JavaScript",
+            "TypeScript",
+            "React",
+            "Node.js"
+        ]
+    },
+    "integrations": {
+        "github": true,
+        "gitlab": true,
+        "bitbucket": true,
+        "jira": false,
+        "linear": true
+    },
+    "security": {
+        "secretDetection": true,
+        "privateMode": true,
+        "localModel": false,
+        "dataRetention": "30 days",
+        "soc2Compliant": true
+    },
+    "patterns": {
+        "conciseness": "high",
+        "parallelTools": true,
+        "subAgents": true,
+        "verificationGates": true,
+        "todoSystem": true,
+        "memoryContext": true,
+        "agentsFile": true
+    },
+    "documentation": {
+        "folder": "Cursor Prompts",
+        "files": {
+            "systemPrompt": "Agent Prompt.txt",
+            "tools": "Agent Tools v1.0.json",
+            "readme": "README.md",
+            "versions": {
+                "v1.0": "Agent Prompt v1.0.txt",
+                "v1.2": "Agent Prompt v1.2.txt",
+                "agent": "Agent Prompt.txt"
+            }
+        },
+        "hasMultipleVersions": true,
+        "versions": [
+            "v1.0",
+            "v1.2",
+            "Agent"
+        ]
+    },
+    "links": {
+        "website": "https://cursor.com",
+        "docs": "https://docs.cursor.com",
+        "github": null,
+        "pricing": "https://cursor.com/pricing",
+        "discord": "https://discord.gg/cursor"
+    },
+    "tags": [
+        "IDE",
+        "VS Code",
+        "Agent",
+        "Multi-file",
+        "Premium",
+        "Parallel Execution",
+        "Sub-agents",
+        "Memory System",
+        "Enterprise"
+    ],
+    "metrics": {
+        "promptTokens": 8500,
+        "toolsCount": 22,
+        "securityRules": 30,
+        "concisenessScore": 85,
+        "parallelCapability": 95
+    },
+    "analysis": {
+        "strengths": [
+            "Most advanced agent mode in IDE space",
+            "Excellent parallel task execution",
+            "Strong memory and context management",
+            "Regular updates and improvements",
+            "Active community and support"
+        ],
+        "weaknesses": [
+            "Premium features require paid subscription",
+            "Can be resource-intensive",
+            "Learning curve for advanced features"
+        ],
+        "uniqueFeatures": [
+            "AGENTS.md context file system",
+            "Parallel task execution with sub-agents",
+            "Composer mode for multi-file changes",
+            "Real-time collaboration features"
+        ],
+        "bestFor": [
+            "Professional developers",
+            "Complex multi-file refactoring",
+            "Large codebases",
+            "Team collaboration",
+            "Full-stack development"
+        ]
+    },
+    "marketPosition": {
+        "popularity": "very-high",
+        "userBase": "100,000+",
+        "yearLaunched": 2024,
+        "competition": [
+            "GitHub Copilot",
+            "Windsurf",
+            "Claude Code"
+        ]
+    }
+}

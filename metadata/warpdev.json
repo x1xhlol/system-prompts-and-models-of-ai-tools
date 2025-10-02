@@ -1,0 +1,84 @@
+{
+  "name": "Warp.dev",
+  "slug": "warpdev",
+  "type": "Web Platform",
+  "status": "active",
+  "description": "AI coding assistant - Warp.dev",
+  "version": {
+    "current": "1.0",
+    "lastUpdated": "2025-01-02",
+    "history": [
+      {
+        "version": "1.0",
+        "date": "2025-01-02",
+        "changes": "Version tracked"
+      }
+    ]
+  },
+  "pricing": {
+    "model": "unknown",
+    "tiers": []
+  },
+  "models": {
+    "primary": "Unknown",
+    "supported": [],
+    "customizable": false
+  },
+  "features": {
+    "codeGeneration": true,
+    "codeCompletion": true,
+    "chatInterface": false,
+    "agentMode": true,
+    "parallelExecution": false,
+    "memorySystem": true,
+    "todoTracking": false,
+    "gitIntegration": true,
+    "multiFileEditing": false,
+    "testGeneration": true,
+    "refactoring": false,
+    "debugging": true
+  },
+  "platforms": {
+    "vscode": false,
+    "jetbrains": false,
+    "web": true,
+    "cli": false,
+    "standalone": false
+  },
+  "patterns": {
+    "conciseness": "high",
+    "parallelTools": false,
+    "subAgents": false,
+    "verificationGates": true,
+    "todoSystem": false,
+    "memoryContext": true,
+    "agentsFile": false
+  },
+  "documentation": {
+    "folder": "Warp.dev",
+    "files": {
+      "systemPrompt": "Prompt.txt",
+      "tools": null,
+      "readme": null
+    },
+    "hasMultipleVersions": false,
+    "versions": [
+      "1.0"
+    ]
+  },
+  "links": {
+    "website": null,
+    "docs": null,
+    "github": null,
+    "pricing": null
+  },
+  "tags": [
+    "Web Platform",
+    "AI Coding"
+  ],
+  "metrics": {
+    "promptTokens": 3126.5,
+    "securityRules": 2,
+    "concisenessScore": 60
+  }
+}

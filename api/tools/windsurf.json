@@ -1,0 +1,91 @@
+{
+  "version": {
+    "current": "wave 11",
+    "lastUpdated": "2025-01-02",
+    "history": [
+      {
+        "version": "wave 11",
+        "date": "2025-01-02",
+        "changes": "Version tracked"
+      },
+      {
+        "version": "wave 11",
+        "date": "2025-01-02",
+        "changes": "Version tracked"
+      }
+    ]
+  },
+  "generated": "2025-10-02T21:58:35.555337",
+  "name": "Windsurf",
+  "slug": "windsurf",
+  "type": "IDE Plugin",
+  "status": "active",
+  "description": "AI coding assistant - Windsurf",
+  "pricing": {
+    "model": "unknown",
+    "tiers": []
+  },
+  "models": {
+    "primary": "Unknown",
+    "supported": [],
+    "customizable": false
+  },
+  "features": {
+    "codeGeneration": true,
+    "codeCompletion": false,
+    "chatInterface": true,
+    "agentMode": true,
+    "parallelExecution": false,
+    "memorySystem": true,
+    "todoTracking": false,
+    "gitIntegration": false,
+    "multiFileEditing": false,
+    "testGeneration": true,
+    "refactoring": false,
+    "debugging": true
+  },
+  "platforms": {
+    "vscode": false,
+    "jetbrains": false,
+    "web": false,
+    "cli": false,
+    "standalone": false
+  },
+  "patterns": {
+    "conciseness": "medium",
+    "parallelTools": false,
+    "subAgents": false,
+    "verificationGates": true,
+    "todoSystem": false,
+    "memoryContext": true,
+    "agentsFile": false
+  },
+  "documentation": {
+    "folder": "Windsurf",
+    "files": {
+      "systemPrompt": "Prompt Wave 11.txt",
+      "tools": null,
+      "readme": null
+    },
+    "hasMultipleVersions": true,
+    "versions": [
+      "wave 11",
+      "wave 11"
+    ]
+  },
+  "links": {
+    "website": null,
+    "docs": null,
+    "github": null,
+    "pricing": null
+  },
+  "tags": [
+    "IDE Plugin",
+    "AI Coding"
+  ],
+  "metrics": {
+    "promptTokens": 2475.2000000000003,
+    "securityRules": 3,
+    "concisenessScore": 55
+  }
+}

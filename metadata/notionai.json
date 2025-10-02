@@ -1,0 +1,85 @@
+{
+  "name": "NotionAi",
+  "slug": "notionai",
+  "type": "IDE Plugin",
+  "status": "active",
+  "description": "AI coding assistant - NotionAi",
+  "version": {
+    "current": "1.0",
+    "lastUpdated": "2025-01-02",
+    "history": [
+      {
+        "version": "1.0",
+        "date": "2025-01-02",
+        "changes": "Version tracked"
+      }
+    ]
+  },
+  "pricing": {
+    "model": "unknown",
+    "tiers": []
+  },
+  "models": {
+    "primary": "Unknown",
+    "supported": [],
+    "customizable": false
+  },
+  "features": {
+    "codeGeneration": true,
+    "codeCompletion": false,
+    "chatInterface": true,
+    "agentMode": true,
+    "parallelExecution": true,
+    "memorySystem": true,
+    "todoTracking": true,
+    "gitIntegration": true,
+    "multiFileEditing": false,
+    "testGeneration": false,
+    "refactoring": false,
+    "debugging": false
+  },
+  "platforms": {
+    "vscode": false,
+    "jetbrains": false,
+    "web": false,
+    "cli": false,
+    "standalone": false
+  },
+  "patterns": {
+    "conciseness": "high",
+    "parallelTools": true,
+    "subAgents": false,
+    "verificationGates": true,
+    "todoSystem": true,
+    "memoryContext": true,
+    "agentsFile": false
+  },
+  "documentation": {
+    "folder": "NotionAi",
+    "files": {
+      "systemPrompt": "Prompt.txt",
+      "tools": "tools.json",
+      "readme": null
+    },
+    "hasMultipleVersions": false,
+    "versions": [
+      "1.0"
+    ]
+  },
+  "links": {
+    "website": null,
+    "docs": null,
+    "github": null,
+    "pricing": null
+  },
+  "tags": [
+    "IDE Plugin",
+    "AI Coding"
+  ],
+  "metrics": {
+    "promptTokens": 6650.8,
+    "securityRules": 3,
+    "concisenessScore": 60,
+    "toolsCount": 8
+  }
+}
