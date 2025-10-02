@@ -1,0 +1,19 @@
+{
+  "name": "system-prompts-site",
+  "version": "1.0.0",
+  "description": "Static site generator for System Prompts repository",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "preview": "python3 -m http.server 8000 --directory dist 2>/dev/null || python -m http.server 8000 --directory dist",
+    "dev": "node build.js && npm run preview"
+  },
+  "keywords": [
+    "static-site",
+    "generator",
+    "documentation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}
