@@ -741,7 +741,7 @@ components:
 
     TTSRequest:
       type: object
-      required: [text, voice, language, speed, format]
+      required: [text, voice, language, voice, language]
       properties:
         text: { type: string }
         voice: { type: string, example: neural }
