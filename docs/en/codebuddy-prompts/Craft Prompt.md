@@ -264,12 +264,14 @@ Parameters:
      * To delete code: Use empty REPLACE section
   5. IMPORTANT: There must be EXACTLY ONE ======= separator between <<<<<<< SEARCH and >>>>>>> REPLACE
 Usage:
+```xml
 <replace_in_file>
 <path>File path here</path>
 <diff>
 Search and replace blocks here
 </diff>
 </replace_in_file>
+```
 
 ## preview_markdown
 Description: Request to preview a Markdown file by converting it to HTML and opening it in the default web browser. This tool is useful for reviewing the rendered output of Markdown files.
@@ -373,6 +375,7 @@ Usage:
 
 ## Example 3: Requesting to make targeted edits to a file
 
+```xml
 <replace_in_file>
 <path>src/components/App.tsx</path>
 <diff>
@@ -405,6 +408,7 @@ return (
 >>>>>>> REPLACE
 </diff>
 </replace_in_file>
+```
 
 ## Example 4: Requesting to use an MCP tool
 
