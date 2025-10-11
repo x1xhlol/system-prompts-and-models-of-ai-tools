@@ -1,0 +1,13 @@
+{
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs",
+    "build": "node node_modules/vitepress/bin/vitepress.js build docs"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0",
+    "vitepress": "^1.2.3"
+  }
+}

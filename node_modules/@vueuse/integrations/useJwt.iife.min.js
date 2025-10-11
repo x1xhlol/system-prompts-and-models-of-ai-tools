@@ -1,0 +1,1 @@
+(function(u,c,t){"use strict";function n(e,a={}){const{onError:o,fallbackValue:l=null}=a,r=(i,h)=>{try{return c.jwtDecode(i,h)}catch(V){return o?.(V),l}},s=t.computed(()=>r(t.toValue(e),{header:!0})),d=t.computed(()=>r(t.toValue(e)));return{header:s,payload:d}}u.useJwt=n})(this.VueUse=this.VueUse||{},jwt_decode,Vue);

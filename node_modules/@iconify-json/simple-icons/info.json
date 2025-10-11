@@ -1,0 +1,26 @@
+{
+	"prefix": "simple-icons",
+	"name": "Simple Icons",
+	"total": 3364,
+	"version": "15.16.1",
+	"author": {
+		"name": "Simple Icons Collaborators",
+		"url": "https://github.com/simple-icons/simple-icons"
+	},
+	"license": {
+		"title": "CC0 1.0",
+		"spdx": "CC0-1.0",
+		"url": "https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md"
+	},
+	"samples": [
+		"wise",
+		"framer",
+		"vuetify",
+		"unsplash",
+		"stackblitz",
+		"mitsubishi"
+	],
+	"height": 24,
+	"category": "Logos",
+	"palette": false
+}

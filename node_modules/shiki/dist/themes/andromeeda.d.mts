@@ -1,0 +1,1 @@
+import { ThemeRegistrationRaw } from '@shikijs/core';declare const reg: ThemeRegistrationRaw;export default reg

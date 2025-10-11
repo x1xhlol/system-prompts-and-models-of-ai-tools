@@ -1,0 +1,92 @@
+{
+  "name": "@shikijs/themes",
+  "type": "module",
+  "version": "2.5.0",
+  "description": "TextMate themes for Shiki in ESM",
+  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/shikijs/shiki#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shikijs/shiki.git",
+    "directory": "packages/themes"
+  },
+  "bugs": "https://github.com/shikijs/shiki/issues",
+  "keywords": [
+    "shiki",
+    "textmate-themes"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./andromeeda": "./dist/andromeeda.mjs",
+    "./aurora-x": "./dist/aurora-x.mjs",
+    "./ayu-dark": "./dist/ayu-dark.mjs",
+    "./catppuccin-frappe": "./dist/catppuccin-frappe.mjs",
+    "./catppuccin-latte": "./dist/catppuccin-latte.mjs",
+    "./catppuccin-macchiato": "./dist/catppuccin-macchiato.mjs",
+    "./catppuccin-mocha": "./dist/catppuccin-mocha.mjs",
+    "./dark-plus": "./dist/dark-plus.mjs",
+    "./dracula": "./dist/dracula.mjs",
+    "./dracula-soft": "./dist/dracula-soft.mjs",
+    "./everforest-dark": "./dist/everforest-dark.mjs",
+    "./everforest-light": "./dist/everforest-light.mjs",
+    "./github-dark": "./dist/github-dark.mjs",
+    "./github-dark-default": "./dist/github-dark-default.mjs",
+    "./github-dark-dimmed": "./dist/github-dark-dimmed.mjs",
+    "./github-dark-high-contrast": "./dist/github-dark-high-contrast.mjs",
+    "./github-light": "./dist/github-light.mjs",
+    "./github-light-default": "./dist/github-light-default.mjs",
+    "./github-light-high-contrast": "./dist/github-light-high-contrast.mjs",
+    "./houston": "./dist/houston.mjs",
+    "./kanagawa-dragon": "./dist/kanagawa-dragon.mjs",
+    "./kanagawa-lotus": "./dist/kanagawa-lotus.mjs",
+    "./kanagawa-wave": "./dist/kanagawa-wave.mjs",
+    "./laserwave": "./dist/laserwave.mjs",
+    "./light-plus": "./dist/light-plus.mjs",
+    "./material-theme": "./dist/material-theme.mjs",
+    "./material-theme-darker": "./dist/material-theme-darker.mjs",
+    "./material-theme-lighter": "./dist/material-theme-lighter.mjs",
+    "./material-theme-ocean": "./dist/material-theme-ocean.mjs",
+    "./material-theme-palenight": "./dist/material-theme-palenight.mjs",
+    "./min-dark": "./dist/min-dark.mjs",
+    "./min-light": "./dist/min-light.mjs",
+    "./monokai": "./dist/monokai.mjs",
+    "./night-owl": "./dist/night-owl.mjs",
+    "./nord": "./dist/nord.mjs",
+    "./one-dark-pro": "./dist/one-dark-pro.mjs",
+    "./one-light": "./dist/one-light.mjs",
+    "./plastic": "./dist/plastic.mjs",
+    "./poimandres": "./dist/poimandres.mjs",
+    "./red": "./dist/red.mjs",
+    "./rose-pine": "./dist/rose-pine.mjs",
+    "./rose-pine-dawn": "./dist/rose-pine-dawn.mjs",
+    "./rose-pine-moon": "./dist/rose-pine-moon.mjs",
+    "./slack-dark": "./dist/slack-dark.mjs",
+    "./slack-ochin": "./dist/slack-ochin.mjs",
+    "./snazzy-light": "./dist/snazzy-light.mjs",
+    "./solarized-dark": "./dist/solarized-dark.mjs",
+    "./solarized-light": "./dist/solarized-light.mjs",
+    "./synthwave-84": "./dist/synthwave-84.mjs",
+    "./tokyo-night": "./dist/tokyo-night.mjs",
+    "./vesper": "./dist/vesper.mjs",
+    "./vitesse-black": "./dist/vitesse-black.mjs",
+    "./vitesse-dark": "./dist/vitesse-dark.mjs",
+    "./vitesse-light": "./dist/vitesse-light.mjs"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@shikijs/types": "2.5.0"
+  },
+  "devDependencies": {
+    "tm-themes": "^1.9.12"
+  },
+  "scripts": {
+    "build": "pnpm prepare"
+  }
+}

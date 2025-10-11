@@ -1,0 +1,32 @@
+{
+  "name": "emoji-regex-xs",
+  "version": "1.0.0",
+  "description": "A regular expression to match all emoji-only symbols",
+  "main": "index.js",
+  "module": "index.mjs",
+  "types": "index.d.ts",
+  "keywords": [
+    "unicode",
+    "regex",
+    "regexp",
+    "emoji"
+  ],
+  "license": "MIT",
+  "author": "Steven Levithan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slevithan/emoji-regex-xs.git"
+  },
+  "files": [
+    "index.d.ts",
+    "index.js",
+    "index.mjs"
+  ],
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "@unicode/unicode-15.1.0": "^1.5.2",
+    "mocha": "^10.5.2"
+  }
+}

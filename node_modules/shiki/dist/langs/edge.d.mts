@@ -1,0 +1,1 @@
+import { LanguageRegistration } from '@shikijs/core';declare const reg: LanguageRegistration[];export default reg

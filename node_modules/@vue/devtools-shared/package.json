@@ -1,0 +1,34 @@
+{
+  "name": "@vue/devtools-shared",
+  "type": "module",
+  "version": "7.7.7",
+  "author": "webfansplz",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/shared",
+    "type": "git",
+    "url": "git+https://github.com/vuejs/devtools.git"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "rfdc": "^1.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.14"
+  },
+  "scripts": {
+    "build": "tsup",
+    "prepare:type": "tsup --dts-only",
+    "stub": "tsup --watch --onSuccess 'tsup --dts-only'"
+  }
+}

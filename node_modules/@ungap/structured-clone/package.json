@@ -1,0 +1,54 @@
+{
+  "name": "@ungap/structured-clone",
+  "version": "1.3.0",
+  "description": "A structuredClone polyfill",
+  "main": "./cjs/index.js",
+  "scripts": {
+    "build": "npm run cjs && npm run rollup:json && npm run test",
+    "cjs": "ascjs esm cjs",
+    "coverage": "c8 report --reporter=text-lcov > ./coverage/lcov.info",
+    "rollup:json": "rollup --config rollup/json.config.js",
+    "test": "c8 node test/index.js"
+  },
+  "keywords": [
+    "recursion",
+    "structured",
+    "clone",
+    "algorithm"
+  ],
+  "author": "Andrea Giammarchi",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "ascjs": "^6.0.3",
+    "c8": "^10.1.3",
+    "coveralls": "^3.1.1",
+    "rollup": "^4.31.0"
+  },
+  "module": "./esm/index.js",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "default": "./cjs/index.js"
+    },
+    "./json": {
+      "import": "./esm/json.js",
+      "default": "./cjs/json.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ungap/structured-clone.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ungap/structured-clone/issues"
+  },
+  "homepage": "https://github.com/ungap/structured-clone#readme"
+}

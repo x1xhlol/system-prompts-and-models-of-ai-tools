@@ -1,4 +1,8 @@
 # These are supported funding model platforms
 patreon: lucknite
 ko_fi: lucknite
-custom: ["https://www.paypal.me/lucknitepb"]
+custom: 
+  - "https://www.paypal.me/lucknitepb"
+  - "https://afdian.com/a/tycon"
+  - "https://raw.githubusercontent.com/yancongya/system-prompts-and-models-of-ai-tools/main/assets/微信.jpg"
+  - "https://raw.githubusercontent.com/yancongya/system-prompts-and-models-of-ai-tools/main/assets/支付宝.jpg"

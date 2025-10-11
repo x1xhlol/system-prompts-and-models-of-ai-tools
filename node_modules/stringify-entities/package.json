@@ -1,0 +1,86 @@
+{
+  "name": "stringify-entities",
+  "version": "4.0.4",
+  "description": "Serialize (encode) HTML character references",
+  "license": "MIT",
+  "keywords": [
+    "stringify",
+    "encode",
+    "escape",
+    "html",
+    "character",
+    "reference",
+    "entity",
+    "entities"
+  ],
+  "repository": "wooorm/stringify-entities",
+  "bugs": "https://github.com/wooorm/stringify-entities/issues",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/wooorm"
+  },
+  "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "lib/",
+    "index.d.ts",
+    "index.js"
+  ],
+  "dependencies": {
+    "character-entities-html4": "^2.0.0",
+    "character-entities-legacy": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "c8": "^9.0.0",
+    "character-entities": "^2.0.0",
+    "prettier": "^3.0.0",
+    "remark-cli": "^11.0.0",
+    "remark-preset-wooorm": "^9.0.0",
+    "type-coverage": "^2.0.0",
+    "typescript": "^5.0.0",
+    "xo": "^0.58.0"
+  },
+  "scripts": {
+    "prepack": "npm run build && npm run format",
+    "generate": "node --conditions development build.js",
+    "build": "tsc --build --clean && tsc --build && type-coverage",
+    "format": "remark . -qfo && prettier . -w --log-level warn && xo --fix",
+    "test-api": "node --conditions development test.js",
+    "test-coverage": "c8 --check-coverage --100 --reporter lcov npm run test-api",
+    "test": "npm run generate && npm run build && npm run format && npm run test-coverage"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "semi": false,
+    "trailingComma": "none"
+  },
+  "xo": {
+    "prettier": true,
+    "rules": {
+      "unicorn/prefer-code-point": "off",
+      "unicorn/prefer-string-replace-all": "off",
+      "unicorn/numeric-separators-style": "off"
+    }
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-wooorm"
+    ]
+  },
+  "typeCoverage": {
+    "atLeast": 100,
+    "detail": true,
+    "strict": true,
+    "ignoreCatch": true
+  }
+}

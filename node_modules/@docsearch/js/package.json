@@ -1,0 +1,42 @@
+{
+  "name": "@docsearch/js",
+  "description": "JavaScript package for DocSearch, the best search experience for docs.",
+  "version": "3.8.2",
+  "license": "MIT",
+  "homepage": "https://docsearch.algolia.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/algolia/docsearch.git",
+    "directory": "packages/docsearch-js"
+  },
+  "author": {
+    "name": "Algolia, Inc.",
+    "url": "https://www.algolia.com"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist/"
+  ],
+  "source": "src/index.ts",
+  "types": "dist/esm/index.d.ts",
+  "module": "dist/esm/index.js",
+  "main": "dist/umd/index.js",
+  "umd:main": "dist/umd/index.js",
+  "unpkg": "dist/umd/index.js",
+  "jsdelivr": "dist/umd/index.js",
+  "scripts": {
+    "build:clean": "rm -rf ./dist",
+    "build:types": "tsc -p ./tsconfig.declaration.json --outDir ./dist/esm/types",
+    "build:clean-types": "rm -rf ./dist/esm/types",
+    "build": "yarn build:clean && yarn build:types && rollup --config --bundleConfigAsCjs && yarn build:clean-types",
+    "on:change": "yarn build",
+    "watch": "watch \"yarn on:change\" --ignoreDirectoryPattern \"/dist/\""
+  },
+  "dependencies": {
+    "@docsearch/react": "3.8.2",
+    "preact": "^10.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-replace": "6.0.1"
+  }
+}

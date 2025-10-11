@@ -1,0 +1,21 @@
+{
+    "name": "speakingurl",
+    "repo": "pid/speakingurl",
+    "description": "Generate of so called 'static' or 'Clean URL' or 'Pretty URL' or 'nice-looking URL' or 'Speaking URL' or 'user-friendly URL' or 'SEO-friendly URL' or 'slug' from a string.",
+    "version": "14.0.1",
+    "keywords": [
+        "slug",
+        "seo",
+        "url",
+        "speakingurl",
+        "nice url",
+        "static url"
+    ],
+    "dependencies": {},
+    "development": {},
+    "license": "BSD",
+    "main": "speakingurl.min.js",
+    "scripts": [
+        "speakingurl.min.js"
+    ]
+}

@@ -1,0 +1,106 @@
+{
+  "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+  "bugs": "https://github.com/syntax-tree/hast-util-to-html/issues",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
+  ],
+  "dependencies": {
+    "@types/hast": "^3.0.0",
+    "@types/unist": "^3.0.0",
+    "ccount": "^2.0.0",
+    "comma-separated-tokens": "^2.0.0",
+    "hast-util-whitespace": "^3.0.0",
+    "html-void-elements": "^3.0.0",
+    "mdast-util-to-hast": "^13.0.0",
+    "property-information": "^7.0.0",
+    "space-separated-tokens": "^2.0.0",
+    "stringify-entities": "^4.0.0",
+    "zwitch": "^2.0.4"
+  },
+  "description": "hast utility to serialize to HTML",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "c8": "^10.0.0",
+    "hastscript": "^9.0.0",
+    "prettier": "^3.0.0",
+    "remark-cli": "^12.0.0",
+    "remark-preset-wooorm": "^11.0.0",
+    "type-coverage": "^2.0.0",
+    "typescript": "^5.0.0",
+    "xo": "^0.60.0"
+  },
+  "exports": "./index.js",
+  "files": [
+    "index.d.ts.map",
+    "index.d.ts",
+    "index.js",
+    "lib/"
+  ],
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/unified"
+  },
+  "keywords": [
+    "hast-util",
+    "hast",
+    "html",
+    "serialize",
+    "stringify",
+    "tostring",
+    "unist",
+    "utility",
+    "util"
+  ],
+  "license": "MIT",
+  "name": "hast-util-to-html",
+  "prettier": {
+    "bracketSpacing": false,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "none",
+    "useTabs": false
+  },
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-wooorm",
+      [
+        "remark-lint-no-html",
+        false
+      ]
+    ]
+  },
+  "repository": "syntax-tree/hast-util-to-html",
+  "scripts": {
+    "build": "tsc --build --clean && tsc --build && type-coverage",
+    "format": "remark --frail --output --quiet -- . && prettier --log-level warn --write -- . && xo --fix",
+    "test-api": "node --conditions development test/index.js",
+    "test-coverage": "c8 --100 --reporter lcov -- npm run test-api",
+    "test": "npm run build && npm run format && npm run test-coverage"
+  },
+  "sideEffects": false,
+  "typeCoverage": {
+    "atLeast": 100,
+    "strict": true
+  },
+  "type": "module",
+  "version": "9.0.5",
+  "xo": {
+    "overrides": [
+      {
+        "files": [
+          "test/**/*.js"
+        ],
+        "rules": {
+          "no-await-in-loop": "off"
+        }
+      }
+    ],
+    "prettier": true,
+    "rules": {
+      "complexity": "off",
+      "unicorn/prefer-at": "off",
+      "unicorn/prefer-string-replace-all": "off"
+    }
+  }
+}

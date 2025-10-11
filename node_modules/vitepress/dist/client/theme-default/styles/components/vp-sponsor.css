@@ -1,0 +1,155 @@
+/**
+ * VPSponsors styles are defined as global because a new class gets
+ * allied in onMounted` hook and we can't use scoped style.
+ */
+.vp-sponsor {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.vp-sponsor.aside {
+  border-radius: 12px;
+}
+
+.vp-sponsor-section + .vp-sponsor-section {
+  margin-top: 4px;
+}
+
+.vp-sponsor-tier {
+  margin: 0 0 4px !important;
+  text-align: center;
+  letter-spacing: 1px !important;
+  line-height: 24px;
+  width: 100%;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  background-color: var(--vp-c-bg-soft);
+}
+
+.vp-sponsor.normal .vp-sponsor-tier {
+  padding: 13px 0 11px;
+  font-size: 14px;
+}
+
+.vp-sponsor.aside .vp-sponsor-tier {
+  padding: 9px 0 7px;
+  font-size: 12px;
+}
+
+.vp-sponsor-grid + .vp-sponsor-tier {
+  margin-top: 4px;
+}
+
+.vp-sponsor-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.vp-sponsor-grid.xmini .vp-sponsor-grid-link {
+  height: 64px;
+}
+.vp-sponsor-grid.xmini .vp-sponsor-grid-image {
+  max-width: 64px;
+  max-height: 22px;
+}
+
+.vp-sponsor-grid.mini .vp-sponsor-grid-link {
+  height: 72px;
+}
+.vp-sponsor-grid.mini .vp-sponsor-grid-image {
+  max-width: 96px;
+  max-height: 24px;
+}
+
+.vp-sponsor-grid.small .vp-sponsor-grid-link {
+  height: 96px;
+}
+.vp-sponsor-grid.small .vp-sponsor-grid-image {
+  max-width: 96px;
+  max-height: 24px;
+}
+
+.vp-sponsor-grid.medium .vp-sponsor-grid-link {
+  height: 112px;
+}
+.vp-sponsor-grid.medium .vp-sponsor-grid-image {
+  max-width: 120px;
+  max-height: 36px;
+}
+
+.vp-sponsor-grid.big .vp-sponsor-grid-link {
+  height: 184px;
+}
+.vp-sponsor-grid.big .vp-sponsor-grid-image {
+  max-width: 192px;
+  max-height: 56px;
+}
+
+.vp-sponsor-grid[data-vp-grid='2'] .vp-sponsor-grid-item {
+  width: calc((100% - 4px) / 2);
+}
+
+.vp-sponsor-grid[data-vp-grid='3'] .vp-sponsor-grid-item {
+  width: calc((100% - 4px * 2) / 3);
+}
+
+.vp-sponsor-grid[data-vp-grid='4'] .vp-sponsor-grid-item {
+  width: calc((100% - 4px * 3) / 4);
+}
+
+.vp-sponsor-grid[data-vp-grid='5'] .vp-sponsor-grid-item {
+  width: calc((100% - 4px * 4) / 5);
+}
+
+.vp-sponsor-grid[data-vp-grid='6'] .vp-sponsor-grid-item {
+  width: calc((100% - 4px * 5) / 6);
+}
+
+.vp-sponsor-grid-item {
+  flex-shrink: 0;
+  width: 100%;
+  background-color: var(--vp-c-bg-soft);
+  transition: background-color 0.25s;
+}
+
+.vp-sponsor-grid-item:hover {
+  background-color: var(--vp-c-default-soft);
+}
+
+.vp-sponsor-grid-item:hover .vp-sponsor-grid-image {
+  filter: grayscale(0) invert(0);
+}
+
+.vp-sponsor-grid-item.empty:hover {
+  background-color: var(--vp-c-bg-soft);
+}
+
+.dark .vp-sponsor-grid-item:hover {
+  background-color: var(--vp-c-white);
+}
+
+.dark .vp-sponsor-grid-item.empty:hover {
+  background-color: var(--vp-c-bg-soft);
+}
+
+.vp-sponsor-grid-link {
+  display: flex;
+}
+
+.vp-sponsor-grid-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.vp-sponsor-grid-image {
+  max-width: 100%;
+  filter: grayscale(1);
+  transition: filter 0.25s;
+}
+
+.dark .vp-sponsor-grid-image {
+  filter: grayscale(1) invert(1);
+}

@@ -1,0 +1,181 @@
+{
+  "name": "@vueuse/integrations",
+  "type": "module",
+  "version": "12.8.2",
+  "description": "Integration wrappers for utility libraries",
+  "author": "Anthony Fu <https://github.com/antfu>",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/antfu",
+  "homepage": "https://github.com/vueuse/vueuse/tree/main/packages/integrations#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vueuse/vueuse.git",
+    "directory": "packages/integrations"
+  },
+  "bugs": {
+    "url": "https://github.com/vueuse/vueuse/issues"
+  },
+  "keywords": [
+    "vue",
+    "vue-use",
+    "utils"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.cjs"
+    },
+    "./*": "./*",
+    "./useAsyncValidator": {
+      "import": "./useAsyncValidator.mjs",
+      "require": "./useAsyncValidator.cjs"
+    },
+    "./useAxios": {
+      "import": "./useAxios.mjs",
+      "require": "./useAxios.cjs"
+    },
+    "./useCookies": {
+      "import": "./useCookies.mjs",
+      "require": "./useCookies.cjs"
+    },
+    "./useDrauu": {
+      "import": "./useDrauu.mjs",
+      "require": "./useDrauu.cjs"
+    },
+    "./useFocusTrap": {
+      "import": "./useFocusTrap.mjs",
+      "require": "./useFocusTrap.cjs"
+    },
+    "./useFocusTrap/component": {
+      "import": "./useFocusTrap/component.mjs",
+      "require": "./useFocusTrap/component.cjs"
+    },
+    "./useFuse": {
+      "import": "./useFuse.mjs",
+      "require": "./useFuse.cjs"
+    },
+    "./useJwt": {
+      "import": "./useJwt.mjs",
+      "require": "./useJwt.cjs"
+    },
+    "./useNProgress": {
+      "import": "./useNProgress.mjs",
+      "require": "./useNProgress.cjs"
+    },
+    "./useQRCode": {
+      "import": "./useQRCode.mjs",
+      "require": "./useQRCode.cjs"
+    },
+    "./useChangeCase": {
+      "import": "./useChangeCase.mjs",
+      "require": "./useChangeCase.cjs"
+    },
+    "./useAsyncValidator/component": {
+      "import": "./useAsyncValidator/component.mjs",
+      "require": "./useAsyncValidator/component.cjs"
+    },
+    "./useIDBKeyval": {
+      "import": "./useIDBKeyval.mjs",
+      "require": "./useIDBKeyval.cjs"
+    },
+    "./useSortable": {
+      "import": "./useSortable.mjs",
+      "require": "./useSortable.cjs"
+    },
+    "./useSortable/component": {
+      "import": "./useSortable/component.mjs",
+      "require": "./useSortable/component.cjs"
+    }
+  },
+  "main": "./index.cjs",
+  "module": "./index.mjs",
+  "unpkg": "./index.iife.min.js",
+  "jsdelivr": "./index.iife.min.js",
+  "types": "./index.d.ts",
+  "files": [
+    "**/*.cjs",
+    "**/*.d.cts",
+    "**/*.d.mts",
+    "**/*.d.ts",
+    "**/*.js",
+    "**/*.mjs"
+  ],
+  "peerDependencies": {
+    "async-validator": "^4",
+    "axios": "^1",
+    "change-case": "^5",
+    "drauu": "^0.4",
+    "focus-trap": "^7",
+    "fuse.js": "^7",
+    "idb-keyval": "^6",
+    "jwt-decode": "^4",
+    "nprogress": "^0.2",
+    "qrcode": "^1.5",
+    "sortablejs": "^1",
+    "universal-cookie": "^7"
+  },
+  "peerDependenciesMeta": {
+    "async-validator": {
+      "optional": true
+    },
+    "axios": {
+      "optional": true
+    },
+    "change-case": {
+      "optional": true
+    },
+    "drauu": {
+      "optional": true
+    },
+    "focus-trap": {
+      "optional": true
+    },
+    "fuse.js": {
+      "optional": true
+    },
+    "idb-keyval": {
+      "optional": true
+    },
+    "jwt-decode": {
+      "optional": true
+    },
+    "nprogress": {
+      "optional": true
+    },
+    "qrcode": {
+      "optional": true
+    },
+    "sortablejs": {
+      "optional": true
+    },
+    "universal-cookie": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "vue": "^3.5.13",
+    "@vueuse/core": "12.8.2",
+    "@vueuse/shared": "12.8.2"
+  },
+  "devDependencies": {
+    "@types/nprogress": "^0.2.3",
+    "@types/qrcode": "^1.5.5",
+    "@types/sortablejs": "^1.15.8",
+    "async-validator": "^4.2.5",
+    "axios": "^1.8.1",
+    "change-case": "^5.4.4",
+    "drauu": "^0.4.3",
+    "focus-trap": "^7.6.4",
+    "fuse.js": "^7.1.0",
+    "idb-keyval": "^6.2.1",
+    "jwt-decode": "^4.0.0",
+    "nprogress": "^0.2.0",
+    "qrcode": "^1.5.4",
+    "sortablejs": "^1.15.6",
+    "universal-cookie": "^7.2.2"
+  },
+  "scripts": {
+    "build": "rollup --config=rollup.config.ts --configPlugin=rollup-plugin-esbuild"
+  }
+}

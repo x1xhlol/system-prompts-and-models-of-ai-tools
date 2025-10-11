@@ -1,0 +1,28 @@
+export declare type AutocompleteClassNames = {
+    detachedCancelButton: string;
+    detachedFormContainer: string;
+    detachedContainer: string;
+    detachedOverlay: string;
+    detachedSearchButton: string;
+    detachedSearchButtonIcon: string;
+    detachedSearchButtonPlaceholder: string;
+    detachedSearchButtonQuery: string;
+    form: string;
+    input: string;
+    inputWrapper: string;
+    inputWrapperPrefix: string;
+    inputWrapperSuffix: string;
+    item: string;
+    label: string;
+    list: string;
+    loadingIndicator: string;
+    panel: string;
+    panelLayout: string;
+    clearButton: string;
+    root: string;
+    source: string;
+    sourceFooter: string;
+    sourceHeader: string;
+    sourceNoResults: string;
+    submitButton: string;
+};

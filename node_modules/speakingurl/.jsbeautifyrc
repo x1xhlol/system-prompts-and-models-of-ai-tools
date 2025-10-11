@@ -1,0 +1,21 @@
+{
+    "ident_size": 4,
+    "indent_char": " ",
+    "indent_level": 0,
+    "var_line_reindented": true,
+    "chain_extra_indentation": 2,
+    "indent_with_tabs": false,
+    "preserve_newlines": true,
+    "max_preserve_newlines": 2,
+    "jslint_happy": true,
+    "brace_style": "collapse",
+    "keep_array_indentation": false,
+    "keep_function_indentation": false,
+    "eval_code": false,
+    "unescape_strings": false,
+    "break_chained_methods": false,
+    "space_before_conditional": true,
+    "space_after_anon_function": true,
+    "jslint_happy": false,
+    "wrap_line_length": 242
+}

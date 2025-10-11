@@ -1,0 +1,29 @@
+{
+	"name": "@iconify-json/simple-icons",
+	"description": "Simple Icons icon set in Iconify JSON format",
+	"version": "1.2.54",
+	"iconSetVersion": "15.16.1",
+	"main": "index.js",
+	"module": "index.mjs",
+	"types": "index.d.ts",
+	"homepage": "https://icon-sets.iconify.design/simple-icons/",
+	"bugs": "https://github.com/iconify/icon-sets/issues",
+	"license": "CC0-1.0",
+	"exports": {
+		"./*": "./*",
+		".": {
+			"types": "./index.d.ts",
+			"require": "./index.js",
+			"import": "./index.mjs"
+		},
+		"./icons.json": "./icons.json",
+		"./info.json": "./info.json"
+	},
+	"iconSet": {
+		"icons": "icons.json",
+		"info": "info.json"
+	},
+	"dependencies": {
+		"@iconify/types": "*"
+	}
+}
