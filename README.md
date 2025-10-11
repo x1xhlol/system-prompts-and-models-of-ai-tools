@@ -56,6 +56,16 @@ You can show your support via:
 
 ---
 
+## Sponsors
+
+# Support the Future of AI Development
+
+Sponsor the most comprehensive collection of AI system prompts and reach thousands of developers building the next generation of AI applications.
+
+[Get Started](https://www.promptleaks.dev/sponsor)
+
+---
+
 ## 📑 Table of Contents
 
   - [📑 Table of Contents](#-table-of-contents)
@@ -112,7 +122,7 @@ You can show your support via:
 
 > Open an issue.
 
-> **Latest Update:** 02/10/2025
+> **Latest Update:** 12/10/2025
 
 ---
 
