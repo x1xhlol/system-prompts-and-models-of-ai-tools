@@ -56,9 +56,9 @@ You can show your support via:
 
 ---
 
-## Sponsors
+# Sponsors
 
-# Support the Future of AI Development
+## Support the Future of AI Development
 
 Sponsor the most comprehensive collection of AI system prompts and reach thousands of developers building the next generation of AI applications.
 
