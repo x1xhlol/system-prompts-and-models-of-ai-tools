@@ -1,0 +1,45 @@
+{
+  "name": "@shikijs/engine-javascript",
+  "type": "module",
+  "version": "2.5.0",
+  "description": "Engine for Shiki using JavaScript's native RegExp",
+  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/shikijs/shiki#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shikijs/shiki.git",
+    "directory": "packages/engine-javascript"
+  },
+  "bugs": "https://github.com/shikijs/shiki/issues",
+  "keywords": [
+    "shiki",
+    "shiki-engine"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    },
+    "./raw": {
+      "types": "./dist/engine-raw.d.mts",
+      "default": "./dist/engine-raw.mjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@shikijs/vscode-textmate": "^10.0.2",
+    "oniguruma-to-es": "^3.1.0",
+    "@shikijs/types": "2.5.0"
+  },
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub"
+  }
+}

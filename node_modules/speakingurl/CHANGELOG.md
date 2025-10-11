@@ -1,0 +1,55 @@
+Changelog
+=========
+-   v14.0.1 Empty minified file; Thanks to https://github.com/redaxmedia
+-   v14.0.0 Add Swedish #101 Thanks to https://github.com/simison
+-   v13.0.0 Add Vietnamese missing charMap key #88; Thanks to https://github.com/aduycuong // [Bower] invalid-meta The "main" field cannot contain minified files #91 Thanks to https://github.com/stonio
+-   v12.0.0 Georgian Support Added! #95 Thanks to https://github.com/vdanelia and support from https://github.com/redaxmedia // Improved README (yarn install option, https links, etc.) #97 Thanks to https://github.com/apepper // Move static maps outside getSlug (performance) #96 Thanks to https://github.com/kwiatkk1 // Improved docs - lang option can be string or boolean #89 Thanks to https://github.com/stonio
+-   v11.0.0 #87 Add Finnish transliteration for symbols; #85 Added new currencies; #84 Update README.md; #83 Various czech language fixes;#82 Add lithuanian transliteration for symbols; Fix: Ω should be transliterated to O
+-   v10.0.0 Add persian; Update dependencies 
+-   v9.0.0 fix of "Title Case error while accent on First Character for each word #72"
+-   v8.0.2 fix the fix; problems with release v8.0.1 with building speakingurl-min.js
+-   v8.0.1 merge #71 Improve sprockets fix
+-   v8.0.0 Cleanup Russian transliteration to ICAO https://en.wikipedia.org/wiki/Romanization_of_Russian
+-	v7.0.0 Add Dhivehi translations; thanks to https://github.com/jawish/;
+-	v6.0.0 Add Catalan translations #64; thanks to https://github.com/alexandernst/; Add Finnish char map #65; thanks to https://github.com/jmheik/
+-	v5.0.1 bugfix #62; thanks to https://github.com/jdiprizio
+-	v5.0.0 add Ukranian #60, Latvian #57 symbol translations; update devDependencies
+-	v4.0.0 add new 'symbols' option, now you can explicit disable converting symbols, but use 'lang' specific transliteration; add romanian chars/symbol translation #52
+-	v3.0.0 add Romanian,Polish,Czech,Serbian,Latvian,Azerbaijani,add support for polish symbols
+-	v2.0.0 update charmap with Vietnamese chars) thanks to Lê Anh Tuấn https://github.com/lATAl
+-	v1.1.5 cleanup horror
+-	v1.1.4 forgot to generate the v1.1.3 minified version, but nevermind, there wasn't any code changes ;-)
+-	v1.1.3 cleanup
+-	v1.1.2 add Rails asset pipeline support (thanks to @retrorubies / https://github.com/simi\)
+-	v1.1.1 cleanup, update dev dependencies
+-	v1.1.0 custom config can be an array, all chars are added to allowed chars
+-	v1.0.0 fix #47; bumpup to semver ;-)
+-	v0.20.0 add support for hungarian #45
+-	v0.19.0 add support for burmese #44
+-	v0.18.1 cleanup, update dev dependencies
+-	v0.18.0 fix #43; add chars to turkish langCharMap; language specific character transliteration
+-	v0.17.0 pass global to anonymous function #42
+-	v0.16.0 add support for italian
+-	v0.15.0 bugfix #38
+-	v0.14.0 add support for turkish
+-	v0.13.1 after publishing corrected 0.12.5, the 0.13.0 was unpublished WTF?
+-	v0.13.0 not published
+-	v0.12.5 reverted v0.12.3
+-	v0.12.4 deprecated; change to map, mistakenly without bumpup minor version!
+-	v0.12.3 switch to gulpjs
+-	v0.12.2 corrupt gulpfile, not published to npm registry
+-	v0.12.1 update devDep
+-	v0.12.0 add support for Czech and Slovak
+-	v0.11.0 add support for Vietnamese
+-	v0.10.0 changes in greek transliteration mapping table
+-	v0.9.1 add support for Dutch
+-	v0.9.0 updated dev dependencies; because of dep. we are only compatible with node > 0.10.x
+-	v0.8.4 last version compatible with node v0.8.x
+-	v0.8.0 add feature to set 'lang' to true or false to deactivate symbol translation
+-	v0.7.0 add titleCase feature #26
+-	v0.6.0 add symbol translation pt
+-	v0.5.0 enhance custom replacement; Add support for "black-listed" words #20 - keep old behavior for single character replacement - add custom replacement for string to string|char|'' // '' ~= remove
+-	v0.4.0 add support for Arabic
+-	v0.3.0 add Indian Rupee and Pfennig to currency map
+-	v0.2.21 fix #17; if symbol at the end of input string
+-	v0.2.18 add amd-support

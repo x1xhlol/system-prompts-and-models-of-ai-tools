@@ -1,141 +1,116 @@
-# AI System Prompts Hub (EN)
+---
+layout: home
 
-:::info
-Explore AI tool system prompts and models.
-:::
+hero:
+  name: "AI Prompts Hub"
+  text: "Remastered Edition"
+  tagline: This project is a secondary development based on the original. It has been refactored by yancongya into a modern documentation site using VitePress, providing a better browsing experience, bilingual support, and dark/light mode.
+  image:
+    src: /logo.svg
+    alt: AI Prompts Hub Logo
+  actions:
+    - theme: brand
+      text: My GitHub
+      link: https://github.com/yancongya
+    - theme: alt
+      text: Project Repository
+      link: https://github.com/yancongya/system-prompts-and-models-of-ai-tools
+    - theme: alt
+      text: Sponsor on Afdian
+      link: https://afdian.com/a/tycon
 
-<div class="grid cards" grid="@lg:3 @2xl:4">
-
-- **Amp**
-  > AI tool prompts and resources
-  > [Explore](/en/amp/)
-
-- **Anthropic**
-  > AI tool prompts and resources
-  > [Explore](/en/anthropic/)
-
-- **assets**
-  > AI tool prompts and resources
-  > [Explore](/en/assets/)
-
-- **Augment Code**
-  > AI tool prompts and resources
-  > [Explore](/en/augment-code/)
-
-- **Claude Code**
-  > AI tool prompts and resources
-  > [Explore](/en/claude-code/)
-
-- **Cluely**
-  > AI tool prompts and resources
-  > [Explore](/en/cluely/)
-
-- **CodeBuddy Prompts**
-  > AI tool prompts and resources
-  > [Explore](/en/codebuddy-prompts/)
-
-- **Comet Assistant**
-  > AI tool prompts and resources
-  > [Explore](/en/comet-assistant/)
-
-- **Cursor Prompts**
-  > AI tool prompts and resources
-  > [Explore](/en/cursor-prompts/)
-
-- **Devin AI**
-  > AI tool prompts and resources
-  > [Explore](/en/devin-ai/)
-
-- **dia**
-  > AI tool prompts and resources
-  > [Explore](/en/dia/)
-
-- **Junie**
-  > AI tool prompts and resources
-  > [Explore](/en/junie/)
-
-- **Kiro**
-  > AI tool prompts and resources
-  > [Explore](/en/kiro/)
-
-- **Leap.new**
-  > AI tool prompts and resources
-  > [Explore](/en/leapnew/)
-
-- **Lovable**
-  > AI tool prompts and resources
-  > [Explore](/en/lovable/)
-
-- **Manus Agent Tools & Prompt**
-  > AI tool prompts and resources
-  > [Explore](/en/manus-agent-tools--prompt/)
-
-- **NotionAi**
-  > AI tool prompts and resources
-  > [Explore](/en/notionai/)
-
-- **Open Source prompts**
-  > AI tool prompts and resources
-  > [Explore](/en/open-source-prompts/)
-
-- **Orchids.app**
-  > AI tool prompts and resources
-  > [Explore](/en/orchidsapp/)
-
-- **Perplexity**
-  > AI tool prompts and resources
-  > [Explore](/en/perplexity/)
-
-- **Poke**
-  > AI tool prompts and resources
-  > [Explore](/en/poke/)
-
-- **Qoder**
-  > AI tool prompts and resources
-  > [Explore](/en/qoder/)
-
-- **Replit**
-  > AI tool prompts and resources
-  > [Explore](/en/replit/)
-
-- **Same.dev**
-  > AI tool prompts and resources
-  > [Explore](/en/samedev/)
-
-- **Trae**
-  > AI tool prompts and resources
-  > [Explore](/en/trae/)
-
-- **Traycer AI**
-  > AI tool prompts and resources
-  > [Explore](/en/traycer-ai/)
-
-- **v0 Prompts and Tools**
-  > AI tool prompts and resources
-  > [Explore](/en/v0-prompts-and-tools/)
-
-- **VSCode Agent**
-  > AI tool prompts and resources
-  > [Explore](/en/vscode-agent/)
-
-- **Warp.dev**
-  > AI tool prompts and resources
-  > [Explore](/en/warpdev/)
-
-- **Windsurf**
-  > AI tool prompts and resources
-  > [Explore](/en/windsurf/)
-
-- **Xcode**
-  > AI tool prompts and resources
-  > [Explore](/en/xcode/)
-
-- **Z.ai Code**
-  > AI tool prompts and resources
-  > [Explore](/en/zai-code/)
-
-</div>
-
-:::tip Update
-Auto-synced from original repo.
-:::
+features:
+  - title: Amp
+    details: Prompts and models for Amp.
+    link: /en/amp/
+  - title: Anthropic
+    details: Prompts and models for Anthropic.
+    link: /en/anthropic/
+  - title: Augment Code
+    details: Prompts and models for Augment Code.
+    link: /en/augment-code/
+  - title: Claude Code
+    details: Prompts and models for Claude Code.
+    link: /en/claude-code/
+  - title: Cluely
+    details: Prompts and models for Cluely.
+    link: /en/cluely/
+  - title: Codebuddy Prompts
+    details: Prompts and models for Codebuddy Prompts.
+    link: /en/codebuddy-prompts/
+  - title: Comet Assistant
+    details: Prompts and models for Comet Assistant.
+    link: /en/comet-assistant/
+  - title: Cursor Prompts
+    details: Prompts and models for Cursor Prompts.
+    link: /en/cursor-prompts/
+  - title: Devin AI
+    details: Prompts and models for Devin AI.
+    link: /en/devin-ai/
+  - title: Dia
+    details: Prompts and models for Dia.
+    link: /en/dia/
+  - title: Junie
+    details: Prompts and models for Junie.
+    link: /en/junie/
+  - title: Kiro
+    details: Prompts and models for Kiro.
+    link: /en/kiro/
+  - title: Leapnew
+    details: Prompts and models for Leapnew.
+    link: /en/leapnew/
+  - title: Lovable
+    details: Prompts and models for Lovable.
+    link: /en/lovable/
+  - title: Manus Agent Tools Prompt
+    details: Prompts and models for Manus Agent Tools Prompt.
+    link: /en/manus-agent-tools--prompt/
+  - title: Notionai
+    details: Prompts and models for Notionai.
+    link: /en/notionai/
+  - title: Open Source Prompts
+    details: Prompts and models for Open Source Prompts.
+    link: /en/open-source-prompts/
+  - title: Orchidsapp
+    details: Prompts and models for Orchidsapp.
+    link: /en/orchidsapp/
+  - title: Perplexity
+    details: Prompts and models for Perplexity.
+    link: /en/perplexity/
+  - title: Poke
+    details: Prompts and models for Poke.
+    link: /en/poke/
+  - title: Qoder
+    details: Prompts and models for Qoder.
+    link: /en/qoder/
+  - title: Replit
+    details: Prompts and models for Replit.
+    link: /en/replit/
+  - title: Samedev
+    details: Prompts and models for Samedev.
+    link: /en/samedev/
+  - title: Trae
+    details: Prompts and models for Trae.
+    link: /en/trae/
+  - title: Traycer Ai
+    details: Prompts and models for Traycer Ai.
+    link: /en/traycer-ai/
+  - title: V0 Prompts And Tools
+    details: Prompts and models for V0 Prompts And Tools.
+    link: /en/v0-prompts-and-tools/
+  - title: Vscode Agent
+    details: Prompts and models for Vscode Agent.
+    link: /en/vscode-agent/
+  - title: Warpdev
+    details: Prompts and models for Warpdev.
+    link: /en/warpdev/
+  - title: Windsurf
+    details: Prompts and models for Windsurf.
+    link: /en/windsurf/
+  - title: Xcode
+    details: Prompts and models for Xcode.
+    link: /en/xcode/
+  - title: Zai Code
+    details: Prompts and models for Zai Code.
+    link: /en/zai-code/
+---

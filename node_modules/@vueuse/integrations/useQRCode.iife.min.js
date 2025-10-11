@@ -1,0 +1,1 @@
+(function(i,e,o,t){"use strict";function a(n,c){const s=e.toRef(n),u=t.shallowRef("");return t.watch(s,async l=>{s.value&&e.isClient&&(u.value=await o.toDataURL(l,c))},{immediate:!0}),u}i.useQRCode=a})(this.VueUse=this.VueUse||{},VueUse,QRCode,Vue);

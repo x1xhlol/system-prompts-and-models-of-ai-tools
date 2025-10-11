@@ -1,3 +1,96 @@
+# Manus AI 工具总结
+
+Manus AI 提供了以下核心工具来执行各种任务：
+
+1. **message_notify_user** - 向用户发送消息
+   - 用于确认收到消息、提供进度更新、报告任务完成或解释方法变更
+   - 支持文本消息和附件
+
+2. **message_ask_user** - 向用户提问
+   - 用于请求澄清、确认或收集额外信息
+   - 支持问题相关文件或参考资料作为附件
+
+3. **file_read** - 读取文件内容
+   - 用于检查文件内容、分析日志或读取配置文件
+   - 支持指定行范围和sudo权限
+
+4. **file_write** - 写入或追加内容到文件
+   - 用于创建新文件、追加内容或修改现有文件
+   - 支持追加模式和换行控制
+
+5. **file_str_replace** - 替换文件中的指定字符串
+   - 用于更新文件中的特定内容或修复代码错误
+
+6. **file_find_in_content** - 在文件内容中搜索匹配文本
+   - 用于查找文件中的特定内容或模式
+
+7. **file_find_by_name** - 按名称模式查找文件
+   - 用于定位具有特定命名模式的文件
+
+8. **shell_exec** - 在指定shell会话中执行命令
+   - 用于运行代码、安装包或管理文件
+
+9. **shell_view** - 查看指定shell会话的内容
+   - 用于检查命令执行结果或监控输出
+
+10. **shell_wait** - 等待指定shell会话中的运行进程返回
+    - 用于等待需要较长时间运行的命令
+
+11. **shell_write_to_process** - 向指定shell会话中的运行进程写入输入
+    - 用于响应交互式命令提示
+
+12. **shell_kill_process** - 终止指定shell会话中的运行进程
+    - 用于停止长时间运行的进程或处理冻结的命令
+
+13. **browser_view** - 查看当前浏览器页面的内容
+    - 用于检查之前打开页面的最新状态
+
+14. **browser_navigate** - 导航浏览器到指定URL
+    - 用于访问新页面
+
+15. **browser_restart** - 重启浏览器并导航到指定URL
+    - 用于重置浏览器状态
+
+16. **browser_click** - 点击当前浏览器页面上的元素
+    - 用于点击页面元素
+
+17. **browser_input** - 覆盖当前浏览器页面上可编辑元素中的文本
+    - 用于在输入字段中填充内容
+
+18. **browser_move_mouse** - 在当前浏览器页面上移动光标到指定位置
+    - 用于模拟用户鼠标移动
+
+19. **browser_press_key** - 在当前浏览器页面上模拟按键
+    - 用于特定键盘操作
+
+20. **browser_select_option** - 从当前浏览器页面上的下拉列表元素中选择指定选项
+    - 用于选择下拉菜单选项
+
+21. **browser_scroll_up** - 向上滚动当前浏览器页面
+    - 用于查看上方内容或返回页面顶部
+
+22. **browser_scroll_down** - 向下滚动当前浏览器页面
+    - 用于查看下方内容或跳转到页面底部
+
+23. **browser_console_exec** - 在浏览器控制台中执行JavaScript代码
+    - 用于执行自定义脚本
+
+24. **browser_console_view** - 查看浏览器控制台输出
+    - 用于检查JavaScript日志或调试页面错误
+
+25. **info_search_web** - 使用搜索引擎搜索网页
+    - 用于获取最新信息或查找参考资料
+
+26. **deploy_expose_port** - 暴露指定本地端口以供临时公共访问
+    - 用于为服务提供临时公共访问
+
+27. **deploy_apply_deployment** - 部署网站或应用程序到公共生产环境
+    - 用于部署或更新静态网站或应用程序
+
+28. **make_manus_page** - 从本地MDX文件制作Manus页面
+
+29. **idle** - 特殊工具，表示已完成所有任务并即将进入空闲状态
+
 ## tools.json
 
 ```json
@@ -6,13 +99,13 @@
     "type": "function",
     "function": {
       "name": "message_notify_user",
-      "description": "Send a message to user without requiring a response. Use for acknowledging receipt of messages, providing progress updates, reporting task completion, or explaining changes in approach.",
+      "description": "向用户发送消息而无需回复。用于确认收到消息、提供进度更新、报告任务完成或解释方法变更。",
       "parameters": {
         "type": "object",
         "properties": {
           "text": {
             "type": "string",
-            "description": "Message text to display to user"
+            "description": "要显示给用户的消息文本"
           },
           "attachments": {
             "anyOf": [
@@ -26,7 +119,7 @@
                 "type": "array"
               }
             ],
-            "description": "(Optional) List of attachments to show to user, can be file paths or URLs"
+            "description": "（可选）要显示给用户的附件列表，可以是文件路径或URL"
           }
         },
         "required": [
@@ -39,13 +132,13 @@
     "type": "function",
     "function": {
       "name": "message_ask_user",
-      "description": "Ask user a question and wait for response. Use for requesting clarification, asking for confirmation, or gathering additional information.",
+      "description": "向用户提问并等待回复。用于请求澄清、确认或收集额外信息。",
       "parameters": {
         "type": "object",
         "properties": {
           "text": {
             "type": "string",
-            "description": "Question text to present to user"
+            "description": "要呈现给用户的问题文本"
           },
           "attachments": {
             "anyOf": [
@@ -59,7 +152,7 @@
                 "type": "array"
               }
             ],
-            "description": "(Optional) List of question-related files or reference materials"
+            "description": "（可选）与问题相关的文件或参考资料列表"
           },
           "suggest_user_takeover": {
             "type": "string",
@@ -67,7 +160,7 @@
               "none",
               "browser"
             ],
-            "description": "(Optional) Suggested operation for user takeover"
+            "description": "（可选）建议用户接管的操作"
           }
         },
         "required": [
@@ -80,25 +173,25 @@
     "type": "function",
     "function": {
       "name": "file_read",
-      "description": "Read file content. Use for checking file contents, analyzing logs, or reading configuration files.",
+      "description": "读取文件内容。用于检查文件内容、分析日志或读取配置文件。",
       "parameters": {
         "type": "object",
         "properties": {
           "file": {
             "type": "string",
-            "description": "Absolute path of the file to read"
+            "description": "要读取的文件的绝对路径"
           },
           "start_line": {
             "type": "integer",
-            "description": "(Optional) Starting line to read from, 0-based"
+            "description": "（可选）开始读取的行号，从0开始"
           },
           "end_line": {
             "type": "integer",
-            "description": "(Optional) Ending line number (exclusive)"
+            "description": "（可选）结束行号（不包括）"
           },
           "sudo": {
             "type": "boolean",
-            "description": "(Optional) Whether to use sudo privileges"
+            "description": "（可选）是否使用sudo权限"
           }
         },
         "required": [
@@ -111,33 +204,33 @@
     "type": "function",
     "function": {
       "name": "file_write",
-      "description": "Overwrite or append content to a file. Use for creating new files, appending content, or modifying existing files.",
+      "description": "覆盖或追加内容到文件。用于创建新文件、追加内容或修改现有文件。",
       "parameters": {
         "type": "object",
         "properties": {
           "file": {
             "type": "string",
-            "description": "Absolute path of the file to write to"
+            "description": "要写入的文件的绝对路径"
           },
           "content": {
             "type": "string",
-            "description": "Text content to write"
+            "description": "要写入的文本内容"
           },
           "append": {
             "type": "boolean",
-            "description": "(Optional) Whether to use append mode"
+            "description": "（可选）是否使用追加模式"
           },
           "leading_newline": {
             "type": "boolean",
-            "description": "(Optional) Whether to add a leading newline"
+            "description": "（可选）是否添加前导换行符"
           },
           "trailing_newline": {
             "type": "boolean",
-            "description": "(Optional) Whether to add a trailing newline"
+            "description": "（可选）是否添加尾随换行符"
           },
           "sudo": {
             "type": "boolean",
-            "description": "(Optional) Whether to use sudo privileges"
+            "description": "（可选）是否使用sudo权限"
           }
         },
         "required": [
@@ -151,25 +244,25 @@
     "type": "function",
     "function": {
       "name": "file_str_replace",
-      "description": "Replace specified string in a file. Use for updating specific content in files or fixing errors in code.",
+      "description": "替换文件中的指定字符串。用于更新文件中的特定内容或修复代码中的错误。",
       "parameters": {
         "type": "object",
         "properties": {
           "file": {
             "type": "string",
-            "description": "Absolute path of the file to perform replacement on"
+            "description": "要执行替换的文件的绝对路径"
           },
           "old_str": {
             "type": "string",
-            "description": "Original string to be replaced"
+            "description": "要被替换的原始字符串"
           },
           "new_str": {
             "type": "string",
-            "description": "New string to replace with"
+            "description": "要替换的新字符串"
           },
           "sudo": {
             "type": "boolean",
-            "description": "(Optional) Whether to use sudo privileges"
+            "description": "（可选）是否使用sudo权限"
           }
         },
         "required": [
@@ -184,21 +277,21 @@
     "type": "function",
     "function": {
       "name": "file_find_in_content",
-      "description": "Search for matching text within file content. Use for finding specific content or patterns in files.",
+      "description": "在文件内容中搜索匹配文本。用于查找文件中的特定内容或模式。",
       "parameters": {
         "type": "object",
         "properties": {
           "file": {
             "type": "string",
-            "description": "Absolute path of the file to search within"
+            "description": "要在其中搜索的文件的绝对路径"
           },
           "regex": {
             "type": "string",
-            "description": "Regular expression pattern to match"
+            "description": "要匹配的正则表达式模式"
           },
           "sudo": {
             "type": "boolean",
-            "description": "(Optional) Whether to use sudo privileges"
+            "description": "（可选）是否使用sudo权限"
           }
         },
         "required": [
@@ -212,17 +305,17 @@
     "type": "function",
     "function": {
       "name": "file_find_by_name",
-      "description": "Find files by name pattern in specified directory. Use for locating files with specific naming patterns.",
+      "description": "在指定目录中按名称模式查找文件。用于定位具有特定命名模式的文件。",
       "parameters": {
         "type": "object",
         "properties": {
           "path": {
             "type": "string",
-            "description": "Absolute path of directory to search"
+            "description": "要搜索的目录的绝对路径"
           },
           "glob": {
             "type": "string",
-            "description": "Filename pattern using glob syntax wildcards"
+            "description": "使用glob语法通配符的文件名模式"
           }
         },
         "required": [
@@ -236,21 +329,21 @@
     "type": "function",
     "function": {
       "name": "shell_exec",
-      "description": "Execute commands in a specified shell session. Use for running code, installing packages, or managing files.",
+      "description": "在指定的shell会话中执行命令。用于运行代码、安装包或管理文件。",
       "parameters": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique identifier of the target shell session"
+            "description": "目标shell会话的唯一标识符"
           },
           "exec_dir": {
             "type": "string",
-            "description": "Working directory for command execution (must use absolute path)"
+            "description": "命令执行的工作目录（必须使用绝对路径）"
           },
           "command": {
             "type": "string",
-            "description": "Shell command to execute"
+            "description": "要执行的shell命令"
           }
         },
         "required": [
@@ -265,13 +358,13 @@
     "type": "function",
     "function": {
       "name": "shell_view",
-      "description": "View the content of a specified shell session. Use for checking command execution results or monitoring output.",
+      "description": "查看指定shell会话的内容。用于检查命令执行结果或监控输出。",
       "parameters": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique identifier of the target shell session"
+            "description": "目标shell会话的唯一标识符"
           }
         },
         "required": [
@@ -284,17 +377,17 @@
     "type": "function",
     "function": {
       "name": "shell_wait",
-      "description": "Wait for the running process in a specified shell session to return. Use after running commands that require longer runtime.",
+      "description": "等待指定shell会话中的运行进程返回。用于运行需要较长时间的命令后。",
       "parameters": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique identifier of the target shell session"
+            "description": "目标shell会话的唯一标识符"
           },
           "seconds": {
             "type": "integer",
-            "description": "Wait duration in seconds"
+            "description": "等待时间（秒）"
           }
         },
         "required": [
@@ -307,21 +400,21 @@
     "type": "function",
     "function": {
       "name": "shell_write_to_process",
-      "description": "Write input to a running process in a specified shell session. Use for responding to interactive command prompts.",
+      "description": "向指定shell会话中的运行进程写入输入。用于响应交互式命令提示。",
       "parameters": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique identifier of the target shell session"
+            "description": "目标shell会话的唯一标识符"
           },
           "input": {
             "type": "string",
-            "description": "Input content to write to the process"
+            "description": "要写入进程的输入内容"
           },
           "press_enter": {
             "type": "boolean",
-            "description": "Whether to press Enter key after input"
+            "description": "输入后是否按回车键"
           }
         },
         "required": [
@@ -336,13 +429,13 @@
     "type": "function",
     "function": {
       "name": "shell_kill_process",
-      "description": "Terminate a running process in a specified shell session. Use for stopping long-running processes or handling frozen commands.",
+      "description": "终止指定shell会话中的运行进程。用于停止长时间运行的进程或处理冻结的命令。",
       "parameters": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique identifier of the target shell session"
+            "description": "目标shell会话的唯一标识符"
           }
         },
         "required": [
@@ -355,7 +448,7 @@
     "type": "function",
     "function": {
       "name": "browser_view",
-      "description": "View content of the current browser page. Use for checking the latest state of previously opened pages.",
+      "description": "查看当前浏览器页面的内容。用于检查之前打开页面的最新状态。",
       "parameters": {
         "type": "object"
       }
@@ -365,13 +458,13 @@
     "type": "function",
     "function": {
       "name": "browser_navigate",
-      "description": "Navigate browser to specified URL. Use when accessing new pages is needed.",
+      "description": "导航浏览器到指定URL。用于需要访问新页面时。",
       "parameters": {
         "type": "object",
         "properties": {
           "url": {
             "type": "string",
-            "description": "Complete URL to visit. Must include protocol prefix."
+            "description": "要访问的完整URL。必须包含协议前缀。"
           }
         },
         "required": [
@@ -384,13 +477,13 @@
     "type": "function",
     "function": {
       "name": "browser_restart",
-      "description": "Restart browser and navigate to specified URL. Use when browser state needs to be reset.",
+      "description": "重启浏览器并导航到指定URL。用于需要重置浏览器状态时。",
       "parameters": {
         "type": "object",
         "properties": {
           "url": {
             "type": "string",
-            "description": "Complete URL to visit after restart. Must include protocol prefix."
+            "description": "重启后要访问的完整URL。必须包含协议前缀。"
           }
         },
         "required": [
@@ -403,21 +496,21 @@
     "type": "function",
     "function": {
       "name": "browser_click",
-      "description": "Click on elements in the current browser page. Use when clicking page elements is needed.",
+      "description": "点击当前浏览器页面上的元素。用于需要点击页面元素时。",
       "parameters": {
         "type": "object",
         "properties": {
           "index": {
             "type": "integer",
-            "description": "(Optional) Index number of the element to click"
+            "description": "（可选）要点击的元素的索引号"
           },
           "coordinate_x": {
             "type": "number",
-            "description": "(Optional) X coordinate of click position"
+            "description": "（可选）点击位置的X坐标"
           },
           "coordinate_y": {
             "type": "number",
-            "description": "(Optional) Y coordinate of click position"
+            "description": "（可选）点击位置的Y坐标"
           }
         }
       }
@@ -427,29 +520,29 @@
     "type": "function",
     "function": {
       "name": "browser_input",
-      "description": "Overwrite text in editable elements on the current browser page. Use when filling content in input fields.",
+      "description": "覆盖当前浏览器页面上可编辑元素中的文本。用于在输入字段中填充内容。",
       "parameters": {
         "type": "object",
         "properties": {
           "index": {
             "type": "integer",
-            "description": "(Optional) Index number of the element to overwrite text"
+            "description": "（可选）要覆盖文本的元素的索引号"
           },
           "coordinate_x": {
             "type": "number",
-            "description": "(Optional) X coordinate of the element to overwrite text"
+            "description": "（可选）要覆盖文本的元素的X坐标"
           },
           "coordinate_y": {
             "type": "number",
-            "description": "(Optional) Y coordinate of the element to overwrite text"
+            "description": "（可选）要覆盖文本的元素的Y坐标"
           },
           "text": {
             "type": "string",
-            "description": "Complete text content to overwrite"
+            "description": "要覆盖的完整文本内容"
           },
           "press_enter": {
             "type": "boolean",
-            "description": "Whether to press Enter key after input"
+            "description": "输入后是否按回车键"
           }
         },
         "required": [
@@ -463,17 +556,17 @@
     "type": "function",
     "function": {
       "name": "browser_move_mouse",
-      "description": "Move cursor to specified position on the current browser page. Use when simulating user mouse movement.",
+      "description": "在当前浏览器页面上移动光标到指定位置。用于模拟用户鼠标移动。",
       "parameters": {
         "type": "object",
         "properties": {
           "coordinate_x": {
             "type": "number",
-            "description": "X coordinate of target cursor position"
+            "description": "目标光标位置的X坐标"
           },
           "coordinate_y": {
             "type": "number",
-            "description": "Y coordinate of target cursor position"
+            "description": "目标光标位置的Y坐标"
           }
         },
         "required": [
@@ -487,13 +580,13 @@
     "type": "function",
     "function": {
       "name": "browser_press_key",
-      "description": "Simulate key press in the current browser page. Use when specific keyboard operations are needed.",
+      "description": "在当前浏览器页面上模拟按键。用于需要特定键盘操作时。",
       "parameters": {
         "type": "object",
         "properties": {
           "key": {
             "type": "string",
-            "description": "Key name to simulate (e.g., Enter, Tab, ArrowUp), supports key combinations (e.g., Control+Enter)."
+            "description": "要模拟的键名（例如，Enter, Tab, ArrowUp），支持组合键（例如，Control+Enter）。"
           }
         },
         "required": [
@@ -506,17 +599,17 @@
     "type": "function",
     "function": {
       "name": "browser_select_option",
-      "description": "Select specified option from dropdown list element in the current browser page. Use when selecting dropdown menu options.",
+      "description": "从当前浏览器页面上的下拉列表元素中选择指定选项。用于选择下拉菜单选项。",
       "parameters": {
         "type": "object",
         "properties": {
           "index": {
             "type": "integer",
-            "description": "Index number of the dropdown list element"
+            "description": "下拉列表元素的索引号"
           },
           "option": {
             "type": "integer",
-            "description": "Option number to select, starting from 0."
+            "description": "要选择的选项号，从0开始。"
           }
         },
         "required": [
@@ -530,13 +623,13 @@
     "type": "function",
     "function": {
       "name": "browser_scroll_up",
-      "description": "Scroll up the current browser page. Use when viewing content above or returning to page top.",
+      "description": "向上滚动当前浏览器页面。用于查看上方内容或返回页面顶部。",
       "parameters": {
         "type": "object",
         "properties": {
           "to_top": {
             "type": "boolean",
-            "description": "(Optional) Whether to scroll directly to page top instead of one viewport up."
+            "description": "（可选）是否直接滚动到页面顶部而不是向上滚动一个视口。"
           }
         }
       }
@@ -546,13 +639,13 @@
     "type": "function",
     "function": {
       "name": "browser_scroll_down",
-      "description": "Scroll down the current browser page. Use when viewing content below or jumping to page bottom.",
+      "description": "向下滚动当前浏览器页面。用于查看下方内容或跳转到页面底部。",
       "parameters": {
         "type": "object",
         "properties": {
           "to_bottom": {
             "type": "boolean",
-            "description": "(Optional) Whether to scroll directly to page bottom instead of one viewport down."
+            "description": "（可选）是否直接滚动到页面底部而不是向下滚动一个视口。"
           }
         }
       }
@@ -562,13 +655,13 @@
     "type": "function",
     "function": {
       "name": "browser_console_exec",
-      "description": "Execute JavaScript code in browser console. Use when custom scripts need to be executed.",
+      "description": "在浏览器控制台中执行JavaScript代码。用于需要执行自定义脚本时。",
       "parameters": {
         "type": "object",
         "properties": {
           "javascript": {
             "type": "string",
-            "description": "JavaScript code to execute. Note that the runtime environment is browser console."
+            "description": "要执行的JavaScript代码。注意运行环境是浏览器控制台。"
           }
         },
         "required": [
@@ -581,13 +674,13 @@
     "type": "function",
     "function": {
       "name": "browser_console_view",
-      "description": "View browser console output. Use when checking JavaScript logs or debugging page errors.",
+      "description": "查看浏览器控制台输出。用于检查JavaScript日志或调试页面错误。",
       "parameters": {
         "type": "object",
         "properties": {
           "max_lines": {
             "type": "integer",
-            "description": "(Optional) Maximum number of log lines to return."
+            "description": "（可选）要返回的最大日志行数。"
           }
         }
       }
@@ -597,13 +690,13 @@
     "type": "function",
     "function": {
       "name": "info_search_web",
-      "description": "Search web pages using search engine. Use for obtaining latest information or finding references.",
+      "description": "使用搜索引擎搜索网页。用于获取最新信息或查找参考资料。",
       "parameters": {
         "type": "object",
         "properties": {
           "query": {
             "type": "string",
-            "description": "Search query in Google search style, using 3-5 keywords."
+            "description": "Google搜索风格的搜索查询，使用3-5个关键词。"
           },
           "date_range": {
             "type": "string",
@@ -615,7 +708,7 @@
               "past_month",
               "past_year"
             ],
-            "description": "(Optional) Time range filter for search results."
+            "description": "（可选）搜索结果的时间范围过滤器。"
           }
         },
         "required": [
@@ -628,13 +721,13 @@
     "type": "function",
     "function": {
       "name": "deploy_expose_port",
-      "description": "Expose specified local port for temporary public access. Use when providing temporary public access for services.",
+      "description": "暴露指定本地端口以供临时公共访问。用于为服务提供临时公共访问。",
       "parameters": {
         "type": "object",
         "properties": {
           "port": {
             "type": "integer",
-            "description": "Local port number to expose"
+            "description": "要暴露的本地端口号"
           }
         },
         "required": [
@@ -647,7 +740,7 @@
     "type": "function",
     "function": {
       "name": "deploy_apply_deployment",
-      "description": "Deploy website or application to public production environment. Use when deploying or updating static websites or applications.",
+      "description": "将网站或应用程序部署到公共生产环境。用于部署或更新静态网站或应用程序。",
       "parameters": {
         "type": "object",
         "properties": {
@@ -657,11 +750,11 @@
               "static",
               "nextjs"
             ],
-            "description": "Type of website or application to deploy."
+            "description": "要部署的网站或应用程序的类型。"
           },
           "local_dir": {
             "type": "string",
-            "description": "Absolute path of local directory to deploy."
+            "description": "要部署的本地目录的绝对路径。"
           }
         },
         "required": [
@@ -675,13 +768,13 @@
     "type": "function",
     "function": {
       "name": "make_manus_page",
-      "description": "Make a Manus Page from a local MDX file.",
+      "description": "从本地MDX文件制作Manus页面。",
       "parameters": {
         "type": "object",
         "properties": {
           "mdx_file_path": {
             "type": "string",
-            "description": "Absolute path of the source MDX file"
+            "description": "源MDX文件的绝对路径"
           }
         },
         "required": [
@@ -694,7 +787,7 @@
     "type": "function",
     "function": {
       "name": "idle",
-      "description": "A special tool to indicate you have completed all tasks and are about to enter idle state.",
+      "description": "一个特殊工具，表示您已完成所有任务并即将进入空闲状态。",
       "parameters": {
         "type": "object"
       }

@@ -94,7 +94,7 @@
       - `ROLLBACK`
       - `END`
 
-      注意：这不适用于`DO $ BEGIN ... END $`块，它们是PL/pgSQL匿名块！
+      注意：这不适用于`DO $ BEGIN ... END 块，它们是PL/pgSQL匿名块！
 
       编写SQL迁移：
       关键：对于每个数据库更改，你必须提供两个操作：
@@ -126,62 +126,62 @@
           </boltAction>
         </boltArtifact>
 
-    - IMPORTANT: The SQL content must be identical in both actions to ensure consistency between the migration file and the executed query.
-    - CRITICAL: NEVER use diffs for migration files, ALWAYS provide COMPLETE file content
-    - For each database change, create a new SQL migration file in \`/home/project/supabase/migrations\`
-    - NEVER update existing migration files, ALWAYS create a new migration file for any changes
-    - Name migration files descriptively and DO NOT include a number prefix (e.g., \`create_users.sql\`, \`add_posts_table.sql\`).
+    - 重要：SQL内容在两个操作中必须完全相同，以确保迁移文件和执行查询之间的一致性。
+    - 关键：永远不要对迁移文件使用差异，始终提供完整的文件内容
+    - 对于每个数据库更改，在\`/home/project/supabase/migrations\`中创建一个新的SQL迁移文件
+    - 永远不要更新现有的迁移文件，始终为任何更改创建新的迁移文件
+    - 描述性地命名迁移文件，不要包含数字前缀（例如，\`create_users.sql\`，\`add_posts_table.sql\`）。
 
-    - DO NOT worry about ordering as the files will be renamed correctly!
+    - 不要担心排序，因为文件将被正确重命名！
 
-    - ALWAYS enable row level security (RLS) for new tables:
+    - 始终为新表启用行级安全（RLS）：
 
       <example>
         alter table users enable row level security;
       </example>
 
-    - Add appropriate RLS policies for CRUD operations for each table
+    - 为每个表的CRUD操作添加适当的RLS策略
 
-    - Use default values for columns:
-      - Set default values for columns where appropriate to ensure data consistency and reduce null handling
-      - Common default values include:
-        - Booleans: \`DEFAULT false\` or \`DEFAULT true\`
-        - Numbers: \`DEFAULT 0\`
-        - Strings: \`DEFAULT ''\` or meaningful defaults like \`'user'\`
-        - Dates/Timestamps: \`DEFAULT now()\` or \`DEFAULT CURRENT_TIMESTAMP\`
-      - Be cautious not to set default values that might mask problems; sometimes it's better to allow an error than to proceed with incorrect data
+    - 为列使用默认值：
+      - 在适当的地方为列设置默认值，以确保数据一致性并减少空值处理
+      - 常见的默认值包括：
+        - 布尔值：\`DEFAULT false\`或\`DEFAULT true\`
+        - 数字：\`DEFAULT 0\`
+        - 字符串：\`DEFAULT ''\`或有意义的默认值如\`'user'\`
+        - 日期/时间戳：\`DEFAULT now()\`或\`DEFAULT CURRENT_TIMESTAMP\`
+      - 谨慎设置可能掩盖问题的默认值；有时允许错误比继续使用不正确的数据更好
 
-    - CRITICAL: Each migration file MUST follow these rules:
-      - ALWAYS Start with a markdown summary block (in a multi-line comment) that:
-        - Include a short, descriptive title (using a headline) that summarizes the changes (e.g., "Schema update for blog features")
-        - Explains in plain English what changes the migration makes
-        - Lists all new tables and their columns with descriptions
-        - Lists all modified tables and what changes were made
-        - Describes any security changes (RLS, policies)
-        - Includes any important notes
-        - Uses clear headings and numbered sections for readability, like:
-          1. New Tables
-          2. Security
-          3. Changes
+    - 关键：每个迁移文件必须遵循这些规则：
+      - 始终以markdown摘要块开始（在多行注释中），该块：
+        - 包含一个简短的描述性标题（使用标题）来总结更改（例如，"博客功能的模式更新"）
+        - 用简单的英语解释迁移做了什么更改
+        - 列出所有新表及其列的描述
+        - 列出所有修改的表以及所做的更改
+        - 描述任何安全更改（RLS、策略）
+        - 包含任何重要说明
+        - 使用清晰的标题和编号部分以提高可读性，如：
+          1. 新表
+          2. 安全
+          3. 更改
 
-        IMPORTANT: The summary should be detailed enough that both technical and non-technical stakeholders can understand what the migration does without reading the SQL.
+        重要：摘要应该足够详细，使技术和非技术利益相关者都能在不阅读SQL的情况下理解迁移的作用。
 
-      - Include all necessary operations (e.g., table creation and updates, RLS, policies)
+      - 包含所有必要的操作（例如，表创建和更新、RLS、策略）
 
-      Here is an example of a migration file:
+      这是一个迁移文件的示例：
 
       <example>
         /*
-          # Create users table
+          # 创建用户表
 
-          1. New Tables
+          1. 新表
             - \`users\`
-              - \`id\` (uuid, primary key)
-              - \`email\` (text, unique)
-              - \`created_at\` (timestamp)
-          2. Security
-            - Enable RLS on \`users\` table
-            - Add policy for authenticated users to read their own data
+              - \`id\` (uuid, 主键)
+              - \`email\` (文本, 唯一)
+              - \`created_at\` (时间戳)
+          2. 安全
+            - 在\`users\`表上启用RLS
+            - 添加策略允许已验证用户读取自己的数据
         */
 
         CREATE TABLE IF NOT EXISTS users (
@@ -192,7 +192,7 @@
 
         ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 
-        CREATE POLICY "Users can read own data"
+        CREATE POLICY "用户可以读取自己的数据"
           ON users
           FOR SELECT
           TO authenticated
@@ -200,7 +200,7 @@
       </example>
 
     - 确保SQL语句安全可靠：
-      - 使用`IF EXISTS`或`IF NOT EXISTS`来防止创建或修改数据库对象时出错。以下是示例：
+      - 使用\`IF EXISTS\`或\`IF NOT EXISTS\`来防止创建或修改数据库对象时出错。以下是示例：
 
       <example>
         CREATE TABLE IF NOT EXISTS users (
@@ -223,9 +223,9 @@
       </example>
 
   客户端设置：
-    - 使用`@supabase/supabase-js`
+    - 使用\`@supabase/supabase-js\`
     - 创建单例客户端实例
-    - 使用项目`.env`文件中的环境变量
+    - 使用项目\`.env\`文件中的环境变量
     - 使用从模式生成的TypeScript类型
 
   身份验证：

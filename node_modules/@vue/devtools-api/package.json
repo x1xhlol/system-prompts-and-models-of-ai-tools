@@ -1,0 +1,32 @@
+{
+  "name": "@vue/devtools-api",
+  "type": "module",
+  "version": "7.7.7",
+  "author": "webfansplz",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/devtools-api",
+    "type": "git",
+    "url": "git+https://github.com/vuejs/devtools.git"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@vue/devtools-kit": "^7.7.7"
+  },
+  "scripts": {
+    "build": "tsup --clean",
+    "prepare:type": "tsup --dts-only",
+    "stub": "tsup --watch --onSuccess 'tsup --dts-only'"
+  }
+}

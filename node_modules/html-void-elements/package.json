@@ -1,0 +1,79 @@
+{
+  "name": "html-void-elements",
+  "version": "3.0.0",
+  "description": "List of HTML void tag names",
+  "license": "MIT",
+  "keywords": [
+    "html",
+    "void",
+    "tag",
+    "name",
+    "element",
+    "tagname",
+    "w3c",
+    "whatwg"
+  ],
+  "repository": "wooorm/html-void-elements",
+  "bugs": "https://github.com/wooorm/html-void-elements/issues",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/wooorm"
+  },
+  "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.d.ts",
+    "index.js"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "c8": "^7.0.0",
+    "hast-util-from-html": "^1.0.0",
+    "hast-util-select": "^5.0.0",
+    "hast-util-to-string": "^2.0.0",
+    "node-fetch": "^3.0.0",
+    "prettier": "^2.0.0",
+    "remark-cli": "^11.0.0",
+    "remark-preset-wooorm": "^9.0.0",
+    "type-coverage": "^2.0.0",
+    "typescript": "^5.0.0",
+    "xo": "^0.54.0"
+  },
+  "scripts": {
+    "prepack": "npm run build && npm run format",
+    "generate": "node --conditions development build.js",
+    "build": "tsc --build --clean && tsc --build && type-coverage",
+    "format": "remark . -qfo && prettier . -w --loglevel warn && xo --fix",
+    "test-api": "node --conditions development test.js",
+    "test-coverage": "c8 --check-coverage --100 --reporter lcov npm run test-api",
+    "test": "npm run generate && npm run build && npm run format && npm run test-coverage"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "semi": false,
+    "trailingComma": "none"
+  },
+  "xo": {
+    "prettier": true
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-wooorm"
+    ]
+  },
+  "typeCoverage": {
+    "atLeast": 100,
+    "detail": true,
+    "strict": true,
+    "ignoreCatch": true
+  }
+}

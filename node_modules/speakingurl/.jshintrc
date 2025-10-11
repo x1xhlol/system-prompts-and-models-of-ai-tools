@@ -1,0 +1,18 @@
+{
+    "camelcase": true,
+    "onevar": false,
+    "immed": true,
+    "indent": 4,
+    "newcap": true,
+    "nonew": true,
+    "trailing": true,
+    "browser": true,
+    "devel": true,
+    "jquery": true,
+    "node": true,
+    "globals": {
+        "module": true,
+        "require": true,
+        "console": true
+    }
+}

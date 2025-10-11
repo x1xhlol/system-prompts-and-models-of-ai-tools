@@ -1,6 +1,6 @@
 # Cursor Prompts
 
-## 目录
+## Table of Contents
 
 - 📄 [Agent CLI Prompt 2025-08-07](/zh/cursor-prompts/Agent CLI Prompt 2025-08-07.md)
 - 📄 [Agent Prompt 2025-09-03](/zh/cursor-prompts/Agent Prompt 2025-09-03.md)
@@ -12,4 +12,4 @@
 - 📄 [Memory Prompt](/zh/cursor-prompts/Memory Prompt.md)
 - 📄 [Memory Rating Prompt](/zh/cursor-prompts/Memory Rating Prompt.md)
 
-*完整还原。*
+*Complete restoration.*

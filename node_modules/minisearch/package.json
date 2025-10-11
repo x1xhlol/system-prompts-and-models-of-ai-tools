@@ -1,0 +1,105 @@
+{
+  "name": "minisearch",
+  "version": "7.2.0",
+  "description": "Tiny but powerful full-text search engine for browser and Node",
+  "main": "dist/umd/index.js",
+  "module": "dist/es/index.js",
+  "es2015": "dist/es/index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.cjs",
+      "import": "./dist/es/index.js",
+      "default": "./dist/es/index.js"
+    },
+    "./SearchableMap": {
+      "require": "./dist/cjs/SearchableMap.cjs",
+      "import": "./dist/es/SearchableMap.js",
+      "default": "./dist/es/SearchableMap.js"
+    }
+  },
+  "unpkg": "./dist/umd/index.js",
+  "jsdelivr": "./dist/umd/index.js",
+  "types": "./dist/es/index.d.ts",
+  "author": "Luca Ongaro",
+  "homepage": "https://lucaong.github.io/minisearch/",
+  "bugs": "https://github.com/lucaong/minisearch/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lucaong/minisearch.git"
+  },
+  "keywords": [
+    "search",
+    "full text",
+    "fuzzy",
+    "prefix",
+    "auto suggest",
+    "auto complete",
+    "index"
+  ],
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@types/benchmark": "^2.1.1",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "benchmark": "^2.1.4",
+    "core-js": "^3.1.4",
+    "coveralls-next": "^4.2.0",
+    "eslint": "^8.16.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-n": "^16.2.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "fast-check": "^3.0.0",
+    "jest": "^29.3.1",
+    "regenerator-runtime": "^0.14.0",
+    "rollup": "^4.1.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "snazzy": "^9.0.0",
+    "ts-jest": "^29.0.3",
+    "tslib": "^2.0.1",
+    "typedoc": "^0.25.3",
+    "typedoc-plugin-rename-defaults": "^0.7.0",
+    "typescript": "^5.2.2"
+  },
+  "files": [
+    "/dist/**/*",
+    "/src/**/*"
+  ],
+  "jest": {
+    "testEnvironmentOptions": {
+      "url": "http://localhost:3000/"
+    },
+    "transform": {
+      "\\.(js|ts)$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "testRegex": "\\.test\\.(ts|js)$",
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/testSetup/jest.js"
+    ]
+  },
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "coverage": "jest --coverage",
+    "benchmark": "yarn build-benchmark && NODE_ENV=production node --expose-gc benchmarks/dist/index.cjs",
+    "build-benchmark": "BENCHMARKS=true yarn build",
+    "build": "yarn clean-build && NODE_ENV=production rollup -c",
+    "clean-build": "rm -rf dist",
+    "build-minified": "MINIFY=true yarn build",
+    "build-docs": "typedoc --options typedoc.json && yarn build-demo",
+    "build-demo": "mkdir -p ./docs/demo && cp -r ./examples/plain_js/. ./docs/demo",
+    "lint": "eslint 'src/**/*.{js,ts}'",
+    "lintfix": "eslint --fix 'src/**/*.{js,ts}'",
+    "prepublishOnly": "yarn test && yarn build"
+  },
+  "sideEffects": false
+}

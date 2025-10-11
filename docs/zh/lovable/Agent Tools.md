@@ -1,9 +1,96 @@
+# Lovable AI 工具总结
+
+Lovable AI 提供了以下核心工具来创建和修改 Web 应用程序：
+
+1. **lov-add-dependency** - 添加项目依赖
+   - 用于向项目添加依赖项，依赖项应为有效的 npm 包名
+
+2. **lov-search-files** - 基于正则表达式的代码搜索
+   - 使用正则表达式模式在项目中搜索文件
+   - 支持文件过滤和上下文搜索
+
+3. **lov-write** - 写入文件
+   - 用于写入文件，如果文件已存在则覆盖
+   - 主要用于创建新文件或作为备用工具
+
+4. **lov-line-replace** - 基于行的搜索和替换工具
+   - 用于查找和替换文件中的特定内容
+   - 使用显式行号进行编辑，是修改现有文件的首选工具
+
+5. **lov-download-to-repo** - 下载文件到仓库
+   - 从 URL 下载文件并保存到仓库中
+   - 适用于下载图像、资产或其他文件
+
+6. **lov-fetch-website** - 获取网站内容
+   - 获取网站内容并临时保存为 markdown、HTML 或截图
+   - 返回创建文件的路径和内容预览
+
+7. **lov-copy** - 复制文件或目录
+   - 用于将文件或目录复制到新位置
+
+8. **lov-view** - 查看文件内容
+   - 用于读取文件内容，可选择指定行范围
+
+9. **lov-read-console-logs** - 读取控制台日志
+   - 用于读取最新的控制台日志内容
+
+10. **lov-read-network-requests** - 读取网络请求
+    - 用于读取最新的网络请求内容
+
+11. **lov-remove-dependency** - 移除依赖
+    - 用于从项目中卸载包
+
+12. **lov-rename** - 重命名文件
+    - 用于重命名文件而不是创建新文件和删除旧文件
+
+13. **lov-delete** - 删除文件
+    - 用于删除文件
+
+14. **secrets--add_secret** - 添加密钥
+    - 添加新的密钥如 API 密钥或令牌
+
+15. **secrets--update_secret** - 更新密钥
+    - 更新现有的密钥如 API 密钥或令牌
+
+16. **supabase--docs-search** - 搜索 Supabase 文档
+    - 通过内容 API 搜索官方 Supabase 文档
+
+17. **supabase--docs-get** - 获取 Supabase 文档
+    - 通过内容 API 获取完整的 Supabase 文档页面
+
+18. **document--parse_document** - 解析文档
+    - 解析和提取文档内容，处理 PDF、Word 文档等多种格式
+
+19. **imagegen--generate_image** - 生成图像
+    - 基于文本提示生成图像并保存到指定路径
+
+20. **imagegen--edit_image** - 编辑图像
+    - 编辑或合并现有图像
+
+21. **websearch--web_search** - 网络搜索
+    - 执行网络搜索并返回相关结果
+
+22. **analytics--read_project_analytics** - 读取项目分析数据
+    - 读取项目生产构建的分析数据
+
+23. **stripe--enable_stripe** - 启用 Stripe 集成
+    - 在当前项目上启用 Stripe 集成
+
+24. **security--run_security_scan** - 运行安全扫描
+    - 对 Supabase 后端执行全面的安全分析
+
+25. **security--get_security_scan_results** - 获取安全扫描结果
+    - 获取用户可访问的项目安全信息
+
+26. **security--get_table_schema** - 获取表结构
+    - 获取项目 Supabase 数据库的表结构信息
+
 ## Agent Tools.json
 
 ```json
 {
   "lov-add-dependency": {
-    "description": "Use this tool to add a dependency to the project. The dependency should be a valid npm package name.",
+    "description": "使用此工具向项目添加依赖项。依赖项应为有效的 npm 包名。",
     "parameters": {
       "properties": {
         "package": {
@@ -16,7 +103,7 @@
     }
   },
   "lov-search-files": {
-    "description": "Regex-based code search with file filtering and context.\n\nSearch using regex patterns across files in your project.\n\nParameters:\n- query: Regex pattern to find (e.g., \"useState\")\n- include_pattern: Files to include using glob syntax (e.g., \"src/**\")\n- exclude_pattern: Files to exclude using glob syntax (e.g., \"**/*.test.tsx\")\n- case_sensitive: Whether to match case (default: false)\n\nTip: Use \\\\ to escape special characters in regex patterns.",
+    "description": "基于正则表达式的代码搜索，支持文件过滤和上下文。\n\n使用正则表达式模式在项目中搜索。\n\n参数：\n- query: 要查找的正则表达式模式（例如，\"useState\"）\n- include_pattern: 使用 glob 语法包含的文件（例如，\"src/**\"）\n- exclude_pattern: 使用 glob 语法排除的文件（例如，\"**/*.test.tsx\"）\n- case_sensitive: 是否匹配大小写（默认：false）\n\n提示：使用 \\\\ 转义正则表达式中的特殊字符。",
     "parameters": {
       "properties": {
         "case_sensitive": {
@@ -41,7 +128,7 @@
     }
   },
   "lov-write": {
-    "description": "\nUse this tool to write to a file. Overwrites the existing file if there is one. The file path should be relative to the project root.\n\n  ### IMPORTANT: MINIMIZE CODE WRITING\n  - PREFER using lov-line-replace for most changes instead of rewriting entire files\n  - This tool is mainly meant for creating new files or as fallback if lov-line-replace fails\n  - When writing is necessary, MAXIMIZE use of \"// ... keep existing code\" to maintain unmodified sections\n  - ONLY write the specific sections that need to change - be as lazy as possible with your writes\n  \n  ### Using \"keep existing code\" (MANDATORY for large unchanged sections):\n  - Any unchanged code block over 5 lines MUST use \"// ... keep existing code\" comment\n  - The comment MUST contain the EXACT string \"... keep existing code\" \n  - Example: \"// ... keep existing code (user interface components)\"\n  - NEVER rewrite large sections of code that don't need to change\n  \n  Example with proper use of keep existing code:\n  ```\n  import React from 'react';\n  import './App.css';\n  \n  function App() {\n    // ... keep existing code (all UI components)\n    \n    // Only the new footer is being added\n    const Footer = () => (\n      New Footer Component\n    );\n    \n    return (\n      \n        // ... keep existing code (main content)\n        \n      \n    );\n  }\n  \n  export default App;\n  ```\n\n  ### Parallel Tool Usage\n  - If you need to create multiple files, it is very important that you create all of them at once instead of one by one, because it's much faster\n",
+    "description": "\n使用此工具写入文件。如果文件已存在则覆盖。文件路径应相对于项目根目录。\n\n  ### 重要：最小化代码写入\n  - 更倾向于使用 lov-line-replace 进行大多数更改，而不是重写整个文件\n  - 此工具主要用于创建新文件或作为 lov-line-replace 失败时的备用方案\n  - 当必须写入时，最大化使用 \"// ... keep existing code\" 来维护未修改的部分\n  - 仅写入需要更改的特定部分 - 尽可能懒惰地写入\n  \n  ### 使用 \"keep existing code\"（对于大的未更改部分是必需的）：\n  - 任何超过 5 行的未更改代码块必须使用 \"// ... keep existing code\" 注释\n  - 注释必须包含确切的字符串 \"... keep existing code\" \n  - 示例：\"// ... keep existing code (用户界面组件)\"\n  - 从不重写不需要更改的大量代码部分\n  \n  使用 keep existing code 的正确示例：\n  ```\n  import React from 'react';\n  import './App.css';\n  \n  function App() {\n    // ... keep existing code (所有 UI 组件)\n    \n    // 只添加新的页脚\n    const Footer = () => (\n      新页脚组件\n    );\n    \n    return (\n      \n        // ... keep existing code (主要内容)\n        \n      \n    );\n  }\n  \n  export default App;\n  ```\n\n  ### 并行工具使用\n  - 如果需要创建多个文件，非常重要的是要一次性创建所有文件而不是一个一个创建，因为这样更快\n",
     "parameters": {
       "properties": {
         "content": {
@@ -58,7 +145,7 @@
     }
   },
   "lov-line-replace": {
-    "description": "Line-Based Search and Replace Tool\n\nUse this tool to find and replace specific content in a file you have access to, using explicit line numbers. This is the PREFERRED and PRIMARY tool for editing existing files. Always use this tool when modifying existing code rather than rewriting entire files.\n\nProvide the following details to make an edit:\n\t1.\tfile_path - The path of the file to modify\n\t2.\tsearch - The content to search for (use ellipsis ... for large sections instead of writing them out in full)\n\t3.\tfirst_replaced_line - The line number of the first line in the search (1-indexed)\n\t4.\tlast_replaced_line - The line number of the last line in the search (1-indexed)\n\t5.\treplace - The new content to replace the found content\n\nThe tool will validate that search matches the content at the specified line range and then replace it with replace.\n\nIMPORTANT: When invoking this tool multiple times in parallel (multiple edits to the same file), always use the original line numbers from the file as you initially viewed it. Do not adjust line numbers based on previous edits.\n\nELLIPSIS USAGE:\nWhen replacing sections of code longer than ~6 lines, you should use ellipsis (...) in your search to reduce the number of lines you need to specify (writing fewer lines is faster).\n- Include the first few lines (typically 2-3 lines) of the section you want to replace\n- Add \"...\" on its own line to indicate omitted content\n- Include the last few lines (typically 2-3 lines) of the section you want to replace\n- The key is to provide enough unique context at the beginning and end to ensure accurate matching\n- Focus on uniqueness rather than exact line counts - sometimes 2 lines is enough, sometimes you need 4\n\n\n\nExample:\nTo replace a user card component at lines 22-42:\n\nOriginal content in file (lines 20-45):\n20:   return (\n21:     \n22:       \n23:         \n24:         {user.name}\n25:         {user.email}\n26:         {user.role}\n27:         {user.department}\n28:         {user.location}\n29:         \n30:            onEdit(user.id)}>Edit\n31:            onDelete(user.id)}>Delete\n32:            onView(user.id)}>View\n33:         \n34:         \n35:           Created: {user.createdAt}\n36:           Updated: {user.updatedAt}\n37:           Status: {user.status}\n38:         \n39:         \n40:           Permissions: {user.permissions.join(', ')}\n41:         \n42:       \n43:     \n44:   );\n45: }\n\nFor a large replacement like this, you must use ellipsis:\n- search: \"      \\n        \\n...\\n          Permissions: {user.permissions.join(', ')}\\n        \\n      \"\n- first_replaced_line: 22\n- last_replaced_line: 42\n- replace: \"      \\n        \\n           {\\n              e.currentTarget.src = '/default-avatar.png';\\n            }}\\n          />\\n        \\n        \\n          {user.name}\\n          {user.email}\\n          \\n            {user.role}\\n            {user.department}\\n          \\n        \\n        \\n           onEdit(user.id)}\\n            aria-label=\\\"Edit user profile\\\"\\n          >\\n            Edit Profile\\n          \\n        \\n      \"\n\nCritical guidelines:\n\t1. Line Numbers - Specify exact first_replaced_line and last_replaced_line (1-indexed, first line is line 1)\n\t2. Ellipsis Usage - For large sections (>6 lines), use ellipsis (...) to include only the first few and last few key identifying lines for cleaner, more focused matching\n\t3. Content Validation - The prefix and suffix parts of search (before and after ellipsis) must contain exact content matches from the file (without line numbers). The tool validates these parts against the actual file content\n\t4. File Validation - The file must exist and be readable\n\t5. Parallel Tool Calls - When multiple edits are needed, invoke necessary tools simultaneously in parallel. Do NOT wait for one edit to complete before starting the next\n\t6. Original Line Numbers - When making multiple edits to the same file, always use original line numbers from your initial view of the file",
+    "description": "基于行的搜索和替换工具\n\n使用此工具在您有权访问的文件中查找和替换特定内容，使用显式行号。这是修改现有文件的首选和主要工具。修改现有代码时总是使用此工具而不是重写整个文件。\n\n提供以下详细信息来进行编辑：\n\t1.\tfile_path - 要修改的文件路径\n\t2.\tsearch - 要搜索的内容（对于大段落使用省略号 ... 而不是完整写出）\n\t3.\tfirst_replaced_line - 搜索中第一行的行号（从1开始）\n\t4.\tlast_replaced_line - 搜索中最后一行的行号（从1开始）\n\t5.\treplace - 要替换找到内容的新内容\n\n工具将验证搜索是否与指定行范围的内容匹配，然后用 replace 替换它。\n\n重要：当并行调用此工具多次（对同一文件进行多次编辑）时，总是使用最初查看文件时的原始行号。不要根据之前的编辑调整行号。\n\n省略号的使用：\n当替换超过约6行的代码段时，您应该在搜索中使用省略号（...）以减少需要指定的行数（写入更少的行更快）。\n- 包含要替换部分的前几行（通常2-3行）\n- 添加 \"...\" 在单独的行上表示省略的内容\n- 包含要替换部分的最后几行（通常2-3行）\n- 关键是提供足够的唯一上下文在开头和结尾以确保准确匹配\n- 专注于唯一性而不是确切的行数 - 有时2行就足够了，有时需要4行\n\n\n\n示例：\n要替换第22-42行的用户卡片组件：\n\n文件中的原始内容（第20-45行）：\n20:   return (\n21:     \n22:       \n23:         \n24:         {user.name}\n25:         {user.email}\n26:         {user.ro... [truncated]",
     "parameters": {
       "properties": {
         "file_path": {
@@ -66,22 +153,22 @@
           "type": "string"
         },
         "first_replaced_line": {
-          "description": "First line number to replace (1-indexed)",
+          "description": "要替换的第一行行号（从1开始）",
           "example": "15",
           "type": "number"
         },
         "last_replaced_line": {
-          "description": "Last line number to replace (1-indexed)",
+          "description": "要替换的最后一行行号（从1开始）",
           "example": "28",
           "type": "number"
         },
         "replace": {
-          "description": "New content to replace the search content with (without line numbers)",
-          "example": "  const handleTaskComplete = useCallback((taskId: string) => {\n    const updatedTasks = tasks.map(task =>\n      task.id === taskId \n        ? { ...task, completed: !task.completed, completedAt: new Date() }\n        : task\n    );\n    setTasks(updatedTasks);\n    onTaskUpdate?.(updatedTasks);\n    \n    // Analytics tracking\n    analytics.track('task_completed', { taskId, timestamp: Date.now() });\n  }, [tasks, onTaskUpdate]);",
+          "description": "要替换搜索内容的新内容（不带行号）",
+          "example": "  const handleTaskComplete = useCallback((taskId: string) => {\n    const updatedTasks = tasks.map(task =>\n      task.id === taskId \n        ? { ...task, completed: !task.completed, completedAt: new Date() }\n        : task\n    );\n    setTasks(updatedTasks);\n    onTaskUpdate?.(updatedTasks);\n    \n    // 分析跟踪\n    analytics.track('task_completed', { taskId, timestamp: Date.now() });\n  }, [tasks, onTaskUpdate]);",
           "type": "string"
         },
         "search": {
-          "description": "Content to search for in the file (without line numbers). This should match the existing code that will be replaced.",
+          "description": "要在文件中搜索的内容（不带行号）。这应该与将被替换的现有代码匹配。",
           "example": "  const handleTaskComplete = (taskId: string) => {\n    setTasks(tasks.map(task =>\n...\n    ));\n    onTaskUpdate?.(updatedTasks);\n  };",
           "type": "string"
         }
@@ -91,16 +178,16 @@
     }
   },
   "lov-download-to-repo": {
-    "description": "Download a file from a URL and save it to the repository.\n\nThis tool is useful for:\n- Downloading images, assets, or other files from URLs. Download images in the src/assets folder and import them as ES6 modules.\n- Saving external resources directly to the project\n- Migrating files from external sources to the repository\n\nThe file will be downloaded and saved at the specified path in the repository, ready to be used in the project.\nIMPORTANT:DO NOT USE this tool to handle the image uploaded by users in the chat and follow the instructions given with the images!\n\n",
+    "description": "从 URL 下载文件并保存到仓库中。\n\n此工具适用于：\n- 从 URL 下载图像、资产或其他文件。在 src/assets 文件夹中下载图像并作为 ES6 模块导入。\n- 将外部资源直接保存到项目中\n- 将文件从外部源迁移到仓库中\n\n文件将被下载并保存到仓库中的指定路径，准备好在项目中使用。\n重要：不要使用此工具处理聊天中用户上传的图像并遵循随图像提供的说明！\n\n",
     "parameters": {
       "properties": {
         "source_url": {
-          "description": "The URL of the file to download",
+          "description": "要下载的文件的 URL",
           "example": "https://example.com/image.png",
           "type": "string"
         },
         "target_path": {
-          "description": "The path where the file should be saved in the repository (use the public folder unless specified otherwise)",
+          "description": "文件在仓库中应保存的路径（除非另有指定，否则使用 public 文件夹）",
           "example": "public/images/logo.png",
           "type": "string"
         }
@@ -110,11 +197,11 @@
     }
   },
   "lov-fetch-website": {
-    "description": "Fetches a website and temporarily saves its content (markdown, HTML, screenshot) to files in `tmp://fetched-websites/`. Returns the paths to the created files and a preview of the content.",
+    "description": "获取网站内容并临时保存为 `tmp://fetched-websites/` 中的文件（markdown、HTML、截图）。返回创建文件的路径和内容预览。",
     "parameters": {
       "properties": {
         "formats": {
-          "description": "Comma-separated list of formats to return. Supported formats: 'markdown', 'html', 'screenshot'. Defaults to 'markdown'.",
+          "description": "要返回的格式的逗号分隔列表。支持的格式：'markdown'、'html'、'screenshot'。默认为 'markdown'。",
           "example": "markdown,screenshot",
           "type": "string"
         },
@@ -128,7 +215,7 @@
     }
   },
   "lov-copy": {
-    "description": "Use this tool to copy a file or directory to a new location. This tool is primarily useful when copying files from a virtual file system (e.g. `user-uploads://`) to the project repo.",
+    "description": "使用此工具将文件或目录复制到新位置。此工具主要用于将文件从虚拟文件系统（例如 `user-uploads://`）复制到项目仓库中。",
     "parameters": {
       "properties": {
         "destination_file_path": {
@@ -145,7 +232,7 @@
     }
   },
   "lov-view": {
-    "description": "Use this tool to read the contents of a file. If it's a project file, the file path should be relative to the project root. You can optionally specify line ranges to read using the lines parameter (e.g., \"1-800, 1001-1500\"). By default, the first 500 lines are read if lines is not specified.\n\nIMPORTANT GUIDELINES:\n- Do NOT use this tool if the file contents have already been provided in \n- Do NOT specify line ranges unless the file is very large (>500 lines) - rely on the default behavior which shows the first 500 lines\n- Only use line ranges when you need to see specific sections of large files that weren't shown in the default view\n- If you need to read multiple files, invoke this tool multiple times in parallel (not sequentially) for efficiency",
+    "description": "使用此工具读取文件内容。如果是项目文件，文件路径应相对于项目根目录。您可以选择使用 lines 参数指定行范围来读取（例如，\"1-800, 1001-1500\"）。默认情况下，如果未指定 lines，则读取前 500 行。\n\n重要指南：\n- 如果文件内容已提供在 \n- 除非文件非常大（>500 行），否则不要指定行范围 - 依赖默认行为显示前 500 行\n- 仅当需要查看在默认视图中未显示的大型文件的特定部分时才使用行范围\n- 如果需要读取多个文件，并行调用此工具（而不是顺序调用）以提高效率",
     "parameters": {
       "properties": {
         "file_path": {
@@ -162,7 +249,7 @@
     }
   },
   "lov-read-console-logs": {
-    "description": "Use this tool to read the contents of the latest console logs at the moment the user sent the request.\nYou can optionally provide a search query to filter the logs. If empty you will get all latest logs.\nYou may not be able to see the logs that didn't happen recently.\nThe logs will not update while you are building and writing code. So do not expect to be able to verify if you fixed an issue by reading logs again. They will be the same as when you started writing code.\nDO NOT USE THIS MORE THAN ONCE since you will get the same logs each time.",
+    "description": "使用此工具读取用户发送请求时的最新控制台日志内容。\n您可以选择提供搜索查询来过滤日志。如果为空，您将获得所有最新日志。\n您可能无法看到最近未发生的日志。\n在您构建和编写代码时日志不会更新。因此，不要期望通过再次读取日志来验证是否修复了问题。它们将与您开始编写代码时相同。\n不要使用此工具超过一次，因为每次都会获得相同的日志。",
     "parameters": {
       "properties": {
         "search": {
@@ -175,7 +262,7 @@
     }
   },
   "lov-read-network-requests": {
-    "description": "Use this tool to read the contents of the latest network requests. You can optionally provide a search query to filter the requests. If empty you will get all latest requests. You may not be able to see the requests that didn't happen recently.",
+    "description": "使用此工具读取最新的网络请求内容。您可以选择提供搜索查询来过滤请求。如果为空，您将获得所有最新请求。您可能无法看到最近未发生的请求。",
     "parameters": {
       "properties": {
         "search": {
@@ -188,7 +275,7 @@
     }
   },
   "lov-remove-dependency": {
-    "description": "Use this tool to uninstall a package from the project.",
+    "description": "使用此工具从项目中卸载包。",
     "parameters": {
       "properties": {
         "package": {
@@ -201,7 +288,7 @@
     }
   },
   "lov-rename": {
-    "description": "You MUST use this tool to rename a file instead of creating new files and deleting old ones. The original and new file path should be relative to the project root.",
+    "description": "您必须使用此工具重命名文件，而不是创建新文件和删除旧文件。原始文件路径和新文件路径应相对于项目根目录。",
     "parameters": {
       "properties": {
         "new_file_path": {
@@ -218,7 +305,7 @@
     }
   },
   "lov-delete": {
-    "description": "Use this tool to delete a file. The file path should be relative to the project root.",
+    "description": "使用此工具删除文件。文件路径应相对于项目根目录。",
     "parameters": {
       "properties": {
         "file_path": {
@@ -231,7 +318,7 @@
     }
   },
   "secrets--add_secret": {
-    "description": "Add a new secret such as an API key or token. If any integrations need this secret or a user wants you to use a secret, you can use this tool to add it. This tool ensures that the secret is encrypted and stored properly. Never ask the user to provide the secret value directly instead call this tool to obtain a secret. Any secret you add will be available as environment variables in all backend code you write. IMPORTANT: This is the only way to collect secrets from users, do not add it in any other way.",
+    "description": "添加新的密钥如 API 密钥或令牌。如果任何集成需要此密钥或用户希望您使用密钥，您可以使用此工具添加它。此工具确保密钥被正确加密和存储。从不直接要求用户提供密钥值，而是调用此工具获取密钥。您添加的任何密钥都将在您编写的所有后端代码中作为环境变量可用。重要：这是收集密钥的唯一方式，不要以任何其他方式添加。",
     "parameters": {
       "properties": {
         "secret_name": {
@@ -244,7 +331,7 @@
     }
   },
   "secrets--update_secret": {
-    "description": "Update an existing secret such as an API key or token. If any integrations need this secret or a user wants you to use a secret, you can use this tool to update it. This tool ensures that the secret is encrypted and stored properly.",
+    "description": "更新现有的密钥如 API 密钥或令牌。如果任何集成需要此密钥或用户希望您使用密钥，您可以使用此工具更新它。此工具确保密钥被正确加密和存储。",
     "parameters": {
       "properties": {
         "secret_name": {
@@ -257,15 +344,15 @@
     }
   },
   "supabase--docs-search": {
-    "description": "Search official Supabase documentation via the Content API. Returns ranked results with title, slug, URL, and content snippet.\n\nWHEN TO USE:\n- Finding documentation on auth, database, storage, or edge functions\n- Searching for code examples or implementation guides\n\nSEARCH TIPS:\n- Use specific terms like \"row level security\", \"auth policies\", \"storage buckets\"\n- Try different keyword combinations if initial search doesn't yield results\n\nNEXT STEPS:\n- Use 'docs-get' tool with the returned slug to fetch full structured content\n\nEXAMPLES:\n- \"RLS policies\" - returns row level security documentation  \n- \"storage file upload\" - shows file storage implementation docs",
+    "description": "通过内容 API 搜索官方 Supabase 文档。返回包含标题、slug、URL 和内容片段的排名结果。\n\n何时使用：\n- 查找关于认证、数据库、存储或边缘函数的文档\n- 搜索代码示例或实现指南\n\n搜索提示：\n- 使用具体术语如 \"row level security\"、\"auth policies\"、\"storage buckets\"\n- 如果初始搜索没有结果，尝试不同的关键词组合\n\n下一步：\n- 使用 'docs-get' 工具和返回的 slug 获取完整结构化内容\n\n示例：\n- \"RLS policies\" - 返回行级安全文档  \n- \"storage file upload\" - 显示文件存储实现文档",
     "parameters": {
       "properties": {
         "max_results": {
-          "description": "Max number of results (default 5, capped at 10)",
+          "description": "最大结果数（默认 5，上限为 10）",
           "type": "number"
         },
         "query": {
-          "description": "Query to search in Supabase documentation",
+          "description": "在 Supabase 文档中搜索的查询",
           "type": "string"
         }
       },
@@ -274,11 +361,11 @@
     }
   },
   "supabase--docs-get": {
-    "description": "Fetch a complete Supabase documentation page by slug via the Content API. Returns structured content including full markdown, headings outline, and metadata.\n\nWHEN TO USE:\n- After finding a relevant document via 'docs-search'\n- When you have a specific documentation slug/path\n- Need complete implementation details and code examples\n\nINPUT FORMAT:\n- Use the slug from search results (e.g., \"auth/row-level-security\")\n- Format: \"category/subcategory/page-name\"\n\nOUTPUT INCLUDES:\n- Complete markdown content with code snippets\n- Structured headings outline\n\nEXAMPLES:\n- \"auth/row-level-security\" - complete RLS implementation guide\n- \"storage/uploads\" - comprehensive file upload implementation",
+    "description": "通过内容 API 按 slug 获取完整的 Supabase 文档页面。返回包含完整 markdown、标题大纲和元数据的结构化内容。\n\n何时使用：\n- 通过 'docs-search' 找到相关文档后\n- 当您有特定的文档 slug/路径时\n- 需要完整的实现细节和代码示例时\n\n输入格式：\n- 使用搜索结果中的 slug（例如，\"auth/row-level-security\"）\n- 格式：\"category/subcategory/page-name\"\n\n输出包括：\n- 包含代码片段的完整 markdown 内容\n- 结构化标题大纲\n\n示例：\n- \"auth/row-level-security\" - 完整的 RLS 实现指南\n- \"storage/uploads\" - 全面的文件上传实现",
     "parameters": {
       "properties": {
         "slug": {
-          "description": "Canonical document slug to fetch (e.g. auth/row-level-security)",
+          "description": "要获取的规范文档 slug（例如 auth/row-level-security）",
           "type": "string"
         }
       },
@@ -287,11 +374,11 @@
     }
   },
   "document--parse_document": {
-    "description": "Parse and extract content from documents (first 50 pages). Handles PDFs, Word docs, PowerPoint, Excel, MP3 and many other formats. Preserves document structure, tables, extracts images, and performs OCR on embedded images.",
+    "description": "解析和提取文档内容（前 50 页）。处理 PDF、Word 文档、PowerPoint、Excel、MP3 和许多其他格式。保留文档结构、表格，提取图像，并对嵌入的图像执行 OCR。",
     "parameters": {
       "properties": {
         "file_path": {
-          "description": "The path to the document file to parse",
+          "description": "要解析的文档文件的路径",
           "type": "string"
         }
       },
@@ -300,27 +387,27 @@
     }
   },
   "imagegen--generate_image": {
-    "description": "Generates an image based on a text prompt and saves it to the specified file path. Use the best models for large images that are really important. Make sure that you consider aspect ratio given the location of the image on the page when selecting dimensions.\n\nFor small images (less than 1000px), use flux.schnell, it's much faster and really good! This should be your default model.\nWhen you generate large images like a fullscreen image, use flux.dev. The maximum resolution is 1920x1920.\nOnce generated, you MUST import the images in code as ES6 imports.\n\nPrompting tips:\n- Mentioning the aspect ratio in the prompt will help the model generate the image with the correct dimensions. For example: \"A 16:9 aspect ratio image of a sunset over a calm ocean.\"\n- Use the \"Ultra high resolution\" suffix to your prompts to maximize image quality.\n- If you for example are generating a hero image, mention it in the prompt. Example: \"A hero image of a sunset over a calm ocean.\"\n\nExample:\nimport heroImage from \"@/assets/hero-image.jpg\";\n\nIMPORTANT: \n- Dimensions must be between 512 and 1920 pixels and multiples of 32.\n- Make sure to not replace images that users have uploaded by generated images unless they explicitly ask for it.",
+    "description": "根据文本提示生成图像并保存到指定文件路径。对于真正重要的大图像使用最佳模型。在选择尺寸时考虑页面上图像位置的纵横比。\n\n对于小图像（小于 1000px），使用 flux.schnell，它更快且真的很好！这应该是您的默认模型。\n当您生成大图像如全屏图像时，使用 flux.dev。最大分辨率为 1920x1920。\n生成后，您必须在代码中作为 ES6 导入导入图像。\n\n提示技巧：\n- 在提示中提及纵横比将帮助模型生成具有正确尺寸的图像。例如：\"16:9 纵横比的平静海洋上的日落图像。\"\n- 在提示后加上 \"Ultra high resolution\" 后缀以最大化图像质量。\n- 例如，如果您生成英雄图像，在提示中提及它。示例：\"日落平静海洋的英雄图像。\"\n\n示例：\nimport heroImage from \"@/assets/hero-image.jpg\";\n\n重要：\n- 尺寸必须在 512 到 1920 像素之间且为 32 的倍数。\n- 确保不要用生成的图像替换用户上传的图像，除非他们明确要求。",
     "parameters": {
       "properties": {
         "height": {
-          "description": "Image height (minimum 512, maximum 1920)",
+          "description": "图像高度（最小 512，最大 1920）",
           "type": "number"
         },
         "model": {
-          "description": "The model to use for generation. Options: flux.schnell (default), flux.dev. flux.dev generates higher quality images but is slower. Always use flux.schnell unless you're generating a large image like a hero image or fullscreen banner, of if the user asks for high quality.",
+          "description": "用于生成的模型。选项：flux.schnell（默认），flux.dev。flux.dev 生成更高质量的图像但较慢。总是使用 flux.schnell，除非您生成大图像如英雄图像或全屏横幅，或者用户要求高质量。",
           "type": "string"
         },
         "prompt": {
-          "description": "Text description of the desired image",
+          "description": "所需图像的文本描述",
           "type": "string"
         },
         "target_path": {
-          "description": "The file path where the generated image should be saved. Prefer to put them in the 'src/assets' folder.",
+          "description": "生成的图像应保存的文件路径。更喜欢将它们放在 'src/assets' 文件夹中。",
           "type": "string"
         },
         "width": {
-          "description": "Image width (minimum 512, maximum 1920)",
+          "description": "图像宽度（最小 512，最大 1920）",
           "type": "number"
         }
       },
@@ -329,22 +416,22 @@
     }
   },
   "imagegen--edit_image": {
-    "description": "Edits or merges existing images based on a text prompt.\n\nThis tool can work with single or multiple images:\n- Single image: Apply AI-powered edits based on your prompt\n- Multiple images: Merge/combine images according to your prompt\n\nExample prompts for single image:\n- \"make it rainy\"\n- \"change to sunset lighting\"\n- \"add snow\"\n- \"make it more colorful\"\n\nExample prompts for multiple images:\n- \"blend these two landscapes seamlessly\"\n- \"combine the foreground of the first image with the background of the second\"\n- \"merge these portraits into a group photo\"\n- \"create a collage from these images\"\n\n\nThis tool is great for object or character consistency. You can reuse the same image and place it in different scenes for example. If users ask to tweak an existing image, use this tool rather than generating a new image.",
+    "description": "根据文本提示编辑或合并现有图像。\n\n此工具可以处理单个或多个图像：\n- 单个图像：根据您的提示应用 AI 驱动的编辑\n- 多个图像：根据您的提示合并/组合图像\n\n单个图像的示例提示：\n- \"使其下雨\"\n- \"更改为日落照明\"\n- \"添加雪\"\n- \"使其更加多彩\"\n\n多个图像的示例提示：\n- \"无缝融合这两个景观\"\n- \"将第一张图像的前景与第二张图像的背景结合\"\n- \"将这些肖像合并成一张集体照\"\n- \"从这些图像创建拼贴\"\n\n\n此工具非常适合对象或角色一致性。您可以重用相同的图像并将其放置在不同的场景中。如果用户要求调整现有图像，使用此工具而不是生成新图像。",
     "parameters": {
       "properties": {
         "image_paths": {
-          "description": "Array of paths to existing image files. For single image editing, provide one path. For merging/combining multiple images, provide multiple paths.",
+          "description": "现有图像文件路径的数组。对于单个图像编辑，提供一个路径。对于合并/组合多个图像，提供多个路径。",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "prompt": {
-          "description": "Text description of how to edit/merge the image(s). For multiple images, describe how they should be combined.",
+          "description": "描述如何编辑/合并图像的文本。对于多个图像，描述它们应该如何组合。",
           "type": "string"
         },
         "target_path": {
-          "description": "The file path where the edited/merged image should be saved.",
+          "description": "编辑/合并的图像应保存的文件路径。",
           "type": "string"
         }
       },
@@ -353,27 +440,27 @@
     }
   },
   "websearch--web_search": {
-    "description": "Performs a web search and returns relevant results with text content.\nUse this to find current information, documentation, or any web-based content.\nYou can optionally ask for links or image links to be returned as well.\nYou can also optionally specify a category of search results to return.\nValid categories are (you must use the exact string):\n- \"news\"\n- \"linkedin profile\"\n- \"pdf\"\n- \"github\"\n- \"personal site\"\n- \"financial report\"\n\nThere are no other categories. If you don't specify a category, the search will be general.\n\nWhen to use?\n- When you don't have any information about what the user is asking for.\n- When you need to find current information, documentation, or any web-based content.\n- When you need to find specific technical information, etc.\n- When you need to find information about a specific person, company, or organization.\n- When you need to find information about a specific event, product, or service.\n- When you need to find real (not AI generated) images about a specific person, company, or organization.\n\n** Search guidelines **\n\nYou can filter results to specific domains using \"site:domain.com\" in your query.\nYou can specify multiple domains: \"site:docs.anthropic.com site:github.com API documentation\" will search on both domains.\nYou can search for exact phrases by putting them in double quotes: '\"gpt5\" model name OAI' will include \"gpt5\" in the search.\nYou can exclude specific words by prefixing them with minus: jaguar speed -car will exclude \"car\" from the search.\nFor technical information, the following sources are especially useful: stackoverflow, github, official docs of the product, framework, or service.\nAccount for \"Current date\" in your responses. For example, if you instructions say \"Current date: 2025-07-01\", and the user wants the latest docs, do\nnot use 2024 in the search query. Use 2025!\n",
+    "description": "执行网络搜索并返回包含文本内容的相关结果。\n使用此工具查找当前信息、文档或任何基于网络的内容。\n您可以选择要求返回链接或图像链接。\n您也可以选择指定要返回的搜索结果类别。\n有效类别为（您必须使用确切的字符串）：\n- \"news\"\n- \"linkedin profile\"\n- \"pdf\"\n- \"github\"\n- \"personal site\"\n- \"financial report\"\n\n没有其他类别。如果您不指定类别，搜索将是通用的。\n\n何时使用？\n- 当您对用户询问的内容没有任何信息时。\n- 当您需要查找当前信息、文档或任何基于网络的内容时。\n- 当您需要查找特定技术信息等时。\n- 当您需要查找有关特定人员、公司或组织的信息时。\n- 当您需要查找有关特定事件、产品或服务的信息时。\n- 当您需要查找有关特定人员、公司或组织的真实（非 AI 生成）图像时。\n\n** 搜索指南 **\n\n您可以使用查询中的 \"site:domain.com\" 过滤结果到特定域。\n您可以指定多个域：\"site:docs.anthropic.com site:github.com API documentation\" 将在两个域上搜索。\n您可以通过将短语放在双引号中来搜索确切短语：'\"gpt5\" model name OAI' 将在搜索中包含 \"gpt5\"。\n您可以通过在单词前加上减号来排除特定单词：jaguar speed -car 将从搜索中排除 \"car\"。\n对于技术信息，以下来源特别有用：stackoverflow、github、产品、框架或服务的官方文档。\n在您的响应中考虑 \"当前日期\"。例如，如果您的指令说 \"当前日期：2025-07-01\"，而用户想要最新文档，不要在搜索查询中使用 2024。使用 2025！",
     "parameters": {
       "properties": {
         "category": {
-          "description": "Category of search results to return",
+          "description": "要返回的搜索结果类别",
           "type": "string"
         },
         "imageLinks": {
-          "description": "Number of image links to return for each result",
+          "description": "为每个结果返回的图像链接数",
           "type": "number"
         },
         "links": {
-          "description": "Number of links to return for each result",
+          "description": "为每个结果返回的链接数",
           "type": "number"
         },
         "numResults": {
-          "description": "Number of search results to return (default: 5)",
+          "description": "要返回的搜索结果数（默认：5）",
           "type": "number"
         },
         "query": {
-          "description": "The search query",
+          "description": "搜索查询",
           "type": "string"
         }
       },
@@ -382,7 +469,7 @@
     }
   },
   "analytics--read_project_analytics": {
-    "description": "Read the analytics for the production build of the project between two dates, with a given granularity. The granularity can be 'hourly' or 'daily'. The start and end dates must be in the format YYYY-MM-DD.\nThe start and end dates should be in RFC3339 format or date only format (YYYY-MM-DD).\n\nWhen to use this tool:\n- When the user is asking for usage of their app\n- When users want to improve their productions apps",
+    "description": "读取项目生产构建在两个日期之间的分析数据，具有给定的粒度。粒度可以是 'hourly' 或 'daily'。开始和结束日期必须采用 YYYY-MM-DD 格式。\n开始和结束日期应采用 RFC3339 格式或仅日期格式（YYYY-MM-DD）。\n\n何时使用此工具：\n- 当用户询问其应用程序的使用情况时\n- 当用户想要改进其生产应用程序时",
     "parameters": {
       "properties": {
         "enddate": {
@@ -400,7 +487,7 @@
     }
   },
   "stripe--enable_stripe": {
-    "description": "Enable the Stripe integration on the current project. Calling this tool will prompt the user for their Stripe secret key.",
+    "description": "在当前项目上启用 Stripe 集成。调用此工具将提示用户输入其 Stripe 密钥。",
     "parameters": {
       "properties": {},
       "required": [],
@@ -408,7 +495,7 @@
     }
   },
   "security--run_security_scan": {
-    "description": "Perform comprehensive security analysis of the Supabase backend to detect exposed data, missing RLS policies, and security misconfigurations",
+    "description": "对 Supabase 后端执行全面的安全分析，以检测暴露的数据、缺失的 RLS 策略和安全配置错误",
     "parameters": {
       "properties": {},
       "required": [],
@@ -416,7 +503,7 @@
     }
   },
   "security--get_security_scan_results": {
-    "description": "Fetch security information about the project that the user has access to. Set force=true to get results even if a scan is running.",
+    "description": "获取用户可访问的项目安全信息。设置 force=true 以获取结果，即使扫描正在进行。",
     "parameters": {
       "properties": {
         "force": {
@@ -428,7 +515,7 @@
     }
   },
   "security--get_table_schema": {
-    "description": "Get the database table schema information and security analysis prompt for the project's Supabase database",
+    "description": "获取项目 Supabase 数据库的数据库表结构信息和安全分析提示",
     "parameters": {
       "properties": {},
       "required": [],
@@ -437,7 +524,3 @@
   }
 }
 ```
-```
-
-:::warning 格式问题。
-:::

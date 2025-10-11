@@ -1,0 +1,44 @@
+{
+  "name": "@vue/devtools-kit",
+  "type": "module",
+  "version": "7.7.7",
+  "author": "webfansplz",
+  "license": "MIT",
+  "repository": {
+    "directory": "packages/devtools-kit",
+    "type": "git",
+    "url": "git+https://github.com/vuejs/devtools.git"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./types.d.ts",
+  "files": [
+    "**.d.ts",
+    "dist"
+  ],
+  "dependencies": {
+    "birpc": "^2.3.0",
+    "hookable": "^5.5.3",
+    "mitt": "^3.0.1",
+    "perfect-debounce": "^1.0.0",
+    "speakingurl": "^14.0.1",
+    "superjson": "^2.2.2",
+    "@vue/devtools-shared": "^7.7.7"
+  },
+  "devDependencies": {
+    "@types/speakingurl": "^13.0.6",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "scripts": {
+    "build": "tsup --clean",
+    "prepare:type": "tsup --dts-only",
+    "stub": "tsup --watch --onSuccess 'tsup --dts-only'"
+  }
+}

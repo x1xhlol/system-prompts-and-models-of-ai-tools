@@ -1,0 +1,121 @@
+{
+  "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+  "bugs": "https://github.com/wooorm/property-information/issues",
+  "contributors": [
+    "Andrew Burgess <andrew@andrewburgess.io>",
+    "Dustin Deus <deusdustin@gmail.com> (http://starptech.de)",
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
+  ],
+  "description": "Info on the properties and attributes of the web platform",
+  "devDependencies": {
+    "@types/mdast": "^4.0.0",
+    "@types/node": "^22.0.0",
+    "alpha-sort": "^5.0.0",
+    "c8": "^10.0.0",
+    "html-element-attributes": "^3.0.0",
+    "html-event-attributes": "^2.0.0",
+    "mdast-zone": "^6.0.0",
+    "prettier": "^3.0.0",
+    "remark-cli": "^12.0.0",
+    "remark-preset-wooorm": "^11.0.0",
+    "svg-element-attributes": "^2.0.0",
+    "svg-event-attributes": "^2.0.0",
+    "type-coverage": "^2.0.0",
+    "typescript": "^5.0.0",
+    "unist-builder": "^4.0.0",
+    "xo": "^0.60.0"
+  },
+  "exports": "./index.js",
+  "files": [
+    "index.d.ts",
+    "index.js",
+    "lib/"
+  ],
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/wooorm"
+  },
+  "keywords": [
+    "aria",
+    "attribute",
+    "html",
+    "information",
+    "info",
+    "property",
+    "svg"
+  ],
+  "license": "MIT",
+  "name": "property-information",
+  "prettier": {
+    "bracketSpacing": false,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "none",
+    "useTabs": false
+  },
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-wooorm",
+      "./script/list.js"
+    ]
+  },
+  "repository": "wooorm/property-information",
+  "scripts": {
+    "build": "tsc --build --clean && tsc --build && type-coverage",
+    "format": "remark --frail --output --quiet -- . && prettier --log-level warn --write -- . && xo --fix",
+    "generate": "node --conditions development script/generate-react.js && node --conditions development script/generate-exceptions.js",
+    "test-api": "node --conditions development test.js",
+    "test-coverage": "c8 --100 --reporter lcov -- npm run test-api",
+    "test": "npm run generate && npm run build && npm run format && npm run test-coverage"
+  },
+  "sideEffects": false,
+  "typeCoverage": {
+    "atLeast": 100,
+    "ignoreCatch": true
+  },
+  "type": "module",
+  "version": "7.1.0",
+  "xo": {
+    "overrides": [
+      {
+        "files": [
+          "script/**/*.js",
+          "test.js"
+        ],
+        "rules": {
+          "no-await-in-loop": "off"
+        }
+      },
+      {
+        "files": [
+          "**/*.d.ts"
+        ],
+        "rules": {
+          "@typescript-eslint/array-type": [
+            "error",
+            {
+              "default": "generic"
+            }
+          ],
+          "@typescript-eslint/ban-types": [
+            "error",
+            {
+              "extendDefaults": true
+            }
+          ],
+          "@typescript-eslint/consistent-type-definitions": [
+            "error",
+            "interface"
+          ]
+        }
+      }
+    ],
+    "prettier": true,
+    "rules": {
+      "logical-assignment-operators": "off",
+      "no-bitwise": "off",
+      "unicorn/prefer-string-replace-all": "off"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "name": "@shikijs/core",
+  "type": "module",
+  "version": "2.5.0",
+  "description": "Core of Shiki",
+  "author": "Pine Wu <octref@gmail.com>; Anthony Fu <anthonyfu117@hotmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/shikijs/shiki#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shikijs/shiki.git",
+    "directory": "packages/core"
+  },
+  "bugs": "https://github.com/shikijs/shiki/issues",
+  "keywords": [
+    "shiki"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    },
+    "./wasm-inlined": {
+      "types": "./dist/wasm-inlined.d.mts",
+      "default": "./dist/wasm-inlined.mjs"
+    },
+    "./textmate": {
+      "types": "./dist/textmate.d.mts",
+      "default": "./dist/textmate.mjs"
+    },
+    "./types": {
+      "types": "./dist/types.d.mts"
+    },
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json",
+    "./*": "./dist/*"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "typesVersions": {
+    "*": {
+      "wasm-inlined": [
+        "./dist/wasm-inlined.d.mts"
+      ],
+      "types": [
+        "./dist/types.d.mts"
+      ],
+      "textmate": [
+        "./dist/textmate.d.mts"
+      ],
+      "*": [
+        "./dist/*",
+        "./*"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@shikijs/vscode-textmate": "^10.0.2",
+    "@types/hast": "^3.0.4",
+    "hast-util-to-html": "^9.0.4",
+    "@shikijs/engine-oniguruma": "2.5.0",
+    "@shikijs/types": "2.5.0",
+    "@shikijs/engine-javascript": "2.5.0"
+  },
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "test": "vitest"
+  }
+}

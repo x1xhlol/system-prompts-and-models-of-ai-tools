@@ -1,0 +1,64 @@
+name: Check for Upstream Updates
+on:
+  schedule:
+    - cron: '0 0 * * 0' # 每周日
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  sync-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git remote add upstream https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools.git || true
+          git fetch upstream
+
+      - name: Check for differences and generate report
+        id: diff_check
+        run: |
+          # 定义更新报告的存放目录
+          UPDATE_DIR="upstream_updates"
+          # 清理旧报告
+          rm -rf $UPDATE_DIR
+          
+          # 获取差异文件列表
+          CHANGED_FILES=$(git diff main upstream/main --name-only)
+
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No new updates found from upstream."
+            echo "changes_found=false" >> $GITHUB_OUTPUT
+          else
+            echo "Updates found. Generating report..."
+            echo "changes_found=true" >> $GITHUB_OUTPUT
+            mkdir -p $UPDATE_DIR
+            
+            # 创建摘要文件
+            echo "# 上游仓库更新报告" > $UPDATE_DIR/summary.md
+            echo "检测到以下文件有更新：" >> $UPDATE_DIR/summary.md
+            echo "" >> $UPDATE_DIR/summary.md
+            echo '```' >> $UPDATE_DIR/summary.md
+            echo "$CHANGED_FILES" >> $UPDATE_DIR/summary.md
+            echo '```' >> $UPDATE_DIR/summary.md
+
+            # 复制所有变动文件的最新版本
+            for file in $CHANGED_FILES; do
+              mkdir -p "$UPDATE_DIR/$(dirname "$file")"
+              git show "upstream/main:$file" > "$UPDATE_DIR/$file"
+            done
+          fi
+
+      - name: Commit update report
+        if: steps.diff_check.outputs.changes_found == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: Check for upstream updates and generate report"
+          file_pattern: "upstream_updates/**/*"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"

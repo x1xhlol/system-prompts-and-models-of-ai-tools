@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf8">
+    <script src="../speakingurl.min.js"></script>
+</head>
+
+<body>
+    <h1>SpeakingURL browser example</h1>
+
+    <div id="slug1"></div>
+    <div id="slug2"></div>
+    <div id="slug3"></div>
+    <div id="slug4"></div>
+    <div id="slug5"></div>
+    <div id="slug6"></div>
+    <div id="slug7"></div>
+    <div id="slug8"></div>
+    <div id="slug9"></div>
+    <div id="slug10"></div>
+    <div id="slug11"></div>
+    <div id="slug12"></div>
+    <div id="slug13"></div>
+    <div id="slug14"></div>
+    <div id="slug15"></div>
+
+    <script>
+        document.getElementById("slug1").innerHTML = getSlug("Schöner Titel läßt grüßen!? Bel été !")
+        document.getElementById("slug2").innerHTML = getSlug("Schöner Titel läßt grüßen!? Bel été !", "*");
+        document.getElementById("slug3").innerHTML = getSlug("Schöner Titel läßt grüßen!? Bel été !", { separator: "_" });
+        document.getElementById("slug4").innerHTML = getSlug("Schöner Titel läßt grüßen!? Bel été !", { uric: true });
+        document.getElementById("slug4").innerHTML = getSlug("Schöner Titel läßt grüßen!? Bel été !", { uricNoSlash: true });
+        document.getElementById("slug6").innerHTML = getSlug("Schöner Titel läßt grüßen!? Bel été !", { mark: true });
+        document.getElementById("slug7").innerHTML = getSlug("Schöner Titel läßt grüßen!? Bel été !", { truncate: 20 });
+        document.getElementById("slug8").innerHTML = getSlug("Schöner Titel läßt grüßen!? Bel été !", { maintainCase: true });
+        document.getElementById("slug9").innerHTML = getSlug("Äpfel & Birnen!", { lang: 'de' });
+        document.getElementById("slug10").innerHTML = getSlug('Foo & Bar * Baz', { custom: { '&': ' doo ' }, uric: true });
+        document.getElementById("slug11").innerHTML = getSlug('Foo ♥ Bar');
+        document.getElementById("slug12").innerHTML = getSlug('Foo & Bar | Baz * Doo', { custom: { '*': "Boo" }, mark: true });
+        document.getElementById("slug13").innerHTML = getSlug('C\'est un beau titre qui ne laisse rien à désirer  ! ');
+        document.getElementById("slug14").innerHTML = getSlug('မြန်မာစာ သာဓက');
+        document.getElementById("slug15").innerHTML = getSlug('މއދކ ހާދަ ރީތި ދވހކވ !');
+    </script>
+
+    <a href="javascript:document.location='view-source:'+document.location">view source</a>
+</body>
+
+</html>

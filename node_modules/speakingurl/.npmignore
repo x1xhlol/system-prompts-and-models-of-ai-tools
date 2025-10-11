@@ -1,0 +1,56 @@
+*~
+_*
+*.sublime-*
+node_modules/
+npm-debug.log
+*.old
+.idea
+.zedstate
+.vscode
+
+coverage
+coverage.html
+lib-cov
+
+# components
+components
+build
+
+# dev temp testing scripts
+dev-*.js
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.tgz
+*.gem
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+*.db
+log/
+logs/
+
+# OS generated files #
+######################
+.DS_Store*
+Icon?

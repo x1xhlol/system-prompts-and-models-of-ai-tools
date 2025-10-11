@@ -1,0 +1,42 @@
+{
+  "name": "@algolia/autocomplete-core",
+  "description": "Core primitives for building autocomplete experiences.",
+  "version": "1.17.7",
+  "license": "MIT",
+  "homepage": "https://github.com/algolia/autocomplete",
+  "repository": "algolia/autocomplete",
+  "author": {
+    "name": "Algolia, Inc.",
+    "url": "https://www.algolia.com"
+  },
+  "source": "src/index.ts",
+  "types": "dist/esm/index.d.ts",
+  "module": "dist/esm/index.js",
+  "main": "dist/umd/index.production.js",
+  "umd:main": "dist/umd/index.production.js",
+  "unpkg": "dist/umd/index.production.js",
+  "jsdelivr": "dist/umd/index.production.js",
+  "sideEffects": false,
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build:clean": "rm -rf ./dist",
+    "build:esm": "babel src --root-mode upward --extensions '.ts,.tsx' --out-dir dist/esm --ignore '**/*/__tests__/'",
+    "build:types": "tsc -p ./tsconfig.declaration.json --outDir ./dist/esm",
+    "build:umd": "rollup --config",
+    "build": "yarn build:clean && yarn build:umd && yarn build:esm && yarn build:types",
+    "on:change": "concurrently \"yarn build:esm\" \"yarn build:types\"",
+    "prepare": "yarn build:esm && yarn build:types",
+    "watch": "watch \"yarn on:change\" --ignoreDirectoryPattern \"/dist/\""
+  },
+  "dependencies": {
+    "@algolia/autocomplete-plugin-algolia-insights": "1.17.7",
+    "@algolia/autocomplete-shared": "1.17.7"
+  },
+  "devDependencies": {
+    "@algolia/autocomplete-preset-algolia": "1.17.7",
+    "@algolia/client-search": "4.16.0",
+    "algoliasearch": "4.16.0"
+  }
+}

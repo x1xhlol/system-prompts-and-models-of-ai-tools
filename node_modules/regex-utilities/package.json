@@ -1,0 +1,35 @@
+{
+  "name": "regex-utilities",
+  "version": "2.3.0",
+  "description": "Tiny helpers for processing regex syntax",
+  "author": "Steven Levithan",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./src/index.js"
+    }
+  },
+  "types": "./types/index.d.ts",
+  "scripts": {
+    "types": "tsc src/index.js --rootDir src --declaration --allowJs --emitDeclarationOnly --outdir types",
+    "prebuild": "rm -rf types/*",
+    "build": "npm run types",
+    "pretest": "npm run build",
+    "test": "jasmine",
+    "prepare": "npm test"
+  },
+  "files": [
+    "src",
+    "types"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slevithan/regex-utilities.git"
+  },
+  "devDependencies": {
+    "jasmine": "^5.2.0",
+    "typescript": "5.5.4"
+  }
+}

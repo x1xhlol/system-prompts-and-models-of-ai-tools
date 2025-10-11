@@ -1,0 +1,60 @@
+{
+    "name": "@types/unist",
+    "version": "3.0.3",
+    "description": "TypeScript definitions for unist",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/unist",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "bizen241",
+            "githubUsername": "bizen241",
+            "url": "https://github.com/bizen241"
+        },
+        {
+            "name": "Jun Lu",
+            "githubUsername": "lujun2",
+            "url": "https://github.com/lujun2"
+        },
+        {
+            "name": "Hernan Rajchert",
+            "githubUsername": "hrajchert",
+            "url": "https://github.com/hrajchert"
+        },
+        {
+            "name": "Titus Wormer",
+            "githubUsername": "wooorm",
+            "url": "https://github.com/wooorm"
+        },
+        {
+            "name": "Junyoung Choi",
+            "githubUsername": "rokt33r",
+            "url": "https://github.com/rokt33r"
+        },
+        {
+            "name": "Ben Moon",
+            "githubUsername": "GuiltyDolphin",
+            "url": "https://github.com/GuiltyDolphin"
+        },
+        {
+            "name": "JounQin",
+            "githubUsername": "JounQin",
+            "url": "https://github.com/JounQin"
+        },
+        {
+            "name": "Remco Haszing",
+            "githubUsername": "remcohaszing",
+            "url": "https://github.com/remcohaszing"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/unist"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "typesPublisherContentHash": "7f3d5ce8d56003f3583a5317f98d444bdc99910c7b486c6b10af4f38694e61fe",
+    "typeScriptVersion": "4.8"
+}

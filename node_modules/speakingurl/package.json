@@ -1,0 +1,89 @@
+{
+    "name": "speakingurl",
+    "version": "14.0.1",
+    "description": "Generate a slug – transliteration with a lot of options",
+    "homepage": "http://pid.github.io/speakingurl/",
+    "github": "http://github.com/pid/speakingurl",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/pid/speakingurl.git"
+    },
+    "bugs": {
+        "url": "https://github.com/pid/speakingurl/issues"
+    },
+    "license": "BSD-3-Clause",
+    "licenses": [{
+        "type": "BSD",
+        "url": "https://raw.github.com/pid/speakingurl/master/LICENSE"
+    }],
+    "keywords": [
+        "slug",
+        "slugify",
+        "speakingurl",
+        "transliteration",
+        "permalink",
+        "seo",
+        "url",
+        "nice url",
+        "static url",
+        "clean url",
+        "pretty url",
+        "nice looking url",
+        "user friendly url",
+        "seo friendly url"
+    ],
+    "categories": [
+        "Utilities",
+        "Parsers & Compilers"
+    ],
+    "scripts": {
+        "test": "mocha"
+    },
+    "author": "Sascha Droste <pid@posteo.net> (https://twitter.com/SaschaDroste)",
+    "main": "index",
+    "filename": "speakingurl.min.js",
+    "dependencies": {},
+    "devDependencies": {
+        "gulp": "^3.8.8",
+        "gulp-bump": "^2.4.0",
+        "gulp-header": "^1.2.2",
+        "gulp-jsbeautifier": "^2.0.3",
+        "gulp-jshint": "^2.0.0",
+        "gulp-load-plugins": "^1.1.0",
+        "gulp-mocha": "^4.3.1",
+        "gulp-rename": "^1.2.0",
+        "gulp-replace": "^0.6.1",
+        "gulp-uglify": "^3.0.0",
+        "jshint": "^2.8.0",
+        "jshint-stylish": "^2.0.0",
+        "minimist": "^1.1.0",
+        "mocha": "^3.0.2",
+        "should": "^11.1.0"
+    },
+    "jam": {
+        "dependencies": {},
+        "main": "speakingurl.min.js",
+        "shim": {
+            "deps": [],
+            "exports": [
+                "getSlug",
+                "createSlug"
+            ]
+        },
+        "include": [
+            "speakingurl.min.js",
+            "README.md"
+        ]
+    },
+    "volo": {
+        "url": "//cdnjs.cloudflare.com/ajax/libs/speakingurl/{version}/speakingurl.min.js"
+    },
+    "engines": {
+        "node": ">=0.10.0"
+    },
+    "directories": {
+        "example": "examples",
+        "lib": "lib",
+        "test": "test"
+    }
+}

@@ -1,0 +1,79 @@
+{
+  "version": "2.2.2",
+  "license": "MIT",
+  "type": "module",
+  "typings": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "lint": "tsdx lint",
+    "prepack": "yarn build",
+    "prepare": "husky install",
+    "publish-please": "publish-please",
+    "prepublishOnly": "publish-please guard"
+  },
+  "importSort": {
+    ".ts": {
+      "style": "module"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "superjson",
+  "author": {
+    "name": "Simon Knott",
+    "email": "info@simonknott.de",
+    "url": "https://simonknott.de"
+  },
+  "contributors": [
+    {
+      "name": "Dylan Brookes",
+      "email": "dylan@brookes.net",
+      "url": "https://github.com/merelinguist"
+    },
+    {
+      "name": "Brandon Bayer",
+      "email": "b@bayer.w",
+      "url": "https://twitter.com/flybayer"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blitz-js/superjson"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.5",
+    "@types/mongodb": "^3.6.12",
+    "@types/node": "^18.7.18",
+    "benchmark": "^2.1.4",
+    "decimal.js": "^10.3.1",
+    "eslint-plugin-es5": "^1.5.0",
+    "husky": "^6.0.0",
+    "mongodb": "^3.6.6",
+    "publish-please": "^5.5.2",
+    "tsdx": "^0.14.1",
+    "typescript": "^4.2.4",
+    "vitest": "^0.34.6"
+  },
+  "dependencies": {
+    "copy-anything": "^3.0.2"
+  },
+  "resolutions": {
+    "**/@typescript-eslint/eslint-plugin": "^4.11.1",
+    "**/@typescript-eslint/parser": "^4.11.1"
+  }
+}

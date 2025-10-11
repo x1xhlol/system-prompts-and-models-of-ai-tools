@@ -1,0 +1,70 @@
+{
+  "name": "@docsearch/react",
+  "description": "React package for DocSearch, the best search experience for docs.",
+  "version": "3.8.2",
+  "license": "MIT",
+  "homepage": "https://docsearch.algolia.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/algolia/docsearch.git",
+    "directory": "packages/docsearch-react"
+  },
+  "author": {
+    "name": "Algolia, Inc.",
+    "url": "https://www.algolia.com"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist/",
+    "style/",
+    "button.js",
+    "modal.js"
+  ],
+  "source": "src/index.ts",
+  "types": "dist/esm/index.d.ts",
+  "module": "dist/esm/index.js",
+  "main": "dist/umd/index.js",
+  "umd:main": "dist/umd/index.js",
+  "unpkg": "dist/umd/index.js",
+  "jsdelivr": "dist/umd/index.js",
+  "scripts": {
+    "build:clean": "rm -rf ./dist",
+    "build:clean-types": "rm -rf ./dist/esm/types",
+    "build:types": "tsc -p ./tsconfig.declaration.json --outDir ./dist/esm/types",
+    "build": "yarn build:clean && yarn build:types && rollup --config --bundleConfigAsCjs && yarn build:clean-types",
+    "on:change": "yarn build",
+    "watch": "watch \"yarn on:change\" --ignoreDirectoryPattern \"/dist/\""
+  },
+  "dependencies": {
+    "@algolia/autocomplete-core": "1.17.7",
+    "@algolia/autocomplete-preset-algolia": "1.17.7",
+    "@docsearch/css": "3.8.2",
+    "algoliasearch": "^5.14.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-replace": "6.0.1",
+    "@testing-library/jest-dom": "6.6.3",
+    "@testing-library/react": "16.0.1",
+    "vitest": "2.1.5"
+  },
+  "peerDependencies": {
+    "@types/react": ">= 16.8.0 < 19.0.0",
+    "react": ">= 16.8.0 < 19.0.0",
+    "react-dom": ">= 16.8.0 < 19.0.0",
+    "search-insights": ">= 1 < 3"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    },
+    "search-insights": {
+      "optional": true
+    }
+  }
+}
