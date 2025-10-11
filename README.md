@@ -1,8 +1,10 @@
+[English](./README.en.md)
+
 # AI System Prompts Hub (VitePress 增强版)
 
 本项目是 [x1xhlol/system-prompts-and-models-of-ai-tools](https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools) 的一个二次开发版本。
 
-我在原项目的基础上，利用 **VitePress** 技术栈将其完全重构为一个现代化的静态文档网站，旨在提供更佳的浏览和阅读体验。使用 `scripts` 目录下的自定义脚本，将源文件批量转换为统一的 Markdown 格式，并生成zh和en两个文档文件夹。对生成的 Markdown 文档进行翻译和校对，完成汉化，为后续的双语网站做准备。基于 VitePress 搭建双语静态网站，并进行深度定制，包括主题、导航、主页布局等。但因为大部分翻译转化都是基于ai完成的，所以部分翻译可能存在错误，如果有疑问还是建议直接查看原仓库的内容。
+在原项目的基础上，利用 **VitePress** 技术栈将其完全重构为一个现代化的静态文档网站，旨在提供更佳的浏览和阅读体验。使用 `scripts` 目录下的自定义脚本，将源文件批量转换为统一的 Markdown 格式，并生成zh和en两个文档文件夹。对生成的 Markdown 文档进行翻译和校对，完成汉化，为后续的双语网站做准备。基于 VitePress 搭建双语静态网站，并进行深度定制，包括主题、导航、主页布局等。最后定期读取原仓库是否更新，总结到指定文件夹中，之后我再手动更新。但因为大部分翻译转化都是基于ai完成的，所以部分翻译可能存在错误，如果有疑问还是建议直接查看原仓库的内容。
 
 ## ✨ 新版本主要特性
 
@@ -16,10 +18,7 @@
 
 ## 访问线上网站
 
-您可以通过以下链接访问部署好的文档网站：
-
-**(这里可以替换为您的 GitHub Pages 链接)**
-`https://yancongya.github.io/system-prompts-and-models-of-ai-tools/`
+您可以通过以下链接访问部署好的文档网站
 
 ---
 
