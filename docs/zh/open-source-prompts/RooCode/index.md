@@ -1,7 +1,7 @@
-# Open Source prompts
+# 文档目录
 
-## 目录
+- [Prompt](./Prompt.md)
 
-- 📄 [Prompt](/zh/open-source-prompts/RooCode/Prompt.md)
+## 产品工具文档的综述
 
-*完整还原。*
+此目录下的 `Prompt.md` 文件为名为 "Roo" 的AI助手定义了核心系统提示。Roo被定位为一名高级软件工程师，专注于以最少的代码改动来完成任务，并注重可维护性。该提示详细规定了Roo如何通过一套基于XML风格标签的工具集与用户交互，以分步、迭代的方式完成编码任务。这些工具包括文件操作（`read_file`, `write_to_file`, `apply_diff`）、命令执行（`execute_command`）、代码库搜索（`search_files`）以及与外部MCP服务器交互的能力。与Cline类似，该文档也强调了在每次工具调用后等待用户确认，并根据结果调整后续步骤的迭代式工作流程。

@@ -1,5 +1,25 @@
 ## Tools.json
 
+## Tools.json
+
+This document defines the following tools:
+- `startup`: Shortcut to create a new web project from a framework template. Each is configured with TypeScript, Biome, and Bun. Choose the best framework for the project. Do not use this tool if the desired framework is not listed. Default to nextjs-shadcn.
+- `task_agent`: Launches a highly capable task agent in the user's workspace.
+- `bash`: Run terminal commands. Each command runs in a new shell.
+- `ls`: List the contents of a directory.
+- `glob`: Search for files using glob patterns.
+- `grep`: Fast text-based regex search that finds exact pattern matches within files or directories.
+- `read_file`: Read the contents of a file.
+- `delete_file`: Deletes a file at the specified path.
+- `edit_file`: Use this tool to make large edits or refactorings to an existing file or create a new file.
+- `string_replace`: Performs exact string replacements in files.
+- `run_linter`: Before running this tool, make sure a lint script exists in the project's package.json file and all packages have been installed.
+- `versioning`: Create a new version for a project.
+- `suggestions`: Suggest 1-5 next steps to implement with the user.
+- `deploy`: Deploys the project to Netlify.
+- `web_search`: Search the web for real-time text and image responses.
+- `web_scrape`: Scrape a website to see its design and content.
+
 ```json
 [
   {

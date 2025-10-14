@@ -1,55 +1,35 @@
-## Replit Tools 综述
-
-这个文档定义了Replit Assistant可用的工具集合，这些工具为AI助手提供了完整的开发环境操作能力。Replit是一个在线IDE环境，使用Linux和Nix系统。
-
-### 核心工具分类
-
-1. **工作流管理工具**
-   - `restart_workflow`: 重启（或启动）工作流
-   - `workflows_set_run_config_tool`: 配置后台任务执行shell命令
-   - `workflows_remove_run_config_tool`: 移除之前添加的命名命令
-
-2. **文件系统操作工具**
-   - `search_filesystem`: 搜索和打开代码库中的相关文件
-   - `str_replace_editor`: 用于查看、创建和编辑文件的自定义编辑工具
-
-3. **包和语言管理工具**
-   - `packager_tool`: 安装语言（如果需要）并安装或卸载库或项目依赖
-   - `programming_language_install_tool`: 安装编程语言
-
-4. **数据库工具**
-   - `create_postgresql_database_tool`: 为项目创建PostgreSQL数据库
-   - `check_database_status`: 检查给定数据库是否可用和可访问
-   - `execute_sql_tool`: 执行SQL查询，修复数据库错误和访问数据库模式
-
-5. **系统命令工具**
-   - `bash`: 在bash shell中运行命令
-
-6. **部署和反馈工具**
-   - `suggest_deploy`: 当项目准备好部署时调用此函数
-   - `report_progress`: 用户明确确认主要功能或任务完成时调用
-   - `web_application_feedback_tool`: 捕获截图并检查日志以验证Web应用程序是否在Replit工作流中运行
-   - `shell_command_application_feedback_tool`: 执行交互式shell命令并询问关于输出或行为的问题
-   - `vnc_window_application_feedback`: 执行交互式桌面应用程序，通过VNC访问并显示给用户
-
-7. **密钥管理工具**
-   - `ask_secrets`: 向用户询问项目所需的密钥API密钥
-   - `check_secrets`: 检查给定密钥是否存在于环境中
-
-这些工具使Replit Assistant能够在在线IDE环境中完成完整的开发工作流程，从文件操作、包管理到数据库操作和部署。
-
 ## Tools.json
+
+本文档定义了以下工具：
+- `restart_workflow`: 重启（或启动）工作流
+- `search_filesystem`: 搜索并打开代码库中的相关文件
+- `packager_tool`: 安装语言（如果需要）并安装或卸载库或项目依赖项
+- `programming_language_install_tool`: 安装编程语言
+- `create_postgresql_database_tool`: 为项目创建 PostgreSQL 数据库
+- `check_database_status`: 检查数据库是否可用和可访问
+- `str_replace_editor`: 用于查看、创建和编辑文件的自定义编辑工具
+- `bash`: 在 bash shell 中运行命令
+- `workflows_set_run_config_tool`: 配置执行 shell 命令的后台任务
+- `workflows_remove_run_config_tool`: 移除先前添加的命名命令
+- `execute_sql_tool`: 允许您执行 SQL 查询、修复数据库错误和访问数据库架构
+- `suggest_deploy`: 建议部署项目
+- `report_progress`: 报告用户任务完成情况
+- `web_application_feedback_tool`: 捕获屏幕截图并检查日志以验证网络应用程序是否在 Replit 工作流中运行
+- `shell_command_application_feedback_tool`: 执行交互式 shell 命令并询问 CLI 应用程序的输出或行为
+- `vnc_window_application_feedback`: 执行交互式桌面应用程序，通过 VNC 访问并显示给用户
+- `ask_secrets`: 请求项目所需的密钥 API 密钥
+- `check_secrets`: 检查环境中是否存在给定密钥
 
 ```json
 {
   "tools": [
     {
       "name": "restart_workflow",
-      "description": "Restart (or start) a workflow.",
+      "description": "重启（或启动）一个工作流。",
       "parameters": {
         "properties": {
           "name": {
-            "description": "The name of the workflow.",
+            "description": "工作流的名称。",
             "type": "string"
           }
         },
@@ -61,12 +41,12 @@
     },
     {
       "name": "search_filesystem",
-      "description": "This tools searches and opens the relevant files for a codebase",
+      "description": "此工具搜索并打开代码库的相关文件",
       "parameters": {
         "properties": {
           "class_names": {
             "default": [],
-            "description": "List of specific class names to search for in the codebase. Case-sensitive and supports exact matches only. Use this to find particular class definitions or their usages.",
+            "description": "在代码库中搜索的特定类名列表。区分大小写且仅支持精确匹配。使用此功能查找特定类定义或其用法。",
             "items": {
               "type": "string"
             },
@@ -74,7 +54,7 @@
           },
           "code": {
             "default": [],
-            "description": "List of exact code snippets to search for in the codebase. Useful for finding specific implementations or patterns. Each snippet should be a complete code fragment, not just keywords.",
+            "description": "在代码库中搜索的精确代码片段列表。有助于查找特定实现或模式。每个片段应该是完整的代码片段，而不仅仅是关键字。",
             "items": {
               "type": "string"
             },
@@ -82,7 +62,7 @@
           },
           "function_names": {
             "default": [],
-            "description": "List of specific function or method names to search for. Case-sensitive and supports exact matches only. Use this to locate function definitions or their invocations throughout the code.",
+            "description": "要搜索的特定函数或方法名列表。区分大小写且仅支持精确匹配。使用此功能在整个代码中定位函数定义或其调用。",
             "items": {
               "type": "string"
             },
@@ -98,7 +78,7 @@
               }
             ],
             "default": null,
-            "description": "A natural language query to perform semantic similarity search. Describe what you're looking for using plain English, e.g. 'find error handling in database connections' or 'locate authentication middleware implementations'."
+            "description": "执行语义相似性搜索的自然语言查询。使用简单英语描述您要查找的内容，例如 'find error handling in database connections' 或 'locate authentication middleware implementations'。"
           }
         },
         "type": "object"
@@ -106,19 +86,19 @@
     },
     {
       "name": "packager_tool",
-      "description": "Installs the language (if needed) and installs or uninstalls a list of libraries or project dependencies. Use this tool to install dependencies instead of executing shell commands, or editing files manually. Use this tool with language_or_system=`system` to add system-dependencies instead of using `apt install`. Installing libraries for the first time also creates the necessary project files automatically (like 'package.json', 'cargo.toml', etc). This will automatically reboot all workflows.",
+      "description": "安装语言（如果需要）并安装或卸载库或项目依赖项列表。使用此工具安装依赖项，而不是执行 shell 命令或手动编辑文件。使用 language_or_system=`system` 运行此工具以添加系统依赖项，而不是使用 `apt install`。首次安装库时也会自动创建必要的项目文件（如 'package.json'、'cargo.toml' 等）。这将自动重启所有工作流。",
       "parameters": {
         "properties": {
           "dependency_list": {
             "default": [],
-            "description": "The list of system dependencies or libraries to install. System dependencies are packages (attribute paths) in the Nixpkgs package collection. Example system dependencies: ['jq', 'ffmpeg', 'imagemagick']. Libraries are packages for a particular programming language. Example libraries: ['express'], ['lodash'].",
+            "description": "要安装的系统依赖项或库列表。系统依赖项是 Nixpkgs 包集合中的包（属性路径）。示例系统依赖项：['jq', 'ffmpeg', 'imagemagick']。库是特定编程语言的包。示例库：['express']，['lodash']。",
             "items": {
               "type": "string"
             },
             "type": "array"
           },
           "install_or_uninstall": {
-            "description": "Whether to install or uninstall.",
+            "description": "是安装还是卸载。",
             "enum": [
               "install",
               "uninstall"
@@ -126,7 +106,7 @@
             "type": "string"
           },
           "language_or_system": {
-            "description": "The language for which to install/uninstall libraries, for example  'nodejs', 'bun', 'python', etc. Use `system` to install/uninstall system dependencies.",
+            "description": "要安装/卸载库的语言，例如 'nodejs'、'bun'、'python' 等。使用 `system` 来安装/卸载系统依赖项。",
             "type": "string"
           }
         },
@@ -139,11 +119,11 @@
     },
     {
       "name": "programming_language_install_tool",
-      "description": "If a program doesn't run, you may not have the programming language installed. Use programming_language_install_tool to install it. If you need to use python, include 'python-3.11' in programming_languages. For Python 3.10, use 'python-3.10'. If you need to use Node.js, include 'nodejs-20' in programming_languages. For Node.js 18, use 'nodejs-18'. Note, this will also install the language's package manager, so don't install it separately.",
+      "description": "如果程序无法运行，您可能没有安装编程语言。使用 programming_language_install_tool 来安装它。如果您需要使用 python，请在 programming_languages 中包含 'python-3.11'。对于 Python 3.10，请使用 'python-3.10'。如果您需要使用 Node.js，请在 programming_languages 中包含 'nodejs-20'。对于 Node.js 18，请使用 'nodejs-18'。注意，这还将安装语言的包管理器，因此无需单独安装。",
       "parameters": {
         "properties": {
           "programming_languages": {
-            "description": "IDs of the programming languages to install",
+            "description": "要安装的编程语言的 ID",
             "items": {
               "type": "string"
             },
@@ -158,7 +138,7 @@
     },
     {
       "name": "create_postgresql_database_tool",
-      "description": "When a project requires a PostgreSQL database, you can use this tool to create a database for it. After successfully creating a database, you will have access to the following environment variables: DATABASE_URL, PGPORT, PGUSER, PGPASSWORD, PGDATABASE, PGHOST\nYou can use these environment variables to connect to the database in your project.",
+      "description": "当项目需要 PostgreSQL 数据库时，您可以使用此工具为其创建数据库。成功创建数据库后，您将可以访问以下环境变量：DATABASE_URL, PGPORT, PGUSER, PGPASSWORD, PGDATABASE, PGHOST\n您可以使用这些环境变量在项目中连接到数据库。",
       "parameters": {
         "properties": {},
         "type": "object"
@@ -166,7 +146,7 @@
     },
     {
       "name": "check_database_status",
-      "description": "Check if given databases are available and accessible.\nThis tool is used to verify the connection and status of specified databases.",
+      "description": "检查给定数据库是否可用和可访问。\n此工具用于验证指定数据库的连接和状态。",
       "parameters": {
         "properties": {},
         "type": "object"
@@ -174,11 +154,11 @@
     },
     {
       "name": "str_replace_editor",
-      "description": "Custom editing tool for viewing, creating and editing files\n* State is persistent across command calls and discussions with the user\n* If `path` is a file, `view` displays the result of applying `cat -n`. If `path` is a directory, `view` lists non-hidden files and directories up to 2 levels deep\n* The `create` command cannot be used if the specified `path` already exists as a file\n* If a `command` generates a long output, it will be truncated and marked with `<response clipped>` \n* The `undo_edit` command will revert the last edit made to the file at `path`\n\nNotes for using the `str_replace` command:\n* The `old_str` parameter should match EXACTLY one or more consecutive lines from the original file. Be mindful of whitespaces!\n* If the `old_str` parameter is not unique in the file, the replacement will not be performed. Make sure to include enough context in `old_str` to make it unique\n* The `new_str` parameter should contain the edited lines that should replace the `old_str`",
+      "description": "用于查看、创建和编辑文件的自定义编辑工具\n* 状态在命令调用和与用户的讨论中保持持久\n* 如果 `path` 是一个文件，`view` 显示应用 `cat -n` 的结果。如果 `path` 是一个目录，`view` 列出最多 2 级深度的非隐藏文件和目录\n* 如果指定的 `path` 已经作为文件存在，则不能使用 `create` 命令\n* 如果 `command` 生成长输出，它将被截断并标记为 `<response clipped>` \n* `undo_edit` 命令将撤消对 `path` 处文件的最后一次编辑\n\n使用 `str_replace` 命令的注意事项：\n* `old_str` 参数应完全匹配原始文件中一个或多个连续行。请注意空格！\n* 如果 `old_str` 参数在文件中不唯一，则不会执行替换。请确保在 `old_str` 中包含足够的上下文以使其唯一\n* `new_str` 参数应包含要替换 `old_str` 的编辑行",
       "parameters": {
         "properties": {
           "command": {
-            "description": "The commands to run. Allowed options are: `view`, `create`, `str_replace`, `insert`, `undo_edit`.",
+            "description": "要运行的命令。允许的选项是：`view`、`create`、`str_replace`、`insert`、`undo_edit`。",
             "enum": [
               "view",
               "create",
@@ -189,27 +169,27 @@
             "type": "string"
           },
           "file_text": {
-            "description": "Required parameter of `create` command, with the content of the file to be created.",
+            "description": "`create` 命令的必需参数，包含要创建的文件内容。",
             "type": "string"
           },
           "insert_line": {
-            "description": "Required parameter of `insert` command. The `new_str` will be inserted AFTER the line `insert_line` of `path`.",
+            "description": "`insert` 命令的必需参数。`new_str` 将插入到 `path` 的 `insert_line` 行之后。",
             "type": "integer"
           },
           "new_str": {
-            "description": "Optional parameter of `str_replace` command containing the new string (if not given, no string will be added). Required parameter of `insert` command containing the string to insert.",
+            "description": "`str_replace` 命令的可选参数，包含新字符串（如果不提供，则不会添加字符串）。`insert` 命令的必需参数，包含要插入的字符串。",
             "type": "string"
           },
           "old_str": {
-            "description": "Required parameter of `str_replace` command containing the string in `path` to replace.",
+            "description": "`str_replace` 命令的必需参数，包含 `path` 中要替换的字符串。",
             "type": "string"
           },
           "path": {
-            "description": "Absolute path to file or directory, e.g. `/repo/file.py` or `/repo`.",
+            "description": "文件或目录的绝对路径，例如 `/repo/file.py` 或 `/repo`。",
             "type": "string"
           },
           "view_range": {
-            "description": "Optional parameter of `view` command when `path` points to a file. If none is given, the full file is shown. If provided, the file will be shown in the indicated line number range, e.g. [11, 12] will show lines 11 and 12. Indexing at 1 to start. Setting `[start_line, -1]` shows all lines from `start_line` to the end of the file.",
+            "description": "当 `path` 指向文件时，`view` 命令的可选参数。如果没有提供，则显示完整文件。如果提供，则文件将以指定的行号范围显示，例如 [11, 12] 将显示第 11 和 12 行。索引从 1 开始。设置 `[start_line, -1]` 将显示从 `start_line` 到文件末尾的所有行。",
             "items": {
               "type": "integer"
             },
@@ -225,15 +205,15 @@
     },
     {
       "name": "bash",
-      "description": "Run commands in a bash shell\n* When invoking this tool, the contents of the \"command\" parameter does NOT need to be XML-escaped.\n* You have access to a mirror of common linux and python packages via apt and pip.\n* State is persistent across command calls and discussions with the user.\n* To inspect a particular line range of a file, e.g. lines 10-25, try 'sed -n 10,25p /path/to/the/file'.\n* Please avoid commands that may produce a very large amount of output.\n* Please run long lived commands in the background, e.g. 'sleep 10 &' or start a server in the background.",
+      "description": "在 bash shell 中运行命令\n* 调用此工具时，\"command\" 参数的内容不需要 XML 转义。\n* 您可以通过 apt 和 pip 访问常见 linux 和 python 包的镜像。\n* 状态在命令调用和与用户的讨论中保持持久。\n* 要检查文件的特定行范围，例如第 10-25 行，请尝试 'sed -n 10,25p /path/to/the/file'。\n* 请避免可能产生大量输出的命令。\n* 请在后台运行长期运行的命令，例如 'sleep 10 &' 或在后台启动服务器。",
       "parameters": {
         "properties": {
           "command": {
-            "description": "The bash command to run. Required unless the tool is being restarted.",
+            "description": "要运行的 bash 命令。除非工具正在重启，否则必需。",
             "type": "string"
           },
           "restart": {
-            "description": "Specifying true will restart this tool. Otherwise, leave this unspecified.",
+            "description": "指定 true 将重启此工具。否则，请保持未指定。",
             "type": "boolean"
           }
         },
@@ -242,15 +222,15 @@
     },
     {
       "name": "workflows_set_run_config_tool",
-      "description": "Configure a background task that executes a shell command.\nThis is useful for starting development servers, build processes, or any other\nlong-running tasks needed for the project.\nIf this is a server, ensure you specify the port number it listens on in the `wait_for_port` field so\nthe workflow isn't considered started until the server is ready to accept connections.\n\nExamples:\n- For a Node.js server: set `name` to 'Server', `command` to 'npm run dev', and `wait_for_port` to 5000\n- For a Python script: set name to 'Data Processing' and command to 'python process_data.py'\n\nMultiple tasks can be configured and they will all execute in parallel when the project is started.\nAfter configuring a task, it will automatically start executing in the background.\n\nALWAYS serve the app on port 5000, even if there are problems serving that port: it is the only port that is not firewalled.\n",
+      "description": "配置执行 shell 命令的后台任务。\n这对于启动开发服务器、构建进程或项目所需的任何其他\n长期运行的任务很有用。\n如果是服务器，请确保在 `wait_for_port` 字段中指定它侦听的端口号，\n以便在服务器准备好接受连接之前不认为工作流已启动。\n\n示例：\n- 对于 Node.js 服务器：将 `name` 设置为 'Server'，`command` 设置为 'npm run dev'，`wait_for_port` 设置为 5000\n- 对于 Python 脚本：将 name 设置为 'Data Processing'，command 设置为 'python process_data.py'\n\n可以配置多个任务，项目启动时它们将全部并行执行。\n配置任务后，它将自动在后台开始执行。\n\n始终在端口 5000 上提供应用程序，即使该端口存在问题：这是唯一没有防火墙的端口。\n",
       "parameters": {
         "properties": {
           "command": {
-            "description": "The shell command to execute. This will run in the background when the project is started.",
+            "description": "要执行的 shell 命令。项目启动时将在后台运行。",
             "type": "string"
           },
           "name": {
-            "description": "A unique name to identify the command. This will be used to keep a track of the command.",
+            "description": "标识命令的唯一名称。这将用于跟踪命令。",
             "type": "string"
           },
           "wait_for_port": {
@@ -263,7 +243,7 @@
               }
             ],
             "default": null,
-            "description": "If the command starts a process that listens on a port, specify the port number here.\nThis allows the system to wait for the port to be ready before considering the command fully started."
+            "description": "如果命令启动侦听端口的进程，请在此处指定端口号。\n这允许系统在认为命令完全启动之前等待端口准备就绪。"
           }
         },
         "required": [
@@ -275,11 +255,11 @@
     },
     {
       "name": "workflows_remove_run_config_tool",
-      "description": "Remove previously added named command",
+      "description": "移除之前添加的命名命令",
       "parameters": {
         "properties": {
           "name": {
-            "description": "The name of the command to remove.",
+            "description": "要移除的命令名称。",
             "type": "string"
           }
         },
@@ -291,11 +271,11 @@
     },
     {
       "name": "execute_sql_tool",
-      "description": "This tool allows you to execute SQL queries, fix database errors and access the database schema.\n\n## Rules of usage:\n1. Always prefer using this tool to fix database errors vs fixing by writing code like db.drop_table(table_name)\n2. Provide clear, well-formatted SQL queries with proper syntax\n3. Focus on database interactions, data manipulation, and query optimization\n\n## When to use:\n1. To fix and troubleshoot database-related issues\n2. To explore database schema and relationships\n3. To update or modify data in the database\n4. To run ad-hoc single-use SQL code\n\n## When not to use:\n1. For non-SQL database operations (NoSQL, file-based databases)\n2. For database migrations. Use a migration tool like Drizzle or flask-migrate instead\n\n## Example usage:\n\n### Example 1: Viewing database information\nsql_query: SELECT * FROM customers WHERE region = 'North';\n\n### Example 2: Running ad-hoc SQL queries\nsql_query:  EXPLAIN ANALYZE SELECT orders.*, customers.name\n            FROM orders\n            JOIN customers ON orders.customer_id = customers.id;\n\n### Example 3: Inserting data into the database\nsql_query:  INSERT INTO products (name, price, category)\n            VALUES ('New Product', 29.99, 'Electronics');",
+      "description": "此工具允许您执行 SQL 查询、修复数据库错误和访问数据库架构。\n\n## 使用规则：\n1. 始终优先使用此工具修复数据库错误，而不是编写像 db.drop_table(table_name) 这样的代码来修复\n2. 提供语法正确的清晰、格式良好的 SQL 查询\n3. 专注于数据库交互、数据操作和查询优化\n\n## 何时使用：\n1. 修复和排查与数据库相关的问题\n2. 探索数据库架构和关系\n3. 更新或修改数据库中的数据\n4. 运行一次性使用的 SQL 代码\n\n## 何时不使用：\n1. 用于非 SQL 数据库操作（NoSQL、基于文件的数据库）\n2. 用于数据库迁移。请改用 Drizzle 或 flask-migrate 等迁移工具\n\n## 使用示例：\n\n### 示例 1：查看数据库信息\nsql_query: SELECT * FROM customers WHERE region = 'North';\n\n### 示例 2：运行一次性 SQL 查询\nsql_query:  EXPLAIN ANALYZE SELECT orders.*, customers.name\n            FROM orders\n            JOIN customers ON orders.customer_id = customers.id;\n\n### 示例 3：向数据库插入数据\nsql_query:  INSERT INTO products (name, price, category)\n            VALUES ('New Product', 29.99, 'Electronics');",
       "parameters": {
         "properties": {
           "sql_query": {
-            "description": "The SQL query to be executed",
+            "description": "要执行的 SQL 查询",
             "type": "string"
           }
         },
@@ -307,20 +287,20 @@
     },
     {
       "name": "suggest_deploy",
-      "description": "Call this function when you think the project is in a state ready for deployment.\nThis will suggest to the user that they can deploy their project.\nThis is a terminal action - once called, your task is complete and\nyou should not take any further actions to verify the deployment.\nThe deployment process will be handled automatically by Replit Deployments.\n\n## Rules of usage:\n1. Use this tool once you've validated that the project works as expected.\n2. The deployment process will be handled automatically by Replit Deployments.\n\n## When to use:\n1. When the project is ready for deployment.\n2. When the user asks to deploy the project.\n\n## More information:\n- The user needs to manually initiate the deployment.\n- Replit Deployments will handle building the application, hosting, TLS, health checks.\n- Once this tool is called, there is no need to do any follow up steps or verification.\n- Once deployed, the app will be available under a `.replit.app` domain,\n  or a custom domain if one is configured.",
+      "description": "当您认为项目处于可部署状态时调用此函数。\n这将建议用户他们可以部署他们的项目。\n这是一个终端操作 - 一旦调用，您的任务就完成了，并且\n您不应采取任何进一步操作来验证部署。\n部署过程将由 Replit Deployments 自动处理。\n\n## 使用规则：\n1. 验证项目按预期工作后使用此工具。\n2. 部署过程将由 Replit Deployments 自动处理。\n\n## 何时使用：\n1. 当项目准备部署时。\n2. 当用户要求部署项目时。\n\n## 更多信息：\n- 用户需要手动启动部署。\n- Replit Deployments 将处理应用程序构建、托管、TLS、健康检查。\n- 调用此工具后，无需执行任何后续步骤或验证。\n- 部署后，应用程序将在 `.replit.app` 域下可用，\n  或者如果配置了自定义域，则在自定义域下可用。",
       "parameters": {
-        "description": "Empty parameters class since suggest deploy doesn't need any parameters.",
+        "description": "空参数类，因为建议部署不需要任何参数。",
         "properties": {},
         "type": "object"
       }
     },
     {
       "name": "report_progress",
-      "description": "Call this function once the user explicitly confirms that a major feature or task is complete.\nDo not call it without the user's confirmation.\nProvide a concise summary of what was accomplished in the 'summary' field.\nThis tool will ask user for the next thing to do. Don't do anything after this tool.",
+      "description": "用户明确确认主要功能或任务完成时调用此函数。\n不要在没有用户确认的情况下调用它。\n在 'summary' 字段中提供已完成内容的简明摘要。\n此工具将询问用户下一步要做什么。此工具之后不要执行任何操作。",
       "parameters": {
         "properties": {
           "summary": {
-            "description": "Summarize your recent changes in a maximum of 5 items. Be really concise, use no more than 30 words. Break things into multiple lines.\nPut a ✓ before every item you've done recently and → for the items in progress, be very short and concise, don't use more than 50 words. Don't use emojis.\nUse simple, everyday language that matches the user's language. Avoid technical terms, as users are non-technical.\nAsk user what to do next in the end.",
+            "description": "最多用 5 个项目总结您的最近更改。要非常简洁，不超过 30 个词。将内容分成多行。\n在您最近完成的每个项目前加上 ✓，在进行中的项目前加上 →，要非常简短和简洁，不超过 50 个词。不要使用表情符号。\n使用与用户语言匹配的简单日常语言。避免技术术语，因为用户不是技术人员。\n最后询问用户下一步要做什么。",
             "type": "string"
           }
         },
@@ -332,11 +312,11 @@
     },
     {
       "name": "web_application_feedback_tool",
-      "description": "This tool captures a screenshot and checks logs to verify whether the web application is running in the Replit workflow.\n\nIf the application is running, the tool displays the app, asks user a question, and waits for user's response.\nUse this tool when the application is in a good state and the requested task is complete to avoid unnecessary delays.",
+      "description": "此工具捕获屏幕截图并检查日志以验证网络应用程序是否在 Replit 工作流中运行。\n\n如果应用程序正在运行，该工具将显示应用程序，向用户提问，并等待用户的响应。\n当应用程序状态良好且请求的任务完成时使用此工具，以避免不必要的延迟。",
       "parameters": {
         "properties": {
           "query": {
-            "description": "The question you will ask the user.\n\nUse simple, everyday language that matches the user's language. Avoid technical terms, as users are non-technical.\nSummarize your recent changes in a maximum of 5 items. Be really concise, use no more than 30 words. Break things into multiple lines.\nPut a ✓ before every item you've done recently and → for the items in progress, be very short and concise, don't use more than 50 words. Don't use emojis.\nLimit yourself to asking only one question at a time.\nYou have access to workflow state, console logs, and screenshots—retrieve them yourself instead of asking the user.\nAsk for user input or confirmation on next steps. Do not request details.",
+            "description": "您将向用户提出的问题。\n\n使用与用户语言匹配的简单日常语言。避免技术术语，因为用户不是技术人员。\n最多用 5 个项目总结您的最近更改。要非常简洁，不超过 30 个词。将内容分成多行。\n在您最近完成的每个项目前加上 ✓，在进行中的项目前加上 →，要非常简短和简洁，不超过 50 个词。不要使用表情符号。\n一次只问一个问题。\n您可以访问工作流状态、控制台日志和屏幕截图——请自己检索它们，而不是询问用户。\n询问用户下一步的输入或确认。不要请求详细信息。",
             "type": "string"
           },
           "website_route": {
@@ -349,10 +329,10 @@
               }
             ],
             "default": null,
-            "description": "The specific route or path of the website you're asking about, if it's different from the root URL ('/'). Include the leading slash. Example: '/dashboard' or '/products/list'"
+            "description": "您询问的网站的特定路由或路径（如果与根 URL ('/') 不同）。包含前导斜杠。示例：'/dashboard' 或 '/products/list'"
           },
           "workflow_name": {
-            "description": "The name of the workflow running the server. Used to determine the port of the website.",
+            "description": "运行服务器的工作流名称。用于确定网站的端口。",
             "type": "string"
           }
         },
@@ -365,19 +345,19 @@
     },
     {
       "name": "shell_command_application_feedback_tool",
-      "description": "This tool allows you to execute interactive shell commands and ask questions about the output or behavior of CLI applications or interactive Python programs.\n\n## Rules of usage:\n1. Provide clear, concise interactive commands to execute and specific questions about the results or interaction.\n2. Ask one question at a time about the interactive behavior or output.\n3. Focus on interactive functionality, user input/output, and real-time behavior.\n4. Specify the exact command to run, including any necessary arguments or flags to start the interactive session.\n5. When asking about Python programs, include the file name and any required command-line arguments to start the interactive mode.\n\n## When to use:\n1. To test and verify the functionality of interactive CLI applications or Python programs where user input and real-time interaction are required.\n2. To check if a program responds correctly to user input in an interactive shell environment.\n\n## When not to use:\n1. For non-interactive commands or scripts that don't require user input.\n2. For API testing or web-based interactions.\n3. For shell commands that open a native desktop VNC window.\n\n## Example usage:\nCommand: python interactive_script.py\nQuestion: When prompted, can you enter your name and receive a personalized greeting?\n\nCommand: ./text_adventure_game\nQuestion: Are you able to make choices that affect the story progression?\n\nCommand: python -i data_analysis.py\nQuestion: Can you interactively query and manipulate the loaded data set?",
+      "description": "此工具允许您执行交互式 shell 命令并询问有关 CLI 应用程序或交互式 Python 程序的输出或行为的问题。\n\n## 使用规则：\n1. 提供清晰、简洁的交互式命令来执行，并提出有关结果或交互的具体问题。\n2. 一次只问一个关于交互行为或输出的问题。\n3. 专注于交互功能、用户输入/输出和实时行为。\n4. 指定要运行的确切命令，包括启动交互式会话所需的任何必要参数或标志。\n5. 当询问有关 Python 程序的问题时，包括文件名和启动交互模式所需的任何命令行参数。\n\n## 何时使用：\n1. 测试和验证需要用户输入和实时交互的交互式 CLI 应用程序或 Python 程序的功能。\n2. 检查程序是否在交互式 shell 环境中正确响应用户输入。\n\n## 何时不使用：\n1. 对于不需要用户输入的非交互式命令或脚本。\n2. 用于 API 测试或基于 Web 的交互。\n3. 用于打开本机桌面 VNC 窗口的 shell 命令。\n\n## 使用示例：\n命令：python interactive_script.py\n问题：当提示时，您能输入您的姓名并收到个性化的问候吗？\n\n命令：./text_adventure_game\n问题：您能做出影响故事进展的选择吗？\n\n命令：python -i data_analysis.py\n问题：您能以交互方式查询和操作加载的数据集吗？",
       "parameters": {
         "properties": {
           "query": {
-            "description": "The question or feedback request about the shell application",
+            "description": "关于 shell 应用程序的问题或反馈请求",
             "type": "string"
           },
           "shell_command": {
-            "description": "The shell command to be executed before asking for feedback",
+            "description": "请求反馈之前要执行的 shell 命令",
             "type": "string"
           },
           "workflow_name": {
-            "description": "The workflow name for this command, must be an existing workflow.",
+            "description": "此命令的工作流名称，必须是现有工作流。",
             "type": "string"
           }
         },
@@ -391,19 +371,19 @@
     },
     {
       "name": "vnc_window_application_feedback",
-      "description": "This tool allows you to execute interactive desktop application, which will be accessed through VNC and displayed to the user.\nYou can ask questions about the output or behavior of this application.\n\n## Rules of usage:\n1. Provide clear, concise command to execute the application, and specific questions about the results or interaction.\n2. Ask one question at a time about the interactive behavior or output.\n3. Focus on interactive functionality, user input/output, and real-time behavior.\n4. Specify the exact command to run, including any necessary arguments or flags.\n\n## When to use:\n1. To test and verify the functionality of interactive desktop programs, where user input and real-time interactions are required.\n2. To check if a program responds correctly to user input in an attached VNC window.\n\n## When not to use:\n1. For non-interactive commands or scripts that don't require user input.\n2. For API testing or web-based interactions.\n3. For shell commands that don't open a native desktop VNC window.\n\n## Example usage:\nCommand: python pygame_snake.py\nQuestion: Do the keyboard events change the snake direction on the screen?\n\nCommand: ./opencv_face_detection\nQuestion: Do you see a photo with green rectangles around detected faces?",
+      "description": "此工具允许您执行交互式桌面应用程序，该应用程序将通过 VNC 访问并显示给用户。\n您可以询问有关此应用程序的输出或行为的问题。\n\n## 使用规则：\n1. 提供清晰、简洁的命令来执行应用程序，并提出有关结果或交互的具体问题。\n2. 一次只问一个关于交互行为或输出的问题。\n3. 专注于交互功能、用户输入/输出和实时行为。\n4. 指定要运行的确切命令，包括任何必要的参数或标志。\n\n## 何时使用：\n1. 测试和验证需要用户输入和实时交互的交互式桌面程序的功能。\n2. 检查程序是否在附加的 VNC 窗口中正确响应用户输入。\n\n## 何时不使用：\n1. 对于不需要用户输入的非交互式命令或脚本。\n2. 用于 API 测试或基于 Web 的交互。\n3. 对于不打开本机桌面 VNC 窗口的 shell 命令。\n\n## 使用示例：\n命令：python pygame_snake.py\n问题：键盘事件是否会改变屏幕上蛇的方向？\n\n命令：./opencv_face_detection\n问题：您是否看到一张带有检测到的人脸周围有绿色矩形的照片？",
       "parameters": {
         "properties": {
           "query": {
-            "description": "The question or feedback request about a native window application, visible through VNC",
+            "description": "关于通过 VNC 可见的本机窗口应用程序的问题或反馈请求",
             "type": "string"
           },
           "vnc_execution_command": {
-            "description": "The VNC shell command to be executed before asking for feedback; this shell command should spawn the desktop window",
+            "description": "请求反馈之前要执行的 VNC shell 命令；此 shell 命令应生成桌面窗口",
             "type": "string"
           },
           "workflow_name": {
-            "description": "The workflow name for this VNC shell command, must be an existing workflow.",
+            "description": "此 VNC shell 命令的工作流名称，必须是现有工作流。",
             "type": "string"
           }
         },
@@ -417,18 +397,18 @@
     },
     {
       "name": "ask_secrets",
-      "description": "Ask user for the secret API keys needed for the project.\nIf a secret is missing, use this tool as soon as possible.\nThe secrets will be added to environment variables.\nThis tool is very expensive to run.\n\nGOOD Examples:\n- To set up secure payments with Stripe, we need a STRIPE_SECRET_KEY.\n  This key will be used to securely process payments and\n  manage subscriptions in your application.\n- To enable SMS price alerts, we need Twilio API credentials TWILIO_ACCOUNT_SID,\n  TWILIO_AUTH_TOKEN, and TWILIO_PHONE_NUMBER. These will be used to send SMS\n  notifications when price targets are reached.\n- To build applications using OpenAI models we need an OPENAI_API_KEY.\n\nBAD Examples (Do Not Use):\n- PHONE_NUMBER, EMAIL_ADDRESS, or PASSWORD\n    for this type of variables, you should ask the user directly\n    through the user_response tool.\n- REPLIT_DOMAINS or REPL_ID\n    these secrets are always present, so you never need to ask for\n    them.\n",
+      "description": "请求用户提供项目所需的密钥 API 密钥。\n如果缺少密钥，请尽快使用此工具。\n密钥将添加到环境变量中。\n运行此工具的成本非常高。\n\n好的示例：\n- 要使用 Stripe 设置安全支付，我们需要一个 STRIPE_SECRET_KEY。\n  此密钥将用于在您的应用程序中安全地处理支付和\n  管理订阅。\n- 要启用短信价格提醒，我们需要 Twilio API 凭据 TWILIO_ACCOUNT_SID、\n  TWILIO_AUTH_TOKEN 和 TWILIO_PHONE_NUMBER。这些将用于在达到价格目标时发送短信\n  通知。\n- 要使用 OpenAI 模型构建应用程序，我们需要一个 OPENAI_API_KEY。\n\n不好的示例（请勿使用）：\n- PHONE_NUMBER、EMAIL_ADDRESS 或 PASSWORD\n    对于此类变量，您应该直接通过 user_response 工具询问用户。\n- REPLIT_DOMAINS 或 REPL_ID\n    这些密钥始终存在，因此您永远不需要请求它们。\n",
       "parameters": {
         "properties": {
           "secret_keys": {
-            "description": "Array of secret key identifiers needed for the project (e.g., [\"OPENAI_API_KEY\", \"GITHUB_TOKEN\"])",
+            "description": "项目所需的密钥标识符数组（例如，[\"OPENAI_API_KEY\", \"GITHUB_TOKEN\"]）",
             "items": {
               "type": "string"
             },
             "type": "array"
           },
           "user_message": {
-            "description": "The message to send back to the user explaining the reason for needing these secret keys. If you haven't already, briefly introduce what a secret key is in general terms, assume the user never registered for an API key before. Please phrase your question respectfully.",
+            "description": "发送回给用户的消息，解释需要这些密钥的原因。如果您还没有，请简要介绍密钥的一般概念，假设用户从未注册过 API 密钥。请礼貌地表述您的问题。",
             "type": "string"
           }
         },
@@ -441,11 +421,11 @@
     },
     {
       "name": "check_secrets",
-      "description": "Check if a given secret exists in the environment.\nThis tool is used to verify the presence of a secret without exposing its actual value.\n",
+      "description": "检查环境中是否存在给定密钥。\n此工具用于验证密钥的存在而不暴露其实际值。\n",
       "parameters": {
         "properties": {
           "secret_keys": {
-            "description": "The secret keys to check in the environment.",
+            "description": "要在环境中检查的密钥。",
             "items": {
               "type": "string"
             },
@@ -462,39 +442,39 @@
   "internal_tags": [
     {
       "name": "View",
-      "description": "Contains file system information and repository details"
+      "description": "包含文件系统信息和仓库详细信息"
     },
     {
       "name": "policy_spec",
-      "description": "Contains communication, proactiveness and data integrity policies"
+      "description": "包含通信、主动性和数据完整性策略"
     },
     {
       "name": "file_system",
-      "description": "Shows directory structure"
+      "description": "显示目录结构"
     },
     {
       "name": "repo_overview",
-      "description": "Contains code summaries"
+      "description": "包含代码摘要"
     },
     {
       "name": "important",
-      "description": "Contains key policy reminders"
+      "description": "包含关键策略提醒"
     },
     {
       "name": "workflow_console_logs",
-      "description": "Contains logs from running workflows"
+      "description": "包含运行工作流的日志"
     },
     {
       "name": "automatic_updates",
-      "description": "Contains system-generated updates"
+      "description": "包含系统生成的更新"
     },
     {
       "name": "webview_console_logs",
-      "description": "Contains logs from the user's browser"
+      "description": "包含来自用户浏览器的日志"
     },
     {
-      "name": "function_results",
-      "description": "Contains results of function/tool calls"
+      "name": 'function_results',
+      "description": "包含函数/工具调用的结果"
     }
   ]
 }

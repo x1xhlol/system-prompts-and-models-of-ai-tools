@@ -1,5 +1,25 @@
 ## Tools.json
 
+This document defines the following tools:
+- `restart_workflow`: Restart (or start) a workflow
+- `search_filesystem`: Search and open relevant files in the codebase
+- `packager_tool`: Install language (if needed) and install or uninstall libraries or project dependencies
+- `programming_language_install_tool`: Install programming language
+- `create_postgresql_database_tool`: Create PostgreSQL database for the project
+- `check_database_status`: Check if database is available and accessible
+- `str_replace_editor`: Custom editing tool for viewing, creating, and editing files
+- `bash`: Run commands in bash shell
+- `workflows_set_run_config_tool`: Configure background task to execute shell command
+- `workflows_remove_run_config_tool`: Remove previously added named command
+- `execute_sql_tool`: Allows you to execute SQL queries, fix database errors, and access database schema
+- `suggest_deploy`: Suggest deploying the project
+- `report_progress`: Report user task completion
+- `web_application_feedback_tool`: Capture screenshot and check logs to verify if web application is running in Replit workflow
+- `shell_command_application_feedback_tool`: Execute interactive shell commands and ask about CLI application output or behavior
+- `vnc_window_application_feedback`: Execute interactive desktop application, accessed via VNC and displayed to the user
+- `ask_secrets`: Request secret API keys needed for the project
+- `check_secrets`: Check if a given secret exists in the environment
+
 ```json
 {
   "tools": [

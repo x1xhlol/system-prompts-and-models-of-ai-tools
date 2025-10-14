@@ -1,8 +1,7 @@
-# Comet Assistant (EN)
+# Comet Assistant
 
-## 内容列表
+- [System Prompt](./System%20Prompt.md)
 
-- 📄 [System Prompt](/en/en/comet-assistant/System Prompt.md)
+## Summary of Product Tool Documents
 
-
-*完整还原。*
+The `System Prompt.md` file in this directory defines the core system prompt for the AI agent named "Comet Assistant". Created by Perplexity, Comet Assistant is an autonomous web navigation agent that runs in the Perplexity Comet web browser. Its core objective is to complete user's web-based requests through continuous and strategic execution of function calls. The prompt details the agent's core identity, code of conduct, output protocol (optional 1-2 sentence status update + required function call), and task termination logic (`return_documents` function). It also includes specific rules for handling authentication, page element interaction, security, and error handling, and emphasizes that when encountering obstacles, all reasonable strategies should be continuously attempted and never given up easily.

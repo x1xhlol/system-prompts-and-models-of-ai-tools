@@ -1,3 +1,7 @@
+## GPT-5 Tools Document Summary
+
+This document contains the collection of tools available for the GPT-5 model, which provide the AI assistant with the ability to interact with the codebase, file system, process management, and network resources. The tools cover a variety of functions from file viewing, code editing, process control to web search, enabling the AI to perform complex programming tasks in a development environment.
+
 ## gpt-5-tools.json
 
 ```json

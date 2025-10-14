@@ -1,8 +1,14 @@
-# Same.dev
+# 文档目录
 
-## 目录
+- [Prompt](./Prompt.md)
+- [Tools](./Tools.md)
 
-- 📄 [Prompt](/zh/samedev/Prompt.md)
-- 📄 [Tools](/zh/samedev/Tools.md)
+## 产品工具文档的综述
 
-*完整还原。*
+此目录包含了为在 Same（一个云端IDE）中运行的AI编程助手设计的核心系统提示和工具集。该助手由 `gpt-4.1` 驱动，旨在与用户结对编程以开发Web应用程序。
+
+- **`Prompt.md`**: 这是核心的系统提示，定义了AI助手的身份、服务策略、沟通方式以及在代码修改、Web开发、设计和调试等方面的详细指导方针。它特别强调了并行工具调用以提高效率，通过 `.same/todos.md` 文件进行任务管理，以及使用 `startup` 工具和 `bun` 包管理器来初始化项目的最佳实践。此外，它还包含了关于网站克隆和与任务代理（`task_agent`）协作的详细说明。
+
+- **`Tools.md`**: 以JSON格式详细定义了AI助手可用的所有工具。这些工具覆盖了从项目启动（`startup`）、代码探索（`ls`, `glob`, `grep`）、文件操作（`read_file`, `edit_file`, `string_replace`）到版本控制（`versioning`）、部署（`deploy`）和网页抓取（`web_scrape`）的全过程。值得注意的是，它包含一个强大的 `task_agent` 工具，可以启动一个功能齐全的子代理来执行复杂任务。
+
+总而言之，这两个文件共同描绘了一个功能全面、工作流程规范化的AI开发代理，它能够在Same IDE环境中高效、自主地完成从项目初始化到部署的整个Web开发生命周期。

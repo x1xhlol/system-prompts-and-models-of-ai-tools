@@ -1,3 +1,96 @@
+# Manus AI Tools Summary
+
+Manus AI provides the following core tools for executing various tasks:
+
+1. **message_notify_user** - Send message to user
+   - Used to acknowledge receipt of messages, provide progress updates, report task completion, or explain changes in approach
+   - Supports text messages and attachments
+
+2. **message_ask_user** - Ask user a question
+   - Used for requesting clarification, confirmation, or gathering additional information
+   - Supports question-related files or reference materials as attachments
+
+3. **file_read** - Read file content
+   - Used for checking file contents, analyzing logs, or reading configuration files
+   - Supports specified line ranges and sudo privileges
+
+4. **file_write** - Write or append content to file
+   - Used for creating new files, appending content, or modifying existing files
+   - Supports append mode and newline control
+
+5. **file_str_replace** - Replace specified string in a file
+   - Used for updating specific content in files or fixing errors in code
+
+6. **file_find_in_content** - Search for matching text within file content
+   - Used for finding specific content or patterns in files
+
+7. **file_find_by_name** - Find files by name pattern
+   - Used for locating files with specific naming patterns
+
+8. **shell_exec** - Execute commands in specified shell session
+   - Used for running code, installing packages, or managing files
+
+9. **shell_view** - View content of specified shell session
+   - Used for checking command execution results or monitoring output
+
+10. **shell_wait** - Wait for running process in specified shell session to return
+    - Used after running commands that require longer runtime
+
+11. **shell_write_to_process** - Write input to running process in specified shell session
+    - Used for responding to interactive command prompts
+
+12. **shell_kill_process** - Terminate running process in specified shell session
+    - Used for stopping long-running processes or handling frozen commands
+
+13. **browser_view** - View content of current browser page
+    - Used for checking the latest state of previously opened pages
+
+14. **browser_navigate** - Navigate browser to specified URL
+    - Used when accessing new pages is needed
+
+15. **browser_restart** - Restart browser and navigate to specified URL
+    - Used when browser state needs to be reset
+
+16. **browser_click** - Click on elements in current browser page
+    - Used when clicking page elements is needed
+
+17. **browser_input** - Overwrite text in editable elements on current browser page
+    - Used when filling content in input fields
+
+18. **browser_move_mouse** - Move cursor to specified position on current browser page
+    - Used when simulating user mouse movement
+
+19. **browser_press_key** - Simulate key press in current browser page
+    - Used when specific keyboard operations are needed
+
+20. **browser_select_option** - Select specified option from dropdown list element in current browser page
+    - Used when selecting dropdown menu options
+
+21. **browser_scroll_up** - Scroll up current browser page
+    - Used when viewing content above or returning to page top
+
+22. **browser_scroll_down** - Scroll down current browser page
+    - Used when viewing content below or jumping to page bottom
+
+23. **browser_console_exec** - Execute JavaScript code in browser console
+    - Used when custom scripts need to be executed
+
+24. **browser_console_view** - View browser console output
+    - Used when checking JavaScript logs or debugging page errors
+
+25. **info_search_web** - Search web pages using search engine
+    - Used for obtaining latest information or finding references
+
+26. **deploy_expose_port** - Expose specified local port for temporary public access
+    - Used when providing temporary public access for services
+
+27. **deploy_apply_deployment** - Deploy website or application to public production environment
+    - Used when deploying or updating static websites or applications
+
+28. **make_manus_page** - Make a Manus Page from local MDX file
+
+29. **idle** - Special tool to indicate completion of all tasks and entering idle state
+
 ## tools.json
 
 ```json

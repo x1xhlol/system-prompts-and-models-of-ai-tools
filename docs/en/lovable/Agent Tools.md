@@ -1,3 +1,177 @@
+# Lovable AI Tools Summary
+
+Lovable AI provides the following core tools for creating and modifying web applications:
+
+1. **lov-add-dependency** - Add project dependency
+   - Used to add dependencies to the project; dependencies should be valid npm package names
+
+2. **lov-search-files** - Regex-based code search
+   - Searches for files in the project using regex patterns
+   - Supports file filtering and context search
+
+3. **lov-write** - Write to file
+   - Used to write to a file, overwriting if it already exists
+   - Primarily used for creating new files or as a fallback if lov-line-replace fails
+
+4. **lov-line-replace** - Line-based search and replace tool
+   - Used to find and replace specific content in a file
+   - Edits using explicit line numbers; preferred tool for modifying existing files
+
+5. **lov-download-to-repo** - Download file to repository
+   - Downloads files from a URL and saves them to the repository
+   - Suitable for downloading images, assets, or other files
+
+6. **lov-fetch-website** - Fetch website content
+   - Fetches website content and temporarily saves it as markdown, HTML, or screenshot
+   - Returns paths to created files and a preview of the content
+
+7. **lov-copy** - Copy file or directory
+   - Used to copy a file or directory to a new location
+
+8. **lov-view** - View file content
+   - Used to read file content, with optional line range specification
+
+9. **lov-read-console-logs** - Read console logs
+   - Used to read the latest console log content
+
+10. **lov-read-network-requests** - Read network requests
+    - Used to read the latest network request content
+
+11. **lov-remove-dependency** - Remove dependency
+    - Used to uninstall packages from the project
+
+12. **lov-rename** - Rename file
+    - Used to rename files instead of creating new ones and deleting old ones
+
+13. **lov-delete** - Delete file
+    - Used to delete files
+
+14. **secrets--add_secret** - Add secret
+    - Adds new secrets such as API keys or tokens
+
+15. **secrets--update_secret** - Update secret
+    - Updates existing secrets such as API keys or tokens
+
+16. **supabase--docs-search** - Search Supabase documentation
+    - Searches official Supabase documentation via the Content API
+
+17. **supabase--docs-get** - Get Supabase documentation
+    - Fetches complete Supabase documentation pages via the Content API
+
+18. **document--parse_document** - Parse document
+    - Parses and extracts content from documents, handling various formats like PDF, Word documents, etc.
+
+19. **imagegen--generate_image** - Generate image
+    - Generates images based on text prompts and saves them to specified file paths
+
+20. **imagegen--edit_image** - Edit image
+    - Edits or merges existing images
+
+21. **websearch--web_search** - Web search
+    - Performs web searches and returns relevant results
+
+22. **analytics--read_project_analytics** - Read project analytics data
+    - Reads analytics data for production builds of the project
+
+23. **stripe--enable_stripe** - Enable Stripe integration
+    - Enables Stripe integration on the current project
+
+24. **security--run_security_scan** - Run security scan
+    - Performs comprehensive security analysis of the Supabase backend
+
+25. **security--get_security_scan_results** - Get security scan results
+    - Fetches security information about the project accessible to the user
+
+26. **security--get_table_schema** - Get table schema
+    - Fetches database table schema information for the project's Supabase database
+
+# Lovable AI Tools Summary
+
+Lovable AI provides the following core tools for creating and modifying web applications:
+
+1. **lov-add-dependency** - Add project dependency
+   - Used to add dependencies to the project; dependencies should be valid npm package names
+
+2. **lov-search-files** - Regex-based code search
+   - Searches for files in the project using regex patterns
+   - Supports file filtering and context search
+
+3. **lov-write** - Write to file
+   - Used to write to a file, overwriting if it already exists
+   - Primarily used for creating new files or as a fallback if lov-line-replace fails
+
+4. **lov-line-replace** - Line-based search and replace tool
+   - Used to find and replace specific content in a file
+   - Edits using explicit line numbers; preferred tool for modifying existing files
+
+5. **lov-download-to-repo** - Download file to repository
+   - Downloads files from a URL and saves them to the repository
+   - Suitable for downloading images, assets, or other files
+
+6. **lov-fetch-website** - Fetch website content
+   - Fetches website content and temporarily saves it as markdown, HTML, or screenshot
+   - Returns paths to created files and a preview of the content
+
+7. **lov-copy** - Copy file or directory
+   - Used to copy a file or directory to a new location
+
+8. **lov-view** - View file content
+   - Used to read file content, with optional line range specification
+
+9. **lov-read-console-logs** - Read console logs
+   - Used to read the latest console log content
+
+10. **lov-read-network-requests** - Read network requests
+    - Used to read the latest network request content
+
+11. **lov-remove-dependency** - Remove dependency
+    - Used to uninstall packages from the project
+
+12. **lov-rename** - Rename file
+    - Used to rename files instead of creating new ones and deleting old ones
+
+13. **lov-delete** - Delete file
+    - Used to delete files
+
+14. **secrets--add_secret** - Add secret
+    - Adds new secrets such as API keys or tokens
+
+15. **secrets--update_secret** - Update secret
+    - Updates existing secrets such as API keys or tokens
+
+16. **supabase--docs-search** - Search Supabase documentation
+    - Searches official Supabase documentation via the Content API
+
+17. **supabase--docs-get** - Get Supabase documentation
+    - Fetches complete Supabase documentation pages via the Content API
+
+18. **document--parse_document** - Parse document
+    - Parses and extracts content from documents, handling various formats like PDF, Word documents, etc.
+
+19. **imagegen--generate_image** - Generate image
+    - Generates images based on text prompts and saves them to specified file paths
+
+20. **imagegen--edit_image** - Edit image
+    - Edits or merges existing images
+
+21. **websearch--web_search** - Web search
+    - Performs web searches and returns relevant results
+
+22. **analytics--read_project_analytics** - Read project analytics data
+    - Reads analytics data for production builds of the project
+
+23. **stripe--enable_stripe** - Enable Stripe integration
+    - Enables Stripe integration on the current project
+
+24. **security--run_security_scan** - Run security scan
+    - Performs comprehensive security analysis of the Supabase backend
+
+25. **security--get_security_scan_results** - Get security scan results
+    - Fetches security information about the project accessible to the user
+
+26. **security--get_table_schema** - Get table schema
+    - Fetches database table schema information for the project's Supabase database
+
 ## Agent Tools.json
 
 ```json

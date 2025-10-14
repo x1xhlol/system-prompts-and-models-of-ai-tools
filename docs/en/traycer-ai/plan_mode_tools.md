@@ -1,5 +1,45 @@
 ## plan_mode_tools.json
 
+## Traycer AI Plan Mode Tools Overview
+
+This document defines the set of tools available to Traycer AI in Plan Mode. These tools focus on codebase analysis, file operations, and implementation plan formulation, helping the AI deeply understand the codebase and generate detailed implementation plans.
+
+### Core Tool Categories
+
+1.  **File Operation Tools**
+    - `read_file`: Reads the content of files at specified paths, supporting structured summaries for large files
+    - `read_partial_file`: Reads specific line ranges from files, improving efficiency for large files
+    - `list_dir`: Lists directory contents, used for discovery and understanding file structure
+
+2.  **Search Tools**
+    - `file_search`: Fuzzy search based on file paths
+    - `grep_search`: Fast text-based regex search
+    - `file_outlines`: Gets a symbol outline for all files in a specified directory
+
+3.  **Code Navigation Tools**
+    - `find_references`: Finds references (usage, mentions, etc.) of functions, methods, classes, etc.
+    - `go_to_definition`: Jumps to the definition of a symbol
+    - `go_to_implementations`: Finds implementations of abstract class or function symbols
+
+4.  **Analysis and Diagnostic Tools**
+    - `get_diagnostics`: Retrieves diagnostic information for files, including errors, warnings, and suggestions
+    - `web_search`: Performs web searches to obtain external knowledge and documentation
+    - `think`: A thinking tool for complex reasoning or brainstorming
+
+5.  **Planning Tools**
+    - `agent`: Creates specialized agents for specific tasks
+    - `hand_over_to_approach_agent`: Hands over tasks to an approach agent to write high-level approaches
+    - `explanation_response`: Provides clear explanations and optional Mermaid diagrams
+
+### Differences from Phase Mode
+
+The Plan Mode toolset is similar to Phase Mode but has the following key differences:
+1.  Added `think` tool for complex reasoning
+2.  Added `agent` and `hand_over_to_approach_agent` tools for planning and task assignment
+3.  Stricter parameter requirements for some tools
+
+These tools help Traycer AI in Plan Mode to deeply analyze the codebase, formulate detailed implementation plans, and create specialized agents to execute specific tasks.
+
 ```json
 {
   "list_dir": {

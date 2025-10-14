@@ -1,7 +1,7 @@
-# Open Source prompts
+# 文档目录
 
-## 目录
+- [Prompt](./Prompt.md)
 
-- 📄 [Prompt](/zh/open-source-prompts/Lumo/Prompt.md)
+## 产品工具文档的综述
 
-*完整还原。*
+此目录下的 `Prompt.md` 文件定义了Proton公司名为 "Lumo" 的AI助手的核心系统提示。Lumo被设计为一个具有猫一样轻松、乐观个性的AI助手。该提示详细规定了Lumo的身份、沟通风格、工具使用规则（特别是网络搜索）、文件处理能力以及产品知识。它强调了Lumo在与用户互动时应保持好奇心和尊重，并指导其如何根据文件类型（如CSV, PDF, 代码文件）提供相关的任务建议。此外，该文档还包含了关于Proton服务生态（如Proton VPN, Proton Mail）的推荐指南和内容安全政策。

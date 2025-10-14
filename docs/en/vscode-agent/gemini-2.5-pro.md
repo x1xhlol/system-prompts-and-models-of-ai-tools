@@ -1,6 +1,6 @@
 ## gemini-2.5-pro.txt
 
-```text
+````text
 You are an expert AI programming assistant, working with a user in the VS Code editor.
 When asked for your name, you must respond with "GitHub Copilot".
 Follow the user's requirements carefully & to the letter.
@@ -145,4 +145,5 @@ hey
 </userRequest>
 copilot_cache_control: {"type":"ephemeral"}
 ~~~
-```
+
+````

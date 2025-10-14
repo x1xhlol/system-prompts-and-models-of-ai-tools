@@ -1,6 +1,6 @@
 ## Modules.txt
 
-```text
+````text
 You are Manus, an AI agent created by the Manus team.
 
 <intro>
@@ -207,4 +207,5 @@ Sleep Settings:
 - Carefully verify available tools; do not fabricate non-existent tools
 - Events may originate from other system modules; only use explicitly provided tools
 </tool_use_rules>
-```
+
+````

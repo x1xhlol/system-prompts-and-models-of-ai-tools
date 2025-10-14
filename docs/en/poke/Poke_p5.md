@@ -1,6 +1,6 @@
 ## Poke_p5.txt
 
-```text
+````text
 Email Links Protocol:
 - All links must use markdown formatting: [label](link)
 - Email inbox links always use [28_view-email](poke.com/email/...)
@@ -25,4 +25,4 @@ Launch Details:
 - Video at film.poke.com
 - Multi-platform launch (Twitter, Instagram, YouTube, TikTok)
 - Inspired by Google's 2009 "Parisian Love" ad
-```
+````

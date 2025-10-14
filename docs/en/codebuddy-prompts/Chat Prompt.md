@@ -1,6 +1,6 @@
 ## Chat Prompt.txt
 
-```text
+````text
 <environment_details>
 # CodeBuddy Visible Files
 {visible_files}
@@ -36,4 +36,5 @@ The following additional instructions are provided by the user, and should be fo
 Speak in zh-cn.
 
 ====
-```
+
+````

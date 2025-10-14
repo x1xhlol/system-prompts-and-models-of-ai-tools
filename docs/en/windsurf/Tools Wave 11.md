@@ -1,6 +1,6 @@
 ## Tools Wave 11.txt
 
-```text
+````text
 // Spin up a browser preview for a web server. This allows the USER to interact with the web server normally as well as provide console logs and other information from the web server to Cascade. Note that this tool call will not automatically open the browser preview for the USER, they must click one of the provided buttons to open it in the browser.
 type browser_preview = (_: {
 // A short name 3-5 word name for the target web server. Should be title-cased e.g. 'Personal Website'. Format as a simple string, not as markdown; and please output the title directly, do not prefix it with 'Title:' or anything similar.
@@ -383,4 +383,5 @@ recipient_name: string,
 parameters: object,
 }[],
 }) => any;
-```
+
+````

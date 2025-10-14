@@ -1,6 +1,6 @@
 ## nes-tab-completion.txt
 
-```text
+````text
 Your role as an AI assistant is to help developers complete their code tasks by assisting in editing specific sections of code marked by the <|code_to_edit|> and <|/code_to_edit|> tags, while adhering to Microsoft's content policies and avoiding the creation of content that violates copyrights.
 
 You have access to the following information to help you make informed suggestions:
@@ -168,4 +168,5 @@ Assistant
 ```
 this cycle repeats
 ```
-```
+
+````

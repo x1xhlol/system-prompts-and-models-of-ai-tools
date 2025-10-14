@@ -1,5 +1,31 @@
 ## Tools.json
 
+## v0 Tools System Overview
+
+This document defines the collection of tools available to the v0 AI assistant, which are the core capabilities that enable v0 to perform various development tasks. The entire tool system is defined in JSON format and includes 13 different tools, each with a clear purpose, parameters, and usage scenarios.
+
+### Core Tool Categories
+
+1.  **Web and Search Tools**
+    - `SearchWeb`: Performs intelligent web searches, prioritizing first-party documentation from the Vercel ecosystem
+    - `FetchFromWeb`: Fetches full web page content and metadata from specified URLs
+
+2.  **Codebase Exploration Tools**
+    - `GrepRepo`: Searches for regex patterns within file contents across the repository
+    - `LSRepo`: Lists files and directories in the codebase
+    - `ReadFile`: Intelligently reads file contents (complete for small files, on-demand for large files)
+    - `SearchRepo`: Launches a new agent to search and explore the codebase
+
+3.  **Development Assistance Tools**
+    - `InspectSite`: Takes website screenshots for verifying visual bugs or reference designs
+    - `TodoManager`: Manages structured todo lists for complex, multi-step projects
+
+4.  **Design and Integration Tools**
+    - `GenerateDesignInspiration`: Generates design inspiration to ensure visually appealing content
+    - `GetOrRequestIntegration`: Checks integration status and retrieves environment variables and database schemas
+
+Each tool adheres to strict parameter specifications, including task status display parameters (`taskNameActive` and `taskNameComplete`), which are shown in the UI to indicate the tool's execution status. This design ensures that users have a clear understanding of the AI assistant's ongoing tasks and completion status.
+
 ```json
 {
   "tools": [

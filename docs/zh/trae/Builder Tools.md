@@ -1,6 +1,6 @@
-## Trae AI Builder Tools 综述
+## Trae AI Builder 工具综述
 
-这个文档定义了Trae AI在Builder模式下可用的工具集合。这些工具为AI助手提供了完整的软件开发能力，包括任务管理、代码库搜索、文件操作、命令执行等功能。
+本文档定义了 Trae AI 在 Builder 模式下可用的工具集合。这些工具为 AI 助手提供了完整的软件开发能力，包括任务管理、代码库搜索、文件操作、命令执行等功能。
 
 ### 核心工具分类
 
@@ -30,19 +30,21 @@
    - `web_search`: 搜索互联网获取外部信息
    - `finish`: 标记会话完成的最终工具
 
-这些工具构成了Trae AI强大的开发能力基础，使AI助手能够在代码库中进行搜索、编辑文件、运行命令并管理复杂的开发任务。
+这些工具构成了 Trae AI 强大的开发能力基础，使 AI 助手能够在代码库中进行搜索、编辑文件、运行命令并管理复杂的开发任务。
+
+## Builder Tools.json
 
 ## Builder Tools.json
 
 ```json
 {
   "todo_write": {
-    "description": "Use this tool to create and manage a structured task list for your current coding session. This helps you track progress, organize complex tasks, and demonstrate thoroughness to the user. It also helps the user understand the progress of the task and overall progress of their requests.",
+    "description": "使用此工具为当前编码会话创建和管理结构化任务列表。这有助于您跟踪进度、组织复杂任务，并向用户展示细致程度。它还有助于用户了解任务进度和其请求的整体进度。",
     "params": {
       "type": "object",
       "properties": {
         "todos": {
-          "description": "The updated todo list",
+          "description": "更新后的待办事项列表",
           "type": "array",
           "items": {
             "type": "object",
@@ -87,7 +89,7 @@
     }
   },
   "search_codebase": {
-    "description": "This tool is Trae's context engine. It: 1. Takes in a natural language description of the code you are looking for; 2. Uses a proprietary retrieval/embedding model suite that produces the highest-quality recall of relevant code snippets from across the codebase; 3. Maintains a real-time index of the codebase, so the results are always up-to-date and reflects the current state of the codebase; 4. Can retrieve across different programming languages; 5. Only reflects the current state of the codebase on the disk, and has no information on version control or code history.",
+    "description": "此工具是 Trae 的上下文引擎。它：1. 接受您正在查找的代码的自然语言描述；2. 使用专有的检索/嵌入模型套件，从整个代码库中产生最高质量的相关代码片段召回；3. 维护代码库的实时索引，因此结果始终是最新的，并反映代码库的当前状态；4. 可以跨不同编程语言检索；5. 仅反映磁盘上代码库的当前状态，不包含版本控制或代码历史信息。",
     "params": {
       "type": "object",
       "properties": {
@@ -107,7 +109,7 @@
     }
   },
   "search_by_regex": {
-    "description": "Fast text-based search that finds exact pattern matches within files or directories, utilizing the ripgrep command for efficient searching.",
+    "description": "基于文本的快速搜索，在文件或目录中查找精确模式匹配，利用 ripgrep 命令进行高效搜索。",
     "params": {
       "type": "object",
       "properties": {
@@ -124,7 +126,7 @@
     }
   },
   "view_files": {
-    "description": "View up to 3 files simultaneously in batch mode for faster information gathering.",
+    "description": "在批处理模式下同时查看最多 3 个文件以快速收集信息。",
     "params": {
       "type": "object",
       "properties": {
@@ -160,7 +162,7 @@
     }
   },
   "list_dir": {
-    "description": "You can use this tool to view files of the specified directory.",
+    "description": "您可以使用此工具查看指定目录中的文件。",
     "params": {
       "type": "object",
       "properties": {
@@ -178,7 +180,7 @@
     }
   },
   "write_to_file": {
-    "description": "You can use this tool to write content to a file with precise control over creation/rewrite behavior.",
+    "description": "您可以使用此工具将内容写入文件，并精确控制创建/重写行为。",
     "params": {
       "type": "object",
       "properties": {
@@ -200,7 +202,7 @@
     }
   },
   "update_file": {
-    "description": "You can use this tool to edit file, if you think that using this tool is more cost-effective than other available editing tools, you should choose this tool, otherwise you should choose other available edit tools.",
+    "description": "您可以使用此工具编辑文件，如果您认为使用此工具比其他可用编辑工具更具成本效益，您应选择此工具，否则您应选择其他可用编辑工具。",
     "params": {
       "type": "object",
       "properties": {
@@ -233,7 +235,7 @@
     }
   },
   "edit_file_fast_apply": {
-    "description": "You can use this tool to edit an existing files with less than 1000 lines of code, and you should follow these rules:",
+    "description": "您可以使用此工具编辑少于 1000 行代码的现有文件，并且您应遵循以下规则：",
     "params": {
       "type": "object",
       "properties": {
@@ -258,7 +260,7 @@
     }
   },
   "rename_file": {
-    "description": "You can use this tool to move or rename an existing file.",
+    "description": "您可以使用此工具移动或重命名现有文件。",
     "params": {
       "type": "object",
       "properties": {
@@ -276,7 +278,7 @@
     }
   },
   "delete_file": {
-    "description": "You can use this tool to delete files, you can delete multi files in one toolcall, and you MUST make sure the files is exist before deleting.",
+    "description": "您可以使用此工具删除文件，您可以在一次工具调用中删除多个文件，并且您必须确保文件在删除前存在。",
     "params": {
       "type": "object",
       "properties": {
@@ -293,7 +295,7 @@
     }
   },
   "run_command": {
-    "description": "You can use this tool to PROPOSE a command to run on behalf of the user.",
+    "description": "您可以使用此工具代表用户提议运行命令。",
     "params": {
       "type": "object",
       "properties": {
@@ -328,7 +330,7 @@
     }
   },
   "check_command_status": {
-    "description": "You can use this tool to get the status of a previously executed command by its Command ID ( non-blocking command ).",
+    "description": "您可以使用此工具通过命令 ID 获取先前执行命令的状态（非阻塞命令）。",
     "params": {
       "type": "object",
       "properties": {
@@ -356,7 +358,7 @@
     }
   },
   "stop_command": {
-    "description": "This tool allows you to terminate a currently running command( the command MUST be previously executed command. ).",
+    "description": "此工具允许您终止当前正在运行的命令（该命令必须是先前执行的命令）。",
     "params": {
       "type": "object",
       "properties": {
@@ -370,7 +372,7 @@
     }
   },
   "open_preview": {
-    "description": "You can use this tool to show the available preview URL to user if you have started a local server successfully in a previous toolcall, which user can open it in the browser.",
+    "description": "如果您在先前的工具调用中成功启动了本地服务器，您可以使用此工具向用户显示可用的预览 URL，用户可以在浏览器中打开它。",
     "params": {
       "type": "object",
       "properties": {
@@ -388,7 +390,7 @@
     }
   },
   "web_search": {
-    "description": "This tool can be used to search the internet, which should be used with caution, as frequent searches result in a bad user experience and excessive costs.",
+    "description": "此工具可用于搜索互联网，但应谨慎使用，因为频繁搜索会导致糟糕的用户体验和过高成本。",
     "params": {
       "type": "object",
       "properties": {
@@ -409,7 +411,7 @@
     }
   },
   "finish": {
-    "description": "The final tool of this session, when you think you have archived the goal of user requirement, you should use this tool to mark it as finish.",
+    "description": "此会话的最终工具，当您认为已达成用户需求的目标时，您应使用此工具将其标记为完成。",
     "params": {
       "type": "object",
       "properties": {

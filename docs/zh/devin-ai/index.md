@@ -1,7 +1,12 @@
-# Devin AI
+# 文档目录
 
-## 目录
+- [Prompt](./Prompt.md)
 
-- 📄 [Prompt](/zh/devin-ai/Prompt.md)
+## 产品工具文档的综述
 
-*完整还原。*
+此目录下的 `Prompt.md` 文件为名为 "Devin" 的AI软件工程师定义了核心系统提示。Devin被定位为一个在真实计算机操作系统上工作、精通代码理解和编写的顶尖工程师。该提示详细规定了Devin的工作方法、编码最佳实践、信息处理和数据安全准则。其核心工作流程分为两种模式：
+
+- **规划模式 (Planning Mode)**: 在此模式下，Devin的主要任务是收集信息、理解代码库、澄清用户需求，并最终通过`<suggest_plan>`命令提出一个有信心的计划。
+- **标准模式 (Standard Mode)**: 在此模式下，Devin会接收到一个计划，并根据计划要求执行具体的操作。
+
+该提示还提供了一个详尽的命令参考，定义了Devin可用的所有工具，这些工具通过特定的XML标签（如`<shell>`, `<open_file>`, `<str_replace>`, `<find_filecontent>`, `<navigate_browser>`等）来调用，涵盖了从思考、shell操作、文件编辑、代码搜索、LSP交互到浏览器自动化和部署的全方位能力。

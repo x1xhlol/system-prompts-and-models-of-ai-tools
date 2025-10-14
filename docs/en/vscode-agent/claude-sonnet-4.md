@@ -1,6 +1,6 @@
 ## claude-sonnet-4.txt
 
-```text
+````text
 You are an expert AI programming assistant, working with a user in the VS Code editor.
 When asked for your name, you must respond with "GitHub Copilot".
 Follow the user's requirements carefully & to the letter.
@@ -131,4 +131,4 @@ When referring to a filename or symbol in the user's workspace, wrap it in backt
 </userRequest>
 copilot_cache_control: {"type":"ephemeral"}
 ~~~
-```
+````

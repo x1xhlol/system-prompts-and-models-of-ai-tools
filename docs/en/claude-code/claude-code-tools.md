@@ -1,3 +1,23 @@
+## Claude Code Tool Definitions
+
+This document defines the following tools:
+- `Task`: Launch a new agent to autonomously handle complex multi-step tasks
+- `Bash`: Execute a given bash command
+- `Glob`: Fast file pattern matching tool
+- `Grep`: Powerful search tool based on ripgrep
+- `LS`: List files and directories in a given path
+- `ExitPlanMode`: Use at the end of plan mode
+- `Read`: Read a file from the local filesystem
+- `Edit`: Perform exact string replacements in a file
+- `MultiEdit`: Make multiple edits to a single file at once
+- `Write`: Write a file to the local filesystem
+- `NotebookEdit`: Replace the contents of a specific cell in a Jupyter notebook
+- `WebFetch`: Fetch content from a specified URL
+- `TodoWrite`: Create and manage a structured task list
+- `WebSearch`: Allow Claude to search the web
+- `BashOutput`: Retrieve output from a background bash shell
+- `KillBash`: Kill a running background bash shell
+
 ## claude-code-tools.json
 
 ```json

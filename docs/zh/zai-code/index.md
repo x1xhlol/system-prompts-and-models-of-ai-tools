@@ -1,7 +1,7 @@
-# Z.ai Code
+# 文档目录
 
-## 目录
+- [prompt](./prompt.md)
 
-- 📄 [prompt](/zh/zai-code/prompt.md)
+## 产品工具文档的综述
 
-*完整还原。*
+Z.ai Code 是一个交互式CLI工具，旨在辅助开发者完成软件工程任务，特别是基于Next.js的全栈项目开发。本目录下的文档提供了关于Z.ai Code的核心信息。其中，`prompt.md` 文件详细定义了该工具的系统提示、重要规则、技术栈要求、UI/UX设计标准以及可用的API（如AI功能和数据库访问）。这份文档是理解Z.ai Code行为和能力的关键。

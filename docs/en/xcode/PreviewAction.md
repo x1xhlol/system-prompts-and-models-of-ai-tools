@@ -1,6 +1,6 @@
 ## PreviewAction.txt
 
-```text
+````text
 The user is curently inside this file: {{filename}}
 The contents are below:
 ```swift:{{filename}}
@@ -58,4 +58,6 @@ The View to create the #Preview for is:
 `{{selected}}`
 
 Return the #Preview and no additional explanation. ALWAYS wrap the preview in triple-tick markdown code snippet marks.
-```
+
+
+````

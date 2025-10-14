@@ -1,3 +1,47 @@
+# Leap AI Tools Summary
+
+Leap AI provides the following core tools for building full-stack applications:
+
+1. **create_artifact** - Creates a comprehensive artifact containing all project files
+   - Used for building full-stack applications with Encore.ts backend and React frontend
+   - Supports create, modify, delete, and move file operations
+
+2. **define_backend_service** - Defines an Encore.ts backend service
+   - Defines backend services with appropriate structure
+   - Supports defining API endpoints and database configurations
+
+3. **create_react_component** - Creates a React component
+   - Creates React components with TypeScript and Tailwind CSS
+   - Supports component prop definition and backend API calls
+
+4. **setup_authentication** - Sets up authentication
+   - Sets up authentication using Clerk for both backend and frontend
+   - Supports protected route configuration
+
+5. **create_database_migration** - Creates database migration
+   - Creates new SQL migration files for Encore.ts database
+   - Supports various database operation types
+
+6. **setup_streaming_api** - Sets up streaming API
+   - Sets up streaming APIs for real-time communication
+   - Supports three types of streaming APIs
+
+7. **configure_secrets** - Configures secret management
+   - Configures secret management for API keys and sensitive data
+   - Supports secret description and required flag
+
+8. **setup_object_storage** - Sets up object storage
+   - Sets up object storage buckets for file uploads
+   - Supports public access and versioning configuration
+
+9. **setup_pubsub** - Sets up Pub/Sub
+   - Sets up Pub/Sub topics and subscriptions for event-driven architecture
+   - Supports message delivery guarantee configuration
+
+10. **create_test_suite** - Creates test suite
+    - Creates test suites using Vitest for both backend and frontend
+    - Supports various test types
+
 ## tools.json
 
 ```json

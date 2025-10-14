@@ -1,3 +1,7 @@
+## Claude Sonnet 4 Tools Document Summary
+
+This document contains the collection of tools available for the Claude Sonnet 4 model, which provide the AI assistant with rich code manipulation and system interaction capabilities. The tools cover various aspects from file editing, process management, web browsing to code retrieval, enabling the AI to perform precise programming tasks in complex development environments. Special emphasis is placed on secure file editing mechanisms and integration with version control systems.
+
 ## claude-4-sonnet-tools.json
 
 ```json

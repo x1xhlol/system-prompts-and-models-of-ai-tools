@@ -1,6 +1,7 @@
 ## Memory Rating Prompt.txt
 
-```text
+````text
+
 <goal>
 You are given a conversation between a user and an assistant.
 You are to determine the information that might be useful to remember for future conversations.
@@ -86,4 +87,4 @@ Return your response in the following JSON format:
 
 If no memory is needed, return exactly: "no_memory_needed"
 </formatting_instructions>
-```
+````

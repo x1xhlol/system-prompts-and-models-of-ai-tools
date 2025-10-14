@@ -1,6 +1,6 @@
 ## Spec_Prompt.txt
 
-```text
+````text
 # System Prompt
 
 # Identity
@@ -516,4 +516,4 @@ random.txt
 <ACTIVE-EDITOR-FILE>
 random.txt
 </ACTIVE-EDITOR-FILE>
-```
+````

@@ -1,9 +1,17 @@
-# Kiro
+# 文档目录
 
-## 目录
+- [Mode_Clasifier_Prompt](./Mode_Clasifier_Prompt.md)
+- [Spec_Prompt](./Spec_Prompt.md)
+- [Vibe_Prompt](./Vibe_Prompt.md)
 
-- 📄 [Mode_Clasifier_Prompt](/zh/kiro/Mode_Clasifier_Prompt.md)
-- 📄 [Spec_Prompt](/zh/kiro/Spec_Prompt.md)
-- 📄 [Vibe_Prompt](/zh/kiro/Vibe_Prompt.md)
+## 产品工具文档的综述
 
-*完整还原。*
+此目录包含了为AI助手 "Kiro" 设计的多个系统提示，Kiro被定位为一个在IDE中辅助开发者的AI伙伴。它的工作流程通过不同的“模式”来管理，每个模式都有其特定的职责和提示。
+
+- **`Vibe_Prompt.md`**: 这是Kiro的核心身份和行为准则，定义了其知识渊博、支持性强且随和的个性。它详细说明了Kiro的能力、沟通风格、安全规则以及如何利用其关键特性，如自主模式、聊天上下文、引导（Steering）、规范（Spec）和钩子（Hooks）。
+
+- **`Mode_Clasifier_Prompt.md`**: 这个提示文件定义了一个意图分类器。它的唯一工作是分析用户的对话历史，并将其意图分类为“Do模式”（执行具体任务）或“Spec模式”（处理正式的规范文档）。这个分类器是Kiro决定采用何种工作流程的第一步。
+
+- **`Spec_Prompt.md`**: 这是Kiro在“Spec模式”下的专用系统提示。在此模式下，Kiro扮演技术文档专家的角色，遵循一个结构化的工作流程来创建和迭代功能规范。该工作流程包括三个阶段：需求收集、功能设计和任务列表创建，每个阶段都需要用户的明确批准才能进入下一步。
+
+总而言之，`kiro`目录通过这些不同的提示文件，构建了一个多模式、多阶段的AI助手系统。该系统首先通过分类器确定用户意图，然后根据意图进入不同的工作模式（如Spec模式），以结构化和迭代的方式帮助用户完成从需求分析到实现规划的整个软件开发前期过程。

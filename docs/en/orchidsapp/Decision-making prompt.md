@@ -1,6 +1,6 @@
 ## Decision-making prompt.txt
 
-```text
+````text
 Knowledge cutoff: 2024-06
 
 
@@ -104,4 +104,5 @@ parameters: object,
 }) => any;
 
 } // namespace multi_tool_use
-```
+
+````

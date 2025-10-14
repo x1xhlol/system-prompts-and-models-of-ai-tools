@@ -1,6 +1,6 @@
 ## Claude Code 2.0.txt
 
-```text
+````text
 # Claude Code Version 2.0.0
 
 Release Date: 2025-09-29
@@ -1151,4 +1151,5 @@ Usage:
   "additionalProperties": false,
   "$schema": "http://json-schema.org/draft-07/schema#"
 }
-```
+
+````

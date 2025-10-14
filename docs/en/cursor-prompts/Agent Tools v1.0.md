@@ -1,3 +1,9 @@
+## Agent Tools v1.0
+
+This document defines the collection of tools available to the Cursor AI assistant. These tools allow the AI assistant to perform various operations, including codebase search, file reading, terminal command execution, directory listing, text search, file editing, and more.
+
+The tools are organized by functional category, and each tool has a detailed description and parameter explanation to ensure that the AI assistant can correctly understand and use these tools to complete the user's programming tasks.
+
 ## Agent Tools v1.0.json
 
 ```json

@@ -1,8 +1,12 @@
-# Open Source prompts
+# 文档目录
 
-## 目录
+- [openai-codex-cli-system-prompt-20250820](./openai-codex-cli-system-prompt-20250820.md)
+- [Prompt](./Prompt.md)
 
-- 📄 [openai-codex-cli-system-prompt-20250820](/zh/open-source-prompts/Codex CLI/openai-codex-cli-system-prompt-20250820.md)
-- 📄 [Prompt](/zh/open-source-prompts/Codex CLI/Prompt.md)
+## 产品工具文档的综述
 
-*完整还原。*
+此目录包含了为 "Codex CLI" 设计的系统提示，这是一个由OpenAI主导的、基于终端的开源代理编码助手。该助手旨在通过自然语言交互的方式，帮助用户完成本地代码库的开发任务。
+
+- **`Prompt.md` (旧版)** 和 **`openai-codex-cli-system-prompt-20250820.md` (新版)**: 这两个文件都是Codex CLI的核心系统提示，定义了其身份、个性和行为准则。新版提示更加详细，它规定了代理在响应性（前导消息）、任务规划（`update_plan`工具）、任务执行、代码测试和审批流程（沙盒机制）等方面的具体要求。两个版本都强调了通过`apply_patch`工具以补丁形式应用代码更改，并遵循严格的编码和沟通指南。
+
+总而言之，这些文档共同描绘了一个精确、安全且高效的命令行AI代理。它通过结构化的工作流程（规划、执行、测试）和特定的工具集（特别是`apply_patch`和`update_plan`），在用户的本地终端环境中自主地完成软件工程任务。

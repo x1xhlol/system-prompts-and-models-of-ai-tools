@@ -1,3 +1,45 @@
+# Notion AI Tools Summary
+
+Notion AI provides the following core tools to operate and manage Notion content:
+
+1. **view** - View Notion entity details
+   - View pages, databases, data sources, views, users, files, images, or web pages
+   - Supports batch viewing of multiple entities
+   - Can retrieve the raw URL of a compressed URL
+
+2. **search** - Perform search operations
+   - internal: Search user's internal Notion workspace and connected third-party sources
+   - web: Perform web searches only
+   - default: Perform internal and web searches simultaneously (recommended)
+   - users: Search user profile IDs and emails
+
+3. **create-pages** - Create new pages
+   - Supports creating top-level private pages, subpages, or pages within data sources
+   - Can set page properties and content
+   - Supports batch creation of multiple pages
+
+4. **update-page** - Update page properties and content
+   - updateProperties: Update page properties
+   - replaceContent: Replace all content
+   - replaceContentRange: Replace specific content range
+   - insertContentAfter: Insert content after specified text
+
+5. **delete-pages** - Delete pages
+   - Move one or more pages to trash
+
+6. **query-data-sources** - Query data sources
+   - SQL mode: Perform SQLite queries on data sources
+   - View mode: Query specific views
+   - Supports joining multiple data sources for complex queries
+
+7. **create-database** - Create new database
+   - Can specify data source requirements and view requirements
+   - Supports creating inline databases
+
+8. **update-database** - Update existing database
+   - Can update database name, data source schema, and views
+   - Supports modifying property types and relationships
+
 ## tools.json
 
 ```json

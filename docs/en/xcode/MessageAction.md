@@ -1,6 +1,6 @@
 ## MessageAction.txt
 
-```text
+````text
 The user is curently inside this file: {{filename}}
 The contents are below:
 ```swift:{{filename}}
@@ -14,4 +14,5 @@ The user has selected the following code from that file:
 
 The user has asked:
 {{message}}
-```
+
+````

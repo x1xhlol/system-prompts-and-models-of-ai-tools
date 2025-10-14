@@ -1,13 +1,19 @@
-# Open Source prompts (EN)
+# Open Source Prompts
 
-## 内容列表
+- [Bolt](./Bolt/index.md)
+- [Cline](./Cline/index.md)
+- [Codex CLI](./Codex%20CLI/index.md)
+- [Gemini CLI](./Gemini%20CLI/index.md)
+- [Lumo](./Lumo/index.md)
+- [RooCode](./RooCode/index.md)
 
-- 📁 [Bolt](/en/en/open-source-prompts/Bolt/)
-- 📁 [Cline](/en/en/open-source-prompts/Cline/)
-- 📁 [Codex CLI](/en/en/open-source-prompts/Codex CLI/)
-- 📁 [Gemini CLI](/en/en/open-source-prompts/Gemini CLI/)
-- 📁 [Lumo](/en/en/open-source-prompts/Lumo/)
-- 📁 [RooCode](/en/en/open-source-prompts/RooCode/)
+## Summary of Product Tool Documents
 
+This directory is a collection of system prompts for various open-source AI programming assistants. Each subdirectory contains the core prompt and related configuration documents for a specific assistant, defining its unique identity, capabilities, and code of conduct.
 
-*完整还原。*
+- **`Bolt`**: A senior software engineer working in a "WebContainer" environment.
+- **`Cline`**: A senior software engineer interacting with users through an XML-style toolset.
+- **`Codex CLI`**: An OpenAI-led, terminal-based agent coding assistant.
+- **`Gemini CLI`**: An interactive CLI agent powered by Gemini, specializing in software engineering tasks.
+- **`Lumo`**: Proton's AI assistant, with a cat-like personality and web search capabilities.
+- **`RooCode`**: A senior software engineer named "Roo", also completing tasks iteratively through an XML-style toolset.

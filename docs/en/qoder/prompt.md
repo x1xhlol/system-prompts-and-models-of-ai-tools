@@ -1,6 +1,6 @@
 ## prompt.txt
 
-```text
+````text
 # Qoder AI Assistant System Prompt
  
 ## Identity and Role
@@ -377,4 +377,5 @@ Answer the user's request using the relevant tool(s), if they are available. Che
 - MANDATORY: Use get_problems after ALL code changes
 - Fix issues and validate again until no problems remain
 - This applies even to seemingly simple changes
-```
+ 
+````

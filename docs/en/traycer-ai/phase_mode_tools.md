@@ -1,5 +1,37 @@
 ## phase_mode_tools.json
 
+## Traycer AI Phase Mode Tools Overview
+
+This document defines the set of tools available to Traycer AI in Phase Mode. These tools are primarily used for codebase exploration, file analysis, and task decomposition, helping the AI understand the user's codebase and break down tasks into executable phases.
+
+### Core Tool Categories
+
+1.  **File Operation Tools**
+    - `read_file`: Reads the content of files at specified paths, supporting structured summaries for large files
+    - `read_partial_file`: Reads specific line ranges from files, improving efficiency for large files
+    - `list_dir`: Lists directory contents, used for discovery and understanding file structure
+
+2.  **Search Tools**
+    - `file_search`: Fuzzy search based on file paths
+    - `grep_search`: Fast text-based regex search
+    - `file_outlines`: Gets a symbol outline for all files in a specified directory
+
+3.  **Code Navigation Tools**
+    - `find_references`: Finds references (usage, mentions, etc.) of functions, methods, classes, etc.
+    - `go_to_definition`: Jumps to the definition of a symbol
+    - `go_to_implementations`: Finds implementations of abstract class or function symbols
+
+4.  **Analysis and Diagnostic Tools**
+    - `get_diagnostics`: Retrieves diagnostic information for files, including errors, warnings, and suggestions
+    - `web_search`: Performs web searches to obtain external knowledge and documentation
+
+5.  **Interaction Tools**
+    - `ask_user_for_clarification`: Asks the user for clarification or input on key design decisions
+    - `explanation_response`: Provides clear explanations and optional Mermaid diagrams
+    - `write_phases`: Breaks down coding tasks into independently executable phases
+
+Each tool adheres to strict parameter specifications, ensuring the AI can efficiently explore the codebase, analyze tasks, and generate reasonable phase breakdowns.
+
 ```json
 {
   "read_file": {

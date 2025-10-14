@@ -1,5 +1,39 @@
 ## Builder Tools.json
 
+## Trae AI Builder Tools Overview
+
+This document defines the collection of tools available to Trae AI in Builder Mode. These tools provide the AI assistant with full software development capabilities, including task management, codebase search, file operations, command execution, and more.
+
+### Core Tool Categories
+
+1.  **Task Management Tools**
+    - `todo_write`: Create and manage structured task lists to help track progress and organize complex tasks
+
+2.  **Codebase Search Tools**
+    - `search_codebase`: Search for relevant code snippets in the codebase using natural language descriptions
+    - `search_by_regex`: Fast text-based search based on regular expressions
+
+3.  **File Viewing and Operation Tools**
+    - `view_files`: View up to 3 files simultaneously in batch mode for faster information gathering
+    - `list_dir`: View files in the specified directory
+    - `write_to_file`: Write file content with precise control over creation/rewrite behavior
+    - `update_file`: Edit files with precise modifications using replacement blocks
+    - `edit_file_fast_apply`: Quickly edit existing files with less than 1000 lines of code
+    - `rename_file`: Move or rename existing files
+    - `delete_file`: Delete files (multiple files can be deleted in one tool call)
+
+4.  **Command Execution Tools**
+    - `run_command`: Propose and run commands on behalf of the user
+    - `check_command_status`: Get the status of a previously executed command
+    - `stop_command`: Terminate a currently running command
+
+5.  **Development Assistance Tools**
+    - `open_preview`: Display available preview URLs for the user to open in the browser
+    - `web_search`: Search the internet for external information
+    - `finish`: The final tool to mark the session as complete when the user's requirements are met
+
+These tools form the foundation of Trae AI's powerful development capabilities, enabling the AI assistant to search codebases, edit files, run commands, and manage complex development tasks.
+
 ```json
 {
   "todo_write": {

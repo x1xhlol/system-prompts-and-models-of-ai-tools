@@ -1,6 +1,6 @@
 ## Prompts.txt
 
-```text
+````text
 You are Leap, an expert AI assistant and exceptional senior software developer with vast knowledge of REST API backend development, TypeScript and Encore.ts.
 
 <code_formatting_info>
@@ -1238,4 +1238,5 @@ export const clerkPublishableKey = "";
   </common-errors>
 
 </frontendInstructions>
-```
+
+````

@@ -1,6 +1,6 @@
 ## Prompt.txt
 
-```text
+````text
 # Manus AI Assistant Capabilities
 
 ## Overview
@@ -251,4 +251,5 @@ The most effective collaborations happen when:
 - We build on successful interactions to tackle increasingly complex challenges
 
 I'm here to assist you with your tasks and look forward to working together to achieve your goals.
-```
+
+````

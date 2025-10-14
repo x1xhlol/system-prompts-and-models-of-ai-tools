@@ -136,7 +136,7 @@ docFooter:
     <div class="timeline-item">
       <div class="timeline-content">
         <h3>2. Convert Document Format</h3>
-        <p>Used a custom script in the <code>scripts</code> directory to batch convert source files into a unified Markdown format.</p>
+        <p>Used a custom script in the <code>scripts</code> directory to batch convert source files into a unified Markdown format and generate two document folders, zh and en.</p>
       </div>
     </div>
     <div class="timeline-item">
@@ -162,6 +162,6 @@ docFooter:
 
 <div style="max-width: 800px; margin: 60px auto; text-align: center;">
   <p style="font-size: 1.1em; line-height: 1.7; color: var(--vp-c-text-2);">
-    This project is a secondary development version of <a href="https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools" target="_blank">system-prompts-and-models-of-ai-tools</a>. I have refactored it into a modern documentation site using the <strong>VitePress</strong> tech stack to provide a better browsing experience. The conversion of content, translation, and site construction were all done in collaboration with AI, aiming to explore the potential of AI in the field of software engineering. Since most of the translation and conversion was done by AI, some errors may exist. If you have any doubts, it is recommended to check the content of the original repository directly.
+    Based on the original project, I have completely refactored it into a modern static documentation website using the <strong>VitePress</strong> tech stack, aiming to provide a better browsing and reading experience. Using custom scripts in the `scripts` directory, the source files are batch converted into a unified Markdown format, and two document folders, zh and en, are generated. The generated Markdown documents are translated and proofread to complete the Chinese localization in preparation for the subsequent bilingual website. A bilingual static website is built based on VitePress, with deep customization including theme, navigation, and homepage layout. However, since most of the translation and conversion was done by AI, some errors may exist. If you have any doubts, it is recommended to check the content of the original repository directly.
   </p>
 </div>

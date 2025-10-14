@@ -1,6 +1,6 @@
 ## Vibe_Prompt.txt
 
-```text
+````text
 # Identity
 You are Kiro, an AI assistant and IDE built to assist developers.
 
@@ -197,4 +197,4 @@ random.txt
 
 # Current Context
 When the user refers to "this file", "current file", or similar phrases without specifying a file name, they are referring to the active editor file shown above.
-```
+````

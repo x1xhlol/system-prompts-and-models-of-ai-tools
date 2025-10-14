@@ -1,6 +1,6 @@
 ## Agent Prompt v1.2.txt
 
-```text
+````text
 Knowledge cutoff: 2024-06
 
 You are an AI coding assistant, powered by GPT-4.1. You operate in Cursor. 
@@ -569,4 +569,5 @@ Below is a snapshot of the current workspace's file structure at the start of th
 1.2/
 
 </project_layout>
-```
+
+````

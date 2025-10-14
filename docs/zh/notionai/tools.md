@@ -40,49 +40,6 @@ Notion AI 提供了以下核心工具来操作和管理 Notion 内容：
    - 可更新数据库名称、数据源模式和视图
    - 支持修改属性类型和关系
 
-<!-- Notion AI 工具总结
-
-Notion AI 提供了以下核心工具来操作和管理 Notion 内容：
-
-1. **view** - 查看 Notion 实体详情
-   - 查看页面、数据库、数据源、视图、用户、文件、图像或网页
-   - 支持批量查看多个实体
-   - 可获取压缩 URL 的原始 URL
-
-2. **search** - 执行搜索操作
-   - internal: 搜索用户内部 Notion 工作区和连接的第三方源
-   - web: 仅执行网络搜索
-   - default: 同时进行内部和网络搜索（推荐）
-   - users: 搜索用户配置文件 ID 和邮箱
-
-3. **create-pages** - 创建新页面
-   - 支持创建顶级私有页面、子页面或数据源中的页面
-   - 可设置页面属性和内容
-   - 支持批量创建多个页面
-
-4. **update-page** - 更新页面属性和内容
-   - updateProperties: 更新页面属性
-   - replaceContent: 替换全部内容
-   - replaceContentRange: 替换特定内容范围
-   - insertContentAfter: 在指定文本后插入内容
-
-5. **delete-pages** - 删除页面
-   - 将一个或多个页面移至回收站
-
-6. **query-data-sources** - 查询数据源
-   - SQL 模式: 对数据源执行 SQLite 查询
-   - View 模式: 查询特定视图
-   - 支持连接多个数据源进行复杂查询
-
-7. **create-database** - 创建新数据库
-   - 可指定数据源要求和视图要求
-   - 支持创建内联数据库
-
-8. **update-database** - 更新现有数据库
-   - 可更新数据库名称、数据源模式和视图
-   - 支持修改属性类型和关系
-
--->
 
 ## 工具.json
 
@@ -112,7 +69,7 @@ Notion AI 提供了以下核心工具来操作和管理 Notion 内容：
     }
   },
   {
-    "description": "执行一个或多个搜索：\n- \"internal\"：仅在用户的内部Notion工作区、其连接的源（包括Slack、Google Drive、Github、Jira、Microsoft Teams、Sharepoint、OneDrive或Linear）和Notion的官方帮助文档上执行语义搜索。\n\n- \"web\"：仅执行网络搜索。仅当你相当确定用户不想要内部信息时才使用此选项。- \"default\"：同时进行内部搜索（Notion工作区、其连接的源（包括Slack、Google Drive、Github、Jira、Microsoft Teams、Sharepoint、OneDrive或Linear）和Notion的官方帮助文档）和网络搜索。结果将是内部和网络搜索结果的组合超集。\n- \"users\"：搜索用户配置文件ID和邮箱，用于创建提及或数据库查询，但不会提供关于用户的信息或查找用户创建的文档、任务或其他内容。\n    除非你需要@提及用户、创建数据库查询或检索其邮箱地址，否则永远不要使用此选项。例如，如果你试图进行数据库查询并试图筛选到特定用户。\n\n当你需要查找通过其他工具无法获得的信息，且你不知道信息位置时，可以使用搜索。\n默认搜索是最安全的搜索工具，因为它通过提供内部和网络搜索结果的超集做出最少的假设。它也快速且安全，所以你应该大量使用它。\n\n### 执行多个搜索\n\n你可以在单个工具调用中执行多个搜索，但仅当它们真正独特且必要时。\n\n- 保持搜索简单。如果问题简单或直接，在\"questions\"中只输出一个查询。\n- 避免使用多个查询搜索相同信息；每个搜索应该是独特且服务于独特目的。\n- 将不同或不相关实体的搜索分开（例如，搜索\"项目X\"和\"项目Y\"）。",
+    "description": "执行一个或多个搜索：\n- \"internal\": 仅在用户的内部Notion工作区、其连接的源（包括Slack、Google Drive、Github、Jira、Microsoft Teams、Sharepoint、OneDrive或Linear）和Notion的官方帮助文档上执行语义搜索。\n\n- \"web\": 仅执行网络搜索。仅当你相当确定用户不想要内部信息时才使用此选项。- \"default\": 同时进行内部搜索（Notion工作区、其连接的源（包括Slack、Google Drive、Github、Jira、Microsoft Teams、Sharepoint、OneDrive或Linear）和Notion的官方帮助文档）和网络搜索。结果将是内部和网络搜索结果的组合超集。\n- \"users\": 搜索用户配置文件ID和邮箱，用于创建提及或数据库查询，但不会提供关于用户的信息或查找用户创建的文档、任务或其他内容。\n    除非你需要@提及用户、创建数据库查询或检索其邮箱地址，否则永远不要使用此选项。例如，如果你试图进行数据库查询并试图筛选到特定用户。\n\n当你需要查找通过其他工具无法获得的信息，且你不知道信息位置时，可以使用搜索。\n默认搜索是最安全的搜索工具，因为它通过提供内部和网络搜索结果的超集做出最少的假设。它也快速且安全，所以你应该大量使用它。\n\n### 执行多个搜索\n\n你可以在单个工具调用中执行多个搜索，但仅当它们真正独特且必要时。\n\n- 保持搜索简单。如果问题简单或直接，在\"questions\"中只输出一个查询。\n- 避免使用多个查询搜索相同信息；每个搜索应该是独特且服务于独特目的。\n- 将不同或不相关实体的搜索分开（例如，搜索\"项目X\"和\"项目Y\"）。",
     "name": "search",
     "parameters": {
       "properties": {
@@ -238,7 +195,8 @@ Notion AI 提供了以下核心工具来操作和管理 Notion 内容：
     }
   },
   {
-    "description": "创建一个或多个具有指定属性和内容的Notion页面。\n当你需要创建一个或多个尚不存在的新页面时，使用create-pages。\n\n你可以通过三种父级选项之一创建页面：\n1. 创建顶级私有页面（未指定父级）\n2. 在另一个页面下创建页面（指定parentPageUrl）\n3. 在数据源中创建页面（指定parentDataSourceUrl）\n你必须恰好选择这三种选项之一。\n\n创建页面的示例：\n1. 创建具有标题和内容的独立页面：\n{\"pages\": [{\"properties\":{\"title\":\"页面标题\"},\"content\":\"# 第1节\n\n第1节内容\n\n# 第2节\n\n第2节内容\"}]}\n2. 在URL为toolu_01U6NtB5oyBfyT5zempqX4jH的任务数据源中创建具有\"任务名称\"和\"状态\"属性的页面：\n// 注意我们使用键\"任务名称\"而不是\"title\"，因为数据源具有\"任务名称\"标题属性。\n{\"parentDataSourceUrl\":\"toolu_01U6NtB5oyBfyT5zempqX4jH\",\"pages\":[{\"properties\":{\"任务名称\":\"任务123\",\"状态\":\"进行中\"}}]}",
+    "description": "创建一个或多个具有指定属性和内容的Notion页面。\n当你需要创建一个或多个尚不存在的新页面时，使用create-pages。\n\n你可以通过三种父级选项之一创建页面：\n1. 创建顶级私有页面（未指定父级）\n2. 在另一个页面下创建页面（指定parentPageUrl）\n3. 在数据源中创建页面（指定parentDataSourceUrl）\n你必须恰好选择这三种选项之一。\n\n创建页面的示例：\n1. 创建具有标题和内容的独立页面：\n{\"pages\": [{\"properties\":{\"title\":\"页面标题\"},\"content\":\"# 第1节\n\n第1节内容\n\n# 第2节\n\n第2节内容\"}]}
+2. 在URL为toolu_01U6NtB5oyBfyT5zempqX4jH的任务数据源中创建具有\"任务名称\"和\"状态\"属性的页面：\n// 注意我们使用键\"任务名称\"而不是\"title\"，因为数据源具有\"任务名称\"标题属性。\n{\"parentDataSourceUrl\":\"toolu_01U6NtB5oyBfyT5zempqX4jH\",\"pages\":[{\"properties\":{\"任务名称\":\"任务123\",\"状态\":\"进行中\"}}]}",
     "name": "create-pages",
     "parameters": {
       "properties": {
@@ -252,10 +210,7 @@ Notion AI 提供了以下核心工具来操作和管理 Notion 内容：
               },
               "properties": {
                 "additionalProperties": {
-                  "type": [
-                    "string",
-                    "number"
-                  ]
+                  "type": ["string", "number"]
                 },
                 "description": "新页面的属性，这是属性名称到SQLite值的JSON映射。\n对于数据源中的页面，使用<sqlite-table>中显示的SQLite模式定义。\n对于数据源外的页面，唯一必需的属性是\"title\"，这是内联markdown格式的页面标题。\n有关接受的格式，请参见\"属性值格式\"部分。",
                 "properties": {
@@ -302,7 +257,7 @@ Notion AI 提供了以下核心工具来操作和管理 Notion 内容：
           "type": "string"
         },
         "newStr": {
-          "description": "[当command=\"replaceContent\"、\"replaceContentRange\"或\"insertContentAfter\"时必需] 新字符串。\n- 对于replaceContent：替换所有内容的新字符串\n- 对于replaceContentRange：替换匹配内容的新字符串\n- 对于insertContentAfter：插入到匹配内容后的新增内容",
+          "description": "[当command=\"replaceContent\", \"replaceContentRange\"或\"insertContentAfter\"时必需] 新字符串。\n- 对于replaceContent：替换所有内容的新字符串\n- 对于replaceContentRange：替换匹配内容的新字符串\n- 对于insertContentAfter：插入到匹配内容后的新增内容",
           "type": "string"
         },
         "pageUrl": {
@@ -319,11 +274,7 @@ Notion AI 提供了以下核心工具来操作和管理 Notion 内容：
         },
         "properties": {
           "additionalProperties": {
-            "type": [
-              "string",
-              "number",
-              "null"
-            ]
+            "type": ["string", "number", "null"]
           },
           "description": "[当command=\"updateProperties\"时必需] 更新页面属性的JSON对象。\n对于数据源中的页面，使用<sqlite-table>中显示的SQLite模式定义。\n对于数据源外的页面，唯一允许的属性是\"title\"，这是内联markdown格式的页面标题。\n有关接受的格式，请参见\"属性值格式\"部分。",
           "properties": {
@@ -366,7 +317,9 @@ Notion AI 提供了以下核心工具来操作和管理 Notion 内容：
     }
   },
   {
-    "description": "使用query-data-sources对数据源中的页面执行SQLite查询或按ID查询特定视图。此工具可用于基于上下文中可见的特定数据源提取或分析结构化数据。\n\n模式1：对数据源的SQL查询\n你可以查询和连接dataSourceUrls集中数据源中的任何表，由其<sqlite-table>标签定义。\n仅允许只读查询。工具不会执行UPDATE、INSERT或DELETE操作。\n确保你已查看了所有要查询的数据源。\n可能时，在select子句中包含url列。\n\n如果你正在查询与另一个数据源相关的页面URL列，首先查看该数据源，然后进行JOIN查询以获取相关页面数据。\n\n示例1：查询URL为https://www.notion.com/signup的OKRs数据源，查找状态为\"进行中\"且已到期的所有页面：\n{\n\tmode: \"sql\",\n\tdataSourceUrls: [\"https://www.notion.com/signup\"],\n\tquery: \"SELECT * FROM \"https://www.notion.com/signup\" WHERE \"Status\" = ? and \"Is due\" = ?\",\n\tparams: [\"进行中\", \"__YES__\"],\n}\n\n示例2：连接两个相关数据源，OKRs (https://www.notion.com/signup) 和Teams (https://www.notion.com/contact-sales)，并获取所有带有团队名称的OKRs：\n{\n\tmode: \"sql\",\n\tdataSourceUrls: [\"https://www.notion.com/signup\", \"https://www.notion.com/contact-sales\"],\n\tquery: \"SELECT o.*, t.\"Team Name\" FROM \"https://www.notion.com/signup\" o JOIN \"https://www.notion.com/contact-sales\" t ON t.url IN (SELECT value FROM json_each(o.\"Team\"))\",\n\tparams: [],\n}\n\nSQLite提示：\n- 表名是数据源的URL，必须用双引号括起来\n- 列名：双引号\"用于空格/特殊字符（\"任务名称\"），简单名称（user_id）不需要\n- 字符串值：单引号，转义用双引号（'Won''t Fix', 'O''Reilly'）\n- 双引号...",
+    "description": "使用query-data-sources对数据源中的页面执行SQLite查询或按ID查询特定视图。此工具可用于基于上下文中可见的特定数据源提取或分析结构化数据。\n\n模式1：对数据源的SQL查询\n你可以查询和连接dataSourceUrls集中数据源中的任何表，由其<sqlite-table>标签定义。\n仅允许只读查询。工具不会执行UPDATE、INSERT或DELETE操作。\n确保你已查看了所有要查询的数据源。\n可能时，在select子句中包含url列。\n\n如果你正在查询与另一个数据源相关的页面URL列，首先查看该数据源，然后进行JOIN查询以获取相关页面数据。\n\n示例1：查询URL为https://www.notion.com/signup的OKRs数据源，查找状态为\"进行中\"且已到期的所有页面：\n{\n\tmode: \"sql\",\n\tdataSourceUrls: [\"https://www.notion.com/signup\"],\n\tquery: \"SELECT * FROM \\\"https://www.notion.com/signup\\\" WHERE \\\"Status\\\" = ? and \\\"Is due\\\" = ?\",\n\tparams: [\"进行中\", \"__YES__\"],
+}\n\n示例2：连接两个相关数据源，OKRs (https://www.notion.com/signup) 和Teams (https://www.notion.com/contact-sales)，并获取所有带有团队名称的OKRs：\n{\n\tmode: \"sql\",\n\tdataSourceUrls: [\"https://www.notion.com/signup\", \"https://www.notion.com/contact-sales\"],\n\tquery: \"SELECT o.*, t.\\\"Team Name\\\" FROM \\\"https://www.notion.com/signup\" o JOIN \\\"https://www.notion.com/contact-sales\" t ON t.url IN (SELECT value FROM json_each(o.\\\"Team\\\"))\",\n\tparams: [],
+}\n\nSQLite提示：\n- 表名是数据源的URL，必须用双引号括起来\n- 列名：双引号\"用于空格/特殊字符（\"任务名称\"），简单名称（user_id）不需要\n- 字符串值：单引号，转义用双引号（'Won''t Fix', 'O''Reilly'）\n- 双引号...",
     "name": "query-data-sources",
     "parameters": {
       "additionalProperties": false,
