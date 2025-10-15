@@ -22,8 +22,7 @@ As a large portion of the translation and conversion was done with the assistanc
 
 You can visit the deployed documentation site via the following link:
 
-**(You can replace this with your GitHub Pages link)**
-`https://[Your-Username].github.io/system-prompts-and-models-of-ai-tools/`
+https://promptsdoc.itycon.cn/
 
 ---
 
