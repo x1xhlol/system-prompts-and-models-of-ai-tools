@@ -122,7 +122,7 @@ Sponsor the most comprehensive collection of AI system prompts and reach thousan
 
 > Open an issue.
 
-> **Latest Update:** 12/10/2025
+> **Latest Update:** 15/10/2025
 
 ---
 
