@@ -18,7 +18,7 @@
 
 ## 访问线上网站
 
-您可以通过以下链接访问部署好的文档网站
+https://promptsdoc.itycon.cn/
 
 ---
 
