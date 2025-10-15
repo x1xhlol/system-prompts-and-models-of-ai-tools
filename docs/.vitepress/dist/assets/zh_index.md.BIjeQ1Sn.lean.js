@@ -1,1 +1,0 @@
-import{_ as e,c as i,o as l,ae as r}from"./chunks/framework.CBTkueSR.js";const f=JSON.parse('{"title":"文档目录","description":"","frontmatter":{},"headers":[],"relativePath":"zh/index.md","filePath":"zh/index.md"}'),o={name:"zh/index.md"};function t(s,a,d,p,n,h){return l(),i("div",null,[...a[0]||(a[0]=[r("",4)])])}const m=e(o,[["render",t]]);export{f as __pageData,m as default};

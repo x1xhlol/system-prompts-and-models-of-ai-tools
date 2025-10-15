@@ -62,7 +62,7 @@ export default defineConfig({
     // Canonical URL
     ['link', { rel: 'canonical', href: 'https://promptsdoc.itycon.cn' + (typeof window !== 'undefined' ? window.location.pathname : '') }],
     // Import custom styles
-    ['link', { rel: 'stylesheet', href: '/.vitepress/styles/custom.css' }],
+    ['link', { rel: 'stylesheet', href: '/styles/custom.css' }],
   ],
   title: 'AI System Prompts Hub',
   description: 'A collection of system prompts for various AI tools.',
