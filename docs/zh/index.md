@@ -2,9 +2,9 @@
 layout: home
 
 hero:
-  name: "AI 提示中心"
-  text: "重制版"
-  tagline: 本项目是在原项目基础上进行的二次开发。它已被 yancongya 重构为使用 VitePress 的现代化文档站点，提供更好的浏览体验、双语支持和深色/浅色模式。
+  name: "AI 系统提示词仓库"
+  text: "提示词&工具"
+  tagline: 本项目包含了几乎市面上全部ai coding工具的提示词和对应的工具，你可以直接复制他们到你开发过程中的rules、prompts和各类mcp工具等，进一步规范和指导你的项目更好的开发。你可以直接点击下面的卡片直接跳转到对应的页面来查看，也可顶部标题栏的下拉才对来选择你要使用的工具。
   image:
     src: /logo.svg
     alt: AI Prompts Hub Logo
@@ -69,7 +69,7 @@ features:
     details: Notionai 的提示和模型。
     link: /zh/notionai/
   - title: Open Source Prompts
-    details: Open Source Prompts 的提示和模型。
+    details: 包含 Bolt, Cline, Codex CLI, Gemini CLI, Lumo, RooCode。
     link: /zh/open-source-prompts/
   - title: Orchidsapp
     details: Orchidsapp 的提示和模型。

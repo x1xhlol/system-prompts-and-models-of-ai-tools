@@ -139,7 +139,7 @@ export default defineConfig({
       label: '简体中文',
       lang: 'zh-CN',
       link: '/zh/',
-      title: 'AI 系统提示词中心',
+      title: 'AI 系统提示词仓库',
       themeConfig: {
         nav: [
           { text: '首页', link: '/zh/' },

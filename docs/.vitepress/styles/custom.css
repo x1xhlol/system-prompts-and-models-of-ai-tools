@@ -1,8 +1,62 @@
 /* Styles for VitePress Home Features cards */
+/* Hover effect remains on article.box to scale content */
 article.box {
   transition: transform 0.3s ease-in-out;
 }
 
 article.box:hover {
   transform: scale(1.05); /* Scales up by 5% */
+}
+
+/* Entrance animation applied to the entire card link */
+.VPFeature {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0; /* Start invisible */
+}
+
+/* Staggered animation delay for each card link within its parent container */
+.VPHomeFeatures .VPFeature:nth-child(1) { animation-delay: 0.1s; }
+.VPHomeFeatures .VPFeature:nth-child(2) { animation-delay: 0.2s; }
+.VPHomeFeatures .VPFeature:nth-child(3) { animation-delay: 0.3s; }
+.VPHomeFeatures .VPFeature:nth-child(4) { animation-delay: 0.4s; }
+.VPHomeFeatures .VPFeature:nth-child(5) { animation-delay: 0.5s; }
+.VPHomeFeatures .VPFeature:nth-child(6) { animation-delay: 0.6s; }
+.VPHomeFeatures .VPFeature:nth-child(7) { animation-delay: 0.7s; }
+.VPHomeFeatures .VPFeature:nth-child(8) { animation-delay: 0.8s; }
+.VPHomeFeatures .VPFeature:nth-child(9) { animation-delay: 0.9s; }
+.VPHomeFeatures .VPFeature:nth-child(10) { animation-delay: 1.0s; }
+
+
+/* Keyframe animation definition */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0); /* Start slightly below */
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0); /* End at original position */
+  }
+}
+
+.timeline-item {
+  /* Entrance animation for timeline items */
+  animation: fadeInUp 0.8s ease-out forwards; /* Use the same animation */
+  opacity: 0; /* Start invisible */
+  position: relative; /* Ensure z-index works */
+  z-index: 1; /* Bring to front on hover */
+}
+
+
+
+/* Remove timeline-content hover styles */
+.timeline-content {
+  /* No transition, transform-origin, will-change here */
+  display: block;
+  height: 100%;
+}
+
+.timeline-content:hover {
+  /* No transform here */
+  z-index: auto; /* Reset z-index */
 }

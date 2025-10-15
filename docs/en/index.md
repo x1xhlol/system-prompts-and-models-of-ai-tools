@@ -2,9 +2,9 @@
 layout: home
 
 hero:
-  name: "AI Prompts Hub"
-  text: "Remastered Edition"
-  tagline: This project is a secondary development based on the original. It has been refactored by yancongya into a modern documentation site using VitePress, providing a better browsing experience, bilingual support, and dark/light mode.
+  name: "AI System Prompts Repository"
+  text: "Prompts & Tools"
+  tagline: This project contains prompts and corresponding tools for almost all AI coding tools on the market. You can directly copy them into your development process for rules, prompts, and various MCP tools, further standardizing and guiding your project for better development. You can click on the cards below to jump directly to the corresponding page, or use the dropdown menu in the top title bar to select the tool you want to use.
   image:
     src: /logo.svg
     alt: AI Prompts Hub Logo
@@ -69,7 +69,7 @@ features:
     details: Prompts and models for Notionai.
     link: /en/notionai/
   - title: Open Source Prompts
-    details: Prompts and models for Open Source Prompts.
+    details: Includes Bolt, Cline, Codex CLI, Gemini CLI, Lumo, RooCode.
     link: /en/open-source-prompts/
   - title: Orchidsapp
     details: Prompts and models for Orchidsapp.
@@ -114,7 +114,3 @@ features:
     details: Prompts and models for Zai Code.
     link: /en/zai-code/
 ---
-
-## Summary of Product Tool Documents
-
-[Please add the summary here]

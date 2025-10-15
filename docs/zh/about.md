@@ -40,6 +40,12 @@ docFooter:
         <p>配置 GitHub Action 自动检测上游仓库的更新，并生成直观的更新报告以供审阅和手动同步。</p>
       </div>
     </div>
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <h3>6. 部署到 Vercel</h3>
+        <p>项目本地构建没问题后，通过 Vercel 来部署上线，有一定的免费额度，可以几乎实现 0 成本成功运营。</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -79,14 +85,13 @@ docFooter:
     padding: 20px 40px;
     position: relative;
     width: 50%;
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out forwards;
   }
   .timeline-item:nth-child(1) { animation-delay: 0.2s; }
   .timeline-item:nth-child(2) { animation-delay: 0.4s; }
   .timeline-item:nth-child(3) { animation-delay: 0.6s; }
   .timeline-item:nth-child(4) { animation-delay: 0.8s; }
   .timeline-item:nth-child(5) { animation-delay: 1.0s; }
+  .timeline-item:nth-child(6) { animation-delay: 1.2s; } /* New delay for 6th item */
   .timeline-item:nth-child(odd) {
     left: 0;
     padding-right: 30px;
@@ -136,7 +141,7 @@ docFooter:
     }
     to {
       opacity: 1;
-      transform: translateY(0);
+      /* transform: translateY(0); -- Removed to avoid conflict */
     }
   }
   @media (max-width: 768px) {
@@ -160,8 +165,9 @@ docFooter:
   }
 </style>
 
-<div style="max-width: 800px; margin: 60px auto; text-align: center;">
-  <p style="font-size: 1.1em; line-height: 1.7; color: var(--vp-c-text-2);">
-     在原项目的基础上，我利用 <strong>VitePress</strong> 技术栈将其完全重构为一个现代化的静态文档网站，旨在提供更佳的浏览和阅读体验。使用 `scripts` 目录下的自定义脚本，将源文件批量转换为统一的 Markdown 格式，并生成zh和en两个文档文件夹。对生成的 Markdown 文档进行翻译和校对，完成汉化，为后续的双语网站做准备。基于 VitePress 搭建双语静态网站，并进行深度定制，包括主题、导航、主页布局等。但因为大部分翻译转化都是基于ai完成的，所以部分翻译可能存在错误，如果有疑问还是建议直接查看原仓库的内容。
+<div style="max-width: 800px; margin: 60px auto; text-align: left;">
+  <p style="font-size: 1.1em; line-height: 1.7; color: var(--vp-c-text-2); text-indent: 2em;">
+     这个项目主要是基于system prompts and models of ai tools这个开源项目，在原项目的基础上，进一步对文档进行总结和汉化，所以我是以中文效果为主进行总结的，英文部分反倒可能不太精准，但原生的提示词，最好还是要回到仓库项目内查看英文原文。然后通过 VitePress 技术栈将其完全重构为一个现代化的静态文档网站，旨在提供更佳的浏览和阅读体验。使用 \`scripts\` 目录下的自定义脚本，将源文件批量转换为统一的 Markdown 格式，并生成zh和en两个文档文件夹。对生成的 Markdown 文档进行翻译和校对，完成汉化，为后续的双语网站做准备。基于 VitePress 搭建双语静态网站，并进行深度定制，包括主题、导航、主页布局等。最后部署在vercel上，节约下部署的成本。但因为大部分翻译转化都是基于ai完成的，所以部分翻译可能存在错误，如果有疑问还是建议直接查看原仓库的内容。
   </p>
 </div>
+
