@@ -45,10 +45,31 @@ function getSidebar(dir, sidebarTitle) {
 
 export default defineConfig({
   head: [
-    ['link', { rel: 'icon', href: '/logo.svg' }]
+    ['link', { rel: 'icon', href: '/logo.svg' }],
+    // Open Graph / Facebook Meta Tags
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:url', content: 'https://promptsdoc.itycon.cn/' }], // Use the provided hostname
+    ['meta', { property: 'og:title', content: 'AI System Prompts Hub' }], // Uses global title
+    ['meta', { property: 'og:description', content: 'A collection of system prompts for various AI tools.' }], // Uses global description
+    ['meta', { property: 'og:image', content: 'https://promptsdoc.itycon.cn/logo.svg' }], // Placeholder, consider a more descriptive image
+
+    // Twitter Meta Tags
+    ['meta', { property: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { property: 'twitter:url', content: 'https://promptsdoc.itycon.cn/' }], // Use the provided hostname
+    ['meta', { property: 'twitter:title', content: 'AI System Prompts Hub' }], // Uses global title
+    ['meta', { property: 'twitter:description', content: 'A collection of system prompts for various AI tools.' }], // Uses global description
+    ['meta', { property: 'twitter:image', content: 'https://promptsdoc.itycon.cn/logo.svg' }], // Placeholder, consider a more descriptive image
+    // Canonical URL
+    ['link', { rel: 'canonical', href: 'https://promptsdoc.itycon.cn' + (typeof window !== 'undefined' ? window.location.pathname : '') }],
+    // Import custom styles
+    ['link', { rel: 'stylesheet', href: '/.vitepress/styles/custom.css' }],
   ],
   title: 'AI System Prompts Hub',
   description: 'A collection of system prompts for various AI tools.',
+  lastUpdated: true, // Enable last updated timestamp
+  sitemap: {
+    hostname: 'https://promptsdoc.itycon.cn'
+  },
   
   themeConfig: {
     logo: '/logo.svg',

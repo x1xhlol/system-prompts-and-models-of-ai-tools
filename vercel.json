@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://promptsdoc.itycon.cn/$1",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "promptsdoc.vercel.app"
+        }
+      ]
+    }
+  ]
+}

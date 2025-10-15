@@ -1,0 +1,8 @@
+/* Styles for VitePress Home Features cards */
+article.box {
+  transition: transform 0.3s ease-in-out;
+}
+
+article.box:hover {
+  transform: scale(1.05); /* Scales up by 5% */
+}
