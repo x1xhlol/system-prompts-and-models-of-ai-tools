@@ -15,8 +15,6 @@
 ### <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">The tools you need for building reliable Agents and Prompts</a>  
 <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Open Source AI Engineering Platform</a><br>
 
-<div>
-
 
 ---
 
