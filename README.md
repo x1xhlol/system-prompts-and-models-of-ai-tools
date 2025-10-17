@@ -28,7 +28,7 @@
 
 <a href="https://trendshift.io/repositories/14084" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14084" alt="x1xhlol%2Fsystem-prompts-and-models-of-ai-tools | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
-📜 Over **20,000+ lines** of insights into their structure and functionality.  
+📜 Over **30,000+ lines** of insights into their structure and functionality.  
 
 ⭐ **Star to follow updates**
 
@@ -121,7 +121,7 @@ Sponsor the most comprehensive collection of AI system prompts and reach thousan
 
 > Open an issue.
 
-> **Latest Update:** 15/10/2025
+> **Latest Update:** 17/10/2025
 
 ---
 
