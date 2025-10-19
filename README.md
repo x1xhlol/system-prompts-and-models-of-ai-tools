@@ -61,7 +61,7 @@ You can show your support via:
 
 Sponsor the most comprehensive collection of AI system prompts and reach thousands of developers building the next generation of AI applications.
 
-[Get Started](https://www.promptleaks.dev/sponsor)
+[Get Started](mailto:lucknitelol@proton.me)
 
 ---
 
