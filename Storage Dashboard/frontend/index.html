@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage Device Performance Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Storage Device Performance Dashboard</h1>
+            <div class="header-info">
+                <span id="last-update">Last Update: Never</span>
+                <button id="refresh-btn" class="btn">Refresh Now</button>
+            </div>
+        </header>
+
+        <!-- System Information -->
+        <section class="section">
+            <h2>System Information</h2>
+            <div class="system-info-grid" id="system-info">
+                <div class="info-card">
+                    <span class="label">Platform:</span>
+                    <span class="value" id="platform">Loading...</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Hostname:</span>
+                    <span class="value" id="hostname">Loading...</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Uptime:</span>
+                    <span class="value" id="uptime">Loading...</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Boot Time:</span>
+                    <span class="value" id="boot-time">Loading...</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Disk Partitions -->
+        <section class="section">
+            <h2>Disk Partitions & Usage</h2>
+            <div id="partitions-container" class="partitions-grid">
+                <div class="loading">Loading partition data...</div>
+            </div>
+        </section>
+
+        <!-- I/O Performance Charts -->
+        <section class="section">
+            <h2>I/O Performance Metrics</h2>
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3>Read/Write Speed (MB/s)</h3>
+                    <canvas id="speed-chart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>IOPS (Operations/sec)</h3>
+                    <canvas id="iops-chart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- I/O Statistics Table -->
+        <section class="section">
+            <h2>Detailed I/O Statistics</h2>
+            <div class="table-container">
+                <table id="io-stats-table">
+                    <thead>
+                        <tr>
+                            <th>Disk</th>
+                            <th>Read Speed</th>
+                            <th>Write Speed</th>
+                            <th>Read IOPS</th>
+                            <th>Write IOPS</th>
+                            <th>Total Read</th>
+                            <th>Total Write</th>
+                        </tr>
+                    </thead>
+                    <tbody id="io-stats-body">
+                        <tr>
+                            <td colspan="7" class="loading">Loading I/O statistics...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SMART Data -->
+        <section class="section">
+            <h2>SMART Health Data</h2>
+            <div id="smart-container" class="smart-grid">
+                <div class="info-message">Loading SMART data...</div>
+            </div>
+        </section>
+
+        <!-- Historical Data Charts -->
+        <section class="section">
+            <h2>Historical Performance</h2>
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3>Read/Write Trends</h3>
+                    <canvas id="historical-chart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>IOPS Trends</h3>
+                    <canvas id="iops-trend-chart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Auto-refresh every 5 seconds | Data updates in real-time</p>
+        </footer>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

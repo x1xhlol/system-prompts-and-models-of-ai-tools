@@ -1,0 +1,4 @@
+flask==3.0.0
+flask-cors==4.0.0
+psutil==5.9.6
+pySMART==1.3.0
