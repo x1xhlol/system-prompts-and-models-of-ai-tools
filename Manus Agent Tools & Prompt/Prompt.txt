@@ -1,4 +1,4 @@
-# Beshr Assistant Ai Capabilities
+# Beshr Assistant AI Capabilities
 
 ## Overview
 I am an AI assistant designed to help users with a wide range of tasks using various tools and capabilities. This document provides a more detailed overview of what I can do while respecting proprietary information boundaries.
