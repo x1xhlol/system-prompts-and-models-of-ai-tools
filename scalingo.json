@@ -1,0 +1,30 @@
+{
+  "name": "enciclopedia-ai-prompts",
+  "description": "Enciclopédia interativa sobre System Prompts e Modelos de IA",
+  "repository": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools",
+  "website": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools",
+  "keywords": [
+    "ai",
+    "prompts",
+    "system-prompts",
+    "ia",
+    "enciclopedia"
+  ],
+  "env": {
+    "NODE_ENV": {
+      "description": "Ambiente de execução",
+      "value": "production"
+    }
+  },
+  "formation": {
+    "web": {
+      "amount": 1,
+      "size": "S"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/Scalingo/nodejs-buildpack"
+    }
+  ]
+}
