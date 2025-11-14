@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enciclopédia: System Prompts e Modelos de IA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animação de fundo */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f7b731, #5f27cd);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInDown 1s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: shimmer 3s ease-in-out infinite;
+            background-size: 200% auto;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #b8b8d1;
+            font-weight: 300;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #f7b731, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #b8b8d1;
+            margin-top: 0.5rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 5rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, transparent);
+            animation: lineGrow 1s ease;
+        }
+
+        @keyframes lineGrow {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .section-content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 48px 0 rgba(31, 38, 135, 0.5);
+        }
+
+        .section-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #d4d4e7;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        /* Cards Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tool-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .tool-card:hover::before {
+            opacity: 1;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 50px rgba(78, 205, 196, 0.3);
+            border-color: #4ecdc4;
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .tool-card:hover .tool-icon {
+            animation: spin 0.6s ease;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .tool-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .tool-description {
+            font-size: 0.95rem;
+            color: #b8b8d1;
+            line-height: 1.6;
+        }
+
+        /* Lista de benefícios */
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefits-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(78, 205, 196, 0.1);
+            border-left: 4px solid #4ecdc4;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .benefits-list li:hover {
+            background: rgba(78, 205, 196, 0.2);
+            transform: translateX(10px);
+        }
+
+        .benefits-list li::before {
+            content: '✓';
+            color: #4ecdc4;
+            font-weight: bold;
+            margin-right: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Como usar */
+        .how-to-steps {
+            counter-reset: step-counter;
+        }
+
+        .step {
+            counter-increment: step-counter;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            position: relative;
+            padding-left: 5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .step h3 {
+            color: #4ecdc4;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(78, 205, 196, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* Scroll Animation */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: pulse 2s ease-in-out infinite;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(78, 205, 196, 0.5);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .scroll-indicator:hover {
+            animation: none;
+            transform: scale(1.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                gap: 1rem;
+            }
+
+            .stat-item {
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
+        /* Tag de categoria */
+        .category-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(247, 183, 49, 0.2);
+            border: 1px solid #f7b731;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            color: #f7b731;
+        }
+
+        /* Loading animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            animation: fadeIn 1.5s ease;
+        }
+
+        /* Code block style */
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            color: #4ecdc4;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>📚 Enciclopédia de System Prompts e IA</h1>
+        <p class="subtitle">A maior coleção de instruções de sistema e ferramentas de IA do mundo</p>
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">30.000+</div>
+                <div class="stat-label">Linhas de Código</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">35+</div>
+                <div class="stat-label">Ferramentas de IA</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Open Source</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- O que é? -->
+        <section id="o-que-e">
+            <h2 class="section-title">🤔 O que é este projeto?</h2>
+            <div class="section-content">
+                <p>
+                    Este repositório é uma <span class="highlight">coleção abrangente e única</span> de <strong>system prompts</strong> (instruções de sistema)
+                    e configurações de ferramentas utilizadas pelas principais plataformas de Inteligência Artificial do mercado.
+                </p>
+                <p>
+                    Em termos simples: quando você usa uma ferramenta de IA como <code>Claude Code</code>, <code>Cursor</code>, <code>Replit AI</code>
+                    ou <code>GitHub Copilot</code>, existe um conjunto de instruções "invisíveis" que guiam o comportamento da IA.
+                    <span class="highlight">Este repositório revela essas instruções!</span>
+                </p>
+                <p>
+                    São mais de <strong>30.000 linhas</strong> de insights detalhados sobre como as ferramentas de IA mais avançadas do mundo
+                    são programadas para pensar, responder e auxiliar desenvolvedores.
+                </p>
+            </div>
+        </section>
+
+        <!-- Por que existe? -->
+        <section id="por-que">
+            <h2 class="section-title">💡 Por que este projeto existe?</h2>
+            <div class="section-content">
+                <p>
+                    Este projeto nasceu de uma necessidade fundamental na comunidade de desenvolvedores:
+                    <span class="highlight">transparência e aprendizado</span> sobre como as ferramentas de IA realmente funcionam.
+                </p>
+
+                <h3 style="color: #4ecdc4; margin-top: 2rem; margin-bottom: 1rem;">🎯 Objetivos principais:</h3>
+
+                <ul class="benefits-list">
+                    <li>
+                        <strong>Transparência:</strong> Revelar como as ferramentas de IA são instruídas, eliminando a "caixa preta"
+                        e permitindo que desenvolvedores entendam o que está acontecendo nos bastidores.
+                    </li>
+                    <li>
+                        <strong>Educação:</strong> Servir como material de estudo para quem quer aprender a criar prompts melhores,
+                        desenvolver suas próprias ferramentas de IA ou simplesmente entender como a IA funciona.
+                    </li>
+                    <li>
+                        <strong>Segurança:</strong> Ajudar startups e empresas de IA a identificar possíveis vulnerabilidades em suas
+                        configurações e proteger suas instruções de sistema contra vazamentos.
+                    </li>
+                    <li>
+                        <strong>Inovação:</strong> Inspirar a criação de novas ferramentas e melhorias nas existentes, compartilhando
+                        as melhores práticas da indústria.
+                    </li>
+                    <li>
+                        <strong>Comunidade:</strong> Criar um espaço centralizado onde desenvolvedores podem comparar diferentes
+                        abordagens e aprender com as implementações de múltiplas empresas.
+                    </li>
+                </ul>
+
+                <p style="margin-top: 2rem;">
+                    O projeto é mantido por <span class="highlight">Lucknite</span> e é atualizado constantemente com novos prompts
+                    e ferramentas à medida que são descobertos e compartilhados pela comunidade.
+                </p>
+            </div>
+        </section>
+
+        <!-- Para que serve? -->
+        <section id="para-que-serve">
+            <h2 class="section-title">🎯 Para que serve?</h2>
+            <div class="section-content">
+                <h3 style="color: #4ecdc4; margin-bottom: 1.5rem;">Este repositório tem múltiplos usos práticos:</h3>
+
+                <div class="how-to-steps">
+                    <div class="step">
+                        <h3>Aprender Engenharia de Prompts</h3>
+                        <p>
+                            Estude como empresas profissionais estruturam seus prompts. Você verá técnicas avançadas de
+                            <strong>prompt engineering</strong>, incluindo instruções condicionais, formatação de saída,
+                            controle de comportamento e muito mais.
+                        </p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Desenvolver Suas Próprias Ferramentas de IA</h3>
+                        <p>
+                            Use os exemplos como base para criar suas próprias aplicações. Se você está desenvolvendo um
+                            assistente de código, chatbot ou qualquer ferramenta baseada em IA, esses prompts servem como
+                            excelentes pontos de partida.
+                        </p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Comparar Abordagens Diferentes</h3>
+                        <p>
+                            Veja como diferentes empresas resolvem os mesmos problemas. Por exemplo, compare como
+                            <code>Cursor</code> vs <code>Claude Code</code> lidam com edição de arquivos ou sugestões de código.
+                        </p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Melhorar Segurança</h3>
+                        <p>
+                            Se você é uma startup de IA, use este repositório para entender quais informações não devem
+                            ser expostas e como estruturar seus prompts de forma mais segura.
+                        </p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Pesquisa e Análise</h3>
+                        <p>
+                            Acadêmicos e pesquisadores podem usar este material para estudar tendências em design de sistemas
+                            de IA, comportamento de modelos de linguagem e melhores práticas da indústria.
+                        </p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Personalizar Suas Ferramentas</h3>
+                        <p>
+                            Entenda como customizar ferramentas como VSCode Copilot ou Cursor para se adequarem melhor
+                            ao seu fluxo de trabalho, criando prompts personalizados baseados nos exemplos profissionais.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Como usar -->
+        <section id="como-usar">
+            <h2 class="section-title">📖 Como usar este repositório?</h2>
+            <div class="section-content">
+                <div class="how-to-steps">
+                    <div class="step">
+                        <h3>Escolha uma Ferramenta</h3>
+                        <p>
+                            Navegue pelas pastas e escolha a ferramenta que te interessa. Cada pasta contém os prompts
+                            e configurações específicas daquela ferramenta.
+                        </p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Leia os Arquivos</h3>
+                        <p>
+                            Abra os arquivos <code>.txt</code> ou <code>.json</code> e leia as instruções. Preste atenção
+                            em como as instruções são estruturadas, quais parâmetros são usados e como o comportamento é controlado.
+                        </p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Experimente e Adapte</h3>
+                        <p>
+                            Copie partes interessantes e teste em seus próprios projetos. Adapte as instruções para suas
+                            necessidades específicas.
+                        </p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Contribua</h3>
+                        <p>
+                            Se você descobrir novos prompts ou atualizações, considere contribuir com o repositório através
+                            de pull requests ou reportando via issues no GitHub.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ferramentas Disponíveis -->
+        <section id="ferramentas">
+            <h2 class="section-title">🛠️ Ferramentas Disponíveis</h2>
+            <p style="color: #b8b8d1; margin-bottom: 2rem; font-size: 1.1rem;">
+                Explore a coleção completa de prompts e configurações das principais ferramentas de IA:
+            </p>
+
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">🎨</div>
+                    <div class="tool-name">v0</div>
+                    <div class="tool-description">
+                        Gerador de interfaces da Vercel. Prompts para criação de componentes React e design systems.
+                    </div>
+                    <span class="category-tag">UI/UX</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🤖</div>
+                    <div class="tool-name">Cursor</div>
+                    <div class="tool-description">
+                        Editor de código com IA integrada. Instruções para autocompletar, refatoração e geração de código.
+                    </div>
+                    <span class="category-tag">IDE</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">💼</div>
+                    <div class="tool-name">Claude Code</div>
+                    <div class="tool-description">
+                        CLI oficial da Anthropic. Prompts para tarefas de engenharia de software e desenvolvimento.
+                    </div>
+                    <span class="category-tag">CLI</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🌊</div>
+                    <div class="tool-name">Windsurf</div>
+                    <div class="tool-description">
+                        Agente de desenvolvimento completo. Sistema de prompts e ferramentas para desenvolvimento full-stack.
+                    </div>
+                    <span class="category-tag">Agente</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🔧</div>
+                    <div class="tool-name">Devin AI</div>
+                    <div class="tool-description">
+                        Engenheiro de software autônomo. Prompts para planejamento, execução e debugging de projetos.
+                    </div>
+                    <span class="category-tag">Agente</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">⚡</div>
+                    <div class="tool-name">Replit</div>
+                    <div class="tool-description">
+                        Ambiente de desenvolvimento online. Instruções para assistência em programação e debugging.
+                    </div>
+                    <span class="category-tag">IDE</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">💻</div>
+                    <div class="tool-name">VSCode Agent</div>
+                    <div class="tool-description">
+                        GitHub Copilot no VSCode. Prompts para múltiplos modelos: GPT-4, GPT-5, Claude Sonnet, Gemini.
+                    </div>
+                    <span class="category-tag">IDE</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🔍</div>
+                    <div class="tool-name">Perplexity</div>
+                    <div class="tool-description">
+                        Motor de busca com IA. Sistema de prompts para pesquisa e síntese de informações.
+                    </div>
+                    <span class="category-tag">Pesquisa</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">💎</div>
+                    <div class="tool-name">Lovable</div>
+                    <div class="tool-description">
+                        Gerador de aplicações web. Prompts para criar aplicações completas com frontend e backend.
+                    </div>
+                    <span class="category-tag">Gerador</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🎯</div>
+                    <div class="tool-name">Augment Code</div>
+                    <div class="tool-description">
+                        Assistente de código avançado. Configurações para Claude 4 Sonnet e GPT-5 com ferramentas específicas.
+                    </div>
+                    <span class="category-tag">Assistente</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🚀</div>
+                    <div class="tool-name">Bolt</div>
+                    <div class="tool-description">
+                        Gerador de apps full-stack. Prompts open source para criação rápida de aplicações.
+                    </div>
+                    <span class="category-tag">Open Source</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🦘</div>
+                    <div class="tool-name">RooCode</div>
+                    <div class="tool-description">
+                        Assistente de código open source. Sistema de prompts e ferramentas para desenvolvimento.
+                    </div>
+                    <span class="category-tag">Open Source</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🌟</div>
+                    <div class="tool-name">Cline</div>
+                    <div class="tool-description">
+                        Agente de desenvolvimento autônomo. Prompts para tarefas complexas de engenharia.
+                    </div>
+                    <span class="category-tag">Open Source</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🎮</div>
+                    <div class="tool-name">Qoder</div>
+                    <div class="tool-description">
+                        Sistema de quest/desafios de código. Prompts para design e ação de quests de programação.
+                    </div>
+                    <span class="category-tag">Educação</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🌸</div>
+                    <div class="tool-name">Orchids.app</div>
+                    <div class="tool-description">
+                        Assistente com tomada de decisões. Prompts para análise e sugestões inteligentes.
+                    </div>
+                    <span class="category-tag">Assistente</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">📝</div>
+                    <div class="tool-name">Notion AI</div>
+                    <div class="tool-description">
+                        IA integrada ao Notion. Prompts para escrita, resumo e organização de conteúdo.
+                    </div>
+                    <span class="category-tag">Produtividade</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🏃</div>
+                    <div class="tool-name">Leap.new</div>
+                    <div class="tool-description">
+                        Criador rápido de apps. Sistema de prompts para prototipagem acelerada.
+                    </div>
+                    <span class="category-tag">Gerador</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🔬</div>
+                    <div class="tool-name">Anthropic</div>
+                    <div class="tool-description">
+                        Prompts oficiais da Anthropic. Instruções base para modelos Claude.
+                    </div>
+                    <span class="category-tag">Fundação</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">⚙️</div>
+                    <div class="tool-name">Manus Agent</div>
+                    <div class="tool-description">
+                        Agente multi-tarefa. Ferramentas e prompts para automação de workflows.
+                    </div>
+                    <span class="category-tag">Agente</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🌊</div>
+                    <div class="tool-name">Warp.dev</div>
+                    <div class="tool-description">
+                        Terminal moderno com IA. Prompts para assistência em linha de comando.
+                    </div>
+                    <span class="category-tag">Terminal</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🎭</div>
+                    <div class="tool-name">Same.dev</div>
+                    <div class="tool-description">
+                        Plataforma de desenvolvimento colaborativo. Instruções para pair programming com IA.
+                    </div>
+                    <span class="category-tag">Colaboração</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🍎</div>
+                    <div class="tool-name">Xcode</div>
+                    <div class="tool-description">
+                        Assistente de código para desenvolvimento iOS/macOS. Prompts específicos para Swift e Objective-C.
+                    </div>
+                    <span class="category-tag">IDE</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🔮</div>
+                    <div class="tool-name">Gemini CLI</div>
+                    <div class="tool-description">
+                        Interface de linha de comando do Google Gemini. Prompts open source para uso via terminal.
+                    </div>
+                    <span class="category-tag">Open Source</span>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">💡</div>
+                    <div class="tool-name">Codex CLI</div>
+                    <div class="tool-description">
+                        CLI baseado em OpenAI Codex. Instruções para conversão de linguagem natural em comandos.
+                    </div>
+                    <span class="category-tag">Open Source</span>
+                </div>
+            </div>
+
+            <p style="margin-top: 3rem; color: #b8b8d1; text-align: center; font-size: 1.1rem;">
+                ✨ E muitas outras ferramentas sendo adicionadas constantemente!
+            </p>
+        </section>
+
+        <!-- Conceitos Importantes -->
+        <section id="conceitos">
+            <h2 class="section-title">🧠 Conceitos Importantes</h2>
+            <div class="section-content">
+                <h3 style="color: #4ecdc4; margin-bottom: 1.5rem;">Entenda os termos-chave:</h3>
+
+                <div class="step">
+                    <h3>System Prompt (Prompt de Sistema)</h3>
+                    <p>
+                        É o conjunto de instruções invisíveis que define como uma IA deve se comportar. É como o "manual de instruções"
+                        que a IA recebe antes de interagir com você. Por exemplo: "Você é um assistente de programação que escreve
+                        código limpo e bem documentado."
+                    </p>
+                </div>
+
+                <div class="step">
+                    <h3>Tools (Ferramentas)</h3>
+                    <p>
+                        São funções específicas que a IA pode usar para realizar tarefas. Por exemplo: editar arquivos, executar
+                        comandos, buscar na web, etc. Os arquivos <code>.json</code> geralmente definem essas ferramentas.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <h3>Prompt Engineering</h3>
+                    <p>
+                        A arte e ciência de criar instruções eficazes para IAs. Envolve estruturar comandos de forma que a IA
+                        entenda exatamente o que fazer e como fazer.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <h3>Context Window</h3>
+                    <p>
+                        A "memória de trabalho" da IA - quanto texto ela pode processar de uma vez. Prompts profissionais são
+                        otimizados para usar esse espaço eficientemente.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <h3>Few-Shot Learning</h3>
+                    <p>
+                        Técnica onde você dá exemplos para a IA aprender o padrão desejado. Muitos prompts neste repositório
+                        usam essa técnica para melhorar a qualidade das respostas.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefícios -->
+        <section id="beneficios">
+            <h2 class="section-title">🎁 Benefícios de Estudar Estes Prompts</h2>
+            <div class="section-content">
+                <ul class="benefits-list">
+                    <li>
+                        Aprenda técnicas profissionais usadas por empresas líderes em IA
+                    </li>
+                    <li>
+                        Melhore drasticamente a qualidade dos seus próprios prompts
+                    </li>
+                    <li>
+                        Entenda como controlar o comportamento de modelos de IA de forma precisa
+                    </li>
+                    <li>
+                        Descubra padrões e melhores práticas da indústria
+                    </li>
+                    <li>
+                        Economize tempo não reinventando a roda - use exemplos comprovados
+                    </li>
+                    <li>
+                        Desenvolva habilidades valiosas em engenharia de prompts
+                    </li>
+                    <li>
+                        Ganhe insights sobre arquitetura de sistemas de IA
+                    </li>
+                    <li>
+                        Identifique vulnerabilidades de segurança em suas próprias implementações
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Atenção para Segurança -->
+        <section id="seguranca">
+            <h2 class="section-title">🛡️ Importante: Segurança</h2>
+            <div class="section-content">
+                <p style="background: rgba(255, 107, 107, 0.2); padding: 1.5rem; border-left: 4px solid #ff6b6b; border-radius: 10px; margin-bottom: 1.5rem;">
+                    ⚠️ <strong>Atenção Startups de IA:</strong> Este repositório serve como um lembrete importante de que
+                    prompts de sistema podem ser extraídos. Se você está desenvolvendo uma ferramenta de IA, certifique-se de
+                    que suas instruções estão seguras!
+                </p>
+
+                <p>
+                    O criador do repositório também oferece um serviço chamado <span class="highlight">ZeroLeaks</span> que
+                    ajuda startups a identificar e corrigir vazamentos em seus sistemas de IA. Considere fazer uma auditoria
+                    de segurança se você está desenvolvendo produtos com IA.
+                </p>
+
+                <p style="margin-top: 1.5rem;">
+                    <strong>Dicas de segurança:</strong>
+                </p>
+                <ul class="benefits-list">
+                    <li>Não coloque informações sensíveis em prompts de sistema</li>
+                    <li>Use variáveis de ambiente para dados confidenciais</li>
+                    <li>Implemente rate limiting e autenticação adequada</li>
+                    <li>Monitore tentativas de extração de prompts</li>
+                    <li>Mantenha prompts críticos em servidores backend seguros</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Como Contribuir -->
+        <section id="contribuir">
+            <h2 class="section-title">🤝 Como Contribuir</h2>
+            <div class="section-content">
+                <p>Este é um projeto comunitário que depende de contribuições! Você pode ajudar de várias formas:</p>
+
+                <div class="how-to-steps">
+                    <div class="step">
+                        <h3>Reporte Novos Prompts</h3>
+                        <p>
+                            Se você descobrir prompts de sistema de ferramentas que ainda não estão no repositório,
+                            abra uma issue ou pull request no GitHub.
+                        </p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Atualize Prompts Existentes</h3>
+                        <p>
+                            Ferramentas são atualizadas constantemente. Se você notar que um prompt mudou,
+                            contribua com a versão atualizada.
+                        </p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Melhore a Documentação</h3>
+                        <p>
+                            Adicione explicações, traduções ou comentários que ajudem outros a entender melhor os prompts.
+                        </p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Compartilhe Conhecimento</h3>
+                        <p>
+                            Divulgue o projeto, discuta no Discord, escreva artigos sobre o que você aprendeu.
+                        </p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Apoie Financeiramente</h3>
+                        <p>
+                            Se o projeto te ajudou, considere apoiar via PayPal, Patreon, Ko-fi ou criptomoedas.
+                            Os links estão no README.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h3>🌟 Gostou? Deixe uma estrela no GitHub!</h3>
+        <p style="margin-top: 1rem; color: #b8b8d1;">
+            Este projeto é mantido por Lucknite e pela comunidade open source.
+        </p>
+        <div class="social-links">
+            <a href="https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools" class="social-link" target="_blank">
+                📂 GitHub
+            </a>
+            <a href="https://discord.gg/NwzrWErdMU" class="social-link" target="_blank">
+                💬 Discord
+            </a>
+            <a href="https://x.com/NotLucknite" class="social-link" target="_blank">
+                🐦 Twitter/X
+            </a>
+        </div>
+        <p style="margin-top: 2rem; color: #7a7a9e; font-size: 0.9rem;">
+            Última atualização: 09/11/2025 | 30.000+ linhas de insights
+        </p>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-indicator" onclick="scrollToTop()">
+        ↑
+    </div>
+
+    <script>
+        // Smooth scroll to top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Add click animation to tool cards
+        document.querySelectorAll('.tool-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // Show/hide scroll button based on scroll position
+        window.addEventListener('scroll', function() {
+            const scrollBtn = document.querySelector('.scroll-indicator');
+            if (window.pageYOffset > 300) {
+                scrollBtn.style.opacity = '1';
+            } else {
+                scrollBtn.style.opacity = '0.5';
+            }
+        });
+
+        // Add parallax effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            const scrolled = window.pageYOffset;
+            header.style.transform = `translateY(${scrolled * 0.5}px)`;
+            header.style.opacity = 1 - (scrolled / 500);
+        });
+
+        // Contador animado
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.innerHTML = value.toLocaleString() + (element.textContent.includes('+') ? '+' : '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Animar números quando visíveis
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = 'true';
+                    const text = entry.target.textContent;
+                    const number = parseInt(text.replace(/\D/g, ''));
+                    if (!isNaN(number)) {
+                        animateValue(entry.target, 0, number, 2000);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(stat => statsObserver.observe(stat));
+    </script>
+</body>
+</html>
