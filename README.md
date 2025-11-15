@@ -80,8 +80,28 @@ Sponsor the most comprehensive collection of AI system prompts and reach thousan
 
 ## 🚀 Quick Start
 
-### Browse Tools
-Explore 32+ AI coding tools organized by category below, or use our search tools:
+### 🌐 Web Interface (NEW!)
+
+The easiest way to explore AI prompts is through our modern web interface:
+
+```bash
+cd web
+./setup.sh
+npm run dev
+```
+
+Visit **http://localhost:3000** to explore:
+- 🔍 **Advanced search** and filtering
+- 📊 **Statistics dashboard** with visualizations
+- 🔄 **Compare tools** side-by-side
+- 📱 **Fully responsive** mobile-friendly design
+- 🎨 **Dark mode** support
+
+See [web/README.md](./web/README.md) for full documentation.
+
+### 📟 Command Line Tools
+
+For developers who prefer the terminal:
 
 ```bash
 # Generate metadata index
@@ -245,15 +265,22 @@ python scripts/search.py --list-companies
 
 ### What's New in v2.0 🎉
 
-**Major enhancements:**
-- ✨ **Searchable Index**: Find tools by category, company, or model
-- 📊 **Analysis Tools**: Generate statistics and comparisons
-- ✅ **Validation**: Automated quality checks
+**🌐 Modern Web Interface:**
+- ✨ **Next.js 15 + React 19** web application
+- 🔍 **Advanced search** with real-time filtering
+- 📊 **Interactive statistics** dashboard
+- 🔄 **Side-by-side comparison** of up to 4 tools
+- 📱 **Fully responsive** mobile design
+- 🎨 **Dark mode** with theme persistence
+- ⚡ **Lightning fast** with Server Components
+
+**📁 Repository Enhancements:**
 - 📚 **Better Documentation**: Individual READMEs for key tools
 - 🗂️ **Organized by Category**: Browse by IDE, Agent, Assistant, etc.
-- 🔍 **Discovery Tools**: Python scripts for searching and analysis
+- ✅ **Validation**: Automated quality checks
+- 📊 **Analysis Tools**: Generate statistics and comparisons
 
-**New Scripts:**
+**🛠️ Developer Tools:**
 - `generate_metadata.py` - Create searchable index
 - `validate.py` - Check repository quality
 - `search.py` - Search and filter tools
@@ -262,8 +289,8 @@ python scripts/search.py --list-companies
 See [CHANGELOG.md](./CHANGELOG.md) for full details.
 
 ### Future Roadmap
-- [ ] Web interface for browsing prompts
-- [ ] Prompt comparison and diff tools
+- [x] Web interface for browsing prompts ✅ **COMPLETED**
+- [x] Prompt comparison and diff tools ✅ **COMPLETED**
 - [ ] Community ratings and reviews
 - [ ] API for programmatic access
 - [ ] More individual tool READMEs

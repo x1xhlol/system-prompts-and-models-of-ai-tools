@@ -1,0 +1,1286 @@
+{
+  "generated": "2025-11-15T02:13:45.665898",
+  "repository": "system-prompts-and-models-of-ai-tools",
+  "version": "2.0",
+  "stats": {
+    "total_tools": 33,
+    "total_files": 98,
+    "total_lines": 20045,
+    "by_category": {
+      "AI Agent": 7,
+      "Foundation Model": 1,
+      "Code Assistant": 10,
+      "AI Assistant": 2,
+      "IDE": 4,
+      "Web Builder": 3,
+      "Document Assistant": 1,
+      "Collection": 1,
+      "Search Assistant": 1,
+      "Cloud IDE": 1,
+      "Terminal": 1,
+      "Unknown": 1
+    },
+    "by_type": {
+      "proprietary": 31,
+      "open-source": 1,
+      "unknown": 1
+    }
+  },
+  "tools": [
+    {
+      "name": "Amp",
+      "company": "Unknown",
+      "category": "AI Agent",
+      "type": "proprietary",
+      "description": "AI coding assistant",
+      "website": null,
+      "models": [],
+      "directory": "Amp",
+      "files": [
+        {
+          "name": "README.md",
+          "path": "Amp/README.md",
+          "size": 614,
+          "type": ".md",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 20
+        }
+      ],
+      "file_count": 1,
+      "total_lines": 20
+    },
+    {
+      "name": "Anthropic",
+      "company": "Anthropic",
+      "category": "Foundation Model",
+      "type": "proprietary",
+      "description": "Claude Sonnet 4.5 and Claude Code 2.0 system prompts",
+      "website": "https://anthropic.com",
+      "models": [
+        "claude-sonnet-4.5",
+        "claude-code-2.0"
+      ],
+      "directory": "Anthropic",
+      "files": [
+        {
+          "name": "Sonnet 4.5 Prompt.txt",
+          "path": "Anthropic/Sonnet 4.5 Prompt.txt",
+          "size": 43200,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 382
+        },
+        {
+          "name": "Claude Code 2.0.txt",
+          "path": "Anthropic/Claude Code 2.0.txt",
+          "size": 57324,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 1150
+        },
+        {
+          "name": "README.md",
+          "path": "Anthropic/README.md",
+          "size": 1091,
+          "type": ".md",
+          "modified": "2025-11-15T02:04:41.177352",
+          "lines": 42
+        }
+      ],
+      "file_count": 3,
+      "total_lines": 1574
+    },
+    {
+      "name": "Augment Code",
+      "company": "Augment",
+      "category": "Code Assistant",
+      "type": "proprietary",
+      "description": "AI-powered code completion and generation",
+      "website": "https://augmentcode.com",
+      "models": [
+        "claude-4-sonnet",
+        "gpt-5"
+      ],
+      "directory": "Augment Code",
+      "files": [
+        {
+          "name": "claude-4-sonnet-agent-prompts.txt",
+          "path": "Augment Code/claude-4-sonnet-agent-prompts.txt",
+          "size": 10836,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 159
+        },
+        {
+          "name": "gpt-5-tools.json",
+          "path": "Augment Code/gpt-5-tools.json",
+          "size": 19181,
+          "type": ".json",
+          "modified": "2025-11-11T21:18:55"
+        },
+        {
+          "name": "claude-4-sonnet-tools.json",
+          "path": "Augment Code/claude-4-sonnet-tools.json",
+          "size": 28992,
+          "type": ".json",
+          "modified": "2025-11-11T21:18:55"
+        },
+        {
+          "name": "gpt-5-agent-prompts.txt",
+          "path": "Augment Code/gpt-5-agent-prompts.txt",
+          "size": 15035,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 241
+        }
+      ],
+      "file_count": 4,
+      "total_lines": 400
+    },
+    {
+      "name": "Claude Code",
+      "company": "Anthropic",
+      "category": "Code Assistant",
+      "type": "proprietary",
+      "description": "Claude's official coding interface system prompt and tools",
+      "website": "https://claude.ai/code",
+      "models": [
+        "claude-sonnet-4.5"
+      ],
+      "directory": "Claude Code",
+      "files": [
+        {
+          "name": "claude-code-system-prompt.txt",
+          "path": "Claude Code/claude-code-system-prompt.txt",
+          "size": 13019,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 191
+        },
+        {
+          "name": "claude-code-tools.json",
+          "path": "Claude Code/claude-code-tools.json",
+          "size": 48961,
+          "type": ".json",
+          "modified": "2025-11-11T21:18:55"
+        }
+      ],
+      "file_count": 2,
+      "total_lines": 191
+    },
+    {
+      "name": "Cluely",
+      "company": "Cluely",
+      "category": "Code Assistant",
+      "type": "proprietary",
+      "description": "AI coding assistant with default and enterprise modes",
+      "website": null,
+      "models": [],
+      "directory": "Cluely",
+      "files": [
+        {
+          "name": "Default Prompt.txt",
+          "path": "Cluely/Default Prompt.txt",
+          "size": 4534,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 95
+        },
+        {
+          "name": "Enterprise Prompt.txt",
+          "path": "Cluely/Enterprise Prompt.txt",
+          "size": 21306,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 471
+        }
+      ],
+      "file_count": 2,
+      "total_lines": 566
+    },
+    {
+      "name": "CodeBuddy",
+      "company": "CodeBuddy",
+      "category": "Code Assistant",
+      "type": "proprietary",
+      "description": "Chat and Craft mode prompts for code generation",
+      "website": null,
+      "models": [],
+      "directory": "CodeBuddy Prompts",
+      "files": [
+        {
+          "name": "Chat Prompt.txt",
+          "path": "CodeBuddy Prompts/Chat Prompt.txt",
+          "size": 1558,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 35
+        },
+        {
+          "name": "Craft Prompt.txt",
+          "path": "CodeBuddy Prompts/Craft Prompt.txt",
+          "size": 40617,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 678
+        }
+      ],
+      "file_count": 2,
+      "total_lines": 713
+    },
+    {
+      "name": "Comet Assistant",
+      "company": "Comet",
+      "category": "AI Assistant",
+      "type": "proprietary",
+      "description": "General purpose AI coding assistant",
+      "website": null,
+      "models": [],
+      "directory": "Comet Assistant",
+      "files": [
+        {
+          "name": "System Prompt.txt",
+          "path": "Comet Assistant/System Prompt.txt",
+          "size": 10918,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 164
+        }
+      ],
+      "file_count": 1,
+      "total_lines": 164
+    },
+    {
+      "name": "Cursor",
+      "company": "Cursor",
+      "category": "IDE",
+      "type": "proprietary",
+      "description": "AI-first code editor with multiple agent modes",
+      "website": "https://cursor.com",
+      "models": [
+        "claude",
+        "gpt-4"
+      ],
+      "directory": "Cursor Prompts",
+      "files": [
+        {
+          "name": "Chat Prompt.txt",
+          "path": "Cursor Prompts/Chat Prompt.txt",
+          "size": 12569,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 119
+        },
+        {
+          "name": "Memory Rating Prompt.txt",
+          "path": "Cursor Prompts/Memory Rating Prompt.txt",
+          "size": 7152,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 86
+        },
+        {
+          "name": "Agent CLI Prompt 2025-08-07.txt",
+          "path": "Cursor Prompts/Agent CLI Prompt 2025-08-07.txt",
+          "size": 14067,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 206
+        },
+        {
+          "name": "Agent Prompt.txt",
+          "path": "Cursor Prompts/Agent Prompt.txt",
+          "size": 18454,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 62
+        },
+        {
+          "name": "Agent Prompt 2025-09-03.txt",
+          "path": "Cursor Prompts/Agent Prompt 2025-09-03.txt",
+          "size": 19028,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 229
+        },
+        {
+          "name": "Memory Prompt.txt",
+          "path": "Cursor Prompts/Memory Prompt.txt",
+          "size": 5258,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 68
+        },
+        {
+          "name": "Agent Prompt v1.0.txt",
+          "path": "Cursor Prompts/Agent Prompt v1.0.txt",
+          "size": 9023,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 83
+        },
+        {
+          "name": "Agent Tools v1.0.json",
+          "path": "Cursor Prompts/Agent Tools v1.0.json",
+          "size": 23545,
+          "type": ".json",
+          "modified": "2025-11-11T21:18:55"
+        },
+        {
+          "name": "Agent Prompt v1.2.txt",
+          "path": "Cursor Prompts/Agent Prompt v1.2.txt",
+          "size": 32197,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 568
+        },
+        {
+          "name": "README.md",
+          "path": "Cursor Prompts/README.md",
+          "size": 1898,
+          "type": ".md",
+          "modified": "2025-11-15T02:04:41.392355",
+          "lines": 65
+        }
+      ],
+      "file_count": 10,
+      "total_lines": 1486
+    },
+    {
+      "name": "Devin",
+      "company": "Cognition AI",
+      "category": "AI Agent",
+      "type": "proprietary",
+      "description": "Autonomous AI software engineer",
+      "website": "https://devin.ai",
+      "models": [],
+      "directory": "Devin AI",
+      "files": [
+        {
+          "name": "Prompt.txt",
+          "path": "Devin AI/Prompt.txt",
+          "size": 34714,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 402
+        }
+      ],
+      "file_count": 1,
+      "total_lines": 402
+    },
+    {
+      "name": "Emergent",
+      "company": "Emergent",
+      "category": "AI Agent",
+      "type": "proprietary",
+      "description": "AI coding agent with tools",
+      "website": null,
+      "models": [],
+      "directory": "Emergent",
+      "files": [
+        {
+          "name": "Tools.json",
+          "path": "Emergent/Tools.json",
+          "size": 7880,
+          "type": ".json",
+          "modified": "2025-11-11T21:18:55"
+        },
+        {
+          "name": "Prompt.txt",
+          "path": "Emergent/Prompt.txt",
+          "size": 37424,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 946
+        }
+      ],
+      "file_count": 2,
+      "total_lines": 946
+    },
+    {
+      "name": "Junie",
+      "company": "Junie",
+      "category": "Code Assistant",
+      "type": "proprietary",
+      "description": "AI coding assistant",
+      "website": null,
+      "models": [],
+      "directory": "Junie",
+      "files": [
+        {
+          "name": "Prompt.txt",
+          "path": "Junie/Prompt.txt",
+          "size": 6184,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 120
+        }
+      ],
+      "file_count": 1,
+      "total_lines": 120
+    },
+    {
+      "name": "Kiro",
+      "company": "Kiro",
+      "category": "Code Assistant",
+      "type": "proprietary",
+      "description": "Multi-mode AI assistant (Spec, Vibe, Mode Classifier)",
+      "website": null,
+      "models": [],
+      "directory": "Kiro",
+      "files": [
+        {
+          "name": "Mode_Clasifier_Prompt.txt",
+          "path": "Kiro/Mode_Clasifier_Prompt.txt",
+          "size": 2883,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 64
+        },
+        {
+          "name": "Vibe_Prompt.txt",
+          "path": "Kiro/Vibe_Prompt.txt",
+          "size": 14151,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 196
+        },
+        {
+          "name": "Spec_Prompt.txt",
+          "path": "Kiro/Spec_Prompt.txt",
+          "size": 31947,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 515
+        }
+      ],
+      "file_count": 3,
+      "total_lines": 775
+    },
+    {
+      "name": "Leap",
+      "company": "Leap",
+      "category": "Web Builder",
+      "type": "proprietary",
+      "description": "AI-powered web application builder",
+      "website": "https://leap.new",
+      "models": [],
+      "directory": "Leap.new",
+      "files": [
+        {
+          "name": "Prompts.txt",
+          "path": "Leap.new/Prompts.txt",
+          "size": 52456,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 1237
+        },
+        {
+          "name": "tools.json",
+          "path": "Leap.new/tools.json",
+          "size": 16553,
+          "type": ".json",
+          "modified": "2025-11-11T21:18:55"
+        }
+      ],
+      "file_count": 2,
+      "total_lines": 1237
+    },
+    {
+      "name": "Lovable",
+      "company": "Lovable",
+      "category": "Web Builder",
+      "type": "proprietary",
+      "description": "AI-powered app builder",
+      "website": "https://lovable.dev",
+      "models": [],
+      "directory": "Lovable",
+      "files": [
+        {
+          "name": "Agent Tools.json",
+          "path": "Lovable/Agent Tools.json",
+          "size": 27944,
+          "type": ".json",
+          "modified": "2025-11-11T21:18:55"
+        },
+        {
+          "name": "Agent Prompt.txt",
+          "path": "Lovable/Agent Prompt.txt",
+          "size": 20301,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 304
+        }
+      ],
+      "file_count": 2,
+      "total_lines": 304
+    },
+    {
+      "name": "Manus",
+      "company": "Manus",
+      "category": "AI Agent",
+      "type": "proprietary",
+      "description": "Agent with loop, modules, and tools",
+      "website": null,
+      "models": [],
+      "directory": "Manus Agent Tools & Prompt",
+      "files": [
+        {
+          "name": "Modules.txt",
+          "path": "Manus Agent Tools & Prompt/Modules.txt",
+          "size": 12224,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 206
+        },
+        {
+          "name": "Prompt.txt",
+          "path": "Manus Agent Tools & Prompt/Prompt.txt",
+          "size": 10209,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 250
+        },
+        {
+          "name": "Agent loop.txt",
+          "path": "Manus Agent Tools & Prompt/Agent loop.txt",
+          "size": 2147,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 33
+        },
+        {
+          "name": "tools.json",
+          "path": "Manus Agent Tools & Prompt/tools.json",
+          "size": 18501,
+          "type": ".json",
+          "modified": "2025-11-11T21:18:55"
+        }
+      ],
+      "file_count": 4,
+      "total_lines": 489
+    },
+    {
+      "name": "Notion AI",
+      "company": "Notion",
+      "category": "Document Assistant",
+      "type": "proprietary",
+      "description": "AI assistant integrated into Notion",
+      "website": "https://notion.so",
+      "models": [],
+      "directory": "NotionAi",
+      "files": [
+        {
+          "name": "Prompt.txt",
+          "path": "NotionAi/Prompt.txt",
+          "size": 32081,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 474
+        },
+        {
+          "name": "tools.json",
+          "path": "NotionAi/tools.json",
+          "size": 34889,
+          "type": ".json",
+          "modified": "2025-11-11T21:18:55"
+        }
+      ],
+      "file_count": 2,
+      "total_lines": 474
+    },
+    {
+      "name": "Open Source AI Tools",
+      "company": "Various",
+      "category": "Collection",
+      "type": "open-source",
+      "description": "Collection of open-source AI coding tools",
+      "website": null,
+      "models": [],
+      "subcategories": [
+        "Bolt",
+        "Cline",
+        "Codex CLI",
+        "Gemini CLI",
+        "Lumo",
+        "RooCode"
+      ],
+      "directory": "Open Source prompts",
+      "files": [
+        {
+          "name": "README.md",
+          "path": "Open Source prompts/README.md",
+          "size": 2142,
+          "type": ".md",
+          "modified": "2025-11-15T02:04:41.602358",
+          "lines": 77
+        },
+        {
+          "name": "Prompt.txt",
+          "path": "Open Source prompts/Bolt/Prompt.txt",
+          "size": 21945,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 470
+        },
+        {
+          "name": "Prompt.txt",
+          "path": "Open Source prompts/Cline/Prompt.txt",
+          "size": 47083,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 607
+        },
+        {
+          "name": "Prompt.txt",
+          "path": "Open Source prompts/Lumo/Prompt.txt",
+          "size": 8253,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 172
+        },
+        {
+          "name": "google-gemini-cli-system-prompt.txt",
+          "path": "Open Source prompts/Gemini CLI/google-gemini-cli-system-prompt.txt",
+          "size": 18976,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 188
+        },
+        {
+          "name": "Prompt.txt",
+          "path": "Open Source prompts/RooCode/Prompt.txt",
+          "size": 43961,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 665
+        },
+        {
+          "name": "openai-codex-cli-system-prompt-20250820.txt",
+          "path": "Open Source prompts/Codex CLI/openai-codex-cli-system-prompt-20250820.txt",
+          "size": 23864,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 342
+        },
+        {
+          "name": "Prompt.txt",
+          "path": "Open Source prompts/Codex CLI/Prompt.txt",
+          "size": 4848,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 46
+        }
+      ],
+      "file_count": 8,
+      "total_lines": 2567
+    },
+    {
+      "name": "Orchids",
+      "company": "Orchids",
+      "category": "AI Assistant",
+      "type": "proprietary",
+      "description": "AI assistant with decision-making capabilities",
+      "website": "https://orchids.app",
+      "models": [],
+      "directory": "Orchids.app",
+      "files": [
+        {
+          "name": "Decision-making prompt.txt",
+          "path": "Orchids.app/Decision-making prompt.txt",
+          "size": 6820,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 103
+        },
+        {
+          "name": "System Prompt.txt",
+          "path": "Orchids.app/System Prompt.txt",
+          "size": 58779,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 1014
+        }
+      ],
+      "file_count": 2,
+      "total_lines": 1117
+    },
+    {
+      "name": "Perplexity",
+      "company": "Perplexity AI",
+      "category": "Search Assistant",
+      "type": "proprietary",
+      "description": "AI-powered search and answer engine",
+      "website": "https://perplexity.ai",
+      "models": [],
+      "directory": "Perplexity",
+      "files": [
+        {
+          "name": "Prompt.txt",
+          "path": "Perplexity/Prompt.txt",
+          "size": 9585,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 195
+        }
+      ],
+      "file_count": 1,
+      "total_lines": 195
+    },
+    {
+      "name": "Poke",
+      "company": "Poke",
+      "category": "AI Agent",
+      "type": "proprietary",
+      "description": "Multi-part agent system (6 parts + agent)",
+      "website": null,
+      "models": [],
+      "directory": "Poke",
+      "files": [
+        {
+          "name": "Poke_p1.txt",
+          "path": "Poke/Poke_p1.txt",
+          "size": 10153,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 130
+        },
+        {
+          "name": "Poke_p6.txt",
+          "path": "Poke/Poke_p6.txt",
+          "size": 1783,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 20
+        },
+        {
+          "name": "Poke_p3.txt",
+          "path": "Poke/Poke_p3.txt",
+          "size": 5493,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 54
+        },
+        {
+          "name": "Poke_p5.txt",
+          "path": "Poke/Poke_p5.txt",
+          "size": 1158,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 24
+        },
+        {
+          "name": "Poke_p4.txt",
+          "path": "Poke/Poke_p4.txt",
+          "size": 5890,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 55
+        },
+        {
+          "name": "Poke agent.txt",
+          "path": "Poke/Poke agent.txt",
+          "size": 12159,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 194
+        },
+        {
+          "name": "Poke_p2.txt",
+          "path": "Poke/Poke_p2.txt",
+          "size": 2440,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 26
+        }
+      ],
+      "file_count": 7,
+      "total_lines": 503
+    },
+    {
+      "name": "Qoder",
+      "company": "Qoder",
+      "category": "Code Assistant",
+      "type": "proprietary",
+      "description": "Quest-based code assistant (Design, Action)",
+      "website": null,
+      "models": [],
+      "directory": "Qoder",
+      "files": [
+        {
+          "name": "Quest Action.txt",
+          "path": "Qoder/Quest Action.txt",
+          "size": 12357,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 190
+        },
+        {
+          "name": "prompt.txt",
+          "path": "Qoder/prompt.txt",
+          "size": 18620,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 377
+        },
+        {
+          "name": "Quest Design.txt",
+          "path": "Qoder/Quest Design.txt",
+          "size": 26165,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 504
+        }
+      ],
+      "file_count": 3,
+      "total_lines": 1071
+    },
+    {
+      "name": "Replit Agent",
+      "company": "Replit",
+      "category": "Cloud IDE",
+      "type": "proprietary",
+      "description": "AI agent for Replit cloud development environment",
+      "website": "https://replit.com",
+      "models": [],
+      "directory": "Replit",
+      "files": [
+        {
+          "name": "Tools.json",
+          "path": "Replit/Tools.json",
+          "size": 25003,
+          "type": ".json",
+          "modified": "2025-11-11T21:18:55"
+        },
+        {
+          "name": "Prompt.txt",
+          "path": "Replit/Prompt.txt",
+          "size": 8110,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 137
+        }
+      ],
+      "file_count": 2,
+      "total_lines": 137
+    },
+    {
+      "name": "Same",
+      "company": "Same",
+      "category": "Code Assistant",
+      "type": "proprietary",
+      "description": "AI coding assistant",
+      "website": "https://same.dev",
+      "models": [],
+      "directory": "Same.dev",
+      "files": [
+        {
+          "name": "Tools.json",
+          "path": "Same.dev/Tools.json",
+          "size": 22357,
+          "type": ".json",
+          "modified": "2025-11-11T21:18:55"
+        },
+        {
+          "name": "Prompt.txt",
+          "path": "Same.dev/Prompt.txt",
+          "size": 34890,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 315
+        }
+      ],
+      "file_count": 2,
+      "total_lines": 315
+    },
+    {
+      "name": "Trae",
+      "company": "Trae",
+      "category": "AI Agent",
+      "type": "proprietary",
+      "description": "Builder and chat modes for development",
+      "website": null,
+      "models": [],
+      "directory": "Trae",
+      "files": [
+        {
+          "name": "Chat Prompt.txt",
+          "path": "Trae/Chat Prompt.txt",
+          "size": 8443,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 112
+        },
+        {
+          "name": "Builder Prompt.txt",
+          "path": "Trae/Builder Prompt.txt",
+          "size": 18569,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 266
+        },
+        {
+          "name": "Builder Tools.json",
+          "path": "Trae/Builder Tools.json",
+          "size": 8264,
+          "type": ".json",
+          "modified": "2025-11-11T21:18:55"
+        }
+      ],
+      "file_count": 3,
+      "total_lines": 378
+    },
+    {
+      "name": "Traycer",
+      "company": "Traycer",
+      "category": "AI Agent",
+      "type": "proprietary",
+      "description": "Multi-mode agent (Phase, Plan)",
+      "website": null,
+      "models": [],
+      "directory": "Traycer AI",
+      "files": [
+        {
+          "name": "phase_mode_prompts.txt",
+          "path": "Traycer AI/phase_mode_prompts.txt",
+          "size": 3842,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 46
+        },
+        {
+          "name": "phase_mode_tools.json",
+          "path": "Traycer AI/phase_mode_tools.json",
+          "size": 18618,
+          "type": ".json",
+          "modified": "2025-11-11T21:18:55"
+        },
+        {
+          "name": "plan_mode_tools.json",
+          "path": "Traycer AI/plan_mode_tools.json",
+          "size": 16752,
+          "type": ".json",
+          "modified": "2025-11-11T21:18:55"
+        },
+        {
+          "name": "plan_mode_prompts.txt",
+          "path": "Traycer AI/plan_mode_prompts.txt",
+          "size": 6143,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 92
+        }
+      ],
+      "file_count": 4,
+      "total_lines": 138
+    },
+    {
+      "name": "VSCode Copilot Agent",
+      "company": "Microsoft/GitHub",
+      "category": "IDE",
+      "type": "proprietary",
+      "description": "GitHub Copilot agent for VSCode",
+      "website": "https://code.visualstudio.com",
+      "models": [
+        "gpt-4",
+        "gpt-4.1",
+        "gpt-5",
+        "gpt-5-mini",
+        "claude-sonnet-4",
+        "gemini-2.5-pro"
+      ],
+      "directory": "VSCode Agent",
+      "files": [
+        {
+          "name": "chat-titles.txt",
+          "path": "VSCode Agent/chat-titles.txt",
+          "size": 765,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 12
+        },
+        {
+          "name": "gemini-2.5-pro.txt",
+          "path": "VSCode Agent/gemini-2.5-pro.txt",
+          "size": 9909,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 144
+        },
+        {
+          "name": "gpt-4.1.txt",
+          "path": "VSCode Agent/gpt-4.1.txt",
+          "size": 11082,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 141
+        },
+        {
+          "name": "gpt-5.txt",
+          "path": "VSCode Agent/gpt-5.txt",
+          "size": 25579,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 233
+        },
+        {
+          "name": "Prompt.txt",
+          "path": "VSCode Agent/Prompt.txt",
+          "size": 21032,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 404
+        },
+        {
+          "name": "gpt-5-mini.txt",
+          "path": "VSCode Agent/gpt-5-mini.txt",
+          "size": 25257,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 216
+        },
+        {
+          "name": "nes-tab-completion.txt",
+          "path": "VSCode Agent/nes-tab-completion.txt",
+          "size": 8910,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 167
+        },
+        {
+          "name": "gpt-4o.txt",
+          "path": "VSCode Agent/gpt-4o.txt",
+          "size": 7876,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 95
+        },
+        {
+          "name": "claude-sonnet-4.txt",
+          "path": "VSCode Agent/claude-sonnet-4.txt",
+          "size": 9910,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 130
+        }
+      ],
+      "file_count": 9,
+      "total_lines": 1542
+    },
+    {
+      "name": "Warp",
+      "company": "Warp",
+      "category": "Terminal",
+      "type": "proprietary",
+      "description": "AI-powered terminal",
+      "website": "https://warp.dev",
+      "models": [],
+      "directory": "Warp.dev",
+      "files": [
+        {
+          "name": "Prompt.txt",
+          "path": "Warp.dev/Prompt.txt",
+          "size": 14595,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 163
+        }
+      ],
+      "file_count": 1,
+      "total_lines": 163
+    },
+    {
+      "name": "Windsurf",
+      "company": "Codeium",
+      "category": "IDE",
+      "type": "proprietary",
+      "description": "AI-powered code editor (Wave 11)",
+      "website": "https://codeium.com/windsurf",
+      "models": [],
+      "directory": "Windsurf",
+      "files": [
+        {
+          "name": "Tools Wave 11.txt",
+          "path": "Windsurf/Tools Wave 11.txt",
+          "size": 32843,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 382
+        },
+        {
+          "name": "Prompt Wave 11.txt",
+          "path": "Windsurf/Prompt Wave 11.txt",
+          "size": 11699,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 125
+        }
+      ],
+      "file_count": 2,
+      "total_lines": 507
+    },
+    {
+      "name": "Xcode AI",
+      "company": "Apple",
+      "category": "IDE",
+      "type": "proprietary",
+      "description": "AI features in Xcode (Document, Explain, Message, Playground, Preview)",
+      "website": "https://developer.apple.com/xcode/",
+      "models": [],
+      "directory": "Xcode",
+      "files": [
+        {
+          "name": "System.txt",
+          "path": "Xcode/System.txt",
+          "size": 4009,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 69
+        },
+        {
+          "name": "MessageAction.txt",
+          "path": "Xcode/MessageAction.txt",
+          "size": 235,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 13
+        },
+        {
+          "name": "ExplainAction.txt",
+          "path": "Xcode/ExplainAction.txt",
+          "size": 245,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 15
+        },
+        {
+          "name": "PlaygroundAction.txt",
+          "path": "Xcode/PlaygroundAction.txt",
+          "size": 414,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 20
+        },
+        {
+          "name": "PreviewAction.txt",
+          "path": "Xcode/PreviewAction.txt",
+          "size": 1938,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 58
+        },
+        {
+          "name": "DocumentAction.txt",
+          "path": "Xcode/DocumentAction.txt",
+          "size": 374,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 18
+        }
+      ],
+      "file_count": 6,
+      "total_lines": 193
+    },
+    {
+      "name": "Z.ai Code",
+      "company": "Z.ai",
+      "category": "Code Assistant",
+      "type": "proprietary",
+      "description": "AI coding assistant",
+      "website": null,
+      "models": [],
+      "directory": "Z.ai Code",
+      "files": [
+        {
+          "name": "prompt.txt",
+          "path": "Z.ai Code/prompt.txt",
+          "size": 9592,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 237
+        }
+      ],
+      "file_count": 1,
+      "total_lines": 237
+    },
+    {
+      "name": "Dia",
+      "company": "Dia",
+      "category": "Code Assistant",
+      "type": "proprietary",
+      "description": "AI coding assistant",
+      "website": null,
+      "models": [],
+      "directory": "dia",
+      "files": [
+        {
+          "name": "Prompt.txt",
+          "path": "dia/Prompt.txt",
+          "size": 17194,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 196
+        }
+      ],
+      "file_count": 1,
+      "total_lines": 196
+    },
+    {
+      "name": "v0",
+      "company": "Vercel",
+      "category": "Web Builder",
+      "type": "proprietary",
+      "description": "AI-powered UI generation tool",
+      "website": "https://v0.dev",
+      "models": [],
+      "directory": "v0 Prompts and Tools",
+      "files": [
+        {
+          "name": "Tools.json",
+          "path": "v0 Prompts and Tools/Tools.json",
+          "size": 28452,
+          "type": ".json",
+          "modified": "2025-11-11T21:18:55"
+        },
+        {
+          "name": "Prompt.txt",
+          "path": "v0 Prompts and Tools/Prompt.txt",
+          "size": 39171,
+          "type": ".txt",
+          "modified": "2025-11-11T21:18:55",
+          "lines": 925
+        }
+      ],
+      "file_count": 2,
+      "total_lines": 925
+    },
+    {
+      "name": "web",
+      "company": "Unknown",
+      "category": "Unknown",
+      "type": "unknown",
+      "description": "No description available",
+      "website": null,
+      "models": [],
+      "directory": "web",
+      "files": [
+        {
+          "name": "package.json",
+          "path": "web/package.json",
+          "size": 985,
+          "type": ".json",
+          "modified": "2025-11-15T02:12:11.410808"
+        },
+        {
+          "name": "tsconfig.json",
+          "path": "web/tsconfig.json",
+          "size": 598,
+          "type": ".json",
+          "modified": "2025-11-15T02:12:11.631811"
+        }
+      ],
+      "file_count": 2,
+      "total_lines": 0
+    }
+  ]
+}
