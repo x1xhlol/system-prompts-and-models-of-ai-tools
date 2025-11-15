@@ -28,7 +28,7 @@
 
 <a href="https://trendshift.io/repositories/14084" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14084" alt="x1xhlol%2Fsystem-prompts-and-models-of-ai-tools | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
-📜 Over **30,000+ lines** of insights into their structure and functionality.  
+📜 Over **25,000+ lines** of insights into 32+ AI coding tools and their system prompts.  
 
 ⭐ **Star to follow updates**
 
@@ -68,7 +68,9 @@ Sponsor the most comprehensive collection of AI system prompts and reach thousan
 ## 📑 Table of Contents
 
   - [📑 Table of Contents](#-table-of-contents)
-  - [📂 Available Files](#-available-files)
+  - [🚀 Quick Start](#-quick-start)
+  - [📂 Available Tools](#-available-tools)
+  - [🔍 Search & Discovery](#-search--discovery)
   - [🛠 Roadmap \& Feedback](#-roadmap--feedback)
   - [🔗 Connect With Me](#-connect-with-me)
   - [🛡️ Security Notice for AI Startups](#️-security-notice-for-ai-startups)
@@ -76,52 +78,200 @@ Sponsor the most comprehensive collection of AI system prompts and reach thousan
 
 ---
 
-## 📂 Available Files
+## 🚀 Quick Start
 
-- [**v0**](./v0%20Prompts%20and%20Tools/)
-- [**Manus**](./Manus%20Agent%20Tools%20&%20Prompt/)
-- [**Augment Code**](./Augment%20Code/)
-- [**Lovable**](./Lovable/)
-- [**Devin**](./Devin%20AI/)
-- [**Same.dev**](./Same.dev/)
-- [**Replit**](./Replit/)
-- [**Windsurf Agent**](./Windsurf/)
-- [**VSCode (Copilot) Agent**](./VSCode%20Agent/)
-- [**Cursor**](./Cursor%20Prompts/)
-- [**Dia**](./dia/)
-- [**Trae AI**](./Trae/)
-- [**Perplexity**](./Perplexity/)
-- [**Cluely**](./Cluely/)
-- [**Xcode**](./Xcode/)
-- [**Leap.new**](./Leap.new/)
-- [**Notion AI**](./NotionAi/)
-- [**Orchids.app**](./Orchids.app/)
-- [**Junie**](./Junie/)
-- [**Kiro**](./Kiro/)
-- [**Warp.dev**](./Warp.dev/)
-- [**Z.ai Code**](./Z.ai%20Code/)
-- [**Qoder**](./Qoder/)
-- [**Claude Code**](./Claude%20Code/)
-- [**Open Source prompts**](./Open%20Source%20prompts/)
-  - [Codex CLI](./Open%20Source%20prompts/Codex%20CLI/)
-  - [Cline](./Open%20Source%20prompts/Cline/)
-  - [Bolt](./Open%20Source%20prompts/Bolt/)
-  - [RooCode](./Open%20Source%20prompts/RooCode/)
-  - [Lumo](./Open%20Source%20prompts/Lumo/)
-  - [Gemini CLI](./Open%20Source%20prompts/Gemini%20CLI/)
-- [**CodeBuddy**](./CodeBuddy%20Prompts/)
-- [**Poke**](./Poke/)
-- [**Comet Assistant**](./Comet%20Assistant/)
-- [**Anthropic**](./Anthropic/)
-- [**Amp**](./AMp/)
+### Browse Tools
+Explore 32+ AI coding tools organized by category below, or use our search tools:
+
+```bash
+# Generate metadata index
+python scripts/generate_metadata.py
+
+# Search by category
+python scripts/search.py --category "Code Assistant"
+
+# Search by company
+python scripts/search.py --company "Anthropic"
+
+# View statistics
+python scripts/analyze.py
+
+# Validate repository
+python scripts/validate.py
+```
+
+### What's Included
+Each tool directory contains:
+- **System prompts** - The core instructions that guide AI behavior
+- **Tool definitions** - JSON schemas for function calling and tool use
+- **Documentation** - READMEs explaining the tool and its features
+
+---
+
+## 📂 Available Tools
+
+### 🏢 IDEs & Code Editors
+AI-powered development environments with integrated assistants
+
+- [**Cursor**](./Cursor%20Prompts/) - AI-first code editor with agent mode
+- [**VSCode (Copilot) Agent**](./VSCode%20Agent/) - GitHub Copilot for VSCode
+- [**Windsurf**](./Windsurf/) - Codeium's AI-powered editor
+- [**Xcode**](./Xcode/) - Apple's IDE with AI features
+
+### 🤖 Autonomous AI Agents
+Tools that can independently execute complex coding tasks
+
+- [**Devin**](./Devin%20AI/) - Autonomous AI software engineer
+- [**Emergent**](./Emergent/) - AI coding agent
+- [**Manus**](./Manus%20Agent%20Tools%20&%20Prompt/) - Agent with loop and modules
+- [**Poke**](./Poke/) - Multi-part agent system
+- [**Trae**](./Trae/) - Builder and chat modes
+- [**Traycer AI**](./Traycer%20AI/) - Multi-mode agent (Phase, Plan)
+
+### 💻 Code Assistants
+AI helpers for code completion, generation, and analysis
+
+- [**Augment Code**](./Augment%20Code/) - AI-powered code completion
+- [**Claude Code**](./Claude%20Code/) - Anthropic's official coding interface
+- [**Cluely**](./Cluely/) - Default and enterprise modes
+- [**CodeBuddy**](./CodeBuddy%20Prompts/) - Chat and Craft modes
+- [**Comet Assistant**](./Comet%20Assistant/) - General purpose coding AI
+- [**Dia**](./dia/) - AI coding assistant
+- [**Junie**](./Junie/) - AI coding helper
+- [**Kiro**](./Kiro/) - Multi-mode assistant (Spec, Vibe)
+- [**Qoder**](./Qoder/) - Quest-based code assistant
+- [**Same.dev**](./Same.dev/) - AI coding assistant
+- [**Z.ai Code**](./Z.ai%20Code/) - AI coding tool
+
+### 🌐 Web & App Builders
+AI tools for building full applications and UIs
+
+- [**v0**](./v0%20Prompts%20and%20Tools/) - Vercel's AI UI generation
+- [**Lovable**](./Lovable/) - AI-powered app builder
+- [**Leap.new**](./Leap.new/) - AI web application builder
+- [**Bolt**](./Open%20Source%20prompts/Bolt/) - Full-stack web development
+
+### 🏭 Cloud Platforms
+Integrated development platforms with AI
+
+- [**Replit**](./Replit/) - Cloud IDE with AI agent
+- [**Amp**](./Amp/) - AI coding platform
+
+### 🖥️ Terminal & CLI
+Command-line AI assistants
+
+- [**Warp.dev**](./Warp.dev/) - AI-powered terminal
+- [**Codex CLI**](./Open%20Source%20prompts/Codex%20CLI/) - OpenAI Codex CLI
+- [**Gemini CLI**](./Open%20Source%20prompts/Gemini%20CLI/) - Google Gemini CLI
+
+### 🧠 Foundation Models
+Core AI model prompts from major providers
+
+- [**Anthropic**](./Anthropic/) - Claude Sonnet 4.5 & Claude Code 2.0
+- [**Perplexity**](./Perplexity/) - AI search and answer engine
+
+### 📝 Document & Knowledge
+AI assistants for documentation and knowledge work
+
+- [**Notion AI**](./NotionAi/) - Integrated into Notion
+- [**Orchids.app**](./Orchids.app/) - Decision-making AI assistant
+
+### 🌟 Open Source Collection
+Community-built and transparent AI tools
+
+- [**Cline**](./Open%20Source%20prompts/Cline/) - Autonomous VSCode agent
+- [**RooCode**](./Open%20Source%20prompts/RooCode/) - Comprehensive assistant
+- [**Lumo**](./Open%20Source%20prompts/Lumo/) - Lightweight coding AI
+- [**Bolt**](./Open%20Source%20prompts/Bolt/) - Full-stack web tool
+
+---
+
+## 🔍 Search & Discovery
+
+### Using Search Tools
+
+**Search by category:**
+```bash
+python scripts/search.py --category "Code Assistant"
+```
+
+**Find tools by company:**
+```bash
+python scripts/search.py --company "Anthropic"
+```
+
+**Search for specific models:**
+```bash
+python scripts/search.py --model "gpt-5"
+```
+
+**Full-text search:**
+```bash
+python scripts/search.py --text "agent"
+```
+
+**Detailed view:**
+```bash
+python scripts/search.py --category "IDE" --verbose
+```
+
+### Analysis & Statistics
+
+**Generate comprehensive statistics:**
+```bash
+python scripts/analyze.py
+```
+
+**Validate repository structure:**
+```bash
+python scripts/validate.py
+```
+
+### Quick Reference
+
+**List all categories:**
+```bash
+python scripts/search.py --list-categories
+```
+
+**List all companies:**
+```bash
+python scripts/search.py --list-companies
+```
 
 ---
 
 ## 🛠 Roadmap & Feedback
 
-> Open an issue.
+### What's New in v2.0 🎉
 
-> **Latest Update:** 19/10/2025
+**Major enhancements:**
+- ✨ **Searchable Index**: Find tools by category, company, or model
+- 📊 **Analysis Tools**: Generate statistics and comparisons
+- ✅ **Validation**: Automated quality checks
+- 📚 **Better Documentation**: Individual READMEs for key tools
+- 🗂️ **Organized by Category**: Browse by IDE, Agent, Assistant, etc.
+- 🔍 **Discovery Tools**: Python scripts for searching and analysis
+
+**New Scripts:**
+- `generate_metadata.py` - Create searchable index
+- `validate.py` - Check repository quality
+- `search.py` - Search and filter tools
+- `analyze.py` - Generate statistics
+
+See [CHANGELOG.md](./CHANGELOG.md) for full details.
+
+### Future Roadmap
+- [ ] Web interface for browsing prompts
+- [ ] Prompt comparison and diff tools
+- [ ] Community ratings and reviews
+- [ ] API for programmatic access
+- [ ] More individual tool READMEs
+- [ ] Automated version tracking
+
+> Open an issue for feature requests or bug reports.
+
+> **Latest Update:** 15/11/2025
 
 ---
 
