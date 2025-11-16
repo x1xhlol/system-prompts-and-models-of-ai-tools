@@ -93,6 +93,7 @@ Sponsor the most comprehensive collection of AI system prompts and reach thousan
 - [**Cluely**](./Cluely/)
 - [**Xcode**](./Xcode/)
 - [**Leap.new**](./Leap.new/)
+- [**Lightfield CRM**](./Lightfield%20CRM/)
 - [**Notion AI**](./NotionAi/)
 - [**Orchids.app**](./Orchids.app/)
 - [**Junie**](./Junie/)
