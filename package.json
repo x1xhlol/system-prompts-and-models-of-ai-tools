@@ -1,0 +1,24 @@
+{
+  "name": "system-prompts-and-models-of-ai-tools",
+  "version": "1.0.0",
+  "description": "A collection of system prompts and models from various AI tools - documentation only, not a runnable application",
+  "private": true,
+  "scripts": {
+    "info": "echo 'This is a documentation repository. No installation or build process required. Just browse the files.'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools"
+  },
+  "keywords": [
+    "ai",
+    "prompts",
+    "documentation",
+    "system-prompts",
+    "claude",
+    "cursor",
+    "windsurf"
+  ],
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE.md"
+}
