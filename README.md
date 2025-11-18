@@ -75,7 +75,7 @@ Sponsor the most comprehensive collection of AI system prompts and reach thousan
 ## 🔗 Connect With Me
 
 - **X:** [NotLucknite](https://x.com/NotLucknite)
-- **Discord**: `x1xh`
+- **Discord**: `x1xhlol`
 
 ---
 
