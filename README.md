@@ -2,7 +2,7 @@
 ---
 <p align="center">
   <sub>Special thanks to</sub>  
-</p>
+</p> 
 
 <p align="center">
   <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
