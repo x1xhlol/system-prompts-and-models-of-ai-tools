@@ -1,0 +1,321 @@
+{
+  "tools": [
+    {
+      "name": "browser_subagent",
+      "description": "Start a browser subagent to perform actions in the browser with the given task description. The subagent has access to tools for both interacting with web page content (clicking, typing, navigating, etc) and controlling the browser window itself (resizing, etc). Please make sure to define a clear condition to return on. After the subagent returns, you should read the DOM or capture a screenshot to see what it did. Note: All browser interactions are automatically recorded and saved as WebP videos to the artifacts directory. This is the ONLY way you can record a browser session video/animation. IMPORTANT: if the subagent returns that the open_browser_url tool failed, there is a browser issue that is out of your control. You MUST ask the user how to proceed and use the suggested_responses tool.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "TaskName": {
+            "type": "STRING",
+            "description": "Name of the task that the browser subagent is performing. This is the identifier that groups the subagent steps together, but should still be a human readable name. This should read like a title, should be properly capitalized and human readable, example: 'Navigating to Example Page'. Replace URLs or non-human-readable expressions like CSS selectors or long text with human-readable terms like 'URL' or 'Page' or 'Submit Button'. Be very sure this task name represents a reasonable chunk of work. It should almost never be the entire user request. This should be the very first argument."
+          },
+          "Task": {
+            "type": "STRING",
+            "description": "A clear, actionable task description for the browser subagent. The subagent is an agent similar to you, with a different set of tools, limited to tools to understand the state of and control the browser. The task you define is the prompt sent to this subagent. Avoid vague instructions, be specific about what to do and when to stop. This should be the second argument."
+          },
+          "RecordingName": {
+            "type": "STRING",
+            "description": "Name of the browser recording that is created with the actions of the subagent. Should be all lowercase with underscores, describing what the recording contains. Maximum 3 words. Example: 'login_flow_demo'"
+          },
+          "waitForPreviousTools": {
+            "type": "BOOLEAN",
+            "description": "If true, wait for all previous tool calls from this turn to complete before executing (sequential). If false or omitted, execute this tool immediately (parallel with other tools)."
+          }
+        },
+        "required": ["TaskName", "Task", "RecordingName"]
+      }
+    },
+    {
+      "name": "codebase_search",
+      "description": "Find snippets of code from the codebase most relevant to the search query. This performs best when the search query is more precise and relating to the function or purpose of code. Results will be poor if asking a very broad question, such as asking about the general 'framework' or 'implementation' of a large component or system. This tool is useful to find code snippets that are fuzzily / semantically related to the search query but shouldn't be relied on for high recall queries (e.g. finding all occurrences of some variable or some pattern). Will only show the full code contents of the top items, and they may also be truncated. For other items it will only show the docstring and signature. Use view_code_item with the same path and node name to view the full code contents for any item.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "Query": {
+            "type": "STRING",
+            "description": "Search query"
+          },
+          "TargetDirectories": {
+            "type": "ARRAY",
+            "items": {
+              "type": "STRING"
+            },
+            "description": "List of absolute paths to directories to search over"
+          },
+          "waitForPreviousTools": {
+            "type": "BOOLEAN",
+            "description": "If true, wait for all previous tool calls from this turn to complete before executing (sequential). If false or omitted, execute this tool immediately (parallel with other tools)."
+          }
+        },
+        "required": ["Query", "TargetDirectories"]
+      }
+    },
+    {
+      "name": "command_status",
+      "description": "Get the status of a previously executed terminal command by its ID. Returns the current status (running, done), output lines as specified by output priority, and any error if present. Do not try to check the status of any IDs other than Background command IDs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "CommandId": {
+            "type": "STRING",
+            "description": "ID of the command to get status for"
+          },
+          "OutputCharacterCount": {
+            "type": "INTEGER",
+            "description": "Number of characters to view. Make this as small as possible to avoid excessive memory usage."
+          },
+          "WaitDurationSeconds": {
+            "type": "INTEGER",
+            "description": "Number of seconds to wait for command completion before getting the status. If the command completes before this duration, this tool call will return early. Set to 0 to get the status of the command immediately. If you are only interested in waiting for command completion, set to 60."
+          },
+          "waitForPreviousTools": {
+            "type": "BOOLEAN",
+            "description": "If true, wait for all previous tool calls from this turn to complete before executing (sequential). If false or omitted, execute this tool immediately (parallel with other tools)."
+          }
+        },
+        "required": ["CommandId", "WaitDurationSeconds"]
+      }
+    },
+    {
+      "name": "find_by_name",
+      "description": "Search for files and subdirectories within a specified directory using fd.\nSearch uses smart case and will ignore gitignored files by default.\nPattern and Excludes both use the glob format. If you are searching for Extensions, there is no need to specify both Pattern AND Extensions.\nTo avoid overwhelming output, the results are capped at 50 matches. Use the various arguments to filter the search scope as needed.\nResults will include the type, size, modification time, and relative path.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "SearchDirectory": {
+            "type": "STRING",
+            "description": "The directory to search within"
+          },
+          "Pattern": {
+            "type": "STRING",
+            "description": "Optional, Pattern to search for, supports glob format"
+          },
+          "Type": {
+            "type": "STRING",
+            "description": "Optional, type filter, enum=file,directory,any"
+          },
+          "MaxDepth": {
+            "type": "INTEGER",
+            "description": "Optional, maximum depth to search"
+          },
+          "Extensions": {
+            "type": "ARRAY",
+            "items": {
+              "type": "STRING"
+            },
+            "description": "Optional, file extensions to include (without leading .), matching paths must match at least one of the included extensions"
+          },
+          "Excludes": {
+            "type": "ARRAY",
+            "items": {
+              "type": "STRING"
+            },
+            "description": "Optional, exclude files/directories that match the given glob patterns"
+          },
+          "FullPath": {
+            "type": "BOOLEAN",
+            "description": "Optional, whether the full absolute path must match the glob pattern, default: only filename needs to match. Take care when specifying glob patterns with this flag on, e.g when FullPath is on, pattern '*.py' will not match to the file '/foo/bar.py', but pattern '**/*.py' will match."
+          },
+          "waitForPreviousTools": {
+            "type": "BOOLEAN",
+            "description": "If true, wait for all previous tool calls from this turn to complete before executing (sequential). If false or omitted, execute this tool immediately (parallel with other tools)."
+          }
+        },
+        "required": ["SearchDirectory", "Pattern"]
+      }
+    },
+    {
+      "name": "generate_image",
+      "description": "Generate an image or edit existing images based on a text prompt. The resulting image will be saved as an artifact for use. You can use this tool to generate user interfaces and iterate on a design with the USER for an application or website that you are building. When creating UI designs, generate only the interface itself without surrounding device frames (laptops, phones, tablets, etc.) unless the user explicitly requests them. You can also use this tool to generate assets for use in an application or website.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "Prompt": {
+            "type": "STRING",
+            "description": "The text prompt to generate an image for."
+          },
+          "ImageName": {
+            "type": "STRING",
+            "description": "Name of the generated image to save. Should be all lowercase with underscores, describing what the image contains. Maximum 3 words. Example: 'login_page_mockup'"
+          },
+          "ImagePaths": {
+            "type": "ARRAY",
+            "items": {
+              "type": "STRING"
+            },
+            "description": "Optional absolute paths to the images to use in generation. You can pass in images here if you would like to edit or combine images. You can pass in artifact images and any images in the file system. Note: you cannot pass in more than 3 images."
+          },
+          "waitForPreviousTools": {
+            "type": "BOOLEAN",
+            "description": "If true, wait for all previous tool calls from this turn to complete before executing (sequential). If false or omitted, execute this tool immediately (parallel with other tools)."
+          }
+        },
+        "required": ["Prompt", "ImageName"]
+      }
+    },
+    {
+      "name": "grep_search",
+      "description": "Use ripgrep to find exact pattern matches within files or directories.\nResults are returned in JSON format and for each match you will receive the:\n- Filename\n- LineNumber\n- LineContent: the content of the matching line\nTotal results are capped at 50 matches. Use the Includes option to filter by file type or specific paths to refine your search.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "SearchPath": {
+            "type": "STRING",
+            "description": "The path to search. This can be a directory or a file. This is a required parameter."
+          },
+          "Query": {
+            "type": "STRING",
+            "description": "The search term or pattern to look for within files."
+          },
+          "CaseInsensitive": {
+            "type": "BOOLEAN",
+            "description": "If true, performs a case-insensitive search."
+          },
+          "IsRegex": {
+            "type": "BOOLEAN",
+            "description": "If true, treats Query as a regular expression pattern with special characters like *, +, (, etc. having regex meaning. If false, treats Query as a literal string where all characters are matched exactly. Use false for normal text searches and true only when you specifically need regex functionality."
+          },
+          "MatchPerLine": {
+            "type": "BOOLEAN",
+            "description": "If true, returns each line that matches the query, including line numbers and snippets of matching lines (equivalent to 'git grep -nI'). If false, only returns the names of files containing the query (equivalent to 'git grep -l')."
+          },
+          "Includes": {
+            "type": "ARRAY",
+            "items": {
+              "type": "STRING"
+            },
+            "description": "Glob patterns to filter files found within the 'SearchPath', if 'SearchPath' is a directory. For example, '*.go' to only include Go files, or '!**/vendor/*' to exclude vendor directories. This is NOT for specifying the primary search directory; use 'SearchPath' for that. Leave empty if no glob filtering is needed or if 'SearchPath' is a single file."
+          },
+          "waitForPreviousTools": {
+            "type": "BOOLEAN",
+            "description": "If true, wait for all previous tool calls from this turn to complete before executing (sequential). If false or omitted, execute this tool immediately (parallel with other tools)."
+          }
+        },
+        "required": ["SearchPath", "Query"]
+      }
+    },
+    {
+      "name": "list_dir",
+      "description": "List the contents of a directory, i.e. all files and subdirectories that are children of the directory. Directory path must be an absolute path to a directory that exists. For each child in the directory, output will have: relative path to the directory, whether it is a directory or file, size in bytes if file, and number of children (recursive) if directory. Number of children may be missing if the workspace is too large, since we are not able to track the entire workspace.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "DirectoryPath": {
+            "type": "STRING",
+            "description": "Path to list contents of, should be absolute path to a directory"
+          },
+          "waitForPreviousTools": {
+            "type": "BOOLEAN",
+            "description": "If true, wait for all previous tool calls from this turn to complete before executing (sequential). If false or omitted, execute this tool immediately (parallel with other tools)."
+          }
+        },
+        "required": ["DirectoryPath"]
+      }
+    },
+    {
+      "name": "list_resources",
+      "description": "Lists the available resources from an MCP server.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "ServerName": {
+            "type": "STRING",
+            "description": "Name of the server to list available resources from."
+          },
+          "waitForPreviousTools": {
+            "type": "BOOLEAN",
+            "description": "If true, wait for all previous tool calls from this turn to complete before executing (sequential). If false or omitted, execute this tool immediately (parallel with other tools)."
+          }
+        }
+      }
+    },
+    {
+      "name": "multi_replace_file_content",
+      "description": "Use this tool to edit an existing file. Follow these rules:\n1. Use this tool ONLY when you are making MULTIPLE, NON-CONTIGUOUS edits to the same file (i.e., you are changing more than one separate block of text). If you are making a single contiguous block of edits, use the replace_file_content tool instead.\n2. Do NOT use this tool if you are only editing a single contiguous block of lines.\n3. Do NOT make multiple parallel calls to this tool or the replace_file_content tool for the same file.\n4. To edit multiple, non-adjacent lines of code in the same file, make a single call to this tool. Specify each edit as a separate ReplacementChunk.\n5. For each ReplacementChunk, specify StartLine, EndLine, TargetContent and ReplacementContent. StartLine and EndLine should specify a range of lines containing precisely the instances of TargetContent that you wish to edit. To edit a single instance of the TargetContent, the range should be such that it contains that specific instance of the TargetContent and no other instances. When applicable, provide a range that matches the range viewed in a previous view_file call. In TargetContent, specify the precise lines of code to edit. These lines MUST EXACTLY MATCH text in the existing file content. In ReplacementContent, specify the replacement content for the specified target content. This must be a complete drop-in replacement of the TargetContent, with necessary modifications made.\n6. If you are making multiple edits across a single file, specify multiple separate ReplacementChunks. DO NOT try to replace the entire existing content with the new content, this is very expensive.\n7. You may not edit file extensions: [.ipynb]\nIMPORTANT: You must generate the following arguments first, before any others: [TargetFile]",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "TargetFile": {
+            "type": "STRING",
+            "description": "The target file to modify. Always specify the target file as the very first argument."
+          },
+          "CodeMarkdownLanguage": {
+            "type": "STRING",
+            "description": "Markdown language for the code block, e.g 'python' or 'javascript'"
+          },
+          "Instruction": {
+            "type": "STRING",
+            "description": "A description of the changes that you are making to the file."
+          },
+          "Description": {
+            "type": "STRING",
+            "description": "Brief, user-facing explanation of what this change did. Focus on non-obvious rationale, design decisions, or important context. Don't just restate what the code does."
+          },
+          "Complexity": {
+            "type": "INTEGER",
+            "description": "A 1-10 rating of how important it is for the user to review this change. Rate based on: 1-3 (routine/obvious), 4-6 (worth noting), 7-10 (critical or subtle and warrants explanation)."
+          },
+          "ReplacementChunks": {
+            "type": "ARRAY",
+            "items": {
+              "type": "OBJECT",
+              "properties": {
+                "AllowMultiple": {
+                  "type": "BOOLEAN",
+                  "description": "If true, multiple occurrences of 'targetContent' will be replaced by 'replacementContent' if they are found. Otherwise if multiple occurences are found, an error will be returned."
+                },
+                "TargetContent": {
+                  "type": "STRING",
+                  "description": "The exact string to be replaced. This must be the exact character-sequence to be replaced, including whitespace. Be very careful to include any leading whitespace otherwise this will not work at all. This must be a unique substring within the file, or else it will error."
+                },
+                "ReplacementContent": {
+                  "type": "STRING",
+                  "description": "The content to replace the target content with."
+                },
+                "StartLine": {
+                  "type": "INTEGER",
+                  "description": "The starting line number of the chunk (1-indexed). Should be at or before the first line containing the target content. Must satisfy 1 <= StartLine <= EndLine. The target content is searched for within the [StartLine, EndLine] range."
+                },
+                "EndLine": {
+                  "type": "INTEGER",
+                  "description": "The ending line number of the chunk (1-indexed). Should be at or after the last line containing the target content. Must satisfy StartLine <= EndLine <= number of lines in the file. The target content is searched for within the [StartLine, EndLine] range."
+                }
+              },
+              "required": ["AllowMultiple", "TargetContent", "ReplacementContent", "StartLine", "EndLine"]
+            },
+            "description": "A list of chunks to replace. It is best to provide multiple chunks for non-contiguous edits if possible. This must be a JSON array, not a string."
+          },
+          "ArtifactMetadata": {
+            "type": "OBJECT",
+            "properties": {
+              "ArtifactType": {
+                "type": "STRING",
+                "enum": ["implementation_plan", "walkthrough", "task", "other"],
+                "description": "Type of artifact: 'implementation_plan', 'walkthrough', 'task', or 'other'."
+              },
+              "Summary": {
+                "type": "STRING",
+                "description": "Detailed multi-line summary of the artifact file, after edits have been made. Summary does not need to mention the artifact name and should focus on the contents and purpose of the artifact."
+              }
+            },
+            "required": ["Summary", "ArtifactType"],
+            "description": "Metadata updates if updating an artifact file, leave blank if not updating an artifact. Should be updated if the content is changing meaningfully."
+          },
+          "TargetLintErrorIds": {
+            "type": "ARRAY",
+            "items": {
+              "type": "STRING"
+            },
+            "description": "If applicable, IDs of lint errors this edit aims to fix (they'll have been given in recent IDE feedback). If you believe the edit could fix lints, do specify lint IDs; if the edit is wholly unrelated, do not. A rule of thumb is, if your edit was influenced by lint feedback, include lint IDs. Exercise honest judgement here."
+          },
+          "waitForPreviousTools": {
+            "type": "BOOLEAN",
+            "description": "If true, wait for all previous tool calls from this turn to complete before executing (sequential). If false or omitted, execute this tool immediately (parallel with other tools)."
+          }
+        },
+        "required": ["TargetFile", "CodeMarkdownLanguage", "Instruction", "Description", "Complexity", "ReplacementChunks"]
+      }
+    }
+  ]
+}
