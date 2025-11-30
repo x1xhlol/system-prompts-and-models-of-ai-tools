@@ -71,6 +71,7 @@ Sponsor the most comprehensive repository of AI system prompts and reach thousan
 
 - **X:** [NotLucknite](https://x.com/NotLucknite)
 - **Discord**: `x1xhlol`
+- **Mail**: `lucknitelol@pm.me`
 
 ---
 
