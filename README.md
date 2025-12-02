@@ -63,7 +63,7 @@ Sponsor the most comprehensive repository of AI system prompts and reach thousan
 
 > Open an issue.
 
-> **Latest Update:** 29/11/2025
+> **Latest Update:** 02/12/2025
 
 ---
 
