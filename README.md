@@ -5,15 +5,15 @@
 </p> 
 
 <p align="center">
-  <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
-    <img src="assets/Latitude_logo.png" alt="Latitude Logo" width="700"/>
+  <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
+    <img src="assets/Tembo-logo.png" alt="Tembo Logo" width="700"/>
   </a>
 </p>
 
 <div align="center" markdown="1">
  
-### <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Make your LLM predictable in production</a>  
-<a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Open Source AI Engineering Platform</a><br>
+### <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Sign up for free</a>  
+<a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Delegate work to any coding agent</a><br>
 
 </div>
 
