@@ -5,9 +5,11 @@
 </p> 
 
 <p align="center">
-  <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
-    <img src="assets/tembo-dark.png#gh-light-mode-only" alt="Tembo Logo" width="700"/>
-    <img src="assets/tembo-light.png#gh-dark-mode-only" alt="Tembo Logo" width="700"/>
+  <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship#gh-light-mode-only" target="_blank">
+    <img src="assets/Tembo-logo-light.png#gh-light-mode-only" alt="Tembo Logo" width="700"/>
+  </a>
+  <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship#gh-dark-mode-only" target="_blank">
+    <img src="assets/Tembo-logo-dark.png#gh-dark-mode-only" alt="Tembo Logo" width="700"/>
   </a>
 </p>
 
