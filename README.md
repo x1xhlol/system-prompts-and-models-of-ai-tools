@@ -15,8 +15,8 @@
 
 <div align="center" markdown="1">
  
-### <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Put Claude Code to work while you sleep (free)</a>  
-<a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Tembo – Delegate work to any coding agent.</a><br>
+### <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Put Claude Code to work while you sleep</a>  
+<a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Tembo – Background agents for real engineering work.</a><br>
 
 </div>
 
