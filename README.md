@@ -12,7 +12,7 @@
 
 <div align="center" markdown="1">
  
-### <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Sign up for free</a>  
+### <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Create your first task (free)</a>  
 <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Delegate work to any coding agent</a><br>
 
 </div>
