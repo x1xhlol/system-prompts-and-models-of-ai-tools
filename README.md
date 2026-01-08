@@ -38,6 +38,7 @@
 <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Open Source AI Engineering Platform</a><br>
 
 </div>
+
 ---
 
 <a href="https://discord.gg/NwzrWErdMU" target="_blank">
