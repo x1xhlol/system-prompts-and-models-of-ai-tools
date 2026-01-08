@@ -37,8 +37,6 @@
 
 ---
 
----
-
 <a href="https://discord.gg/NwzrWErdMU" target="_blank">
   <img src="https://img.shields.io/discord/1402660735833604126?label=LeaksLab%20Discord&logo=discord&style=for-the-badge" alt="LeaksLab Discord" />
 </a>
