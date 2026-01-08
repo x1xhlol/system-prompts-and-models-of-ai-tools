@@ -9,10 +9,10 @@
   <tr>
     <td align="center" valign="top">
       <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship#gh-light-mode-only" target="_blank">
-        <img src="assets/tembo-dark.png#gh-light-mode-only" alt="Tembo Logo" width="500" height="140"/>
+        <img src="assets/tembo-dark.png#gh-light-mode-only" alt="Tembo Logo" width="650" height="180"/>
       </a>
       <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship#gh-dark-mode-only" target="_blank">
-        <img src="assets/tembo-light.png#gh-dark-mode-only" alt="Tembo Logo" width="500" height="140"/>
+        <img src="assets/tembo-light.png#gh-dark-mode-only" alt="Tembo Logo" width="650" height="180"/>
       </a>
       <br><br>
       <strong><a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Put any coding agent to work while you sleep</a></strong>
@@ -23,7 +23,7 @@
     </td>
     <td align="center" valign="top">
       <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
-        <img src="assets/Latitude_logo.png" alt="Latitude Logo" width="500" height="140"/>
+        <img src="assets/Latitude_logo.png" alt="Latitude Logo" width="650" height="180"/>
       </a>
       <br><br>
       <strong><a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Make your LLM predictable in production</a></strong>
@@ -34,6 +34,8 @@
     </td>
   </tr>
 </table>
+
+---
 
 ---
 
