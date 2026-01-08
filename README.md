@@ -31,6 +31,7 @@
     </td>
   </tr>
 </table>
+
 ---
 
 <a href="https://discord.gg/NwzrWErdMU" target="_blank">
