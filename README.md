@@ -7,47 +7,44 @@
 <table align="center">
   <tr>
     <!-- Tembo -->
-    <td align="center" width="50%">
-      <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship#gh-light-mode-only" target="_blank">
-        <img src="assets/tembo-dark.png#gh-light-mode-only" alt="Tembo Logo" width="320"/>
+    <td align="center" valign="top" width="50%">
+      <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship#gh-light-mode-only">
+        <img src="assets/tembo-dark.png#gh-light-mode-only" width="300" />
       </a>
-      <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship#gh-dark-mode-only" target="_blank">
-        <img src="assets/tembo-light.png#gh-dark-mode-only" alt="Tembo Logo" width="320"/>
+      <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship#gh-dark-mode-only">
+        <img src="assets/tembo-light.png#gh-dark-mode-only" width="300" />
       </a>
       <br><br>
-      <strong>
-        <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
-          Put any coding agent to work while you sleep
-        </a>
-      </strong>
+      <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship">
+        <b>Put any coding agent to work while you sleep</b>
+      </a>
       <br>
-      <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
+      <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship">
         Tembo – The Background Coding Agents Company
       </a>
       <br><br>
-      <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
-        [Get started for free]
+      <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship">
+        Get started for free
       </a>
     </td>
 
     <!-- Latitude -->
-    <td align="center" width="50%">
-      <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
-        <img src="assets/Latitude_logo.png" alt="Latitude Logo" width="320"/>
+    <td align="center" valign="top" width="50%">
+      <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship">
+        <img src="assets/Latitude_logo.png" width="300" />
       </a>
       <br><br>
-      <strong>
-        <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
-          Make your LLM predictable in production
-        </a>
-      </strong>
+      <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship">
+        <b>Make your LLM predictable in production</b>
+      </a>
       <br>
-      <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
+      <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship">
         Open Source AI Engineering Platform
       </a>
     </td>
   </tr>
 </table>
+
 ---
 
 <a href="https://discord.gg/NwzrWErdMU" target="_blank">
