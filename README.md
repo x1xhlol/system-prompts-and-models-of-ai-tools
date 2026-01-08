@@ -14,15 +14,21 @@
       <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship#gh-dark-mode-only">
         <img src="assets/tembo-light.png#gh-dark-mode-only" width="300" />
       </a>
+
       <br><br>
-      <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship">
-        <b>Put any coding agent to work while you sleep</b>
-      </a>
-      <br>
+
+      <h3>
+        <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship">
+          Put any coding agent to work while you sleep
+        </a>
+      </h3>
+
       <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship">
         Tembo – The Background Coding Agents Company
       </a>
+
       <br><br>
+
       <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship">
         Get started for free
       </a>
@@ -33,18 +39,21 @@
       <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship">
         <img src="assets/Latitude_logo.png" width="300" />
       </a>
+
       <br><br>
-      <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship">
-        <b>Make your LLM predictable in production</b>
-      </a>
-      <br>
+
+      <h3>
+        <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship">
+          Make your LLM predictable in production
+        </a>
+      </h3>
+
       <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship">
         Open Source AI Engineering Platform
       </a>
     </td>
   </tr>
 </table>
-
 ---
 
 <a href="https://discord.gg/NwzrWErdMU" target="_blank">
