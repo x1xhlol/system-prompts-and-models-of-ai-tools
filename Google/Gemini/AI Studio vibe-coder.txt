@@ -568,7 +568,7 @@ const response = await ai.models.generateContent({
 console.log(response.text);
 ```
 
-**Incorrect Example for Setting `maxOutputTokens` without `thinkingBudget`**
+**Example for Setting `maxOutputTokens` with low `thinkingBudget`**
 ```ts
 import { GoogleGenAI } from "@google/genai";
 
@@ -577,9 +577,9 @@ const response = await ai.models.generateContent({
   model: "gemini-2.5-flash",
   contents: "Tell me a story.",
   config: {
-    // Problem: The response will be empty since all the tokens are consumed by thinking.
-    // Fix: Add `thinkingConfig: { thinkingBudget: 25 }` to limit thinking usage.
+    // We limit thinking usage to 25 tokens so that we have 25 tokens left for the response (50 - 25).
     maxOutputTokens: 50,
+    thinkingConfig: { thinkingBudget: 25 },
   },
 });
 console.log(response.text);
