@@ -1,6 +1,9 @@
 <p align="center">
   Support my work here: 
   <a href="https://bags.fm/DEffWzJyaFRNyA4ogUox631hfHuv3KLeCcpBh2ipBAGS">Bags.fm</a> 
+  <a href="https://jup.ag/tokens/DEffWzJyaFRNyA4ogUox631hfHuv3KLeCcpBh2ipBAGS">Jupiter</a> •
+  <a href="https://photon-sol.tinyastro.io/en/lp/Qa5ZCCwrWoPYckNXXMCAhCsw8gafgYFAu1Qes3Grgv5?handle=">Photon</a> •
+  <a href="https://dexscreener.com/solana/qa5zccwrwopycknxxmcahcsw8gafgyfau1qes3grgv5">DEXScreener</a>
 </p>
 
 <p align="center">Official CA: DEffWzJyaFRNyA4ogUox631hfHuv3KLeCcpBh2ipBAGS (on Solana)</p>
