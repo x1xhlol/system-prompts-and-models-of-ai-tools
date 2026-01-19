@@ -135,7 +135,7 @@ Sponsor the most comprehensive repository of AI system prompts and reach thousan
 
 ### 📝 For Content Creators
 - **Writing Assistant**: Use Perplexity or Comet prompts for research and content generation
-- **SEO Optimization**: Apply AI to improve content discoverability
+- **Search Engine Optimization**:
 - **Multi-language Support**: Translate and adapt content across languages
 
 ### 🎨 For Designers & No-Code Builders
