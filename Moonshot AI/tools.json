@@ -12,7 +12,9 @@
                         "description": "Array of search queries (max 5). Executed in parallel within one step. Cover different angles; avoid overlapping or near-duplicate queries.",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "maxItems": 5,
+                        "minItems": 1
                     }
                 },
                 "required": [
@@ -72,7 +74,7 @@
         },
         {
             "name": "get_data_source",
-            "description": "Get data from specific datasource API. Use get_data_source_desc first to see available APIs.",
+            "description": "Get data from specific datasource API. Use appropriate APIs to retrieve structured data.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -128,6 +130,42 @@
                 },
                 "required": [
                     "operate"
+                ],
+                "oneOf": [
+                    {
+                        "properties": {
+                            "operate": {
+                                "const": "add"
+                            }
+                        },
+                        "required": [
+                            "operate",
+                            "content"
+                        ]
+                    },
+                    {
+                        "properties": {
+                            "operate": {
+                                "const": "remove"
+                            }
+                        },
+                        "required": [
+                            "operate",
+                            "id"
+                        ]
+                    },
+                    {
+                        "properties": {
+                            "operate": {
+                                "const": "replace"
+                            }
+                        },
+                        "required": [
+                            "operate",
+                            "content",
+                            "id"
+                        ]
+                    }
                 ]
             }
         }
