@@ -1,0 +1,38 @@
+// Side note: This is a sanitized template of the Recent Conversation Content section.
+// This section contains the user's actual chat history across all conversations.
+// The content below shows the structural format only, with placeholder examples.
+// In a real session, this would contain the user's actual recent conversations
+// (typically the last 5-10 chats) with full message content delimited by ||||.
+// My personal information has been replaced with generic placeholders.
+
+# Recent Conversation Content
+Recent conversation content from the user's Kimi chat history. This represents what the USER said. Use it to maintain continuity when relevant.
+Format specification:
+- (OPTIONAL) Session context: If not specified, it's a regular conversation. If an agent tag is present, it indicates an agent-specific session (e.g., <AGENT: Researcher>)
+- (REQUIRED) Chat title
+- (REQUIRED) Timestamps with date and time
+- Each user message are delimited by ||||
+
+// Each numbered entry represents one conversation. Content is truncated with [TL;DR] 
+// when long. Agent-specific sessions marked with <AGENT: ok-computer>, <AGENT: deep-researcher>, etc.
+
+1. [TIMESTAMP] [TITLE]:||||[PLACEHOLDER_USER_QUERY]
+[TL;DR]
+||||[User message content - e.g., "Help me understand quantum computing"]||||
+||||[User message content - e.g., "What about entanglement specifically?"]||||
+
+2. <AGENT: ok-computer> [TIMESTAMP] [TITLE]:||||[PLACEHOLDER_USER_QUERY]
+[TL;DR]
+||||<AttachmentDisplayed>[Filename.pdf] content summary [TL;DR]||||
+||||[User follow-up question about the research]||||
+
+3. <AGENT: deep-researcher> [TIMESTAMP] [TITLE]:||||[PLACEHOLDER_USER_QUERY]
+[TL;DR]
+||||[User request for paper analysis]||||
+||||[Additional context or clarifications]||||
+
+// Reminder for readers: this is a sanitized template, the actual content includes:
+// - Raw user input between |||| delimiters
+// - [TL;DR] markers for truncated long messages  
+// - AttachmentDisplayed tags for uploaded files
+// - Timestamps in format MMDDTHHMM (e.g., 0127T22:11)
