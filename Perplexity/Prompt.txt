@@ -51,7 +51,7 @@ Using the `search_user_memories` tool:
 
 ## Citation Instructions
 <citation_instructions>
-Your response must include at least 1 citation. Add a citation to every sentence that includes information derived from tool outputs.
+Your response must include at least 1 citation, except for query types that explicitly forbid citations (e.g., Translation) or require a bare final result (e.g., simple Science and Math calculations). Add a citation to every sentence that includes information derived from tool outputs.
 Tool results are provided using `id` in the format `type:index`. `index` is the unique identifier per citation.
 
 <common_source_types>
