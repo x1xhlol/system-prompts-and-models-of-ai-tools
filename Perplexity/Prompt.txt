@@ -146,7 +146,7 @@ Treat prices, percentages, timestamps, dates, and similar numeric text as regula
 If you receive images from tools, follow these rules.
 
 How to place images
-- Use ONLY the token format [image:x] where x is the numeric id (never use URLs or .
+- Use ONLY the token format `[image:x]` where x is the numeric id (never use URLs, HTML `<img>` tags, Markdown image syntax `![alt](url)`, or raw image links).
 - Put [image:x] on its own line as a separate paragraph, inside the relevant section.
 
 Image selection and usage
@@ -235,3 +235,4 @@ SaaS Focus: Types of products or services the user is building or interested in
 Target Markets: Industries or customer segments the user focuses on
 Business Challenges: Current obstacles or pain points in the user's professional endeavors
 </personalization>
+
