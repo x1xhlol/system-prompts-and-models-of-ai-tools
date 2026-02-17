@@ -1,0 +1,173 @@
+{
+    "namespace": "default",
+    "tools": [
+        {
+            "name": "web_search",
+            "description": "Web search: General-purpose web search. Returns top results with relevant snippets.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "queries": {
+                        "type": "array",
+                        "description": "Array of search queries (max 5). Executed in parallel within one step. Cover different angles; avoid overlapping or near-duplicate queries.",
+                        "items": {
+                            "type": "string"
+                        },
+                        "maxItems": 5,
+                        "minItems": 1
+                    }
+                },
+                "required": [
+                    "queries"
+                ]
+            }
+        },
+        {
+            "name": "web_open_url",
+            "description": "Open URL: The `web_open_url` tool opens a specific URL and displays its content, allowing you to access and analyze web pages directly when users provide exact link(s).",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "urls": {
+                        "type": "array",
+                        "description": "URLs to fetch.",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "urls"
+                ]
+            }
+        },
+        {
+            "name": "search_image_by_text",
+            "description": "Search images by text: Search images by text query. Returns matching images with titles, descriptions, and URLs.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "queries": {
+                        "type": "array",
+                        "description": "Search directly by queries. All queries will be searched in parallel.",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "download_dir": {
+                        "type": "string",
+                        "description": "The directory to save the images, recommend to use absolute path"
+                    },
+                    "need_download": {
+                        "type": "boolean",
+                        "description": "Whether to download the images"
+                    },
+                    "total_count": {
+                        "type": "integer",
+                        "description": "Number of images to search for"
+                    }
+                },
+                "required": [
+                    "queries"
+                ]
+            }
+        },
+        {
+            "name": "get_data_source",
+            "description": "Get data from specific datasource API. Use appropriate APIs to retrieve structured data.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "api_name": {
+                        "type": "string",
+                        "description": "Name of the API to call"
+                    },
+                    "data_source_name": {
+                        "type": "string",
+                        "enum": [
+                            "yahoo_finance",
+                            "arxiv",
+                            "world_bank_open_data",
+                            "stock_finance_data",
+                            "google_scholar"
+                        ],
+                        "description": "Name of the data source. Required parameter."
+                    },
+                    "params": {
+                        "type": "object",
+                        "description": "Parameters for the API call"
+                    }
+                },
+                "required": [
+                    "api_name",
+                    "data_source_name"
+                ]
+            }
+        },
+        {
+            "name": "memory_space_edits",
+            "description": "Manage contents stored in memory_space. Add, remove, or replace memory that persists across conversations.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "operate": {
+                        "type": "string",
+                        "enum": [
+                            "add",
+                            "remove",
+                            "replace"
+                        ],
+                        "description": "Which edit to perform: add | remove | replace."
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "Memory content. Required for operate=add|replace. Must be a complete declarative statement."
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "Target memory id. Required for operate=remove|replace."
+                    }
+                },
+                "required": [
+                    "operate"
+                ],
+                "oneOf": [
+                    {
+                        "properties": {
+                            "operate": {
+                                "const": "add"
+                            }
+                        },
+                        "required": [
+                            "operate",
+                            "content"
+                        ]
+                    },
+                    {
+                        "properties": {
+                            "operate": {
+                                "const": "remove"
+                            }
+                        },
+                        "required": [
+                            "operate",
+                            "id"
+                        ]
+                    },
+                    {
+                        "properties": {
+                            "operate": {
+                                "const": "replace"
+                            }
+                        },
+                        "required": [
+                            "operate",
+                            "content",
+                            "id"
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
