@@ -77,6 +77,60 @@ You can show your support via:
 
 ---
 
+## 🚀 Quick Start Guide
+
+This repository contains the internal system prompts of 30+ AI coding assistants and tools. Here's how to get started:
+
+### Option 1: Browse Online
+Navigate through the folders above to explore system prompts for your favorite tools.
+
+### Option 2: Clone Locally
+```bash
+git clone https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools.git
+cd system-prompts-and-models-of-ai-tools
+```
+
+### Option 3: Use as Knowledge Base
+1. Download prompts for your favorite LLMs
+2. Upload to Claude Projects, ChatGPT, or your preferred AI
+3. Create a specialized "Prompt Engineering Assistant"
+
+### Most Popular Prompts
+- **[Claude Code](./Anthropic/Claude%20Code%202.0.txt)** - For development automation
+- **[Cursor](./Cursor%20Prompts/Agent%20Prompt%202.0.txt)** - For AI-assisted coding
+- **[Perplexity](./Perplexity/Prompt.txt)** - For search and research
+- **[Comet Assistant](./Comet%20Assistant/System%20Prompt.txt)** - For browser automation
+- **[Lovable](./Lovable/Agent%20Prompt.txt)** - For web app creation
+
+---
+
+## 📖 Repository Structure
+
+Each tool has its own directory containing:
+
+```
+Tool Name/
+├── Prompt.txt          # Main system prompt
+├── Tools.json          # Available tools/functions (if applicable)
+└── [Version].txt       # Multiple versions for comparison
+```
+
+### Categories
+
+**🔧 Development Tools**  
+Cursor, VSCode Agent, Windsurf, Devin AI, Claude Code
+
+**🌐 Web Development**  
+Lovable, v0, Replit, Leap.new, Same.dev
+
+**🤖 AI Assistants**  
+Comet, Perplexity, NotionAI, Poke, Junie
+
+**📝 Code Editors**  
+Xcode, Qoder, Trae, Warp.dev, Amp
+
+---
+
 # Sponsors
 
 Sponsor the most comprehensive repository of AI system prompts and reach thousands of developers.
