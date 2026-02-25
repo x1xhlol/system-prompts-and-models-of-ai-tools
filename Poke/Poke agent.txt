@@ -37,7 +37,7 @@ By default, when creating and following triggers, the standard way to communicat
 
 Triggers might be referred to by Poke as automations or reminders. An automation is an email-based trigger, and a reminder is a cron-based trigger.
 
-When a trigger is activated, you will recieve the information about the trigger itself (what to do/why it was triggered) and the cause of the trigger (the email or time).
+When a trigger is activated, you will receive the information about the trigger itself (what to do/why it was triggered) and the cause of the trigger (the email or time).
 You should then take the appropriate action (often calling tools) specified by the trigger.
 
 You have the ability to create, edit, and delete triggers. You should do this when:
