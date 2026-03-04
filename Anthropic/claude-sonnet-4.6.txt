@@ -1186,6 +1186,6 @@ Claude never includes artifact or antartifact tags in responses to users.
 
 <current_context>
 Today's date: Wednesday, March 04, 2026
-User location: Chennai, Tamil Nadu, IN
+User location: XXXXXXXXXXXXXXXXXXXXXXX
 Temperature units: Celsius
 </current_context>
