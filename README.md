@@ -11,7 +11,9 @@
 ---
 
 <p align="center">
-❤️ Love when open-source tools give back to open-source repos. Kilo Code is an AI coding agent with the system prompt, source code, and agent architecture all in the open on their GitHub repo.  
+❤️ Love when open-source tools give back to open-source repos. 
+Kilo Code is an AI coding agent with the system prompt, source code, 
+and agent architecture all in the open on their GitHub repo.  
 <a href="https://github.com/Kilo-Org/kilocode">Let’s show them some love</a> ❤️
 </p>
 
@@ -62,7 +64,8 @@
 
 ## ❤️ Support the Project
 
-If you find this collection valuable and appreciate the effort involved in obtaining and sharing these insights, please consider supporting the project.
+If you find this collection valuable and appreciate the effort involved in 
+obtaining and sharing these insights, please consider supporting the project.
 
 You can show your support via:
 
@@ -79,7 +82,8 @@ You can show your support via:
 
 # Sponsors
 
-Sponsor the most comprehensive repository of AI system prompts and reach thousands of developers.
+Sponsor the most comprehensive repository of AI system prompts and reach 
+thousands of developers.
 
 [Get Started](mailto:lucknitelol@proton.me)
 
@@ -103,10 +107,14 @@ Sponsor the most comprehensive repository of AI system prompts and reach thousan
 
 ## 🛡️ Security Notice for AI Startups
 
-> ⚠️ **Warning:** If you're an AI startup, make sure your data is secure. Exposed prompts or AI models can easily become a target for hackers.
+> ⚠️ **Warning:** If you're an AI startup, make sure your data is secure. 
+> Exposed prompts or AI models can easily become a target for hackers.
 
 > 🔐 **Important:** Interested in securing your AI systems?  
-> Check out **[ZeroLeaks](https://zeroleaks.ai/)**, a service designed to help startups **identify and secure** leaks in system instructions, internal tools, and model configurations. **Get a free AI security audit** to ensure your AI is protected from vulnerabilities.
+> Check out **[ZeroLeaks](https://zeroleaks.ai/)**, a service designed to 
+> help startups **identify and secure** leaks in system instructions, internal 
+> tools, and model configurations. **Get a free AI security audit** to ensure 
+> your AI is protected from vulnerabilities.
 
 ---
 
