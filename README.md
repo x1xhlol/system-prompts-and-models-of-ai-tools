@@ -9,34 +9,34 @@
 <p align="center">Official CA: DEffWzJyaFRNyA4ogUox631hfHuv3KLeCcpBh2ipBAGS (on Solana)</p>
 
 ---
+
 <p align="center">
-  <sub>Special thanks to</sub>  
+❤️ Love when open-source tools give back to open-source repos. Kilo Code is an AI coding agent with the system prompt, source code, and agent architecture all in the open on their GitHub repo.  
+<a href="https://github.com/Kilo-Org/kilocode">Let’s show them some love</a> ❤️
+</p>
+
+---
+
+<p align="center">
+  <sub>Special thanks to</sub>
 </p>
 
 <table width="100%">
   <tr>
     <td align="center" valign="top">
-      <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship#gh-light-mode-only" target="_blank">
-        <img src="assets/tembo-dark.png#gh-light-mode-only" alt="Tembo Logo" width="750" height="210"/>
-      </a>
-      <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship#gh-dark-mode-only" target="_blank">
-        <img src="assets/tembo-light.png#gh-dark-mode-only" alt="Tembo Logo" width="750" height="210"/>
-      </a>
-      <br><br>
-      <strong><a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Put any coding agent to work while you sleep</a></strong>
-      <br>
-      <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Tembo – The Background Coding Agents Company</a>
-      <br><br>
-      <a href="https://www.tembo.io/?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">[Get started for free]</a>
-    </td>
-    <td align="center" valign="top">
       <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
         <img src="assets/Latitude_logo.png" alt="Latitude Logo" width="750" height="210"/>
       </a>
       <br><br>
-      <strong><a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Make your LLM predictable in production</a></strong>
+      <strong>
+        <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
+          Make your LLM predictable in production
+        </a>
+      </strong>
       <br>
-      <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">Open Source AI Engineering Platform</a>
+      <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
+        Open Source AI Engineering Platform
+      </a>
       <br><br>
       &nbsp;
     </td>
