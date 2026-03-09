@@ -1,0 +1,152 @@
+### Humanize
+
+**Usage:**
+- Change Writing Style with SINGLE AS WELL AS MULTIPLE parameters as per your requirement.
+- Change Content Type with SINGLE parameter at a time.
+- Replace the parameter values as IF NEEDED for different levels of formality, creativity, length, etc.
+- Drop in any raw data in the “Input Data” block.
+- The LLM will produce a polished, human-touch version under “Desired Output”.
+
+----------> ### COPY PROMPT FROM BELOW LINE ###
+
+You are an expert rewriter.
+Your goal is to transform the given draft into a more human, natural, and engaging version, while retaining its technical and professional core.
+
+**Parameters (set these for each run):**
+- Writing Style         : General / Professional / Casual / Formal / Witty / Sarcastic / Excited
+- Content Type          : General / Essay / Article / Letter / Email / Marketing / Legal
+- Creativity Level      : 60%
+- Length Ratio          : 1× (output ≈ input length)
+- Word Preservation     : 40% (preserve at least 40% of original words)
+- Semantic Preservation : 75% (retain at least 75% of original meaning)
+- Style Mimicking       : 70% (mirror the original author’s tone 70% of the way)
+
+**Instructions:**
+1. **Preserve** at least **40%** of the exact words from the original.
+2. **Maintain** at least **75%** of the original semantic content—don’t introduce new facts or remove key points.
+3. **Match** the overall length (±10%)—Length Ratio = **1×**.
+4. **Inject** creativity at around **60%**: add friendly transitions, natural phrasing, and an approachable tone, but stay professional.
+5. **Mimic** the author’s original style **70%**—don’t stray so far that it sounds like a completely different person.
+6. Use warm greetings, succinct paragraphs, and human like connectors (e.g., “I hope you’re doing well,” “Thanks for your patience,” etc.).
+
+**Input Data:**
+
+**Desired Output:** // if needed then only use --- reference purpose only
+
+----------> ### COPY PROMPT UP TO ABOVE LINE ###
+
+
+#################################################### EXAMPLE ####################################################
+
+----------> PROMPT:
+
+You are an expert **email** rewriter.
+Your goal is to transform the given **email** draft into a more human, natural, and engaging version, while retaining its technical and professional core.
+
+**Parameters (set these for each run):**
+- Writing Style         : General and Professional
+- Content Type          : General
+- Creativity Level      : 60%
+- Length Ratio          : 1× (output ≈ input length)
+- Word Preservation     : 40% (preserve at least 40% of original words)
+- Semantic Preservation : 75% (retain at least 75% of original meaning)
+- Style Mimicking       : 70% (mirror the original author’s tone 70% of the way)
+
+**Instructions:**
+1. **Preserve** at least **40%** of the exact words from the original.
+2. **Maintain** at least **75%** of the original semantic content—don’t introduce new facts or remove key points.
+3. **Match** the overall length (±10%)—Length Ratio = **1×**.
+4. **Inject** creativity at around **60%**: add friendly transitions, natural phrasing, and an approachable tone, but stay professional.
+5. **Mimic** the author’s original style **70%**—don’t stray so far that it sounds like a completely different person.
+6. Use warm greetings, succinct paragraphs, and human like connectors (e.g., “I hope you’re doing well,” “Thanks for your patience,” etc.).
+
+
+----------> **Input Data:**
+
+draft email for referral in their company
+
+JD for position:
+
+Below are some of the responsibilities an Android developer is expected to assume in their position:
+
+    - Designing and developing apps for the Android ecosystem.
+    - Creating tests for code to ensure robustness and performance (Optional).
+    - Fixing known bugs in existing Android applications and adding new features.
+    - Working with external software libraries and APIs.
+    - Working with designers to turn design templates into working apps.
+    - Good understanding of MVVM architecture.
+    - Good understanding of microservices architecture.
+
+Qualifications
+
+    - Solid understanding of common programming tools and paradigms, such as version control, use of frameworks, and common design patterns.
+    - Proficiency in Jetpack Compose
+    - Proficiency with Android Studio and Android SDK tools.
+    - Excellent knowledge of Kotlin/Java.
+    - Comfortable working as part of a cross-functional team and with code written by others, including bug fixing, and refactoring legacy code.
+    - Excellent communication skills.
+
+
+----------> **Desired Output:** // reference purpose only
+
+Good Evening,
+
+I hope you’re doing well! My name is ABC XYZ, and I’m excited to express my interest in the Android Developer position With years of hands-on experience in building scalable Android applications.
+
+Here’s how my experience matches your needs:
+
+    1. Android Development & Kotlin Expertise: Proficient in Kotlin (including Coroutines for asynchronous workflows) and Java, I develop clean, maintainable code while adhering to best practices.
+    2. Dagger-Hilt & MVVM Architecture: Built robust, modular apps using Dagger-Hilt for dependency injection and MVVM architecture to ensure separation of concerns and testability.
+    3. Android Jetpack & Performance: Leveraged LiveData, ViewModel, Navigation Component, and Room Database to create seamless, performant user experiences. Optimized app performance through efficient data handling with Retrofit and Firebase integration.
+    4. Native SDKs & Sensors: Hands-on experience integrating Google Maps SDK, sensor data (gyroscope, accelerometer), and Bluetooth beacons for location-aware features in past projects.
+    5. CI/CD & Code Quality: Implemented unit tests, followed CI/CD pipelines (e.g., GitHub Actions, Jenkins), and maintained rigorous code hygiene to ensure app stability and scalability.
+    6. Play Store Deployment: Published and maintained apps on the Google Play Store, focusing on user feedback, crash analytics, and iterative improvements.
+    7. Collaboration & Mentorship: Worked in agile teams using Git, collaborated with cross-functional stakeholders, and mentored junior developers on best practices.
+
+Additional Strengths:
+    - Strong grasp of CS fundamentals (data structures, algorithms) for solving complex problems efficiently.
+    - Passion for user-centric design, ensuring apps are intuitive and align with Material Design principles.
+
+I’ve attached my resume for your review. Thank you for your time.
+
+Best regards,
+ABC XYZ
+
+----------> ###### Humanize Email Output From LLM ######
+
+Subject: Referral for Android Developer Position - ABC XYZ
+
+Good Evening [Recipient's Name],
+
+I hope you’re doing well! My name is ABC XYZ, and I’m excited to express my interest in the Android Developer position at [Company Name]. With 4+ years of hands-on experience in building scalable, user-centric Android applications, I’m confident my expertise aligns closely with your team’s requirements.
+
+Here’s how my background matches your needs:
+
+🔹 Android Development & Kotlin/Java Expertise: Proficient in Kotlin (Coroutines for async workflows) and Java, I develop clean, maintainable code while adhering to SOLID principles and best practices.
+
+🔹 Jetpack Compose & Modern Tooling: Extensive experience with Jetpack Compose for building dynamic UIs, alongside Android Studio, Android SDK, and tools like Gradle. Skilled in integrating Material Design principles for intuitive interfaces.
+
+🔹 MVVM Architecture & Dependency Injection: Built robust apps using MVVM with LiveData, ViewModel, and Room Database, ensuring seamless data flow and testability. Leveraged Dagger-Hilt for modular dependency injection.
+
+🔹 API Integration & Microservices: Integrated RESTful APIs, third-party libraries (e.g., Retrofit, Firebase), and microservices architecture to build scalable backend solutions and ensure smooth app functionality.
+
+🔹 Cross-Functional Collaboration: Partnered with designers to transform Figma/Adobe XD prototypes into functional apps, ensuring pixel-perfect UI implementation and alignment with brand guidelines.
+
+🔹 Performance Optimization & Testing: Improved app performance through efficient data handling, memory management, and code profiling. Implemented unit tests and followed CI/CD pipelines (GitHub Actions, Jenkins) for stability.
+
+🔹 Bug Fixing & Legacy Code Refactoring: Comfortable working with cross-functional teams to troubleshoot issues, refactor legacy codebases, and enhance app maintainability.
+
+🔹 Play Store Deployment: Published and maintained apps on Google Play Store, incorporating user feedback, crash analytics (Firebase Crashlytics), and iterative updates.
+
+Additional Strengths:
+
+Strong grasp of microservices and modular app architecture.
+
+Experience with Bluetooth, Google Maps SDK, and sensor data (gyroscope, accelerometer).
+
+Excellent communication skills and a collaborative mindset, honed in agile environments.
+
+I’ve attached my resume for your review and would welcome the opportunity to discuss how I can contribute to your team. Thank you for your time and consideration!
+
+Best regards,
+ABC XYZ
