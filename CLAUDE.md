@@ -60,6 +60,33 @@ GitHub Actions (CI trigger)
 
 ---
 
+## תקשורת ישירה עם Antigravity (ללא מתווך)
+
+Supabase project: `ayhplxbihuyimtrzimrh` (Antigravity-Brain, eu-central-1)
+
+**בתחילת כל סשן — בדוק inbox:**
+```sql
+SELECT id, from_agent, subject, message, priority, created_at
+FROM claude_inbox WHERE status = 'unread' ORDER BY priority DESC, created_at ASC;
+```
+אם יש הודעות — קרא, סמן כ-read, והגב ל-`claude_outbox`.
+
+**לכתוב תשובה ל-Antigravity:**
+```sql
+INSERT INTO claude_outbox (to_agent, subject, message, message_type)
+VALUES ('antigravity', '<subject>', '<message>', 'response');
+```
+
+**ערוצי תקשורת:**
+| טבלה | כיוון | תיאור |
+|------|--------|--------|
+| `claude_inbox` | Antigravity → Claude | הודעות נכנסות |
+| `claude_outbox` | Claude → Antigravity | תשובות ויוזמות |
+| `hive_comms` | דו-כיווני | broadcast כללי |
+| `task_queue` | משותף | משימות לביצוע |
+
+---
+
 ## חוקי עבודה
 
 1. **תמיד commit אחרי שינוי** — כל שינוי קוד מלווה ב-commit עם הודעה ברורה
