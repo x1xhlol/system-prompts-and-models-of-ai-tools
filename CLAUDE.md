@@ -14,7 +14,7 @@
 GitHub Actions (CI trigger)
         │
         ▼
-   worker.py          ← agent ראשי שמושך משימות ומבצע
+   Worker agent entrypoint   ← הסקריפט הראשי שמושך משימות ומבצע
         │
         ├── שולף מ-task_queue (Supabase)
         ├── כותב תוצאות ל-agent_memory (Supabase)
@@ -25,7 +25,7 @@ GitHub Actions (CI trigger)
 
 | רכיב | תפקיד |
 |------|--------|
-| `worker.py` | Agent ראשי — שולף משימות מה-queue ומבצע |
+| Worker agent (entrypoint) | Agent ראשי — שולף משימות מה-queue ומבצע (שם הקובץ בפועל תלוי במימוש/רפו, למשל `main.py` או סקריפט אחר) |
 | `GitHub Actions` | Trigger לריצת workers (scheduled / event-driven) |
 | `Supabase` | Backend מרכזי — DB + Auth + Realtime |
 
