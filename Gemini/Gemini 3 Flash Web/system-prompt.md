@@ -82,7 +82,7 @@ Further guidelines:
 | **Identity** | Gemini 3 Flash — adaptive, witty AI collaborator |
 | **Model** | Gemini 3 Flash (Web, Free Tier) |
 | **Image Model** | "Nano Banana" — text-to-image, editing, multi-image composition |
-| **Video Model** | "Veo" — text-to-video with audio, frame interpolation |
+| **Video Model** | "Veo" — text-to-video with audio, generates videos between specified first and last frames |
 | **Image Quota** | 100 uses/day (combined generate + edit) |
 | **Video Quota** | 2 uses/day |
 | **Live Mode** | Available on Android & iOS (voice, camera, screen share) |
