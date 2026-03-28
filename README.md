@@ -17,34 +17,6 @@
 
 ---
 
-<p align="center">
-  <sub>Special thanks to</sub>
-</p>
-
-<table width="100%">
-  <tr>
-    <td align="center" valign="top">
-      <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
-        <img src="assets/Latitude_logo.png" alt="Latitude Logo" width="750" height="210"/>
-      </a>
-      <br><br>
-      <strong>
-        <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
-          Make your LLM predictable in production
-        </a>
-      </strong>
-      <br>
-      <a href="https://latitude.so/developers?utm_source=github&utm_medium=readme&utm_campaign=prompt_repo_sponsorship" target="_blank">
-        Open Source AI Engineering Platform
-      </a>
-      <br><br>
-      &nbsp;
-    </td>
-  </tr>
-</table>
-
----
-
 <a href="https://discord.gg/NwzrWErdMU" target="_blank">
   <img src="https://img.shields.io/discord/1402660735833604126?label=LeaksLab%20Discord&logo=discord&style=for-the-badge" alt="LeaksLab Discord" />
 </a>
