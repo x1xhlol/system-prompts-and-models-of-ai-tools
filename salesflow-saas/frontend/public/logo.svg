@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0F4C81;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00BFA6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="arrow" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#00BFA6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="92" fill="url(#grad)" />
+  <!-- S letter -->
+  <path d="M125 65 C125 50, 110 42, 95 42 C75 42, 60 52, 60 68 C60 84, 75 90, 95 95 C115 100, 130 106, 130 125 C130 145, 112 155, 92 155 C72 155, 58 145, 58 130"
+    fill="none" stroke="white" stroke-width="14" stroke-linecap="round" />
+  <!-- Upward arrow -->
+  <path d="M148 85 L148 40 M148 40 L132 56 M148 40 L164 56"
+    fill="none" stroke="url(#arrow)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

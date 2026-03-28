@@ -1,0 +1,95 @@
+{
+  "industry": "healthcare",
+  "name": "Healthcare & Clinics",
+  "name_ar": "العيادات والمراكز الصحية",
+  "pipeline_stages": [
+    {"key": "new_inquiry", "name_en": "New Inquiry", "name_ar": "استفسار جديد", "order": 1, "probability": 10},
+    {"key": "contacted", "name_en": "Contacted", "name_ar": "تم التواصل", "order": 2, "probability": 25},
+    {"key": "appointment_booked", "name_en": "Appointment Booked", "name_ar": "موعد محجوز", "order": 3, "probability": 50},
+    {"key": "quote_sent", "name_en": "Quote Sent", "name_ar": "عرض سعر", "order": 4, "probability": 70},
+    {"key": "closed_won", "name_en": "Closed Won", "name_ar": "تم الإغلاق", "order": 5, "probability": 100},
+    {"key": "lost", "name_en": "Lost", "name_ar": "مفقود", "order": 6, "probability": 0}
+  ],
+  "message_templates": [
+    {
+      "name": "welcome",
+      "name_ar": "رسالة ترحيب",
+      "channel": "whatsapp",
+      "trigger": "lead_created",
+      "content_ar": "مرحباً {name}! شكراً لتواصلك مع {company}. كيف نقدر نساعدك اليوم؟ فريقنا الطبي جاهز لخدمتك.",
+      "content_en": "Hello {name}! Thank you for contacting {company}. How can we help you today? Our medical team is ready to serve you.",
+      "delay_minutes": 0
+    },
+    {
+      "name": "appointment_reminder",
+      "name_ar": "تذكير بالموعد",
+      "channel": "whatsapp",
+      "trigger": "scheduled",
+      "content_ar": "تذكير: عندك موعد في {company} يوم {date} الساعة {time}. للتأكيد أو التغيير تواصل معنا. نتطلع لزيارتك! 🏥",
+      "content_en": "Reminder: You have an appointment at {company} on {date} at {time}. To confirm or reschedule, please contact us.",
+      "delay_minutes": -1440
+    },
+    {
+      "name": "no_response_followup",
+      "name_ar": "متابعة عدم الرد",
+      "channel": "whatsapp",
+      "trigger": "no_response",
+      "content_ar": "مرحباً {name}، لاحظنا إنك تواصلت معنا وحبينا نتأكد إن كل شي تمام. هل تحتاج أي مساعدة؟ نقدر نحجز لك موعد استشارة مجانية.",
+      "content_en": "Hi {name}, we noticed you reached out and wanted to check in. Do you need any help? We can book a free consultation for you.",
+      "delay_minutes": 2880
+    },
+    {
+      "name": "post_visit",
+      "name_ar": "بعد الزيارة",
+      "channel": "whatsapp",
+      "trigger": "deal_closed_won",
+      "content_ar": "شكراً لزيارتك {name}! نتمنى تكون التجربة ممتازة. صحتك تهمنا، لا تتردد تتواصل معنا لأي استفسار. ⭐",
+      "content_en": "Thank you for your visit {name}! We hope the experience was excellent. Your health matters to us.",
+      "delay_minutes": 1440
+    }
+  ],
+  "proposal_templates": [
+    {
+      "name": "treatment_plan",
+      "name_ar": "خطة علاجية",
+      "sections": [
+        {"title_ar": "التشخيص", "title_en": "Diagnosis"},
+        {"title_ar": "الخطة العلاجية", "title_en": "Treatment Plan"},
+        {"title_ar": "التكلفة التفصيلية", "title_en": "Detailed Cost"},
+        {"title_ar": "مدة العلاج", "title_en": "Treatment Duration"},
+        {"title_ar": "ملاحظات", "title_en": "Notes"}
+      ]
+    },
+    {
+      "name": "package_offer",
+      "name_ar": "عرض باقة",
+      "sections": [
+        {"title_ar": "الباقة", "title_en": "Package"},
+        {"title_ar": "الخدمات المشمولة", "title_en": "Included Services"},
+        {"title_ar": "السعر الخاص", "title_en": "Special Price"},
+        {"title_ar": "الصلاحية", "title_en": "Validity"}
+      ]
+    }
+  ],
+  "workflow_templates": [
+    {
+      "name": "new_patient_flow",
+      "name_ar": "تدفق مريض جديد",
+      "trigger": "lead_created",
+      "actions": [
+        {"type": "send_message", "template": "welcome", "delay_minutes": 0},
+        {"type": "create_task", "subject": "اتصل بالمريض الجديد", "delay_minutes": 30},
+        {"type": "send_message", "template": "no_response_followup", "delay_minutes": 2880, "condition": "no_response"}
+      ]
+    },
+    {
+      "name": "appointment_reminder_flow",
+      "name_ar": "تذكير المواعيد",
+      "trigger": "appointment_created",
+      "actions": [
+        {"type": "send_message", "template": "appointment_reminder", "delay_minutes": -1440},
+        {"type": "send_message", "template": "appointment_reminder", "delay_minutes": -120}
+      ]
+    }
+  ]
+}
