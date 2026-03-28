@@ -1,0 +1,139 @@
+{
+  "industry": "real_estate",
+  "name": "Real Estate - Riyadh",
+  "name_ar": "العقارات - الرياض",
+  "pipeline_stages": [
+    {"key": "new_lead", "name_en": "New Lead", "name_ar": "عميل جديد", "order": 1, "probability": 10},
+    {"key": "contacted", "name_en": "Contacted", "name_ar": "تم التواصل", "order": 2, "probability": 20},
+    {"key": "property_tour", "name_en": "Property Tour", "name_ar": "جولة عقارية", "order": 3, "probability": 40},
+    {"key": "offer_made", "name_en": "Offer Made", "name_ar": "عرض سعر", "order": 4, "probability": 60},
+    {"key": "negotiation", "name_en": "Negotiation", "name_ar": "تفاوض", "order": 5, "probability": 75},
+    {"key": "closed_won", "name_en": "Closed Won", "name_ar": "تم البيع", "order": 6, "probability": 100},
+    {"key": "lost", "name_en": "Lost", "name_ar": "ملغي", "order": 7, "probability": 0}
+  ],
+  "message_templates": [
+    {
+      "name": "welcome",
+      "name_ar": "رسالة ترحيب",
+      "channel": "whatsapp",
+      "trigger": "lead_created",
+      "content_ar": "أهلاً {name}! شكراً لتواصلك مع {company}. متخصصين في العقارات بالرياض. وش نوع العقار اللي تبحث عنه؟ 🏠",
+      "content_en": "Hello {name}! Thank you for contacting {company}. We specialize in Riyadh real estate. What type of property are you looking for?",
+      "delay_minutes": 0
+    },
+    {
+      "name": "tour_reminder",
+      "name_ar": "تذكير بالجولة",
+      "channel": "whatsapp",
+      "trigger": "scheduled",
+      "content_ar": "تذكير: عندك جولة عقارية يوم {date} الساعة {time} في {property_name} - {district}. نرسل لك الموقع قبل الموعد. 📍",
+      "content_en": "Reminder: Property tour on {date} at {time} for {property_name} - {district}. We'll send the location before the appointment.",
+      "delay_minutes": -1440
+    },
+    {
+      "name": "post_tour_followup",
+      "name_ar": "متابعة بعد الجولة",
+      "channel": "whatsapp",
+      "trigger": "tour_completed",
+      "content_ar": "مرحباً {name}! كيف شفت العقار اليوم؟ إذا عجبك نقدر نجهز لك عرض سعر. أو عندنا خيارات ثانية في نفس المنطقة.",
+      "content_en": "Hi {name}! How did you find the property today? If you liked it, we can prepare a quote. Or we have other options in the same area.",
+      "delay_minutes": 180
+    },
+    {
+      "name": "no_response",
+      "name_ar": "متابعة عدم الرد",
+      "channel": "whatsapp",
+      "trigger": "no_response",
+      "content_ar": "مرحباً {name}، عندنا عقارات جديدة في الرياض ممكن تناسبك. تبي نرسل لك كتالوج العقارات المتاحة حالياً؟ 🏡",
+      "content_en": "Hi {name}, we have new properties in Riyadh that might interest you. Would you like us to send you the current catalog?",
+      "delay_minutes": 4320
+    },
+    {
+      "name": "new_listing_match",
+      "name_ar": "عقار جديد مطابق",
+      "channel": "whatsapp",
+      "trigger": "new_listing",
+      "content_ar": "مرحباً {name}! عندنا عقار جديد في {district} ممكن يناسب طلبك: {property_title} - {bedrooms} غرف - {price} ريال. تبي تحجز جولة؟",
+      "content_en": "Hi {name}! We have a new property in {district} matching your request: {property_title} - {bedrooms} rooms - {price} SAR. Want to book a tour?",
+      "delay_minutes": 0
+    }
+  ],
+  "proposal_templates": [
+    {
+      "name": "property_presentation",
+      "name_ar": "عرض عقار",
+      "sections": [
+        {"title_ar": "تفاصيل العقار", "title_en": "Property Details"},
+        {"title_ar": "الموقع والحي", "title_en": "Location & District"},
+        {"title_ar": "المميزات", "title_en": "Features"},
+        {"title_ar": "السعر وطريقة الدفع", "title_en": "Price & Payment Plan"},
+        {"title_ar": "الصور", "title_en": "Photos"}
+      ]
+    },
+    {
+      "name": "payment_plan",
+      "name_ar": "خطة السداد",
+      "sections": [
+        {"title_ar": "ملخص العقار", "title_en": "Property Summary"},
+        {"title_ar": "السعر الإجمالي", "title_en": "Total Price"},
+        {"title_ar": "الدفعة الأولى", "title_en": "Down Payment"},
+        {"title_ar": "الأقساط الشهرية", "title_en": "Monthly Installments"},
+        {"title_ar": "الشروط والأحكام", "title_en": "Terms & Conditions"}
+      ]
+    },
+    {
+      "name": "comparison_sheet",
+      "name_ar": "جدول مقارنة",
+      "sections": [
+        {"title_ar": "العقارات المقارنة", "title_en": "Properties Compared"},
+        {"title_ar": "المساحة والغرف", "title_en": "Area & Rooms"},
+        {"title_ar": "السعر", "title_en": "Price"},
+        {"title_ar": "الموقع", "title_en": "Location"},
+        {"title_ar": "التوصية", "title_en": "Recommendation"}
+      ]
+    }
+  ],
+  "workflow_templates": [
+    {
+      "name": "new_client_flow",
+      "name_ar": "تدفق عميل جديد",
+      "trigger": "lead_created",
+      "actions": [
+        {"type": "send_message", "template": "welcome", "delay_minutes": 0},
+        {"type": "create_task", "subject": "اتصل بالعميل واعرف متطلباته", "delay_minutes": 15},
+        {"type": "send_message", "template": "no_response", "delay_minutes": 4320, "condition": "no_response"}
+      ]
+    },
+    {
+      "name": "tour_followup_flow",
+      "name_ar": "متابعة الجولات",
+      "trigger": "stage_change_property_tour",
+      "actions": [
+        {"type": "send_message", "template": "tour_reminder", "delay_minutes": -1440},
+        {"type": "send_message", "template": "post_tour_followup", "delay_minutes": 180}
+      ]
+    }
+  ],
+  "riyadh_districts": [
+    {"name_ar": "حي النرجس", "name_en": "Al Narjis"},
+    {"name_ar": "حي الياسمين", "name_en": "Al Yasmin"},
+    {"name_ar": "حي حطين", "name_en": "Hittin"},
+    {"name_ar": "حي العارض", "name_en": "Al Arid"},
+    {"name_ar": "حي الملقا", "name_en": "Al Malqa"},
+    {"name_ar": "حي الصحافة", "name_en": "Al Sahafa"},
+    {"name_ar": "حي العليا", "name_en": "Al Olaya"},
+    {"name_ar": "حي السليمانية", "name_en": "Al Sulaimaniyah"},
+    {"name_ar": "حي الروضة", "name_en": "Al Rawdah"},
+    {"name_ar": "حي المروج", "name_en": "Al Muruj"},
+    {"name_ar": "حي الازدهار", "name_en": "Al Izdihar"},
+    {"name_ar": "حي النخيل", "name_en": "Al Nakheel"},
+    {"name_ar": "حي الربيع", "name_en": "Al Rabi"},
+    {"name_ar": "حي الملك فهد", "name_en": "King Fahd"},
+    {"name_ar": "حي الغدير", "name_en": "Al Ghadir"},
+    {"name_ar": "حي القيروان", "name_en": "Al Qairawan"},
+    {"name_ar": "حي الرمال", "name_en": "Al Rimal"},
+    {"name_ar": "حي العقيق", "name_en": "Al Aqiq"},
+    {"name_ar": "حي الوادي", "name_en": "Al Wadi"},
+    {"name_ar": "حي المهدية", "name_en": "Al Mahdiyah"}
+  ]
+}

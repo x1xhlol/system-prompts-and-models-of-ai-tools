@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+venv/
+.venv/
+
+# Node
+node_modules/
+.next/
+out/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+postgres_data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# SSL
+nginx/ssl/*.pem
+nginx/ssl/*.key
+nginx/ssl/*.crt
+
+# Coverage
+htmlcov/
+.coverage
+coverage/

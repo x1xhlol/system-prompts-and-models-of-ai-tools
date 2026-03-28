@@ -1,0 +1,60 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: "#0F4C81",
+          50: "#E8F0F8",
+          100: "#C5D9EE",
+          200: "#8BB3DD",
+          300: "#518DCC",
+          400: "#2A6AA8",
+          500: "#0F4C81",
+          600: "#0D4173",
+          700: "#0A3460",
+          800: "#08274D",
+          900: "#051A3A",
+        },
+        secondary: {
+          DEFAULT: "#00BFA6",
+          50: "#E0FFF9",
+          100: "#B3FFE8",
+          200: "#66FFD1",
+          300: "#33EFBA",
+          400: "#00D4B3",
+          500: "#00BFA6",
+          600: "#009C87",
+          700: "#007A6A",
+          800: "#00574C",
+          900: "#00352E",
+        },
+        accent: {
+          DEFAULT: "#FF6B35",
+          50: "#FFF0EB",
+          100: "#FFD9C8",
+          200: "#FFB391",
+          300: "#FF8D5A",
+          400: "#FF7948",
+          500: "#FF6B35",
+          600: "#E55A28",
+          700: "#CC4A1B",
+          800: "#993813",
+          900: "#66250D",
+        },
+        dark: "#1A1A2E",
+        success: "#22C55E",
+        warning: "#F59E0B",
+        error: "#EF4444",
+      },
+      fontFamily: {
+        arabic: ["IBM Plex Sans Arabic", "Tajawal", "sans-serif"],
+        sans: ["Inter", "IBM Plex Sans Arabic", "sans-serif"],
+      },
+    },
+  },
+  plugins: [],
+};
