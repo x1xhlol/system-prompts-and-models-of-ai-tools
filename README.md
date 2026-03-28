@@ -60,7 +60,7 @@ Thank you for your support!
 
 Sponsor the most comprehensive repository of AI system prompts and reach thousands of developers.
 
-[Get Started](mailto:lucknitelol@proton.me)
+[Get Started](mailto:lucknitelol@pm.me)
 
 ---
 
