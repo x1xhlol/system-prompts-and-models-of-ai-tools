@@ -1,0 +1,53 @@
+{% if repository_info %}
+<REPOSITORY_INFO>
+At the user's request, repository {{ repository_info.repo_name }} has been cloned to {{ repository_info.repo_directory }} in the current working directory.
+{% if repository_info.branch_name %}The repository has been checked out to branch "{{ repository_info.branch_name }}".
+
+IMPORTANT: You should work within the current branch "{{ repository_info.branch_name }}" unless:
+    1. the user explicitly instructs otherwise
+    2. the current branch is "main", "master", or another default branch where direct pushes may be unsafe
+{% endif %}
+</REPOSITORY_INFO>
+{% endif %}
+{% if repository_instructions -%}
+<REPOSITORY_INSTRUCTIONS>
+{{ repository_instructions }}
+</REPOSITORY_INSTRUCTIONS>
+{% endif %}
+{% if runtime_info -%}
+<RUNTIME_INFORMATION>
+{% if runtime_info.working_dir %}
+The current working directory is {{ runtime_info.working_dir }}
+{% endif %}
+{% if runtime_info.available_hosts %}
+The user has access to the following hosts for accessing a web application,
+each of which has a corresponding port:
+{% for host, port in runtime_info.available_hosts.items() -%}
+* {{ host }} (port {{ port }})
+{% endfor %}
+When starting a web server, use the corresponding ports. You should also
+set any options to allow iframes and CORS requests, and allow the server to
+be accessed from any host (e.g. 0.0.0.0).
+For example, if you are using vite.config.js, you should set server.host and server.allowedHosts to true
+{% endif %}
+{% if runtime_info.additional_agent_instructions %}
+{{ runtime_info.additional_agent_instructions }}
+{% endif %}
+{% if runtime_info.custom_secrets_descriptions %}
+<CUSTOM_SECRETS>
+You have access to the following environment variables
+{% for secret_name, secret_description in runtime_info.custom_secrets_descriptions.items() %}
+* **${{ secret_name }}**: {{ secret_description }}
+{% endfor %}
+</CUSTOM_SECRETS>
+{% endif %}
+{% if runtime_info.date %}
+Today's date is {{ runtime_info.date }} (UTC).
+{% endif %}
+</RUNTIME_INFORMATION>
+{% if conversation_instructions and conversation_instructions.content -%}
+<CONVERSATION_INSTRUCTIONS>
+{{ conversation_instructions.content }}
+</CONVERSATION_INSTRUCTIONS>
+{% endif %}
+{% endif %}
