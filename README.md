@@ -52,11 +52,74 @@
 
 <a href="https://trendshift.io/repositories/14084" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14084" alt="x1xhlol%2Fsystem-prompts-and-models-of-ai-tools | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
-📜 Over **30,000+ lines** of insights into their structure and functionality.  
+📜 Over **35,000+ lines** of insights into their structure and functionality.
 
 
 [![Build Status](https://app.cloudback.it/badge/x1xhlol/system-prompts-and-models-of-ai-tools)](https://cloudback.it)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/x1xhlol/system-prompts-and-models-of-ai-tools)
+
+---
+
+## 📋 Tools Index
+
+### Closed Source / Leaked Prompts
+
+| Tool | Prompt | Tools | Directory |
+|------|--------|-------|-----------|
+| Amazon Q Developer | ✅ | — | `Amazon Q Developer/` |
+| Amp | ✅ | — | `Amp/` |
+| Augment Code | ✅ | ✅ | `Augment Code/` |
+| Claude Code | ✅ | ✅ | `Anthropic/Claude Code/` |
+| Claude for Chrome | ✅ | ✅ | `Anthropic/Claude for Chrome/` |
+| ChatGPT (GPT-4o) | ✅ | ✅ | `OpenAI/ChatGPT/` |
+| Cluely | ✅ | — | `Cluely/` |
+| CodeBuddy | ✅ | — | `CodeBuddy Prompts/` |
+| Comet Assistant | ✅ | ✅ | `Comet Assistant/` |
+| Cursor | ✅ | ✅ | `Cursor Prompts/` |
+| Devin AI | ✅ | — | `Devin AI/` |
+| Dia | ✅ | — | `dia/` |
+| Emergent | ✅ | ✅ | `Emergent/` |
+| GitHub Copilot | ✅ | — | `GitHub Copilot/` |
+| Google Antigravity | ✅ | — | `Google/Antigravity/` |
+| Google Gemini (AI Studio) | ✅ | — | `Google/Gemini/` |
+| Grok | ✅ | — | `xAI/Grok/` |
+| JetBrains AI Assistant | ✅ | — | `JetBrains AI/` |
+| Junie | ✅ | — | `Junie/` |
+| Kiro | ✅ | — | `Kiro/` |
+| Leap.new | ✅ | ✅ | `Leap.new/` |
+| Lovable | ✅ | ✅ | `Lovable/` |
+| Manus Agent | ✅ | ✅ | `Manus Agent Tools & Prompt/` |
+| Mistral Le Chat | ✅ | — | `Mistral/Le Chat/` |
+| NotionAI | ✅ | ✅ | `NotionAi/` |
+| Orchids.app | ✅ | — | `Orchids.app/` |
+| Perplexity | ✅ | — | `Perplexity/` |
+| Poke | ✅ | — | `Poke/` |
+| Qoder | ✅ | — | `Qoder/` |
+| Replit | ✅ | ✅ | `Replit/` |
+| Same.dev | ✅ | ✅ | `Same.dev/` |
+| Trae | ✅ | ✅ | `Trae/` |
+| Traycer AI | ✅ | ✅ | `Traycer AI/` |
+| v0 | ✅ | ✅ | `v0 Prompts and Tools/` |
+| VSCode Agent | ✅ | — | `VSCode Agent/` |
+| Warp.dev | ✅ | — | `Warp.dev/` |
+| Windsurf | ✅ | ✅ | `Windsurf/` |
+| Xcode | ✅ | — | `Xcode/` |
+| Z.ai Code | ✅ | — | `Z.ai Code/` |
+
+### Open Source Prompts
+
+| Tool | Prompt | Directory |
+|------|--------|-----------|
+| Aider | ✅ | `Open Source prompts/Aider/` |
+| Bolt | ✅ | `Open Source prompts/Bolt/` |
+| Cline | ✅ | `Open Source prompts/Cline/` |
+| Codex CLI | ✅ | `Open Source prompts/Codex CLI/` |
+| Cody (Sourcegraph) | ✅ | `Open Source prompts/Cody/` |
+| Continue.dev | ✅ | `Open Source prompts/Continue.dev/` |
+| Gemini CLI | ✅ | `Open Source prompts/Gemini CLI/` |
+| Lumo | ✅ | `Open Source prompts/Lumo/` |
+| OpenHands | ✅ | `Open Source prompts/OpenHands/` |
+| RooCode | ✅ | `Open Source prompts/RooCode/` |
 
 ---
 
@@ -89,7 +152,7 @@ Sponsor the most comprehensive repository of AI system prompts and reach thousan
 
 > Open an issue.
 
-> **Latest Update:** 08/01/2026
+> **Latest Update:** 03/30/2026
 
 ---
 
