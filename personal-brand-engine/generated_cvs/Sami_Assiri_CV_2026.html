@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sami Mohammed Assiri - CV</title>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: #1a1a1a;
+            background: #fff;
+        }
+
+        .page {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 18mm 16mm;
+        }
+
+        a { color: #0a66c2; text-decoration: none; }
+
+        /* ── Header ── */
+        .header {
+            text-align: center;
+            border-bottom: 2.5px solid #0a66c2;
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+        }
+
+        .header h1 {
+            font-size: 24pt;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .header .title {
+            font-size: 11pt;
+            color: #0a66c2;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .contact-row {
+            font-size: 9pt;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .contact-row .sep { color: #ccc; margin: 0 5px; }
+
+        /* ── Sections ── */
+        .section-title {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #0a66c2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #dce6f0;
+            padding-bottom: 3px;
+            margin-top: 14px;
+            margin-bottom: 7px;
+        }
+
+        .summary {
+            text-align: justify;
+            font-size: 10pt;
+            line-height: 1.55;
+        }
+
+        /* ── Experience ── */
+        .exp-item { margin-bottom: 10px; }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .exp-header .role { font-weight: 700; font-size: 10.5pt; }
+        .exp-header .period { font-size: 9pt; color: #666; white-space: nowrap; }
+
+        .exp-company { font-size: 9.5pt; color: #444; font-style: italic; margin-bottom: 3px; }
+
+        ul.bullets { list-style: none; padding-left: 12px; }
+        ul.bullets li { position: relative; padding-left: 10px; margin-bottom: 1.5px; font-size: 9.5pt; }
+        ul.bullets li::before {
+            content: "\25AA"; position: absolute; left: 0; color: #0a66c2; font-size: 7pt; top: 3px;
+        }
+
+        /* ── Skills Grid ── */
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+        .skill-category { width: calc(50% - 10px); margin-bottom: 4px; }
+        .skill-category h4 { font-size: 9.5pt; font-weight: 600; color: #333; margin-bottom: 1px; }
+        .skill-category ul { list-style: none; padding: 0; }
+        .skill-category li { font-size: 9pt; color: #444; padding: 0.5px 0; }
+
+        /* ── Plain Lists ── */
+        ul.plain-list { list-style: none; padding: 0; columns: 2; column-gap: 20px; }
+        ul.plain-list li { padding: 1.5px 0 1.5px 12px; position: relative; font-size: 9pt; break-inside: avoid; }
+        ul.plain-list li::before { content: "\25AA"; position: absolute; left: 0; color: #0a66c2; font-size: 7pt; top: 3px; }
+
+        .awards-list { columns: 1; }
+
+        /* ── Education ── */
+        .edu-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .edu-header .degree { font-weight: 700; font-size: 10.5pt; }
+        .edu-header .period { font-size: 9pt; color: #666; }
+        .edu-institution { font-size: 9.5pt; color: #444; font-style: italic; margin-bottom: 3px; }
+
+        .references p { font-size: 9pt; margin-bottom: 1.5px; color: #444; }
+
+        @media print {
+            body { font-size: 10pt; }
+            .page { padding: 10mm 14mm; }
+            .section-title { margin-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <header class="header">
+        <h1>Sami Mohammed Assiri</h1>
+        <div class="title">Field Services Engineer | Airport Security Systems | Smiths Detection Specialist</div>
+        <div class="contact-row">
+            <span>sami.assiri11@gmail.com</span>
+            <span class="sep">|</span>
+            <span>+966 597 788 539</span>
+            <span class="sep">|</span>
+            <span>Riyadh, Saudi Arabia</span>
+            <span class="sep">|</span>
+            <span><a href="https://www.linkedin.com/in/sami-assiri-a300622b2/">linkedin.com/in/sami-assiri</a></span>
+        </div>
+    </header>
+
+    <!-- PROFESSIONAL SUMMARY -->
+    <section>
+        <h2 class="section-title">Professional Summary</h2>
+        <p class="summary">
+            Results-driven Mechanical Engineer and Field Services Engineer with hands-on expertise in
+            Smiths Detection airport security systems (HI-SCAN, IONSCAN 600, CTX) at King Khalid International Airport.
+            Proven track record in data-driven project planning, having engineered Python-powered dashboards that
+            reduced reporting time by 75% and modeled 4,327+ activities in Primavera P6 for multi-billion-dollar
+            oil &amp; gas projects at Samsung E&amp;A. Demonstrated leadership as SPE Alasala Chapter President,
+            scaling membership from 0 to 89 active participants and generating 50,000+ organic impressions.
+            Combines technical depth in security systems maintenance with strong analytical capabilities in
+            Python, SQL, Power BI, and advanced project management tools.
+        </p>
+    </section>
+
+    <!-- WORK EXPERIENCE -->
+    <section>
+        <h2 class="section-title">Work Experience</h2>
+
+        <div class="exp-item">
+            <div class="exp-header">
+                <span class="role">Field Services Engineer</span>
+                <span class="period">Jan 2026 &ndash; Present</span>
+            </div>
+            <div class="exp-company">METCO &ndash; Middle East Services | King Khalid International Airport, Riyadh</div>
+            <ul class="bullets">
+                <li>Execute preventive and corrective maintenance on Smiths Detection airport security equipment serving 30M+ annual passengers</li>
+                <li>Operate and calibrate HI-SCAN X-ray screening systems ensuring 99.9% uptime for passenger and baggage inspection</li>
+                <li>Maintain IONSCAN 600 trace detection systems for explosive and narcotic identification at security checkpoints</li>
+                <li>Service CTX advanced computed tomography inspection systems for hold baggage screening</li>
+                <li>Perform system calibration, quality assurance testing, and compliance verification per GACA and ICAO standards</li>
+                <li>Troubleshoot and resolve complex equipment malfunctions, minimizing operational disruptions to airport security</li>
+            </ul>
+        </div>
+
+        <div class="exp-item">
+            <div class="exp-header">
+                <span class="role">Planning Engineer Intern</span>
+                <span class="period">Feb 2025 &ndash; May 2025</span>
+            </div>
+            <div class="exp-company">Samsung E&amp;A Saudi Arabia | Dammam, Eastern Province</div>
+            <ul class="bullets">
+                <li>Engineered Python-powered dashboards and automated Gantt chart modules, reducing reporting preparation time by 75%</li>
+                <li>Modeled and scheduled 4,327 activities in Primavera P6, applying Monte Carlo simulations to deliver accurate P-80 risk envelopes for high-value oil &amp; gas projects</li>
+                <li>Co-authored and deployed a 12,000-tag digital-asset registry baseline, completed 17 days ahead of schedule, supporting operational readiness for multi-billion-dollar facilities</li>
+                <li>Produced data-driven quarterly performance and market intelligence reports for 8+ major projects, providing actionable insights for strategic planning and investment decisions</li>
+                <li>Facilitated 14+ high-level meetings and technical workshops with Aramco and global EPC contractors, aligning planning, risk, and cost strategies across teams</li>
+                <li>Supported asset management and digital transformation initiatives, integrating advanced analytics and visualization tools to enhance operational decision-making</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- LEADERSHIP -->
+    <section>
+        <h2 class="section-title">Leadership &amp; Organizations</h2>
+
+        <div class="exp-item">
+            <div class="exp-header">
+                <span class="role">President &ndash; SPE Alasala Chapter</span>
+                <span class="period">Sep 2024 &ndash; Present</span>
+            </div>
+            <div class="exp-company">Society of Petroleum Engineers (SPE) | Dammam</div>
+            <ul class="bullets">
+                <li>Revitalized a dormant student chapter, scaling active membership from 0 to 89 members within one semester through strategic outreach</li>
+                <li>Directed marketing campaigns generating 50,000+ organic impressions across social platforms</li>
+                <li>Built partnerships with Aramco, Saudi Council of Engineers, and multiple EPC firms aligned with Saudi Vision 2030</li>
+                <li>Organized 6+ technical workshops, industry visits, and career development sessions</li>
+                <li>Secured invitation to the 2025 MENA PetroBowl qualifiers</li>
+            </ul>
+        </div>
+
+        <div class="exp-item">
+            <div class="exp-header">
+                <span class="role">Founder &ndash; Elite Engineers Club</span>
+                <span class="period">2024 &ndash; May 2025</span>
+            </div>
+            <div class="exp-company">Alasala Colleges | Dammam</div>
+            <ul class="bullets">
+                <li>Founded a multidisciplinary engineering hub attracting 40+ students from mechanical, electrical, and civil engineering</li>
+                <li>Negotiated accreditation with EduStation and Saudi Council of Engineers for industry-aligned training programs</li>
+                <li>Secured industry sponsorships and introduced data-driven impact tracking tools</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section>
+        <h2 class="section-title">Education</h2>
+        <div class="edu-header">
+            <span class="degree">Bachelor of Science in Mechanical Engineering</span>
+            <span class="period">Mar 2019 &ndash; May 2025</span>
+        </div>
+        <div class="edu-institution">Alasala Colleges &ndash; Dammam, Eastern Province, Saudi Arabia</div>
+        <ul class="bullets">
+            <li>Best Capstone Project Award (1st of 16 teams) &ndash; developed a biodegradable, thermally insulating green composite from sunflower waste</li>
+            <li>Relevant coursework: HVAC Systems, Renewable Energy, Project Planning &amp; Control, Data Analysis &amp; Visualization, Asset Management</li>
+        </ul>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section>
+        <h2 class="section-title">Certifications &amp; Training</h2>
+        <ul class="plain-list">
+            <li>MV Switchgears &amp; Modular Power Systems &ndash; Training Workshop (Aug 2025)</li>
+            <li>Earthing Systems &ndash; Training Workshop (Aug 2025)</li>
+            <li>KNX System Fundamentals &amp; Building Automation &ndash; eLearning (Oct 2024)</li>
+            <li>Saudi Mechanical Code (SBC 501) &ndash; Saudi Council of Engineers (Jun 2024)</li>
+            <li>BIM-Oriented Sustainable Design &ndash; Autodesk (May 2024)</li>
+            <li>Emergency Lighting &amp; Central Battery Systems &ndash; ABB (Apr 2024)</li>
+            <li>Low Voltage Circuit Breakers (IEC Standards) &ndash; ABB (Apr 2024)</li>
+            <li>ABB E-Design Certification &ndash; ABB (May 2024)</li>
+            <li>Contract &amp; Tendering Management &ndash; PMI (Jun 2024)</li>
+            <li>Organizational Effectiveness &amp; Excellence &ndash; EFQM (May 2024)</li>
+        </ul>
+    </section>
+
+    <!-- SKILLS -->
+    <section>
+        <h2 class="section-title">Technical &amp; Professional Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h4>Airport Security &amp; Engineering</h4>
+                <ul>
+                    <li>Smiths Detection Equipment (HI-SCAN, IONSCAN 600, CTX)</li>
+                    <li>Preventive &amp; Corrective Maintenance</li>
+                    <li>System Calibration &amp; Quality Assurance</li>
+                    <li>HVAC Systems | BIM | Digital Twin</li>
+                    <li>Asset Management Systems</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4>Data &amp; Analytics</h4>
+                <ul>
+                    <li>Python (Pandas, NumPy, Plotly, Dash)</li>
+                    <li>SQL | Power BI | Jupyter Notebook</li>
+                    <li>Advanced Excel (Automation, Reporting)</li>
+                    <li>KPI Development &amp; Performance Tracking</li>
+                    <li>Risk Modeling &amp; Forecasting</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4>Project Management</h4>
+                <ul>
+                    <li>Primavera P6 &amp; MS Project</li>
+                    <li>Monte Carlo Simulation (Risk Analysis)</li>
+                    <li>Cost Estimation &amp; Budget Control</li>
+                    <li>Stakeholder Management &amp; Communication</li>
+                    <li>Resource Optimization &amp; Strategic Execution</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4>Leadership &amp; Soft Skills</h4>
+                <ul>
+                    <li>Strategic Communication &amp; Negotiation</li>
+                    <li>Cross-Functional Collaboration</li>
+                    <li>Organizational Design &amp; Talent Development</li>
+                    <li>Event Planning &amp; Industry Engagement</li>
+                    <li>Automated Reporting &amp; ETL Pipelines</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- AWARDS -->
+    <section>
+        <h2 class="section-title">Awards &amp; Recognition</h2>
+        <ul class="plain-list awards-list">
+            <li>Best Capstone Project Award (1st of 16 teams) &ndash; Alasala Colleges (May 2025)</li>
+            <li>SPE KSA Excellence Award &ndash; Impactful contributions to student engineering development (2025)</li>
+            <li>Presidential Recognition &ndash; SPE International, for revitalizing the Alasala Chapter (2025)</li>
+        </ul>
+    </section>
+
+    <!-- REFERENCES -->
+    <section class="references">
+        <h2 class="section-title">References</h2>
+        <p>Dr. Saeed AlNoman &ndash; Assistant Professor, Mechanical Engineering, Alasala Colleges</p>
+        <p>Khalifa &ndash; Assistant Director of Project Management, Samsung E&amp;A</p>
+    </section>
+
+</div>
+</body>
+</html>

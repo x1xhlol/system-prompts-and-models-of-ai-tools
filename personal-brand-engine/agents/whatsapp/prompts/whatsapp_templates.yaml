@@ -1,0 +1,86 @@
+# WhatsApp response templates for Sami Mohammed Assiri's AI assistant.
+# Used as fallback snippets and quick-reply building blocks.
+
+greeting:
+  ar: |
+    أهلاً وسهلاً! أنا المساعد الذكي لسامي محمد عسيري.
+    كيف يمكنني مساعدتك اليوم؟
+  en: |
+    Hello! I'm the AI assistant for Sami Mohammed Assiri.
+    How can I help you today?
+
+meeting_request:
+  ar: |
+    شكراً لاهتمامك بالتواصل مع سامي!
+    يمكنك حجز موعد مباشرة من خلال الرابط التالي:
+    {calcom_url}
+    سيتم تأكيد الموعد تلقائياً.
+  en: |
+    Thank you for your interest in connecting with Sami!
+    You can book a meeting directly through this link:
+    {calcom_url}
+    The appointment will be confirmed automatically.
+
+about_sami:
+  ar: |
+    سامي محمد عسيري هو مهندس خدمات ميدانية في شركة METCO (Smiths Detection) بالرياض.
+    متخصص في أنظمة الأمن بالمطارات وتقنيات الفحص بالأشعة المقطعية/السينية.
+    للمزيد من المعلومات يمكنك زيارة ملفه على لينكدإن.
+  en: |
+    Sami Mohammed Assiri is a Field Services Engineer at METCO (Smiths Detection) in Riyadh.
+    He specializes in airport security systems and CT/X-ray screening technology.
+    For more details, you can visit his LinkedIn profile.
+
+cv_request:
+  ar: |
+    بالتأكيد! يمكنك الاطلاع على السيرة الذاتية لسامي من خلال الرابط التالي:
+    {cv_url}
+    إذا كان لديك أي استفسار إضافي، لا تتردد في السؤال.
+  en: |
+    Of course! You can view Sami's CV through this link:
+    {cv_url}
+    If you have any additional questions, feel free to ask.
+
+job_inquiry:
+  ar: |
+    شكراً لاهتمامك! سامي حالياً يعمل كمهندس خدمات ميدانية في METCO (Smiths Detection).
+    إذا كنت ترغب في مناقشة فرصة وظيفية، يمكنك:
+    1. حجز موعد: {calcom_url}
+    2. الاطلاع على السيرة الذاتية: {cv_url}
+    سيتواصل معك سامي شخصياً في أقرب وقت.
+  en: |
+    Thank you for your interest! Sami currently works as a Field Services Engineer at METCO (Smiths Detection).
+    If you'd like to discuss a job opportunity, you can:
+    1. Book a meeting: {calcom_url}
+    2. View his CV: {cv_url}
+    Sami will follow up with you personally soon.
+
+unavailable:
+  ar: |
+    شكراً لتواصلك. سامي غير متاح حالياً.
+    سيتواصل معك في أقرب وقت ممكن.
+    إذا كان الأمر عاجلاً، يمكنك حجز موعد: {calcom_url}
+  en: |
+    Thank you for reaching out. Sami is currently unavailable.
+    He will get back to you as soon as possible.
+    If it's urgent, you can book a time: {calcom_url}
+
+contact_info:
+  ar: |
+    معلومات التواصل مع سامي:
+    - لينكدإن: {linkedin_url}
+    - حجز موعد: {calcom_url}
+    - البريد الإلكتروني: {email}
+  en: |
+    Sami's contact information:
+    - LinkedIn: {linkedin_url}
+    - Book a meeting: {calcom_url}
+    - Email: {email}
+
+thank_you:
+  ar: |
+    شكراً لك! إذا احتجت أي شيء آخر، لا تتردد في التواصل.
+    أتمنى لك يوماً سعيداً! 🌟
+  en: |
+    Thank you! If you need anything else, don't hesitate to reach out.
+    Have a great day!

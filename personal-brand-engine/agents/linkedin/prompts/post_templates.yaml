@@ -1,0 +1,177 @@
+# LinkedIn post templates for Sami Mohammed Assiri
+# Each pillar has English and Arabic templates as starting inspiration for the LLM.
+# Templates are NOT published verbatim -- they guide structure and tone.
+
+tech_insights:
+  english:
+    - |
+      Most people walk through airport security without a second thought.
+
+      But behind that conveyor belt is a symphony of physics, algorithms, and
+      engineering precision. Dual-energy X-ray, CT reconstruction, automated
+      threat detection -- each layer exists because someone asked "what if we
+      miss something?"
+
+      At Smiths Detection, I get to work on that question every day.
+
+      What airport security technology surprised you the most?
+
+      #AviationSecurity #SmithsDetection #AirportTechnology #Engineering #METCO
+    - |
+      A single CT scanner at an airport checkpoint processes hundreds of bags
+      per hour. But what happens when it flags an anomaly?
+
+      That is where field engineers step in -- calibrating, troubleshooting,
+      and making sure the system keeps passengers safe without grinding the
+      queue to a halt.
+
+      Here is what I have learned about balancing speed and security...
+
+      #FieldEngineering #CTScanner #AirportSecurity #SmithsDetection #Aviation
+  arabic:
+    - |
+      هل تساءلت يومًا كيف تعمل أجهزة الفحص الأمني في المطارات؟
+
+      خلف الكواليس، هناك تكنولوجيا متقدمة تجمع بين الأشعة السينية ثنائية
+      الطاقة وخوارزميات الذكاء الاصطناعي للكشف عن التهديدات في أجزاء من الثانية.
+
+      كمهندس ميداني في شركة سميثس ديتيكشن، أعمل يوميًا على ضمان أن هذه
+      الأنظمة تعمل بأعلى كفاءة لحماية المسافرين.
+
+      ما الذي يثير فضولك حول تقنيات أمن المطارات؟
+
+      #أمن_المطارات #سميثس_ديتيكشن #هندسة #تكنولوجيا #METCO
+
+field_life:
+  english:
+    - |
+      6 AM. Airport tarmac. A screening system is down and flights start
+      boarding in two hours.
+
+      This is the reality of field service engineering -- you do not get to
+      debug from a comfortable desk. You troubleshoot under pressure, with
+      real consequences if you get it wrong.
+
+      But honestly? I would not trade it for anything. There is something
+      deeply satisfying about bringing a critical system back online and
+      watching operations resume smoothly.
+
+      What does a typical "crisis morning" look like in your field?
+
+      #FieldEngineer #DayInTheLife #AirportOperations #Engineering #ProblemSolving
+    - |
+      People ask me what a Field Services Engineer actually does.
+
+      Short answer: I keep airport security systems running so you can catch
+      your flight safely.
+
+      Long answer: I calibrate CT scanners, diagnose firmware issues at 3 AM,
+      train local technicians, and occasionally explain to airport managers
+      why preventive maintenance is cheaper than emergency repairs.
+
+      Every day is different, and that is exactly why I love this work.
+
+      #FieldService #SmithsDetection #Engineering #AviationSecurity #CareerStory
+  arabic:
+    - |
+      الساعة السادسة صباحًا. المطار. نظام الفحص الأمني متوقف والرحلات على
+      وشك الانطلاق.
+
+      هذا هو واقع مهندس الخدمات الميدانية -- لا وقت للتردد، كل دقيقة تأخير
+      تعني تأثيرًا على مئات المسافرين.
+
+      التشخيص السريع والحل الفعال هما مفتاح النجاح في هذا المجال. وبعد كل
+      إصلاح ناجح، تشعر بفخر حقيقي أنك ساهمت في استمرار العمليات بسلاسة.
+
+      كيف تتعامل مع الضغط في عملك؟
+
+      #مهندس_ميداني #حياة_المهندس #أمن_المطارات #هندسة #METCO
+
+professional_growth:
+  english:
+    - |
+      Two years ago, I was finishing my engineering degree and wondering
+      what comes next.
+
+      Today, I am maintaining advanced security systems at international
+      airports and leading the SPE chapter at my university.
+
+      The difference was not talent -- it was saying yes to every
+      uncomfortable opportunity: presenting at conferences, taking the
+      overseas assignment, volunteering to lead when no one else would.
+
+      What was the one "yes" that changed your career trajectory?
+
+      #ProfessionalGrowth #Engineering #SPE #CareerAdvice #Leadership
+    - |
+      I just completed a certification that took months of evening study
+      after long field shifts.
+
+      Was it worth it? Absolutely.
+
+      Not because of the certificate itself, but because the process forced
+      me to master concepts I had been hand-waving through for years.
+
+      If you are debating whether to pursue that certification -- start today.
+      Future you will be grateful.
+
+      #ContinuousLearning #Certification #Engineering #CareerDevelopment #Growth
+  arabic:
+    - |
+      قبل عامين كنت طالبًا جامعيًا أتساءل عن مستقبلي المهني.
+
+      اليوم أعمل كمهندس خدمات ميدانية على أنظمة أمنية متقدمة في المطارات
+      الدولية، وأترأس فرع جمعية مهندسي البترول في جامعة العسالة.
+
+      الفرق لم يكن الموهبة -- بل الاستعداد لقبول كل فرصة حتى لو كانت
+      خارج منطقة الراحة.
+
+      ما القرار الذي غيّر مسارك المهني؟
+
+      #تطوير_مهني #هندسة #قيادة #SPE #نصائح_مهنية
+
+industry_news:
+  english:
+    - |
+      ICAO just released updated screening standards that will reshape
+      airport security globally.
+
+      Here is what it means for the industry:
+
+      The shift toward CT-based cabin baggage screening is accelerating.
+      Airports that have not started planning their technology refresh are
+      already behind.
+
+      For field engineers like me, this means more deployments, more complex
+      integrations, and a massive need for trained technicians.
+
+      How is your airport preparing for the next generation of screening?
+
+      #ICAO #AviationSecurity #AirportScreening #CTScanner #SmithsDetection
+    - |
+      Saudi Arabia's aviation sector is growing at an unprecedented rate.
+      New airports, expanded terminals, Vision 2030 targets.
+
+      Behind every new gate is a security checkpoint that needs to be
+      designed, installed, calibrated, and maintained.
+
+      This is an exciting time to be in aviation security engineering in
+      the Kingdom.
+
+      What Vision 2030 developments are you most excited about?
+
+      #Vision2030 #SaudiArabia #Aviation #GACA #AirportSecurity #Engineering
+  arabic:
+    - |
+      أعلنت منظمة الطيران المدني الدولي (إيكاو) عن معايير فحص محدثة ستغير
+      ملامح أمن المطارات عالميًا.
+
+      التحول نحو أنظمة الفحص بتقنية التصوير المقطعي المحوسب يتسارع، والمطارات
+      التي لم تبدأ بالتخطيط لتحديث تقنياتها أصبحت متأخرة.
+
+      قطاع الطيران في المملكة العربية السعودية ينمو بوتيرة غير مسبوقة ضمن
+      رؤية 2030، وهذا يعني فرصًا هائلة لمهندسي أمن الطيران.
+
+      ما التطورات في قطاع الطيران السعودي التي تتابعها باهتمام؟
+
+      #إيكاو #أمن_الطيران #رؤية_2030 #المملكة_العربية_السعودية #GACA #هندسة

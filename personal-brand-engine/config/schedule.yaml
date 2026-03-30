@@ -1,0 +1,68 @@
+# ===================================
+# Agent Schedule Configuration
+# ===================================
+# Cron format: minute hour day_of_week
+# Saudi work week: Sun-Thu
+# Timezone: Asia/Riyadh (UTC+3)
+
+agents:
+  linkedin:
+    post_content:
+      cron: "0 8 * * 0,2,4"        # Sun/Tue/Thu at 8:00 AM
+      description: "Generate and post LinkedIn content"
+    engage_network:
+      cron: "0 9,14,19 * * 0-4"    # 3x daily on workdays (9AM, 2PM, 7PM)
+      description: "Like and comment on connections' posts"
+    optimize_profile:
+      cron: "0 2 * * 5"            # Friday 2:00 AM (weekend)
+      description: "Review and optimize LinkedIn profile"
+
+  email:
+    check_inbox:
+      interval_minutes: 15
+      description: "Monitor inbox, classify and draft responses"
+    send_scheduled:
+      cron: "*/30 * * * *"          # Every 30 minutes
+      description: "Send any queued scheduled emails"
+
+  social_media:
+    post_twitter:
+      cron: "0 10 * * 0-4"         # Daily 10:00 AM on workdays
+      description: "Post to Twitter/X"
+    repurpose_content:
+      cron: "0 12 * * 1,3"         # Mon/Wed at noon
+      description: "Repurpose LinkedIn content for other platforms"
+
+  whatsapp:
+    mode: "webhook"
+    description: "Always-on via webhook - responds to incoming messages"
+
+  cv_optimizer:
+    update_cv:
+      cron: "0 3 1 * *"            # 1st of every month at 3:00 AM
+      description: "Update CV/resume with latest experience"
+    generate_pdf:
+      cron: "0 4 1 * *"            # 1st of every month at 4:00 AM
+      description: "Generate updated PDF resume"
+
+  content_strategist:
+    weekly_plan:
+      cron: "0 22 * * 4"           # Thursday 10:00 PM (plan for next week)
+      description: "Generate weekly content calendar"
+    trend_analysis:
+      cron: "0 6 * * 0-4"          # Daily 6:00 AM on workdays
+      description: "Analyze trending topics in aviation security"
+
+  opportunity_scout:
+    scan_opportunities:
+      cron: "0 */2 * * *"          # Every 2 hours
+      description: "Scan for job opportunities, news, and events"
+    scan_linkedin_jobs:
+      cron: "0 7,13,20 * * 0-4"   # 3x daily on workdays
+      description: "Check LinkedIn for relevant job postings"
+    scan_industry_news:
+      cron: "0 5 * * *"            # Daily 5:00 AM
+      description: "Monitor aviation security and Smiths Detection news"
+    daily_digest:
+      cron: "0 21 * * *"           # Daily 9:00 PM
+      description: "Send daily digest of all found opportunities via WhatsApp/email"

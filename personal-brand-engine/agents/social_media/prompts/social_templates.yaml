@@ -1,0 +1,115 @@
+# Twitter/X tweet templates for Sami Mohammed Assiri's personal brand.
+# Organized by content pillar for consistent messaging.
+
+content_pillars:
+
+  airport_security:
+    description: "Airport security technology, CT/X-ray screening, threat detection"
+    templates:
+      - |
+        Airport security isn't just about scanning bags -- it's about protecting lives at scale.
+        Every system we calibrate makes air travel safer for millions.
+        #AirportSecurity #AviationSafety
+      - |
+        The evolution of CT screening in airports is remarkable.
+        From basic X-ray to AI-powered threat detection -- we're living in the future of security.
+        #CTScreening #SecurityTech
+      - |
+        Behind every smooth airport experience is a team of engineers
+        ensuring screening systems run at peak performance 24/7.
+        #FieldEngineering #AirportSecurity
+
+  engineering_insights:
+    description: "Field service engineering tips, troubleshooting, career growth"
+    templates:
+      - |
+        Field service engineering lesson: the best fix is the one
+        that prevents the next breakdown. Preventive > reactive, always.
+        #Engineering #FieldService
+      - |
+        3 skills every field engineer needs:
+        1. Systematic troubleshooting
+        2. Clear communication with clients
+        3. Adaptability under pressure
+        #EngineeringTips #CareerGrowth
+      - |
+        Documentation isn't optional in field service -- it's your
+        future self's best friend. Write it down today, thank yourself tomorrow.
+        #FieldEngineering #BestPractices
+
+  saudi_tech:
+    description: "Saudi Arabia tech ecosystem, Vision 2030, regional innovation"
+    templates:
+      - |
+        Saudi Arabia's investment in smart airport infrastructure
+        is transforming aviation security across the region.
+        Proud to be part of this journey. #Vision2030 #SaudiTech
+      - |
+        Riyadh is becoming a hub for security technology innovation.
+        The demand for skilled engineers here has never been higher.
+        #SaudiArabia #TechJobs #Riyadh
+      - |
+        Vision 2030 is not just about diversification --
+        it's about building world-class technical capabilities locally.
+        #Vision2030 #Engineering
+
+  career_growth:
+    description: "Professional development, certifications, engineering career advice"
+    templates:
+      - |
+        Your career in engineering grows when you solve problems
+        others avoid. Seek the hard tickets.
+        #CareerAdvice #Engineering
+      - |
+        Certifications matter, but hands-on experience is irreplaceable.
+        The best engineers I know combine both.
+        #ProfessionalDevelopment #FieldService
+      - |
+        Switching from reactive to proactive maintenance mindset
+        was the biggest upgrade in my engineering career.
+        #EngineeringMindset #Growth
+
+  thought_leadership:
+    description: "Industry trends, opinions, future of security technology"
+    templates:
+      - |
+        The future of airport security is AI-assisted, not AI-replaced.
+        Human expertise + machine precision = optimal safety.
+        #AI #SecurityTech #FutureOfWork
+      - |
+        Cybersecurity for physical security systems is the next frontier.
+        If your screening equipment is networked, it needs protection.
+        #Cybersecurity #AirportSecurity
+      - |
+        The convergence of IoT and security screening will redefine
+        how we think about airport operations in the next decade.
+        #IoT #SmartAirports #Innovation
+
+# Thread templates for longer-form content
+thread_templates:
+
+  engineering_story:
+    description: "Share a field engineering experience as a story thread"
+    structure:
+      - "Hook: Start with an interesting problem or situation"
+      - "Context: Brief background on the system/environment"
+      - "Challenge: What made this problem unique or difficult"
+      - "Solution: How the problem was resolved"
+      - "Lesson: Key takeaway for the audience + hashtags"
+
+  industry_analysis:
+    description: "Break down an industry trend or technology"
+    structure:
+      - "Hook: State the trend or technology with a bold claim"
+      - "Data: Share one key statistic or fact"
+      - "Impact: How this affects the industry or professionals"
+      - "Prediction: Where this is heading"
+      - "CTA: Engage the audience with a question + hashtags"
+
+# Hashtag groups for quick reference
+hashtag_groups:
+  core: ["#AirportSecurity", "#FieldEngineering", "#SecurityTech"]
+  saudi: ["#SaudiArabia", "#Vision2030", "#Riyadh", "#SaudiTech"]
+  career: ["#Engineering", "#CareerGrowth", "#ProfessionalDevelopment"]
+  tech: ["#AI", "#IoT", "#Cybersecurity", "#Innovation"]
+  engagement: ["#TechTwitter", "#EngineeringLife", "#AviationSecurity"]

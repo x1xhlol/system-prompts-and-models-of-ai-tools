@@ -1,0 +1,46 @@
+# Core
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.3
+pydantic-settings==2.7.0
+pyyaml==6.0.2
+
+# Database
+sqlalchemy==2.0.36
+alembic==1.14.0
+
+# Scheduling
+apscheduler==3.10.4
+
+# LLM Clients
+httpx==0.28.1
+openai==1.58.1
+groq==0.13.0
+
+# LinkedIn
+linkedin-api==2.2.0
+
+# Twitter/X
+tweepy==4.14.0
+
+# Email
+imapclient==3.0.1
+
+# WhatsApp
+twilio==9.4.0
+
+# CV Generation
+jinja2==3.1.4
+weasyprint==62.3
+
+# Utilities
+python-dotenv==1.0.1
+aiofiles==24.1.0
+python-multipart==0.0.18
+
+# Notifications
+python-telegram-bot==21.9
+
+# Testing
+pytest==8.3.4
+pytest-asyncio==0.25.0

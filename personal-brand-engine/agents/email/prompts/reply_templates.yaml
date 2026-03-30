@@ -1,0 +1,191 @@
+# =============================================================
+# Reply templates for the Email Agent
+# Each category maps to Arabic (ar) and English (en) templates.
+# These serve as starting guides for the LLM response drafter.
+# =============================================================
+
+urgent:
+  en: |
+    Dear [Name],
+
+    Thank you for your email. I appreciate you reaching out regarding [topic].
+
+    I have noted the urgency of your request and will prioritize it accordingly.
+    [Response body]
+
+    Please feel free to book a meeting at your convenience: [Cal.com link]
+
+    Best regards,
+    Sami Mohammed Assiri
+    Field Services Engineer
+    METCO - Middle East Services
+    King Khalid International Airport, Riyadh
+    sami.assiri11@gmail.com
+
+  ar: |
+    عزيزي/عزيزتي [الاسم]،
+
+    شكراً لتواصلك معي بخصوص [الموضوع].
+
+    لقد أخذت بعين الاعتبار أهمية طلبك وسأعطيه الأولوية اللازمة.
+    [نص الرد]
+
+    يمكنك حجز موعد للاجتماع عبر الرابط التالي: [رابط Cal.com]
+
+    مع أطيب التحيات،
+    سامي محمد العسيري
+    مهندس خدمات ميدانية
+    ميتكو - خدمات الشرق الأوسط
+    مطار الملك خالد الدولي - الرياض
+    sami.assiri11@gmail.com
+
+reply_needed:
+  en: |
+    Dear [Name],
+
+    Thank you for your message regarding [topic].
+
+    [Response body]
+
+    Should you need any further information, please don't hesitate to reach out.
+
+    Best regards,
+    Sami Mohammed Assiri
+    Field Services Engineer
+    METCO - Middle East Services
+    sami.assiri11@gmail.com
+
+  ar: |
+    عزيزي/عزيزتي [الاسم]،
+
+    شكراً لرسالتك بخصوص [الموضوع].
+
+    [نص الرد]
+
+    في حال احتجت لأي معلومات إضافية، لا تتردد في التواصل معي.
+
+    مع أطيب التحيات،
+    سامي محمد العسيري
+    مهندس خدمات ميدانية
+    ميتكو - خدمات الشرق الأوسط
+    sami.assiri11@gmail.com
+
+info:
+  en: |
+    Noted, thank you for the update.
+
+    Best regards,
+    Sami Mohammed Assiri
+
+  ar: |
+    تم الاطلاع، شكراً للتحديث.
+
+    مع أطيب التحيات،
+    سامي محمد العسيري
+
+meeting_request:
+  en: |
+    Dear [Name],
+
+    Thank you for the meeting request. I'd be happy to connect.
+
+    For your convenience, please use the following link to book a time
+    that works for both of us: [Cal.com link]
+
+    Alternatively, I am generally available [suggest times].
+
+    Looking forward to our discussion.
+
+    Best regards,
+    Sami Mohammed Assiri
+    Field Services Engineer
+    METCO - Middle East Services
+    sami.assiri11@gmail.com
+
+  ar: |
+    عزيزي/عزيزتي [الاسم]،
+
+    شكراً لطلب الاجتماع. يسعدني التواصل معك.
+
+    لتسهيل التنسيق، يمكنك حجز موعد مناسب عبر الرابط التالي: [رابط Cal.com]
+
+    بدلاً من ذلك، أنا متاح عادةً في [اقتراح أوقات].
+
+    أتطلع لنقاشنا.
+
+    مع أطيب التحيات،
+    سامي محمد العسيري
+    مهندس خدمات ميدانية
+    ميتكو - خدمات الشرق الأوسط
+    sami.assiri11@gmail.com
+
+job_offer:
+  en: |
+    Dear [Name],
+
+    Thank you very much for considering me for the [position] opportunity at [company].
+
+    I appreciate your interest in my background and would welcome the chance to
+    learn more about the role and how I can contribute to your team.
+
+    [Response body]
+
+    I look forward to hearing from you.
+
+    Best regards,
+    Sami Mohammed Assiri
+    Field Services Engineer
+    METCO - Middle East Services
+    sami.assiri11@gmail.com
+
+  ar: |
+    عزيزي/عزيزتي [الاسم]،
+
+    أشكركم جزيل الشكر على التفكير بي لفرصة [المنصب] في [الشركة].
+
+    أقدر اهتمامكم بخبراتي وأرحب بفرصة معرفة المزيد عن الدور
+    وكيف يمكنني المساهمة في فريقكم.
+
+    [نص الرد]
+
+    أتطلع لسماع أخباركم.
+
+    مع أطيب التحيات،
+    سامي محمد العسيري
+    مهندس خدمات ميدانية
+    ميتكو - خدمات الشرق الأوسط
+    sami.assiri11@gmail.com
+
+networking:
+  en: |
+    Dear [Name],
+
+    Thank you for reaching out. It's great to connect with fellow professionals
+    in the [industry/field] space.
+
+    [Response body]
+
+    Feel free to connect with me on LinkedIn as well:
+    https://www.linkedin.com/in/sami-assiri-a300622b2/
+
+    Best regards,
+    Sami Mohammed Assiri
+    Field Services Engineer
+    METCO - Middle East Services
+    sami.assiri11@gmail.com
+
+  ar: |
+    عزيزي/عزيزتي [الاسم]،
+
+    شكراً لتواصلك. يسعدني التواصل مع المتخصصين في مجال [الصناعة/التخصص].
+
+    [نص الرد]
+
+    يمكنك التواصل معي أيضاً عبر LinkedIn:
+    https://www.linkedin.com/in/sami-assiri-a300622b2/
+
+    مع أطيب التحيات،
+    سامي محمد العسيري
+    مهندس خدمات ميدانية
+    ميتكو - خدمات الشرق الأوسط
+    sami.assiri11@gmail.com

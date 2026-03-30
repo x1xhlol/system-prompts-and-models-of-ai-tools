@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  brand-engine:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: brand-engine
+    restart: always
+    env_file: .env
+    volumes:
+      - ./data:/app/data
+      - ./config:/app/config
+      - ./generated_cvs:/app/generated_cvs
+      - ./logs:/app/logs
+    ports:
+      - "${API_PORT:-8080}:8080"
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: brand-ollama
+    restart: always
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+    # Uncomment for GPU support:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+volumes:
+  ollama_data:

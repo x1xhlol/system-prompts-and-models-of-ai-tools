@@ -1,0 +1,29 @@
+# Comment templates for LinkedIn engagement
+# These are NOT posted verbatim -- they guide the LLM toward the right tone
+# and structure.  Grouped by the type of post being responded to.
+
+technical_post:
+  - "This resonates with what I see in the field working on screening systems. The challenge of {specific_point} is something we navigate daily at airport checkpoints."
+  - "Interesting perspective on {topic}. In airport security we face a similar trade-off between detection accuracy and throughput speed."
+  - "Great breakdown of {topic}. I have found that hands-on calibration experience often reveals nuances that specs alone do not capture."
+
+career_advice:
+  - "This is solid advice. Leading the SPE chapter at university taught me the same lesson -- growth happens when you volunteer for the roles nobody else wants."
+  - "Completely agree on {specific_point}. Moving from Samsung E&A to field service at Smiths Detection was uncomfortable at first, but it accelerated my growth more than any classroom could."
+  - "I wish someone had told me this earlier in my career. The transition from university to field engineering is steep, and advice like this makes a real difference."
+
+industry_news:
+  - "Important development. For those of us in airport security, this will directly impact how we approach {specific_point} at the checkpoint level."
+  - "The timing of this is significant given the pace of airport expansion in the GCC. Curious to see how {specific_point} plays out in practice."
+  - "Worth watching closely. On the ground, we are already seeing early signs of this shift in the systems being deployed across Saudi airports."
+
+personal_story:
+  - "Thanks for sharing this. The honesty about {specific_point} is refreshing -- too many people on LinkedIn only share the highlight reel."
+  - "This is the kind of post that makes LinkedIn worthwhile. Real stories from the field always teach more than polished corporate updates."
+  - "I had a very similar experience during my first months as a field engineer. It is reassuring to know that the learning curve is universal."
+
+arabic_post:
+  - "محتوى قيّم جدًا. من خلال تجربتي في مجال أمن المطارات، أرى أن {specific_point} يمثل تحديًا حقيقيًا نواجهه يوميًا."
+  - "شكرًا على المشاركة. هذا يتماشى مع ما نراه في الميدان. التطور في هذا المجال يتسارع بشكل ملحوظ."
+  - "نقطة ممتازة. في عملي كمهندس خدمات ميدانية، تعلمت أن {specific_point} هو مفتاح النجاح في هذا القطاع."
+  - "كلام في الصميم. قطاع الطيران في المملكة يشهد نموًا كبيرًا وهذه النوعية من النقاشات مهمة جدًا."

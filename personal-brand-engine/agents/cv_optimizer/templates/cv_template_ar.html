@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} - السيرة الذاتية</title>
+    <style>
+        /* ── Reset & Base ──────────────────────────────────────────── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Segoe UI", "Tahoma", "Noto Naskh Arabic", "Traditional Arabic", "Arial", sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fff;
+            direction: rtl;
+        }
+
+        .page {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20mm 18mm;
+        }
+
+        a { color: #1a73a7; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* ── Header ────────────────────────────────────────────────── */
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #1a73a7;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 24pt;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .header .title {
+            font-size: 12pt;
+            color: #1a73a7;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .contact-row {
+            font-size: 9.5pt;
+            color: #444;
+        }
+
+        .contact-row span { margin: 0 6px; }
+        .contact-row .sep { color: #bbb; }
+
+        /* ── Section headings ──────────────────────────────────────── */
+        .section-title {
+            font-size: 12pt;
+            font-weight: 700;
+            color: #1a73a7;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #dce6f0;
+            padding-bottom: 3px;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+
+        /* ── Summary ───────────────────────────────────────────────── */
+        .summary {
+            text-align: justify;
+            margin-bottom: 4px;
+        }
+
+        /* ── Experience items ──────────────────────────────────────── */
+        .exp-item { margin-bottom: 12px; }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3px;
+        }
+
+        .exp-header .role {
+            font-weight: 700;
+            font-size: 10.5pt;
+        }
+
+        .exp-header .period {
+            font-size: 9.5pt;
+            color: #666;
+            white-space: nowrap;
+        }
+
+        .exp-company {
+            font-size: 10pt;
+            color: #444;
+            margin-bottom: 4px;
+        }
+
+        ul.bullets {
+            list-style-type: none;
+            padding-right: 14px;
+            padding-left: 0;
+        }
+
+        ul.bullets li {
+            position: relative;
+            padding-right: 10px;
+            padding-left: 0;
+            margin-bottom: 2px;
+        }
+
+        ul.bullets li::before {
+            content: "\25AA";
+            position: absolute;
+            right: 0;
+            color: #1a73a7;
+            font-size: 8pt;
+            top: 4px;
+        }
+
+        /* ── Skills two-column layout ─────────────────────────────── */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 24px;
+        }
+
+        .skill-category {
+            width: calc(50% - 12px);
+            margin-bottom: 6px;
+        }
+
+        .skill-category h4 {
+            font-size: 10pt;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 2px;
+        }
+
+        .skill-category ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-category ul li {
+            font-size: 9.5pt;
+            color: #444;
+            padding: 1px 0;
+        }
+
+        /* ── Certifications & Awards ──────────────────────────────── */
+        ul.plain-list {
+            list-style: none;
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        ul.plain-list li {
+            padding: 2px 14px 2px 0;
+            position: relative;
+            font-size: 9.5pt;
+        }
+
+        ul.plain-list li::before {
+            content: "\25AA";
+            position: absolute;
+            right: 0;
+            color: #1a73a7;
+            font-size: 8pt;
+            top: 4px;
+        }
+
+        /* ── Education ─────────────────────────────────────────────── */
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .edu-header .degree {
+            font-weight: 700;
+            font-size: 10.5pt;
+        }
+
+        .edu-header .period {
+            font-size: 9.5pt;
+            color: #666;
+        }
+
+        .edu-institution {
+            font-size: 10pt;
+            color: #444;
+            margin-bottom: 4px;
+        }
+
+        /* ── References ────────────────────────────────────────────── */
+        .references p {
+            font-size: 9.5pt;
+            margin-bottom: 2px;
+        }
+
+        /* ── ATS keyword block (hidden visually, readable by ATS) ── */
+        .ats-keywords {
+            font-size: 0;
+            color: #fff;
+            line-height: 0;
+            overflow: hidden;
+            height: 0;
+        }
+
+        /* ── Print styles ──────────────────────────────────────────── */
+        @media print {
+            body { font-size: 10pt; }
+            .page { padding: 12mm 15mm; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="header">
+        <h1>{{ name }}</h1>
+        <div class="title">{{ title }}</div>
+        <div class="contact-row">
+            <span>{{ email }}</span>
+            <span class="sep">|</span>
+            <span>{{ phone }}</span>
+            <span class="sep">|</span>
+            <span>{{ location }}</span>
+            {% if linkedin %}
+                <span class="sep">|</span>
+                <span><a href="{{ linkedin }}">LinkedIn</a></span>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- ═══ الملخص المهني ═══ -->
+    <section>
+        <h2 class="section-title">الملخص المهني</h2>
+        <p class="summary">{{ summary }}</p>
+    </section>
+
+    <!-- ═══ الخبرة العملية ═══ -->
+    <section>
+        <h2 class="section-title">الخبرة العملية</h2>
+
+        <!-- الوظيفة الحالية -->
+        <div class="exp-item">
+            <div class="exp-header">
+                <span class="role">{{ current_title }}</span>
+                <span class="period">{{ current_start_date }} &ndash; الحالي</span>
+            </div>
+            <div class="exp-company">{{ current_company }} &mdash; {{ current_location }}</div>
+            <ul class="bullets">
+                {% for bullet in current_bullets %}
+                <li>{{ bullet }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- الوظائف السابقة -->
+        {% for role in previous_roles %}
+        <div class="exp-item">
+            <div class="exp-header">
+                <span class="role">{{ role.title }}</span>
+                <span class="period">{{ role.period }}</span>
+            </div>
+            <div class="exp-company">{{ role.company }}</div>
+            <ul class="bullets">
+                {% for bullet in role.bullets %}
+                <li>{{ bullet }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </section>
+
+    <!-- ═══ القيادة والعمل التطوعي ═══ -->
+    {% if leadership %}
+    <section>
+        <h2 class="section-title">القيادة والعمل التطوعي</h2>
+        {% for entry in leadership %}
+        <div class="exp-item">
+            <div class="exp-header">
+                <span class="role">{{ entry.role }} &mdash; {{ entry.organization }}</span>
+                <span class="period">{{ entry.period }}</span>
+            </div>
+            <ul class="bullets">
+                {% for bullet in entry.bullets %}
+                <li>{{ bullet }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    <!-- ═══ التعليم ═══ -->
+    <section>
+        <h2 class="section-title">التعليم</h2>
+        <div class="edu-header">
+            <span class="degree">{{ education_degree }}</span>
+            <span class="period">{{ education_period }}</span>
+        </div>
+        <div class="edu-institution">{{ education_institution }} &mdash; {{ education_location }}</div>
+        {% if education_highlights %}
+        <ul class="bullets">
+            {% for h in education_highlights %}
+            <li>{{ h }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </section>
+
+    <!-- ═══ الشهادات المهنية ═══ -->
+    {% if certifications %}
+    <section>
+        <h2 class="section-title">الشهادات المهنية</h2>
+        <ul class="plain-list">
+            {% for cert in certifications %}
+            <li>{{ cert }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+
+    <!-- ═══ المهارات ═══ -->
+    {% if skill_categories %}
+    <section>
+        <h2 class="section-title">المهارات</h2>
+        <div class="skills-grid">
+            {% for cat in skill_categories %}
+            <div class="skill-category">
+                <h4>{{ cat.name }}</h4>
+                <ul>
+                    {% for item in cat.items %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- ═══ الجوائز والتكريمات ═══ -->
+    {% if awards %}
+    <section>
+        <h2 class="section-title">الجوائز والتكريمات</h2>
+        <ul class="plain-list">
+            {% for award in awards %}
+            <li>{{ award }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+
+    <!-- ═══ المراجع ═══ -->
+    {% if references %}
+    <section class="references">
+        <h2 class="section-title">المراجع</h2>
+        {% for ref in references %}
+        <p>{{ ref }}</p>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    <!-- ATS keyword block -->
+    {% if ats_keywords %}
+    <div class="ats-keywords">{{ ats_keywords | join(', ') }}</div>
+    {% endif %}
+
+</div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+# ===================================
+# Sami Mohammed Assiri - Brand Profile
+# ===================================
+
+personal:
+  name_ar: "سامي محمد العسيري"
+  name_en: "Sami Mohammed Assiri"
+  title_ar: "مهندس خدمات ميدانية - أمن المطارات | مهندس ميكانيكي"
+  title_en: "Field Services Engineer - Airport Security | Mechanical Engineer"
+  headline_ar: "مهندس خدمات ميدانية في METCO | متخصص أجهزة Smiths Detection بمطار الرياض | مهندس ميكانيكي | Python & Data Analytics"
+  headline_en: "Field Services Engineer at METCO | Smiths Detection Airport Security Specialist | Mechanical Engineer | Python & Data Analytics | Ex-Samsung E&A"
+  bio_ar: |
+    مهندس ميكانيكي وخدمات ميدانية في شركة METCO (خدمات الشرق الأوسط) بمطار الملك خالد الدولي بالرياض.
+    متخصص في صيانة وتشغيل أنظمة أمن المطارات من Smiths Detection، بما في ذلك أجهزة الأشعة السينية
+    (HI-SCAN) وأجهزة كشف المتفجرات (IONSCAN 600) وأنظمة الفحص المتقدمة (CTX).
+
+    سابقاً في Samsung E&A حيث طورت لوحات بيانات بايثون وأتمتت تخطيط المشاريع باستخدام Primavera P6
+    وقدمت تحليلات متقدمة لمشاريع بمليارات الدولارات مع أرامكو ومقاولي EPC العالميين.
+
+    رئيس فرع SPE الأصالة - نقلت الفرع من 0 إلى 89 عضو فعال مع 50,000+ انطباع عضوي.
+    مؤسس نادي المهندسين النخبة. حاصل على 10+ شهادات مهنية.
+  bio_en: |
+    Mechanical Engineer and Field Services Engineer at METCO (Middle East Services) stationed
+    at King Khalid International Airport, Riyadh. Specialized in maintenance and operation of
+    Smiths Detection airport security systems including HI-SCAN X-ray screening, IONSCAN 600
+    trace detection, and CTX advanced inspection systems.
+
+    Previously at Samsung E&A where I engineered Python-powered dashboards, automated project
+    planning with Primavera P6, and delivered advanced analytics for multi-billion-dollar oil
+    & gas projects with Aramco and global EPC contractors.
+
+    As President of SPE Alasala Chapter, scaled membership from 0 to 89 active participants,
+    launched 12+ technical workshops, and drove 50,000+ organic impressions. Founded the Elite
+    Engineers Club attracting 40+ multidisciplinary students. 10+ professional certifications.
+  email: "sami.assiri11@gmail.com"
+  email_old: "sami.m.assiri@gmail.com"
+  phone: "+966597788539"
+  location_ar: "الرياض، المملكة العربية السعودية"
+  location_en: "Riyadh, Saudi Arabia"
+  hometown: "Dhahran, Eastern Province"
+
+employment:
+  current:
+    company: "METCO - Middle East Services"
+    company_ar: "ميتكو - خدمات الشرق الأوسط"
+    title: "Field Services Engineer"
+    title_ar: "مهندس خدمات ميدانية"
+    location: "King Khalid International Airport (RUH), Riyadh"
+    location_ar: "مطار الملك خالد الدولي - الرياض"
+    start_date: "2026-01-04"
+    description_en: |
+      - Maintenance and operation of Smiths Detection airport security equipment
+      - X-Ray screening systems (HI-SCAN series)
+      - Trace detection systems (IONSCAN 600)
+      - Advanced CT inspection systems (CTX series)
+      - Preventive and corrective maintenance procedures
+      - System calibration and quality assurance
+    description_ar: |
+      - صيانة وتشغيل أجهزة أمن المطارات من Smiths Detection
+      - أنظمة الفحص بالأشعة السينية (سلسلة HI-SCAN)
+      - أنظمة كشف الآثار (IONSCAN 600)
+      - أنظمة الفحص المتقدمة بتقنية CT (سلسلة CTX)
+      - إجراءات الصيانة الوقائية والتصحيحية
+      - معايرة الأنظمة وضمان الجودة
+
+  previous:
+    - company: "Samsung E&A Saudi Arabia"
+      title: "Planning Engineer Intern"
+      period: "Feb 2025 - May 2025"
+      highlights:
+        - "Engineered Python-powered dashboards, reducing reporting time by 75%"
+        - "Modeled 4,327 activities in Primavera P6 with Monte Carlo simulations"
+        - "Co-authored 12,000-tag digital-asset registry baseline, 17 days ahead of schedule"
+        - "Facilitated 14+ high-level meetings with Aramco and global EPC contractors"
+
+leadership:
+  - role: "President"
+    organization: "Society of Petroleum Engineers (SPE) - Alasala Chapter"
+    period: "Sep 2024 - Present"
+    highlights:
+      - "Scaled membership from 0 to 89 active members"
+      - "50,000+ organic impressions on social campaigns"
+      - "Secured 2025 MENA PetroBowl qualifiers invitation"
+      - "Built partnerships with Aramco, Saudi Council of Engineers"
+
+  - role: "Founder"
+    organization: "Elite Engineers Club"
+    period: "2024 - May 2025"
+    highlights:
+      - "40+ multidisciplinary engineering students"
+      - "Secured industry sponsorships and accreditation"
+
+education:
+  degree: "Bachelor of Science in Mechanical Engineering"
+  institution: "Alasala Colleges"
+  location: "Dammam, Eastern Province, Saudi Arabia"
+  period: "Mar 2019 - May 2025"
+  highlights:
+    - "Best Capstone Project Award (1st of 16 teams) - biodegradable green composite"
+    - "SPE KSA Excellence Award (2025)"
+    - "Presidential Recognition from SPE (2025)"
+
+awards:
+  - "Best Capstone Project Award (May 2025) - Alasala Colleges"
+  - "SPE KSA Excellence Award (2025)"
+  - "Presidential Recognition - SPE (2025)"
+
+certifications:
+  - "MV Switchgears & Modular Power Systems - Workshop (Aug 2025)"
+  - "Earthing Systems - Training Workshop (Aug 2025)"
+  - "KNX System Fundamentals & Home/Building Automation - eLearning (Oct 2024)"
+  - "Saudi Mechanical Code (SBC 501) - Saudi Council of Engineers (Jun 2024)"
+  - "BIM-Oriented Sustainable Design - Autodesk (May 2024)"
+  - "Emergency Lighting & Central Battery Systems - ABB (Apr 2024)"
+  - "Low Voltage Circuit Breakers (IEC Standards) - ABB (Apr 2024)"
+  - "ABB E-Design Certification - ABB (May 2024)"
+  - "Contract & Tendering Management - PMI (Jun 2024)"
+  - "Organizational Effectiveness & Excellence - EFQM (May 2024)"
+
+skills:
+  data_analytics:
+    - "Python (Pandas, NumPy, Plotly, Dash)"
+    - "SQL, Power BI, Jupyter Notebook"
+    - "Advanced Excel (Analysis, Automation, Reporting)"
+    - "Data-Driven Decision Making"
+    - "KPI Development & Performance Tracking"
+    - "Risk Modeling & Forecasting"
+  project_management:
+    - "Primavera P6 & MS Project"
+    - "Project Planning & Scheduling"
+    - "Monte Carlo Simulation (Risk Analysis)"
+    - "Cost Estimation & Budget Control"
+    - "Stakeholder Management"
+    - "Resource Optimization & Strategic Execution"
+  engineering:
+    - "Smiths Detection Airport Security Equipment"
+    - "X-Ray Screening Systems (HI-SCAN)"
+    - "Trace Detection (IONSCAN 600)"
+    - "CT Inspection Systems (CTX)"
+    - "Asset Management Systems"
+    - "Digital Twin Integration"
+    - "BIM Fundamentals & Sustainable Design"
+    - "Automated Reporting & ETL Pipelines"
+    - "HVAC Systems"
+    - "Renewable Energy Systems"
+  leadership:
+    - "Strategic Communication & Negotiation"
+    - "Cross-Functional Collaboration"
+    - "Organizational Design & Talent Development"
+    - "Event Planning & Industry Engagement"
+  languages:
+    - name: "Arabic"
+      level: "Native"
+    - name: "English"
+      level: "Professional"
+
+links:
+  linkedin: "https://www.linkedin.com/in/sami-assiri-a300622b2/"
+  twitter: ""
+  github: ""
+  website: ""
+  calcom: ""
+
+references:
+  - "Dr. Saeed AlNoman - Assistant Professor, Mechanical Engineering, Alasala Colleges"
+  - "Khalifa - Assistant Director of Project Management, Samsung E&A"

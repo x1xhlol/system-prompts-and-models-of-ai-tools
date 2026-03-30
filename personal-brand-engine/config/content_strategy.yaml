@@ -1,0 +1,89 @@
+# ===================================
+# Content Strategy - Sami Assiri
+# ===================================
+
+brand_positioning:
+  tagline_ar: "متخصص تقنيات أمن المطارات"
+  tagline_en: "Airport Security Technology Specialist"
+  unique_value: "Hands-on Smiths Detection field engineer with real airport experience"
+
+content_pillars:
+  - id: "tech_insights"
+    name_ar: "رؤى تقنية في أمن المطارات"
+    name_en: "Airport Security Tech Insights"
+    description: "Deep dives into Smiths Detection equipment, X-Ray technology, trace detection"
+    frequency: "weekly"
+    platforms: ["linkedin", "twitter"]
+    hashtags:
+      - "#AirportSecurity"
+      - "#SmithsDetection"
+      - "#AviationSafety"
+      - "#أمن_المطارات"
+      - "#الطيران"
+
+  - id: "field_life"
+    name_ar: "يوميات مهندس ميداني"
+    name_en: "Field Engineer Life"
+    description: "Behind-the-scenes at the airport, daily challenges and wins"
+    frequency: "weekly"
+    platforms: ["linkedin", "twitter"]
+    hashtags:
+      - "#FieldEngineer"
+      - "#AirportLife"
+      - "#Engineering"
+      - "#مهندس_ميداني"
+
+  - id: "professional_growth"
+    name_ar: "التطوير المهني"
+    name_en: "Professional Development"
+    description: "Certifications, training, career growth in aviation security"
+    frequency: "biweekly"
+    platforms: ["linkedin"]
+    hashtags:
+      - "#CareerGrowth"
+      - "#ProfessionalDevelopment"
+      - "#تطوير_مهني"
+
+  - id: "industry_news"
+    name_ar: "أخبار القطاع"
+    name_en: "Industry News & Commentary"
+    description: "ICAO, GACA, TSA regulations and industry developments"
+    frequency: "weekly"
+    platforms: ["linkedin", "twitter"]
+    hashtags:
+      - "#GACA"
+      - "#ICAO"
+      - "#AviationSecurity"
+      - "#الهيئة_العامة_للطيران_المدني"
+
+tone:
+  primary_language: "ar"
+  secondary_language: "en"
+  style: "professional_approachable"
+  guidelines:
+    - "Technical but accessible - explain complex systems simply"
+    - "Confident expertise without arrogance"
+    - "Arabic for local audience, English for technical/international content"
+    - "Share real experiences (without revealing sensitive security details)"
+    - "Position as a specialist, not a generalist"
+
+engagement_rules:
+  daily_likes: 15
+  daily_comments: 5
+  comment_style: "insightful and value-adding, never generic"
+  target_profiles:
+    - "Aviation security professionals"
+    - "Smiths Detection employees and partners"
+    - "Airport operations managers"
+    - "Saudi aviation industry leaders"
+    - "GACA officials and regulators"
+
+posting_rules:
+  max_posts_per_day: 1
+  best_times_riyadh:
+    - "08:00"  # Morning commute
+    - "12:30"  # Lunch break
+    - "19:00"  # Evening
+  min_hours_between_posts: 6
+  include_hashtags: true
+  max_hashtags: 5
