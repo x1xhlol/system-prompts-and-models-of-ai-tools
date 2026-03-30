@@ -12,9 +12,13 @@ from app.models.subscription import Subscription
 from app.models.template import IndustryTemplate
 from app.models.property import Property
 from app.models.audit_log import AuditLog
+from app.models.affiliate import AffiliateMarketer, AffiliatePerformance, AffiliateDeal
+from app.models.ai_conversation import AIConversation, AutoBooking
 
 __all__ = [
     "BaseModel", "TenantModel", "Tenant", "User", "Lead", "Customer",
     "Deal", "Activity", "Message", "Proposal", "Notification",
     "Subscription", "IndustryTemplate", "Property", "AuditLog",
+    "AffiliateMarketer", "AffiliatePerformance", "AffiliateDeal",
+    "AIConversation", "AutoBooking",
 ]

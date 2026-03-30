@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SalesMatic - سيلزماتك | منصة مبيعات ذكية للشركات",
+  title: "Dealix - ديل اي اكس | منصة مبيعات ذكية للشركات",
   description: "منصة ذكاء اصطناعي لأتمتة المبيعات. تدير عملاءك، تتابعهم تلقائياً، وتغلق الصفقات. مصممة للسوق السعودي.",
   keywords: "مبيعات, CRM, SaaS, ذكاء اصطناعي, أتمتة, عيادات, عقارات, الرياض, السعودية",
 };

@@ -1,0 +1,204 @@
+{
+  "agent_name": "dealix-lead-gen",
+  "display_name_ar": "وكيل توليد العملاء المحتملين",
+  "version": "1.0.0",
+  "description_ar": "وكيل ذكاء اصطناعي متخصص في اكتشاف وجمع بيانات العملاء المحتملين من مصادر متعددة في السوق السعودي",
+  "enabled": true,
+  "capabilities": [
+    "google_maps_search",
+    "linkedin_search",
+    "business_directory_search",
+    "website_scraping",
+    "social_media_search",
+    "data_enrichment",
+    "contact_extraction",
+    "duplicate_detection"
+  ],
+  "search_criteria": {
+    "geographic": {
+      "countries": ["SA"],
+      "regions": [
+        {"code": "RUH", "name_ar": "الرياض"},
+        {"code": "JED", "name_ar": "جدة"},
+        {"code": "DMM", "name_ar": "الدمام"},
+        {"code": "MKH", "name_ar": "مكة المكرمة"},
+        {"code": "MED", "name_ar": "المدينة المنورة"},
+        {"code": "KHB", "name_ar": "الخبر"},
+        {"code": "TAB", "name_ar": "تبوك"},
+        {"code": "ABH", "name_ar": "أبها"},
+        {"code": "BUR", "name_ar": "بريدة"},
+        {"code": "HAI", "name_ar": "حائل"},
+        {"code": "JAZ", "name_ar": "جازان"},
+        {"code": "NJR", "name_ar": "نجران"}
+      ],
+      "radius_km": 50,
+      "default_region": "RUH"
+    },
+    "industry": {
+      "categories": [
+        {"id": "retail", "name_ar": "تجارة التجزئة", "subcategories_ar": ["ملابس", "إلكترونيات", "أغذية", "مستحضرات تجميل", "أثاث"]},
+        {"id": "food_beverage", "name_ar": "المطاعم والمقاهي", "subcategories_ar": ["مطاعم", "مقاهي", "حلويات", "تموينات"]},
+        {"id": "healthcare", "name_ar": "الرعاية الصحية", "subcategories_ar": ["عيادات", "مستوصفات", "صيدليات", "مختبرات"]},
+        {"id": "real_estate", "name_ar": "العقارات", "subcategories_ar": ["مكاتب عقارية", "تطوير عقاري", "إدارة أملاك"]},
+        {"id": "education", "name_ar": "التعليم والتدريب", "subcategories_ar": ["مدارس خاصة", "معاهد تدريب", "مراكز تعليمية"]},
+        {"id": "automotive", "name_ar": "السيارات", "subcategories_ar": ["معارض سيارات", "ورش صيانة", "قطع غيار"]},
+        {"id": "beauty", "name_ar": "التجميل والعناية", "subcategories_ar": ["صالونات", "مراكز تجميل", "سبا"]},
+        {"id": "construction", "name_ar": "المقاولات والبناء", "subcategories_ar": ["مقاولات عامة", "تصميم داخلي", "مواد بناء"]},
+        {"id": "technology", "name_ar": "التقنية", "subcategories_ar": ["تطوير برمجيات", "خدمات IT", "تجارة إلكترونية"]},
+        {"id": "professional_services", "name_ar": "الخدمات المهنية", "subcategories_ar": ["محاسبة", "محاماة", "استشارات", "تسويق"]}
+      ]
+    },
+    "company_size": {
+      "ranges": [
+        {"id": "micro", "name_ar": "متناهية الصغر", "employees_min": 1, "employees_max": 9},
+        {"id": "small", "name_ar": "صغيرة", "employees_min": 10, "employees_max": 49},
+        {"id": "medium", "name_ar": "متوسطة", "employees_min": 50, "employees_max": 249},
+        {"id": "large", "name_ar": "كبيرة", "employees_min": 250, "employees_max": null}
+      ],
+      "default_target": ["small", "medium"]
+    }
+  },
+  "data_sources": {
+    "google_maps": {
+      "enabled": true,
+      "priority": 1,
+      "rate_limit_per_minute": 30,
+      "fields_extracted": ["business_name", "address", "phone", "website", "rating", "reviews_count", "category", "working_hours"],
+      "search_radius_km": 25,
+      "languages": ["ar", "en"]
+    },
+    "linkedin": {
+      "enabled": true,
+      "priority": 2,
+      "rate_limit_per_minute": 10,
+      "fields_extracted": ["company_name", "industry", "employee_count", "website", "description", "decision_makers"],
+      "search_filters": ["location", "industry", "company_size", "founded_year"]
+    },
+    "saudi_commerce_registry": {
+      "enabled": true,
+      "priority": 3,
+      "source_name_ar": "السجل التجاري",
+      "base_url": "https://cr.sa",
+      "fields_extracted": ["company_name", "cr_number", "activity", "city", "status"]
+    },
+    "maroof": {
+      "enabled": true,
+      "priority": 4,
+      "source_name_ar": "منصة معروف",
+      "base_url": "https://maroof.sa",
+      "fields_extracted": ["business_name", "category", "rating", "city", "verified_status"]
+    },
+    "chamber_of_commerce": {
+      "enabled": true,
+      "priority": 5,
+      "source_name_ar": "الغرف التجارية",
+      "fields_extracted": ["company_name", "membership_type", "sector", "city"]
+    },
+    "instagram_business": {
+      "enabled": true,
+      "priority": 6,
+      "fields_extracted": ["account_name", "bio", "followers_count", "category", "contact_info", "website"],
+      "min_followers": 500
+    },
+    "website_scraping": {
+      "enabled": true,
+      "priority": 7,
+      "fields_extracted": ["emails", "phone_numbers", "social_links", "about_info", "team_members"],
+      "respect_robots_txt": true,
+      "max_pages_per_site": 10
+    }
+  },
+  "output_format": {
+    "lead_schema": {
+      "required_fields": [
+        {"field": "company_name", "label_ar": "اسم الشركة", "type": "string"},
+        {"field": "industry", "label_ar": "القطاع", "type": "string"},
+        {"field": "city", "label_ar": "المدينة", "type": "string"},
+        {"field": "source", "label_ar": "المصدر", "type": "string"}
+      ],
+      "optional_fields": [
+        {"field": "contact_name", "label_ar": "اسم جهة الاتصال", "type": "string"},
+        {"field": "contact_title", "label_ar": "المسمى الوظيفي", "type": "string"},
+        {"field": "phone", "label_ar": "رقم الهاتف", "type": "string"},
+        {"field": "email", "label_ar": "البريد الإلكتروني", "type": "string"},
+        {"field": "website", "label_ar": "الموقع الإلكتروني", "type": "url"},
+        {"field": "employee_count", "label_ar": "عدد الموظفين", "type": "integer"},
+        {"field": "annual_revenue_sar", "label_ar": "الإيراد السنوي (ريال)", "type": "number"},
+        {"field": "social_media", "label_ar": "حسابات التواصل الاجتماعي", "type": "object"},
+        {"field": "cr_number", "label_ar": "رقم السجل التجاري", "type": "string"},
+        {"field": "google_rating", "label_ar": "تقييم Google", "type": "number"},
+        {"field": "notes", "label_ar": "ملاحظات", "type": "string"}
+      ]
+    },
+    "export_formats": ["json", "csv", "xlsx"],
+    "crm_push": {
+      "enabled": true,
+      "auto_assign": true,
+      "dedup_check": true
+    }
+  },
+  "scheduling": {
+    "default_frequency": "daily",
+    "schedules": [
+      {
+        "id": "daily_scan",
+        "name_ar": "المسح اليومي",
+        "cron": "0 8 * * 0-4",
+        "timezone": "Asia/Riyadh",
+        "description_ar": "مسح يومي للمصادر الرئيسية من الأحد إلى الخميس الساعة 8 صباحاً"
+      },
+      {
+        "id": "weekly_deep_scan",
+        "name_ar": "المسح العميق الأسبوعي",
+        "cron": "0 2 * * 6",
+        "timezone": "Asia/Riyadh",
+        "description_ar": "مسح شامل لجميع المصادر كل سبت الساعة 2 صباحاً"
+      },
+      {
+        "id": "monthly_enrichment",
+        "name_ar": "الإثراء الشهري",
+        "cron": "0 3 1 * *",
+        "timezone": "Asia/Riyadh",
+        "description_ar": "إعادة إثراء بيانات جميع العملاء المحتملين أول كل شهر"
+      }
+    ],
+    "max_leads_per_run": 500,
+    "cooldown_minutes": 30
+  },
+  "filters": {
+    "deduplication": {
+      "enabled": true,
+      "match_fields": ["company_name", "phone", "email", "cr_number"],
+      "similarity_threshold": 0.85
+    },
+    "quality_filters": {
+      "min_data_completeness": 0.4,
+      "require_phone_or_email": true,
+      "exclude_inactive_businesses": true,
+      "exclude_blocked_industries": ["tobacco", "gambling"]
+    },
+    "blacklist": {
+      "enabled": true,
+      "sources": ["manual_blacklist", "unsubscribe_list", "competitor_list"]
+    }
+  },
+  "notifications": {
+    "on_new_leads": {
+      "enabled": true,
+      "channels": ["dashboard", "email", "whatsapp"],
+      "min_batch_size": 5
+    },
+    "on_error": {
+      "enabled": true,
+      "channels": ["dashboard", "email"],
+      "alert_threshold": 3
+    }
+  },
+  "compliance": {
+    "data_retention_days": 365,
+    "gdpr_compliant": true,
+    "saudi_pdpl_compliant": true,
+    "consent_tracking": true,
+    "audit_logging": true
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "bot_name": "dealix-affiliate-assistant",
+  "display_name": "مساعد Dealix للمسوقين",
+  "display_name_en": "Dealix Affiliate Assistant",
+  "language": "ar",
+  "direction": "rtl",
+  "personality": "ودود، احترافي، محفز، يدعم المسوق ويساعده على النجاح",
+  "tone": "تشجيعي وداعم مع الحفاظ على المهنية",
+  "capabilities": [
+    "onboarding",
+    "faq",
+    "training",
+    "performance_tracking",
+    "resource_sharing",
+    "commission_inquiry",
+    "client_objection_handling",
+    "script_suggestions"
+  ],
+  "greeting": "أهلاً بك في Dealix! 🎉 أنا مساعدك الذكي للمسوقين بالعمولة. أقدر أساعدك في كل شي من التسجيل والتدريب إلى تتبع عمولاتك وتحسين أدائك. كيف أقدر أخدمك اليوم؟",
+  "fallback_message": "عذراً، ما قدرت أفهم طلبك بشكل دقيق. ممكن تعيد صياغة السؤال؟ أو إذا تبي تتكلم مع أحد من فريق الدعم، اكتب 'دعم بشري' وبحولك مباشرة.",
+  "escalation_contact": {
+    "method": "whatsapp",
+    "number": "+966XXXXXXXXX",
+    "message": "تم تحويلك لفريق دعم المسوقين. أحد المختصين بيتواصل معك خلال دقائق.",
+    "working_hours": "الأحد - الخميس، 9 صباحاً - 6 مساءً (توقيت السعودية)",
+    "outside_hours_message": "فريق الدعم غير متاح حالياً. سيتم الرد عليك في أول يوم عمل. ساعات العمل: الأحد - الخميس، 9 ص - 6 م"
+  },
+  "supported_channels": ["whatsapp", "webchat", "telegram"],
+  "response_settings": {
+    "max_response_length": 500,
+    "typing_delay_ms": 1500,
+    "auto_suggest": true,
+    "quick_replies_enabled": true
+  },
+  "quick_replies": {
+    "main_menu": [
+      "كيف أبدأ كمسوق؟",
+      "كم عمولتي؟",
+      "أبي مواد تسويقية",
+      "عندي مشكلة تقنية",
+      "أبي أتكلم مع الدعم"
+    ]
+  },
+  "analytics": {
+    "track_conversations": true,
+    "track_satisfaction": true,
+    "satisfaction_prompt": "كيف تقيّم تجربتك مع المساعد؟ (1-5)"
+  }
+}

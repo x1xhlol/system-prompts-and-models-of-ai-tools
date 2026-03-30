@@ -1,7 +1,8 @@
 import {
   Users, MessageSquare, BarChart3, Target, Zap, Phone,
   CheckCircle2, ArrowLeft, Star, ChevronDown, Building2,
-  Stethoscope, Home, Clock, Shield, Globe
+  Stethoscope, Home, Clock, Shield, Globe, Award, Briefcase,
+  Bot, UserPlus
 } from "lucide-react";
 
 const features = [
@@ -63,15 +64,16 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-2">
-              <img src="/logo.svg" alt="SalesMatic" className="h-9 w-9" />
-              <span className="text-xl font-bold text-primary">SalesMatic</span>
-              <span className="text-sm text-gray-400 hidden sm:block">سيلزماتك</span>
+              <img src="/logo.svg" alt="Dealix" className="h-9 w-9" />
+              <span className="text-xl font-bold text-primary">Dealix</span>
+              <span className="text-sm text-gray-400 hidden sm:block">ديل اي اكس</span>
             </div>
             <div className="hidden md:flex items-center gap-8 text-sm">
               <a href="#features" className="text-gray-600 hover:text-primary transition">المميزات</a>
               <a href="#how-it-works" className="text-gray-600 hover:text-primary transition">كيف يعمل</a>
               <a href="#industries" className="text-gray-600 hover:text-primary transition">القطاعات</a>
               <a href="#pricing" className="text-gray-600 hover:text-primary transition">الأسعار</a>
+              <a href="#affiliate" className="text-gray-600 hover:text-primary transition">انضم لنا</a>
             </div>
             <div className="flex items-center gap-3">
               <a href="/ar/login" className="text-sm text-gray-600 hover:text-primary transition hidden sm:block">تسجيل دخول</a>
@@ -159,7 +161,7 @@ export default function LandingPage() {
               <div key={i} className="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100 hover:shadow-md transition">
                 <div className="text-4xl mb-3">{p.emoji}</div>
                 <p className="text-lg font-medium text-gray-800">{p.text}</p>
-                <p className="text-sm text-secondary mt-2 font-medium">SalesMatic يحل هذي المشكلة</p>
+                <p className="text-sm text-secondary mt-2 font-medium">Dealix يحل هذي المشكلة</p>
               </div>
             ))}
           </div>
@@ -328,11 +330,121 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Gold Guarantee */}
+      <section className="py-20 px-4 bg-gradient-to-br from-yellow-50 to-amber-50">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full mb-6 shadow-xl shadow-amber-200">
+            <Award className="w-10 h-10 text-white" />
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">الضمان الذهبي</h2>
+          <p className="text-xl text-gray-600 mb-6">ما تستفيد؟ نرجع لك فلوسك كاملة</p>
+          <div className="bg-white rounded-2xl p-8 shadow-lg border border-amber-100 max-w-2xl mx-auto">
+            <p className="text-gray-700 text-lg leading-relaxed mb-6">
+              نحن واثقين من جودة Dealix. إذا استخدمت المنصة لمدة 30 يوم وما شفت نتائج حقيقية في مبيعاتك، نرجع لك المبلغ كامل بدون أي سؤال.
+            </p>
+            <div className="grid sm:grid-cols-3 gap-4 text-sm">
+              <div className="bg-amber-50 rounded-xl p-4">
+                <div className="font-bold text-amber-700 mb-1">30 يوم</div>
+                <div className="text-gray-500">فترة الضمان</div>
+              </div>
+              <div className="bg-amber-50 rounded-xl p-4">
+                <div className="font-bold text-amber-700 mb-1">100%</div>
+                <div className="text-gray-500">استرجاع كامل</div>
+              </div>
+              <div className="bg-amber-50 rounded-xl p-4">
+                <div className="font-bold text-amber-700 mb-1">بدون تعقيد</div>
+                <div className="text-gray-500">عملية سهلة وسريعة</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Affiliate / Join Our Team */}
+      <section className="py-20 px-4 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-1.5 text-sm mb-4 text-primary font-medium">
+              <Briefcase className="w-4 h-4" />
+              فرصة عمل حقيقية
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">انضم لفريق Dealix كمستشار مبيعات</h2>
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto">اشتغل من أي مكان، في أي وقت يناسبك، واكسب عمولات شهرية متكررة. حقق التارقت وتوظف رسمياً!</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center">
+              <div className="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <UserPlus className="w-7 h-7 text-green-600" />
+              </div>
+              <h3 className="text-lg font-bold mb-2">سجّل كمسوّق</h3>
+              <p className="text-gray-500 text-sm">تعبئة بياناتك واستلام حزمة التدريب الكاملة والأدوات الاحترافية</p>
+            </div>
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center">
+              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Target className="w-7 h-7 text-blue-600" />
+              </div>
+              <h3 className="text-lg font-bold mb-2">استهدف واكسب</h3>
+              <p className="text-gray-500 text-sm">استخدم السكربتات والبرزنتيشنات الجاهزة لجذب العملاء واكسب عمولة على كل صفقة</p>
+            </div>
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center">
+              <div className="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Award className="w-7 h-7 text-purple-600" />
+              </div>
+              <h3 className="text-lg font-bold mb-2">حقق التارقت وتوظف</h3>
+              <p className="text-gray-500 text-sm">10 شركات بالشهر = توظيف رسمي براتب ثابت + عمولات أعلى + تأمين صحي</p>
+            </div>
+          </div>
+          <div className="text-center">
+            <a href="/ar/affiliate" className="bg-primary hover:bg-primary-600 text-white px-8 py-4 rounded-xl text-lg font-bold transition shadow-2xl shadow-primary/25 inline-flex items-center gap-2">
+              انضم الآن كمستشار مبيعات
+              <ArrowLeft className="w-5 h-5" />
+            </a>
+            <p className="text-sm text-gray-400 mt-3">بدون رسوم انضمام • تدريب مجاني • أدوات احترافية مجانية</p>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Agents Section */}
+      <section className="py-20 px-4 bg-dark text-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm mb-4">
+              <Bot className="w-4 h-4 text-secondary" />
+              <span className="text-secondary font-medium">ذكاء اصطناعي متقدم</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">وكلاء الذكاء الاصطناعي يشتغلون لك 24/7</h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">ما تحتاج توظف فريق مبيعات ضخم. وكلاء Dealix الأذكياء يلقون العملاء، يتواصلون معهم، ويحجزون لك الاجتماعات تلقائياً.</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+              <div className="text-3xl mb-3">🔍</div>
+              <h3 className="text-lg font-bold mb-2">البحث الذكي</h3>
+              <p className="text-sm text-gray-400">يبحث عن عملاء محتملين من قوقل، لينكدن، والأدلة التجارية تلقائياً</p>
+            </div>
+            <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+              <div className="text-3xl mb-3">💬</div>
+              <h3 className="text-lg font-bold mb-2">واتساب ذكي</h3>
+              <p className="text-sm text-gray-400">بوت واتساب متقدم يتواصل مع العملاء، يجاوب أسئلتهم، ويتابع معهم</p>
+            </div>
+            <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+              <div className="text-3xl mb-3">📞</div>
+              <h3 className="text-lg font-bold mb-2">مكالمات صوتية</h3>
+              <p className="text-sm text-gray-400">مكالمات آلية ذكية بالعربي تعرّف العميل بالمنصة وتحجز له موعد</p>
+            </div>
+            <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+              <div className="text-3xl mb-3">📅</div>
+              <h3 className="text-lg font-bold mb-2">حجز تلقائي</h3>
+              <p className="text-sm text-gray-400">يحجز اجتماعات مع فريق المبيعات تلقائياً للعملاء المؤهلين</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-20 bg-hero-gradient text-white px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">جاهز تزيد مبيعاتك؟</h2>
-          <p className="text-lg text-gray-300 mb-8">انضم لمئات الشركات اللي زادت مبيعاتها مع SalesMatic</p>
+          <p className="text-lg text-gray-300 mb-8">انضم لمئات الشركات اللي زادت مبيعاتها مع Dealix</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="/ar/register" className="bg-accent hover:bg-accent-600 text-white px-8 py-4 rounded-xl text-lg font-bold transition shadow-2xl">
               ابدأ مجاناً الآن
@@ -351,8 +463,8 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <img src="/logo.svg" alt="SalesMatic" className="h-8 w-8" />
-                <span className="text-white font-bold text-lg">SalesMatic</span>
+                <img src="/logo.svg" alt="Dealix" className="h-8 w-8" />
+                <span className="text-white font-bold text-lg">Dealix</span>
               </div>
               <p className="text-sm mb-4 leading-relaxed">مبيعاتك تشتغل وأنت ترتاح</p>
               <p className="text-sm">Sales on Autopilot</p>
@@ -383,7 +495,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-sm">© 2024 SalesMatic. جميع الحقوق محفوظة</p>
+            <p className="text-sm">© 2024 Dealix. جميع الحقوق محفوظة</p>
             <p className="text-sm flex items-center gap-1">صنع بـ ❤️ في السعودية 🇸🇦</p>
           </div>
         </div>

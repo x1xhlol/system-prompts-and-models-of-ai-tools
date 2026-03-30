@@ -1,0 +1,229 @@
+{
+  "system_name": "dealix-email-sequences",
+  "display_name_ar": "تسلسلات البريد الإلكتروني من Dealix",
+  "version": "1.0.0",
+  "description_ar": "نظام تسلسلات البريد الإلكتروني الذكي للتواصل مع العملاء المحتملين",
+  "global_settings": {
+    "sender_name_ar": "فريق Dealix",
+    "sender_email": "sales@dealix.sa",
+    "reply_to": "hello@dealix.sa",
+    "unsubscribe_text_ar": "لإلغاء الاشتراك في هذه الرسائل، اضغط هنا",
+    "footer_text_ar": "Dealix - ديل اي اكس | منصة أتمتة المبيعات بالذكاء الاصطناعي\nالرياض، المملكة العربية السعودية",
+    "tracking": {
+      "open_tracking": true,
+      "click_tracking": true,
+      "reply_tracking": true
+    },
+    "sending_schedule": {
+      "timezone": "Asia/Riyadh",
+      "optimal_send_times": ["09:00", "11:00", "14:00"],
+      "avoid_days": ["friday", "saturday"],
+      "avoid_hours_before": "08:00",
+      "avoid_hours_after": "18:00"
+    }
+  },
+  "sequences": {
+    "cold_outreach": {
+      "name_ar": "التواصل البارد",
+      "description_ar": "تسلسل التواصل الأولي مع عملاء محتملين جدد",
+      "target_ar": "عملاء محتملون لم يتم التواصل معهم من قبل",
+      "total_emails": 5,
+      "emails": [
+        {
+          "order": 1,
+          "delay_days": 0,
+          "subject_ar": "كيف {company_name} تقدر تضاعف مبيعاتها؟",
+          "body_ar": "مرحباً {contact_name}،\n\nلاحظت نشاطكم المتميز في مجال {industry} وحبيت أشارككم شيء قد يفيدكم.\n\nنحن في Dealix نساعد الشركات السعودية مثل {company_name} في أتمتة عملية المبيعات بالكامل باستخدام الذكاء الاصطناعي:\n\n• اكتشاف عملاء محتملين جدد تلقائياً\n• التواصل الذكي عبر واتساب والبريد الإلكتروني\n• متابعة الصفقات وجدولة الاجتماعات آلياً\n\nعملاؤنا حققوا زيادة بمتوسط 340% في المبيعات خلال أول 3 أشهر.\n\nهل عندك 15 دقيقة هذا الأسبوع لعرض توضيحي سريع؟\n\nتحياتي،\n{sender_name}\nفريق Dealix",
+          "cta_ar": "احجز عرضك التوضيحي المجاني",
+          "cta_url": "https://dealix.sa/demo"
+        },
+        {
+          "order": 2,
+          "delay_days": 3,
+          "condition": "no_reply",
+          "subject_ar": "Re: كيف {company_name} تقدر تضاعف مبيعاتها؟",
+          "body_ar": "مرحباً {contact_name}،\n\nأرسلت لك رسالة قبل كم يوم وحبيت أتأكد إنها وصلتك.\n\nباختصار شديد: Dealix توفر على فريق مبيعاتك أكثر من 10 ساعات أسبوعياً في المهام الروتينية مثل البحث عن عملاء ومتابعتهم.\n\nشركة {case_study_company} في نفس مجالكم استخدمت Dealix وحققت:\n✅ زيادة 280% في العملاء المحتملين\n✅ توفير 15 ساعة أسبوعياً لفريق المبيعات\n✅ إغلاق أول صفقة خلال 10 أيام\n\nتبي تشوف كيف؟\n\nتحياتي،\n{sender_name}",
+          "cta_ar": "شاهد قصة النجاح",
+          "cta_url": "https://dealix.sa/case-studies"
+        },
+        {
+          "order": 3,
+          "delay_days": 5,
+          "condition": "no_reply",
+          "subject_ar": "فكرة سريعة لـ {company_name} 💡",
+          "body_ar": "مرحباً {contact_name}،\n\nأعرف إنك مشغول، فخلني أختصر عليك.\n\nحضّرت لك تحليل سريع لفرص النمو في مجال {industry} في {city}:\n\n📊 عدد العملاء المحتملين المتاحين في منطقتك: {estimated_leads}+\n📈 متوسط معدل التحويل في مجالك: {conversion_rate}%\n💰 الإيراد المتوقع من هذه الفرص: {estimated_revenue} ريال\n\nهذه الأرقام بناءً على بيانات حقيقية من منصتنا.\n\nأعطني 15 دقيقة وبوريك بالضبط كيف توصل لهذي الفرص.\n\nتحياتي،\n{sender_name}",
+          "cta_ar": "احجز موعدك الآن",
+          "cta_url": "https://dealix.sa/demo"
+        },
+        {
+          "order": 4,
+          "delay_days": 7,
+          "condition": "no_reply",
+          "subject_ar": "آخر شيء أبي أشاركك إياه",
+          "body_ar": "مرحباً {contact_name}،\n\nهذي آخر رسالة مني بخصوص هذا الموضوع.\n\nبس حبيت أخبرك إن عندنا عرض خاص هذا الشهر:\n\n🎁 تجربة مجانية 14 يوم - بدون بطاقة ائتمان\n🛡️ ضمان ذهبي: استرداد كامل خلال 30 يوم إذا ما استفدت\n📞 جلسة تأهيل شخصية مجانية مع خبير مبيعات\n\nالعرض متاح لفترة محدودة.\n\nإذا كنت مهتم، رد على هذي الرسالة أو احجز مباشرة من الرابط.\n\nأتمنى لك التوفيق في أعمالك،\n{sender_name}",
+          "cta_ar": "ابدأ تجربتك المجانية",
+          "cta_url": "https://dealix.sa/free-trial"
+        },
+        {
+          "order": 5,
+          "delay_days": 14,
+          "condition": "no_reply",
+          "subject_ar": "لسا الباب مفتوح 😊",
+          "body_ar": "{contact_name}،\n\nرسالة قصيرة بس أبي أقول لك: إذا تغيّر رأيك في أي وقت، الباب مفتوح.\n\nتقدر تتواصل معي مباشرة بالرد على هذي الرسالة أو عبر الواتساب.\n\nكل التوفيق،\n{sender_name}",
+          "mark_as": "sequence_complete"
+        }
+      ]
+    },
+    "warm_referral": {
+      "name_ar": "الإحالة الدافئة",
+      "description_ar": "تسلسل للعملاء المحالين من شريك أو عميل حالي",
+      "total_emails": 3,
+      "emails": [
+        {
+          "order": 1,
+          "delay_days": 0,
+          "subject_ar": "{referrer_name} رشّحك لهذا",
+          "body_ar": "مرحباً {contact_name}،\n\nزميلك {referrer_name} من {referrer_company} اقترح أتواصل معك.\n\nهم يستخدمون Dealix لأتمتة مبيعاتهم وحققوا نتائج ممتازة، وشافوا إنها ممكن تفيدكم أيضاً في {company_name}.\n\nDealix منصة ذكاء اصطناعي سعودية مصممة لمساعدة المنشآت الصغيرة والمتوسطة في زيادة مبيعاتها بشكل آلي.\n\nتحب نحجز مكالمة قصيرة (15 دقيقة) أشرح لك أكثر؟\n\nتحياتي،\n{sender_name}",
+          "cta_ar": "احجز مكالمتك",
+          "cta_url": "https://dealix.sa/demo"
+        },
+        {
+          "order": 2,
+          "delay_days": 2,
+          "condition": "no_reply",
+          "subject_ar": "Re: {referrer_name} رشّحك لهذا",
+          "body_ar": "مرحباً {contact_name}،\n\nتابعاً لرسالتي السابقة - حبيت أشارك معك بعض النتائج اللي حققها {referrer_name} مع Dealix:\n\n📈 زيادة {referrer_result}% في العملاء المحتملين\n⏱️ توفير {referrer_hours} ساعة أسبوعياً\n\nأعتقد تقدرون تحققون نتائج مشابهة أو أفضل.\n\nمتى يناسبك نتكلم؟\n\nتحياتي،\n{sender_name}",
+          "cta_ar": "اختر موعدك المناسب",
+          "cta_url": "https://dealix.sa/demo"
+        },
+        {
+          "order": 3,
+          "delay_days": 5,
+          "condition": "no_reply",
+          "subject_ar": "آخر متابعة - عرض خاص للمُحالين",
+          "body_ar": "مرحباً {contact_name}،\n\nبما إنك محال من {referrer_name}، عندنا عرض خاص لك:\n\n🎁 خصم 20% على أي خطة اشتراك\n🛡️ ضمان ذهبي 30 يوم\n📞 جلسة استشارية مجانية\n\nهذا العرض صالح لمدة أسبوعين.\n\nرد على هذي الرسالة أو احجز مباشرة.\n\nتحياتي،\n{sender_name}",
+          "cta_ar": "استفد من العرض الآن",
+          "cta_url": "https://dealix.sa/referral-offer"
+        }
+      ]
+    },
+    "event_follow_up": {
+      "name_ar": "متابعة الفعاليات",
+      "description_ar": "تسلسل للتواصل مع العملاء المحتملين بعد المعارض والفعاليات",
+      "total_emails": 3,
+      "emails": [
+        {
+          "order": 1,
+          "delay_days": 1,
+          "subject_ar": "سعدنا بلقائك في {event_name} 🤝",
+          "body_ar": "مرحباً {contact_name}،\n\nسعدت بلقائك في {event_name} أمس.\n\nكما تحدثنا، Dealix تساعد الشركات في {industry} في أتمتة عملية المبيعات بالكامل.\n\nأرفقت لك عرض تقديمي مختصر يوضح كيف نعمل والنتائج اللي يحققها عملاؤنا.\n\nمتى يناسبك نكمل النقاش؟\n\nتحياتي،\n{sender_name}",
+          "attachments": ["dealix-overview-ar.pdf"],
+          "cta_ar": "احجز عرضك التوضيحي",
+          "cta_url": "https://dealix.sa/demo"
+        },
+        {
+          "order": 2,
+          "delay_days": 4,
+          "condition": "no_reply",
+          "subject_ar": "Re: سعدنا بلقائك في {event_name}",
+          "body_ar": "مرحباً {contact_name}،\n\nأتمنى إنك اطلعت على العرض التقديمي اللي أرسلته.\n\nعندي فكرة: أقدر أحضّر لك تحليل مجاني لفرص النمو في مجالك. يأخذ مني 5 دقائق وبيعطيك صورة واضحة عن الإمكانيات المتاحة.\n\nتبي أسويه لك؟\n\nتحياتي،\n{sender_name}",
+          "cta_ar": "نعم، أبي التحليل المجاني",
+          "cta_url": "https://dealix.sa/free-analysis"
+        },
+        {
+          "order": 3,
+          "delay_days": 7,
+          "condition": "no_reply",
+          "subject_ar": "فرصة أخيرة - عرض خاص لزوار {event_name}",
+          "body_ar": "{contact_name}،\n\nعندنا عرض خاص لزوار {event_name}:\n\n🎁 تجربة مجانية 14 يوم\n💰 خصم 15% عند الاشتراك خلال هذا الأسبوع\n\nإذا كنت مهتم، رد على الرسالة أو احجز من الرابط.\n\nتحياتي،\n{sender_name}",
+          "cta_ar": "ابدأ التجربة المجانية",
+          "cta_url": "https://dealix.sa/event-offer"
+        }
+      ]
+    },
+    "re_engagement": {
+      "name_ar": "إعادة التفاعل",
+      "description_ar": "تسلسل لإعادة تفاعل العملاء المحتملين الذين توقفوا عن الاستجابة",
+      "total_emails": 3,
+      "emails": [
+        {
+          "order": 1,
+          "delay_days": 0,
+          "subject_ar": "شيء جديد في Dealix يهمك 🚀",
+          "body_ar": "مرحباً {contact_name}،\n\nتواصلنا معك قبل فترة بخصوص Dealix، وأحترم قرارك وقتها.\n\nالسبب إني أتواصل معك اليوم هو إننا أطلقنا ميزات جديدة بالكامل:\n\n🤖 وكيل واتساب ذكي يتواصل مع عملائك المحتملين تلقائياً\n📊 لوحة تحليلات متقدمة لتتبع أداء المبيعات\n🔗 تكامل مع أكثر من 50 أداة ومنصة\n\nالظروف تتغير، وممكن تكون هذي الميزات الجديدة هي اللي تحتاجها الحين.\n\nتبي تشوف الجديد في 15 دقيقة؟\n\nتحياتي،\n{sender_name}",
+          "cta_ar": "اكتشف الميزات الجديدة",
+          "cta_url": "https://dealix.sa/whats-new"
+        },
+        {
+          "order": 2,
+          "delay_days": 5,
+          "condition": "no_reply",
+          "subject_ar": "حقيقة سريعة عن مجال {industry} 📊",
+          "body_ar": "{contact_name}،\n\nحبيت أشارك معك إحصائية مهمة:\n\n{industry_stat_percentage}% من الشركات في مجال {industry} اللي تستخدم أتمتة المبيعات حققت نمو يتجاوز {growth_percentage}% سنوياً.\n\nالسؤال: هل {company_name} جاهزة تكون من هذي النسبة؟\n\nأنا هنا إذا تبي تتناقش.\n\nتحياتي،\n{sender_name}",
+          "cta_ar": "نعم، أبي أعرف أكثر",
+          "cta_url": "https://dealix.sa/demo"
+        },
+        {
+          "order": 3,
+          "delay_days": 10,
+          "condition": "no_reply",
+          "subject_ar": "الباب مفتوح دائماً 🚪",
+          "body_ar": "{contact_name}،\n\nهذي آخر رسالة في هذا الموضوع.\n\nإذا احتجت أي شيء يتعلق بأتمتة المبيعات أو الذكاء الاصطناعي، أنا موجود.\n\nرد على هذي الرسالة في أي وقت.\n\nكل التوفيق لك ولـ {company_name}،\n{sender_name}",
+          "mark_as": "sequence_complete"
+        }
+      ]
+    }
+  },
+  "personalization_variables": {
+    "contact_fields": [
+      "{contact_name}",
+      "{contact_title}",
+      "{company_name}",
+      "{industry}",
+      "{city}",
+      "{company_size}"
+    ],
+    "dynamic_fields": [
+      "{estimated_leads}",
+      "{conversion_rate}",
+      "{estimated_revenue}",
+      "{case_study_company}",
+      "{industry_stat_percentage}",
+      "{growth_percentage}"
+    ],
+    "sender_fields": [
+      "{sender_name}",
+      "{sender_title}",
+      "{sender_phone}"
+    ],
+    "referral_fields": [
+      "{referrer_name}",
+      "{referrer_company}",
+      "{referrer_result}",
+      "{referrer_hours}"
+    ],
+    "event_fields": [
+      "{event_name}",
+      "{event_date}"
+    ]
+  },
+  "ab_testing": {
+    "enabled": true,
+    "test_elements": ["subject_line", "cta_text", "send_time", "body_length"],
+    "min_sample_size": 100,
+    "significance_level": 0.95
+  },
+  "deliverability": {
+    "warm_up_enabled": true,
+    "daily_send_limit_initial": 50,
+    "daily_send_limit_max": 500,
+    "warm_up_days": 14,
+    "bounce_threshold_percent": 3,
+    "spam_complaint_threshold_percent": 0.1,
+    "domain_authentication": {
+      "spf": true,
+      "dkim": true,
+      "dmarc": true
+    }
+  }
+}

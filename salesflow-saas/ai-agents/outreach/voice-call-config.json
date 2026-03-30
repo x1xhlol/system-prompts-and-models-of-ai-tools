@@ -1,0 +1,186 @@
+{
+  "agent_name": "dealix-voice-agent",
+  "display_name_ar": "وكيل المكالمات الصوتية من Dealix",
+  "version": "1.0.0",
+  "description_ar": "وكيل ذكاء اصطناعي لإجراء مكالمات صوتية احترافية مع العملاء المحتملين باللغة العربية",
+  "voice": {
+    "primary": {
+      "id": "arabic-male-professional",
+      "name_ar": "صوت ذكوري احترافي - عربي",
+      "language": "ar-SA",
+      "accent": "saudi_neutral",
+      "speed": 1.0,
+      "pitch": "medium",
+      "description_ar": "صوت ذكوري واضح واحترافي بلهجة سعودية معتدلة"
+    },
+    "secondary": {
+      "id": "arabic-female-professional",
+      "name_ar": "صوت نسائي احترافي - عربي",
+      "language": "ar-SA",
+      "accent": "saudi_neutral",
+      "speed": 1.0,
+      "pitch": "medium",
+      "description_ar": "صوت نسائي واضح واحترافي بلهجة سعودية معتدلة"
+    },
+    "english_fallback": {
+      "id": "english-male-professional",
+      "language": "en-US",
+      "speed": 1.0
+    }
+  },
+  "call_settings": {
+    "max_call_duration_minutes": 5,
+    "ring_timeout_seconds": 30,
+    "retry_on_no_answer": true,
+    "max_retries": 2,
+    "retry_interval_hours": 4,
+    "caller_id": "+966-XX-XXX-XXXX",
+    "caller_name_ar": "Dealix - ديل اي اكس",
+    "recording_enabled": true,
+    "recording_consent_required": true
+  },
+  "script_flow": {
+    "opening": {
+      "name_ar": "المقدمة",
+      "script_ar": "السلام عليكم {contact_name}، معك {agent_name} من Dealix - ديل اي اكس. كيف حالك؟",
+      "wait_for_response": true,
+      "max_wait_seconds": 5,
+      "on_voicemail": {
+        "script_ar": "السلام عليكم {contact_name}، معك {agent_name} من Dealix. تواصلنا معك بخصوص حلول أتمتة المبيعات لشركتكم. بنرسل لك رسالة واتساب فيها تفاصيل أكثر. شكراً لك.",
+        "action": "trigger_whatsapp_followup"
+      }
+    },
+    "purpose": {
+      "name_ar": "سبب الاتصال",
+      "script_ar": "ممتاز! أنا أتواصل معك لأننا لاحظنا نشاطكم في مجال {industry}، ونحن في Dealix عندنا منصة ذكاء اصطناعي تساعد الشركات مثلكم تزيد مبيعاتها بشكل ملحوظ. هل عندك دقيقتين أشرح لك الفكرة؟",
+      "wait_for_response": true,
+      "responses": {
+        "positive": {
+          "triggers_ar": ["أيوه", "تفضل", "طيب", "نعم", "يلا"],
+          "next": "value_proposition"
+        },
+        "negative": {
+          "triggers_ar": ["لا", "مشغول", "ما أقدر", "ما عندي وقت"],
+          "next": "reschedule"
+        },
+        "question": {
+          "triggers_ar": ["شنو بالضبط", "وش تقصد", "كيف"],
+          "next": "value_proposition"
+        }
+      }
+    },
+    "value_proposition": {
+      "name_ar": "عرض القيمة",
+      "script_ar": "باختصار شديد، Dealix تساعدكم في ثلاث أشياء رئيسية: أولاً، نكتشف لكم عملاء محتملين جدد تلقائياً. ثانياً، نتواصل معهم بشكل ذكي عبر واتساب والبريد. وثالثاً، نتابع كل صفقة من البداية للنهاية. عملاؤنا الحاليين حققوا زيادة بالمبيعات وصلت إلى ثلاثة أضعاف. هل تحب نحجز لك عرض توضيحي قصير؟",
+      "wait_for_response": true,
+      "responses": {
+        "interested": {
+          "triggers_ar": ["أيوه", "حلو", "مهتم", "نعم", "تمام"],
+          "next": "booking"
+        },
+        "objection": {
+          "next": "handle_objection"
+        },
+        "not_interested": {
+          "triggers_ar": ["لا شكراً", "مو مهتم"],
+          "next": "soft_close"
+        }
+      }
+    },
+    "handle_objection": {
+      "name_ar": "التعامل مع الاعتراضات",
+      "objections": {
+        "price": {
+          "triggers_ar": ["غالي", "كم السعر", "ميزانية"],
+          "script_ar": "فاهم تماماً. الخطط تبدأ من سعر بسيط جداً، والأهم عندنا ضمان ذهبي: لو ما استفدت خلال 30 يوم، نرجع لك فلوسك كاملة. يعني ما عندك أي مخاطرة."
+        },
+        "time": {
+          "triggers_ar": ["مشغول", "وقت", "لاحقاً"],
+          "script_ar": "أتفهم أنك مشغول. العرض التوضيحي يأخذ 15 دقيقة بس، ونقدر نحجزه في الوقت اللي يناسبك. متى تكون متفرّغ؟"
+        },
+        "existing_solution": {
+          "triggers_ar": ["عندنا نظام", "نستخدم"],
+          "script_ar": "ممتاز! Dealix يتكامل مع أغلب الأنظمة الموجودة ويضيف عليها ذكاء اصطناعي. كثير من عملاءنا يستخدمونه بجانب أنظمتهم الحالية."
+        }
+      }
+    },
+    "booking": {
+      "name_ar": "حجز الموعد",
+      "script_ar": "ممتاز! أقدر أحجز لك عرض توضيحي مع أحد خبرائنا. هل يناسبك خلال هذا الأسبوع؟ عندنا مواعيد صباحية ومسائية.",
+      "wait_for_response": true,
+      "action": "check_calendar_availability",
+      "confirmation_script_ar": "تمام! حجزت لك موعد يوم {day} الساعة {time}. بنرسل لك تأكيد على الواتساب فيه رابط الاجتماع. شكراً لوقتك {contact_name}، ونتشرف بخدمتكم!"
+    },
+    "reschedule": {
+      "name_ar": "إعادة الجدولة",
+      "script_ar": "تمام! ما أبي أزعجك. متى يكون وقت مناسب أتواصل معك؟",
+      "wait_for_response": true,
+      "action": "schedule_callback"
+    },
+    "soft_close": {
+      "name_ar": "الإغلاق الناعم",
+      "script_ar": "تمام، أحترم قرارك. بس خلني أرسل لك رسالة واتساب فيها معلومات بسيطة، تقدر تطلع عليها بكل راحة. وإذا تغيّر رأيك، تواصل معنا في أي وقت. شكراً لك {contact_name}!",
+      "action": "trigger_whatsapp_followup"
+    },
+    "closing": {
+      "name_ar": "الختام",
+      "script_ar": "شكراً لوقتك {contact_name}. يومك سعيد! السلام عليكم."
+    }
+  },
+  "escalation_to_human": {
+    "conditions": [
+      {
+        "id": "explicit_request",
+        "description_ar": "العميل يطلب التحدث مع شخص حقيقي",
+        "trigger_phrases_ar": ["أبي أكلم شخص حقيقي", "وصلني بمدير", "مو بوت"],
+        "action": "transfer_to_agent"
+      },
+      {
+        "id": "high_value_prospect",
+        "description_ar": "عميل محتمل عالي القيمة أبدى اهتماماً",
+        "condition": "lead_score >= 85 AND sentiment = positive",
+        "action": "warm_transfer_to_sales"
+      },
+      {
+        "id": "complex_requirements",
+        "description_ar": "متطلبات معقدة تحتاج خبير",
+        "condition": "question_complexity > 0.8",
+        "action": "schedule_expert_callback"
+      },
+      {
+        "id": "angry_caller",
+        "description_ar": "المتصل غاضب أو مستاء",
+        "condition": "sentiment_score < -0.5",
+        "action": "immediate_transfer_to_supervisor",
+        "script_ar": "أعتذر عن أي إزعاج. خلني أوصلك بأحد المسؤولين الحين يساعدك بشكل أفضل."
+      }
+    ],
+    "transfer_message_ar": "شكراً لصبرك. بوصلك الحين بأحد أعضاء فريقنا المتخصصين.",
+    "hold_music": "arabic_professional_hold",
+    "max_hold_time_seconds": 120
+  },
+  "compliance": {
+    "call_recording_notice_ar": "نود إعلامك أن هذه المكالمة قد تكون مسجلة لأغراض الجودة والتدريب.",
+    "do_not_call_list": true,
+    "calling_hours": {
+      "start": "10:00",
+      "end": "20:00",
+      "timezone": "Asia/Riyadh",
+      "working_days": ["sunday", "monday", "tuesday", "wednesday", "thursday"]
+    },
+    "saudi_telecom_regulations": true,
+    "consent_tracking": true
+  },
+  "analytics": {
+    "track_metrics": [
+      "calls_made",
+      "calls_answered",
+      "call_duration_avg",
+      "voicemail_rate",
+      "conversion_to_booking",
+      "objection_types",
+      "sentiment_analysis",
+      "escalation_rate"
+    ]
+  }
+}
