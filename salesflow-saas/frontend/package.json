@@ -13,7 +13,11 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "lucide-react": "0.469.0",
-    "clsx": "2.1.1"
+    "clsx": "2.1.1",
+    "tailwind-merge": "^2.5.5",
+    "framer-motion": "^11.15.0",
+    "date-fns": "^4.1.0",
+    "recharts": "^2.15.0"
   },
   "devDependencies": {
     "@types/node": "22.10.5",

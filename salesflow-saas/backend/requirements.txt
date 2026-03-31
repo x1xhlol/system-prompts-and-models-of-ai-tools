@@ -1,21 +1,47 @@
+# ── Core Framework ──────────────────────────────────────
 fastapi==0.115.6
 uvicorn[standard]==0.34.0
+python-multipart==0.0.19
+
+# ── Database ────────────────────────────────────────────
 sqlalchemy[asyncio]==2.0.36
 asyncpg==0.30.0
 alembic==1.14.1
+pgvector==0.3.6
+
+# ── Validation / Settings ──────────────────────────────
 pydantic==2.10.4
 pydantic-settings==2.7.1
+
+# ── Authentication ──────────────────────────────────────
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
-python-multipart==0.0.19
+
+# ── Task Queue ──────────────────────────────────────────
 celery[redis]==5.4.0
 redis==5.2.1
+
+# ── HTTP Client ─────────────────────────────────────────
 httpx==0.28.1
+
+# ── Templating & Emails ────────────────────────────────
 jinja2==3.1.5
-python-dateutil==2.9.0
 emails==0.6
+
+# ── LLM Providers ──────────────────────────────────────
+openai==1.58.1
+groq==0.13.0
+
+# ── Data Processing ────────────────────────────────────
+python-dateutil==2.9.0
+openpyxl==3.1.5
 aiofiles==24.1.0
 pillow==11.1.0
-openpyxl==3.1.5
+
+# ── Utilities ──────────────────────────────────────────
+python-slugify==8.0.4
+phonenumbers==8.13.50
+
+# ── Testing ────────────────────────────────────────────
 pytest==8.3.4
 pytest-asyncio==0.25.0

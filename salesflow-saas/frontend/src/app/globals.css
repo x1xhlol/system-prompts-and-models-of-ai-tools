@@ -1,28 +1,117 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Tajawal:wght@700;800;900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 220 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 30% 15%;
+
+    --primary: 240 70% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 90%;
+    --secondary-foreground: 220 30% 15%;
+
+    --muted: 220 15% 90%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 260 80% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 140 70% 40%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 220 15% 85%;
+    --input: 220 15% 85%;
+    --ring: 240 70% 50%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 224 30% 8%; /* Extremely sleek dark blue/black */
+    --foreground: 210 20% 90%;
+
+    --card: 224 30% 12%;
+    --card-foreground: 210 20% 90%;
+
+    --popover: 224 30% 12%;
+    --popover-foreground: 210 20% 90%;
+
+    --primary: 240 80% 65%; /* Vibrant glowing blue */
+    --primary-foreground: 224 30% 8%;
+
+    --secondary: 224 30% 15%;
+    --secondary-foreground: 210 20% 90%;
+
+    --muted: 224 30% 15%;
+    --muted-foreground: 215 15% 65%;
+
+    --accent: 270 80% 65%; /* Vibrant purple accent */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 140 60% 50%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 224 30% 20%;
+    --input: 224 30% 20%;
+    --ring: 240 80% 65%;
+  }
 }
 
-body {
-  font-family: 'IBM Plex Sans Arabic', 'Inter', sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground bg-gradient-to-tr from-background to-background/80 min-h-screen bg-fixed antialiased selection:bg-primary/20 selection:text-primary;
+  }
 }
 
+/* Glassmorphism Utilities */
 @layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  .glass {
+    @apply bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg;
   }
-  .bg-hero-gradient {
-    background: linear-gradient(135deg, #0F4C81 0%, #1A1A2E 50%, #0F4C81 100%);
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border shadow-xl rounded-2xl transition-all duration-300 hover:shadow-primary/5 hover:border-primary/20;
   }
-  .bg-grid {
-    background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
+}
+
+/* Animations & Scrollbar */
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full hover:bg-muted-foreground/50 transition-colors;
   }
 }

@@ -3,7 +3,7 @@ from app.api.v1 import (
     auth, leads, deals, dashboard, tenants, users, affiliates, ai_agents,
     companies, contacts, calls, meetings, commissions, payouts, disputes,
     guarantees, consents, complaints, knowledge, sectors, presentations,
-    supervisor, admin, health,
+    supervisor, admin, health, analytics, webhooks,
 )
 
 api_router = APIRouter()
@@ -32,3 +32,5 @@ api_router.include_router(presentations.router, prefix="/presentations", tags=["
 api_router.include_router(supervisor.router, prefix="/supervisor", tags=["Supervisor"])
 api_router.include_router(admin.router, prefix="/admin", tags=["Admin"])
 api_router.include_router(health.router, tags=["Health"])
+api_router.include_router(analytics.router, tags=["Analytics & AI"])
+api_router.include_router(webhooks.router, tags=["Webhooks"])

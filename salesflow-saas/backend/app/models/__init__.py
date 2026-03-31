@@ -21,6 +21,7 @@ from app.models.dispute import Dispute
 from app.models.guarantee import GuaranteeClaim
 from app.models.compliance import Consent, Complaint, Policy
 from app.models.knowledge import KnowledgeArticle, SectorAsset
+from app.models.advanced import TrustScore, Prospect, Scorecard, AIRehearsal
 
 __all__ = [
     "BaseModel", "TenantModel", "Tenant", "User", "Lead", "Customer",
@@ -31,4 +32,5 @@ __all__ = [
     "Company", "Contact", "Call", "Commission", "Payout",
     "Dispute", "GuaranteeClaim", "Consent", "Complaint", "Policy",
     "KnowledgeArticle", "SectorAsset",
+    "TrustScore", "Prospect", "Scorecard", "AIRehearsal",
 ]
