@@ -11,9 +11,9 @@
   </defs>
   <!-- Background circle -->
   <circle cx="100" cy="100" r="92" fill="url(#grad)" />
-  <!-- S letter -->
-  <path d="M125 65 C125 50, 110 42, 95 42 C75 42, 60 52, 60 68 C60 84, 75 90, 95 95 C115 100, 130 106, 130 125 C130 145, 112 155, 92 155 C72 155, 58 145, 58 130"
-    fill="none" stroke="white" stroke-width="14" stroke-linecap="round" />
+  <!-- D letter -->
+  <path d="M70 45 L70 155 L105 155 C140 155, 155 130, 155 100 C155 70, 140 45, 105 45 Z"
+    fill="none" stroke="white" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
   <!-- Upward arrow -->
   <path d="M148 85 L148 40 M148 40 L132 56 M148 40 L164 56"
     fill="none" stroke="url(#arrow)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />

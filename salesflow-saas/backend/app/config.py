@@ -4,8 +4,8 @@ from functools import lru_cache
 
 class Settings(BaseSettings):
     # App
-    APP_NAME: str = "SalesMatic"
-    APP_NAME_AR: str = "سيلزماتك"
+    APP_NAME: str = "Dealix"
+    APP_NAME_AR: str = "ديل اي اكس"
     DEBUG: bool = False
     DEFAULT_TIMEZONE: str = "Asia/Riyadh"
     DEFAULT_CURRENCY: str = "SAR"
@@ -43,7 +43,7 @@ class Settings(BaseSettings):
 
     # SMS (Unifonic)
     UNIFONIC_APP_SID: str = ""
-    UNIFONIC_SENDER_ID: str = "SalesMatic"
+    UNIFONIC_SENDER_ID: str = "Dealix"
 
     class Config:
         env_file = ".env"

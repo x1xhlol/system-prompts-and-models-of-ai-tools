@@ -1,0 +1,79 @@
+name: Repo Hygiene
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-key-files:
+    name: Verify required files exist
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check key files
+        run: |
+          missing=0
+          for f in README.md LICENSE SECURITY.md CONTRIBUTING.md docker-compose.yml; do
+            if [ ! -f "$f" ]; then
+              echo "MISSING: $f"
+              missing=1
+            else
+              echo "OK: $f"
+            fi
+          done
+          if [ "$missing" -eq 1 ]; then
+            echo "::error::One or more required files are missing."
+            exit 1
+          fi
+
+  block-secrets-files:
+    name: Block .env / .pem / .key files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Scan for forbidden file extensions
+        run: |
+          forbidden=$(git ls-files | grep -E '\.(env|pem|key|crt|p12|pfx)$' | grep -v '\.env\.example' || true)
+          if [ -n "$forbidden" ]; then
+            echo "::error::Forbidden files detected in tracked files:"
+            echo "$forbidden"
+            exit 1
+          fi
+          echo "No forbidden files found."
+
+  block-secret-patterns:
+    name: Block secret patterns in tracked files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Scan for secret patterns
+        run: |
+          patterns=(
+            'PRIVATE KEY'
+            'sk-[a-zA-Z0-9]{20,}'
+            'ghp_[a-zA-Z0-9]{36}'
+            'password\s*=\s*["\x27][^"\x27]{4,}'
+            'DATABASE_URL=postgres'
+            'REDIS_URL=redis://'
+            'SECRET_KEY=["\x27][^"\x27]{8,}'
+            'API_KEY=["\x27][^"\x27]{8,}'
+          )
+          found=0
+          for pattern in "${patterns[@]}"; do
+            matches=$(git ls-files -z | xargs -0 grep -rlE "$pattern" -- 2>/dev/null | grep -v '\.example$' | grep -v 'repo-hygiene\.yml' || true)
+            if [ -n "$matches" ]; then
+              echo "::warning::Pattern '$pattern' found in:"
+              echo "$matches"
+              found=1
+            fi
+          done
+          if [ "$found" -eq 1 ]; then
+            echo "::error::Potential secrets detected in tracked files. Review the warnings above."
+            exit 1
+          fi
+          echo "No secret patterns found."

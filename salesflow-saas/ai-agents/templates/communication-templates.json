@@ -1,0 +1,141 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-03-31",
+  "templates": [
+    {
+      "id": "cold_whatsapp_opener",
+      "name_ar": "رسالة واتساب باردة",
+      "channel": "whatsapp",
+      "category": "outreach",
+      "content_ar": "السلام عليكم {contact_name} 👋\n\nمعك {sender_name} من Dealix - ديل اي اكس\n\nشفت {company_name} وحبيت أتواصل معك لأن عندنا منصة ذكاء اصطناعي تساعد شركات {industry} تزيد مبيعاتها وتتابع عملاءها تلقائياً.\n\n✅ متابعة تلقائية بالواتساب\n✅ إدارة عملاء ذكية\n✅ تجربة مجانية 14 يوم\n\nتحب أعطيك نبذة سريعة؟",
+      "content_en": "Hi {contact_name},\n\nI'm {sender_name} from Dealix.\n\nWe help {industry} companies automate their sales follow-ups using AI.\n\nWould you be interested in a quick demo?",
+      "variables": ["contact_name", "sender_name", "company_name", "industry"]
+    },
+    {
+      "id": "warm_whatsapp_followup",
+      "name_ar": "متابعة واتساب دافئة",
+      "channel": "whatsapp",
+      "category": "followup",
+      "content_ar": "مرحباً {contact_name}!\n\nتواصلنا معك قبل فترة بخصوص Dealix. حبيت أشاركك إن شركات مثل {company_name} زادت مبيعاتها 40% بعد ما استخدمت منصتنا.\n\nعندنا عرض خاص حالياً: تجربة 14 يوم مجانية + خصم 20% على أول شهر.\n\nتبي أرتب لك ديمو سريع 15 دقيقة؟",
+      "content_en": "Hi {contact_name}, following up on Dealix. Companies like yours saw 40% sales increase. Free 14-day trial + 20% off first month. Interested in a quick demo?",
+      "variables": ["contact_name", "company_name"]
+    },
+    {
+      "id": "call_opener",
+      "name_ar": "افتتاحية مكالمة",
+      "channel": "voice",
+      "category": "outreach",
+      "content_ar": "السلام عليكم، معك {sender_name} من شركة Dealix - ديل اي اكس. كيف حالك؟ عندك دقيقتين أشرح لك شي يفيد شركتك بالمبيعات؟",
+      "content_en": "Hi, this is {sender_name} from Dealix. Do you have two minutes to discuss how we can help boost your sales?",
+      "variables": ["sender_name"]
+    },
+    {
+      "id": "meeting_confirmation",
+      "name_ar": "تأكيد اجتماع",
+      "channel": "whatsapp",
+      "category": "meeting",
+      "content_ar": "✅ تم تأكيد اجتماعك مع فريق Dealix!\n\n📅 التاريخ: {meeting_date}\n⏰ الوقت: {meeting_time} (بتوقيت الرياض)\n⏱ المدة: {duration} دقيقة\n🔗 الرابط: {meeting_link}\n\nنتطلع لمقابلتك {contact_name}!",
+      "content_en": "✅ Meeting confirmed!\n\nDate: {meeting_date}\nTime: {meeting_time}\nDuration: {duration} min\nLink: {meeting_link}",
+      "variables": ["contact_name", "meeting_date", "meeting_time", "duration", "meeting_link"]
+    },
+    {
+      "id": "no_show_recovery",
+      "name_ar": "استرجاع عدم حضور",
+      "channel": "whatsapp",
+      "category": "meeting",
+      "content_ar": "مرحباً {contact_name}!\n\nلاحظنا إنك ما قدرت تحضر الاجتماع اليوم. لا تقلق - نقدر نرتب لك موعد ثاني يناسبك.\n\nوش أنسب وقت لك؟\n\n- بكرة الصبح\n- بكرة بعد الظهر\n- يوم ثاني (حدد)\n\nأنتظر ردك 😊",
+      "content_en": "Hi {contact_name}, sorry we missed you today. Let's reschedule at a time that works better for you.",
+      "variables": ["contact_name"]
+    },
+    {
+      "id": "proposal_followup",
+      "name_ar": "متابعة عرض سعر",
+      "channel": "whatsapp",
+      "category": "followup",
+      "content_ar": "مرحباً {contact_name}!\n\nأرسلنا لك عرض السعر قبل كم يوم. هل قدرت تراجعه؟\n\nإذا عندك أي سؤال أو تحتاج تعديل، أنا هنا.\n\nوتذكر: عندنا ضمان ذهبي 30 يوم - يعني ما فيه أي مخاطرة 👍",
+      "content_en": "Hi {contact_name}, following up on the proposal we sent. Any questions? Remember: 30-day gold guarantee.",
+      "variables": ["contact_name"]
+    },
+    {
+      "id": "affiliate_invite",
+      "name_ar": "دعوة مسوق",
+      "channel": "whatsapp",
+      "category": "affiliate",
+      "content_ar": "السلام عليكم {contact_name}!\n\nعندنا فرصة عمل بالعمولة مع Dealix - ديل اي اكس 💰\n\n✅ اشتغل من أي مكان بأي وقت\n✅ عمولات شهرية متكررة (حتى 375 ر.س/عميل)\n✅ 10 شركات = توظيف رسمي\n✅ تدريب وأدوات مجانية\n\nتبي تعرف أكثر؟",
+      "content_en": "Hi {contact_name}! Earn recurring commissions with Dealix. Work anywhere, anytime. Interested?",
+      "variables": ["contact_name"]
+    },
+    {
+      "id": "affiliate_acceptance",
+      "name_ar": "قبول مسوق",
+      "channel": "whatsapp",
+      "category": "affiliate",
+      "content_ar": "🎉 مبروك {contact_name}!\n\nتم قبولك كمستشار مبيعات في Dealix!\n\nالخطوات التالية:\n1️⃣ راجع حزمة التدريب المرسلة\n2️⃣ وقّع اتفاقية العمل\n3️⃣ ابدأ تتواصل مع أول 10 عملاء\n\nكود الإحالة الخاص بك: {referral_code}\n\nأي سؤال أنا هنا! 🚀",
+      "content_en": "Welcome to Dealix {contact_name}! You've been accepted. Your referral code: {referral_code}",
+      "variables": ["contact_name", "referral_code"]
+    },
+    {
+      "id": "affiliate_rejection",
+      "name_ar": "اعتذار لمسوق",
+      "channel": "email",
+      "category": "affiliate",
+      "content_ar": "مرحباً {contact_name}،\n\nشكراً لاهتمامك بالانضمام لفريق Dealix.\n\nبعد مراجعة طلبك، نعتذر عن عدم إمكانية قبولك في الوقت الحالي.\n\nيسعدنا استقبال طلبك مرة أخرى بعد 30 يوم.\n\nنتمنى لك التوفيق.\n\nفريق Dealix",
+      "content_en": "Hi {contact_name}, thank you for your interest. Unfortunately we cannot accept your application at this time. You may reapply after 30 days.",
+      "variables": ["contact_name"]
+    },
+    {
+      "id": "affiliate_promotion",
+      "name_ar": "ترقية مسوق للتوظيف",
+      "channel": "whatsapp",
+      "category": "affiliate",
+      "content_ar": "🏆🎉 مبروك {contact_name}!\n\nلقد حققت {deals_count} صفقة هذا الشهر!\n\nأنت الآن مؤهل للتوظيف الرسمي في Dealix!\n\n✅ راتب ثابت\n✅ عمولات أعلى\n✅ تأمين صحي\n✅ إجازات مدفوعة\n\nفريق HR سيتواصل معك خلال 48 ساعة.\n\nشكراً لتميزك! 🌟",
+      "content_en": "Congratulations {contact_name}! You've achieved {deals_count} deals and are now eligible for full-time employment at Dealix!",
+      "variables": ["contact_name", "deals_count"]
+    },
+    {
+      "id": "hr_escalation",
+      "name_ar": "تصعيد لـ HR",
+      "channel": "email",
+      "category": "internal",
+      "content_ar": "تنبيه HR - تصعيد توظيف\n\nالمسوق: {affiliate_name}\nالإيميل: {affiliate_email}\nالجوال: {affiliate_phone}\nالصفقات هذا الشهر: {deals_count}\nإجمالي العمولات: {total_commission} ر.س\n\nالمسوق حقق هدف التوظيف (10+ صفقات). يرجى بدء إجراءات العرض الوظيفي.",
+      "content_en": "HR Escalation: Affiliate {affiliate_name} achieved {deals_count} deals. Initiate employment offer process.",
+      "variables": ["affiliate_name", "affiliate_email", "affiliate_phone", "deals_count", "total_commission"]
+    },
+    {
+      "id": "guarantee_explanation",
+      "name_ar": "شرح الضمان الذهبي",
+      "channel": "whatsapp",
+      "category": "sales",
+      "content_ar": "الضمان الذهبي من Dealix يعني:\n\n🛡️ استخدم المنصة 30 يوم\n📊 أدخل 20+ عميل محتمل\n💬 أرسل 50+ رسالة\n📅 استخدمها 14 يوم متواصل\n\nإذا ما شفت نتائج حقيقية → نرجع لك فلوسك كاملة!\n\nبدون أسئلة. بدون تعقيد.\n\nيعني مستحيل تخسر شي 👍",
+      "content_en": "Dealix Gold Guarantee: Use the platform for 30 days. If you don't see results, full refund. No questions asked.",
+      "variables": []
+    },
+    {
+      "id": "complaint_acknowledgment",
+      "name_ar": "إشعار استلام شكوى",
+      "channel": "email",
+      "category": "support",
+      "content_ar": "مرحباً {contact_name}،\n\nتم استلام شكواك بنجاح.\n\nرقم المرجع: {ticket_id}\nالموضوع: {subject}\n\nسيتم مراجعة شكواك خلال 3 أيام عمل وسنتواصل معك بالنتيجة.\n\nشكراً لصبرك.\n\nفريق دعم Dealix",
+      "content_en": "Hi {contact_name}, your complaint (Ref: {ticket_id}) has been received. We'll respond within 3 business days.",
+      "variables": ["contact_name", "ticket_id", "subject"]
+    },
+    {
+      "id": "data_privacy_acknowledgment",
+      "name_ar": "إشعار خصوصية البيانات",
+      "channel": "email",
+      "category": "compliance",
+      "content_ar": "مرحباً {contact_name}،\n\nتم استلام طلبك المتعلق ببياناتك الشخصية.\n\nنوع الطلب: {request_type}\nرقم المرجع: {ticket_id}\n\nسيتم معالجة طلبك خلال 30 يوم وفقاً لنظام حماية البيانات الشخصية (PDPL).\n\nفريق الامتثال - Dealix",
+      "content_en": "Hi {contact_name}, your data {request_type} request (Ref: {ticket_id}) has been received. Processing within 30 days per PDPL.",
+      "variables": ["contact_name", "request_type", "ticket_id"]
+    },
+    {
+      "id": "opt_out_confirmation",
+      "name_ar": "تأكيد إلغاء الاشتراك",
+      "channel": "whatsapp",
+      "category": "compliance",
+      "content_ar": "تم إلغاء اشتراكك في رسائل {channel_name} من Dealix بنجاح ✅\n\nلن نرسل لك رسائل على هذه القناة مرة أخرى.\n\nإذا غيّرت رأيك، تواصل معنا في أي وقت.\n\nشكراً لك.",
+      "content_en": "You've been unsubscribed from Dealix {channel_name} messages. To re-subscribe, contact us anytime.",
+      "variables": ["channel_name"]
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "system": "dealix-auto-booking",
+  "version": "1.0",
+  "timezone": "Asia/Riyadh",
+  "meeting_types": {
+    "demo": {
+      "name_ar": "عرض تجريبي",
+      "duration_minutes": 30,
+      "description_ar": "عرض مباشر لمنصة Dealix مع تجربة حية",
+      "priority": "high",
+      "auto_confirm": true
+    },
+    "consultation": {
+      "name_ar": "استشارة مجانية",
+      "duration_minutes": 15,
+      "description_ar": "استشارة سريعة لفهم احتياجات العميل",
+      "priority": "medium",
+      "auto_confirm": true
+    },
+    "custom_presentation": {
+      "name_ar": "عرض مخصص",
+      "duration_minutes": 45,
+      "description_ar": "عرض مخصص لقطاع العميل مع تحليل احتياجات",
+      "priority": "high",
+      "auto_confirm": false
+    },
+    "follow_up": {
+      "name_ar": "متابعة",
+      "duration_minutes": 15,
+      "description_ar": "اجتماع متابعة بعد التجربة المجانية",
+      "priority": "medium",
+      "auto_confirm": true
+    }
+  },
+  "availability": {
+    "working_days": ["sunday", "monday", "tuesday", "wednesday", "thursday"],
+    "working_hours": {"start": "09:00", "end": "17:00"},
+    "break_time": {"start": "12:00", "end": "13:00"},
+    "buffer_minutes": 15,
+    "max_meetings_per_day": 8,
+    "advance_booking_days": 14,
+    "minimum_notice_hours": 2
+  },
+  "notifications": {
+    "client": {
+      "confirmation": {"channel": ["whatsapp", "email"], "template": "booking_confirmed"},
+      "reminder_24h": {"channel": ["whatsapp"], "template": "booking_reminder_24h"},
+      "reminder_1h": {"channel": ["whatsapp"], "template": "booking_reminder_1h"}
+    },
+    "sales_rep": {
+      "new_booking": {"channel": ["whatsapp", "email"], "include_lead_summary": true},
+      "reminder_15min": {"channel": ["whatsapp"]}
+    }
+  },
+  "assignment_rules": {
+    "method": "round_robin",
+    "fallback": "least_busy",
+    "specialization": {
+      "healthcare": ["rep_1", "rep_2"],
+      "real_estate": ["rep_2", "rep_3"],
+      "default": ["rep_1", "rep_2", "rep_3"]
+    }
+  }
+}
