@@ -2,6 +2,7 @@ import enum
 from sqlalchemy import Column, String, Integer, Text, Boolean, Enum, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID, JSONB
 from sqlalchemy.orm import relationship
+from pgvector.sqlalchemy import Vector
 from app.models.base import BaseModel
 
 
@@ -26,6 +27,7 @@ class KnowledgeArticle(BaseModel):
     is_active = Column(Boolean, default=True)
     author_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=True)
     version = Column(Integer, default=1)
+    embedding = Column(Vector(1536), nullable=True)  # OpenAI 1536 dim
 
     author = relationship("User")
 
@@ -40,5 +42,6 @@ class SectorAsset(BaseModel):
     content = Column(Text, nullable=True)
     content_ar = Column(Text, nullable=True)
     file_url = Column(String(500), nullable=True)
-    metadata = Column(JSONB, default={})
+    extra_metadata = Column(JSONB, default={})
     is_active = Column(Boolean, default=True)
+    embedding = Column(Vector(1536), nullable=True)  # OpenAI 1536 dim

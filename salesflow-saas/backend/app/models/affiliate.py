@@ -31,6 +31,10 @@ class AffiliateMarketer(BaseModel):
     status = Column(Enum(AffiliateStatus), default=AffiliateStatus.PENDING, nullable=False)
     onboarded_at = Column(DateTime(timezone=True), nullable=True)
     employed_at = Column(DateTime(timezone=True), nullable=True)
+    
+    # Tier & Commissions
+    tier = Column(String(20), default="bronze", nullable=False)
+    commission_rate = Column(Float, default=10.0, nullable=False)
 
     # Agreement
     agreement_signed = Column(Boolean, default=False)
@@ -40,15 +44,17 @@ class AffiliateMarketer(BaseModel):
     total_leads_generated = Column(Integer, default=0)
     total_deals_closed = Column(Integer, default=0)
     total_commission_earned = Column(Float, default=0.0)
+    available_balance = Column(Float, default=0.0) # Real-time cash available for payout
     current_month_deals = Column(Integer, default=0)
 
-    # Referral
+    # Referral & Hierarchy
     referred_by = Column(UUID(as_uuid=True), ForeignKey("affiliate_marketers.id"), nullable=True)
+    team_lead_id = Column(UUID(as_uuid=True), ForeignKey("affiliate_marketers.id"), nullable=True)
     referral_code = Column(String(20), unique=True, nullable=True)
 
     # Notes
     notes = Column(Text, nullable=True)
-    metadata = Column(JSONB, default={})
+    extra_metadata = Column(JSONB, default={})
 
     # Relationships
     performances = relationship("AffiliatePerformance", back_populates="affiliate")

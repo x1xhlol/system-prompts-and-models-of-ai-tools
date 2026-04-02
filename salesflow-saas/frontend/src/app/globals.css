@@ -13,16 +13,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 30% 15%;
 
-    --primary: 240 70% 50%;
+    --primary: 153 60% 45%; /* Deep Saudi Emerald */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 90%;
+    --secondary: 47 100% 65%; /* Soft Trophy Gold */
     --secondary-foreground: 220 30% 15%;
 
     --muted: 220 15% 90%;
     --muted-foreground: 220 10% 45%;
 
-    --accent: 260 80% 60%;
+    --accent: 47 100% 50%; /* Royal Gold Accent */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 85% 60%;
@@ -33,42 +33,42 @@
 
     --border: 220 15% 85%;
     --input: 220 15% 85%;
-    --ring: 240 70% 50%;
+    --ring: 153 60% 45%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
   }
 
   .dark {
-    --background: 224 30% 8%; /* Extremely sleek dark blue/black */
-    --foreground: 210 20% 90%;
+    --background: 230 40% 4%; /* Cyber Deep Black-Blue */
+    --foreground: 210 20% 95%;
 
-    --card: 224 30% 12%;
-    --card-foreground: 210 20% 90%;
+    --card: 230 35% 8%;
+    --card-foreground: 210 20% 95%;
 
-    --popover: 224 30% 12%;
-    --popover-foreground: 210 20% 90%;
+    --popover: 230 35% 8%;
+    --popover-foreground: 210 20% 95%;
 
-    --primary: 240 80% 65%; /* Vibrant glowing blue */
-    --primary-foreground: 224 30% 8%;
+    --primary: 153 65% 55%; /* Glowing Saudi Emerald */
+    --primary-foreground: 230 40% 4%;
 
-    --secondary: 224 30% 15%;
-    --secondary-foreground: 210 20% 90%;
+    --secondary: 47 100% 60%; /* Radiant Royal Gold */
+    --secondary-foreground: 230 40% 4%;
 
-    --muted: 224 30% 15%;
-    --muted-foreground: 215 15% 65%;
+    --muted: 230 30% 12%;
+    --muted-foreground: 215 15% 70%;
 
-    --accent: 270 80% 65%; /* Vibrant purple accent */
-    --accent-foreground: 0 0% 100%;
+    --accent: 47 100% 55%; /* Vibrant Gold Polish */
+    --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 70% 50%;
+    --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --success: 140 60% 50%;
+    --success: 142 70% 50%;
     --success-foreground: 0 0% 100%;
 
-    --border: 224 30% 20%;
-    --input: 224 30% 20%;
-    --ring: 240 80% 65%;
+    --border: 230 30% 15%;
+    --input: 230 30% 15%;
+    --ring: 153 65% 55%;
   }
 }
 
@@ -77,17 +77,23 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground bg-gradient-to-tr from-background to-background/80 min-h-screen bg-fixed antialiased selection:bg-primary/20 selection:text-primary;
+    @apply bg-background text-foreground bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-background to-background min-h-screen bg-fixed antialiased selection:bg-primary/30 selection:text-primary-foreground;
   }
 }
 
-/* Glassmorphism Utilities */
+/* Luxury Glassmorphism & High-End Effects */
 @layer utilities {
-  .glass {
-    @apply bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg;
+  .glass-premium {
+    @apply bg-white/5 dark:bg-black/40 backdrop-blur-2xl border border-white/10 dark:border-white/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
   }
-  .glass-card {
-    @apply bg-card/80 backdrop-blur-xl border border-border shadow-xl rounded-2xl transition-all duration-300 hover:shadow-primary/5 hover:border-primary/20;
+  .glass-card-premium {
+    @apply bg-card/60 backdrop-blur-3xl border border-border/50 shadow-2xl rounded-3xl transition-all duration-500 hover:shadow-primary/10 hover:border-primary/40 hover:-translate-y-1;
+  }
+  .text-glow {
+    text-shadow: 0 0 10px hsla(var(--primary), 0.5);
+  }
+  .gold-glow {
+    text-shadow: 0 0 15px hsla(var(--accent), 0.6);
   }
 }
 

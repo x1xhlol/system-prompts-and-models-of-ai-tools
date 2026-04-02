@@ -2,12 +2,13 @@ from sqlalchemy import Column, String, Integer, Text, DateTime, Numeric, Foreign
 from sqlalchemy.dialects.postgresql import UUID, JSONB
 from sqlalchemy.orm import relationship
 from datetime import datetime, timezone
-from app.models.base import TenantModel
+from app.models.base import BaseModel
 
 
-class Property(TenantModel):
+class Property(BaseModel):
     __tablename__ = "properties"
 
+    tenant_id = Column(UUID(as_uuid=True), ForeignKey("tenants.id"), nullable=False, index=True)
     title = Column(String(255), nullable=False)
     title_ar = Column(String(255))
     property_type = Column(String(50))  # apartment, villa, land, office, commercial

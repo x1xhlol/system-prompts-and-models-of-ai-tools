@@ -17,5 +17,4 @@ class User(TenantModel):
     is_active = Column(Boolean, default=True)
     last_login = Column(DateTime(timezone=True))
 
-    tenant = relationship("Tenant", back_populates="users")
     activities = relationship("Activity", back_populates="user")

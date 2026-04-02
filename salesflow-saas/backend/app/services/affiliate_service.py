@@ -24,6 +24,8 @@ CAREER_PATH = {
     "team_lead": {"next": "employee", "deals_required": 50, "months": 12},
 }
 
+TEAM_LEAD_OVERRIDE_RATE = 2.5 # Extra 2.5% for team leaders on their team's sales
+
 
 class AffiliateService:
     """Full affiliate lifecycle: recruitment, performance, commissions, career path."""
@@ -129,12 +131,41 @@ class AffiliateService:
         self.db.add(commission)
         await self.db.flush()
 
-        return {
+        results = [{
             "commission_id": str(commission.id),
+            "affiliate_id": affiliate_id,
             "amount": amount,
             "rate": rate,
             "status": "pending",
-        }
+        }]
+
+        # 🍯 Strategic Enhancement: Team Lead Override
+        if hasattr(aff, 'team_lead_id') and aff.team_lead_id:
+            lead_amount = round(deal_value * TEAM_LEAD_OVERRIDE_RATE / 100, 2)
+            lead_comm = Commission(
+                id=uuid.uuid4(),
+                tenant_id=uuid.UUID(tenant_id),
+                affiliate_id=aff.team_lead_id,
+                deal_id=uuid.UUID(deal_id),
+                amount=Decimal(str(lead_amount)),
+                currency="SAR",
+                rate=Decimal(str(TEAM_LEAD_OVERRIDE_RATE)),
+                status="pending",
+                period=datetime.now(timezone.utc).date().replace(day=1),
+                notes=f"Team override from affiliate {aff.referral_code}"
+            )
+            self.db.add(lead_comm)
+            results.append({
+                "commission_id": str(lead_comm.id),
+                "affiliate_id": str(aff.team_lead_id),
+                "amount": lead_amount,
+                "rate": TEAM_LEAD_OVERRIDE_RATE,
+                "status": "pending",
+                "type": "team_override"
+            })
+
+        await self.db.flush()
+        return {"commissions": results}
 
     # ── Tier Progression ──────────────────────────
 

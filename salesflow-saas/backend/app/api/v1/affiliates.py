@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
 from typing import Optional
 from datetime import datetime, timezone
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from uuid import UUID
 import uuid
 
@@ -18,7 +18,7 @@ router = APIRouter(prefix="/affiliates", tags=["affiliates"])
 class AffiliateRegisterRequest(BaseModel):
     full_name: str
     full_name_ar: Optional[str] = None
-    email: EmailStr
+    email: str
     phone: str
     whatsapp: Optional[str] = None
     city: Optional[str] = None

@@ -14,7 +14,7 @@ class Message(TenantModel):
     content = Column(Text)
     status = Column(String(50), default="pending")  # pending, sent, delivered, read, failed
     sent_at = Column(DateTime(timezone=True))
-    metadata = Column(JSONB, default=dict)
+    extra_metadata = Column(JSONB, default=dict)
 
-    lead = relationship("Lead", back_populates="messages")
-    customer = relationship("Customer", back_populates="messages")
+    lead = relationship("Lead", back_populates="messages", foreign_keys=[lead_id])
+    customer = relationship("Customer", back_populates="messages", foreign_keys=[customer_id])

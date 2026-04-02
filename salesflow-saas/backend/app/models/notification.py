@@ -11,4 +11,4 @@ class Notification(TenantModel):
     title = Column(String(255))
     body = Column(Text)
     is_read = Column(Boolean, default=False)
-    metadata = Column(JSONB, default=dict)
+    extra_metadata = Column(JSONB, default=dict)

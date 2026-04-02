@@ -64,6 +64,26 @@ const SECTORS = [
 ];
 
 export function PresentationsView() {
+  const handleShare = async (sector: (typeof SECTORS)[0]) => {
+    const shareData = {
+      title: `عرض ${sector.name} - Dealix AI`,
+      text: `مرحباً، أود مشاركة عرض Dealix AI المخصص لـ ${sector.name}.\n\nالمشكلة: ${sector.pain}\nالحل: ${sector.solution}`,
+      url: window.location.origin + "/decks/" + sector.deckUrl.replace("#", ""),
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.error("Error sharing:", err);
+      }
+    } else {
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareData.text + "\n" + shareData.url)}`;
+      window.open(whatsappUrl, "_blank");
+    }
+  };
+
+
   return (
     <div className="p-8 max-w-7xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex justify-between items-end">
@@ -99,15 +119,20 @@ export function PresentationsView() {
                 <span className="text-sm font-medium">{sector.stats}</span>
               </div>
 
-              <button className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-medium shadow-lg shadow-primary/25 transition-all">
-                <FileBarChart className="w-4 h-4" />
-                تحميل العرض التقديمي (Deck)
-              </button>
-              
-              <button className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border font-medium transition-all">
-                <MonitorPlay className="w-4 h-4" />
-                استخراج حاسبة العائد ROI
-              </button>
+              <div className="grid grid-cols-1 gap-2">
+                <button 
+                  onClick={() => handleShare(sector)}
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-medium shadow-lg shadow-primary/25 transition-all"
+                >
+                  <FileBarChart className="w-4 h-4" />
+                  مشاركة العرض (Share Deck)
+                </button>
+                
+                <button className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border font-medium transition-all">
+                  <MonitorPlay className="w-4 h-4" />
+                  استخراج حاسبة العائد ROI
+                </button>
+              </div>
             </div>
           </div>
         ))}
@@ -115,3 +140,4 @@ export function PresentationsView() {
     </div>
   );
 }
+

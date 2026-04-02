@@ -48,7 +48,7 @@ class Consent(BaseModel):
     opted_out_at = Column(DateTime(timezone=True), nullable=True)
     source = Column(String(100), nullable=True)
     ip_address = Column(String(45), nullable=True)
-    metadata = Column(JSONB, default={})
+    extra_metadata = Column(JSONB, default={})
 
     lead = relationship("Lead")
     customer = relationship("Customer")

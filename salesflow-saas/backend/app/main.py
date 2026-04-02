@@ -1,3 +1,8 @@
+# ── SQLite Patch (must be first!) ─────────────────────────────
+from app.sqlite_patch import apply_patch
+apply_patch()
+# ──────────────────────────────────────────────────────────────
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager

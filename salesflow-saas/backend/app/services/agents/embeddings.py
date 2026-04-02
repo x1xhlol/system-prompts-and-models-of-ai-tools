@@ -39,8 +39,8 @@ class EmbeddingsEngine:
             
             # Using pgvector to insert knowledge.
             query = text("""
-                INSERT INTO knowledge_articles (id, tenant_id, title, content, embedding, metadata)
-                VALUES (gen_random_uuid(), :tenant_id, :title, :content, :embedding, :metadata)
+                INSERT INTO knowledge_articles (id, tenant_id, title, content, embedding, extra_metadata)
+                VALUES (gen_random_uuid(), :tenant_id, :title, :content, :embedding, :extra_metadata)
                 RETURNING id
             """)
             
@@ -53,7 +53,7 @@ class EmbeddingsEngine:
                 "title": title,
                 "content": content,
                 "embedding": str(vector), # pgvector parses strings of arrays directly
-                "metadata": json.dumps(metadata or {})
+                "extra_metadata": json.dumps(metadata or {})
             })
             await self.db.flush()
             
@@ -69,7 +69,7 @@ class EmbeddingsEngine:
             
             # Using pgvector cosine distance `<=>` operator to find closest rows
             query = text("""
-                SELECT id, title, content, metadata, 1 - (embedding <=> :query_vector) as similarity
+                SELECT id, title, content, extra_metadata, 1 - (embedding <=> :query_vector) as similarity
                 FROM knowledge_articles
                 WHERE tenant_id = :tenant_id
                 ORDER BY embedding <=> :query_vector
@@ -88,7 +88,7 @@ class EmbeddingsEngine:
                     "id": str(row.id),
                     "title": row.title,
                     "content": row.content,
-                    "metadata": row.metadata,
+                    "extra_metadata": row.extra_metadata,
                     "similarity": float(row.similarity)
                 }
                 for row in rows

@@ -8,12 +8,14 @@ class Settings(BaseSettings):
     APP_NAME: str = "Dealix"
     APP_NAME_AR: str = "ديل اي اكس"
     DEBUG: bool = False
+    ENVIRONMENT: str = "production"
     DEFAULT_TIMEZONE: str = "Asia/Riyadh"
     DEFAULT_CURRENCY: str = "SAR"
     DEFAULT_LOCALE: str = "ar"
+    AGENT_PROMPTS_DIR: str = "app/ai/prompts"
 
     # ── Database ─────────────────────────────────────────
-    DATABASE_URL: str = "postgresql+asyncpg://salesflow:salesflow_secret_2024@db:5432/salesflow"
+    DATABASE_URL: str = "postgresql+asyncpg://salesflow:salesflow_secret_2024@localhost:5432/salesflow"
 
     # ── Redis ────────────────────────────────────────────
     REDIS_URL: str = "redis://redis:6379/0"
@@ -46,6 +48,7 @@ class Settings(BaseSettings):
 
     # LLM defaults
     LLM_PRIMARY_PROVIDER: str = "groq"  # groq, openai
+    LLM_FALLBACK_PROVIDER: str = "groq"
     LLM_TEMPERATURE: float = 0.3
     LLM_MAX_TOKENS: int = 2048
     LLM_TIMEOUT: int = 30
@@ -104,6 +107,7 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         case_sensitive = True
+        extra = "allow"
 
 
 @lru_cache()

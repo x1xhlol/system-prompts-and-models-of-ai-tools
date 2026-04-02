@@ -102,17 +102,31 @@ export function AffiliatesView() {
                   <td className="py-4 px-6 font-bold">{aff.sales}</td>
                   <td className="py-4 px-6 font-mono">{aff.rev}</td>
                   <td className="py-4 px-6 font-mono text-emerald-500">{aff.comm}</td>
-                  <td className="py-4 px-6">
+                  <td className="py-4 px-6 flex items-center gap-2">
                     {aff.eligibleForHire ? (
                       <button className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500 text-white rounded-lg text-xs font-bold hover:bg-emerald-600 transition-colors shadow-lg shadow-emerald-500/20">
                         <Award className="w-3.5 h-3.5" />
-                        ترقية (توظيف)
+                        ترقية
                       </button>
                     ) : (
                       <button className="flex items-center gap-1.5 px-3 py-1.5 bg-background border border-border rounded-lg text-xs font-bold hover:bg-secondary transition-colors text-muted-foreground group-hover:text-foreground">
-                        عرض التفاصيل
+                        التفاصيل
                       </button>
                     )}
+                    <button 
+                      onClick={() => {
+                        const text = `مرحباً ${aff.name}، إليك رابط لوحة التحكم الخاصة بك في Dealix: https://dealix.sa/affiliate/onboarding/${aff.id}`;
+                        if (navigator.share) {
+                          navigator.share({ title: 'رابط انضمام Dealix', text, url: 'https://dealix.sa' });
+                        } else {
+                          window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+                        }
+                      }}
+                      className="p-1.5 rounded-lg border border-border bg-card hover:bg-secondary/50 text-muted-foreground hover:text-primary transition-all"
+                      title="مشاركة رابط الانضمام"
+                    >
+                      <UserPlus className="w-4 h-4" />
+                    </button>
                   </td>
                 </tr>
               ))}

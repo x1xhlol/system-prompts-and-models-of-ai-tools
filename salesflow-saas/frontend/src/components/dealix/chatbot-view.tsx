@@ -8,13 +8,13 @@ export function ChatbotView() {
   ];
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex justify-between items-end">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight mb-2">🤖 مركز تحكم وكلاء الذكاء الاصطناعي</h1>
-          <p className="text-muted-foreground">صناعة وتوجيه وكلاء المبيعات، المحادثة النصية (WhatsApp) والاتصال الصوتي (Voice Agents).</p>
+    <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-6 md:space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+        <div className="text-right">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight mb-2">🤖 مركز تحكم الوكلاء</h1>
+          <p className="text-sm md:text-base text-muted-foreground">صناعة وتوجيه وكلاء المبيعات، المحادثة النصية (WhatsApp) والاتصال الصوتي (Voice Agents).</p>
         </div>
-        <button className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-medium shadow-lg shadow-primary/25 transition-all">
+        <button className="w-full md:w-auto flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-medium shadow-lg shadow-primary/25 transition-all text-sm">
           <Plus className="w-5 h-5" />
           بناء وكيل جديد
         </button>
@@ -65,20 +65,46 @@ export function ChatbotView() {
         ))}
       </div>
       
-      {/* Voice Demo Panel */}
-      <div className="glass-card p-6 flex items-center justify-between border border-blue-500/20 bg-blue-500/5 mt-8">
-        <div className="flex items-center gap-4">
-          <div className="p-4 rounded-full bg-blue-500 text-white shadow-lg shadow-blue-500/30">
-            <Phone className="w-6 h-6 animate-pulse" />
+      {/* Live Operations Feed (The Pulse of the Empire) */}
+      <div className="glass-card overflow-hidden border border-primary/20 bg-primary/5">
+        <div className="p-4 border-b border-primary/20 bg-primary/10 flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-ping" />
+            <span className="font-black text-sm uppercase tracking-widest">نبض الإمبراطورية (Live Feed)</span>
           </div>
-          <div>
-            <h3 className="text-lg font-bold">تجربة الوكيل الصوتي المباشر (Realtime SA)</h3>
-            <p className="text-sm text-muted-foreground mt-1">تحدث مباشرة مع وكيلك الذكي لتختبر اللهجة السعودية وسرعة الرد.</p>
+          <span className="text-[10px] opacity-60 font-bold uppercase">تحديث حي كل ٣ ثواني</span>
+        </div>
+        <div className="p-4 space-y-3 h-[200px] overflow-y-auto font-sans text-right rtl">
+          {[
+            { time: "الآن", msg: "الوكيل القناص قام بإغلاق صفقة بقيمة ٢,٥٠٠ ريال مع عميل في الرياض 💰", color: "text-emerald-500" },
+            { time: "قبل دقيقة", msg: "وكيل التأهيل قام بتصنيف عميل جديد كـ 'فرصة ذهبية' (Qualified) 🎯", color: "text-primary" },
+            { time: "قبل ٣ دقائق", msg: "تم إرسال رابط الدفع آلياً لعميل في جدة عبر الواتساب 🔗", color: "text-blue-400" },
+            { time: "قبل ٥ دقائق", msg: "الوكيل الصوتي أكمل مكالمة بنجاح وحجز موعد عرض تجريبي 🎙️", color: "text-purple-400" },
+            { time: "قبل ٨ دقائق", msg: "تم تفعيل الضمان الذهبي لعميل جديد لزيادة الثقة 🛡️", color: "text-accent" },
+          ].map((log, i) => (
+            <div key={i} className="flex justify-between items-center gap-4 py-2 border-b border-white/5 last:border-0 hover:bg-white/5 transition-colors px-2 rounded-lg">
+              <span className={`text-sm font-bold ${log.color}`}>{log.msg}</span>
+              <span className="text-[10px] opacity-40 font-medium whitespace-nowrap">{log.time}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Voice Demo Panel */}
+      <div className="glass-card p-4 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-primary/20 bg-primary/5 mt-8 relative overflow-hidden group">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/20 transition-all" />
+        <div className="flex items-center gap-4 relative z-10">
+          <div className="p-3 md:p-4 rounded-xl bg-primary text-black shadow-lg shadow-primary/30">
+            <Phone className="w-5 h-5 md:w-6 md:h-6 animate-pulse" />
+          </div>
+          <div className="text-right">
+            <h3 className="text-base md:text-lg font-black text-primary">تجربة الوكيل الصوتي (Realtime SA)</h3>
+            <p className="text-xs md:text-sm opacity-70 mt-1">تحدث مباشرة مع وكيلك الذكي لتختبر اللهجة السعودية وسرعة الرد القاتلة.</p>
           </div>
         </div>
-        <button className="px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-bold transition-all shadow-lg flex gap-2 items-center">
+        <button className="relative z-10 w-full md:w-auto px-8 py-3.5 rounded-xl bg-primary hover:bg-primary/90 text-black font-black transition-all shadow-lg shadow-primary/20 flex gap-3 items-center justify-center text-sm hover:scale-105 active:scale-95">
           <Mic className="w-5 h-5" />
-          بدء محاكاة المكالمة
+          بدء محاكاة المكالمة الذكية
         </button>
       </div>
     </div>

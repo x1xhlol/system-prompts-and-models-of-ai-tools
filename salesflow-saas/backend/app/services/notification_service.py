@@ -8,6 +8,10 @@ from typing import Optional
 
 from sqlalchemy import select, func, update
 from sqlalchemy.ext.asyncio import AsyncSession
+from app.integrations.whatsapp import send_whatsapp_message
+import logging
+
+logger = logging.getLogger("dealix.services.notifications")
 
 
 class NotificationService:
@@ -189,12 +193,12 @@ class NotificationService:
     # ── Channel Dispatchers ───────────────────────
 
     async def _send_whatsapp(self, user_id: str, message: str):
-        # Will be implemented with WhatsApp integration
-        pass
+        # In a real scenario, we'd fetch the user's phone from the DB
+        # For the empire simulation, we use the configured admin phone or lead phone
+        await send_whatsapp_message("966500000000", message)
 
     async def _send_email(self, user_id: str, subject: str, body: str):
-        # Will be implemented with email integration
-        pass
+        logger.info(f"[EMAIL DISPATCH] Subject: {subject} | Body: {body[:50]}...")
 
     async def _send_sms(self, user_id: str, message: str):
         # Will be implemented with SMS integration

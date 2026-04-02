@@ -12,9 +12,8 @@ class Customer(TenantModel):
     phone = Column(String(20))
     email = Column(String(255))
     company_name = Column(String(255))
-    metadata = Column(JSONB, default=dict)
+    extra_metadata = Column(JSONB, default=dict)
     lifetime_value = Column(Numeric(12, 2), default=0)
 
-    tenant = relationship("Tenant", back_populates="customers")
-    lead = relationship("Lead")
-    messages = relationship("Message", back_populates="customer")
+    lead = relationship("Lead", foreign_keys=[lead_id])
+    messages = relationship("Message", back_populates="customer", foreign_keys="[Message.customer_id]")

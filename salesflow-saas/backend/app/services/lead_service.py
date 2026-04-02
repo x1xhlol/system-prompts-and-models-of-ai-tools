@@ -156,6 +156,21 @@ class LeadService:
         await self.db.flush()
         return self._to_dict(lead)
 
+    async def get_lead_by_phone(self, tenant_id: str, phone: str) -> Optional[dict]:
+        from app.models.lead import Lead
+        
+        # Normalize phone (simple version: remove non-digits)
+        clean_phone = "".join(filter(str.isdigit, phone))
+        
+        result = await self.db.execute(
+            select(Lead).where(
+                Lead.tenant_id == uuid.UUID(tenant_id),
+                Lead.phone.ilike(f"%{clean_phone}%")
+            )
+        )
+        lead = result.scalar_one_or_none()
+        return self._to_dict(lead) if lead else None
+
     async def delete_lead(self, tenant_id: str, lead_id: str) -> bool:
         from app.models.lead import Lead
 

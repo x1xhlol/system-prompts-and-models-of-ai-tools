@@ -28,7 +28,7 @@ class Company(TenantModel):
     source = Column(String(50), nullable=True)
     affiliate_id = Column(UUID(as_uuid=True), ForeignKey("affiliate_marketers.id"), nullable=True)
     notes = Column(Text, nullable=True)
-    metadata = Column(JSONB, default={})
+    extra_metadata = Column(JSONB, default={})
     is_active = Column(Boolean, default=True)
     updated_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 

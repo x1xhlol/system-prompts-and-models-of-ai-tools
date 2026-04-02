@@ -183,6 +183,7 @@ class AgentExecutor:
         """Load system prompt from the ai-agents/prompts directory."""
         # Map agent_type to filename
         filename_map = {
+            "closer_agent": "closer-agent.md",
             "lead_qualification": "lead-qualification-agent.md",
             "arabic_whatsapp": "arabic-whatsapp-agent.md",
             "english_conversation": "english-conversation-agent.md",
@@ -207,12 +208,19 @@ class AgentExecutor:
         if not filename:
             return f"You are the {agent_type} agent for Dealix. Respond with structured JSON."
 
+        # Check primary prompts dir
         prompt_path = PROMPTS_DIR / filename
         if prompt_path.exists():
             return prompt_path.read_text(encoding="utf-8")
-        else:
-            logger.warning(f"Prompt file not found: {prompt_path}")
-            return f"You are the {agent_type} agent for Dealix. Respond with structured JSON."
+        
+        # Check fallback backend prompts dir
+        backend_prompts_dir = Path(__file__).parent.parent.parent / "ai" / "prompts"
+        fallback_path = backend_prompts_dir / filename
+        if fallback_path.exists():
+            return fallback_path.read_text(encoding="utf-8")
+        
+        logger.warning(f"Prompt file not found for {agent_type}: {filename}")
+        return f"You are the {agent_type} agent for Dealix. Respond with structured JSON."
 
     def _build_user_message(self, agent_type: str, input_data: dict) -> str:
         """Build the user message from input data."""

@@ -2,7 +2,7 @@
 from datetime import datetime, date
 from typing import Optional, List, Any
 from uuid import UUID
-from pydantic import BaseModel, EmailStr, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict
 
 
 # ── Auth Schemas ────────────────────────────────────────────────
@@ -99,7 +99,7 @@ class LeadCreate(BaseModel):
     sector: Optional[str] = None
     city: Optional[str] = None
     notes: Optional[str] = None
-    metadata: Optional[dict] = None
+    extra_metadata: Optional[dict] = None
 
 class LeadUpdate(BaseModel):
     name: Optional[str] = None
@@ -109,7 +109,7 @@ class LeadUpdate(BaseModel):
     score: Optional[int] = None
     assigned_to: Optional[UUID] = None
     notes: Optional[str] = None
-    metadata: Optional[dict] = None
+    extra_metadata: Optional[dict] = None
 
 class LeadResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -122,7 +122,7 @@ class LeadResponse(BaseModel):
     status: str
     score: int
     notes: Optional[str] = None
-    metadata: Optional[dict] = None
+    extra_metadata: Optional[dict] = None
     assigned_to: Optional[UUID] = None
     created_at: datetime
     updated_at: Optional[datetime] = None

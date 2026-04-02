@@ -16,10 +16,10 @@ AGENT_REGISTRY = {
     # Lead lifecycle
     "lead_created": ["lead_qualification"],
     "lead_score_updated": ["lead_qualification"],
-    "lead_qualified": ["outreach_writer", "meeting_booking"],
+    "lead_qualified": ["closer_agent", "outreach_writer", "meeting_booking"],
 
     # Communication
-    "whatsapp_inbound": ["arabic_whatsapp"],
+    "whatsapp_inbound": ["closer_agent", "arabic_whatsapp"],
     "whatsapp_outbound": ["outreach_writer"],
     "email_inbound": ["english_conversation"],
     "email_outbound": ["outreach_writer"],

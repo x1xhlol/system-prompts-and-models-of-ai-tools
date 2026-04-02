@@ -3,8 +3,16 @@ from app.api.v1 import (
     auth, leads, deals, dashboard, tenants, users, affiliates, ai_agents,
     companies, contacts, calls, meetings, commissions, payouts, disputes,
     guarantees, consents, complaints, knowledge, sectors, presentations,
-    supervisor, admin, health, analytics, webhooks,
+    supervisor, admin, health, analytics, webhooks, prospecting,
 )
+from app.api.v1 import agents as agents_router
+from app.api.v1 import intelligence as intelligence_router
+from app.api.v1 import master as master_router
+from app.api.v1 import revenue_room as revenue_room_router
+from app.api.v1 import outreach_engine as outreach_router
+from app.api.v1 import lead_prospector as prospector_router
+from app.api.v1 import pipeline as pipeline_router
+from app.api.v1 import agent_system as agent_system_router
 
 api_router = APIRouter()
 
@@ -34,3 +42,24 @@ api_router.include_router(admin.router, prefix="/admin", tags=["Admin"])
 api_router.include_router(health.router, tags=["Health"])
 api_router.include_router(analytics.router, tags=["Analytics & AI"])
 api_router.include_router(webhooks.router, tags=["Webhooks"])
+api_router.include_router(prospecting.router, prefix="/prospecting", tags=["Prospecting"])
+
+# ── Manus Multi-Agent + Autonomous Intelligence ─────────────
+api_router.include_router(agents_router.router)
+api_router.include_router(intelligence_router.router)
+api_router.include_router(master_router.router)
+
+# ── Revenue Room — Saudi AI Sales Engine ─────────────────────
+api_router.include_router(revenue_room_router.router)
+
+# ── Outreach Engine — Auto Client Acquisition ────────────────
+api_router.include_router(outreach_router.router)
+
+# ── Lead Prospector — AI-Powered Lead Generation ─────────────
+api_router.include_router(prospector_router.router)
+
+# ── Autonomous Pipeline — Self-Running Sales Machine ─────────
+api_router.include_router(pipeline_router.router)
+
+# ── 22-Agent AI System — Full Empire Control ─────────────────
+api_router.include_router(agent_system_router.router)

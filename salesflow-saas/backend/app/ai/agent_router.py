@@ -22,6 +22,8 @@ EVENT_AGENT_MAP = {
     # Message events
     "message.inbound.whatsapp.ar": ["arabic_whatsapp"],
     "message.inbound.whatsapp.en": ["english_conversation"],
+    "message.closer.whatsapp.ar": ["closer_agent"],
+    "message.closer.whatsapp.en": ["closer_agent"],
     "message.inbound.email": ["english_conversation"],
     "message.objection_detected": ["objection_handler"],
 

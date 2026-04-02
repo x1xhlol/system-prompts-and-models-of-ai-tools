@@ -86,4 +86,4 @@ class AutoBooking(TenantModel):
     # Notes
     notes = Column(Text, nullable=True)
     outcome = Column(Text, nullable=True)
-    metadata = Column(JSONB, default={})
+    extra_metadata = Column(JSONB, default={})

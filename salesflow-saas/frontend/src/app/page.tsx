@@ -15,7 +15,10 @@ import {
   MonitorPlay,
   FileSignature,
   ShieldCheck,
-  Phone
+  Phone,
+  Building2,
+  DollarSign,
+  Brain
 } from "lucide-react";
 
 import { DashboardView } from "../components/dealix/dashboard-view";
@@ -26,26 +29,50 @@ import { ScriptsView } from "../components/dealix/scripts-view";
 import { AgreementsView } from "../components/dealix/agreements-view";
 import { GuaranteesView } from "../components/dealix/guarantees-view";
 import { OnboardingView } from "../components/dealix/onboarding-view";
+import { LandingView } from "../components/dealix/landing-view";
+import { PropertiesView } from "../components/dealix/properties-view";
+import { RevenueView } from "../components/dealix/revenue-view";
+import { KnowledgeView } from "../components/dealix/knowledge-view";
+import { AnalyticsView } from "../components/dealix/analytics-view";
+import { IntelligenceDashboard } from "../components/dealix/intelligence-dashboard";
+import { LeadGeneratorView } from "../components/dealix/lead-generator-view";
 
 export default function AppLayout() {
   const [activeTab, setActiveTab] = useState("overview");
+  const [isEntered, setIsEntered] = useState(false);
+
+  if (!isEntered) {
+    return <LandingView onEnterApp={() => setIsEntered(true)} />;
+  }
 
   const NAV_ITEMS = [
-    { id: "overview", label: "نظرة عامة", icon: BarChart3 },
+    { id: "overview", label: "لوحة القيادة والمراقبة", icon: BarChart3 },
+    { id: "intelligence", label: "🤖 الذكاء المستقل — Manus", icon: BrainCircuit },
+    { id: "leads", label: "🎯 توليد العملاء — AI", icon: Target },
+    { id: "properties", label: "إدارة المخزون العقاري", icon: Building2 },
     { id: "affiliates", label: "المسوقين والموظفين", icon: Users },
-    { id: "agents", label: "الوكلاء الأذكياء (Agents)", icon: BrainCircuit },
+    { id: "agents", label: "الوكلاء الأذكياء", icon: BrainCircuit },
+    { id: "revenue", label: "المالية والتحصيل", icon: DollarSign },
+    { id: "analytics", label: "التحليلات ونبض السوق", icon: BarChart3 },
+    { id: "knowledge", label: "الذكاء والمعرفة", icon: Brain },
     { id: "presentations", label: "البرزنتيشنات القطاعية", icon: MonitorPlay },
     { id: "scripts", label: "سكربتات المبيعات", icon: Phone },
     { id: "agreements", label: "الاتفاقيات واHR", icon: FileSignature },
     { id: "guarantee", label: "الضمان الذهبي", icon: ShieldCheck },
-    { id: "onboarding", label: "ديل المسوق وتأهيله", icon: BookOpen },
+    { id: "onboarding", label: "تأهيل المسوق", icon: BookOpen },
   ];
 
   const renderContent = () => {
     switch (activeTab) {
       case "overview": return <DashboardView />;
+      case "intelligence": return <IntelligenceDashboard />;
+      case "leads": return <LeadGeneratorView />;
+      case "properties": return <PropertiesView />;
       case "affiliates": return <AffiliatesView />;
       case "agents": return <ChatbotView />;
+      case "revenue": return <RevenueView />;
+      case "analytics": return <AnalyticsView />;
+      case "knowledge": return <KnowledgeView />;
       case "presentations": return <PresentationsView />;
       case "scripts": return <ScriptsView />;
       case "agreements": return <AgreementsView />;
@@ -128,9 +155,34 @@ export default function AppLayout() {
         </header>
 
         {/* Dynamic View Injection */}
-        <div className="flex-1 w-full max-w-[1600px] mx-auto">
+        <div className="flex-1 w-full max-w-[1600px] mx-auto pb-24 lg:pb-0">
           {renderContent()}
         </div>
+
+        {/* ── Mobile Navigation (Bottom Bar) ───────────────────── */}
+        <nav className="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-card/80 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl flex items-center justify-around py-4 px-4 z-50">
+          {[
+            { id: "overview", icon: BarChart3 },
+            { id: "agents", icon: BrainCircuit },
+            { id: "presentations", icon: MonitorPlay },
+            { id: "scripts", icon: Phone },
+          ].map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setActiveTab(item.id)}
+              className={`flex flex-col items-center gap-1 transition-all ${
+                activeTab === item.id 
+                  ? "text-primary scale-110" 
+                  : "text-muted-foreground opacity-60"
+              }`}
+            >
+              <item.icon className="w-6 h-6" />
+              {activeTab === item.id && (
+                <span className="w-1 h-1 bg-primary rounded-full" />
+              )}
+            </button>
+          ))}
+        </nav>
       </main>
     </div>
   );

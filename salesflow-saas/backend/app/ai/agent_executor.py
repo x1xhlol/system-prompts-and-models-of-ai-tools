@@ -14,6 +14,7 @@ from typing import Optional
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.ai.llm_provider import LLMProvider
+from app.ai.saudi_dialect import SaudiDialectProcessor
 from app.config import get_settings
 
 settings = get_settings()
@@ -122,6 +123,11 @@ class AgentExecutor:
             "description": "Generate executive summaries",
             "model_preference": "openai",
         },
+        "closer_agent": {
+            "prompt_file": "closer-agent.md",
+            "description": "The elite Sales Closer for the Saudi market",
+            "model_preference": "openai",
+        },
     }
 
     def __init__(self, db: AsyncSession = None, llm: LLMProvider = None):
@@ -176,6 +182,16 @@ class AgentExecutor:
         system_prompt = override_prompt or self._load_prompt(agent_config["prompt_file"])
         if not system_prompt:
             raise FileNotFoundError(f"Prompt file not found: {agent_config['prompt_file']}")
+
+        # 🍯 Strategic Enrichment: Saudi Dialect & Culture
+        tone = input_data.get("tone", "professional_friendly")
+        sector = input_data.get("sector", "real_estate")
+        region = input_data.get("region", "najdi")
+        
+        saudi_additions = SaudiDialectProcessor.get_system_prompt_additions(
+            tone=tone, sector=sector, region=region
+        )
+        system_prompt = f"{system_prompt}\n\n{saudi_additions}"
 
         # Build user message from input data
         user_message = self._format_input(agent_type, input_data)
@@ -279,6 +295,21 @@ class AgentExecutor:
             parts.append("\n### Additional Context")
             for k, v in data["context"].items():
                 parts.append(f"- **{k}:** {v}")
+
+        if "knowledge_context" in data:
+            parts.append("\n### Corporate Knowledge Base (RAG)")
+            parts.append("Use the following information to answer accurately:")
+            for item in data["knowledge_context"]:
+                parts.append(f"\n#### {item.get('title')}")
+                parts.append(item.get("content", ""))
+
+        if "properties_context" in data:
+            parts.append("\n### Available Real Estate Inventory")
+            parts.append("Use these listings to offer specific options to the client:")
+            for prop in data["properties_context"]:
+                parts.append(f"\n- **{prop.get('title')}**")
+                parts.append(f"  Price: {prop.get('price')} | Location: {prop.get('location')} | Area: {prop.get('area')}")
+                parts.append(f"  Details: {prop.get('description')}")
 
         # Add any remaining top-level data
         skip_keys = {"lead", "conversation", "context"}

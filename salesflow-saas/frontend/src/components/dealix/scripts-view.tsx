@@ -74,6 +74,11 @@ export function ScriptsView() {
     setTimeout(() => setCopied(null), 2000);
   };
 
+  const shareToWhatsApp = (text: string) => {
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
   return (
     <div className="p-8 max-w-7xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex justify-between items-end">
@@ -100,24 +105,33 @@ export function ScriptsView() {
                 {data.script}
               </div>
               
-              <button 
-                onClick={() => copyToClipboard(id, data.script)}
-                className={`w-full mt-4 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all ${
-                  copied === id 
-                    ? "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20" 
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border/50"
-                }`}
-              >
-                {copied === id ? (
-                  <>
-                    <CheckCircle2 className="w-4 h-4" /> تم النسخ بنجاح
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-4 h-4" /> نسخ النص
-                  </>
-                )}
-              </button>
+              <div className="grid grid-cols-2 gap-2 mt-4">
+                <button 
+                  onClick={() => copyToClipboard(id, data.script)}
+                  className={`flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all ${
+                    copied === id 
+                      ? "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20" 
+                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border/50"
+                  }`}
+                >
+                  {copied === id ? (
+                    <>
+                      <CheckCircle2 className="w-4 h-4" /> تم النسخ
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-4 h-4" /> نسخ
+                    </>
+                  )}
+                </button>
+
+                <button 
+                  onClick={() => shareToWhatsApp(data.script)}
+                  className="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366]/20 border border-[#25D366]/20 transition-all"
+                >
+                  <MessageCircle className="w-4 h-4" /> واتساب
+                </button>
+              </div>
             </div>
           </div>
         ))}
@@ -125,3 +139,4 @@ export function ScriptsView() {
     </div>
   );
 }
+
