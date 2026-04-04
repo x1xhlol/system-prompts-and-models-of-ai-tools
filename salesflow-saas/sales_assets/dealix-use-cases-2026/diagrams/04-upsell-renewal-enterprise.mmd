@@ -1,0 +1,28 @@
+flowchart LR
+  subgraph Data
+    SF[Salesforce]
+    G[Gong / مكالمات]
+  end
+
+  subgraph Intelligence
+    AF[Analytics & Forecasting Crew]
+    CR[churn risk score]
+  end
+
+  subgraph Revenue
+    UC[Upsell Crew]
+    DO[Deal Orchestrator]
+  end
+
+  subgraph Outbound
+    WA[WhatsApp]
+    EM[Email + case studies]
+  end
+
+  SF --> AF
+  G --> AF
+  AF --> CR --> UC
+  UC --> WA
+  UC --> EM
+  UC --> DO
+  DO --> RN[Renewal + upsell closed]

@@ -1,0 +1,77 @@
+{
+  "product": "Dealix",
+  "version": "2026.1",
+  "document": "Autonomous Revenue & Operations OS — real-world use cases",
+  "cases": [
+    {
+      "id": "UC-01",
+      "slug": "whatsapp-48h-construction",
+      "title_ar": "واتساب → إغلاق خلال 48 ساعة",
+      "sector_example": "B2B إنشاءات — الرياض",
+      "diagram": "diagrams/01-whatsapp-48h-construction.mmd",
+      "folder": "cases/01-whatsapp-48h",
+      "primary_agents": ["ProspectingCrew", "IntentDetector", "LeadQualifier", "WhatsAppSalesAgent", "CloserAgent", "PricingAgent", "CEOAgent"],
+      "integrations": ["WhatsApp Business", "Salesforce", "Stripe", "eSign"]
+    },
+    {
+      "id": "UC-02",
+      "slug": "abandoned-cart-retail-b2b",
+      "title_ar": "سلة مهجورة + متابعة متعددة القنوات",
+      "sector_example": "تجزئة B2B مواد بناء",
+      "diagram": "diagrams/02-abandoned-cart-retail.mmd",
+      "folder": "cases/02-abandoned-cart-retail",
+      "primary_agents": ["Personalizer", "MarketingAutomation", "WhatsAppSalesAgent", "EmailAgent", "LinkedInAgent"],
+      "integrations": ["Store webhook", "WhatsApp", "SMTP", "LinkedIn"]
+    },
+    {
+      "id": "UC-03",
+      "slug": "support-whatsapp-saas",
+      "title_ar": "دعم واتساب + تصعيد ذكي",
+      "sector_example": "SaaS",
+      "diagram": "diagrams/03-support-whatsapp-saas.mmd",
+      "folder": "cases/03-support-whatsapp-saas",
+      "primary_agents": ["ConversationIntelAgent", "Knowledge", "HumanHandoff"],
+      "integrations": ["WhatsApp", "Knowledge base", "Ticketing optional"]
+    },
+    {
+      "id": "UC-04",
+      "slug": "upsell-renewal-enterprise",
+      "title_ar": "Upsell وتجديد تلقائي",
+      "sector_example": "Enterprise software",
+      "diagram": "diagrams/04-upsell-renewal-enterprise.mmd",
+      "folder": "cases/04-upsell-renewal-enterprise",
+      "primary_agents": ["predictive_revenue", "Upsell", "Deal orchestrator"],
+      "integrations": ["Salesforce", "WhatsApp", "Email", "Gong optional"]
+    },
+    {
+      "id": "UC-05",
+      "slug": "campaign-leadgen-consulting",
+      "title_ar": "حملة كاملة + lead gen",
+      "sector_example": "استشارات — قطاع حكومي",
+      "diagram": "diagrams/05-campaign-leadgen-consulting.mmd",
+      "folder": "cases/05-campaign-leadgen-consulting",
+      "primary_agents": ["Marketing automation", "ProspectingCrew", "Qualification", "PerformanceAnalyzer"],
+      "integrations": ["Landing", "Email", "LinkedIn", "WhatsApp", "Apollo optional"]
+    },
+    {
+      "id": "UC-06",
+      "slug": "billing-contract-fintech",
+      "title_ar": "فوترة وعقود كاملة",
+      "sector_example": "خدمات مالية",
+      "diagram": "diagrams/06-billing-contract-fintech.mmd",
+      "folder": "cases/06-billing-contract-fintech",
+      "primary_agents": ["Billing", "Reminders", "Contract intelligence", "Compliance"],
+      "integrations": ["Stripe", "WhatsApp", "Email", "eSign"]
+    },
+    {
+      "id": "UC-07",
+      "slug": "full-company-autopilot",
+      "title_ar": "تشغيل شركة متوسطة بالكامل",
+      "sector_example": "شركة ~50 موظف — السعودية",
+      "diagram": "diagrams/07-full-company-autopilot.mmd",
+      "folder": "cases/07-full-autopilot",
+      "primary_agents": ["CEOAgent", "full agent stack layers 1-7"],
+      "integrations": ["CRM", "WhatsApp", "Email", "Stripe", "Analytics/Slack"]
+    }
+  ]
+}

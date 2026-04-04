@@ -1,27 +1,78 @@
 "use client";
 
-import { 
-  TrendingUp, Users, Target, MapPin, Zap, Award, 
-  Activity, ArrowUpRight, Shield
+import { useEffect, useState } from "react";
+import {
+  TrendingUp,
+  Target,
+  MapPin,
+  Zap,
+  Award,
+  Activity,
+  ArrowUpRight,
+  Shield,
 } from "lucide-react";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { getApiBaseUrl } from "@/lib/api-base";
 
 const Card = ({ className, children }: { className?: string; children: React.ReactNode }) => (
   <div className={`rounded-xl border border-white/10 bg-white/5 ${className ?? ""}`}>{children}</div>
 );
 
 export function AnalyticsView() {
+  const [roi, setRoi] = useState({
+    revenue_lift_percent: 18,
+    win_rate: 31,
+    pipeline_velocity_days: 22,
+    manual_work_reduction_percent: 72,
+    summary: "بيانات توضيحية — يتم التحديث من الـ API عند الاتصال.",
+  });
+
+  useEffect(() => {
+    const loadRoi = async () => {
+      const base = getApiBaseUrl().replace(/\/$/, "");
+      try {
+        const res = await fetch(`${base}/api/v1/autonomous-foundation/dashboard/executive-roi`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            baseline: { revenue: 100000 },
+            current: {
+              revenue: 130000,
+              win_rate: 31,
+              pipeline_velocity_days: 19,
+              manual_work_reduction_percent: 72,
+            },
+          }),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setRoi(data);
+        }
+      } catch {
+        // Keep seeded KPI values if API is unreachable.
+      }
+    };
+    loadRoi();
+  }, []);
+
   const kpis = [
-    { label: "معدل التحويل (Lead to Deal)", value: "24.5%", trend: "+5.2%", icon: Target, color: "text-yellow-400" },
-    { label: "كفاءة الذكاء الاصطناعي", value: "98.2%", trend: "+1.1%", icon: Zap, color: "text-amber-500" },
-    { label: "متوسط قيمة الصفقة", value: "3.2M SAR", trend: "+12%", icon: TrendingUp, color: "text-emerald-500" },
-    { label: "النمو في السوق السعودي", value: "42%", trend: "+8%", icon: Activity, color: "text-blue-500" },
+    { label: "معدل التحويل (Lead to Deal)", value: `${roi.win_rate}%`, trend: "+5.2%", icon: Target, color: "text-teal-400" },
+    { label: "كفاءة الذكاء الاصطناعي", value: "99.4%", trend: "+1.2%", icon: Zap, color: "text-cyan-400" },
+    { label: "Revenue Lift", value: `${roi.revenue_lift_percent}%`, trend: "LIVE", icon: Shield, color: "text-emerald-500" },
+    { label: "تخفيض العمل اليدوي", value: `${roi.manual_work_reduction_percent}%`, trend: "+15%", icon: Activity, color: "text-blue-400" },
+  ];
+
+  const chartData = [
+    { name: "Revenue Lift", value: roi.revenue_lift_percent },
+    { name: "Win Rate", value: roi.win_rate },
+    { name: "Ops Reduction", value: roi.manual_work_reduction_percent },
   ];
 
   const marketHeatmap = [
-    { city: "الرياض", pulse: 92, status: "High Demand", color: "bg-yellow-400" },
+    { city: "الرياض", pulse: 92, status: "High Demand", color: "bg-teal-500" },
     { city: "جدة", pulse: 78, status: "Expanding", color: "bg-blue-500" },
     { city: "الدمام", pulse: 65, status: "Growing", color: "bg-emerald-500" },
-    { city: "نيوم", pulse: 88, status: "Strategic Focus", color: "bg-amber-500" },
+    { city: "نيوم", pulse: 88, status: "Strategic Focus", color: "bg-cyan-500" },
   ];
 
   return (
@@ -31,7 +82,10 @@ export function AnalyticsView() {
           <h1 className="text-2xl md:text-3xl font-black tracking-tight mb-2">📊 الرؤية التنفيذية (Executive Pulse)</h1>
           <p className="text-gray-400 font-bold">تحليل عميق للأداء، خرائط حرارية للسوق، وتوقعات النمو الاستراتيجي.</p>
         </div>
-        <button className="bg-yellow-400 text-black px-6 py-2.5 rounded-xl font-black text-sm hover:scale-105 transition-all shadow-lg">
+        <button
+          type="button"
+          className="bg-primary text-primary-foreground px-6 py-2.5 rounded-xl font-black text-sm hover:opacity-95 transition-all shadow-lg shadow-primary/25"
+        >
           توليد تقرير مجلس الإدارة
         </button>
       </div>
@@ -39,7 +93,7 @@ export function AnalyticsView() {
       {/* KPI Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {kpis.map((kpi, i) => (
-          <Card key={i} className="p-6 hover:border-yellow-400/30 transition-all group">
+          <Card key={i} className="p-6 hover:border-primary/30 transition-all group">
             <div className="flex justify-between items-center mb-4">
               <div className="p-2 rounded-lg bg-white/5">
                 <kpi.icon className={`w-5 h-5 ${kpi.color}`} />
@@ -59,10 +113,12 @@ export function AnalyticsView() {
         <Card className="lg:col-span-2 p-8">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-yellow-400" />
+              <MapPin className="w-5 h-5 text-teal-400" />
               <h2 className="text-xl font-black">نبض السوق السعودي (Market Heatmap)</h2>
             </div>
-            <div className="text-[10px] bg-yellow-400/10 text-yellow-400 px-3 py-1 rounded-full font-black">تحديث لحظي ●</div>
+            <div className="text-[10px] bg-teal-500/15 text-teal-300 px-3 py-1 rounded-full font-black border border-teal-500/20">
+              تحديث لحظي ●
+            </div>
           </div>
           <div className="space-y-6">
             {marketHeatmap.map((area, i) => (
@@ -80,13 +136,13 @@ export function AnalyticsView() {
         </Card>
 
         {/* AI Performance */}
-        <Card className="p-8 border-yellow-400/20 bg-yellow-400/5 relative overflow-hidden group">
+        <Card className="p-8 border-teal-500/25 bg-teal-950/20 relative overflow-hidden group">
           <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-700">
-            <Zap className="w-32 h-32 text-yellow-400" />
+            <Zap className="w-32 h-32 text-teal-400" />
           </div>
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-6">
-              <Shield className="w-5 h-5 text-yellow-400" />
+              <Shield className="w-5 h-5 text-teal-400" />
               <h2 className="text-xl font-black">كفاءة الإغلاق الذكي</h2>
             </div>
             <div className="text-5xl font-black mb-2">٩٨.٢٪</div>
@@ -108,17 +164,37 @@ export function AnalyticsView() {
       {/* Strategic Goals */}
       <Card className="p-8">
         <div className="flex items-center gap-2 mb-8">
-          <Award className="w-5 h-5 text-amber-500" />
+          <Award className="w-5 h-5 text-primary" />
           <h2 className="text-xl font-black">الأهداف الاستراتيجية (Q2 2026)</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           {["التوسع في دول الخليج", "أتمتة الفواتير الضريبية بنسبة 100%", "زيادة فريق المسوقين لـ 500"].map((goal, i) => (
             <div key={i} className="space-y-3">
-              <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mx-auto border border-white/10 font-black text-yellow-400">0{i + 1}</div>
+              <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mx-auto border border-white/10 font-black text-teal-400">
+                0{i + 1}
+              </div>
               <p className="font-bold">{goal}</p>
             </div>
           ))}
         </div>
+      </Card>
+
+      <Card className="p-8">
+        <div className="flex items-center gap-2 mb-6">
+          <TrendingUp className="w-5 h-5 text-emerald-500" />
+          <h2 className="text-xl font-black">Executive ROI (Live)</h2>
+        </div>
+        <div className="h-72">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={chartData}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="value" fill="#22c55e" radius={[6, 6, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+        <p className="text-sm text-gray-400 mt-4">{roi.summary}</p>
       </Card>
     </div>
   );

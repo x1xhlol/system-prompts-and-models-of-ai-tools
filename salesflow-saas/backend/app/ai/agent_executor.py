@@ -1,6 +1,6 @@
 """
 Agent Executor — Loads agent configs/prompts and executes them via LLM.
-Each of the 18 agents is defined in ai-agents/prompts/ with a .md prompt file.
+Agents are defined in ai-agents/prompts/ with a .md prompt file.
 """
 
 import json
@@ -22,7 +22,7 @@ settings = get_settings()
 
 class AgentExecutor:
     """
-    Executes any of the 18 Dealix AI agents.
+    Executes Dealix AI agents registered in AGENT_REGISTRY.
 
     Each agent has:
     - A system prompt (from ai-agents/prompts/*.md)
@@ -47,6 +47,11 @@ class AgentExecutor:
             "prompt_file": "affiliate-onboarding-coach.md",
             "description": "Guide new affiliates through onboarding",
             "model_preference": "groq",  # speed matters
+        },
+        "integration_concierge": {
+            "prompt_file": "customer-integration-concierge.md",
+            "description": "B2B customer integration and go-live step-by-step coach",
+            "model_preference": "groq",
         },
         "outreach_writer": {
             "prompt_file": "outreach-message-writer.md",

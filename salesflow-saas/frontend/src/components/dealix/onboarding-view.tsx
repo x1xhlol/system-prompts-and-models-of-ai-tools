@@ -74,7 +74,7 @@ export function OnboardingView() {
             </div>
             <p className="text-sm text-foreground/80 leading-relaxed font-sans mt-2">
               إذا حققت <span className="font-bold text-primary">10 إغلاقات بمبالغ أعلى من 5,000 ريال للشهر الواحد</span>،
-              يتم ترقيتك فوراً لمسار "المبيعات التنفيذية" بعقد رسمي وراتب ثابت + عمولة 5%.
+              يتم ترقيتك فوراً لمسار &quot;المبيعات التنفيذية&quot; بعقد رسمي وراتب ثابت + عمولة 5%.
             </p>
             <div className="mt-4 p-4 rounded-xl bg-background border border-border/50 text-center">
               <Rocket className="w-8 h-8 text-primary mx-auto mb-2 opacity-80" />

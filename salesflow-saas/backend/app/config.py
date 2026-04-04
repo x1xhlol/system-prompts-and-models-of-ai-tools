@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from functools import lru_cache
 from typing import Optional
 
@@ -29,6 +29,16 @@ class Settings(BaseSettings):
     # ── URLs ─────────────────────────────────────────────
     API_URL: str = "http://localhost:8000"
     FRONTEND_URL: str = "http://localhost:3000"
+    # Comma-separated extra CORS origins (e.g. https://staging.example.com)
+    CORS_EXTRA_ORIGINS: str = ""
+    # When False and ENVIRONMENT=production, OpenAPI docs are disabled
+    EXPOSE_OPENAPI: bool = True
+    # If non-empty, require Authorization: Bearer <token> for /api/v1 (except health, webhooks, marketing, strategy, value-proposition)
+    DEALIX_INTERNAL_API_TOKEN: str = ""
+    # Serve sales_assets + sector presentations at /dealix-marketing, /dealix-presentations
+    MARKETING_STATIC_ENABLED: bool = True
+    # Empty = auto (repo/salesflow-saas). In Docker set to /salesflow (see docker-compose).
+    MARKETING_STATIC_ROOT: str = ""
 
     # ── LLM Providers ────────────────────────────────────
     # Primary: Groq (free/cheap, very fast)
@@ -40,6 +50,12 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: str = ""
     OPENAI_MODEL: str = "gpt-4o"
     OPENAI_MINI_MODEL: str = "gpt-4o-mini"
+
+    # Additional LLM backends (read by model_router / agents via Settings or os.environ)
+    ANTHROPIC_API_KEY: str = ""
+    DEEPSEEK_API_KEY: str = ""
+    ZAI_API_KEY: str = ""  # Z.ai / GLM
+    GOOGLE_API_KEY: str = ""  # Gemini (same name as lead_prospector)
 
     # Embeddings
     EMBEDDING_PROVIDER: str = "openai"  # openai, sentence-transformers
@@ -86,6 +102,28 @@ class Settings(BaseSettings):
     SALESFORCE_CLIENT_ID: str = ""
     SALESFORCE_CLIENT_SECRET: str = ""
     SALESFORCE_DOMAIN: str = ""
+    SALESFORCE_API_VERSION: str = "v60.0"
+    SALESFORCE_REFRESH_TOKEN: str = ""
+    SALESFORCE_ACCESS_TOKEN: str = ""
+
+    # ── Stripe / Billing ────────────────────────────────────
+    STRIPE_SECRET_KEY: str = ""
+    STRIPE_WEBHOOK_SECRET: str = ""
+
+    # ── E-Sign Providers ────────────────────────────────────
+    DOCUSIGN_API_URL: str = "https://demo.docusign.net/restapi"
+    DOCUSIGN_ACCESS_TOKEN: str = ""
+    ADOBE_SIGN_API_URL: str = "https://api.na1.adobesign.com/api/rest/v6"
+    ADOBE_SIGN_ACCESS_TOKEN: str = ""
+
+    # ── Voice Agent Providers ───────────────────────────────
+    TWILIO_ACCOUNT_SID: str = ""
+    TWILIO_AUTH_TOKEN: str = ""
+    TWILIO_FROM_NUMBER: str = ""
+    VOICE_PROVIDER: str = "twilio"
+
+    # ── Autonomous Loops ────────────────────────────────────
+    SELF_IMPROVEMENT_INTERVAL_SECONDS: int = 900
 
     # ── Scraping / Lead Gen ──────────────────────────────
     GOOGLE_MAPS_API_KEY: str = ""
@@ -104,10 +142,7 @@ class Settings(BaseSettings):
     UPLOAD_DIR: str = "/app/uploads"
     MAX_UPLOAD_SIZE_MB: int = 10
 
-    class Config:
-        env_file = ".env"
-        case_sensitive = True
-        extra = "allow"
+    model_config = SettingsConfigDict(env_file=".env", case_sensitive=True, extra="allow")
 
 
 @lru_cache()

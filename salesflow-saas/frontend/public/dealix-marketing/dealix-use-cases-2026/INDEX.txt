@@ -1,0 +1,46 @@
+Dealix — حالات استخدام حقيقية (Autonomous Revenue & Operations OS)
+====================================================================
+مسار المجلد: salesflow-saas/sales_assets/dealix-use-cases-2026/
+
+الملفات الرئيسية (للمسوّقين والعرض)
+------------------------------------
+  00-master-use-cases-ar.html     — وثيقة واحدة جاهزة للطباعة PDF (كل الحالات + KPI + ربط الوكلاء)
+  diagrams-viewer.html            — عرض تفاعلي لمخططات Mermaid في المتصفح (عرض شاشة، ليس للطباعة)
+  ONE-PAGER-sales-copy-ar.txt     — نص قصير جداً للشرائح أو الإعلانات
+  ONE-PAGER-sales-copy-en.txt
+  use_case_registry.json          — فهرس آلي (عناوين، مجلدات، تكاملات) لأدوات أو موقع داخلي
+  FOLDER-STRUCTURE-implementation.txt — هيكل مقترح للمطورين عند تنفيذ use cases في الكود
+
+المخططات (Mermaid — للنسخ إلى Notion / GitHub / mermaid.live)
+--------------------------------------------------------------
+  diagrams/00-overview-seven-pillars.mmd
+  diagrams/01-whatsapp-48h-construction.mmd
+  diagrams/02-abandoned-cart-retail.mmd
+  diagrams/03-support-whatsapp-saas.mmd
+  diagrams/04-upsell-renewal-enterprise.mmd
+  diagrams/05-campaign-leadgen-consulting.mmd
+  diagrams/06-billing-contract-fintech.mmd
+  diagrams/07-full-company-autopilot.mmd
+
+حزمة كل حالة (تفصيل + برومبتات Cursor)
+---------------------------------------
+  cases/01-whatsapp-48h/ … cases/07-full-autopilot/
+    scenario-ar.txt          — السيناريو والنتائج
+    agents-and-integrations.txt — الوكلاء، التكاملات، نقاط الحوكمة
+    codebase-map.txt         — أين في مستودع Dealix
+    cursor-prompts.txt       — برومبتات جاهزة للتنفيذ في Cursor
+
+تصدير PDF
+----------
+  افتح 00-master-use-cases-ar.html في Chrome/Edge → Ctrl+P → حفظ كـ PDF.
+  التنسيق: ملف dealix-print.css في نفس المجلد (نسخة متطابقة من مجلد العروض).
+
+الوصول من الخادم (مرفوع / متصفح)
+---------------------------------
+  راجع ../ACCESS-URLS.txt — مسارات /dealix-marketing/ و /dealix-presentations/
+  تحميل ZIP: /dealix-marketing/dealix-marketing-bundle.zip (بعد تشغيل سكربت الضغط)
+
+ملاحظة
+------
+  الأرقام والـ benchmarks (مثل Agentforce ARR، ملايين الرسائل) مستوحاة من اتجاهات السوق 2026؛
+  أرقام ROI في الأمثلة افتراضية توضيحية لعرض القيمة وليست ضماناً قانونياً.

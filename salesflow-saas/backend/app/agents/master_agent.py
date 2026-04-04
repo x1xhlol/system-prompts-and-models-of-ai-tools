@@ -17,6 +17,20 @@ import logging
 from datetime import datetime, timezone
 from typing import Dict, List
 
+try:
+    from app.agents.master_langgraph import CEOLangGraphOrchestrator, build_ceo_deal_state
+
+    LANGGRAPH_MASTER_AVAILABLE = True
+except ImportError:
+    CEOLangGraphOrchestrator = None  # type: ignore[misc, assignment]
+    build_ceo_deal_state = None  # type: ignore[misc, assignment]
+    LANGGRAPH_MASTER_AVAILABLE = False
+
+try:
+    from app.services.salesforce_agentforce import agentforce_service
+except ImportError:
+    agentforce_service = None
+
 from app.agents.base_agent import BaseAgent, AgentPriority, get_message_bus
 
 logger = logging.getLogger("dealix.agents.ceo")
@@ -55,6 +69,11 @@ class CEOAgent(BaseAgent):
             "message_style": "ceo_personal",
             "budget_mode": "free_tier",
         }
+        self.orchestrator = (
+            CEOLangGraphOrchestrator()
+            if LANGGRAPH_MASTER_AVAILABLE and CEOLangGraphOrchestrator
+            else None
+        )
 
     def get_capabilities(self) -> List[str]:
         return [
@@ -66,6 +85,7 @@ class CEOAgent(BaseAgent):
             "تحسين الاستراتيجية باستمرار",
             "إرسال تقرير يومي للمدير التنفيذي",
             "التعلم من النتائج والتكيّف",
+            "دورة صفقة كاملة عبر LangGraph (استكشاف، بوابة استراتيجية، امتثال، HITL، تفاعل)",
         ]
 
     async def execute(self, task: Dict) -> Dict:
@@ -77,6 +97,8 @@ class CEOAgent(BaseAgent):
             return await self.morning_operations()
         elif action == "afternoon_operations":
             return await self.afternoon_operations()
+        elif action == "langgraph_deal_cycle":
+            return await self.run_langgraph_deal_cycle(task.get("deal_state", {}))
         elif action == "evening_report":
             return await self.evening_report()
         elif action == "optimize_strategy":
@@ -123,6 +145,34 @@ class CEOAgent(BaseAgent):
         logger.info(f"🌙 [{self.name}] === DAILY CYCLE COMPLETED ===")
         
         return results
+
+    async def run_langgraph_deal_cycle(self, initial_state: Dict) -> Dict:
+        """Run a single deal through LangGraph (async ainvoke — correct for async nodes)."""
+        if not self.orchestrator or not build_ceo_deal_state:
+            return {"error": "LangGraph Orchestrator is not available."}
+
+        logger.info(
+            "🔄 [%s] LangGraph deal cycle start: %s",
+            self.name,
+            initial_state.get("company_name"),
+        )
+        seed = {
+            "tenant_id": initial_state.get("tenant_id", "default_tenant"),
+            "deal_id": initial_state.get("deal_id", "DEAL-001"),
+            "company_name": initial_state.get("company_name", "Unknown"),
+            "decision_maker": initial_state.get("decision_maker", "CEO"),
+            "industry": initial_state.get("industry", "enterprise"),
+            "city": initial_state.get("city", "Riyadh"),
+        }
+        result = await self.orchestrator.run_deal_cycle_async(build_ceo_deal_state(seed))
+
+        if agentforce_service and "error" not in result:
+            try:
+                await agentforce_service.sync_deal(result)
+            except Exception as e:
+                logger.warning("Salesforce sync after LangGraph skipped: %s", e)
+
+        return result
 
     async def morning_operations(self) -> Dict:
         """06:00-12:00: Discovery + Campaign Launch."""

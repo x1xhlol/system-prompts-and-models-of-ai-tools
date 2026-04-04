@@ -10,7 +10,6 @@ from app.config import get_settings
 from app.database import async_session
 from app.services.lead_service import LeadService
 from app.ai.orchestrator import Orchestrator
-from app.integrations.whatsapp import send_whatsapp_message
 import logging
 
 logger = logging.getLogger("dealix.webhooks")
@@ -113,10 +112,21 @@ async def _process_whatsapp_message(
                 channel="whatsapp"
             )
 
-            # 4. Immediate Response (Closing the loop)
+            # 4. Immediate Response (Closing the loop) — مع حوكمة اختيارية
             if ai_result and ai_result.get("reply"):
-                await send_whatsapp_message(phone, ai_result["reply"])
-                
+                from uuid import UUID as _UUID
+                from app.services.outbound_governance import send_whatsapp_with_governance
+
+                await send_whatsapp_with_governance(
+                    db,
+                    tenant_id=_UUID(tenant_id),
+                    phone=phone,
+                    message=ai_result["reply"],
+                    lead_id=_UUID(lead["id"]),
+                )
+
+            await db.commit()
+
     except Exception as e:
         logger.exception(f"Critical error in WhatsApp AI pipeline: {str(e)}")
 

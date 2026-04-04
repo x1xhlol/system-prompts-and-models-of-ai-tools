@@ -1,0 +1,56 @@
+/* Dealix investor deck — print A4 */
+@page { size: A4; margin: 14mm; }
+* { box-sizing: border-box; }
+body {
+  font-family: "Segoe UI", "Tahoma", sans-serif;
+  direction: rtl;
+  text-align: right;
+  color: #0f172a;
+  background: #f8fafc;
+  line-height: 1.65;
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 24px;
+}
+.cover {
+  background: linear-gradient(145deg, #0f172a 0%, #1e293b 50%, #0f766e 100%);
+  color: #fff;
+  padding: 48px 36px;
+  border-radius: 16px;
+  margin-bottom: 28px;
+}
+.cover h1 { margin: 0 0 8px; font-size: 1.75rem; }
+.cover .brand { color: #5eead4; font-weight: 800; }
+.cover .tagline { opacity: 0.92; font-size: 1rem; margin-top: 12px; }
+.section {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-bottom: 18px;
+}
+.section h2 {
+  margin: 0 0 12px;
+  font-size: 1.12rem;
+  color: #0d9488;
+  border-bottom: 2px solid #99f6e4;
+  padding-bottom: 8px;
+}
+ul { margin: 8px 0; padding-right: 22px; }
+.badge {
+  display: inline-block;
+  background: #ecfdf5;
+  color: #047857;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-left: 6px;
+}
+table.inv { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-top: 8px; }
+table.inv th, table.inv td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: right; }
+table.inv th { background: #f0fdfa; color: #0f766e; }
+@media print {
+  body { background: #fff; padding: 0; }
+  .section { break-inside: avoid; }
+}

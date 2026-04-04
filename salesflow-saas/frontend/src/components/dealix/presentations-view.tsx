@@ -1,4 +1,7 @@
-import { FileBarChart, MonitorPlay, Activity, Stethoscope, Car, Home, ShoppingBag, BookOpen } from "lucide-react";
+import { FileBarChart, MonitorPlay, Activity, Stethoscope, Car, Home, ShoppingBag, BookOpen, ExternalLink } from "lucide-react";
+
+/** Static HTML served by API at /dealix-presentations/ (nginx → backend; next dev → rewrite) */
+const PRESENTATION_BASE = "/dealix-presentations";
 
 const SECTORS = [
   {
@@ -9,7 +12,8 @@ const SECTORS = [
     pain: "ضياع حجوزات بسبب التأخر في الرد على الواتساب وعدم التذكير بالمواعيد.",
     solution: "حجز تلقائي وتأكيد مواعيد، إجابة عن أسئلة القسم والعيادات 24/7.",
     stats: "٣٠٪ معدل فشل حضور المرضى بسبب سوء المتابعة اليدوية.",
-    deckUrl: "#deck-clinics"
+    deckUrl: "#deck-clinics",
+    htmlFile: "01-sector-healthcare-ar.html",
   },
   {
     icon: Home,
@@ -19,7 +23,8 @@ const SECTORS = [
     pain: "مئات الاستفسارات عن الأسعار والمواقع والفلترة تضيع وقت الوكلاء.",
     solution: "وكيل عقاري ذكي يفلتر العملاء، يسأل عن الميزانية، ويرسل عروض.",
     stats: "٧٠٪ من الاستفسارات العقارية غير جادة وتضيع وقت المبيعات.",
-    deckUrl: "#deck-realestate"
+    deckUrl: "#deck-realestate",
+    htmlFile: "02-sector-realestate-ar.html",
   },
   {
     icon: Car,
@@ -29,7 +34,8 @@ const SECTORS = [
     pain: "صعوبة في جدولة مواعيد الصيانة واستفسارات قطع الغيار المملة.",
     solution: "حجز مواعيد الصيانة فورياً عبر الواتساب وتذكير العميل عند الانتهاء.",
     stats: "السوق يحتاج ٥٠٪ سرعة أكبر في المبيعات بعد طلب تجربة القيادة.",
-    deckUrl: "#deck-auto"
+    deckUrl: "#deck-auto",
+    htmlFile: "10-sector-automotive-ar.html",
   },
   {
     icon: ShoppingBag,
@@ -39,7 +45,8 @@ const SECTORS = [
     pain: "استفسارات تتبع الطلب متكررة والسلال المتروكة تكلف أموال.",
     solution: "تتبع آلي، إرسال تذكيرات ذكية للسلال المتروكة، دعم ما بعد البيع.",
     stats: "٦٨٪ معدل ترك السلال الشرائية حول العالم.",
-    deckUrl: "#deck-ecommerce"
+    deckUrl: "#deck-ecommerce",
+    htmlFile: "05-sector-retail-ar.html",
   },
   {
     icon: BookOpen,
@@ -49,7 +56,8 @@ const SECTORS = [
     pain: "استفسارات عن جداول الدورات والأسعار تأخذ وقت طويل من خدمة العملاء.",
     solution: "مستشار تعليمي آلي يجيب على شروط التسجيل، ويسجل الطلاب.",
     stats: "الطلاب يتوقعون ردود فورية للتسجيل وإلا يذهبون لمعاهد أخرى.",
-    deckUrl: "#deck-education"
+    deckUrl: "#deck-education",
+    htmlFile: "07-sector-education-ar.html",
   },
   {
     icon: Activity,
@@ -59,16 +67,18 @@ const SECTORS = [
     pain: "دورة المبيعات طويلة جداً واجتماعات مع أشخاص غير مؤهلين.",
     solution: "تأهيل صارم للعميل (BANT) قبل حجز أي الديمو.",
     stats: "٥٠٪ من اجتماعات B2B تكون مع عملاء خارج نطاق الخدمة.",
-    deckUrl: "#deck-b2b"
+    deckUrl: "#deck-b2b",
+    htmlFile: "06-sector-it-ar.html",
   }
 ];
 
 export function PresentationsView() {
   const handleShare = async (sector: (typeof SECTORS)[0]) => {
+    const deckUrl = `${window.location.origin}${PRESENTATION_BASE}/${sector.htmlFile}`;
     const shareData = {
       title: `عرض ${sector.name} - Dealix AI`,
       text: `مرحباً، أود مشاركة عرض Dealix AI المخصص لـ ${sector.name}.\n\nالمشكلة: ${sector.pain}\nالحل: ${sector.solution}`,
-      url: window.location.origin + "/decks/" + sector.deckUrl.replace("#", ""),
+      url: deckUrl,
     };
 
     if (navigator.share) {
@@ -120,17 +130,26 @@ export function PresentationsView() {
               </div>
 
               <div className="grid grid-cols-1 gap-2">
+                <a
+                  href={`${PRESENTATION_BASE}/${sector.htmlFile}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium shadow-lg shadow-emerald-900/30 transition-all"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  فتح العرض HTML (طباعة PDF)
+                </a>
                 <button 
                   onClick={() => handleShare(sector)}
                   className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-medium shadow-lg shadow-primary/25 transition-all"
                 >
                   <FileBarChart className="w-4 h-4" />
-                  مشاركة العرض (Share Deck)
+                  مشاركة الرابط
                 </button>
                 
-                <button className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border font-medium transition-all">
+                <button type="button" className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border font-medium transition-all">
                   <MonitorPlay className="w-4 h-4" />
-                  استخراج حاسبة العائد ROI
+                  حاسبة العائد ROI (قريباً)
                 </button>
               </div>
             </div>

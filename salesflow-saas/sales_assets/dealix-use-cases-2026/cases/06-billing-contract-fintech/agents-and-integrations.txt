@@ -1,0 +1,4 @@
+• Billing Crew — فاتورة عبر واتساب وإيميل + رابط Stripe.
+• Reminders Agent — جدولة تذكيرات متعددة.
+• Contract Crew — توليد عقد وتوقيع.
+• Compliance & Risk Supervisor — فحص نهائي.

@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, func
+from sqlalchemy import select
 from typing import Optional
 from datetime import datetime, timezone
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from uuid import UUID
 import uuid
 
@@ -36,8 +36,7 @@ class AffiliateResponse(BaseModel):
     total_commission_earned: float
     current_month_deals: int
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class AffiliateDealRequest(BaseModel):
@@ -104,6 +103,45 @@ async def register_affiliate(data: AffiliateRegisterRequest, db: AsyncSession = 
     await db.commit()
     await db.refresh(affiliate)
     return affiliate
+
+
+@router.get("/program")
+async def affiliate_program_public():
+    """رحلة المسوق + شرائح العمولة — للواجهة والتسويق (بدون DB)."""
+    return {
+        "title_ar": "برنامج الشراكة Dealix",
+        "journey_ar": [
+            {"step": 1, "title": "التسجيل", "detail_ar": "بياناتك ورمز إحالة فريد خلال دقائق."},
+            {"step": 2, "title": "التفعيل", "detail_ar": "موافقة فريقنا ثم تفعيل الحساب وربط القنوات."},
+            {"step": 3, "title": "أول عميل", "detail_ar": "مشاركة الرابط أو تسجيل صفقة من اللوحة."},
+            {"step": 4, "title": "تتبع العمولة", "detail_ar": "شفافية من الصفقة حتى الاعتماد والدفع."},
+            {"step": 5, "title": "نمو وترقية", "detail_ar": "مكافآت إضافية ومسار توظيف عند الأداء العالي."},
+        ],
+        "commission_rates": COMMISSION_RATES,
+        "bonus_tiers": BONUS_TIERS,
+        "auto_employ_rule_ar": "عند 10 صفقات مُسجّلة في الشهر والحالة نشط — يُقيَّد كمرشح توظيف تلقائي.",
+    }
+
+
+@router.get("/leaderboard/top")
+async def get_leaderboard(limit: int = 10, db: AsyncSession = Depends(get_db)):
+    """Get top performing affiliates."""
+    result = await db.execute(
+        select(AffiliateMarketer)
+        .where(AffiliateMarketer.status.in_([AffiliateStatus.ACTIVE, AffiliateStatus.EMPLOYED]))
+        .order_by(AffiliateMarketer.total_deals_closed.desc())
+        .limit(limit)
+    )
+    affiliates = result.scalars().all()
+    return [
+        {
+            "name": a.full_name_ar or a.full_name,
+            "deals": a.total_deals_closed,
+            "commission": a.total_commission_earned,
+            "status": a.status.value,
+        }
+        for a in affiliates
+    ]
 
 
 @router.get("/{affiliate_id}", response_model=AffiliateResponse)
@@ -191,24 +229,3 @@ async def get_performance(affiliate_id: UUID, db: AsyncSession = Depends(get_db)
         .order_by(AffiliatePerformance.month.desc())
     )
     return result.scalars().all()
-
-
-@router.get("/leaderboard/top")
-async def get_leaderboard(limit: int = 10, db: AsyncSession = Depends(get_db)):
-    """Get top performing affiliates."""
-    result = await db.execute(
-        select(AffiliateMarketer)
-        .where(AffiliateMarketer.status.in_([AffiliateStatus.ACTIVE, AffiliateStatus.EMPLOYED]))
-        .order_by(AffiliateMarketer.total_deals_closed.desc())
-        .limit(limit)
-    )
-    affiliates = result.scalars().all()
-    return [
-        {
-            "name": a.full_name,
-            "deals": a.total_deals_closed,
-            "commission": a.total_commission_earned,
-            "status": a.status.value,
-        }
-        for a in affiliates
-    ]

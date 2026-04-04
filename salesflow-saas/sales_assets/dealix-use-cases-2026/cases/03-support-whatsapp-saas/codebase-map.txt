@@ -1,0 +1,4 @@
+• app/api/v1/knowledge.py — محتوى المعرفة.
+• app/agents/engagement/multi_channel.py — ConversationIntelAgent.
+• app/agents/infrastructure/core.py — ReportAgent للتقارير المجدولة إن وُجدت ربط.
+• intelligence / supervisor routes إن وُجدت نقاط تصعيد.

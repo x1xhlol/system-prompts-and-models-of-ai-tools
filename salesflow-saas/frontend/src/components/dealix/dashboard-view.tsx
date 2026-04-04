@@ -1,4 +1,7 @@
+"use client";
+
 import { BarChart3, Users, Target, TrendingUp, Calendar, ArrowUpRight, BrainCircuit, Zap, MapPin, Search, Sparkles } from "lucide-react";
+import { StrategyBriefPanel } from "./strategy-brief-panel";
 
 export function DashboardView() {
   const stats = [
@@ -38,6 +41,8 @@ export function DashboardView() {
           </button>
         </div>
       </div>
+
+      <StrategyBriefPanel />
 
       {/* AI Intelligence Bar */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -170,12 +175,12 @@ export function DashboardView() {
             <div className="space-y-4 flex-1">
               <div className="p-4 rounded-xl bg-destructive/10 border border-destructive/20 flex flex-col gap-2 text-right">
                 <span className="text-xs font-bold text-destructive">مراجعة شكوى</span>
-                <p className="text-sm font-medium">شركة "التطوير الذكي" تطلب تفعيل الضمان الذهبي لعدم الوصول للمستهدف التفاعلي.</p>
+                <p className="text-sm font-medium">شركة &quot;التطوير الذكي&quot; تطلب تفعيل الضمان الذهبي لعدم الوصول للمستهدف التفاعلي.</p>
                 <button className="text-xs font-bold text-destructive underline mt-1 text-right w-full">مراجعة فحص الشرط الرابع</button>
               </div>
               <div className="p-4 rounded-xl bg-primary/10 border border-primary/20 flex flex-col gap-2 text-right">
                 <span className="text-xs font-bold text-primary">تفعيل توظيف مسوق</span>
-                <p className="text-sm font-medium">المسوق "أحمد عبدالله" أكمل 12 إغلاق، يحتاج لتحويل عقده إلى رسمي عبر Qiwa.</p>
+                <p className="text-sm font-medium">المسوق &quot;أحمد عبدالله&quot; أكمل 12 إغلاق، يحتاج لتحويل عقده إلى رسمي عبر Qiwa.</p>
                 <button className="text-xs font-bold text-primary underline mt-1 text-right w-full">بدء عملية HR</button>
               </div>
             </div>

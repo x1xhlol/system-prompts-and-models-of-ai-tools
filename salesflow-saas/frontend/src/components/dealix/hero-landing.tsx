@@ -211,6 +211,28 @@ export default function HeroLanding() {
         </div>
       </section>
 
+      {/* ═══ Multi-Channel Outreach ═══ */}
+      <section style={{ ...styles.section, background: "rgba(59,130,246,0.03)" }}>
+        <div style={styles.sectionHeader}>
+          <span style={styles.overline}>{t.outreach.overline}</span>
+          <h2 style={{ ...styles.sectionTitle, fontFamily: isRTL ? "var(--font-arabic)" : "var(--font-display)" }}>{t.outreach.title}</h2>
+          <p style={styles.sectionSub}>{t.outreach.subtitle}</p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: 20 }}>
+          {t.outreach.channels.map((c: any, i: number) => (
+            <div key={i} style={{
+              background: "var(--surface-card)", border: "1px solid rgba(148,163,184,0.1)",
+              borderRadius: 20, padding: 30, textAlign: "center" as const,
+              transition: "transform 0.3s"
+            }}>
+              <div style={{ fontSize: 40, marginBottom: 16 }}>{c.icon}</div>
+              <h4 style={{ fontSize: 18, fontWeight: 700, color: "#F0F4F8", marginBottom: 8 }}>{c.name}</h4>
+              <p style={{ fontSize: 14, color: "#94A3B8" }}>{c.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ═══ Sales Lifecycle ═══ */}
       <section style={{ ...styles.section, background: "#0A1020" }}>
         <div style={styles.sectionHeader}>
@@ -327,11 +349,22 @@ const translations: Record<string, any> = {
       subtitle: "نظام شامل يغطي كل قنوات المبيعات — من الاكتشاف للإغلاق",
       items: [
         { icon: "🔍", title: "استخراج عملاء من 12+ مصدر", desc: "Google Maps، مواقع الشركات، السجل التجاري، LinkedIn، الأدلة المهنية — مع تحقق من الأرقام" },
-        { icon: "📱", title: "واتساب + اتصال + إيميل + LinkedIn", desc: "تواصل متعدد القنوات — رسائل مخصصة، مكالمات AI، إيميل sequences، وطلبات LinkedIn" },
-        { icon: "🧠", title: "تأهيل ذكي BANT + تقييم 0-100", desc: "تصنيف تلقائي بمعايير BANT وكشف نية الشراء من رسائل العميل" },
-        { icon: "📊", title: "CRM + Pipeline كامل", desc: "إدارة الصفقات من 8 مراحل، تتبع كل تفاعل، وتوقع الإيرادات" },
-        { icon: "🤖", title: "25 وكيل ذكاء اصطناعي", desc: "نظام وكلاء يدير نفسه ذاتياً — من الاكتشاف للإغلاق بدون تدخل" },
+        { icon: "📱", title: "تحكم LangGraph المحكم", desc: "أتمتة مبيعات ذكية تقودها رسوم بيانية (States) تضمن الأمان ودقة القرار بنسبة 99.9%" },
+        { icon: "🧠", title: "الذاكرة ذاتية الشفاء (Mem0)", desc: "يتذكر Dealix كل محادثة وتفصيل عن العميل للأبد بمساعدة ذاكرة Mem0 المتقدمة" },
+        { icon: "📊", title: "تكامل Salesforce Agentforce", desc: "ربط مباشر وأصيل مع Salesforce لمزامنة الصفقات والليدات لحظياً مع وكلاء CRM" },
+        { icon: "🤖", title: "34 وكيل ذكاء اصطناعي", desc: "نظام وكلاء ضخم (7 طبقات) يدير نفسه ذاتياً بكفاءة تتجاوز الفرق البشرية" },
         { icon: "📋", title: "عروض أسعار + إغلاق تلقائي", desc: "يولّد عروض مخصصة، يعالج الاعتراضات، ويتابع حتى الإغلاق" },
+      ],
+    },
+    outreach: {
+      overline: "📡 القنوات",
+      title: "تواصل في كل مكان يتواجد فيه عميلك",
+      subtitle: "نظام متعدد القنوات يضمن وصول رسالتك بأكثر الطرق فعالية",
+      channels: [
+        { icon: "💬", name: "WhatsApp Business", desc: "تواصل فوري وشخصي عبر الواتساب" },
+        { icon: "📧", name: "Email sequences", desc: "سلاسل إيميلات ذكية واحترافية (Resend/SendGrid)" },
+        { icon: "🔗", name: "LinkedIn Automation", desc: "ربط حساب LinkedIn للتواصل المباشر مع صناع القرار" },
+        { icon: "📞", name: "AI AI Voice Calls", desc: "مكالمات صوتية ذكية (Twilio/ElevenLabs) قريباً" },
       ],
     },
     how: {
@@ -370,7 +403,7 @@ const translations: Record<string, any> = {
           price: "12,000",
           period: "ر.س/شهر",
           popular: false,
-          features: ["رسائل غير محدودة", "عملاء غير محدود", "AI مخصص", "API كامل", "مدير حساب خاص", "SLA 99.9%"],
+          features: ["رسائل غير محدودة", "عملاء غير محدود", "AI مخصص (LangGraph Control)", "Salesforce Integration", "مدير حساب خاص", "SLA 99.9%"],
           cta: "تواصل معنا",
         },
       ],
@@ -386,16 +419,16 @@ const translations: Record<string, any> = {
       overline: "🧠 بنية النظام",
       title: "25 وكيل ذكي يعملون معاً",
       subtitle: "7 طبقات من الذكاء الاصطناعي تدير دورة المبيعات بالكامل — من الاكتشاف للإغلاق",
-      badge: "25 وكيل ذكي × 7 طبقات × 5 نماذج AI",
       layers: [
-        { icon: "👑", name: "القائد — CEO Agent", count: "1 وكيل", color: "#00D4AA", agents: ["المدير العام الذكي"] },
-        { icon: "📊", name: "الذكاء — Intelligence", count: "3 وكلاء", color: "#3B82F6", agents: ["ذكاء المحادثات", "ذكاء الإيرادات", "ذكاء السوق"] },
-        { icon: "💰", name: "الإيرادات — Revenue", count: "3 وكلاء", color: "#8B5CF6", agents: ["وكيل الإغلاق", "التسعير الذكي", "توقع الإيرادات"] },
-        { icon: "🤝", name: "التواصل — Engagement", count: "5 وكلاء", color: "#EC4899", agents: ["واتساب", "إيميل", "صوتي", "لنكدإن", "المحتوى"] },
-        { icon: "🧪", name: "التأهيل — Qualification", count: "3 وكلاء", color: "#F59E0B", agents: ["تأهيل BANT", "تقييم 0-100", "كشف النوايا"] },
-        { icon: "🔍", name: "الاكتشاف — Discovery", count: "4 وكلاء", color: "#10B981", agents: ["الاستكشاف الاستراتيجي", "إثراء البيانات", "البحث العميق", "محرك الليدات"] },
-        { icon: "⚙️", name: "البنية — Infrastructure", count: "6 وكلاء", color: "#64748B", agents: ["CRM", "التحليلات", "التقارير", "الأمان", "الجدولة", "التأهيل"] },
+        { icon: "👑", name: "القائد — CEO Agent", count: "1 وكيل", color: "#00D4AA", agents: ["Master LangGraph Control"] },
+        { icon: "📊", name: "الذكاء — Intelligence", count: "4 وكلاء", color: "#3B82F6", agents: ["ذكاء المحادثات", "ذكاء الإيرادات", "ذكاء السوق", "ذاكرة Mem0"] },
+        { icon: "💰", name: "الإيرادات — Revenue", count: "4 وكلاء", color: "#8B5CF6", agents: ["وكيل الإغلاق", "التسعير الذكي", "توقع الإيرادات", "معدّ العروض"] },
+        { icon: "🤝", name: "التواصل — Engagement", count: "8 وكلاء", color: "#EC4899", agents: ["واتساب", "إيميل", "صوتي", "لنكدإن", "المحتوى", "متابعة تلقائية", "ردود ذكية", "تنسيق القنوات"] },
+        { icon: "🧪", name: "التأهيل — Qualification", count: "4 وكلاء", color: "#F59E0B", agents: ["تأهيل BANT", "تقييم 0-100", "كشف النوايا", "تحليل الجدارة"] },
+        { icon: "🔍", name: "الاكتشاف — Discovery", count: "6 وكلاء", color: "#10B981", agents: ["الاستكشاف الاستراتيجي", "إثراء البيانات", "البحث العميق", "محرك الليدات", "فحص المنافسين", "كشف الفرص"] },
+        { icon: "⚙️", name: "البنية — Infrastructure", count: "7 وكلاء", color: "#64748B", agents: ["CRM", "Salesforce Link", "التحليلات", "التقارير", "الأمان", "الجدولة", "التأهيل"] },
       ],
+      badge: "34 وكيل ذكي × 7 طبقات × LangGraph State Control",
     },
     lifecycle: {
       overline: "🔄 دورة المبيعات",
@@ -433,11 +466,22 @@ const translations: Record<string, any> = {
       subtitle: "A comprehensive system covering every sales channel — from discovery to close",
       items: [
         { icon: "🔍", title: "12+ Source Lead Discovery", desc: "Google Maps, company websites, Saudi CR, LinkedIn, industry directories — with phone verification" },
-        { icon: "📱", title: "WhatsApp + Calls + Email + LinkedIn", desc: "Multi-channel outreach — personalized messages, AI calls, email sequences, and LinkedIn requests" },
-        { icon: "🧠", title: "BANT Qualification + 0-100 Scoring", desc: "Automatic classification with BANT criteria and buyer intent detection from messages" },
-        { icon: "📊", title: "Full CRM + Pipeline", desc: "8-stage deal management, activity tracking, and revenue forecasting" },
-        { icon: "🤖", title: "25 AI-Powered Agents", desc: "Self-managing agent system — from discovery to close with zero intervention" },
+        { icon: "📱", title: "LangGraph State Control", desc: "Strict, smart sales automation guided by state graphs for 99.9% decision accuracy." },
+        { icon: "🧠", title: "Self-Healing Memory (Mem0)", desc: "Dealix remembers every detail forever with advanced Mem0 long-term memory." },
+        { icon: "📊", title: "Salesforce Agentforce Sync", desc: "Direct integration with Salesforce to sync deals and leads with CRM agents instantly." },
+        { icon: "🤖", title: "34 AI-Powered Agents", desc: "Massive 7-layer agent system capable of outperforming entire human sales teams." },
         { icon: "📋", title: "Auto Proposals + Smart Closing", desc: "Generates custom proposals, handles objections, and follows up until close" },
+      ],
+    },
+    outreach: {
+      overline: "📡 CHANNELS",
+      title: "Communicate Everywhere Your Customer Is",
+      subtitle: "A multi-channel system ensures your message lands effectively.",
+      channels: [
+        { icon: "💬", name: "WhatsApp Business", desc: "Instant and personal outreach via WhatsApp." },
+        { icon: "📧", name: "Email Sequences", desc: "Smart email automation (Resend/SendGrid)." },
+        { icon: "🔗", name: "LinkedIn Automation", desc: "Connect LinkedIn for direct access to decision-makers." },
+        { icon: "📞", name: "AI Voice Calls", desc: "Smart voice calls (Twilio/ElevenLabs) coming soon." },
       ],
     },
     how: {
@@ -476,7 +520,7 @@ const translations: Record<string, any> = {
           price: "12,000",
           period: "SAR/mo",
           popular: false,
-          features: ["Unlimited messages", "Unlimited leads", "Custom AI", "Full API", "Dedicated manager", "99.9% SLA"],
+          features: ["Unlimited messages", "Unlimited leads", "Custom AI (LangGraph Control)", "Salesforce Integration", "Dedicated manager", "99.9% SLA"],
           cta: "Contact Sales",
         },
       ],
@@ -492,16 +536,16 @@ const translations: Record<string, any> = {
       overline: "🧠 SYSTEM ARCHITECTURE",
       title: "25 AI Agents Working Together",
       subtitle: "7 layers of artificial intelligence managing the entire sales cycle — from discovery to close",
-      badge: "25 AI Agents × 7 Layers × 5 AI Models",
       layers: [
-        { icon: "👑", name: "Master — CEO Agent", count: "1 agent", color: "#00D4AA", agents: ["AI CEO Orchestrator"] },
-        { icon: "📊", name: "Intelligence", count: "3 agents", color: "#3B82F6", agents: ["Conversation Intel", "Revenue Intel", "Market Intel"] },
-        { icon: "💰", name: "Revenue", count: "3 agents", color: "#8B5CF6", agents: ["Closer", "Dynamic Pricing", "Revenue Forecast"] },
-        { icon: "🤝", name: "Engagement", count: "5 agents", color: "#EC4899", agents: ["WhatsApp", "Email", "Voice", "LinkedIn", "Content"] },
-        { icon: "🧪", name: "Qualification", count: "3 agents", color: "#F59E0B", agents: ["BANT Qualifier", "Lead Scorer", "Intent Detector"] },
-        { icon: "🔍", name: "Discovery", count: "4 agents", color: "#10B981", agents: ["Strategic Prospector", "Data Enricher", "Deep Researcher", "Lead Engine"] },
-        { icon: "⚙️", name: "Infrastructure", count: "6 agents", color: "#64748B", agents: ["CRM", "Analytics", "Reports", "Security", "Scheduler", "Onboarding"] },
+        { icon: "👑", name: "Master — CEO Agent", count: "1 agent", color: "#00D4AA", agents: ["LangGraph Orchestrator"] },
+        { icon: "📊", name: "Intelligence", count: "4 agents", color: "#3B82F6", agents: ["Conversation Intel", "Revenue Intel", "Market Intel", "Mem0 Memory"] },
+        { icon: "💰", name: "Revenue", count: "4 agents", color: "#8B5CF6", agents: ["Closer", "Dynamic Pricing", "Revenue Forecast", "Proposal Gen"] },
+        { icon: "🤝", name: "Engagement", count: "8 agents", color: "#EC4899", agents: ["WhatsApp", "Email", "Voice", "LinkedIn", "Content", "Follow-up", "Smart Reply", "Orchestrator"] },
+        { icon: "🧪", name: "Qualification", count: "4 agents", color: "#F59E0B", agents: ["BANT Qualifier", "Lead Scorer", "Intent Detector", "Fit Analyst"] },
+        { icon: "🔍", name: "Discovery", count: "6 agents", color: "#10B981", agents: ["Strategic Prospector", "Data Enricher", "Deep Researcher", "Lead Engine", "Competitor Intel", "Signal Tracker"] },
+        { icon: "⚙️", name: "Infrastructure", count: "7 agents", color: "#64748B", agents: ["CRM", "Salesforce Link", "Analytics", "Reports", "Security", "Scheduler", "Onboarding"] },
       ],
+      badge: "34 AI Agents × 7 Layers × LangGraph State Control",
     },
     lifecycle: {
       overline: "🔄 SALES LIFECYCLE",

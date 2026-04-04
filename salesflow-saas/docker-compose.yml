@@ -35,6 +35,11 @@ services:
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     volumes:
       - ./backend/app:/app/app
+      # Repo-root marketing assets (paths used when MARKETING_STATIC_ROOT=/salesflow)
+      - ./sales_assets:/salesflow/sales_assets:ro
+      - ./presentations:/salesflow/presentations:ro
+    environment:
+      MARKETING_STATIC_ROOT: /salesflow
     env_file:
       - .env
     depends_on:

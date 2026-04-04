@@ -38,7 +38,7 @@ class Dispute(TenantModel):
     resolved_at = Column(DateTime(timezone=True), nullable=True)
     escalated_to = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=True)
 
-    commission = relationship("Commission")
+    commission = relationship("Commission", foreign_keys=[commission_id])
     deal = relationship("Deal")
     affiliate = relationship("AffiliateMarketer")
     resolver = relationship("User", foreign_keys=[resolved_by])

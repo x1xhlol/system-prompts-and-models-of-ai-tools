@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <title>Dealix — حالات استخدام حقيقية (7) — Autonomous Revenue OS</title>
+  <link rel="stylesheet" href="dealix-print.css" />
+  <style>
+    table.kpi { width:100%; border-collapse: collapse; font-size: 0.92rem; margin: 10px 0; }
+    table.kpi th, table.kpi td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: right; }
+    table.kpi th { background: #f0fdfa; color: #0f766e; }
+    .uc-num { display:inline-block; background:#0d9488; color:#fff; padding:2px 10px; border-radius:6px; font-weight:700; font-size:0.85rem; }
+    .small { font-size: 0.88rem; color: #475569; }
+  </style>
+</head>
+<body>
+  <div class="cover">
+    <div class="brand">DEALIX — ديلكس</div>
+    <h1>حالات استخدام حقيقية — نظام الإيرادات والعمليات الذاتي</h1>
+    <p class="tagline">سبع قصص تشغيل كاملة: من واتساب وSalesforce إلى Stripe والعقود، مع ذاكرة Mem0، إصلاح ذاتي، وحوكمة قبل الإرسال الحساس. الأرقام أدناه أمثلة توضيحية للعرض وليست ضماناً.</p>
+  </div>
+
+  <div class="section">
+    <h2>الأساس المشترك في المنصة</h2>
+    <ul>
+      <li><strong>الوكلاء والإشراف:</strong> طبقات من البنية إلى CEO Agent — اكتشاف، تأهيل، قنوات، إغلاق، ذكاء.</li>
+      <li><strong>التكاملات:</strong> Salesforce، WhatsApp Business، Email، LinkedIn، Stripe، صوت، توقيع إلكتروني.</li>
+      <li><strong>الذاكرة:</strong> سياق لكل مستأجر وعميل/صفقة؛ تغذية حلقة التحسين الذاتي.</li>
+      <li><strong>الامتثال:</strong> موافقات، تسجيل، عدم إرسال مبالغ/عقود دون فحص عند الحاجة.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <p><span class="uc-num">1</span> <strong>واتساب → إغلاق خلال 48 ساعة</strong> — إنشاءات B2B، الرياض</p>
+    <p>رسالة: «نبغى نظام إدارة مشاريع لـ 12 موقع بناء». مسار: Intent → تأهيل (BANT + Salesforce) → عرض وتسعير (Stripe) → اعتراضات من الذاكرة → عقد + دفع واتساب + توقيع.</p>
+    <table class="kpi">
+      <tr><th>مؤشر توضيحي</th><th>مثال للعرض</th></tr>
+      <tr><td>زمن الإغلاق</td><td>36 ساعة vs ~3 أسابيع</td></tr>
+      <tr><td>Win rate</td><td>تحسن يُعرض كـ 4×</td></tr>
+      <tr><td>وقت SDR</td><td>توفير ~78%</td></tr>
+    </table>
+    <p class="small">تفاصيل إضافية: cases/01-whatsapp-48h/ — مخطط: diagrams/01-whatsapp-48h-construction.mmd</p>
+  </div>
+
+  <div class="section">
+    <p><span class="uc-num">2</span> <strong>سلة مهجورة + واتساب + إيميل + لينكد إن</strong> — تجزئة B2B مواد بناء</p>
+    <p>Webhook يكتشف السلة المهجورة → تخصيص فوري باسم العميل والكمية → تسلسل قنوات → حفظ كل تفاعل في ذاكرة معزولة.</p>
+    <table class="kpi">
+      <tr><th>مؤشر</th><th>مثال</th></tr>
+      <tr><td>استرداد السلة</td><td>65% (مقابل ~22% سوق)</td></tr>
+      <tr><td>أثر على الإيرادات الشهرية</td><td>3.2× من المتابعات</td></tr>
+    </table>
+    <p class="small">cases/02-abandoned-cart-retail/ — diagrams/02-abandoned-cart-retail.mmd</p>
+  </div>
+
+  <div class="section">
+    <p><span class="uc-num">3</span> <strong>دعم كامل واتساب + تصعيد بشري</strong> — SaaS (~800 عميل)</p>
+    <p>دعم 24/7 من المعرفة؛ تصعيد مع ملخص وحل مقترح؛ تقطير المعرفة إلى ذاكرة العميل.</p>
+    <table class="kpi">
+      <tr><th>مؤشر</th><th>مثال</th></tr>
+      <tr><td>زمن الحل</td><td>4 دقائق vs 45 دقيقة</td></tr>
+      <tr><td>CSAT</td><td>94%</td></tr>
+      <tr><td>تكلفة الدعم</td><td>توفير ~82%</td></tr>
+    </table>
+    <p class="small">cases/03-support-whatsapp-saas/ — diagrams/03-support-whatsapp-saas.mmd</p>
+  </div>
+
+  <div class="section">
+    <p><span class="uc-num">4</span> <strong>Upsell وتجديد تلقائي</strong> — Enterprise Software</p>
+    <p>تنبؤ بالانسحاب من Salesforce + إشارات؛ حملة upsell عبر واتساب وإيميل مع دراسات حالة؛ إغلاق تجديد وتوسعة.</p>
+    <table class="kpi">
+      <tr><th>مؤشر</th><th>مثال</th></tr>
+      <tr><td>Renewal rate</td><td>68% → 91%</td></tr>
+      <tr><td>إيراد إضافي ربعي</td><td>+4.2M ريال (توضيحي)</td></tr>
+    </table>
+    <p class="small">cases/04-upsell-renewal-enterprise/ — diagrams/04-upsell-renewal-enterprise.mmd</p>
+  </div>
+
+  <div class="section">
+    <p><span class="uc-num">5</span> <strong>حملة كاملة + توليد وتأهيل</strong> — استشارات (تحول رقمي حكومي)</p>
+    <p>محتوى + هبوط + إيميل؛ آلاف اللمسات المخصصة؛ تأهيل يومي؛ محلل أداء يحسّن الحملة تلقائياً.</p>
+    <table class="kpi">
+      <tr><th>مؤشر</th><th>مثال</th></tr>
+      <tr><td>Leads مؤهلة</td><td>340 في أسبوعين vs 40 يدوياً</td></tr>
+      <tr><td>تكلفة Lead</td><td>-71%</td></tr>
+    </table>
+    <p class="small">cases/05-campaign-leadgen-consulting/ — diagrams/05-campaign-leadgen-consulting.mmd</p>
+  </div>
+
+  <div class="section">
+    <p><span class="uc-num">6</span> <strong>فوترة وعقود كاملة</strong> — خدمات مالية</p>
+    <p>فاتورة عبر واتساب وإيميل + Stripe؛ تذكيرات ذكية؛ عقد وتوقيع؛ مراجعة امتثال قبل الإرسال.</p>
+    <table class="kpi">
+      <tr><th>مؤشر</th><th>مثال</th></tr>
+      <tr><td>DSO</td><td>52 → 19 يوماً</td></tr>
+      <tr><td>التحصيل التلقائي</td><td>3.8×</td></tr>
+    </table>
+    <p class="small">cases/06-billing-contract-fintech/ — diagrams/06-billing-contract-fintech.mmd</p>
+  </div>
+
+  <div class="section">
+    <p><span class="uc-num">7</span> <strong>تشغيل شركة متوسطة بالكامل</strong> — ~50 موظف، السعودية</p>
+    <p>مبيعات، تسويق، دعم، فوترة، تحليلات للإدارة — على الطيار الآلي مع سياسات وموافقات؛ تقارير يومية/أسبوعية للقيادة.</p>
+    <table class="kpi">
+      <tr><th>مؤشر</th><th>مثال</th></tr>
+      <tr><td>الإيرادات (6 أشهر)</td><td>4.7×</td></tr>
+      <tr><td>العبء الإداري</td><td>-65% مع الحفاظ على الجودة</td></tr>
+    </table>
+    <p class="small">cases/07-full-autopilot/ — diagrams/07-full-company-autopilot.mmd</p>
+  </div>
+
+  <div class="section">
+    <h2>مراجع سوقية (اتجاه 2026 — للعرض فقط)</h2>
+    <p class="small">منصات مثل Salesforce Agentforce ونشرات واسعة لأنظمة متعددة الوكلاء وواتساب Business API تُستخدم كدليل اتجاه السوق؛ أرقام ARR أو حجوم رسائل تُذكر في العروض التقديمية الخارجية فقط مع الإسناد لمصادركم القانونية.</p>
+  </div>
+
+  <div class="section">
+    <h2>أين الملفات التفصيلية؟</h2>
+    <ul>
+      <li>مخططات Mermaid: مجلد <code>diagrams/</code> + عارض <code>diagrams-viewer.html</code></li>
+      <li>سيناريو وبرومبتات Cursor: <code>cases/01-…</code> إلى <code>07-…</code></li>
+      <li>هيكل تنفيذ مقترح: <code>FOLDER-STRUCTURE-implementation.txt</code></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>تصدير PDF</h2>
+    <p>Chrome أو Edge → طباعة → حفظ كـ PDF — ورقة A4.</p>
+  </div>
+
+  <p style="text-align:center;color:#64748b;font-size:0.85rem;">© Dealix — حزمة تسويق وتنفيذ داخلي · 2026</p>
+</body>
+</html>

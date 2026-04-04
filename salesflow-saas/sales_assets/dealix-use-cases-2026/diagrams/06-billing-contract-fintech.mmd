@@ -1,0 +1,14 @@
+flowchart TB
+  BC[Billing Crew]
+  RA[Reminders Agent — توقيت ذكي]
+  CC[Contract Crew — توليد عقد]
+  CRS[Compliance & Risk Supervisor]
+  ST[Stripe]
+  ES[eSign]
+
+  BC --> WA[WhatsApp + Email فاتورة]
+  BC --> RA
+  RA --> ST
+  CC --> ES
+  BC --> CRS
+  CC --> CRS

@@ -1,0 +1,3 @@
+[P1] "Create Campaign entity {tenant_id, name, icp, channels[], daily_cap} and wire to prospecting_durable_flow with rate limits per channel."
+
+[P2] "PerformanceAnalyzer: nightly job aggregates reply_rate, meeting_rate, cost_per_meeting; writes recommendations to self_improvement payload."

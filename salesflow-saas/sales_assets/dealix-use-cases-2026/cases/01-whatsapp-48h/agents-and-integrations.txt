@@ -1,0 +1,20 @@
+الوكلاء والفرق (مسميات المنتج)
+--------------------------------
+• Prospecting Crew + Intent Detection — فهم النية من أول رسالة.
+• Qualification Crew — BANT، المواقع، الجدول الزمني، الميزانية.
+• Deal Orchestrator Supervisor — توزيع المهام (LangGraph / CEO layer).
+• Proposal Agent — عرض + تسعير (مرتبط بذاكرة العميل).
+• Negotiation & Objections — ردود من ذاكرة الاعتراضات السابقة.
+• Closing Crew — عقد، Stripe، توقيع إلكتروني، تأكيد واتساب.
+
+التكاملات
+----------
+• Salesforce (أو CRM مكافئ) — حساب، فرصة، مراحل.
+• WhatsApp Business Cloud API — استقبال وإرسال.
+• Stripe — جمع العربون أو السداد الكامل.
+• مزوّد توقيع إلكتروني (DocuSign / بديل) — عبر طبقة العقود في المنصة.
+
+ذاكرة وإصلاح ذاتي
+------------------
+• Mem0 / empire_memory — سياق لكل شركة وجلسة.
+• self_improvement flow — تحسين قوالب الردود بعد كل صفقة.

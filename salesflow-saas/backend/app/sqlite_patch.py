@@ -151,6 +151,6 @@ def apply_patch():
         sys.modules["pgvector"] = pgvector_root
         sys.modules["pgvector.sqlalchemy"] = pgvector_sa
 
-        print("🔧 SQLite patch applied — UUID/JSONB/Vector → SQLite types")
+        print("[sqlite_patch] SQLite patch applied: UUID/JSONB/Vector -> SQLite types")
     else:
-        print(f"ℹ️  DB: {db_url.split(':')[0]} — no patch needed")
+        print(f"[sqlite_patch] DB: {db_url.split(':')[0]} - no patch needed")

@@ -37,6 +37,15 @@ class AnalyzeRequest(BaseModel):
     lead: Dict = {}
 
 
+class LangGraphDealCycleRequest(BaseModel):
+    company_name: str = Field(..., min_length=1, description="Target company for the deal cycle")
+    deal_id: str = Field("DEAL-LG-001")
+    tenant_id: str = Field("default_tenant")
+    decision_maker: str = Field("CEO")
+    industry: str = Field("enterprise")
+    city: str = Field("Riyadh")
+
+
 # ═══ Empire Status ═════════════════════════════════════════
 
 @router.get("/empire/status")
@@ -274,6 +283,62 @@ async def forecast_revenue(pipeline_data: Dict = {}):
 
 
 # ═══ CEO Agent Operations ════════════════════════════════
+
+
+@router.get("/langgraph/health")
+async def langgraph_orchestrator_health():
+    """LangGraph compiler status — for launch checks and ops dashboards."""
+    try:
+        from app.agents import get_agent_system
+        from app.agents.master_langgraph import CEOLangGraphOrchestrator, GRAPH_VERSION, LANGGRAPH_AVAILABLE
+
+        bus = get_agent_system()
+        ceo = bus.get_agent("ceo_agent")
+        orch = getattr(ceo, "orchestrator", None) if ceo else None
+        if orch is not None:
+            detail = orch.describe()
+        else:
+            detail = CEOLangGraphOrchestrator().describe()
+        detail["langgraph_import_ok"] = LANGGRAPH_AVAILABLE
+        detail["graph_version_constant"] = GRAPH_VERSION
+        return detail
+    except Exception as e:
+        logger.exception("langgraph health")
+        return {"error": str(e), "langgraph_import_ok": False}
+
+
+@router.post("/ceo/langgraph-deal-cycle")
+async def ceo_langgraph_deal_cycle(body: LangGraphDealCycleRequest):
+    """Run one full CEO deal DAG (prospecting → gate → compliance → HITL → outreach → self-improve)."""
+    try:
+        from app.agents import get_agent_system
+
+        bus = get_agent_system()
+        ceo = bus.get_agent("ceo_agent")
+        if not ceo:
+            raise HTTPException(status_code=500, detail="CEO Agent not available")
+
+        wrapped = await ceo.run(
+            {
+                "action": "langgraph_deal_cycle",
+                "deal_state": body.model_dump(),
+            }
+        )
+        if wrapped.get("status") != "success":
+            raise HTTPException(
+                status_code=500,
+                detail=wrapped.get("error") or wrapped.get("result") or str(wrapped),
+            )
+        result = wrapped.get("result", wrapped)
+        if isinstance(result, dict) and result.get("error"):
+            raise HTTPException(status_code=500, detail=str(result["error"]))
+        return result
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.exception("langgraph deal cycle")
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 @router.post("/ceo/daily-cycle")
 async def run_daily_cycle(background_tasks: BackgroundTasks):

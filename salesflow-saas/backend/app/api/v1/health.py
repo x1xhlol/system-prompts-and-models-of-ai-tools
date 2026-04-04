@@ -5,14 +5,18 @@ from datetime import datetime, timezone
 from pydantic import BaseModel as Schema
 
 from app.database import get_db
+from app.config import get_settings
 
 router = APIRouter()
+_settings = get_settings()
 
 
 class HealthResponse(Schema):
     status: str
     timestamp: str
-    version: str = "1.0.0"
+    version: str = "2.0.0"
+    app: str = "Dealix"
+    environment: str = "production"
 
 
 class ReadyResponse(Schema):
@@ -26,6 +30,9 @@ async def health_check():
     return HealthResponse(
         status="healthy",
         timestamp=datetime.now(timezone.utc).isoformat(),
+        version="2.0.0",
+        app=_settings.APP_NAME,
+        environment=_settings.ENVIRONMENT,
     )
 
 

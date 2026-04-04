@@ -46,6 +46,7 @@ class Commission(TenantModel):
     deal = relationship("Deal")
     payout = relationship("Payout", back_populates="commissions")
     approved_user = relationship("User", foreign_keys=[approved_by])
+    dispute = relationship("Dispute", foreign_keys=[dispute_id])
 
 
 class Payout(BaseModel):

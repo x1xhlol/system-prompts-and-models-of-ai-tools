@@ -1,0 +1,57 @@
+# Runs when salesflow-saas/ changes (monorepo root)
+name: Dealix CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "salesflow-saas/**"
+  pull_request:
+    branches: [main]
+    paths:
+      - "salesflow-saas/**"
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: salesflow-saas/backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt -r requirements-dev.txt
+      - name: Pytest (full suite + launch scenarios)
+        env:
+          DATABASE_URL: sqlite+aiosqlite:///./ci_dealix.db
+          DEALIX_INTERNAL_API_TOKEN: ""
+        run: python -m pytest tests -q --tb=line
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: salesflow-saas/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: salesflow-saas/frontend/package-lock.json
+      - name: Install
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Build
+        run: npm run build
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: E2E smoke (auth shell)
+        env:
+          CI: true
+        run: npm run test:e2e

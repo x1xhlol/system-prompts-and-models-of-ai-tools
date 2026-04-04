@@ -7,7 +7,7 @@ AI-powered revenue operations platform built for the Saudi market. Dealix combin
 | Layer | Technology |
 |-------|-----------|
 | Backend | FastAPI (Python 3.11+) |
-| Frontend | Next.js 14 (React, TypeScript) |
+| Frontend | Next.js 15 (React, TypeScript) |
 | Database | PostgreSQL 15 |
 | Cache / Broker | Redis 7 |
 | Task Queue | Celery 5 |
@@ -25,6 +25,14 @@ docker-compose up --build
 
 Backend: `http://localhost:8000/docs`
 Frontend: `http://localhost:3000`
+
+**Customer onboarding (B2B):** `GET /api/v1/customer-onboarding/journey` and `docs/CUSTOMER_OS_ONBOARDING_AR.md`. Dashboard tab: **مسار التشغيل مع العميل**.
+
+**Launch verification:** see `docs/LAUNCH_CHECKLIST.md`. From `salesflow-saas`: copy `frontend/.env.example` to `frontend/.env.local` and set `NEXT_PUBLIC_API_URL`. Run `.\verify-launch.ps1 -HttpCheck -SoftReady` (use `-BaseUrl` if the API is not on port 8000).
+
+**CI:** GitHub Actions workflow `.github/workflows/dealix-ci.yml` (repo root) runs backend `pytest` and frontend `lint` + `build` when `salesflow-saas/**` changes.
+
+**DB migrations:** from `backend`, set `PYTHONPATH` to the backend folder (e.g. `set PYTHONPATH=%CD%` on Windows), then `alembic upgrade head`. For Postgres schema evolution, prefer `alembic revision --autogenerate` against a dev database after the baseline revision.
 
 ## Project Structure
 

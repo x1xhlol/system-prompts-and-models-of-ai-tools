@@ -1,0 +1,16 @@
+هذه الملفات تُنسَخ من sales_assets إلى مجلد public في الفرونت إند.
+
+التشغيل المحلي (بدون خادم FastAPI على 8000):
+  cd frontend
+  npm run dev
+
+ثم افتح في المتصفح:
+  http://localhost:3000/dealix-marketing/
+  http://localhost:3000/dealix-presentations/
+  http://localhost:3000/resources
+  http://localhost:3000/strategy
+
+لتحديث النسخ بعد تعديل الملفات الأصلية:
+  node scripts/sync-marketing-to-public.cjs
+
+للرفع على GitHub: commit مجلدات public/dealix-* بعد المزامنة.

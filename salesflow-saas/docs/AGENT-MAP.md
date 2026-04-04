@@ -1,6 +1,6 @@
 # AI Agent Registry
 
-Dealix runs 18 specialized AI agents. Each agent executes as a Celery task, receives structured input, returns structured output, and follows defined escalation rules. All invocations are logged to `ai_conversations` for audit.
+Dealix runs 19 specialized AI agents (including customer-facing onboarding). Each agent executes as a Celery task, receives structured input, returns structured output, and follows defined escalation rules. All invocations are logged to `ai_conversations` for audit.
 
 ---
 
@@ -183,6 +183,16 @@ Dealix runs 18 specialized AI agents. Each agent executes as a Celery task, rece
 | **Inputs** | Time period, metrics scope (revenue, pipeline, affiliates, agents, guarantees), tenant data |
 | **Outputs** | Executive summary (Arabic/English), key metrics, trend analysis, alerts, recommended actions |
 | **Escalation** | Revenue decline >20% period-over-period -> urgent alert to owner. Data anomaly detected -> flag for investigation |
+
+## 19. Customer Integration Concierge
+
+| Property | Value |
+|----------|-------|
+| **ID** | `integration_concierge` |
+| **Role** | Guide paying B2B customers and their IT/channel owners through environment setup, integrations, WhatsApp, and go-live checks — step by step, in Arabic/English |
+| **Inputs** | Current onboarding step id, tenant context, optional go-live matrix snapshot, user question, last connectivity-test or API error (sanitized) |
+| **Outputs** | Next actions for customer vs Dealix CSM, verification hints (no secrets), escalation flag to human |
+| **Escalation** | Repeated credential failures, Meta/Salesforce org access blocked, or policy-sensitive requests -> human CSM |
 
 ---
 

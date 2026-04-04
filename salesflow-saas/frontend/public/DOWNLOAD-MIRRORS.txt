@@ -1,0 +1,15 @@
+Dealix — روابط تحميل بديلة (عندما لا يعمل السيرفر المحلي)
+========================================================
+
+1) من نفس المشروع على GitHub (استبدل USER و REPO و الفرع):
+   ZIP (jsDelivr CDN):
+   https://cdn.jsdelivr.net/gh/USER/REPO@main/salesflow-saas/frontend/public/dealix-marketing/dealix-marketing-bundle.zip
+
+   Raw (ملف نصي):
+   https://raw.githubusercontent.com/USER/REPO/main/salesflow-saas/frontend/public/dealix-marketing/ACCESS-URLS.txt
+
+2) بعد رفع المستودع: افتح الملفات من GitHub → زر Download أو Raw.
+
+3) محلياً بدون FastAPI: npm run dev ثم
+   http://localhost:3000/dealix-marketing/index.html
+   http://localhost:3000/resources

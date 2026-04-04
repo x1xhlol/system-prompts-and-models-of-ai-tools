@@ -1,0 +1,5 @@
+• Customer Support Crew — إجابات من knowledge base + إجراءات (إعادة تشغيل تقرير).
+• Human Handoff Supervisor — تذكرة + ملخص + اقتراح حل.
+• Knowledge Distiller — تلخيص الشكوى وحقنها في ذاكرة العميل.
+
+تكاملات: WhatsApp، قاعدة معرفة (knowledge router)، ticketing (اختياري)، CRM.

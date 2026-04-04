@@ -9,8 +9,9 @@ const kufi = Noto_Kufi_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: "ديل اي اكس - Dealix OS",
-  description: "The autonomous AI sales engine for the Saudi market.",
+  title: "Dealix — نظام تشغيل الإيرادات B2B",
+  description:
+    "اكتشاف، تأهيل، قنوات متعددة، وتحليلات — مع حوكمة وذاكرة. سوق سعودي.",
 };
 
 export default function RootLayout({

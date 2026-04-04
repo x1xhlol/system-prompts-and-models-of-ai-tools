@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Building2, MapPin, Tag, Plus, Search, Home, LayoutGrid, List as ListIcon, Trash2, Edit3, ExternalLink } from "lucide-react";
 
 export function PropertiesView() {
@@ -82,7 +83,13 @@ export function PropertiesView() {
           {properties.map((prop) => (
             <div key={prop.id} className="glass-card group overflow-hidden border border-border/50 hover:border-primary/30 transition-all">
               <div className="aspect-video relative overflow-hidden">
-                <img src={prop.image} alt={prop.title} className="w-full h-full object-cover transition-transform group-hover:scale-110 duration-700" />
+                <Image
+                  src={prop.image}
+                  alt={prop.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform group-hover:scale-110 duration-700"
+                />
                 <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg ${
                   prop.status === 'Available' ? 'bg-emerald-500 text-white' : 'bg-amber-500 text-white'
                 }`}>

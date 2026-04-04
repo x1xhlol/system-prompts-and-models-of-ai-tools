@@ -51,6 +51,7 @@ scipy==1.14.1
 # ── Security & Auth ──────────────────────────────────────────
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
+bcrypt>=4.0.1,<5
 python-decouple==3.8
 
 # ── Queue & Cache ─────────────────────────────────────────────

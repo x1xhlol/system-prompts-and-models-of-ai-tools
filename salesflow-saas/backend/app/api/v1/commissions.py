@@ -9,6 +9,8 @@ from pydantic import BaseModel as Schema
 from app.database import get_db
 from app.api.deps import get_current_user, require_role
 from app.models.user import User
+from app.services.audit_service import record_audit
+from app.services.operations_hub import emit_domain_event
 from app.models.commission import Commission, CommissionStatus
 
 router = APIRouter()
@@ -161,6 +163,21 @@ async def approve_commission(
     commission.approved_by = current_user.id
     commission.approved_at = datetime.now(timezone.utc)
     await db.flush()
+    await record_audit(
+        db,
+        tenant_id=current_user.tenant_id,
+        user_id=current_user.id,
+        action="commission.approve",
+        entity_type="commission",
+        entity_id=commission.id,
+        changes={"deal_id": str(commission.deal_id), "amount": float(commission.amount)},
+    )
+    await emit_domain_event(
+        db,
+        tenant_id=current_user.tenant_id,
+        event_type="commission.approved",
+        payload={"commission_id": str(commission.id), "deal_id": str(commission.deal_id)},
+    )
     await db.refresh(commission)
     return CommissionResponse.model_validate(commission)
 
@@ -181,6 +198,21 @@ async def hold_commission(
     commission.status = CommissionStatus.HELD
     commission.held_reason = data.reason
     await db.flush()
+    await record_audit(
+        db,
+        tenant_id=current_user.tenant_id,
+        user_id=current_user.id,
+        action="commission.hold",
+        entity_type="commission",
+        entity_id=commission.id,
+        changes={"reason": data.reason},
+    )
+    await emit_domain_event(
+        db,
+        tenant_id=current_user.tenant_id,
+        event_type="commission.held",
+        payload={"commission_id": str(commission.id)},
+    )
     await db.refresh(commission)
     return CommissionResponse.model_validate(commission)
 
@@ -202,6 +234,21 @@ async def pay_commission(
     commission.status = CommissionStatus.PAID
     commission.paid_at = datetime.now(timezone.utc)
     await db.flush()
+    await record_audit(
+        db,
+        tenant_id=current_user.tenant_id,
+        user_id=current_user.id,
+        action="commission.pay",
+        entity_type="commission",
+        entity_id=commission.id,
+        changes={"paid_at": commission.paid_at.isoformat() if commission.paid_at else None},
+    )
+    await emit_domain_event(
+        db,
+        tenant_id=current_user.tenant_id,
+        event_type="commission.paid",
+        payload={"commission_id": str(commission.id)},
+    )
     await db.refresh(commission)
     return CommissionResponse.model_validate(commission)
 

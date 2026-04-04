@@ -12,6 +12,7 @@ from app.models.subscription import Subscription
 from app.models.template import IndustryTemplate
 from app.models.property import Property
 from app.models.audit_log import AuditLog
+from app.models.operations import ApprovalRequest, DomainEvent, IntegrationSyncState
 from app.models.affiliate import AffiliateMarketer, AffiliatePerformance, AffiliateDeal
 from app.models.ai_conversation import AIConversation, AutoBooking
 from app.models.company import Company, Contact
@@ -27,6 +28,7 @@ __all__ = [
     "BaseModel", "TenantModel", "Tenant", "User", "Lead", "Customer",
     "Deal", "Activity", "Message", "Proposal", "Notification",
     "Subscription", "IndustryTemplate", "Property", "AuditLog",
+    "DomainEvent", "ApprovalRequest", "IntegrationSyncState",
     "AffiliateMarketer", "AffiliatePerformance", "AffiliateDeal",
     "AIConversation", "AutoBooking",
     "Company", "Contact", "Call", "Commission", "Payout",

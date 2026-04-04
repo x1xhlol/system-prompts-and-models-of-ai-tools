@@ -1,0 +1,3 @@
+• طبقة 7 CEOAgent + LangGraph orchestrator.
+• طبقات 1–6: بنية التطبيق الحالية (CRM، Discovery، Qualification، Engagement، Revenue، Intelligence).
+• تقارير تنفيذية: executive_roi_service + تكامل Slack/Email للـ CEO.

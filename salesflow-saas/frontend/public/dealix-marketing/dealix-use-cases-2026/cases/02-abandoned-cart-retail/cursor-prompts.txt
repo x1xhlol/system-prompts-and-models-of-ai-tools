@@ -1,0 +1,5 @@
+[P1] "Add webhook handler POST /api/v1/webhooks/cart-abandoned with payload {tenant_id, customer, items[], cart_value}. Idempotent by event_id. Emit internal message to orchestrator for Personalizer."
+
+[P2] "Implement a 3-step sequence scheduler (WhatsApp T+0, Email T+4h, LinkedIn T+24h) using existing scheduler patterns or APScheduler with tenant timezone Asia/Riyadh."
+
+[P3] "Store each touchpoint in memory_layer scoped by tenant_id + customer_id; expose summary for sales UI."

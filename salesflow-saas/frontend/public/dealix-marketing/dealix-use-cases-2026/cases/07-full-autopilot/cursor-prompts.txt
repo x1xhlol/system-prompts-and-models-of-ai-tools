@@ -1,0 +1,3 @@
+[P1] "Document a single 'tenant operating mode' config: {autopilot_sales, autopilot_support, approval_matrix, daily_report_channels[]} and enforce in orchestrator."
+
+[P2] "Add health dashboard section listing which subsystems are autopilot vs human-in-the-loop for the tenant."
