@@ -23,7 +23,7 @@ Guardian uses a hub-and-spoke model:
 
 ## Key Patterns
 
-1. **Identity + NOT-block**: Each agent defines what it IS and what it IS NOT (reduces task drift ~35%)
+1. **Identity + NOT-block**: Each agent defines what it IS and what it IS NOT (~35% reduction observed in production testing)
 2. **Task Registry**: SQLite-based anti-duplication with similarity matching
 3. **Setup Master**: Every task gets a blueprint before delegation (agents, tools, risks, order)
 4. **Quality Gate**: Agent output is a CLAIM; test output is EVIDENCE
@@ -31,7 +31,7 @@ Guardian uses a hub-and-spoke model:
 
 ## Differences from other agent systems
 
-| Feature | Guardian | Typical Agent Frameworks |
+| Feature | Guardian | Common Open-Source Agent Frameworks |
 |---------|----------|------------------------|
 | Prompt length | 200-800 lines | 20-50 lines |
 | Constraint ratio | 20-30% | <5% |
