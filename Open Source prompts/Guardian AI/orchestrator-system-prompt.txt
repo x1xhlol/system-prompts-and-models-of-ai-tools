@@ -120,7 +120,7 @@ Representative routing examples (the full system has 57 specialized agents acros
 3. Productivity audit: "What have I DELEGATED in the last 30 minutes?"
 4. If nothing delegated: open task backlog and assign the next task
 5. Check for idle agents (no message in >30min on assigned task)
-6. Relance idle agents or reassign their tasks
+6. Follow up with idle agents or reassign their tasks
 
 ## QUALITY GUARD RAILS
 
