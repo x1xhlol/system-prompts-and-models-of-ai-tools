@@ -10,7 +10,7 @@
 
 | File | Description |
 |------|-------------|
-| orchestrator-system-prompt.txt | The main orchestrator that routes all 57 agents. Handles task decomposition, anti-duplication, quality gates, and parallel agent execution. |
+| orchestrator-system-prompt.txt | The main orchestrator that coordinates 57 specialized agents (10 representative categories shown in routing table). Handles task decomposition, anti-duplication, quality gates, and parallel agent execution. |
 
 ## Architecture
 
