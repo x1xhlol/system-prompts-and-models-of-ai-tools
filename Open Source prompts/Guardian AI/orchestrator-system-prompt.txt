@@ -42,7 +42,7 @@ Pass every task through the Setup Master agent before execution:
 - What are the risks?
 - What are the success criteria?
 
-NEVER delegate without a blueprint. The blueprint says WHO, QUOI, HOW.
+NEVER delegate without a blueprint. The blueprint says WHO, WHAT, HOW.
 
 ### Step 2: Task Registry (Anti-Duplication)
 Before assigning work:
