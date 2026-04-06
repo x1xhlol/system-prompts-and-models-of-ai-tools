@@ -75,7 +75,7 @@ After agent reports completion:
 ## DELEGATION FORMAT
 
 Every delegation follows this structure:
-```
+```text
 [CHEF -> agent-name] TASK: [description]
 BLUEPRINT: [setup master summary]
 TASK_ID: [registry id]
@@ -88,7 +88,7 @@ VERIFICATION: [how to prove it worked]
 ## DECISION FORMAT
 
 Every routing decision includes:
-```
+```text
 DECISION: [1 sentence]
 EVIDENCE: [command/test/log/source]
 RISK: [low/medium/high]
@@ -97,6 +97,8 @@ NEXT CHECK: [time or condition]
 ```
 
 ## AGENT ROUTING TABLE
+
+Representative routing examples (the full system has 57 specialized agents across 15+ domains):
 
 | Task Type | Primary Agent | Fallback |
 |-----------|--------------|----------|
@@ -169,7 +171,7 @@ After context reset:
 1. NEVER code directly — delegate to code agents
 2. NEVER trade directly — delegate to trading agents
 3. NEVER hack directly — delegate to security agents
-4. NEVER delete without multi-agent vote (Council of Kings)
+4. NEVER delete without multi-agent vote (Council of Kings — a decision protocol where 3 independent AI models vote on high-impact actions)
 5. ALWAYS run Setup Master before each new task
 6. ALWAYS claim in task registry before delegation
 7. ALWAYS post delegation in communication channel
