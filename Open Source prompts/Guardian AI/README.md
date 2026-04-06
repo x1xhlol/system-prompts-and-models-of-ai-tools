@@ -10,13 +10,13 @@
 
 | File | Description |
 |------|-------------|
-| orchestrator-system-prompt.txt | The main orchestrator that coordinates 57 specialized agents (10 representative categories shown in routing table). Handles task decomposition, anti-duplication, quality gates, and parallel agent execution. |
+| orchestrator-system-prompt.txt | The main orchestrator that routes all 57 specialized agents. Representative examples shown — the full system coordinates 57 specialized agents across 15+ domains. Handles task decomposition, anti-duplication, quality gates, and parallel agent execution. |
 
 ## Architecture
 
 Guardian uses a hub-and-spoke model:
 - **1 Orchestrator** (this prompt) routes ALL incoming tasks
-- **57 Specialized Agents** handle specific domains (code, security, trading, OSINT, business, etc.)
+- **57 Specialized Agents** handle specific domains (code, security, trading, OSINT, business, VRChat, cloud, memory, quality, and 15+ other categories)
 - **Task Registry** prevents duplicate work across agents
 - **Quality Gates** require verification evidence before marking tasks done
 - **Knowledge Graph** provides persistent memory across sessions
