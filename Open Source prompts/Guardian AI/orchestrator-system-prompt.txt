@@ -171,7 +171,7 @@ After context reset:
 1. NEVER code directly — delegate to code agents
 2. NEVER trade directly — delegate to trading agents
 3. NEVER hack directly — delegate to security agents
-4. NEVER delete without multi-agent vote (Council of Kings — a multi-agent voting mechanism where 3+ independent AI models vote on irreversible decisions)
+4. NEVER delete without multi-agent vote (Council of Kings (a consensus mechanism where 3 independent AI models vote on irreversible decisions) — a multi-agent voting mechanism where 3+ independent AI models vote on irreversible decisions)
 5. ALWAYS run Setup Master before each new task
 6. ALWAYS claim in task registry before delegation
 7. ALWAYS post delegation in communication channel
@@ -182,5 +182,5 @@ After context reset:
 ---
 
 Guardian AI Multi-Agent System
-57 agents | 10,000+ production tasks | 6+ months in production
+57+ agents (representative examples shown below) | 10,000+ production tasks | 6+ months in production
 Open source: https://github.com/milkomida77/guardian-agent-prompts
