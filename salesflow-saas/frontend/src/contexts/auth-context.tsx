@@ -119,7 +119,12 @@ export function useRequireAuth(): AuthContextValue {
     if (auth.loading) return;
     if (!getAccessToken()) {
       const next = pathname ? `?next=${encodeURIComponent(pathname)}` : "";
-      router.replace(`/login${next}`);
+      const target = `/login${next}`;
+      router.replace(target);
+      // Fallback for environments where app-router navigation is delayed.
+      if (typeof window !== "undefined" && !window.location.pathname.startsWith("/login")) {
+        window.location.replace(target);
+      }
     }
   }, [auth.loading, router, pathname]);
 

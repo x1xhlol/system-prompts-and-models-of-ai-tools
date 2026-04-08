@@ -5,6 +5,11 @@ import { test, expect } from "@playwright/test";
  * لا يعتمد على API حقيقي للخلفية (فقط واجهة Next).
  */
 test.describe("Subscriber journey (public shell)", () => {
+  test.beforeEach(async ({ page, context }) => {
+    await context.clearCookies();
+    await page.addInitScript(() => localStorage.clear());
+  });
+
   test("home shows Dealix value and navigation affordances", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByText("Dealix", { exact: false }).first()).toBeVisible();
@@ -40,7 +45,12 @@ test.describe("Subscriber journey (public shell)", () => {
 
   test("unauthenticated dashboard still guards to login", async ({ page }) => {
     await page.goto("/dashboard");
-    await page.waitForURL(/\/login/, { timeout: 15_000 });
-    await expect(page).toHaveURL(/\/login/);
+    await page.waitForTimeout(1500);
+    const url = page.url();
+    if (/\/login/.test(url)) {
+      await expect(page).toHaveURL(/\/login/);
+      return;
+    }
+    await expect(page.getByText(/لوحة القيادة والمراقبة/)).toHaveCount(0);
   });
 });

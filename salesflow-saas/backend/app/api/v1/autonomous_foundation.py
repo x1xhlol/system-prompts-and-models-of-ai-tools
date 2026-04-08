@@ -1,13 +1,21 @@
 from __future__ import annotations
 
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
+from app.api.deps import get_optional_user
 from app.flows.prospecting_durable_flow import prospecting_durable_flow
 from app.flows.self_improvement_flow import self_improvement_flow
+from app.models.user import User
+from app.openclaw.gateway import openclaw_gateway
+from app.openclaw.media_bridge import media_bridge
+from app.openclaw.memory_bridge import memory_bridge
+from app.openclaw.observability_bridge import observability_bridge
+from app.openclaw.policy import classify_action
+from app.openclaw.task_router import task_router
 from app.services.contract_intelligence_service import contract_intelligence_service
 from app.services.executive_roi_service import executive_roi_service
 from app.services.predictive_revenue_service import predictive_revenue_service
@@ -53,6 +61,61 @@ class ConnectivityRequest(BaseModel):
     phone: str = "966500000000"
     customer_id: str = "cus_test"
     amount_sar: int = 10
+
+
+class MemoryCollectRequest(BaseModel):
+    tenant_id: str = "default_tenant"
+    domain: str = "operational"
+    content: str
+    evidence: Dict[str, Any] = Field(default_factory=dict)
+    signal_count: int = 0
+    repetition_count: int = 0
+    impact_score: float = 0.0
+    threshold: float = 60.0
+
+
+class MediaDraftRequest(BaseModel):
+    tenant_id: str = "default_tenant"
+    media_type: str = Field(..., description="video | music")
+    prompt: str
+    provider_hint: Optional[str] = None
+    metadata: Dict[str, Any] = Field(default_factory=dict)
+
+
+class PolicyCheckRequest(BaseModel):
+    tenant_id: str = "default_tenant"
+    action: str
+    payload: Dict[str, Any] = Field(default_factory=dict)
+
+
+def _canary_enabled(tenant_id: str) -> bool:
+    canary = [x.strip() for x in (settings.OPENCLAW_CANARY_TENANTS or "").split(",") if x.strip()]
+    if not canary:
+        return True
+    return tenant_id in canary
+
+
+def _resolve_tenant(user: Optional[User], fallback_tenant_id: str) -> str:
+    return str(user.tenant_id) if user else fallback_tenant_id
+
+
+_TASKS_REGISTERED = False
+
+
+def _register_task_router() -> None:
+    global _TASKS_REGISTERED
+    if _TASKS_REGISTERED:
+        return
+
+    async def _prospecting(tenant_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
+        return await prospecting_durable_flow.run(tenant_id, payload)
+
+    async def _self_improve(tenant_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
+        return self_improvement_flow.run(tenant_id, payload)
+
+    task_router.register("prospecting_flow", _prospecting)
+    task_router.register("self_improvement_flow", _self_improve)
+    _TASKS_REGISTERED = True
 
 
 def build_go_live_readiness_report() -> Dict[str, Any]:
@@ -147,12 +210,127 @@ def build_go_live_readiness_report() -> Dict[str, Any]:
 
 @router.post("/flows/prospecting")
 async def run_prospecting_flow(payload: DealPayload) -> Dict[str, Any]:
-    return await prospecting_durable_flow.run(payload.tenant_id, payload.deal)
+    _register_task_router()
+    if not settings.OPENCLAW_SAFE_CORE_ENABLED:
+        return await prospecting_durable_flow.run(payload.tenant_id, payload.deal)
+    if not _canary_enabled(payload.tenant_id):
+        return {"status": "skipped", "reason": "tenant_not_in_canary", "tenant_id": payload.tenant_id}
+    result = await openclaw_gateway.execute(
+        tenant_id=payload.tenant_id,
+        task_type="prospecting_flow",
+        action="send_whatsapp",
+        payload=payload.deal,
+        model_provider="openclaw-router",
+        cache_hint="prospecting-cache",
+    )
+    return result
 
 
 @router.post("/flows/self-improvement")
 async def run_self_improvement_flow(payload: DealPayload) -> Dict[str, Any]:
-    return self_improvement_flow.run(payload.tenant_id, payload.deal)
+    _register_task_router()
+    if not settings.OPENCLAW_SAFE_CORE_ENABLED:
+        return self_improvement_flow.run(payload.tenant_id, payload.deal)
+    result = await openclaw_gateway.execute(
+        tenant_id=payload.tenant_id,
+        task_type="self_improvement_flow",
+        action="collect_signals",
+        payload=payload.deal,
+        model_provider="openclaw-router",
+        cache_hint="self-improve-cache",
+    )
+    return result
+
+
+@router.get("/openclaw/health")
+async def openclaw_health() -> Dict[str, Any]:
+    return {
+        "safe_core_enabled": settings.OPENCLAW_SAFE_CORE_ENABLED,
+        "media_drafts_enabled": settings.OPENCLAW_MEDIA_DRAFTS_ENABLED,
+        "memory_enabled": settings.OPENCLAW_MEMORY_ENABLED,
+        "canary_tenants": [x.strip() for x in (settings.OPENCLAW_CANARY_TENANTS or "").split(",") if x.strip()],
+        "registered_task_types": ["prospecting_flow", "self_improvement_flow"],
+    }
+
+
+@router.get("/openclaw/runs")
+async def list_openclaw_runs(
+    tenant_id: Optional[str] = None,
+    limit: int = 50,
+    user: Optional[User] = Depends(get_optional_user),
+) -> Dict[str, Any]:
+    tid = _resolve_tenant(user, tenant_id or "default_tenant")
+    return {"items": observability_bridge.list_runs(tenant_id=tid, limit=limit)}
+
+
+@router.post("/openclaw/policy/check")
+async def policy_check(body: PolicyCheckRequest) -> Dict[str, Any]:
+    from app.openclaw.approval_bridge import approval_bridge
+
+    gate = approval_bridge.evaluate(action=body.action, payload=body.payload, tenant_id=body.tenant_id)
+    return {"gate": gate, "classification": classify_action(body.action).as_dict()}
+
+
+@router.post("/openclaw/memory/promote")
+async def memory_collect_promote(body: MemoryCollectRequest, user: Optional[User] = Depends(get_optional_user)) -> Dict[str, Any]:
+    if not settings.OPENCLAW_MEMORY_ENABLED:
+        raise HTTPException(status_code=403, detail="OpenClaw memory bridge is disabled")
+    tid = _resolve_tenant(user, body.tenant_id)
+    item = memory_bridge.collect(tenant_id=tid, domain=body.domain, content=body.content, evidence=body.evidence)
+    scored = memory_bridge.score(
+        item["memory_id"],
+        signal_count=body.signal_count,
+        repetition_count=body.repetition_count,
+        impact_score=body.impact_score,
+    )
+    promoted = memory_bridge.promote(item["memory_id"], threshold=body.threshold)
+    return {"collected": item, "scored": scored, "promoted": promoted}
+
+
+@router.get("/openclaw/memory")
+async def list_memory(
+    tenant_id: Optional[str] = None,
+    promoted_only: bool = False,
+    domain: Optional[str] = None,
+    limit: int = 100,
+    user: Optional[User] = Depends(get_optional_user),
+) -> Dict[str, Any]:
+    if not settings.OPENCLAW_MEMORY_ENABLED:
+        raise HTTPException(status_code=403, detail="OpenClaw memory bridge is disabled")
+    tid = _resolve_tenant(user, tenant_id or "default_tenant")
+    return {"items": memory_bridge.list_items(tenant_id=tid, promoted_only=promoted_only, domain=domain, limit=limit)}
+
+
+@router.post("/openclaw/media/drafts")
+async def create_media_draft(body: MediaDraftRequest, user: Optional[User] = Depends(get_optional_user)) -> Dict[str, Any]:
+    if not settings.OPENCLAW_MEDIA_DRAFTS_ENABLED:
+        raise HTTPException(status_code=403, detail="OpenClaw media draft bridge is disabled")
+    tid = _resolve_tenant(user, body.tenant_id)
+    # Draft-only in phase-1: always require approval at policy layer for video/music.
+    gate = classify_action(f"{body.media_type}_generate").as_dict()
+    if not gate["requires_approval"]:
+        raise HTTPException(status_code=400, detail="Invalid media policy state")
+    row = media_bridge.create_draft(
+        tenant_id=tid,
+        media_type=body.media_type,
+        prompt=body.prompt,
+        provider_hint=body.provider_hint,
+        metadata=body.metadata,
+    )
+    return {"draft": row, "policy": gate}
+
+
+@router.get("/openclaw/media/drafts")
+async def list_media_drafts(
+    tenant_id: Optional[str] = None,
+    media_type: Optional[str] = None,
+    limit: int = 100,
+    user: Optional[User] = Depends(get_optional_user),
+) -> Dict[str, Any]:
+    if not settings.OPENCLAW_MEDIA_DRAFTS_ENABLED:
+        raise HTTPException(status_code=403, detail="OpenClaw media draft bridge is disabled")
+    tid = _resolve_tenant(user, tenant_id or "default_tenant")
+    return {"items": media_bridge.list_drafts(tenant_id=tid, media_type=media_type, limit=limit)}
 
 
 @router.post("/intelligence/contract")

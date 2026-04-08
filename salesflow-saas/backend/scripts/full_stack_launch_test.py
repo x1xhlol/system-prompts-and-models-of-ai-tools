@@ -188,6 +188,8 @@ async def main() -> int:
     results.append(await check("affiliates leaderboard", "GET", "/api/v1/affiliates/leaderboard/top"))
     results.append(await check("agents list", "GET", "/api/v1/agents/list"))
     results.append(await check("agents empire status", "GET", "/api/v1/agents/empire/status"))
+    results.append(await check("openclaw safe core health", "GET", "/api/v1/autonomous-foundation/openclaw/health"))
+    results.append(await check("openclaw runs telemetry", "GET", "/api/v1/autonomous-foundation/openclaw/runs"))
     results.append(await check("LangGraph orchestrator health", "GET", "/api/v1/agents/langgraph/health"))
     results.append(
         await check(

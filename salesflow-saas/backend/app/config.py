@@ -124,6 +124,20 @@ class Settings(BaseSettings):
 
     # ── Autonomous Loops ────────────────────────────────────
     SELF_IMPROVEMENT_INTERVAL_SECONDS: int = 900
+    OPENCLAW_SAFE_CORE_ENABLED: bool = True
+    OPENCLAW_MEDIA_DRAFTS_ENABLED: bool = True
+    OPENCLAW_MEMORY_ENABLED: bool = True
+    OPENCLAW_CANARY_TENANTS: str = ""
+    OPENCLAW_CANARY_ENFORCE_AUTO_ACTIONS: bool = True
+    OPENCLAW_APPROVAL_SLA_HOURS_WARN: int = 4
+    OPENCLAW_APPROVAL_SLA_HOURS_BREACH: int = 24
+    # Escalation level 3 when age >= breach * multiplier (must be > 1)
+    OPENCLAW_APPROVAL_ESCALATION_L3_MULTIPLIER: float = 2.0
+    # Breach notifications (empty URLs = no outbound calls)
+    OPENCLAW_SLA_ALERTS_ENABLED: bool = True
+    OPENCLAW_SLA_WEBHOOK_URL: str = ""
+    OPENCLAW_SLA_SLACK_WEBHOOK_URL: str = ""
+    OPENCLAW_SLA_ALERT_COOLDOWN_MINUTES: int = 45
 
     # ── Scraping / Lead Gen ──────────────────────────────
     GOOGLE_MAPS_API_KEY: str = ""

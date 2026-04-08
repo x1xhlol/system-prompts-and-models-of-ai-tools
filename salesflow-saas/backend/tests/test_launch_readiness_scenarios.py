@@ -22,6 +22,7 @@ LAUNCH_GET_MATRIX = [
     "/api/v1/operations/snapshot",
     "/api/v1/affiliates/program",
     "/api/v1/affiliates/leaderboard/top",
+    "/api/v1/autonomous-foundation/openclaw/health",
 ]
 
 

@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
+from app.openclaw.approval_bridge import approval_bridge
+
 
 SENSITIVE_ACTIONS = {
     "send_whatsapp",
@@ -20,13 +22,6 @@ def before_agent_reply(action: str, payload: Dict[str, Any], tenant_id: str) -> 
     OpenClaw-style governance hook.
     Blocks sensitive actions when tenant isolation or approvals are missing.
     """
-    if not tenant_id:
-        return {"allowed": False, "reason": "missing_tenant_id"}
-
-    if action in SENSITIVE_ACTIONS:
-        if not payload.get("approval_token"):
-            return {"allowed": False, "reason": f"approval_required:{action}"}
-        if payload.get("cross_tenant_context"):
-            return {"allowed": False, "reason": "cross_tenant_context_blocked"}
-
-    return {"allowed": True, "reason": "ok"}
+    gate = approval_bridge.evaluate(action=action, payload=payload, tenant_id=tenant_id)
+    # Keep old response contract for compatibility with existing tests/callers.
+    return {"allowed": gate["allowed"], "reason": gate["reason"]}

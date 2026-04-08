@@ -15,6 +15,7 @@ from app.database import get_db
 from app.api.deps import get_current_user, get_optional_user, require_role
 from app.models.user import User
 from app.models.operations import ApprovalRequest
+from app.config import get_settings
 from app.services.audit_service import list_recent_audits
 from app.services.operations_hub import (
     count_events_since,
@@ -23,8 +24,80 @@ from app.services.operations_hub import (
     list_integration_connectors,
     upsert_connector_status,
 )
+from app.openclaw.canary_context import get_canary_dashboard_context
+from app.openclaw.observability_bridge import observability_bridge
+from app.openclaw.memory_bridge import memory_bridge
+from app.openclaw.media_bridge import media_bridge
+from app.services.sla_escalation_alerts import (
+    maybe_dispatch_sla_breach_alerts,
+    refresh_pending_escalations,
+)
 
 router = APIRouter(prefix="/operations", tags=["Full Auto Operations"])
+settings = get_settings()
+
+
+def _hours_between(now: datetime, then: Optional[datetime]) -> float:
+    if not then:
+        return 0.0
+    return max(0.0, (now - then).total_seconds() / 3600.0)
+
+
+async def _approval_sla_metrics(db: AsyncSession, tenant_id) -> Dict[str, Any]:
+    now = datetime.now(timezone.utc)
+    warn_h = max(1, int(settings.OPENCLAW_APPROVAL_SLA_HOURS_WARN))
+    breach_h = max(warn_h, int(settings.OPENCLAW_APPROVAL_SLA_HOURS_BREACH))
+
+    q_pending = await db.execute(
+        select(ApprovalRequest).where(
+            ApprovalRequest.tenant_id == tenant_id,
+            ApprovalRequest.status == "pending",
+        )
+    )
+    pending_rows = q_pending.scalars().all()
+    pending_warn = 0
+    pending_breach = 0
+    for row in pending_rows:
+        h = _hours_between(now, row.created_at)
+        if h >= warn_h:
+            pending_warn += 1
+        if h >= breach_h:
+            pending_breach += 1
+
+    q_resolved = await db.execute(
+        select(ApprovalRequest).where(
+            ApprovalRequest.tenant_id == tenant_id,
+            ApprovalRequest.status.in_(["approved", "rejected"]),
+            ApprovalRequest.reviewed_at.is_not(None),
+        )
+    )
+    resolved_rows = q_resolved.scalars().all()
+    resolution_hours = []
+    for row in resolved_rows:
+        if row.created_at and row.reviewed_at:
+            resolution_hours.append(max(0.0, (row.reviewed_at - row.created_at).total_seconds() / 3600.0))
+    avg_hours = (sum(resolution_hours) / len(resolution_hours)) if resolution_hours else 0.0
+    sla_health = "ok"
+    if pending_breach > 0:
+        sla_health = "breach"
+    elif pending_warn > 0:
+        sla_health = "warn"
+    return {
+        "pending_total": len(pending_rows),
+        "pending_warn_count": pending_warn,
+        "pending_breach_count": pending_breach,
+        "resolved_count": len(resolved_rows),
+        "avg_resolution_hours": round(avg_hours, 2),
+        "warn_threshold_hours": warn_h,
+        "breach_threshold_hours": breach_h,
+        "health": sla_health,
+        "alerts_config": {
+            "enabled": bool(settings.OPENCLAW_SLA_ALERTS_ENABLED),
+            "webhook_configured": bool((settings.OPENCLAW_SLA_WEBHOOK_URL or "").strip()),
+            "slack_configured": bool((settings.OPENCLAW_SLA_SLACK_WEBHOOK_URL or "").strip()),
+            "cooldown_minutes": int(settings.OPENCLAW_SLA_ALERT_COOLDOWN_MINUTES),
+        },
+    }
 
 
 def _demo_snapshot() -> Dict[str, Any]:
@@ -39,6 +112,31 @@ def _demo_snapshot() -> Dict[str, Any]:
             {"connector_key": "stripe_billing", "display_name_ar": "Stripe — الفوترة", "status": "unknown", "last_success_at": None, "last_attempt_at": None, "last_error": None},
             {"connector_key": "email_sync", "display_name_ar": "مزامنة البريد", "status": "unknown", "last_success_at": None, "last_attempt_at": None, "last_error": None},
         ],
+        "openclaw": {
+            "recent_runs": [],
+            "promoted_memories": 0,
+            "media_drafts_pending": 0,
+            "canary": get_canary_dashboard_context("00000000-0000-0000-0000-000000000000"),
+            "approval_sla": {
+                "pending_total": 0,
+                "pending_warn_count": 0,
+                "pending_breach_count": 0,
+                "resolved_count": 0,
+                "avg_resolution_hours": 0.0,
+                "warn_threshold_hours": int(settings.OPENCLAW_APPROVAL_SLA_HOURS_WARN),
+                "breach_threshold_hours": int(settings.OPENCLAW_APPROVAL_SLA_HOURS_BREACH),
+                "health": "ok",
+                "escalation_by_level": {"0": 0, "1": 0, "2": 0, "3": 0},
+                "escalation_events_last_refresh": 0,
+                "alert_dispatch": {"skipped_reason": "demo_mode"},
+                "alerts_config": {
+                    "enabled": bool(settings.OPENCLAW_SLA_ALERTS_ENABLED),
+                    "webhook_configured": bool((settings.OPENCLAW_SLA_WEBHOOK_URL or "").strip()),
+                    "slack_configured": bool((settings.OPENCLAW_SLA_SLACK_WEBHOOK_URL or "").strip()),
+                    "cooldown_minutes": int(settings.OPENCLAW_SLA_ALERT_COOLDOWN_MINUTES),
+                },
+            },
+        },
         "note_ar": "وضع توضيحي — سجّل الدخول لرؤية بيانات المستأجر.",
     }
 
@@ -57,12 +155,33 @@ async def operations_snapshot(
     ev = await count_events_since(db, user.tenant_id, 24)
     aud = await count_audits_since(db, user.tenant_id, 24)
     connectors = await list_integration_connectors(db, user.tenant_id)
+    tenant_id_str = str(user.tenant_id)
+    esc = await refresh_pending_escalations(db, user.tenant_id)
+    recent_runs = observability_bridge.list_runs(tenant_id=tenant_id_str, limit=5)
+    promoted_memories = len(memory_bridge.list_items(tenant_id=tenant_id_str, promoted_only=True, limit=500))
+    media_drafts_pending = len(media_bridge.list_drafts(tenant_id=tenant_id_str, limit=500))
+    approval_sla = await _approval_sla_metrics(db, user.tenant_id)
+    approval_sla["escalation_by_level"] = esc.get("by_level", {})
+    approval_sla["escalation_events_last_refresh"] = int(esc.get("events_emitted") or 0)
+    approval_sla["alert_dispatch"] = await maybe_dispatch_sla_breach_alerts(
+        db,
+        user.tenant_id,
+        tenant_id_str=tenant_id_str,
+        metrics=approval_sla,
+    )
     return {
         "demo_mode": False,
         "pending_approvals": pending,
         "domain_events_24h": ev,
         "audit_events_24h": aud,
         "connectors": connectors,
+        "openclaw": {
+            "recent_runs": recent_runs,
+            "promoted_memories": promoted_memories,
+            "media_drafts_pending": media_drafts_pending,
+            "canary": get_canary_dashboard_context(tenant_id_str),
+            "approval_sla": approval_sla,
+        },
         "note_ar": "حلقة التشغيل: أحداث مسجّلة + تدقيق + موصلات — تُوسَّع مع المزامنة الفعلية.",
     }
 
@@ -160,6 +279,8 @@ async def list_approvals(
     result = await db.execute(q)
     items = []
     for a in result.scalars().all():
+        pl = a.payload if isinstance(a.payload, dict) else {}
+        sla_meta = pl.get("_dealix_sla") if isinstance(pl.get("_dealix_sla"), dict) else None
         items.append(
             {
                 "id": str(a.id),
@@ -168,11 +289,20 @@ async def list_approvals(
                 "resource_id": str(a.resource_id),
                 "status": a.status,
                 "requested_by_id": str(a.requested_by_id),
-                "payload": a.payload,
+                "payload": pl,
+                "sla_escalation": sla_meta,
                 "created_at": a.created_at.isoformat() if a.created_at else None,
             }
         )
     return {"items": items, "count": len(items)}
+
+
+@router.get("/approvals/sla")
+async def approvals_sla(
+    db: AsyncSession = Depends(get_db),
+    user: User = Depends(require_role("owner", "admin", "manager")),
+):
+    return await _approval_sla_metrics(db, user.tenant_id)
 
 
 @router.put("/approvals/{approval_id}")

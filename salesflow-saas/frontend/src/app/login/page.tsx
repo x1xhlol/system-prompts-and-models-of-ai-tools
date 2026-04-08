@@ -1,14 +1,12 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { Zap } from "lucide-react";
 import { AuthProvider, useAuth } from "@/contexts/auth-context";
 
 function LoginForm() {
   const { login } = useAuth();
-  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -19,7 +17,11 @@ function LoginForm() {
     setError(null);
     setPending(true);
     try {
-      await login(email, password, searchParams.get("next"));
+      const next =
+        typeof window !== "undefined"
+          ? new URLSearchParams(window.location.search).get("next")
+          : null;
+      await login(email, password, next);
     } catch (err) {
       setError(err instanceof Error ? err.message : "فشل تسجيل الدخول");
     } finally {
@@ -97,9 +99,7 @@ function LoginForm() {
 export default function LoginPage() {
   return (
     <AuthProvider>
-      <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-muted-foreground">…</div>}>
-        <LoginForm />
-      </Suspense>
+      <LoginForm />
     </AuthProvider>
   );
 }

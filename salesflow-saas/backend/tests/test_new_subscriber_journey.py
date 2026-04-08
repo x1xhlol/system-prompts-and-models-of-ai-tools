@@ -68,6 +68,15 @@ async def test_new_company_full_subscribe_login_dashboard_affiliate_surface():
         assert prog.status_code == 200
         assert "journey_ar" in prog.json()
 
+        sla = await ac.get(
+            "/api/v1/operations/approvals/sla",
+            headers={"Authorization": f"Bearer {token}"},
+        )
+        assert sla.status_code == 200
+        sj = sla.json()
+        assert "pending_total" in sj
+        assert "health" in sj
+
 
 @pytest.mark.launch
 @pytest.mark.asyncio
