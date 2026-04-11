@@ -29,6 +29,9 @@ from app.services.memory_engine import (
     create_memory_adapter,
 )
 from app.services.session_continuity import SessionContinuity, session_continuity
+from app.services.strategic_deals import (
+    CompanyProfiler, DealMatcher, DealNegotiator, NegotiationStrategy, DealAgent,
+)
 
 __all__ = [
     "AuthService",
@@ -65,4 +68,9 @@ __all__ = [
     "create_memory_adapter",
     "SessionContinuity",
     "session_continuity",
+    "CompanyProfiler",
+    "DealMatcher",
+    "DealNegotiator",
+    "NegotiationStrategy",
+    "DealAgent",
 ]
