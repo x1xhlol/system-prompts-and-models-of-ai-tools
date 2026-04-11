@@ -1,7 +1,4 @@
-"""
-Memory Engine — Dealix MemPalace Pattern
-Pluggable memory adapter with evaluation and quality checks.
-"""
+"""Memory Engine — Dealix MemPalace Pattern. Pluggable memory with evaluation."""
 import json, logging, os, uuid
 from abc import ABC, abstractmethod
 from collections import defaultdict
@@ -163,10 +160,8 @@ class RedisMemoryAdapter(MemoryAdapter):
                 items.append(MemoryItem(**d))
         return items
 
-
 class FileMemoryAdapter(MemoryAdapter):
     """ذاكرة مبنية على الملفات للاستخدام المحلي."""
-
     def __init__(self, base_dir: Path = None):
         self.base = base_dir or MEMORY_BASE / "_store"; self.base.mkdir(parents=True, exist_ok=True)
 
@@ -234,10 +229,8 @@ class FileMemoryAdapter(MemoryAdapter):
     async def _write(self, item: MemoryItem) -> None:
         (self._dd(item.domain) / f"{item.id}.json").write_text(self._ser(item), encoding="utf-8")
 
-
 class MemoryEvaluator:
     """تقييم جودة الذاكرة قبل الوثوق بها."""
-
     def __init__(self, adapter: MemoryAdapter):
         self._a = adapter
 
