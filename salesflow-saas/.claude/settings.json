@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Bash(git status)",
+      "Bash(git diff)",
+      "Bash(pytest)",
+      "Bash(npm test)"
+    ],
+    "deny": [
+      "Bash(rm -rf)",
+      "Bash(git push --force)",
+      "Bash(DROP TABLE)"
+    ]
+  },
+  "preferences": {
+    "language": "ar",
+    "timezone": "Asia/Riyadh",
+    "autocommit": false
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "tools": [
+    {
+      "name": "dalle",
+      "description": "DALL-E image generation tool. Creates images from text descriptions.",
+      "type": "function",
+      "parameters": {
+        "prompts": {
+          "type": "array",
+          "description": "Array of detailed image generation prompts (~100 words each, in English)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "seeds": {
+          "type": "array",
+          "description": "Array of seed values for reproducible image generation",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "size": {
+          "type": "string",
+          "enum": ["1024x1024", "1792x1024", "1024x1792"],
+          "description": "Image dimensions"
+        },
+        "n": {
+          "type": "integer",
+          "description": "Number of images to generate (default 1)"
+        }
+      }
+    },
+    {
+      "name": "python",
+      "description": "Execute Python code in a stateful Jupyter notebook environment. Can save files to /mnt/data. No internet access.",
+      "type": "code_interpreter",
+      "parameters": {
+        "code": {
+          "type": "string",
+          "description": "Python code to execute"
+        }
+      }
+    },
+    {
+      "name": "browser",
+      "description": "Web browsing tool for searching and retrieving web content.",
+      "type": "function",
+      "functions": [
+        {
+          "name": "search",
+          "description": "Search the web for a query",
+          "parameters": {
+            "query": {
+              "type": "string",
+              "description": "The search query"
+            },
+            "recency_days": {
+              "type": "integer",
+              "description": "Optional: limit results to the past N days"
+            }
+          }
+        },
+        {
+          "name": "mclick",
+          "description": "Retrieve content from multiple URLs in parallel",
+          "parameters": {
+            "ids": {
+              "type": "array",
+              "description": "Array of result IDs to retrieve",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "name": "open_url",
+          "description": "Open a specific URL and retrieve its content",
+          "parameters": {
+            "url": {
+              "type": "string",
+              "description": "The URL to open"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "bio",
+      "description": "Memory/personalization tool for remembering user preferences and information across conversations.",
+      "type": "function",
+      "parameters": {
+        "content": {
+          "type": "string",
+          "description": "Information to remember about the user"
+        }
+      }
+    },
+    {
+      "name": "canmore.textdoc",
+      "description": "Canvas tool for creating and editing text documents and code alongside the chat.",
+      "type": "function",
+      "functions": [
+        {
+          "name": "createTextDocument",
+          "description": "Create a new text document in the canvas",
+          "parameters": {
+            "name": {
+              "type": "string",
+              "description": "The title of the document"
+            },
+            "type": {
+              "type": "string",
+              "description": "Document type (e.g., 'document', 'code/python', 'code/javascript')"
+            },
+            "content": {
+              "type": "string",
+              "description": "The content of the document"
+            }
+          }
+        },
+        {
+          "name": "updateTextDocument",
+          "description": "Update an existing text document in the canvas",
+          "parameters": {
+            "updates": {
+              "type": "array",
+              "description": "Array of update operations to apply",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "pattern": {
+                    "type": "string",
+                    "description": "Regex pattern to match"
+                  },
+                  "multiple": {
+                    "type": "boolean",
+                    "description": "Whether to replace all matches"
+                  },
+                  "replacement": {
+                    "type": "string",
+                    "description": "Replacement text"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

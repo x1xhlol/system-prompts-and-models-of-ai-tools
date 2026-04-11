@@ -23,6 +23,8 @@ from app.models.guarantee import GuaranteeClaim
 from app.models.compliance import Consent, Complaint, Policy
 from app.models.knowledge import KnowledgeArticle, SectorAsset
 from app.models.advanced import TrustScore, Prospect, Scorecard, AIRehearsal
+from app.models.consent import PDPLConsent, PDPLConsentAudit, DataRequest
+from app.models.sequence import Sequence, SequenceStep, SequenceEnrollment, SequenceEvent
 
 __all__ = [
     "BaseModel", "TenantModel", "Tenant", "User", "Lead", "Customer",
@@ -35,4 +37,6 @@ __all__ = [
     "Dispute", "GuaranteeClaim", "Consent", "Complaint", "Policy",
     "KnowledgeArticle", "SectorAsset",
     "TrustScore", "Prospect", "Scorecard", "AIRehearsal",
+    "PDPLConsent", "PDPLConsentAudit", "DataRequest",
+    "Sequence", "SequenceStep", "SequenceEnrollment", "SequenceEvent",
 ]

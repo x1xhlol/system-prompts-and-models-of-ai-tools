@@ -1,0 +1,117 @@
+{
+  "industry": "retail",
+  "name": "Retail & E-commerce",
+  "name_ar": "تجارة وريتيل",
+  "pipeline_stages": [
+    {"key": "lead", "name_en": "Lead", "name_ar": "عميل محتمل", "order": 1, "probability": 10},
+    {"key": "interest", "name_en": "Interest", "name_ar": "مهتم", "order": 2, "probability": 20},
+    {"key": "demo", "name_en": "Demo", "name_ar": "عرض توضيحي", "order": 3, "probability": 40},
+    {"key": "trial", "name_en": "Trial", "name_ar": "تجربة", "order": 4, "probability": 55},
+    {"key": "negotiation", "name_en": "Negotiation", "name_ar": "تفاوض", "order": 5, "probability": 70},
+    {"key": "closed_won", "name_en": "Closed Won", "name_ar": "تم البيع", "order": 6, "probability": 100},
+    {"key": "onboarding", "name_en": "Onboarding", "name_ar": "تفعيل", "order": 7, "probability": 100}
+  ],
+  "message_templates": [
+    {
+      "name": "welcome",
+      "name_ar": "رسالة ترحيب",
+      "channel": "whatsapp",
+      "trigger": "lead_created",
+      "content_ar": "أهلاً {name}! شكراً لاهتمامك بـ {company}. عندنا حلول تجارية ذكية تساعدك تنمّي مبيعاتك. وش تبي تعرف أكثر عنه؟",
+      "content_en": "Hello {name}! Thanks for your interest in {company}. We have smart retail solutions to grow your sales. What would you like to know more about?",
+      "delay_minutes": 0
+    },
+    {
+      "name": "demo_invitation",
+      "name_ar": "دعوة عرض توضيحي",
+      "channel": "whatsapp",
+      "trigger": "stage_change_demo",
+      "content_ar": "مرحباً {name}، جهّزنا لك عرض توضيحي مخصص لمجال {business_type}. الموعد يوم {date} الساعة {time}. بنوريك كيف تقدر تزيد مبيعاتك بنسبة تصل لـ 40%.",
+      "content_en": "Hi {name}, we've prepared a customized demo for your {business_type}. Scheduled for {date} at {time}. We'll show you how to increase sales by up to 40%.",
+      "delay_minutes": 0
+    },
+    {
+      "name": "trial_started",
+      "name_ar": "بداية التجربة",
+      "channel": "whatsapp",
+      "trigger": "stage_change_trial",
+      "content_ar": "مرحباً {name}! تم تفعيل حسابك التجريبي. الفترة: {trial_days} يوم. فريق الدعم جاهز يساعدك في أي وقت. استمتع بالتجربة!",
+      "content_en": "Hi {name}! Your trial account is activated. Duration: {trial_days} days. Our support team is ready to help anytime.",
+      "delay_minutes": 0
+    },
+    {
+      "name": "trial_ending",
+      "name_ar": "انتهاء التجربة",
+      "channel": "whatsapp",
+      "trigger": "scheduled",
+      "content_ar": "مرحباً {name}، فترتك التجريبية تنتهي خلال 3 أيام. كيف كانت التجربة؟ لو حبيت تكمل معنا عندنا عرض خاص بخصم {discount}% على الباقة السنوية.",
+      "content_en": "Hi {name}, your trial ends in 3 days. How was the experience? If you'd like to continue, we have a special {discount}% discount on the annual plan.",
+      "delay_minutes": -4320
+    },
+    {
+      "name": "no_response_followup",
+      "name_ar": "متابعة عدم الرد",
+      "channel": "whatsapp",
+      "trigger": "no_response",
+      "content_ar": "مرحباً {name}، لاحظنا إنك ما رديت. عادي تماماً! بس حبينا نخبرك إن عندنا عروض جديدة ممكن تناسب متجرك. تبي نرسل لك التفاصيل؟",
+      "content_en": "Hi {name}, we noticed you haven't responded. That's totally fine! We just wanted to let you know about new offers for your store.",
+      "delay_minutes": 2880
+    },
+    {
+      "name": "onboarding_welcome",
+      "name_ar": "ترحيب التفعيل",
+      "channel": "whatsapp",
+      "trigger": "stage_change_onboarding",
+      "content_ar": "مبروك {name}! تم تفعيل حسابك الرسمي. مدير حسابك {account_manager} بيتواصل معك خلال 24 ساعة لمساعدتك في الإعداد. نتمنى لك النجاح!",
+      "content_en": "Congratulations {name}! Your account is officially active. Your account manager {account_manager} will contact you within 24 hours.",
+      "delay_minutes": 0
+    }
+  ],
+  "proposal_templates": [
+    {
+      "name": "retail_solution",
+      "name_ar": "عرض حل تجاري",
+      "sections": [
+        {"title_ar": "ملخص الحل", "title_en": "Solution Summary"},
+        {"title_ar": "المميزات والفوائد", "title_en": "Features & Benefits"},
+        {"title_ar": "الباقات والأسعار", "title_en": "Packages & Pricing"},
+        {"title_ar": "دراسة حالة مشابهة", "title_en": "Similar Case Study"},
+        {"title_ar": "خطة التفعيل", "title_en": "Activation Plan"},
+        {"title_ar": "الشروط والأحكام", "title_en": "Terms & Conditions"}
+      ]
+    },
+    {
+      "name": "enterprise_package",
+      "name_ar": "باقة المؤسسات",
+      "sections": [
+        {"title_ar": "نظرة عامة", "title_en": "Overview"},
+        {"title_ar": "التكامل مع الأنظمة الحالية", "title_en": "Integration with Existing Systems"},
+        {"title_ar": "التسعير المؤسسي", "title_en": "Enterprise Pricing"},
+        {"title_ar": "الدعم الفني والتدريب", "title_en": "Technical Support & Training"},
+        {"title_ar": "اتفاقية مستوى الخدمة", "title_en": "SLA"}
+      ]
+    }
+  ],
+  "workflow_templates": [
+    {
+      "name": "new_retail_lead_flow",
+      "name_ar": "تدفق عميل تجاري جديد",
+      "trigger": "lead_created",
+      "actions": [
+        {"type": "send_message", "template": "welcome", "delay_minutes": 0},
+        {"type": "create_task", "subject": "تأهيل العميل وتحديد احتياجاته التجارية", "delay_minutes": 30},
+        {"type": "send_message", "template": "no_response_followup", "delay_minutes": 2880, "condition": "no_response"}
+      ]
+    },
+    {
+      "name": "trial_management_flow",
+      "name_ar": "تدفق إدارة التجربة",
+      "trigger": "stage_change_trial",
+      "actions": [
+        {"type": "send_message", "template": "trial_started", "delay_minutes": 0},
+        {"type": "create_task", "subject": "متابعة العميل بعد 3 أيام من التجربة", "delay_minutes": 4320},
+        {"type": "send_message", "template": "trial_ending", "delay_minutes": -4320}
+      ]
+    }
+  ]
+}

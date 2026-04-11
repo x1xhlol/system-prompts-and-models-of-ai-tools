@@ -1,0 +1,118 @@
+{
+  "industry": "contracting",
+  "name": "Contracting & Services",
+  "name_ar": "مقاولات وخدمات",
+  "pipeline_stages": [
+    {"key": "inquiry", "name_en": "Inquiry", "name_ar": "استفسار", "order": 1, "probability": 10},
+    {"key": "site_visit", "name_en": "Site Visit", "name_ar": "زيارة موقع", "order": 2, "probability": 25},
+    {"key": "quotation", "name_en": "Quotation", "name_ar": "عرض سعر", "order": 3, "probability": 40},
+    {"key": "negotiation", "name_en": "Negotiation", "name_ar": "تفاوض", "order": 4, "probability": 60},
+    {"key": "contract", "name_en": "Contract", "name_ar": "عقد", "order": 5, "probability": 80},
+    {"key": "execution", "name_en": "Execution", "name_ar": "تنفيذ", "order": 6, "probability": 90},
+    {"key": "completion", "name_en": "Completion", "name_ar": "إنجاز", "order": 7, "probability": 100}
+  ],
+  "message_templates": [
+    {
+      "name": "welcome",
+      "name_ar": "رسالة ترحيب",
+      "channel": "whatsapp",
+      "trigger": "lead_created",
+      "content_ar": "أهلاً {name}! شكراً لتواصلك مع {company}. متخصصين في أعمال المقاولات والصيانة. وش نوع المشروع اللي تحتاجه؟",
+      "content_en": "Hello {name}! Thank you for contacting {company}. We specialize in contracting and maintenance. What type of project do you need?",
+      "delay_minutes": 0
+    },
+    {
+      "name": "site_visit_confirmation",
+      "name_ar": "تأكيد زيارة الموقع",
+      "channel": "whatsapp",
+      "trigger": "stage_change_site_visit",
+      "content_ar": "مرحباً {name}، تم تحديد موعد زيارة الموقع يوم {date} الساعة {time}. فريقنا الفني بيكون موجود للمعاينة وأخذ المقاسات. الموقع: {location}",
+      "content_en": "Hi {name}, site visit confirmed for {date} at {time}. Our technical team will be there for inspection. Location: {location}",
+      "delay_minutes": 0
+    },
+    {
+      "name": "quotation_ready",
+      "name_ar": "عرض السعر جاهز",
+      "channel": "whatsapp",
+      "trigger": "stage_change_quotation",
+      "content_ar": "مرحباً {name}، عرض السعر جاهز لمشروعك. الإجمالي: {total_amount} ريال شامل الضريبة. يشمل المواد والعمالة والضمان. نرسل لك التفاصيل الكاملة؟",
+      "content_en": "Hi {name}, your quotation is ready. Total: {total_amount} SAR including VAT. Includes materials, labor, and warranty. Shall we send the full details?",
+      "delay_minutes": 0
+    },
+    {
+      "name": "no_response_followup",
+      "name_ar": "متابعة عدم الرد",
+      "channel": "whatsapp",
+      "trigger": "no_response",
+      "content_ar": "مرحباً {name}، تواصلنا معك بخصوص مشروع {project_type}. إذا عندك أي استفسار أو تبي تعدّل على العرض، لا تتردد تراسلنا. نحن هنا لخدمتك.",
+      "content_en": "Hi {name}, we reached out regarding your {project_type} project. If you have questions or want to modify the quote, don't hesitate to reach out.",
+      "delay_minutes": 4320
+    },
+    {
+      "name": "execution_update",
+      "name_ar": "تحديث التنفيذ",
+      "channel": "whatsapp",
+      "trigger": "stage_change_execution",
+      "content_ar": "مرحباً {name}، نبشرك إن العمل بدأ في مشروعك. المدة المتوقعة: {duration}. بنرسل لك تحديثات دورية عن سير العمل. لأي استفسار تواصل معنا.",
+      "content_en": "Hi {name}, work has started on your project. Expected duration: {duration}. We'll send periodic progress updates.",
+      "delay_minutes": 0
+    }
+  ],
+  "proposal_templates": [
+    {
+      "name": "project_quotation",
+      "name_ar": "عرض سعر مشروع",
+      "sections": [
+        {"title_ar": "نطاق العمل", "title_en": "Scope of Work"},
+        {"title_ar": "المواد والمواصفات", "title_en": "Materials & Specifications"},
+        {"title_ar": "الجدول الزمني", "title_en": "Timeline"},
+        {"title_ar": "التكلفة التفصيلية", "title_en": "Detailed Cost Breakdown"},
+        {"title_ar": "شروط الدفع", "title_en": "Payment Terms"},
+        {"title_ar": "الضمان", "title_en": "Warranty"},
+        {"title_ar": "الشروط والأحكام", "title_en": "Terms & Conditions"}
+      ]
+    },
+    {
+      "name": "maintenance_contract",
+      "name_ar": "عقد صيانة",
+      "sections": [
+        {"title_ar": "نطاق خدمات الصيانة", "title_en": "Maintenance Scope"},
+        {"title_ar": "جدول الزيارات الدورية", "title_en": "Periodic Visit Schedule"},
+        {"title_ar": "قطع الغيار المشمولة", "title_en": "Included Spare Parts"},
+        {"title_ar": "الرسوم السنوية", "title_en": "Annual Fees"},
+        {"title_ar": "مدة العقد والتجديد", "title_en": "Contract Duration & Renewal"}
+      ]
+    }
+  ],
+  "workflow_templates": [
+    {
+      "name": "new_project_flow",
+      "name_ar": "تدفق مشروع جديد",
+      "trigger": "lead_created",
+      "actions": [
+        {"type": "send_message", "template": "welcome", "delay_minutes": 0},
+        {"type": "create_task", "subject": "اتصل بالعميل وحدد نوع المشروع", "delay_minutes": 15},
+        {"type": "send_message", "template": "no_response_followup", "delay_minutes": 4320, "condition": "no_response"}
+      ]
+    },
+    {
+      "name": "site_visit_flow",
+      "name_ar": "تدفق زيارة الموقع",
+      "trigger": "stage_change_site_visit",
+      "actions": [
+        {"type": "send_message", "template": "site_visit_confirmation", "delay_minutes": 0},
+        {"type": "create_task", "subject": "تجهيز فريق المعاينة الفنية", "delay_minutes": 60},
+        {"type": "create_task", "subject": "إعداد عرض السعر بعد المعاينة", "delay_minutes": 1440}
+      ]
+    },
+    {
+      "name": "execution_monitoring_flow",
+      "name_ar": "تدفق متابعة التنفيذ",
+      "trigger": "stage_change_execution",
+      "actions": [
+        {"type": "send_message", "template": "execution_update", "delay_minutes": 0},
+        {"type": "create_task", "subject": "تحديث العميل بتقرير أسبوعي", "delay_minutes": 10080}
+      ]
+    }
+  ]
+}

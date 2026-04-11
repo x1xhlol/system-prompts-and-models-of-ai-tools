@@ -4,7 +4,9 @@ from app.api.v1 import (
     companies, contacts, calls, meetings, commissions, payouts, disputes,
     guarantees, consents, complaints, knowledge, sectors, presentations,
     supervisor, admin, health, analytics, webhooks, prospecting,
+    inbox, sequences,
 )
+from app.api.v1 import compliance as compliance_router
 from app.api.v1 import agents as agents_router
 from app.api.v1 import intelligence as intelligence_router
 from app.api.v1 import master as master_router
@@ -14,12 +16,14 @@ from app.api.v1 import lead_prospector as prospector_router
 from app.api.v1 import pipeline as pipeline_router
 from app.api.v1 import agent_system as agent_system_router
 from app.api.v1 import autonomous_foundation as autonomous_foundation_router
+from app.api.v1 import hermes as hermes_router
 from app.api.v1 import marketing_hub as marketing_hub_router
 from app.api.v1 import strategy_summary as strategy_summary_router
 from app.api.v1 import value_proposition as value_proposition_router
 from app.api.v1 import customer_onboarding as customer_onboarding_router
 from app.api.v1 import sales_os as sales_os_router
 from app.api.v1 import operations as operations_router
+from app.api.v1 import proposals as proposals_router
 
 api_router = APIRouter()
 
@@ -56,6 +60,12 @@ api_router.include_router(operations_router.router)
 api_router.include_router(analytics.router, tags=["Analytics & AI"])
 api_router.include_router(webhooks.router, tags=["Webhooks"])
 api_router.include_router(prospecting.router, prefix="/prospecting", tags=["Prospecting"])
+api_router.include_router(inbox.router)
+api_router.include_router(sequences.router)
+api_router.include_router(compliance_router.router)
+
+# ── CPQ — Proposals & Quotes ────────────────────────────────
+api_router.include_router(proposals_router.router)
 
 # ── Manus Multi-Agent + Autonomous Intelligence ─────────────
 api_router.include_router(agents_router.router)
@@ -77,3 +87,6 @@ api_router.include_router(pipeline_router.router)
 # ── 22-Agent AI System — Full Empire Control ─────────────────
 api_router.include_router(agent_system_router.router)
 api_router.include_router(autonomous_foundation_router.router)
+
+# ── Hermes Fusion — Orchestration Layer ──────────────────────
+api_router.include_router(hermes_router.router)
