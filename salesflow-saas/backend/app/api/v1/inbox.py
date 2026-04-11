@@ -1,5 +1,4 @@
 """Unified inbox API -- aggregate messages from WhatsApp, Email, SMS."""
-
 import logging
 from datetime import datetime, timezone
 from typing import Optional
@@ -7,7 +6,7 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from pydantic import BaseModel as Schema
-from sqlalchemy import select, func, and_, or_
+from sqlalchemy import select, func, and_
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db
@@ -19,10 +18,6 @@ from app.models.lead import Lead
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/inbox", tags=["Inbox"])
 
-
-# ---------------------------------------------------------------------------
-# Schemas
-# ---------------------------------------------------------------------------
 
 class MessageResponse(Schema):
     id: UUID
@@ -70,10 +65,6 @@ class InboxStats(Schema):
     sms_unread: int
     avg_response_minutes: Optional[float] = None
 
-
-# ---------------------------------------------------------------------------
-# Endpoints
-# ---------------------------------------------------------------------------
 
 @router.get("", response_model=MessageListResponse)
 async def list_inbox(
