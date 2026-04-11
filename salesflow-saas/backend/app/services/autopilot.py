@@ -284,14 +284,10 @@ class AutopilotRunner:
         end = datetime.now(timezone.utc)
         unit.completed_at = end
         dur = int((end - start).total_seconds() * 1000)
-        steps_done = []
-        for s in STEPS:
-            steps_done.append(s)
-            if s == unit.current_step:
-                break
+        idx = STEPS.index(unit.current_step) + 1 if unit.current_step in STEPS else len(STEPS)
         result = AutopilotResult(
             run_id=unit.run_id, task_type=task_type, mode=mode, status=unit.status,
-            steps_completed=steps_done,
+            steps_completed=STEPS[:idx],
             findings=unit.result_data.get("at_risk_deals", unit.result_data.get("dormant_leads", [])),
             actions_taken=[se.model_dump() for se in unit.side_effects],
             actions_proposed=unit.result_data.get("proposed_actions", []),
@@ -302,8 +298,7 @@ class AutopilotRunner:
 
     async def pause(self, run_id: str) -> bool:
         u = self._active.get(run_id)
-        if not u or u.status != RunStatus.RUNNING:
-            return False
+        if not u or u.status != RunStatus.RUNNING: return False
         u.status = RunStatus.PAUSED
         return True
 
@@ -326,16 +321,13 @@ class AutopilotRunner:
 
     async def abort(self, run_id: str) -> bool:
         u = self._active.get(run_id)
-        if not u:
-            return False
-        u.status = RunStatus.ABORTED
-        u.completed_at = datetime.now(timezone.utc)
+        if not u: return False
+        u.status, u.completed_at = RunStatus.ABORTED, datetime.now(timezone.utc)
         return True
 
     async def approve_pending(self, run_id: str, approval_id: str, approved_by: str) -> bool:
         u = self._active.get(run_id)
-        if not u:
-            return False
+        if not u: return False
         for pa in u.pending_approvals:
             if pa.id == approval_id:
                 pa.approved, pa.approved_by = True, approved_by
@@ -346,10 +338,9 @@ class AutopilotRunner:
         return self._active.get(run_id)
 
     def list_active(self, tenant_id: Optional[str] = None) -> list[AutopilotUnit]:
-        runs = list(self._active.values())
-        if tenant_id:
-            runs = [r for r in runs if r.tenant_id == tenant_id]
-        return [r for r in runs if r.status in (RunStatus.RUNNING, RunStatus.PAUSED, RunStatus.AWAITING_APPROVAL)]
+        runs = [r for r in self._active.values()
+                if r.status in (RunStatus.RUNNING, RunStatus.PAUSED, RunStatus.AWAITING_APPROVAL)]
+        return [r for r in runs if r.tenant_id == tenant_id] if tenant_id else runs
 
     def list_supported_tasks(self) -> list[dict[str, str]]:
         return [{"task_type": k, **_TASK_META.get(k, {})} for k in _TASK_HANDLERS]
