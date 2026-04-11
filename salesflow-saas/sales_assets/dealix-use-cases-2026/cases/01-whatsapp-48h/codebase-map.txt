@@ -1,0 +1,14 @@
+ربط مستودع Dealix (أين تُبنى الحالة)
+-------------------------------------
+• app/agents/discovery/prospecting_crew.py — Intent + enrichment + personalizer.
+• app/agents/qualification/qualifiers.py — LeadQualifierAgent, IntentDetectorAgent.
+• app/agents/engagement/channels.py — WhatsAppSalesAgent.
+• app/agents/revenue/closers.py — CloserAgent, PricingAgent.
+• app/agents/master_agent.py + master_langgraph.py — أوركسترية عليا.
+• app/api/v1/autonomous_foundation.py — تدفقات، ROI، تكاملات.
+• app/services/stripe_service.py, esign_service.py, contract_intelligence_service.py — دفع وعقود.
+• app/openclaw/plugins/whatsapp_plugin.py — قناة واتساب.
+
+خطوة تالية تقنية مقترحة
+-------------------------
+ربط webhook واتساب → endpoint يمرّر payload إلى محرك الرسائل ثم ProspectingCrew.run.

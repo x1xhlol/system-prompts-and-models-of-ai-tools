@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, Boolean, DateTime
-from sqlalchemy.dialects.postgresql import JSONB
+from app.models.compat import JSONB, IS_SQLITE
 from sqlalchemy.orm import relationship
 from datetime import datetime, timezone
 from app.models.base import BaseModel
@@ -17,11 +17,11 @@ class Tenant(BaseModel):
     phone = Column(String(20))
     email = Column(String(255))
     whatsapp_number = Column(String(20))
-    settings = Column(JSONB, default=dict)
+    settings = Column(JSONB(), default=dict)
     is_active = Column(Boolean, default=True)
     updated_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
-    users = relationship("User", back_populates="tenant", cascade="all, delete-orphan")
-    leads = relationship("Lead", back_populates="tenant", cascade="all, delete-orphan")
-    customers = relationship("Customer", back_populates="tenant", cascade="all, delete-orphan")
-    deals = relationship("Deal", back_populates="tenant", cascade="all, delete-orphan")
+    users = relationship("User", cascade="all, delete-orphan", foreign_keys="User.tenant_id")
+    leads = relationship("Lead", cascade="all, delete-orphan", foreign_keys="Lead.tenant_id")
+    customers = relationship("Customer", cascade="all, delete-orphan", foreign_keys="Customer.tenant_id")
+    deals = relationship("Deal", cascade="all, delete-orphan", foreign_keys="Deal.tenant_id")

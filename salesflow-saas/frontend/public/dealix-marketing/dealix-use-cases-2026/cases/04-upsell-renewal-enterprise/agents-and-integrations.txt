@@ -1,0 +1,5 @@
+• Analytics & Forecasting Crew — churn risk من Salesforce + إشارات استخدام.
+• Upsell Crew — رسائل مخصصة + case studies.
+• Deal Orchestrator — متابعة المراحل حتى closed-won.
+
+تكاملات: Salesforce Agentforce plugin، بيانات استخدام المنتج إن وُجدت، WhatsApp، Email، Gong اختياري.

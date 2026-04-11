@@ -1,0 +1,4 @@
+# Dev / CI — not required in production images
+pytest>=8.0.0
+pytest-asyncio>=0.24.0
+aiosqlite>=0.20.0

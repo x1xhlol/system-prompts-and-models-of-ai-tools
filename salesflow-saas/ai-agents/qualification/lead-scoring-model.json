@@ -1,0 +1,94 @@
+{
+  "model_name": "dealix-lead-scorer-v1",
+  "version": "1.0",
+  "description": "نموذج تقييم العملاء المحتملين لـ Dealix",
+  "max_score": 100,
+  "scoring_criteria": {
+    "company_size": {
+      "weight": 20,
+      "description": "حجم الشركة بعدد الموظفين",
+      "ranges": {
+        "1-5": 5,
+        "6-10": 10,
+        "11-50": 20,
+        "51-200": 15,
+        "200+": 8
+      }
+    },
+    "industry_fit": {
+      "weight": 25,
+      "description": "مدى توافق القطاع مع Dealix",
+      "categories": {
+        "high_fit": {
+          "score": 25,
+          "industries": ["healthcare", "real_estate", "restaurants", "beauty", "education", "automotive"]
+        },
+        "medium_fit": {
+          "score": 15,
+          "industries": ["retail", "legal", "construction", "ecommerce"]
+        },
+        "low_fit": {
+          "score": 5,
+          "industries": ["government", "non_profit", "manufacturing"]
+        }
+      }
+    },
+    "engagement_level": {
+      "weight": 30,
+      "description": "مستوى تفاعل العميل",
+      "signals": {
+        "replied_to_message": 5,
+        "asked_question": 8,
+        "requested_demo": 15,
+        "visited_website": 3,
+        "opened_email": 2,
+        "clicked_link": 5,
+        "attended_meeting": 20,
+        "requested_pricing": 12
+      }
+    },
+    "budget_signals": {
+      "weight": 15,
+      "description": "إشارات الميزانية والقدرة الشرائية",
+      "indicators": {
+        "asked_about_pricing": 5,
+        "compared_with_competitors": 8,
+        "discussed_roi": 10,
+        "mentioned_budget": 12,
+        "ready_to_pay": 15
+      }
+    },
+    "timing": {
+      "weight": 10,
+      "description": "توقيت الشراء",
+      "signals": {
+        "exploring": 3,
+        "evaluating": 6,
+        "deciding": 8,
+        "urgent_need": 10
+      }
+    }
+  },
+  "score_ranges": {
+    "hot": {"min": 80, "max": 100, "label_ar": "ساخن", "color": "#FF0000"},
+    "warm": {"min": 50, "max": 79, "label_ar": "دافئ", "color": "#FFA500"},
+    "cold": {"min": 0, "max": 49, "label_ar": "بارد", "color": "#0000FF"}
+  },
+  "actions_by_score": {
+    "hot": {
+      "action": "immediate_booking",
+      "description_ar": "حجز اجتماع فوري مع فريق المبيعات",
+      "sla_minutes": 30
+    },
+    "warm": {
+      "action": "nurture_sequence",
+      "description_ar": "تسلسل رعاية: رسائل متابعة + محتوى قيّم",
+      "frequency_days": 3
+    },
+    "cold": {
+      "action": "long_term_drip",
+      "description_ar": "متابعة طويلة المدى: رسالة شهرية + محتوى تعليمي",
+      "frequency_days": 30
+    }
+  }
+}

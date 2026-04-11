@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dealix — عارض مخططات Mermaid (7 حالات)</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    body { font-family: "Segoe UI", Tahoma, sans-serif; background: #0f172a; color: #e2e8f0; padding: 24px; max-width: 1200px; margin: 0 auto; }
+    h1 { color: #5eead4; font-size: 1.4rem; }
+    h2 { color: #99f6e4; font-size: 1.1rem; margin-top: 32px; border-bottom: 1px solid #334155; padding-bottom: 8px; }
+    .mermaid { background: #fff; border-radius: 12px; padding: 16px; margin: 16px 0; }
+    p.note { color: #94a3b8; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>Dealix — مخططات تدفق الحالات السبع</h1>
+  <p class="note">للعرض على الشاشة. للطباعة استخدم الملفات ‎.mmd‎ في mermaid.live أو انسخ إلى Notion/GitHub.</p>
+
+  <h2>نظرة عامة</h2>
+  <div class="mermaid">
+flowchart TB
+  subgraph OS["Autonomous Revenue &amp; Operations OS"]
+    M["Mem0 + ذاكرة لكل مستأجر"]
+    SH["Self-Improvement / Durable Flows"]
+    GC["Governance checkpoints"]
+  end
+  OS --> U1["1 واتساب→إغلاق"]
+  OS --> U2["2 سلة مهجورة"]
+  OS --> U3["3 دعم"]
+  OS --> U4["4 تجديد"]
+  OS --> U5["5 حملة"]
+  OS --> U6["6 فوترة"]
+  OS --> U7["7 تشغيل كامل"]
+  </div>
+
+  <h2>1 — واتساب → إغلاق (تسلسل)</h2>
+  <div class="mermaid">
+sequenceDiagram
+  participant WA as WhatsApp
+  participant ID as Intent + Crew
+  participant Q as Qualification
+  participant SF as Salesforce
+  participant DO as Deal Orchestrator
+  participant P as Proposal
+  participant N as Objections memory
+  participant C as Closing + Stripe + eSign
+  WA->>ID: inbound message
+  ID->>Q: qualify
+  Q->>SF: account data
+  Q->>DO: qualified lead
+  DO->>P: proposal + pricing
+  P->>N: objection
+  N->>DO: reply from memory
+  DO->>C: contract + pay + sign
+  C->>WA: confirmation
+  </div>
+
+  <h2>2 — سلة مهجورة</h2>
+  <div class="mermaid">
+flowchart LR
+  W[Webhook] --> PS[Post-Sale Crew]
+  PS --> PE[Personalizer]
+  PE --> WA[WhatsApp]
+  PE --> MA[Marketing seq]
+  MA --> EM[Email]
+  MA --> LI[LinkedIn]
+  WA --> DG[Scoped memory]
+  EM --> DG
+  LI --> DG
+  </div>
+
+  <h2>3 — دعم واتساب</h2>
+  <div class="mermaid">
+flowchart TB
+  A[Inbound WhatsApp] --> CS[Support Crew]
+  CS --> KB{Knowledge + tools}
+  KB -->|auto| RES[Resolve]
+  KB -->|escalate| HS[Human handoff]
+  HS --> T[Ticket + summary]
+  CS --> KD[Knowledge distiller]
+  KD --> MEM[Customer memory]
+  </div>
+
+  <h2>4 — Upsell وتجديد</h2>
+  <div class="mermaid">
+flowchart LR
+  SF[Salesforce] --> AF[Forecasting]
+  G[Gong] --> AF
+  AF --> CR[churn risk]
+  CR --> UC[Upsell Crew]
+  UC --> WA[WhatsApp]
+  UC --> EM[Email]
+  UC --> DO[Deal Orchestrator]
+  DO --> RN[Renewal closed]
+  </div>
+
+  <h2>5 — حملة وتأهيل</h2>
+  <div class="mermaid">
+flowchart TB
+  MAC[Marketing automation] --> PC[Prospecting]
+  PC --> QC[Qualification]
+  QC --> CRM[(Pipeline)]
+  PAS[Performance supervisor] --> MAC
+  PAS --> PC
+  CRM --> PAS
+  </div>
+
+  <h2>6 — فوترة وعقود</h2>
+  <div class="mermaid">
+flowchart TB
+  BC[Billing] --> WA2[WhatsApp + Email]
+  BC --> RA[Reminders]
+  RA --> ST[Stripe]
+  CC[Contracts] --> ES[eSign]
+  BC --> CRS[Compliance]
+  CC --> CRS
+  </div>
+
+  <h2>7 — تشغيل كامل</h2>
+  <div class="mermaid">
+flowchart TB
+  CEO[CEO Orchestrator] --> PL[Sales pipeline]
+  CEO --> CM[Marketing]
+  CEO --> SP[Support]
+  CEO --> BI[Billing]
+  CEO --> CT[Contracts]
+  CEO --> AN[Analytics / CEO reports]
+  </div>
+
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });
+  </script>
+  <p class="note">© Dealix 2026</p>
+</body>
+</html>

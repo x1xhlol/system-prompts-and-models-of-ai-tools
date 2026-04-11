@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Optional
 from uuid import UUID
 from datetime import datetime
@@ -26,6 +26,8 @@ class LeadUpdate(BaseModel):
 
 
 class LeadResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True, populate_by_name=True)
+
     id: UUID
     tenant_id: UUID
     name: str
@@ -35,12 +37,14 @@ class LeadResponse(BaseModel):
     status: str
     score: int
     notes: Optional[str]
-    metadata: Optional[dict]
+    metadata: Optional[dict] = Field(
+        default=None,
+        validation_alias="extra_metadata",
+        serialization_alias="metadata",
+    )
     assigned_to: Optional[UUID]
     created_at: datetime
     updated_at: datetime
-
-    model_config = {"from_attributes": True}
 
 
 class LeadListResponse(BaseModel):

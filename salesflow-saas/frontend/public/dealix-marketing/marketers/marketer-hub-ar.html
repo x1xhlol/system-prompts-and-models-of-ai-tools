@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dealix — بوابة المسوّقين</title>
+  <style>
+    :root { --a: #14b8a6; --bg: #0f172a; --card: #1e293b; --text: #f8fafc; }
+    * { box-sizing: border-box; }
+    body { font-family: "Segoe UI", Tahoma, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 24px; line-height: 1.65; max-width: 720px; margin-inline: auto; }
+    h1 { color: var(--a); font-size: 1.4rem; }
+    .box { background: var(--card); border: 1px solid #334155; border-radius: 12px; padding: 16px 18px; margin: 14px 0; }
+    .box h2 { margin: 0 0 10px; font-size: 1rem; color: #5eead4; }
+    a { color: #5eead4; }
+    ol { padding-right: 20px; }
+    code { background: #334155; padding: 2px 6px; border-radius: 4px; font-size: 0.85rem; }
+    .step { font-weight: 700; color: var(--a); }
+  </style>
+</head>
+<body>
+  <h1>بوابة المسوّقين — Dealix</h1>
+  <p>دخول سريع بعد تشغيل الموقع: استخدم الروابط النسبية من جذر الموقع (مثال محلي: <code>localhost:3000</code>).</p>
+
+  <div class="box">
+    <h2>① خطوات الدخول (3 دقائق)</h2>
+    <ol>
+      <li><span class="step">افتح</span> الصفحة الرئيسية للموقع ثم «الموارد» أو الرابط: <code>/resources</code></li>
+      <li><span class="step">حمّل</span> الحزمة <code>dealix-marketing-bundle.zip</code> أو تصفّح الملفات من <code>/dealix-marketing/</code></li>
+      <li><span class="step">للعروض القطاعية</span> اذهب إلى <code>/dealix-presentations/</code> واختر رقم القطاع</li>
+      <li><span class="step">للعمولة والهيكل</span> راجع <code>Dealix_Marketing_Arsenal.md</code> داخل الحزمة</li>
+    </ol>
+  </div>
+
+  <div class="box">
+    <h2>② روابط مباشرة (من جذر النطاق)</h2>
+    <ul>
+      <li><a href="/resources">/resources</a> — مركز التحميل</li>
+      <li><a href="/dealix-marketing/">/dealix-marketing/</a> — فهرس الملفات</li>
+      <li><a href="/dealix-presentations/00-dealix-company-master-ar.html">ملف الشركة للطباعة</a></li>
+      <li><a href="/marketers">/marketers</a> — نسخة Next.js من هذه البوابة (إن وُجدت)</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>③ واتساب — استخدم النصوص الجاهزة</h2>
+    <p>افتح الملف <strong>whatsapp-playbook-ar.txt</strong> في نفس المجلد وانسخ القوالب كما هي ثم عدّل الاسم والقطاع.</p>
+  </div>
+
+  <div class="box">
+    <h2>④ ملاحظة</h2>
+    <p>إذا ظهر 404: تأكد أنك على نفس النطاق والمنفذ الذي يشغّل Next.js، وأن المزامنة تمت (<code>npm run dev</code> يشغّل نسخ الملفات تلقائيًا قبل التشغيل).</p>
+  </div>
+
+  <p style="text-align:center;font-size:0.8rem;color:#64748b;">© Dealix 2026</p>
+</body>
+</html>

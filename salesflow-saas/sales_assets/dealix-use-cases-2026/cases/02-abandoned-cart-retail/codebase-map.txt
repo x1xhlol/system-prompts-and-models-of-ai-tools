@@ -1,0 +1,4 @@
+• app/api/v1/webhooks.py — نقطة تمديد لاستقبال أحداث السلة.
+• app/agents/memory_layer.py — عزل سياق العميل.
+• app/agents/engagement/channels.py — WhatsAppSalesAgent, LinkedInAgent, EmailAgent.
+• app/agents/discovery/prospecting_crew.py — Personalizer patterns.

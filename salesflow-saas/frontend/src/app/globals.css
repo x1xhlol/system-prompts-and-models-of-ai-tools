@@ -1,28 +1,123 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Tajawal:wght@700;800;900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 220 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 30% 15%;
+
+    --primary: 153 60% 45%; /* Deep Saudi Emerald */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 47 100% 65%; /* Soft Trophy Gold */
+    --secondary-foreground: 220 30% 15%;
+
+    --muted: 220 15% 90%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 47 100% 50%; /* Royal Gold Accent */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 140 70% 40%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 220 15% 85%;
+    --input: 220 15% 85%;
+    --ring: 153 60% 45%;
+
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 230 40% 4%; /* Cyber Deep Black-Blue */
+    --foreground: 210 20% 95%;
+
+    --card: 230 35% 8%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 230 35% 8%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 153 65% 55%; /* Glowing Saudi Emerald */
+    --primary-foreground: 230 40% 4%;
+
+    --secondary: 47 100% 60%; /* Radiant Royal Gold */
+    --secondary-foreground: 230 40% 4%;
+
+    --muted: 230 30% 12%;
+    --muted-foreground: 215 15% 70%;
+
+    --accent: 47 100% 55%; /* Vibrant Gold Polish */
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 70% 50%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 230 30% 15%;
+    --input: 230 30% 15%;
+    --ring: 153 65% 55%;
+  }
 }
 
-body {
-  font-family: 'IBM Plex Sans Arabic', 'Inter', sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-background to-background min-h-screen bg-fixed antialiased selection:bg-primary/30 selection:text-primary-foreground;
+  }
 }
 
+/* Luxury Glassmorphism & High-End Effects */
 @layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  .glass-premium {
+    @apply bg-white/5 dark:bg-black/40 backdrop-blur-2xl border border-white/10 dark:border-white/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
   }
-  .bg-hero-gradient {
-    background: linear-gradient(135deg, #0F4C81 0%, #1A1A2E 50%, #0F4C81 100%);
+  .glass-card-premium {
+    @apply bg-card/60 backdrop-blur-3xl border border-border/50 shadow-2xl rounded-3xl transition-all duration-500 hover:shadow-primary/10 hover:border-primary/40 hover:-translate-y-1;
   }
-  .bg-grid {
-    background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
+  .text-glow {
+    text-shadow: 0 0 10px hsla(var(--primary), 0.5);
+  }
+  .gold-glow {
+    text-shadow: 0 0 15px hsla(var(--accent), 0.6);
+  }
+}
+
+/* Animations & Scrollbar */
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full hover:bg-muted-foreground/50 transition-colors;
   }
 }

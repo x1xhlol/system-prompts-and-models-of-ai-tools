@@ -1,0 +1,14 @@
+Cursor — برومبتات تنفيذ (الحالة 1: واتساب → إغلاق سريع)
+========================================================
+
+[P1 — Webhook → Crew]
+"In Dealix FastAPI, add a POST route under api/v1 that accepts WhatsApp inbound JSON (phone, text, tenant_id). Validate signature, enqueue work, and call ProspectingCrewRunner enrichment + IntentDetector path. Return 202 with trace_id. Match existing router style and settings."
+
+[P2 — Qualification state machine]
+"Extend qualification flow so that when intent=construction_project_management and sites>=1, the state machine asks budget, timeline, and decision_maker in Arabic-first templates. Persist answers to deal payload and CRM stage qualified."
+
+[P3 — Governance]
+"Before sending final proposal above SAR threshold X (from config), require human_approval flag on deal or skip auto-send. Log to audit table pattern consistent with codebase."
+
+[P4 — Tests]
+"Add pytest for the new webhook: happy path 202, invalid signature 401, and mock Crew call."

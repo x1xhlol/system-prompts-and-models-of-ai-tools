@@ -1,0 +1,5 @@
+[P1] "Define support intent classifier for inbound WhatsApp: billing_bug, report_delay, feature_request. Route to KB retrieval + safe actions."
+
+[P2] "On confidence < threshold or user says 'موظف', create handoff payload {summary_ar, suggested_fix, crm_link} and POST to supervisor queue."
+
+[P3] "After resolution, distill one-line FAQ candidate and store under tenant knowledge draft for human approval."

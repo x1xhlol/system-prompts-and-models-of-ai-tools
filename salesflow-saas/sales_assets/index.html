@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dealix — بوابة الأصول التسويقية</title>
+  <style>
+    :root { --bg: #0f172a; --card: #1e293b; --accent: #14b8a6; --text: #f1f5f9; --muted: #94a3b8; }
+    * { box-sizing: border-box; }
+    body { font-family: "Segoe UI", Tahoma, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 32px 20px 60px; line-height: 1.6; max-width: 880px; margin-inline: auto; }
+    h1 { font-size: 1.5rem; color: var(--accent); margin: 0 0 8px; }
+    .sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; }
+    section { background: var(--card); border-radius: 12px; padding: 20px 22px; margin-bottom: 18px; border: 1px solid #334155; }
+    section h2 { margin: 0 0 14px; font-size: 1.05rem; color: #5eead4; }
+    ul { margin: 0; padding-right: 20px; }
+    li { margin: 8px 0; }
+    a { color: #5eead4; text-decoration: none; word-break: break-all; }
+    a:hover { text-decoration: underline; }
+    .btn { display: inline-block; background: #0d9488; color: #fff !important; padding: 10px 18px; border-radius: 8px; font-weight: 600; margin-top: 8px; }
+    .btn:hover { background: #0f766e; text-decoration: none; }
+    .en { direction: ltr; text-align: left; color: var(--muted); font-size: 0.88rem; margin-top: 12px; }
+    code { background: #334155; padding: 2px 6px; border-radius: 4px; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>Dealix — بوابة الأصول التسويقية والعروض</h1>
+  <p class="sub"><strong>بدون خادم 8000:</strong> إذا فتحت هذه الصفحة من Next.js فهي تخدم من <code>public/dealix-marketing</code> — شغّل فقط <code>npm run dev</code> داخل مجلد <code>frontend</code> ثم افتح <a href="http://localhost:3000/dealix-marketing/">http://localhost:3000/dealix-marketing/</a></p>
+  <p class="sub">صفحة موحّدة: <a href="http://localhost:3000/resources">http://localhost:3000/resources</a></p>
+
+  <section>
+    <h2>تحميل مباشر (كل الأصول)</h2>
+    <p>ملف واحد يضم <code>sales_assets</code> وعروض القطاعات <code>presentations/dealix-2026-sectors</code>.</p>
+    <p><a class="btn" href="dealix-marketing-bundle.zip" download>تحميل dealix-marketing-bundle.zip</a></p>
+    <p class="en">If the ZIP is missing, run <code>salesflow-saas/scripts/package_dealix_marketing_assets.ps1</code> (or .sh) once, then refresh.</p>
+  </section>
+
+  <section>
+    <h2>حالات الاستخدام السبع (Autonomous Revenue OS)</h2>
+    <ul>
+      <li><a href="dealix-use-cases-2026/00-master-use-cases-ar.html">الوثيقة الرئيسية — PDF جاهز للطباعة</a></li>
+      <li><a href="dealix-use-cases-2026/diagrams-viewer.html">عارض مخططات Mermaid</a></li>
+      <li><a href="dealix-use-cases-2026/INDEX.txt">فهرس الملفات (نص)</a></li>
+      <li><a href="dealix-use-cases-2026/use_case_registry.json">use_case_registry.json</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>عروض القطاعات السعودية (10 + الملف الشامل)</h2>
+    <p>تُخدم من مسار منفصل للحفاظ على روابط CSS الصحيحة:</p>
+    <ul>
+      <li><a href="/dealix-presentations/00-dealix-company-master-ar.html">00 — الملف التعريفي للشركة</a></li>
+      <li><a href="/dealix-presentations/01-sector-healthcare-ar.html">01 — قطاع الصحة</a> … <a href="/dealix-presentations/10-sector-automotive-ar.html">10 — السيارات</a></li>
+    </ul>
+    <p class="en">On Next.js, use the same host (e.g. localhost:3000) — paths start with /dealix-presentations/</p>
+  </section>
+
+  <section>
+    <h2>المستثمرون — عرض شامل</h2>
+    <ul>
+      <li><a href="investor/00-investor-dealix-full-ar.html">العرض الاستثماري الكامل (طباعة PDF)</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>المسوّقون — دخول وتعليمات</h2>
+    <ul>
+      <li><a href="/marketers">صفحة المسوّقين (تطبيق Next — أنسب للمشاركة)</a></li>
+      <li><a href="marketers/marketer-hub-ar.html">بوابة HTML ثابتة</a></li>
+      <li><a href="marketers/whatsapp-playbook-ar.txt">قوالب واتساب جاهزة</a></li>
+      <li><a href="marketers/entry-checklist-ar.txt">قائمة تحقق للدخول</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>ملفات تسويق إضافية</h2>
+    <ul>
+      <li><a href="Dealix_Marketing_Arsenal.md">Dealix_Marketing_Arsenal.md</a></li>
+      <li><a href="Dealix_Company_Profile.md">Dealix_Company_Profile.md</a></li>
+      <li><a href="Dealix_Enterprise_Pitch_Deck.md">Dealix_Enterprise_Pitch_Deck.md</a></li>
+      <li><a href="Medical_Presentation.md">Medical_Presentation.md</a></li>
+      <li><a href="Real_Estate_Presentation.md">Real_Estate_Presentation.md</a></li>
+      <li><a href="Industrial_Retail_Logistics.md">Industrial_Retail_Logistics.md</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>عناوين سريعة للوصول بعد تشغيل الخادم</h2>
+    <ul>
+      <li><code>/dealix-marketing/</code> — هذه الصفحة</li>
+      <li><code>/dealix-presentations/</code> — مجلد العروض الطباعية</li>
+    </ul>
+  </section>
+
+  <p style="text-align:center;color:#64748b;font-size:0.85rem;margin-top:32px;">© Dealix 2026</p>
+</body>
+</html>

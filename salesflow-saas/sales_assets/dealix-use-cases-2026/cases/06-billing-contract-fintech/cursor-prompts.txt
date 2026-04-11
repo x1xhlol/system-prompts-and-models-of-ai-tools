@@ -1,0 +1,3 @@
+[P1] "Implement invoice_dunning workflow: states open → reminded → escalated; map each state to WhatsApp template IDs per tenant."
+
+[P2] "Before contract send, call compliance_risk_check(deal) returning blockers list; block eSign if any CRITICAL."

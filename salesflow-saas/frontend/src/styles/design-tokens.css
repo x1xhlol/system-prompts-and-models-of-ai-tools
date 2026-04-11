@@ -1,0 +1,282 @@
+/* ═══════════════════════════════════════════════════════════════
+   Dealix Design System — Design Tokens
+   Premium Dark Theme with Cyan/Teal AI Accents
+   ═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ── Brand Colors ─────────────────────────────────────── */
+  --dealix-navy:         #0A1628;
+  --dealix-navy-light:   #111D2E;
+  --dealix-navy-medium:  #1A2742;
+  --dealix-navy-soft:    #243656;
+  
+  --dealix-cyan:         #00D4AA;
+  --dealix-cyan-light:   #33DDBB;
+  --dealix-cyan-glow:    rgba(0, 212, 170, 0.15);
+  --dealix-cyan-border:  rgba(0, 212, 170, 0.25);
+  
+  --dealix-blue:         #3B82F6;
+  --dealix-blue-light:   #60A5FA;
+  --dealix-purple:       #8B5CF6;
+  --dealix-pink:         #EC4899;
+  --dealix-orange:       #F97316;
+  --dealix-red:          #EF4444;
+  --dealix-green:        #22C55E;
+  --dealix-yellow:       #EAB308;
+  
+  /* ── Surface Colors ───────────────────────────────────── */
+  --surface-base:        #050A12;
+  --surface-card:        #0D1520;
+  --surface-elevated:    #111D2E;
+  --surface-overlay:     #1A2742;
+  --surface-hover:       rgba(0, 212, 170, 0.05);
+  --surface-active:      rgba(0, 212, 170, 0.10);
+  --surface-glass:       rgba(10, 22, 40, 0.85);
+  
+  /* ── Text Colors ──────────────────────────────────────── */
+  --text-primary:        #F0F4F8;
+  --text-secondary:      #94A3B8;
+  --text-muted:          #64748B;
+  --text-accent:         #00D4AA;
+  --text-inverse:        #0A1628;
+  
+  /* ── Border & Divider ─────────────────────────────────── */
+  --border-subtle:       rgba(148, 163, 184, 0.08);
+  --border-default:      rgba(148, 163, 184, 0.12);
+  --border-strong:       rgba(148, 163, 184, 0.20);
+  --border-accent:       rgba(0, 212, 170, 0.30);
+  --border-glow:         rgba(0, 212, 170, 0.50);
+  
+  /* ── Gradients ────────────────────────────────────────── */
+  --gradient-brand:      linear-gradient(135deg, #0A1628 0%, #1A2742 50%, #0D2937 100%);
+  --gradient-accent:     linear-gradient(135deg, #00D4AA 0%, #3B82F6 100%);
+  --gradient-hero:       linear-gradient(180deg, #050A12 0%, #0A1628 30%, #0D2937 70%, #0A1628 100%);
+  --gradient-card:       linear-gradient(145deg, rgba(13, 21, 32, 0.9) 0%, rgba(26, 39, 66, 0.6) 100%);
+  --gradient-glow:       radial-gradient(ellipse at center, rgba(0, 212, 170, 0.12) 0%, transparent 70%);
+  --gradient-text:       linear-gradient(135deg, #00D4AA, #3B82F6);
+  
+  /* ── Typography ───────────────────────────────────────── */
+  --font-display:        'Outfit', sans-serif;
+  --font-body:           'Inter', sans-serif;
+  --font-arabic:         'IBM Plex Sans Arabic', sans-serif;
+  --font-mono:           'JetBrains Mono', monospace;
+  
+  --text-xs:             0.75rem;    /* 12px */
+  --text-sm:             0.875rem;   /* 14px */
+  --text-base:           1rem;       /* 16px */
+  --text-lg:             1.125rem;   /* 18px */
+  --text-xl:             1.25rem;    /* 20px */
+  --text-2xl:            1.5rem;     /* 24px */
+  --text-3xl:            1.875rem;   /* 30px */
+  --text-4xl:            2.25rem;    /* 36px */
+  --text-5xl:            3rem;       /* 48px */
+  --text-6xl:            3.75rem;    /* 60px */
+  --text-7xl:            4.5rem;     /* 72px */
+  
+  /* ── Spacing ──────────────────────────────────────────── */
+  --space-1:             0.25rem;
+  --space-2:             0.5rem;
+  --space-3:             0.75rem;
+  --space-4:             1rem;
+  --space-5:             1.25rem;
+  --space-6:             1.5rem;
+  --space-8:             2rem;
+  --space-10:            2.5rem;
+  --space-12:            3rem;
+  --space-16:            4rem;
+  --space-20:            5rem;
+  --space-24:            6rem;
+  --space-32:            8rem;
+  
+  /* ── Border Radius ────────────────────────────────────── */
+  --radius-sm:           0.375rem;
+  --radius-md:           0.5rem;
+  --radius-lg:           0.75rem;
+  --radius-xl:           1rem;
+  --radius-2xl:          1.5rem;
+  --radius-full:         9999px;
+  
+  /* ── Shadows ──────────────────────────────────────────── */
+  --shadow-sm:           0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md:           0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg:           0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  --shadow-xl:           0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+  --shadow-glow:         0 0 20px rgba(0, 212, 170, 0.15), 0 0 40px rgba(0, 212, 170, 0.05);
+  --shadow-glow-strong:  0 0 30px rgba(0, 212, 170, 0.25), 0 0 60px rgba(0, 212, 170, 0.10);
+  
+  /* ── Transitions ──────────────────────────────────────── */
+  --transition-fast:     150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base:     250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:     350ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring:   500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* ── Z-Index ──────────────────────────────────────────── */
+  --z-dropdown:          1000;
+  --z-sticky:            1020;
+  --z-fixed:             1030;
+  --z-modal-bg:          1040;
+  --z-modal:             1050;
+  --z-popover:           1060;
+  --z-tooltip:           1070;
+}
+
+/* ═══ Global Reset & Base Styles ══════════════════════════════ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--surface-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Arabic text */
+[lang="ar"], .rtl, .arabic {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  text-align: right;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 212, 170, 0.3);
+  color: var(--text-primary);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--dealix-navy-soft);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dealix-cyan);
+}
+
+/* ═══ Utility Classes ═════════════════════════════════════════ */
+
+/* Gradient Text */
+.text-gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass Effect */
+.glass {
+  background: var(--surface-glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Glow Effect */
+.glow {
+  box-shadow: var(--shadow-glow);
+}
+.glow-strong {
+  box-shadow: var(--shadow-glow-strong);
+}
+
+/* Accent underline */
+.accent-underline {
+  position: relative;
+  display: inline-block;
+}
+.accent-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient-accent);
+  border-radius: var(--radius-full);
+}
+
+/* Pulse animation for live indicators */
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Float animation */
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Fade in animation */
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Slide up animation */
+.slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Stagger children */
+.stagger > * {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+.stagger > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Grid background pattern */
+.grid-bg {
+  background-image: 
+    linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Dot pattern */
+.dots-bg {
+  background-image: radial-gradient(rgba(0, 212, 170, 0.08) 1px, transparent 1px);
+  background-size: 30px 30px;
+}

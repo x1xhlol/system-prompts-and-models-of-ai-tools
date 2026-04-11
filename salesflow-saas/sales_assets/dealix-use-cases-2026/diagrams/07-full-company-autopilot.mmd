@@ -1,0 +1,29 @@
+flowchart TB
+  subgraph Revenue["إيرادات"]
+    PL[Pipeline كامل]
+  end
+
+  subgraph Marketing["تسويق"]
+    CM[Campaigns مستمرة]
+  end
+
+  subgraph Support["دعم"]
+    SP[WhatsApp + Email 24/7]
+  end
+
+  subgraph Finance["مالية"]
+    BI[Billing + تحصيل]
+    CT[عقود]
+  end
+
+  subgraph Exec["تنفيذي"]
+    AN[Analytics → Slack / تقارير CEO]
+  end
+
+  CEO[CEO Agent / Orchestrator]
+  CEO --> PL
+  CEO --> CM
+  CEO --> SP
+  CEO --> BI
+  CEO --> CT
+  CEO --> AN

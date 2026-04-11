@@ -1,0 +1,9 @@
+flowchart TB
+  MAC[Marketing Automation Crew: content + landing + email]
+  PC[Prospecting Crew: LinkedIn + WhatsApp at scale]
+  QC[Qualification Crew]
+  PAS[Performance Analyzer Supervisor]
+  MAC --> PC --> QC --> CRM[(Pipeline CRM)]
+  PAS -->|يومي: تحسين| MAC
+  PAS -->|يومي: تحسين| PC
+  CRM --> PAS

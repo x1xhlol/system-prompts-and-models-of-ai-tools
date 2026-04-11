@@ -1,0 +1,215 @@
+{
+  "bot_name": "dealix-whatsapp-agent",
+  "display_name_ar": "وكيل واتساب Dealix",
+  "version": "1.0.0",
+  "description_ar": "وكيل ذكاء اصطناعي للتواصل مع العملاء المحتملين عبر واتساب بأسلوب احترافي وودي",
+  "platform": "whatsapp_business_api",
+  "personality": {
+    "tone_ar": "احترافي وودي",
+    "tone_en": "professional, friendly, Arabic-first",
+    "language_priority": ["ar", "en"],
+    "dialect": "saudi_formal",
+    "formality_level": "semi_formal",
+    "guidelines_ar": [
+      "استخدم اللغة العربية الفصحى المبسطة كلغة أساسية",
+      "كن ودوداً ومحترفاً في الوقت ذاته",
+      "استخدم التحية المناسبة حسب الوقت (صباح الخير / مساء الخير)",
+      "تجنب الرسائل الطويلة جداً - اجعلها مختصرة ومركزة",
+      "استخدم الإيموجي باعتدال وفي السياق المناسب",
+      "احترم وقت العميل ولا ترسل رسائل خارج أوقات العمل",
+      "إذا رد العميل بالإنجليزية، تحوّل للإنجليزية"
+    ]
+  },
+  "capabilities": [
+    "text_messaging",
+    "voice_notes",
+    "media_sharing",
+    "appointment_booking",
+    "document_sharing",
+    "location_sharing",
+    "quick_replies",
+    "interactive_buttons",
+    "list_messages",
+    "catalog_sharing"
+  ],
+  "conversation_flows": {
+    "initial_outreach": {
+      "name_ar": "التواصل الأولي",
+      "description_ar": "أول رسالة للعميل المحتمل",
+      "steps": [
+        {
+          "step": 1,
+          "action": "send_text",
+          "template_ar": "السلام عليكم {contact_name} 👋\nأنا من فريق {company_name}. لاحظنا نشاطكم المتميز في مجال {industry} وحبينا نتواصل معكم.\nهل عندكم دقيقتين نشارككم كيف نساعد شركات مثل {similar_company} في زيادة مبيعاتهم؟",
+          "wait_for_response": true,
+          "timeout_hours": 24
+        },
+        {
+          "step": 2,
+          "condition": "positive_response",
+          "action": "send_text",
+          "template_ar": "ممتاز! 🎯\nباختصار، Dealix منصة أتمتة مبيعات مصممة خصيصاً للسوق السعودي.\nنساعدكم في:\n✅ اكتشاف عملاء جدد تلقائياً\n✅ التواصل الذكي عبر واتساب والبريد\n✅ متابعة الصفقات من البداية للنهاية\n\nهل تحب نحجز لك عرض توضيحي سريع (15 دقيقة)؟",
+          "wait_for_response": true,
+          "timeout_hours": 24
+        },
+        {
+          "step": 3,
+          "condition": "wants_demo",
+          "action": "trigger_booking",
+          "template_ar": "تمام! خلني أعرض لك المواعيد المتاحة 📅",
+          "next_flow": "booking_flow"
+        }
+      ]
+    },
+    "follow_up": {
+      "name_ar": "المتابعة",
+      "description_ar": "متابعة العملاء الذين لم يردوا",
+      "steps": [
+        {
+          "step": 1,
+          "delay_hours": 48,
+          "action": "send_text",
+          "template_ar": "مرحباً {contact_name} 👋\nتواصلنا معك قبل يومين بخصوص حلول أتمتة المبيعات.\nهل حاب تعرف أكثر؟ نقدر نرسل لك فيديو قصير يشرح الفكرة.",
+          "wait_for_response": true,
+          "timeout_hours": 48
+        },
+        {
+          "step": 2,
+          "delay_hours": 72,
+          "action": "send_media",
+          "media_type": "video",
+          "template_ar": "مرحباً {contact_name}، هذا فيديو قصير (دقيقة واحدة) يوضح كيف نساعد الشركات مثلكم 👇",
+          "wait_for_response": true,
+          "timeout_hours": 72
+        },
+        {
+          "step": 3,
+          "delay_hours": 168,
+          "action": "send_text",
+          "template_ar": "{contact_name}، آخر رسالة مني 😊\nإذا تغيّر رأيك في أي وقت، تقدر تراسلنا هنا وبنكون جاهزين نساعدك.\nتحياتي 🌟",
+          "mark_as": "cold_lead"
+        }
+      ]
+    },
+    "booking_flow": {
+      "name_ar": "حجز موعد",
+      "description_ar": "حجز اجتماع أو عرض توضيحي",
+      "steps": [
+        {
+          "step": 1,
+          "action": "send_list",
+          "template_ar": "اختر الوقت المناسب لك:",
+          "options_source": "calendar_api",
+          "wait_for_response": true
+        },
+        {
+          "step": 2,
+          "action": "confirm_booking",
+          "template_ar": "تم حجز موعدك ✅\n📅 التاريخ: {date}\n⏰ الوقت: {time}\n📍 عبر: {meeting_link}\n\nسنرسل لك تذكير قبل الموعد بساعة. نتشرف بخدمتكم!"
+        }
+      ]
+    },
+    "objection_handling": {
+      "name_ar": "التعامل مع الاعتراضات",
+      "responses": {
+        "too_expensive": {
+          "trigger_phrases_ar": ["غالي", "مكلف", "ما عندنا ميزانية", "السعر عالي"],
+          "response_ar": "أتفهم تماماً 👍\nالحقيقة إن عملاءنا يحققون عائد استثمار 5 أضعاف خلال أول 3 شهور.\nوعندنا خطة تبدأ من {starter_price} ريال شهرياً.\nبالإضافة لضماننا الذهبي: إذا ما استفدت خلال 30 يوم، نرجع لك فلوسك كاملة."
+        },
+        "not_interested": {
+          "trigger_phrases_ar": ["مو مهتم", "لا شكراً", "ما أحتاج", "لا أبي"],
+          "response_ar": "تمام، أحترم قرارك 🙏\nبس خلني أسألك سؤال واحد: هل المتابعة مع العملاء المحتملين تاخذ وقت كثير من فريقك؟\nإذا إيه، ممكن نساعدك توفر أكثر من 10 ساعات أسبوعياً."
+        },
+        "using_competitor": {
+          "trigger_phrases_ar": ["عندنا نظام", "نستخدم CRM", "عندنا حل"],
+          "response_ar": "ممتاز إنكم تستخدمون نظام! 👏\nDealix يتكامل مع أغلب الأنظمة الموجودة ويضيف طبقة ذكاء اصطناعي عليها.\nكثير من عملاءنا يستخدمون Dealix بجانب نظامهم الحالي.\nتحب نوريك كيف؟"
+        },
+        "need_time": {
+          "trigger_phrases_ar": ["أحتاج وقت", "خلني أفكر", "بشوف", "لاحقاً"],
+          "response_ar": "طبعاً! خذ وقتك 😊\nبرسل لك رابط فيه معلومات أكثر تقدر تطلع عليها بكل راحة.\nوإذا عندك أي سؤال، أنا موجود هنا.\nهل يناسبك أتواصل معك بعد {days} أيام؟"
+        }
+      }
+    },
+    "support_redirect": {
+      "name_ar": "تحويل للدعم",
+      "description_ar": "تحويل العميل لفريق الدعم عند الحاجة",
+      "trigger_ar": "عندما يطلب العميل مساعدة تقنية أو لديه مشكلة في الحساب",
+      "response_ar": "بوصلك الحين بأحد أعضاء فريق الدعم المتخصص الذي يقدر يساعدك بشكل أفضل 🔄"
+    }
+  },
+  "escalation_rules": {
+    "escalate_to_human_when": [
+      {
+        "condition": "negative_sentiment_repeated",
+        "description_ar": "عندما يعبّر العميل عن استياء مرتين متتاليتين",
+        "threshold": 2
+      },
+      {
+        "condition": "explicit_human_request",
+        "description_ar": "عندما يطلب العميل التحدث مع شخص حقيقي",
+        "trigger_phrases_ar": ["أبي أكلم شخص", "وكيل حقيقي", "مو بوت", "إنسان"]
+      },
+      {
+        "condition": "high_value_lead",
+        "description_ar": "عندما يكون العميل المحتمل ذو قيمة عالية (نقاط 80+)",
+        "score_threshold": 80
+      },
+      {
+        "condition": "complex_query",
+        "description_ar": "عندما يسأل العميل سؤالاً تقنياً معقداً خارج نطاق البوت",
+        "max_ai_confidence": 0.6
+      },
+      {
+        "condition": "pricing_negotiation",
+        "description_ar": "عندما يطلب العميل خصماً أو تفاوضاً على السعر",
+        "trigger_phrases_ar": ["خصم", "تخفيض", "عرض خاص", "سعر أقل"]
+      }
+    ],
+    "escalation_message_ar": "بوصلك الحين بأحد أعضاء فريقنا المتخصصين. يرجى الانتظار لحظات 🔄",
+    "escalation_channels": ["human_agent_queue", "supervisor_notification"],
+    "max_response_time_minutes": 5
+  },
+  "response_templates": {
+    "greeting_morning_ar": "صباح الخير {contact_name} ☀️",
+    "greeting_evening_ar": "مساء الخير {contact_name} 🌙",
+    "greeting_general_ar": "مرحباً {contact_name} 👋",
+    "thank_you_ar": "شكراً لك {contact_name}! نقدّر وقتك 🙏",
+    "goodbye_ar": "شكراً لتواصلك معنا. نتمنى لك يوماً سعيداً! 🌟",
+    "busy_ar": "فاهم، أنت مشغول الحين. متى يناسبك أتواصل معك؟ ⏰",
+    "confirmation_ar": "تم بنجاح ✅",
+    "apology_ar": "نعتذر عن أي إزعاج 🙏"
+  },
+  "messaging_rules": {
+    "operating_hours": {
+      "start": "09:00",
+      "end": "21:00",
+      "timezone": "Asia/Riyadh",
+      "working_days": ["sunday", "monday", "tuesday", "wednesday", "thursday"]
+    },
+    "rate_limits": {
+      "max_messages_per_contact_per_day": 5,
+      "min_interval_between_messages_minutes": 30,
+      "max_follow_ups_per_contact": 3,
+      "cooldown_after_no_response_days": 7
+    },
+    "opt_out": {
+      "trigger_phrases_ar": ["أوقف", "إلغاء", "لا تراسلني", "stop", "unsubscribe"],
+      "response_ar": "تم إيقاف الرسائل بنجاح ✅\nإذا غيّرت رأيك في أي وقت، تواصل معنا وبنكون هنا.\nشكراً لك 🙏",
+      "action": "add_to_opt_out_list"
+    }
+  },
+  "analytics": {
+    "track_metrics": [
+      "messages_sent",
+      "messages_delivered",
+      "messages_read",
+      "response_rate",
+      "average_response_time",
+      "conversion_to_booking",
+      "opt_out_rate",
+      "escalation_rate",
+      "sentiment_scores"
+    ],
+    "reporting_frequency": "daily"
+  }
+}

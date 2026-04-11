@@ -1,0 +1,19 @@
+sequenceDiagram
+  participant WA as WhatsApp Business
+  participant ID as IntentDetector + Prospecting Crew
+  participant Q as Qualification Crew
+  participant SF as Salesforce / CRM
+  participant DO as Deal Orchestrator (CEO / LangGraph)
+  participant P as Proposal + Pricing
+  participant N as Negotiation / Objections memory
+  participant C as Closing + Stripe + eSign
+
+  WA->>ID: رسالة عميل (12 موقع بناء)
+  ID->>Q: تفعيل تأهيل ذكي
+  Q->>SF: سحب حساب + تاريخ
+  Q->>DO: Lead مؤهل + BANT
+  DO->>P: عرض سعر + deck + Stripe
+  P->>N: اعتراض "غالي"
+  N->>DO: رد مبني على ذاكرة اعتراضات
+  DO->>C: عقد + رابط دفع واتساب + توقيع
+  C->>WA: تأكيد إغلاق

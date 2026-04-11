@@ -1,0 +1,16 @@
+الخطة الاستراتيجية الشاملة (المستوى التالي) — مؤشر
+================================================
+
+النسخة الكاملة والمحدّثة موجودة في المستودع:
+  salesflow-saas/docs/DEALIX_NEXT_LEVEL_MASTER_PLAN_AR.md
+
+واجهة تفاعلية في الموقع (Next.js):
+  http://localhost:3000/strategy
+
+نسخة Markdown للتحميل/العرض بعد المزامنة:
+  http://localhost:3000/strategy/DEALIX_NEXT_LEVEL_MASTER_PLAN_AR.md
+
+JSON من الـ API (عند تشغيل backend):
+  GET /api/v1/strategy/summary
+
+تشمل الوثيقة: مقارنة سوق، فجوات، مراحل 0–3، KPIs، مخاطر، وخطوات أسبوعية.

@@ -1,0 +1,4 @@
+• app/services/predictive_revenue_service.py — churn/forecast.
+• app/api/v1/autonomous_foundation.py — POST /intelligence/predictive.
+• app/openclaw/plugins/salesforce_agentforce_plugin.py — Account 360.
+• app/services/executive_roi_service.py — لقطات للإدارة العليا.

@@ -1,0 +1,33 @@
+عناوين الوصول بعد تشغيل خادم FastAPI (افتراضي المنفذ 8000)
+===========================================================
+
+صفحة موارد الفرونت (موصى بها — تصميم احترافي):
+  http://localhost:3000/resources
+
+JSON للمطورين (مسارات ثابتة):
+  http://127.0.0.1:8000/api/v1/marketing/hub
+
+بوابة فهرس (تحميل ZIP + روابط):
+  http://127.0.0.1:8000/dealix-marketing/
+  http://127.0.0.1:8000/dealix-marketing/index.html
+
+نفس المسارات من الفرونت (بعد إصلاح next.config rewrites — منفذ 3000):
+  http://localhost:3000/dealix-marketing/
+
+تحميل الحزمة الكاملة (بعد تشغيل سكربت الضغط):
+  http://127.0.0.1:8000/dealix-marketing/dealix-marketing-bundle.zip
+
+عروض القطاعات (CSS + HTML):
+  http://127.0.0.1:8000/dealix-presentations/00-dealix-company-master-ar.html
+
+حالات الاستخدام السبع:
+  http://127.0.0.1:8000/dealix-marketing/dealix-use-cases-2026/00-master-use-cases-ar.html
+
+خلف nginx (منفذ 80) — يجب أن تكون قواعد dealix-* في nginx تشير إلى backend:
+  http://localhost/dealix-marketing/
+
+استبدل 127.0.0.1 باسم نطاق السيرفر بعد النشر.
+
+تعطيل الخدمة الثابتة (إن لزم): في .env ضع MARKETING_STATIC_ENABLED=false
+
+Docker: MARKETING_STATIC_ROOT=/salesflow مع volumes لـ sales_assets و presentations (انظر docker-compose.yml)

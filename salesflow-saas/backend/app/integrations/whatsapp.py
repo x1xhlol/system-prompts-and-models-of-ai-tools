@@ -1,5 +1,8 @@
 import httpx
 from app.config import get_settings
+import logging
+
+logger = logging.getLogger("dealix.integrations.whatsapp")
 
 settings = get_settings()
 
@@ -8,7 +11,12 @@ WHATSAPP_API_URL = "https://graph.facebook.com/v21.0"
 
 async def send_whatsapp_message(phone: str, message: str) -> dict:
     """Send a text message via WhatsApp Business API."""
+    if settings.WHATSAPP_MOCK_MODE:
+        logger.info(f"[MOCK WHATSAPP] To: {phone} | Message: {message}")
+        return {"status": "success", "mocked": True, "message_id": "mock_123"}
+
     if not settings.WHATSAPP_API_TOKEN or not settings.WHATSAPP_PHONE_NUMBER_ID:
+        logger.error("WhatsApp credentials missing.")
         return {"status": "error", "detail": "WhatsApp not configured"}
 
     url = f"{WHATSAPP_API_URL}/{settings.WHATSAPP_PHONE_NUMBER_ID}/messages"

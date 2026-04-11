@@ -1,0 +1,8 @@
+flowchart TB
+  A[عميل يشتكي عبر واتساب] --> CS[Customer Support Crew 24/7]
+  CS --> KB{Knowledge base + أدوات}
+  KB -->|87% حل| RES[حل تلقائي]
+  KB -->|معقد| HS[Human Handoff Supervisor]
+  HS --> T[Ticket + ملخص + suggested fix]
+  CS --> KD[Knowledge Distiller]
+  KD --> MEM[ذاكرة عميل للجلسات القادمة]

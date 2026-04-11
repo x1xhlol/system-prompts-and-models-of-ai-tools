@@ -11,6 +11,18 @@ from app.schemas.lead import LeadCreate, LeadUpdate, LeadResponse, LeadListRespo
 router = APIRouter()
 
 
+def _lead_list_scope(query, user: User):
+    """مندوب: عملاء محتملون مسندون إليه فقط."""
+    if getattr(user, "role", None) == "agent":
+        return query.where(Lead.assigned_to == user.id)
+    return query
+
+
+def _ensure_lead_access(lead: Lead, user: User) -> None:
+    if getattr(user, "role", None) == "agent" and lead.assigned_to != user.id:
+        raise HTTPException(status_code=403, detail="Not assigned to this lead")
+
+
 @router.get("", response_model=LeadListResponse)
 async def list_leads(
     status: str = Query(None),
@@ -23,12 +35,15 @@ async def list_leads(
     db: AsyncSession = Depends(get_db),
 ):
     query = select(Lead).where(Lead.tenant_id == current_user.tenant_id)
+    query = _lead_list_scope(query, current_user)
 
     if status:
         query = query.where(Lead.status == status)
     if source:
         query = query.where(Lead.source == source)
     if assigned_to:
+        if getattr(current_user, "role", None) == "agent" and assigned_to != current_user.id:
+            raise HTTPException(status_code=403, detail="Cannot filter by other users")
         query = query.where(Lead.assigned_to == assigned_to)
     if search:
         query = query.where(Lead.name.ilike(f"%{search}%") | Lead.phone.ilike(f"%{search}%") | Lead.email.ilike(f"%{search}%"))
@@ -49,7 +64,13 @@ async def create_lead(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    lead = Lead(tenant_id=current_user.tenant_id, **data.model_dump(exclude_none=True))
+    raw = data.model_dump(exclude_none=True)
+    meta = raw.pop("metadata", None)
+    lead = Lead(tenant_id=current_user.tenant_id, **raw)
+    if meta is not None:
+        lead.extra_metadata = meta
+    if getattr(current_user, "role", None) == "agent":
+        lead.assigned_to = current_user.id
     db.add(lead)
     await db.flush()
     await db.refresh(lead)
@@ -66,6 +87,7 @@ async def get_lead(
     lead = result.scalar_one_or_none()
     if not lead:
         raise HTTPException(status_code=404, detail="Lead not found")
+    _ensure_lead_access(lead, current_user)
     return LeadResponse.model_validate(lead)
 
 
@@ -80,9 +102,18 @@ async def update_lead(
     lead = result.scalar_one_or_none()
     if not lead:
         raise HTTPException(status_code=404, detail="Lead not found")
+    _ensure_lead_access(lead, current_user)
 
-    for field, value in data.model_dump(exclude_none=True).items():
-        setattr(lead, field, value)
+    payload = data.model_dump(exclude_none=True)
+    if getattr(current_user, "role", None) == "agent" and "assigned_to" in payload:
+        if payload["assigned_to"] not in (None, current_user.id):
+            raise HTTPException(status_code=403, detail="Cannot reassign lead")
+
+    for field, value in payload.items():
+        if field == "metadata":
+            lead.extra_metadata = value if value is not None else {}
+        else:
+            setattr(lead, field, value)
 
     await db.flush()
     await db.refresh(lead)
@@ -100,6 +131,14 @@ async def assign_lead(
     lead = result.scalar_one_or_none()
     if not lead:
         raise HTTPException(status_code=404, detail="Lead not found")
+    _ensure_lead_access(lead, current_user)
+
+    role = getattr(current_user, "role", None)
+    if role == "agent":
+        if assigned_to != current_user.id:
+            raise HTTPException(status_code=403, detail="Agents can only assign to themselves")
+    elif role not in ("owner", "admin", "manager"):
+        raise HTTPException(status_code=403, detail="Insufficient permissions to assign leads")
 
     lead.assigned_to = assigned_to
     await db.flush()

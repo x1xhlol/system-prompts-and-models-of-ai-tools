@@ -1,0 +1,6 @@
+• Post-Sale & Upsell Crew — اكتشاف الحدث abandoned_cart من webhook المتجر.
+• Personalizer Agent — نسخ عربية مخصصة (اسم، منتج، كمية).
+• Marketing Automation Crew — تسلسل إيميل + رسالة لينكد إن.
+• Data Guardian — scoped memory لكل عميل (تفاعلات، قنوات، عروض).
+
+تكاملات: Webhook (Shopify/WooCommerce/custom)، WhatsApp، SMTP/Email، LinkedIn API، Stripe إن وُجد checkout.

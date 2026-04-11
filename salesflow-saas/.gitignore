@@ -45,3 +45,11 @@ nginx/ssl/*.crt
 htmlcov/
 .coverage
 coverage/
+
+# Local SQLite / CI DB artifacts (never commit)
+backend/*.db
+backend/ci_*.db
+
+# Playwright / E2E output
+frontend/test-results/
+frontend/playwright-report/

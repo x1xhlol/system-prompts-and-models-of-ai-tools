@@ -1,0 +1,29 @@
+هيكل مقترح في المستودع (تنفيذ تدريجي — ليس كل المجلدات مطلوبة يوماً واحداً)
+===============================================================================
+
+salesflow-saas/backend/app/
+  use_cases/                          # اختياري: تجميع منطقي
+    __init__.py
+    registry.py                       # USE_CASE_IDS + وصف + مسارات API
+    case_01_whatsapp_close/
+      router.py                       # أو دمج في webhooks الرئيسي
+      state_machine.py
+      policies.py                     # عتبات الموافقة والعملة
+
+  # الموجود حالياً يبقى مصدر الحقيقة:
+  agents/ …
+  api/v1/ …
+  flows/ …
+  openclaw/plugins/ …
+
+salesflow-saas/frontend/src/
+  app/(dashboard)/use-cases/          # لوحة: أي حالات مفعّلة لكل tenant
+
+salesflow-saas/sales_assets/dealix-use-cases-2026/
+  … (هذه الحزمة — تسويق وتوجيه تنفيذ)
+
+مبادئ
+------
+• لا تكرار منطق: الوكلاء الحاليون يُستدعون من use case router.
+• كل حالة = تكوين tenant + سياسات + قوالب رسائل، أكثر منها «وكيل جديد» إلا عند الحاجة.
+• الاختبارات: pytest للـ API + اختبار إطلاق scripts/full_stack_launch_test.py.

@@ -17,6 +17,6 @@ class Activity(TenantModel):
     completed_at = Column(DateTime(timezone=True))
     is_automated = Column(Boolean, default=False)
 
-    lead = relationship("Lead", back_populates="activities")
-    deal = relationship("Deal", back_populates="activities")
-    user = relationship("User", back_populates="activities")
+    lead = relationship("Lead", back_populates="activities", foreign_keys=[lead_id])
+    deal = relationship("Deal", back_populates="activities", foreign_keys=[deal_id])
+    user = relationship("User", back_populates="activities", foreign_keys=[user_id])

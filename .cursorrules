@@ -1,0 +1,30 @@
+# Cursor Project Rules - Saudi AI OS & Deals Ecosystem
+
+Welcome to the **System Prompts & AI Tools** master workspace. This project contains multiple high-level AI modules and the core **Dealix (SalesFlow SaaS)** engine.
+
+## 🚀 Project Overview
+- **Location:** Saudi Arabia (B2B Market)
+- **Primary Tech:** FastAPI (Backend), Next.js (Frontend), Python Agents (AI Core)
+- **Main Goal:** Building a 24/7/365 Autonomous Sales Machine.
+
+## 📁 Key Directories to Manage
+- `/salesflow-saas`: The core SaaS platform (Frontend + Backend).
+- `/ai-agents`: Specialized agents (Closer, Prospector, Analyst).
+- `/personal-brand-engine`: Content and branding automation.
+- `/Cursor Prompts`: Specific prompts for this IDE.
+
+## 🧠 AI Behavior Rules
+1. **Context Awareness:** Always index the entire codebase using `@Codebase`.
+2. **Language:** When building business logic for SalesFlow, prioritize Arabic (Saudi) localized strings for the UI.
+3. **Architecture:** Maintain strict separation between `salesflow-saas/backend` and `salesflow-saas/frontend`.
+4. **Agent Logic:** When editing agents in `/ai-agents`, ensure they align with the `Dealix` backend models.
+5. **Knowledge / RAG:** Do **not** add Onyx or any external third-party RAG assistant stack. Use Dealix-native retrieval only: `KnowledgeService`, `SectorAsset` / pgvector embeddings, and `app/ai/orchestrator` knowledge hooks.
+
+## 🛠 Command Center (Composer Ctrl+I)
+- Use **Composer** to perform tasks across directories.
+- Example: "Create a new agent in `/ai-agents` and add a matching API endpoint in `salesflow-saas/backend`."
+
+## 🇸🇦 Localization
+- Business hours: Sunday - Thursday.
+- Currency: SAR.
+- Tone: Professional, Saudi Business.

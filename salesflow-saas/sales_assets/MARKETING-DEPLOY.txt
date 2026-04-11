@@ -1,0 +1,33 @@
+الوضع الحالي (موصى به — بدون FastAPI للعرض)
+==========================================
+نسخ تلقائي إلى الفرونت:
+  من مجلد salesflow-saas:
+    node scripts/sync-marketing-to-public.cjs
+  أو: npm run dev / npm run build داخل frontend (predev و prebuild يشغّلان المزامنة).
+
+الملفات تُنسخ إلى:
+  frontend/public/dealix-marketing/
+  frontend/public/dealix-presentations/
+
+التصفح المحلي (لا يلزم 8000):
+  cd frontend && npm run dev
+  http://localhost:3000/dealix-marketing/
+  http://localhost:3000/resources
+
+لماذا كانت روابط 8000 «لا تعمل»؟
+===================================
+الخادم لم يكن يعمل — أو الـ rewrites كانت تعيد التوجيه إلى 8000.
+تمت إزالة rewrites من next.config.js؛ الاعتماد الآن على public/.
+
+nginx + FastAPI ما زالا يدعمان نفس المسارات في الإنتاج إذا شغّلت الـ backend.
+
+Google Drive
+------------
+لا يمكن رفع الملفات إلى حساب Google Drive تلقائياً من Cursor/الخادم بدون OAuth وإعداداتك.
+الطريقة العملية: حمّل dealix-marketing-bundle.zip من /dealix-marketing/ ثم ارفعه يدوياً إلى Drive.
+
+عناوين بعد الإصلاح (محلياً)
+----------------------------
+  الفرونت + rewrites:  http://localhost:3000/resources
+  الـ API مباشرة:     http://127.0.0.1:8000/dealix-marketing/
+  خلف nginx:           http://localhost/dealix-marketing/  (إن كان المنفذ 80 مفعّلاً)

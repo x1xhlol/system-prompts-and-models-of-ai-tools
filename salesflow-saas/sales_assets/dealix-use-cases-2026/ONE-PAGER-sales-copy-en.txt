@@ -1,0 +1,9 @@
+Dealix — Autonomous Revenue & Operations OS
+-------------------------------------------
+From the first WhatsApp message to contract and payment: AI-native execution, per-customer memory, Salesforce + WhatsApp + Stripe.
+
+Seven flagship stories: fast B2B close, abandoned-cart recovery, 24/7 WhatsApp support, renewal & upsell, campaign + qualification, billing & contracts, full-company autopilot with governance.
+
+Target customer outcome: higher revenue, 70–80% less manual work, measurable ROI — with approvals before sensitive actions.
+
+© Dealix 2026

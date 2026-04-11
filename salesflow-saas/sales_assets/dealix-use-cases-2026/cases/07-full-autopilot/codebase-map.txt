@@ -1,0 +1,4 @@
+• app/agents/__init__.py — تسجيل كل الوكلاء.
+• app/agents/master_agent.py + master_langgraph.py
+• app/api/v1/autonomous_foundation.py — dashboard/executive-roi، flows، go-live-gate
+• scripts/full_stack_launch_test.py — تحقق إطلاق

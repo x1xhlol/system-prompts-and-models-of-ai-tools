@@ -1,0 +1,426 @@
+{
+  "campaign": "CEO Sami",
+  "date": "2026-04-01T16:45:39.895380",
+  "sent": 68,
+  "failed": 2,
+  "results": [
+    {
+      "company": "الشركة العربية السعودية لصناعة مواد التعبئة سابن",
+      "phone": "966538184882",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 3}"
+    },
+    {
+      "company": "شركة البابطين لصناعة البلاستيك والمواد العازلة",
+      "phone": "966503200250",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 4}"
+    },
+    {
+      "company": "شركة التميمي لصناعة الاشرطة اللاصقة",
+      "phone": "966555823348",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 5}"
+    },
+    {
+      "company": "شركة المطلق لصناعة الاثاث",
+      "phone": "966504995806",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 6}"
+    },
+    {
+      "company": "شركة عوازل الشرقية المحدودة",
+      "phone": "966555919311",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 7}"
+    },
+    {
+      "company": "مصنع الرياض للمبوليا",
+      "phone": "966504833534",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 8}"
+    },
+    {
+      "company": "مصنع الهديان للمنتجات البلاستكية",
+      "phone": "966501292653",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 9}"
+    },
+    {
+      "company": "مصنع شركة موانع التسرب الفنية",
+      "phone": "966535137513",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 10}"
+    },
+    {
+      "company": "شركة البطاقات البلاستيكية",
+      "phone": "966531697812",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 11}"
+    },
+    {
+      "company": "شركة الزامل للصناعات البلاستيكية",
+      "phone": "966504836343",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 12}"
+    },
+    {
+      "company": "شركة أي تي تي السعودية",
+      "phone": "966505778175",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 13}"
+    },
+    {
+      "company": "شركة بلاست باول العربية المحدودة",
+      "phone": "966556123446",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 14}"
+    },
+    {
+      "company": "الراية المتطورة للبلاستيك",
+      "phone": "966559461132",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 15}"
+    },
+    {
+      "company": "الشركة السعودية لصناعة منصات الشحن",
+      "phone": "966532800308",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 16}"
+    },
+    {
+      "company": "الشركة السعوديه لمنتجات المطاط",
+      "phone": "966540373755",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 17}"
+    },
+    {
+      "company": "الشركة المتقدمة للتغليف المرن",
+      "phone": "966553293278",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 18}"
+    },
+    {
+      "company": "شركة مصنع انجاد للصناعات البلاستيكية",
+      "phone": "966502410393",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 19}"
+    },
+    {
+      "company": "شركة مصنع حسن وشنان الزهراني",
+      "phone": "966555887722",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 20}"
+    },
+    {
+      "company": "شركة مصنع نبهاء لمنتجات المطاط الصناعي",
+      "phone": "966509905508",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 21}"
+    },
+    {
+      "company": "شركة هنكل بولي بت للصناعات",
+      "phone": "966599209715",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 22}"
+    },
+    {
+      "company": "شركة الزامل للصناعات المعمارية",
+      "phone": "966557411263",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 23}"
+    },
+    {
+      "company": "شركة الكحيمي للصناعات المعدنية",
+      "phone": "966504726812",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 24}"
+    },
+    {
+      "company": "شركة تنهات للتعدين",
+      "phone": "966560876244",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 25}"
+    },
+    {
+      "company": "شركة حرس للصناعات المحدودة",
+      "phone": "966503864798",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 26}"
+    },
+    {
+      "company": "شركة خدمات الاصلاح الميكانيكي المتخصصة",
+      "phone": "966506840810",
+      "status": "error"
+    },
+    {
+      "company": "الشركة السعودية لطلاء انابيب الاسلاك",
+      "phone": "966554550724",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 27}"
+    },
+    {
+      "company": "الشركة العربية للمعادن والكيماويات",
+      "phone": "966559550725",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 28}"
+    },
+    {
+      "company": "الشركة العربية لمانعات التسرب",
+      "phone": "966558111009",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 29}"
+    },
+    {
+      "company": "المصنع السعودي للسقالات المعدنية",
+      "phone": "966503842959",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 30}"
+    },
+    {
+      "company": "دار الخدمات الهندسية والتقنية",
+      "phone": "966555805888",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 31}"
+    },
+    {
+      "company": "شركة صناعة الالمنيوم الوماكو",
+      "phone": "966535053343",
+      "status": "error"
+    },
+    {
+      "company": "شركة كراون العربية للعلب",
+      "phone": "966565587177",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 32}"
+    },
+    {
+      "company": "مصنع الظهران العربي للالمنيوم",
+      "phone": "966555811519",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 33}"
+    },
+    {
+      "company": "مصنع البيطار",
+      "phone": "966538888856",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 34}"
+    },
+    {
+      "company": "مصنع الثابت للصناعات المعدنية",
+      "phone": "966541777111",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 35}"
+    },
+    {
+      "company": "شركة السعودية للدهانات الصناعية",
+      "phone": "966536000062",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 36}"
+    },
+    {
+      "company": "شركة اصباغ همبل العربية",
+      "phone": "966558686199",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 37}"
+    },
+    {
+      "company": "شركة الصناعات الكيماوية للبناء",
+      "phone": "966555160883",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 38}"
+    },
+    {
+      "company": "المصانع العربية للماكولات فاديكو",
+      "phone": "966553881001",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 39}"
+    },
+    {
+      "company": "شركة نسمة للأغذية",
+      "phone": "966505804437",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 40}"
+    },
+    {
+      "company": "مصنع كريم للصناعات الغذائية",
+      "phone": "966504844521",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 41}"
+    },
+    {
+      "company": "شركة الانارة الوطنية",
+      "phone": "966567499364",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 42}"
+    },
+    {
+      "company": "شركة الشرق الأوسط للبطاريات",
+      "phone": "966550557490",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 43}"
+    },
+    {
+      "company": "شركة المبادئ الفنية للصناعات المعدنية",
+      "phone": "966503890868",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 44}"
+    },
+    {
+      "company": "شركة محولات الطاقة السعودية",
+      "phone": "966563930003",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 45}"
+    },
+    {
+      "company": "شركة روابي للكهرباء",
+      "phone": "966505344402",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 46}"
+    },
+    {
+      "company": "شركة شنايدر الكتريك العربية السعودية",
+      "phone": "966557747099",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 47}"
+    },
+    {
+      "company": "شركة هيتاشي الطاقة للصناعة",
+      "phone": "966505777809",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 48}"
+    },
+    {
+      "company": "شركة الحضارة للصناعات الخشبية",
+      "phone": "966501214108",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 49}"
+    },
+    {
+      "company": "شركة المصنوعات الخشبية الحديثة",
+      "phone": "966505820162",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 50}"
+    },
+    {
+      "company": "شركة الاتفاق للصناعات الحديدية",
+      "phone": "966555859061",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 51}"
+    },
+    {
+      "company": "مصنع الجعيب للإثاث",
+      "phone": "966500080008",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 52}"
+    },
+    {
+      "company": "مصنع ميلانو الدولية للمطابخ",
+      "phone": "966551899997",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 53}"
+    },
+    {
+      "company": "شركة الدقة الفائقة للخدمات الصناعية",
+      "phone": "966505998777",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 54}"
+    },
+    {
+      "company": "شركة مصنع سما لأجهزة ومعدات البترول",
+      "phone": "966500174430",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 55}"
+    },
+    {
+      "company": "شركة البلاد لانظمة مكافحة الحريق",
+      "phone": "966563070198",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 56}"
+    },
+    {
+      "company": "شركة تضامن الهمة",
+      "phone": "966505754717",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 57}"
+    },
+    {
+      "company": "شركة زهران للصيانة والتشغيل",
+      "phone": "966530111344",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'ok', 'id': 58}"
+    },
+    {
+      "company": "شركة فرص للاستثمار والتطوير العقاري",
+      "phone": "966508291015",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'instance is not authenticated yet. Message to 966508291015@c.us will be"
+    },
+    {
+      "company": "شركة معدات السلامة والاطفاء",
+      "phone": "966500844650",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'instance is not authenticated yet. Message to 966500844650@c.us will be"
+    },
+    {
+      "company": "مصنع المجدوعي للصناعات الحديدية",
+      "phone": "966505989404",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'instance is not authenticated yet. Message to 966505989404@c.us will be"
+    },
+    {
+      "company": "شركة مصنع الاتحاد للمكثفات",
+      "phone": "966505814762",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'instance is not authenticated yet. Message to 966505814762@c.us will be"
+    },
+    {
+      "company": "شركة المصنع العربي للحراريات",
+      "phone": "966543455663",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'instance is not authenticated yet. Message to 966543455663@c.us will be"
+    },
+    {
+      "company": "شركة سعد علي العيسى للصناعات المعدنية",
+      "phone": "966555095669",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'instance is not authenticated yet. Message to 966555095669@c.us will be"
+    },
+    {
+      "company": "شركة بيرمابايب العربية السعودية",
+      "phone": "966554474169",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'instance is not authenticated yet. Message to 966554474169@c.us will be"
+    },
+    {
+      "company": "مصنع تمديد للأنابيب ومعداتها",
+      "phone": "966550855555",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'instance is not authenticated yet. Message to 966550855555@c.us will be"
+    },
+    {
+      "company": "مصنع هيت للصناعة",
+      "phone": "966505820182",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'instance is not authenticated yet. Message to 966505820182@c.us will be"
+    },
+    {
+      "company": "شركة كلادتك العربية المحدودة",
+      "phone": "966555836669",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'instance is not authenticated yet. Message to 966555836669@c.us will be"
+    },
+    {
+      "company": "مصنع روابي للغرف المعزولة المتخصصة",
+      "phone": "966500841200",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'instance is not authenticated yet. Message to 966500841200@c.us will be"
+    },
+    {
+      "company": "شركة الزامل للمباني الحديدية",
+      "phone": "966555932328",
+      "status": "sent",
+      "response": "{'sent': 'true', 'message': 'instance is not authenticated yet. Message to 966555932328@c.us will be"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+# Dealix — OpenClaw runtime (aligned with MASTER-BLUEPRINT v4 + ULTIMATE_EXECUTION_MASTER_AR)
+version: "2026.4.2"
+project:
+  name: "dealix-autonomous-revenue-os"
+  environment: "production"
+  durable_task_flow: true
+  revision_tracking: true
+  checkpoint_store: "openclaw_state"
+
+runtime:
+  engine: "OpenClaw"
+  timeouts:
+    agent_execution_minutes: 30
+    external_api_seconds: 120
+    human_approval_hours: 24
+  retry:
+    max_retries: 3
+    backoff: "exponential"
+    dead_letter_queue: true
+
+security:
+  zero_trust: true
+  strict_approvals: true
+  tenant_isolation: "required"
+  before_agent_reply_hook: "app.openclaw.hooks.before_agent_reply"
+  sensitive_actions:
+    - "send_whatsapp"
+    - "send_email"
+    - "send_linkedin"
+    - "trigger_voice_call"
+    - "sync_salesforce"
+    - "create_contract"
+    - "send_contract_for_signature"
+    - "create_charge"
+
+# In-app knowledge only (PostgreSQL + pgvector, KnowledgeService) — no external RAG SaaS as SoT
+knowledge:
+  source_of_truth: "dealix_internal"
+  components:
+    - "postgresql_pgvector"
+    - "sector_assets"
+    - "knowledge_service"
+  policy: "tenant_scoped_retrieval"
+
+plugins:
+  boundaries: "tight"
+  allowed:
+    - "salesforce-agentforce"
+    - "whatsapp-cloud"
+    - "stripe-billing"
+    - "voice-agents"
+    - "contract-intelligence"
+  blocked:
+    - "filesystem-write"
+    - "shell-exec"
+    - "unsandboxed-http"
+
+orchestration:
+  langgraph:
+    subgraphs: true
+    checkpointing: true
+  human_in_the_loop:
+    enabled: true
+    approval_timeout_hours: 24
+
+llm_routing:
+  note: "Implemented in backend app/services/model_router.py + LLM providers"
+  task_routing:
+    sales_decisions: "primary_sales_brain"
+    fast_classify: "low_latency"
+    proposals_copy: "high_quality_copy"
+    research_docs: "document_oriented"
+
+integrations:
+  salesforce:
+    role: "crm_grounding"
+  whatsapp:
+    role: "primary_channel_sa"
+  stripe:
+    role: "billing"
+  voice:
+    role: "telephony_and_qualification"
+  contracts:
+    role: "esign_and_clause_intel"
+
+monitoring:
+  business_kpis:
+    - "revenue_lift_vs_baseline"
+    - "deal_velocity"
+    - "win_rate_delta"
+  technical:
+    - "p95_latency"
+    - "error_rate_by_route"
+
+flows:
+  prospecting_crew_v1:
+    durable: true
+    checkpoints: true
+    channels: ["whatsapp", "email", "linkedin", "voice"]
+    grounding: "salesforce-agentforce"
+  self_improvement_v2:
+    durable: true
+    schedule: "continuous"
+    phases:
+      - "collect_signals"
+      - "diagnose_bottlenecks"
+      - "generate_experiments"
+      - "run_ab_tests"
+      - "validate_security_governance"
+      - "promote_or_rollback"

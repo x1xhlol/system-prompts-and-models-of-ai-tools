@@ -1,0 +1,43 @@
+%% Dealix — نظرة عامة على 7 حالات استخدام (2026)
+flowchart TB
+  subgraph OS["Autonomous Revenue & Operations OS"]
+    M[Mem0 + ذاكرة مشفّرة لكل مستأجر]
+    SH[Self-Improvement / Durable Flows]
+    GC[Governance & Compliance checkpoints]
+  end
+
+  subgraph U1["1 — واتساب → إغلاق 48س"]
+    A1[Intent] --> B1[تأهيل] --> C1[عرض + Stripe] --> D1[اعتراضات] --> E1[عقد + توقيع]
+  end
+
+  subgraph U2["2 — سلة مهجورة"]
+    W2[Webhook] --> P2[Personalizer] --> E2[Email seq] --> L2[LinkedIn]
+  end
+
+  subgraph U3["3 — دعم واتساب"]
+    S3[Support Crew] --> H3[Handoff] --> K3[Knowledge distiller]
+  end
+
+  subgraph U4["4 — تجديد + Upsell"]
+    F4[Forecast churn] --> U4[Upsell] --> R4[Renewal]
+  end
+
+  subgraph U5["5 — حملة + Lead gen"]
+    M5[Campaign] --> PR5[Prospecting] --> Q5[Qualify] --> PA5[Performance]
+  end
+
+  subgraph U6["6 — فوترة + عقود"]
+    B6[Billing] --> R6[Reminders] --> C6[Contracts] --> X6[Risk]
+  end
+
+  subgraph U7["7 — تشغيل كامل"]
+    ALL[Sales + Marketing + Support + Billing + Analytics CEO]
+  end
+
+  OS --> U1
+  OS --> U2
+  OS --> U3
+  OS --> U4
+  OS --> U5
+  OS --> U6
+  OS --> U7

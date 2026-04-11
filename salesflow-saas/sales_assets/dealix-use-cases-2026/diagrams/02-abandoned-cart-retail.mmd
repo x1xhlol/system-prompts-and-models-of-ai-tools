@@ -1,0 +1,26 @@
+flowchart LR
+  subgraph Trigger
+    W[Webhook abandoned cart]
+  end
+
+  subgraph Agents
+    PS[Post-Sale / Upsell Crew]
+    PE[Personalizer Agent]
+    MA[Marketing Automation Crew]
+    DG[Data Guardian — scoped memory]
+  end
+
+  subgraph Channels
+    WA[WhatsApp]
+    EM[Email sequence]
+    LI[LinkedIn]
+  end
+
+  W --> PS --> PE
+  PE --> WA
+  PE -->|no reply| MA
+  MA --> EM
+  MA --> LI
+  WA --> DG
+  EM --> DG
+  LI --> DG

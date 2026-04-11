@@ -1,0 +1,3 @@
+[P1] "Add cron or durable flow: daily scan opportunities with close_date in 90d; compute churn_score via predictive_revenue_service; enqueue upsell sequence if score in band."
+
+[P2] "Template Arabic+English renewal pack: problem → expansion ROI → CTA Stripe renewal link + contract renewal_id."

@@ -1,0 +1,5 @@
+• app/services/stripe_service.py
+• app/services/esign_service.py
+• app/services/contract_intelligence_service.py
+• app/openclaw/plugins/stripe_plugin.py
+• app/api/v1/autonomous_foundation.py — connectivity-test يغطي جزءاً من المسار.

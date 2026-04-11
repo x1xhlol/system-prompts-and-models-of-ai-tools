@@ -1,0 +1,96 @@
+---
+title: Dealix MASTER-BLUEPRINT
+version: Legendary Complete Edition v4.0
+status: canonical
+---
+
+# Vision
+
+Autonomous Revenue & Operations OS: a **Digital Full-Company Team** for B2B enterprises — Prospecting → Qualification → Proposal → Negotiation → Closing → Post-Sale/Upsell → Support → Marketing → Billing/Finance → Analytics/Forecasting.
+
+> *North star:* not a single chat widget — a **measurable revenue machine** that runs 24/7, self-improves where enabled, and grounds actions in CRM + tenant-safe knowledge.
+
+## Auditable target metrics (directional)
+
+| Axis | Target (vs baseline / program goals) |
+|------|--------------------------------------|
+| Revenue growth | 3–5× annual lift (customer-specific baselines) |
+| Sales efficiency | 70–80% reduction in manual pipeline work |
+| Forecast quality | Strong 30-day horizon accuracy (data-dependent) |
+| Cycle time | ~40% shorter close cycle where automation applies |
+| CAC | ~31% lower acquisition cost via automation + routing |
+| Compliance | PDPL-aligned handling; SOC2-ready logging & controls posture |
+| Expansion | Multi-region / vertical over 18–36 months |
+
+**Targets:** 3–5× revenue lift, 70–80% manual work reduction, measurable ROI from day one.
+
+## Design principles (non-negotiable)
+
+1. **Value-first** — Every feature ties to a measurable customer or ops outcome.
+2. **Compliance-by-design** — Approvals, audit trails, data minimization; not bolt-on.
+3. **Self-evolving** — Self-improvement loop + experiments behind flags (see OpenClaw flows).
+4. **Complexity hidden, simplicity exposed** — Rich orchestration; simple UX (chat + dashboards).
+5. **Measurable everything** — Executive ROI, per-tenant LLM cost where enabled, SLOs.
+6. **Zero-trust between tenants** — Strict isolation; sensitive actions behind hooks/approvals.
+
+## Roadmap phases (0–36 months)
+
+| Phase | Window | Focus |
+|-------|--------|--------|
+| 0 — Foundation | 0–90 days | Production hardening, health checks, pilot, unified GTM assets |
+| 1 — MVP revenue | Mo 2–3 | Deeper qualification, proposals, baseline ROI, pilot→paid |
+| 2 — Scale | Mo 4–9 | Enterprise patterns, voice GA path, predictive layer, API surface |
+| 3 — Dominate | Mo 10–36 | Regions, partnerships, vertical OS variants |
+
+Arabic narrative + detail: `docs/ULTIMATE_EXECUTION_MASTER_AR.md`.
+
+# Core Stack (non-negotiable)
+
+| Layer | Technology |
+|-------|------------|
+| Planning | **LangGraph** — graphs, subgraphs, checkpointing, time travel |
+| Durable runtime | **OpenClaw 2026.4.2** — Durable Task Flow, revision tracking, child tasks, `before_agent_reply`, plugin boundaries |
+| Memory | **Mem0** (scoped per agent/deal/customer/tenant) + **Letta** (tiered) + Claude 3-layer self-healing — persisted in flow state |
+| LLM | **Claude Opus 4.6** primary; intelligent routing to GPT / Kimi / Copilot-class models |
+| Experience UI | **Dealix Next.js** frontend — dashboards, landing, analytics; calls FastAPI (`/api/v1/*`) |
+| CRM / Agents | **Salesforce Agentforce 360** — native + A2A + Voice |
+| Channels | WhatsApp Cloud, Email (Resend/SendGrid), Stripe, Apollo, Gong, LinkedIn, Slack |
+| Governance | Zero-trust AI, SOC2 posture, immutable audit logs, explainability, **HITL** for pricing/closing/contracts |
+| Multi-tenant | White-label SaaS, strict tenant isolation, plugin marketplace |
+
+*Onyx and similar external RAG/chat stacks are **out of scope** — not used and must not be added. Product RAG is **in-app** only: PostgreSQL + pgvector, `KnowledgeService`, sector assets, and orchestrator-grounded context.*
+
+# Five Architecture Layers
+
+1. **Experience** — Dealix web app, dashboards, mobile field API  
+2. **Orchestration** — LangGraph supervisors, OpenClaw durable flows  
+3. **Intelligence** — 40+ agents (swarm + reflection), signal selling, predictive revenue  
+4. **Data & Memory** — CRM grounding, Mem0/Letta, audit store  
+5. **Integration** — OpenClaw plugins (Salesforce, WhatsApp, Stripe, Voice, Contracts)
+
+# Self-Improvement Loop v2.0 (6 phases)
+
+Observation → Analysis → Hypothesis → Shadow experiments → Canary + revision tracking → Meta-learning.  
+Feeds: app analytics, LangSmith traces (when enabled), OpenClaw outcomes — improves prompts, tools, memory schemas, agent behavior.
+
+# Salesforce (grounding)
+
+- CRM data via Agentforce / REST APIs; permission-aware access in production.  
+- Qualification, Proposal, Support, and Analytics agents consume grounded CRM context.
+
+# Repository mapping
+
+- `openclaw/openclaw-config.yaml` — durable flows + hooks + plugins  
+- `backend/app/openclaw/` — runtime helpers, hooks, plugins  
+- `backend/app/api/v1/autonomous_foundation.py` — autonomous flows, go-live gate, connectivity tests  
+- `backend/app/services/knowledge_service.py` — in-app RAG (pgvector / sector assets)  
+- `backend/app/ai/orchestrator.py` — lead/message routing + knowledge context  
+- `backend/app/agents/` — LangGraph / master agent wiring (evolves per release)  
+- `docs/ULTIMATE_EXECUTION_MASTER_AR.md` — full Arabic execution narrative aligned to this blueprint  
+- `frontend/` — Dealix UI (Next.js)
+
+# Agent / crew map (conceptual — implementation in `backend/app/agents`, flows, services)
+
+Prospecting → Qualification → Proposal → Negotiation → Closing → Post-sale/Support. Each stage may map to supervisors + tool plugins (Salesforce, WhatsApp, Stripe, voice, contracts) within OpenClaw boundaries — **no external RAG SaaS as the system of record**; use native knowledge + CRM grounding.
+
+*This file is the single source of truth for architecture intent; implementation evolves in code beside it.*
