@@ -12,6 +12,7 @@ celery_app = Celery(
         "app.workers.message_tasks",
         "app.workers.notification_tasks",
         "app.workers.affiliate_tasks",
+        "app.workers.sequence_tasks",
     ],
 )
 
@@ -61,5 +62,23 @@ celery_app.conf.beat_schedule = {
     "process-auto-bookings": {
         "task": "app.workers.affiliate_tasks.process_auto_bookings",
         "schedule": 900.0,  # every 15 minutes
+    },
+    # Sequence automation
+    "process-sequence-steps": {
+        "task": "app.workers.sequence_tasks.process_pending_sequences",
+        "schedule": 300.0,  # every 5 minutes
+    },
+    "cleanup-expired-sequences": {
+        "task": "app.workers.sequence_tasks.cleanup_expired_sequences",
+        "schedule": 86400.0,  # daily
+    },
+    # Autopilot tasks
+    "autopilot-pipeline-check": {
+        "task": "app.workers.sequence_tasks.autopilot_pipeline_check",
+        "schedule": 7200.0,  # every 2 hours
+    },
+    "autopilot-lead-scoring": {
+        "task": "app.workers.sequence_tasks.autopilot_lead_scoring",
+        "schedule": 21600.0,  # every 6 hours
     },
 }

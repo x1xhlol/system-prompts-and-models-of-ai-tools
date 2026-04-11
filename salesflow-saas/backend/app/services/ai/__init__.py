@@ -8,6 +8,7 @@ from app.services.ai.lead_scoring import LeadScoringEngine, LeadScoreResult, Sco
 from app.services.ai.conversation_intelligence import ConversationIntelligence, ConversationInsight
 from app.services.ai.message_writer import MessageWriter, MessageDraft
 from app.services.ai.forecasting import SalesForecastingEngine, ForecastResult
+from app.services.ai.sales_agent import SalesAgent, AgentContext, AgentResponse, ConversationState
 
 __all__ = [
     "ArabicNLPService",
@@ -24,4 +25,8 @@ __all__ = [
     "MessageDraft",
     "SalesForecastingEngine",
     "ForecastResult",
+    "SalesAgent",
+    "AgentContext",
+    "AgentResponse",
+    "ConversationState",
 ]
