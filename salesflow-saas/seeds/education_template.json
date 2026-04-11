@@ -1,0 +1,127 @@
+{
+  "industry": "education",
+  "name": "Education & Training",
+  "name_ar": "تعليم وتدريب",
+  "pipeline_stages": [
+    {"key": "inquiry", "name_en": "Inquiry", "name_ar": "استفسار", "order": 1, "probability": 10},
+    {"key": "consultation", "name_en": "Consultation", "name_ar": "استشارة", "order": 2, "probability": 25},
+    {"key": "registration", "name_en": "Registration", "name_ar": "تسجيل", "order": 3, "probability": 50},
+    {"key": "payment", "name_en": "Payment", "name_ar": "دفع", "order": 4, "probability": 75},
+    {"key": "enrolled", "name_en": "Enrolled", "name_ar": "مسجّل", "order": 5, "probability": 90},
+    {"key": "completed", "name_en": "Completed", "name_ar": "مكتمل", "order": 6, "probability": 100},
+    {"key": "alumni", "name_en": "Alumni", "name_ar": "خريج", "order": 7, "probability": 100}
+  ],
+  "message_templates": [
+    {
+      "name": "welcome",
+      "name_ar": "رسالة ترحيب",
+      "channel": "whatsapp",
+      "trigger": "lead_created",
+      "content_ar": "أهلاً {name}! شكراً لتواصلك مع {company}. عندنا برامج تعليمية وتدريبية متميزة. وش البرنامج أو الدورة اللي تهمك؟",
+      "content_en": "Hello {name}! Thank you for contacting {company}. We offer outstanding educational and training programs. Which program interests you?",
+      "delay_minutes": 0
+    },
+    {
+      "name": "consultation_scheduled",
+      "name_ar": "موعد استشارة",
+      "channel": "whatsapp",
+      "trigger": "stage_change_consultation",
+      "content_ar": "مرحباً {name}، تم حجز جلسة استشارة مجانية لك يوم {date} الساعة {time}. مستشارنا الأكاديمي بيساعدك تختار البرنامج الأنسب لأهدافك.",
+      "content_en": "Hi {name}, your free consultation is scheduled for {date} at {time}. Our academic advisor will help you choose the best program for your goals.",
+      "delay_minutes": 0
+    },
+    {
+      "name": "registration_confirmed",
+      "name_ar": "تأكيد التسجيل",
+      "channel": "whatsapp",
+      "trigger": "stage_change_registration",
+      "content_ar": "مبروك {name}! تم تسجيلك في برنامج {program_name}. تاريخ البدء: {start_date}. بنرسل لك تفاصيل الدخول والمواد قريباً.",
+      "content_en": "Congratulations {name}! You're registered for {program_name}. Start date: {start_date}. We'll send access details and materials soon.",
+      "delay_minutes": 0
+    },
+    {
+      "name": "payment_reminder",
+      "name_ar": "تذكير بالدفع",
+      "channel": "whatsapp",
+      "trigger": "stage_change_payment",
+      "content_ar": "مرحباً {name}، للتأكيد على مقعدك في برنامج {program_name}، يرجى إتمام الدفع. المبلغ: {amount} ريال. رابط الدفع: {payment_link}. عندنا خيار تقسيط بدون فوائد.",
+      "content_en": "Hi {name}, to confirm your spot in {program_name}, please complete payment. Amount: {amount} SAR. Payment link: {payment_link}.",
+      "delay_minutes": 0
+    },
+    {
+      "name": "no_response_followup",
+      "name_ar": "متابعة عدم الرد",
+      "channel": "whatsapp",
+      "trigger": "no_response",
+      "content_ar": "مرحباً {name}، لاحظنا اهتمامك ببرامجنا التدريبية. المقاعد محدودة للدفعة القادمة. تبي نحجز لك مقعد أو تحتاج معلومات أكثر؟",
+      "content_en": "Hi {name}, we noticed your interest in our programs. Seats are limited for the next cohort. Want to reserve a spot or need more info?",
+      "delay_minutes": 2880
+    },
+    {
+      "name": "completion_certificate",
+      "name_ar": "شهادة إتمام",
+      "channel": "whatsapp",
+      "trigger": "stage_change_completed",
+      "content_ar": "مبروك {name}! أتممت برنامج {program_name} بنجاح. شهادتك جاهزة للتحميل. نفتخر فيك! تبي تطّلع على برامجنا المتقدمة؟",
+      "content_en": "Congratulations {name}! You've completed {program_name} successfully. Your certificate is ready for download. Interested in advanced programs?",
+      "delay_minutes": 0
+    }
+  ],
+  "proposal_templates": [
+    {
+      "name": "training_program",
+      "name_ar": "عرض برنامج تدريبي",
+      "sections": [
+        {"title_ar": "نبذة عن البرنامج", "title_en": "Program Overview"},
+        {"title_ar": "المحاور والمحتوى", "title_en": "Curriculum & Content"},
+        {"title_ar": "مدة البرنامج والجدول", "title_en": "Duration & Schedule"},
+        {"title_ar": "المدربون والمؤهلات", "title_en": "Instructors & Qualifications"},
+        {"title_ar": "الرسوم وخيارات الدفع", "title_en": "Fees & Payment Options"},
+        {"title_ar": "الشهادات المعتمدة", "title_en": "Accredited Certificates"}
+      ]
+    },
+    {
+      "name": "corporate_training",
+      "name_ar": "عرض تدريب مؤسسي",
+      "sections": [
+        {"title_ar": "تحليل الاحتياجات التدريبية", "title_en": "Training Needs Analysis"},
+        {"title_ar": "البرنامج المخصص", "title_en": "Customized Program"},
+        {"title_ar": "منهجية التدريب", "title_en": "Training Methodology"},
+        {"title_ar": "التسعير المؤسسي", "title_en": "Corporate Pricing"},
+        {"title_ar": "قياس الأثر التدريبي", "title_en": "Training Impact Measurement"},
+        {"title_ar": "الشروط والأحكام", "title_en": "Terms & Conditions"}
+      ]
+    }
+  ],
+  "workflow_templates": [
+    {
+      "name": "new_student_flow",
+      "name_ar": "تدفق طالب جديد",
+      "trigger": "lead_created",
+      "actions": [
+        {"type": "send_message", "template": "welcome", "delay_minutes": 0},
+        {"type": "create_task", "subject": "اتصل بالمتقدم واعرف اهتماماته التعليمية", "delay_minutes": 30},
+        {"type": "send_message", "template": "no_response_followup", "delay_minutes": 2880, "condition": "no_response"}
+      ]
+    },
+    {
+      "name": "registration_flow",
+      "name_ar": "تدفق التسجيل",
+      "trigger": "stage_change_registration",
+      "actions": [
+        {"type": "send_message", "template": "registration_confirmed", "delay_minutes": 0},
+        {"type": "send_message", "template": "payment_reminder", "delay_minutes": 1440},
+        {"type": "create_task", "subject": "متابعة الدفع مع المتدرب", "delay_minutes": 2880}
+      ]
+    },
+    {
+      "name": "alumni_engagement_flow",
+      "name_ar": "تدفق الخريجين",
+      "trigger": "stage_change_completed",
+      "actions": [
+        {"type": "send_message", "template": "completion_certificate", "delay_minutes": 0},
+        {"type": "create_task", "subject": "إرسال استبيان رضا المتدرب", "delay_minutes": 1440}
+      ]
+    }
+  ]
+}
