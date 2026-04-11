@@ -16,6 +16,7 @@ from app.api.v1 import lead_prospector as prospector_router
 from app.api.v1 import pipeline as pipeline_router
 from app.api.v1 import agent_system as agent_system_router
 from app.api.v1 import autonomous_foundation as autonomous_foundation_router
+from app.api.v1 import hermes as hermes_router
 from app.api.v1 import marketing_hub as marketing_hub_router
 from app.api.v1 import strategy_summary as strategy_summary_router
 from app.api.v1 import value_proposition as value_proposition_router
@@ -86,3 +87,6 @@ api_router.include_router(pipeline_router.router)
 # ── 22-Agent AI System — Full Empire Control ─────────────────
 api_router.include_router(agent_system_router.router)
 api_router.include_router(autonomous_foundation_router.router)
+
+# ── Hermes Fusion — Orchestration Layer ──────────────────────
+api_router.include_router(hermes_router.router)

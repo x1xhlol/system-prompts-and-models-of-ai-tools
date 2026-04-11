@@ -1,17 +1,27 @@
 """
-Observability Service — Dealix AI Revenue OS
-Cost tracking, workflow metrics, health monitoring, and Arabic executive summaries.
+Observability Service -- Dealix AI Revenue OS -- خدمة المراقبة
+Track cost, performance, and health across all agent workflows.
+Anomaly detection, executive summaries in Arabic.
 """
+from __future__ import annotations
+
 import logging
-from datetime import datetime, timezone, timedelta
-from typing import Optional
+import statistics
+from collections import defaultdict
+from datetime import datetime, timedelta, timezone
+from typing import Any, Optional
 
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
 
 
+# ---------------------------------------------------------------------------
+# Models
+# ---------------------------------------------------------------------------
+
 class WorkflowMetric(BaseModel):
+    """Single workflow execution metric."""
     workflow_name: str
     profile_id: str
     backend: str
@@ -23,170 +33,313 @@ class WorkflowMetric(BaseModel):
     error: Optional[str] = None
 
 
+class AnomalyAlert(BaseModel):
+    """Detected anomaly."""
+    id: str = ""
+    anomaly_type: str  # cost_spike, failure_spike, latency_spike, regression
+    description: str
+    description_ar: str
+    severity: str = "medium"  # critical, high, medium, low
+    metric_name: str = ""
+    current_value: float = 0.0
+    baseline_value: float = 0.0
+    deviation_pct: float = 0.0
+    detected_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+
+# ---------------------------------------------------------------------------
+# Service
+# ---------------------------------------------------------------------------
+
 class ObservabilityService:
     """Track cost, performance, and health across all agent workflows."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._metrics: list[WorkflowMetric] = []
-        self._max_metrics = 50000
+        self._max_metrics = 50_000
+        self._anomalies: list[AnomalyAlert] = []
+        self._max_anomalies = 1_000
+        logger.info("خدمة المراقبة: تم التهيئة")
+
+    # -- Recording ---------------------------------------------------------
 
     async def record_workflow(self, metric: WorkflowMetric) -> None:
+        """Store a workflow execution metric."""
         self._metrics.append(metric)
         if len(self._metrics) > self._max_metrics:
             self._metrics = self._metrics[-self._max_metrics:]
         logger.debug(
-            f"Recorded: {metric.workflow_name} "
-            f"cost=${metric.estimated_cost_usd:.4f} "
-            f"{'OK' if metric.success else 'FAIL'}"
+            "[Obs] سجل: %s profile=%s backend=%s %dms $%.4f %s",
+            metric.workflow_name, metric.profile_id, metric.backend,
+            metric.duration_ms, metric.estimated_cost_usd,
+            "OK" if metric.success else "FAIL",
         )
 
-    def _filter_by_period(
-        self, period: str, metrics: list[WorkflowMetric] = None
-    ) -> list[WorkflowMetric]:
-        source = metrics or self._metrics
-        now = datetime.now(timezone.utc)
-        if period == "hourly":
-            cutoff = now - timedelta(hours=1)
-        elif period == "daily":
-            cutoff = now - timedelta(days=1)
-        elif period == "weekly":
-            cutoff = now - timedelta(weeks=1)
-        elif period == "monthly":
-            cutoff = now - timedelta(days=30)
-        else:
-            cutoff = now - timedelta(days=1)
-        return [m for m in source if m.started_at >= cutoff]
+    # -- Cost report -------------------------------------------------------
 
     async def get_cost_report(
-        self, period: str = "daily", profile: str = None
-    ) -> dict:
-        filtered = self._filter_by_period(period)
-        if profile:
-            filtered = [m for m in filtered if m.profile_id == profile]
+        self, period: str = "daily", profile: Optional[str] = None,
+    ) -> dict[str, Any]:
+        """Total cost, cost by profile, cost by backend, cost by workflow."""
+        cutoff = self._period_cutoff(period)
+        filtered = [
+            m for m in self._metrics
+            if m.started_at >= cutoff and (profile is None or m.profile_id == profile)
+        ]
 
-        total_cost = sum(m.estimated_cost_usd for m in filtered)
-        by_profile: dict[str, float] = {}
-        by_backend: dict[str, float] = {}
-        by_workflow: dict[str, float] = {}
+        total = sum(m.estimated_cost_usd for m in filtered)
+        by_profile: dict[str, float] = defaultdict(float)
+        by_backend: dict[str, float] = defaultdict(float)
+        by_workflow: dict[str, float] = defaultdict(float)
 
         for m in filtered:
-            by_profile[m.profile_id] = by_profile.get(m.profile_id, 0) + m.estimated_cost_usd
-            by_backend[m.backend] = by_backend.get(m.backend, 0) + m.estimated_cost_usd
-            by_workflow[m.workflow_name] = by_workflow.get(m.workflow_name, 0) + m.estimated_cost_usd
+            by_profile[m.profile_id] += m.estimated_cost_usd
+            by_backend[m.backend] += m.estimated_cost_usd
+            by_workflow[m.workflow_name] += m.estimated_cost_usd
 
-        top_expensive = sorted(by_workflow.items(), key=lambda x: x[1], reverse=True)[:5]
+        # Sort by cost descending
+        top_workflows = sorted(by_workflow.items(), key=lambda x: -x[1])[:10]
 
         return {
             "period": period,
-            "total_cost_usd": round(total_cost, 4),
-            "total_workflows": len(filtered),
+            "total_usd": round(total, 4),
             "by_profile": {k: round(v, 4) for k, v in by_profile.items()},
             "by_backend": {k: round(v, 4) for k, v in by_backend.items()},
-            "top_expensive": [{"name": k, "cost": round(v, 4)} for k, v in top_expensive],
+            "top_workflows": [{"name": n, "cost_usd": round(c, 4)} for n, c in top_workflows],
+            "total_executions": len(filtered),
+            "message_ar": f"التكلفة الإجمالية ({period}): ${total:.2f} عبر {len(filtered)} عملية",
         }
 
-    async def get_performance_report(self, period: str = "daily") -> dict:
-        filtered = self._filter_by_period(period)
+    # -- Performance report ------------------------------------------------
+
+    async def get_performance_report(self, period: str = "daily") -> dict[str, Any]:
+        """Average duration, P95 duration, success rate, error rate."""
+        cutoff = self._period_cutoff(period)
+        filtered = [m for m in self._metrics if m.started_at >= cutoff]
+
         if not filtered:
-            return {"period": period, "total": 0}
+            return {
+                "period": period, "total_executions": 0,
+                "message_ar": "لا توجد بيانات لهذه الفترة",
+            }
 
         durations = [m.duration_ms for m in filtered]
-        durations.sort()
-        total = len(durations)
-        success_count = sum(1 for m in filtered if m.success)
+        successes = sum(1 for m in filtered if m.success)
+        failures = len(filtered) - successes
 
-        p95_idx = min(int(total * 0.95), total - 1)
-        errors = [m for m in filtered if not m.success]
+        avg_ms = statistics.mean(durations)
+        p95_ms = sorted(durations)[int(len(durations) * 0.95)] if len(durations) >= 20 else max(durations)
+        success_rate = successes / len(filtered)
+
+        # Slowest workflows
+        by_wf: dict[str, list[int]] = defaultdict(list)
+        for m in filtered:
+            by_wf[m.workflow_name].append(m.duration_ms)
+        slowest = sorted(
+            [(wf, statistics.mean(ds)) for wf, ds in by_wf.items()],
+            key=lambda x: -x[1],
+        )[:5]
+
+        # Most expensive
+        cost_wf: dict[str, float] = defaultdict(float)
+        for m in filtered:
+            cost_wf[m.workflow_name] += m.estimated_cost_usd
+        most_expensive = sorted(cost_wf.items(), key=lambda x: -x[1])[:5]
 
         return {
             "period": period,
-            "total_workflows": total,
-            "success_rate": round(success_count / total * 100, 1) if total else 0,
-            "avg_duration_ms": round(sum(durations) / total) if total else 0,
-            "p95_duration_ms": durations[p95_idx] if durations else 0,
-            "error_count": len(errors),
-            "error_rate": round(len(errors) / total * 100, 1) if total else 0,
-            "recent_errors": [
-                {"workflow": e.workflow_name, "error": e.error, "at": e.started_at.isoformat()}
-                for e in errors[-5:]
-            ],
+            "total_executions": len(filtered),
+            "avg_duration_ms": round(avg_ms, 2),
+            "p95_duration_ms": p95_ms,
+            "success_rate": round(success_rate, 4),
+            "error_rate": round(1 - success_rate, 4),
+            "total_successes": successes,
+            "total_failures": failures,
+            "slowest_workflows": [{"name": n, "avg_ms": round(d, 2)} for n, d in slowest],
+            "most_expensive": [{"name": n, "cost_usd": round(c, 4)} for n, c in most_expensive],
+            "message_ar": (
+                f"أداء ({period}): {len(filtered)} عملية، "
+                f"متوسط {avg_ms:.0f}ms، نجاح {success_rate:.0%}، فشل {failures}"
+            ),
         }
 
-    async def get_health_report(self) -> dict:
-        daily = self._filter_by_period("daily")
-        total = len(daily)
-        success = sum(1 for m in daily if m.success)
+    # -- Health report -----------------------------------------------------
 
-        backends_used = set(m.backend for m in daily)
+    async def get_health_report(self) -> dict[str, Any]:
+        """Backend health, skill health, memory health, knowledge health, trust health."""
+        recent = [m for m in self._metrics if m.started_at >= self._period_cutoff("daily")]
+
+        # Backend health
+        backend_calls: dict[str, dict[str, int]] = defaultdict(lambda: {"ok": 0, "fail": 0})
+        for m in recent:
+            backend_calls[m.backend]["ok" if m.success else "fail"] += 1
         backend_health = {}
-        for b in backends_used:
-            b_metrics = [m for m in daily if m.backend == b]
-            b_success = sum(1 for m in b_metrics if m.success)
+        for b, counts in backend_calls.items():
+            total = counts["ok"] + counts["fail"]
+            rate = counts["ok"] / total if total else 1.0
             backend_health[b] = {
-                "total": len(b_metrics),
-                "success_rate": round(b_success / len(b_metrics) * 100, 1) if b_metrics else 0,
-                "avg_duration_ms": round(
-                    sum(m.duration_ms for m in b_metrics) / len(b_metrics)
-                ) if b_metrics else 0,
+                "total": total, "success_rate": round(rate, 4),
+                "healthy": rate >= 0.7 or total < 5,
             }
 
+        # Skill health (by workflow)
+        skill_calls: dict[str, dict[str, int]] = defaultdict(lambda: {"ok": 0, "fail": 0})
+        for m in recent:
+            skill_calls[m.workflow_name]["ok" if m.success else "fail"] += 1
+        skill_health = {}
+        for s, counts in skill_calls.items():
+            total = counts["ok"] + counts["fail"]
+            rate = counts["ok"] / total if total else 1.0
+            skill_health[s] = {"total": total, "success_rate": round(rate, 4)}
+
+        # Overall
+        total = len(recent)
+        overall_ok = sum(1 for m in recent if m.success)
+        overall_rate = overall_ok / total if total else 1.0
+        healthy = overall_rate >= 0.8
+
         return {
-            "overall_health": "healthy" if (total == 0 or success / total > 0.9) else "degraded",
-            "workflows_today": total,
-            "success_rate": round(success / total * 100, 1) if total else 100,
-            "total_cost_today_usd": round(sum(m.estimated_cost_usd for m in daily), 4),
-            "backends": backend_health,
+            "overall_healthy": healthy,
+            "overall_success_rate": round(overall_rate, 4),
+            "total_today": total,
+            "backend_health": backend_health,
+            "skill_health": skill_health,
+            "anomalies_today": len([
+                a for a in self._anomalies
+                if a.detected_at >= self._period_cutoff("daily")
+            ]),
+            "message_ar": (
+                f"صحة النظام: {'سليم' if healthy else 'يحتاج انتباه'} -- "
+                f"نجاح {overall_rate:.0%}، {total} عملية اليوم"
+            ),
         }
 
-    async def get_executive_summary(self, period: str = "weekly") -> str:
-        filtered = self._filter_by_period(period)
-        total = len(filtered)
-        success = sum(1 for m in filtered if m.success)
-        cost = sum(m.estimated_cost_usd for m in filtered)
-        success_rate = round(success / total * 100) if total else 100
+    # -- Executive summary -------------------------------------------------
 
-        period_ar = {"daily": "اليوم", "weekly": "هذا الأسبوع", "monthly": "هذا الشهر"}.get(period, period)
+    async def get_executive_summary(self, period: str = "weekly") -> str:
+        """Arabic executive summary for leadership."""
+        cutoff = self._period_cutoff(period)
+        filtered = [m for m in self._metrics if m.started_at >= cutoff]
+
+        total = len(filtered)
+        successes = sum(1 for m in filtered if m.success)
+        rate = successes / total if total else 0
+        cost = sum(m.estimated_cost_usd for m in filtered)
+        anomalies = [a for a in self._anomalies if a.detected_at >= cutoff]
+        critical = sum(1 for a in anomalies if a.severity == "critical")
+
+        period_ar = {
+            "daily": "اليوم", "weekly": "هذا الأسبوع",
+            "monthly": "هذا الشهر",
+        }.get(period, period)
 
         summary = (
-            f"📊 ملخص {period_ar}:\n"
-            f"• {total} مهمة منفذة\n"
-            f"• {success_rate}% نسبة النجاح\n"
-            f"• ${cost:.2f} التكلفة الإجمالية\n"
+            f"{period_ar}: {total} مهمة منفذة، "
+            f"{rate:.0%} نجاح، "
+            f"تكلفة ${cost:.2f}، "
+            f"{len(anomalies)} تنبيه"
         )
-
-        errors = [m for m in filtered if not m.success]
-        if errors:
-            summary += f"• {len(errors)} خطأ يحتاج مراجعة\n"
+        if critical:
+            summary += f"، {critical} مشاكل حرجة تحتاج تدخل فوري"
         else:
-            summary += "• لا أخطاء حرجة ✅\n"
+            summary += "، 0 مشاكل حرجة"
 
         return summary
 
-    async def detect_anomalies(self) -> list[dict]:
-        anomalies = []
-        hourly = self._filter_by_period("hourly")
-        daily = self._filter_by_period("daily")
+    # -- Anomaly detection -------------------------------------------------
 
-        if hourly:
-            hourly_cost = sum(m.estimated_cost_usd for m in hourly)
-            if hourly_cost > 5.0:
-                anomalies.append({
-                    "type": "cost_spike",
-                    "severity": "high",
-                    "message": f"تكلفة الساعة الأخيرة ${hourly_cost:.2f} — أعلى من الحد الطبيعي",
-                    "value": hourly_cost,
-                })
+    async def detect_anomalies(self) -> list[AnomalyAlert]:
+        """Sudden cost spikes, unusual failure patterns, backend degradation."""
+        alerts: list[AnomalyAlert] = []
+        now = datetime.now(timezone.utc)
+        today = [m for m in self._metrics if m.started_at >= now - timedelta(hours=24)]
+        prev_week = [
+            m for m in self._metrics
+            if now - timedelta(days=8) <= m.started_at < now - timedelta(days=1)
+        ]
 
-            hourly_errors = sum(1 for m in hourly if not m.success)
-            if len(hourly) > 5 and hourly_errors / len(hourly) > 0.3:
-                anomalies.append({
-                    "type": "error_spike",
-                    "severity": "critical",
-                    "message": f"معدل أخطاء مرتفع: {hourly_errors}/{len(hourly)} في الساعة الأخيرة",
-                    "value": hourly_errors,
-                })
+        if not today or not prev_week:
+            return alerts
 
-        return anomalies
+        # Cost spike detection
+        today_cost = sum(m.estimated_cost_usd for m in today)
+        avg_daily_cost = sum(m.estimated_cost_usd for m in prev_week) / 7
+        if avg_daily_cost > 0 and today_cost > avg_daily_cost * 2:
+            deviation = ((today_cost - avg_daily_cost) / avg_daily_cost) * 100
+            alerts.append(AnomalyAlert(
+                id=f"cost-{now.strftime('%Y%m%d')}",
+                anomaly_type="cost_spike",
+                description=f"Today's cost ${today_cost:.2f} is {deviation:.0f}% above daily avg ${avg_daily_cost:.2f}",
+                description_ar=f"تكلفة اليوم ${today_cost:.2f} أعلى بنسبة {deviation:.0f}% من المتوسط ${avg_daily_cost:.2f}",
+                severity="high" if deviation > 200 else "medium",
+                metric_name="daily_cost_usd",
+                current_value=today_cost,
+                baseline_value=avg_daily_cost,
+                deviation_pct=round(deviation, 2),
+            ))
+
+        # Failure rate spike
+        today_fail_rate = sum(1 for m in today if not m.success) / max(len(today), 1)
+        prev_fail_rate = sum(1 for m in prev_week if not m.success) / max(len(prev_week), 1)
+        if today_fail_rate > 0.15 and today_fail_rate > prev_fail_rate * 2:
+            alerts.append(AnomalyAlert(
+                id=f"fail-{now.strftime('%Y%m%d')}",
+                anomaly_type="failure_spike",
+                description=f"Failure rate {today_fail_rate:.1%} vs baseline {prev_fail_rate:.1%}",
+                description_ar=f"معدل الفشل {today_fail_rate:.1%} مقابل الخط الأساسي {prev_fail_rate:.1%}",
+                severity="critical" if today_fail_rate > 0.3 else "high",
+                metric_name="failure_rate",
+                current_value=today_fail_rate,
+                baseline_value=prev_fail_rate,
+                deviation_pct=round(((today_fail_rate - prev_fail_rate) / max(prev_fail_rate, 0.01)) * 100, 2),
+            ))
+
+        # Latency spike (per backend)
+        for backend in {"claude", "openclaude", "goose", "internal"}:
+            today_b = [m.duration_ms for m in today if m.backend == backend]
+            prev_b = [m.duration_ms for m in prev_week if m.backend == backend]
+            if len(today_b) >= 5 and len(prev_b) >= 5:
+                today_avg = statistics.mean(today_b)
+                prev_avg = statistics.mean(prev_b)
+                if prev_avg > 0 and today_avg > prev_avg * 3:
+                    deviation = ((today_avg - prev_avg) / prev_avg) * 100
+                    alerts.append(AnomalyAlert(
+                        id=f"latency-{backend}-{now.strftime('%Y%m%d')}",
+                        anomaly_type="latency_spike",
+                        description=f"{backend} latency {today_avg:.0f}ms vs baseline {prev_avg:.0f}ms",
+                        description_ar=f"زمن استجابة {backend}: {today_avg:.0f}ms مقابل {prev_avg:.0f}ms",
+                        severity="high",
+                        metric_name=f"latency_{backend}",
+                        current_value=today_avg,
+                        baseline_value=prev_avg,
+                        deviation_pct=round(deviation, 2),
+                    ))
+
+        self._anomalies.extend(alerts)
+        if len(self._anomalies) > self._max_anomalies:
+            self._anomalies = self._anomalies[-self._max_anomalies:]
+
+        if alerts:
+            logger.warning("[Obs] %d anomalies detected", len(alerts))
+
+        return alerts
+
+    # -- Helpers -----------------------------------------------------------
+
+    @staticmethod
+    def _period_cutoff(period: str) -> datetime:
+        now = datetime.now(timezone.utc)
+        if period == "daily":
+            return now - timedelta(hours=24)
+        if period == "weekly":
+            return now - timedelta(days=7)
+        if period == "monthly":
+            return now - timedelta(days=30)
+        return now - timedelta(hours=24)
 
 
-observability = ObservabilityService()
+# ---------------------------------------------------------------------------
+# Module-level singleton
+# ---------------------------------------------------------------------------
+
+observability_service = ObservabilityService()
