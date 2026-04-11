@@ -1,5 +1,5 @@
-import { DealixPublicSite } from "../components/dealix/dealix-public-site";
+import { PremiumLanding } from "../components/dealix/premium-landing";
 
 export default function HomePage() {
-  return <DealixPublicSite />;
+  return <PremiumLanding />;
 }

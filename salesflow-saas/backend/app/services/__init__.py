@@ -31,7 +31,22 @@ from app.services.memory_engine import (
 from app.services.session_continuity import SessionContinuity, session_continuity
 from app.services.strategic_deals import (
     CompanyProfiler, DealMatcher, DealNegotiator, NegotiationStrategy, DealAgent,
+    CompanyTwin, CompanyTwinBuilder,
+    DealRoom, DealRoomService,
+    DealTaxonomyService, DEAL_TAXONOMY,
+    OperatingMode, ModeEnforcer, MODE_POLICIES,
+    ChannelRules, ConsentLedger,
 )
+from app.services.hermes_orchestrator import hermes_orchestrator
+from app.services.execution_router import execution_router
+from app.services.shannon_security import shannon_security
+from app.services.observability import observability_service
+from app.services.self_improvement import self_improvement_engine
+from app.services.feature_flags import feature_flags
+from app.services.local_inference import local_inference
+from app.services.gstack_discipline import gstack
+from app.services.skill_governance import skill_governance
+from app.services.arabic_ops import arabic_ops
 
 __all__ = [
     "AuthService",
@@ -73,4 +88,25 @@ __all__ = [
     "DealNegotiator",
     "NegotiationStrategy",
     "DealAgent",
+    "CompanyTwin",
+    "CompanyTwinBuilder",
+    "DealRoom",
+    "DealRoomService",
+    "DealTaxonomyService",
+    "DEAL_TAXONOMY",
+    "OperatingMode",
+    "ModeEnforcer",
+    "MODE_POLICIES",
+    "ChannelRules",
+    "ConsentLedger",
+    "hermes_orchestrator",
+    "execution_router",
+    "shannon_security",
+    "observability_service",
+    "self_improvement_engine",
+    "feature_flags",
+    "local_inference",
+    "gstack",
+    "skill_governance",
+    "arabic_ops",
 ]
