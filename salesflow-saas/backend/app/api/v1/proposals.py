@@ -58,16 +58,32 @@ class AcceptRequest(BaseModel):
     notes: str = ""
 
 
-class AIProposalRequest(BaseModel):
-    deal_title: str
-    client_name: str
-    client_company: str = ""
-    industry: str = "services"
-    deal_value: float = 0.0
-    currency: str = "SAR"
-    requirements: str = ""
-    language: str = "ar"
-    extra_context: str = ""
+# ── Helpers ──────────────────────────────────────
+
+async def _fetch_proposal(db: AsyncSession, proposal_id: UUID, tenant_id) -> Proposal:
+    result = await db.execute(
+        select(Proposal).where(Proposal.id == proposal_id, Proposal.tenant_id == tenant_id)
+    )
+    p = result.scalar_one_or_none()
+    if not p:
+        raise HTTPException(status_code=404, detail="عرض السعر غير موجود")
+    return p
+
+
+def _proposal_dict(p: Proposal) -> dict:
+    return {
+        "id": str(p.id), "tenant_id": str(p.tenant_id),
+        "deal_id": str(p.deal_id) if p.deal_id else None,
+        "lead_id": str(p.lead_id) if p.lead_id else None,
+        "title": p.title, "content": p.content,
+        "total_amount": str(p.total_amount) if p.total_amount else "0",
+        "currency": p.currency, "status": p.status,
+        "valid_until": p.valid_until.isoformat() if p.valid_until else None,
+        "sent_at": p.sent_at.isoformat() if p.sent_at else None,
+        "viewed_at": p.viewed_at.isoformat() if p.viewed_at else None,
+        "created_at": p.created_at.isoformat() if p.created_at else None,
+        "updated_at": p.updated_at.isoformat() if p.updated_at else None,
+    }
 
 
 # ── Endpoints ────────────────────────────────────
@@ -114,19 +130,7 @@ async def create_proposal(
 ):
     """Create a new proposal/quote."""
     engine = QuoteEngine(db)
-    quote_data = QuoteCreate(
-        tenant_id=str(current_user.tenant_id),
-        deal_id=data.deal_id,
-        lead_id=data.lead_id,
-        title=data.title,
-        currency=data.currency,
-        industry=data.industry,
-        validity_days=data.validity_days,
-        vat_registration_number=data.vat_registration_number,
-        client_name=data.client_name,
-        client_company=data.client_company,
-        notes_ar=data.notes_ar,
-    )
+    quote_data = QuoteCreate(tenant_id=str(current_user.tenant_id), **data.model_dump())
     return await engine.create_quote(quote_data)
 
 
@@ -176,15 +180,7 @@ async def get_proposal(
     db: AsyncSession = Depends(get_db),
 ):
     """Get full proposal details."""
-    result = await db.execute(
-        select(Proposal).where(
-            Proposal.id == proposal_id,
-            Proposal.tenant_id == current_user.tenant_id,
-        )
-    )
-    proposal = result.scalar_one_or_none()
-    if not proposal:
-        raise HTTPException(status_code=404, detail="عرض السعر غير موجود")
+    proposal = await _fetch_proposal(db, proposal_id, current_user.tenant_id)
     return _proposal_dict(proposal)
 
 
@@ -196,15 +192,7 @@ async def update_proposal(
     db: AsyncSession = Depends(get_db),
 ):
     """Update proposal metadata."""
-    result = await db.execute(
-        select(Proposal).where(
-            Proposal.id == proposal_id,
-            Proposal.tenant_id == current_user.tenant_id,
-        )
-    )
-    proposal = result.scalar_one_or_none()
-    if not proposal:
-        raise HTTPException(status_code=404, detail="عرض السعر غير موجود")
+    proposal = await _fetch_proposal(db, proposal_id, current_user.tenant_id)
 
     if data.title is not None:
         proposal.title = data.title
@@ -268,15 +256,7 @@ async def accept_proposal(
     db: AsyncSession = Depends(get_db),
 ):
     """Client acceptance endpoint."""
-    result = await db.execute(
-        select(Proposal).where(
-            Proposal.id == proposal_id,
-            Proposal.tenant_id == current_user.tenant_id,
-        )
-    )
-    proposal = result.scalar_one_or_none()
-    if not proposal:
-        raise HTTPException(status_code=404, detail="عرض السعر غير موجود")
+    proposal = await _fetch_proposal(db, proposal_id, current_user.tenant_id)
     if proposal.status == QuoteStatus.EXPIRED.value:
         raise HTTPException(status_code=400, detail="عرض السعر منتهي الصلاحية")
 
@@ -300,16 +280,7 @@ async def generate_pdf_data(
     db: AsyncSession = Depends(get_db),
 ):
     """Generate PDF-ready data for a proposal."""
-    result = await db.execute(
-        select(Proposal).where(
-            Proposal.id == proposal_id,
-            Proposal.tenant_id == current_user.tenant_id,
-        )
-    )
-    proposal = result.scalar_one_or_none()
-    if not proposal:
-        raise HTTPException(status_code=404, detail="عرض السعر غير موجود")
-
+    proposal = await _fetch_proposal(db, proposal_id, current_user.tenant_id)
     generator = ProposalGenerator()
     ai_req = ProposalInput(
         deal_title=proposal.title,
@@ -323,24 +294,3 @@ async def generate_pdf_data(
     )
     ai_proposal = await generator.generate_proposal(ai_req)
     return await generator.export_pdf_data(ai_proposal)
-
-
-# ── Helpers ──────────────────────────────────────
-
-def _proposal_dict(p: Proposal) -> dict:
-    return {
-        "id": str(p.id),
-        "tenant_id": str(p.tenant_id),
-        "deal_id": str(p.deal_id) if p.deal_id else None,
-        "lead_id": str(p.lead_id) if p.lead_id else None,
-        "title": p.title,
-        "content": p.content,
-        "total_amount": str(p.total_amount) if p.total_amount else "0",
-        "currency": p.currency,
-        "status": p.status,
-        "valid_until": p.valid_until.isoformat() if p.valid_until else None,
-        "sent_at": p.sent_at.isoformat() if p.sent_at else None,
-        "viewed_at": p.viewed_at.isoformat() if p.viewed_at else None,
-        "created_at": p.created_at.isoformat() if p.created_at else None,
-        "updated_at": p.updated_at.isoformat() if p.updated_at else None,
-    }

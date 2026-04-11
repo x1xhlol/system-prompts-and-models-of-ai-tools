@@ -135,16 +135,11 @@ class QuoteEngine:
 
         content: dict = dict(proposal.content)
         line_items: list = list(content.get("line_items", []))
-
         line_total = item.unit_price * item.quantity
         line_items.append({
-            "id": str(uuid.uuid4())[:8],
-            "description_ar": item.description_ar,
-            "description_en": item.description_en,
-            "quantity": item.quantity,
-            "unit_price": str(item.unit_price),
-            "unit": item.unit,
-            "total": str(line_total),
+            "id": str(uuid.uuid4())[:8], "description_ar": item.description_ar,
+            "description_en": item.description_en, "quantity": item.quantity,
+            "unit_price": str(item.unit_price), "unit": item.unit, "total": str(line_total),
         })
         content["line_items"] = line_items
         proposal.content = content
