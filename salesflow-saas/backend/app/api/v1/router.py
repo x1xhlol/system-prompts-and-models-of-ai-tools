@@ -4,7 +4,9 @@ from app.api.v1 import (
     companies, contacts, calls, meetings, commissions, payouts, disputes,
     guarantees, consents, complaints, knowledge, sectors, presentations,
     supervisor, admin, health, analytics, webhooks, prospecting,
+    inbox, sequences,
 )
+from app.api.v1 import compliance as compliance_router
 from app.api.v1 import agents as agents_router
 from app.api.v1 import intelligence as intelligence_router
 from app.api.v1 import master as master_router
@@ -56,6 +58,9 @@ api_router.include_router(operations_router.router)
 api_router.include_router(analytics.router, tags=["Analytics & AI"])
 api_router.include_router(webhooks.router, tags=["Webhooks"])
 api_router.include_router(prospecting.router, prefix="/prospecting", tags=["Prospecting"])
+api_router.include_router(inbox.router)
+api_router.include_router(sequences.router)
+api_router.include_router(compliance_router.router)
 
 # ── Manus Multi-Agent + Autonomous Intelligence ─────────────
 api_router.include_router(agents_router.router)
