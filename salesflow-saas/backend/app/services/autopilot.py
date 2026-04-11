@@ -107,8 +107,6 @@ class AutopilotResult(BaseModel):
     duration_ms: int = 0
     summary_ar: str = ""
 
-# ── Task handlers ──────────────────────────────────────────────────
-
 def _advance(unit: AutopilotUnit, step: str) -> None:
     unit.current_step = step
     unit.checkpoint["step"] = step
@@ -230,26 +228,16 @@ async def _task_sequence_optimizer(u: AutopilotUnit, p: AutopilotPolicy) -> None
         for s in seqs if s["reply_rate"] < 0.15]
     _advance(u, "propose")
 
-_TASK_HANDLERS: dict[str, Callable] = {
-    "follow_up_dormant_leads": _task_follow_up_dormant_leads,
-    "qualify_new_leads": _task_qualify_new_leads,
-    "pipeline_health_check": _task_pipeline_health_check,
-    "daily_report": _task_daily_report,
-    "sequence_optimizer": _task_sequence_optimizer,
+_TASKS: dict[str, tuple[Callable, str, str]] = {
+    "follow_up_dormant_leads": (_task_follow_up_dormant_leads, "متابعة العملاء الخاملين",
+                                "البحث عن عملاء بدون نشاط 3+ أيام وصياغة رسائل متابعة"),
+    "qualify_new_leads": (_task_qualify_new_leads, "تأهيل العملاء الجدد",
+                          "تقييم وتأهيل العملاء المحتملين الجدد تلقائياً"),
+    "pipeline_health_check": (_task_pipeline_health_check, "فحص صحة خط الأنابيب",
+                               "تحليل خط الأنابيب والكشف عن صفقات معرضة للخطر"),
+    "daily_report": (_task_daily_report, "التقرير اليومي", "إنشاء ملخص يومي لأداء المبيعات"),
+    "sequence_optimizer": (_task_sequence_optimizer, "تحسين التسلسلات", "تحليل أداء التسلسلات واقتراح تحسينات"),
 }
-
-_TASK_META: dict[str, dict[str, str]] = {
-    "follow_up_dormant_leads": {"name_ar": "متابعة العملاء الخاملين",
-                                "desc_ar": "البحث عن عملاء بدون نشاط 3+ أيام وصياغة رسائل متابعة"},
-    "qualify_new_leads": {"name_ar": "تأهيل العملاء الجدد",
-                          "desc_ar": "تقييم وتأهيل العملاء المحتملين الجدد تلقائياً"},
-    "pipeline_health_check": {"name_ar": "فحص صحة خط الأنابيب",
-                               "desc_ar": "تحليل خط الأنابيب والكشف عن صفقات معرضة للخطر"},
-    "daily_report": {"name_ar": "التقرير اليومي", "desc_ar": "إنشاء ملخص يومي لأداء المبيعات"},
-    "sequence_optimizer": {"name_ar": "تحسين التسلسلات", "desc_ar": "تحليل أداء التسلسلات واقتراح تحسينات"},
-}
-
-# ── Runner ─────────────────────────────────────────────────────────
 
 class AutopilotRunner:
     """Runs autopilot tasks safely with budgets, policies, and checkpointing."""
@@ -261,10 +249,11 @@ class AutopilotRunner:
     async def run(self, task_type: str, mode: AutopilotMode, params: dict[str, Any],
                   budget: Optional[AutopilotBudget] = None, tenant_id: str = "",
                   agent_id: str = "") -> AutopilotResult:
-        handler = _TASK_HANDLERS.get(task_type)
-        if not handler:
+        entry = _TASKS.get(task_type)
+        if not entry:
             return AutopilotResult(run_id=str(uuid.uuid4()), task_type=task_type, mode=mode,
                                    status=RunStatus.FAILED, summary_ar=f"مهمة غير معروفة: {task_type}")
+        handler = entry[0]
         unit = AutopilotUnit(
             agent_id=agent_id, tenant_id=tenant_id, task_type=task_type, mode=mode,
             budget=budget or AutopilotBudget(api_calls=self._policy.max_api_calls,
@@ -307,10 +296,10 @@ class AutopilotRunner:
         if not u or u.status not in (RunStatus.PAUSED, RunStatus.AWAITING_APPROVAL):
             return None
         u.status = RunStatus.RUNNING
-        handler = _TASK_HANDLERS.get(u.task_type)
-        if handler:
+        entry = _TASKS.get(u.task_type)
+        if entry:
             try:
-                await handler(u, self._policy)
+                await entry[0](u, self._policy)
                 if u.status == RunStatus.RUNNING:
                     u.status = RunStatus.COMPLETED
             except Exception as exc:
@@ -343,23 +332,17 @@ class AutopilotRunner:
         return [r for r in runs if r.tenant_id == tenant_id] if tenant_id else runs
 
     def list_supported_tasks(self) -> list[dict[str, str]]:
-        return [{"task_type": k, **_TASK_META.get(k, {})} for k in _TASK_HANDLERS]
+        return [{"task_type": k, "name_ar": v[1], "desc_ar": v[2]} for k, v in _TASKS.items()]
 
     @staticmethod
     def _summary(u: AutopilotUnit) -> str:
-        if u.status == RunStatus.FAILED:
-            return f"فشل التنفيذ: {u.error or 'خطأ غير محدد'}"
-        if u.status == RunStatus.ABORTED:
-            return "تم إلغاء المهمة"
-        if u.status == RunStatus.AWAITING_APPROVAL:
-            return f"بانتظار الموافقة على {len(u.pending_approvals)} إجراء"
-        if u.status == RunStatus.PAUSED:
-            return f"متوقف مؤقتاً عند: {u.current_step}"
-        effects = len(u.side_effects)
-        proposed = len(u.result_data.get("proposed_actions", []))
-        parts = [f"اكتمل (ثقة {u.confidence:.0%})"]
-        if effects:
-            parts.append(f"— {effects} إجراء منفّذ")
-        if proposed:
-            parts.append(f"— {proposed} مقترح")
-        return " ".join(parts)
+        _MAP = {RunStatus.FAILED: lambda: f"فشل: {u.error or 'خطأ غير محدد'}",
+                RunStatus.ABORTED: lambda: "تم إلغاء المهمة",
+                RunStatus.AWAITING_APPROVAL: lambda: f"بانتظار الموافقة على {len(u.pending_approvals)} إجراء",
+                RunStatus.PAUSED: lambda: f"متوقف عند: {u.current_step}"}
+        if u.status in _MAP: return _MAP[u.status]()
+        e, p = len(u.side_effects), len(u.result_data.get("proposed_actions", []))
+        s = f"اكتمل (ثقة {u.confidence:.0%})"
+        if e: s += f" — {e} إجراء منفّذ"
+        if p: s += f" — {p} مقترح"
+        return s
