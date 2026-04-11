@@ -53,3 +53,36 @@ pytest tests/test_api/ -v           # API endpoint tests
 - Add new model: create in `models/`, add to `models/__init__.py`, create migration
 - Add new AI feature: create in `services/ai/`, wire to relevant API/worker
 - Add industry template: create JSON in `seeds/`, match existing schema
+
+## gstack Planning Discipline
+
+Before writing code, classify your task:
+
+| Tier | When | What to do |
+|------|------|-----------|
+| **SIMPLE** | 1 file, obvious change | Just do it |
+| **MEDIUM** | Multi-file, needs thought | Read files → 5-line plan → resolve ambiguity → self-review → report |
+| **HEAVY** | Complex, needs specific skill | Load skill → execute workflow → verify → report |
+| **FULL** | End-to-end feature/release | Plan → review → implement → test → ship → report |
+| **PLAN** | Research/architecture only | Plan only, save to `memory/`, no implementation |
+
+**RULE**: Append to this file, never replace existing instructions.
+
+## Hermes Profiles
+
+| Profile | Mission | Scope |
+|---------|---------|-------|
+| `growth` | Customer acquisition | leads, messaging, analytics, content |
+| `sales` | Deal closing | deals, proposals, sequences, WhatsApp |
+| `security` | Platform protection | compliance, audit, Shannon scans |
+| `ops` | Deployment & reliability | workers, monitoring, releases |
+| `knowledge` | Wiki & memory management | brain, wiki, indexes |
+| `founder` | Strategic decisions | everything (highest permissions) |
+| `arabic-ops` | Arabic content & dialect | summarization, dialect detection, RTL |
+
+## Arabic Operations
+
+- Use `arabic_ops.py` for: call notes compression, market research digests, executive briefs
+- Always detect dialect before processing (saudi/gulf/msa)
+- Check for Arabizi and suggest Arabic conversion
+- Check code-switching (Arabic+English mixed) for readability
