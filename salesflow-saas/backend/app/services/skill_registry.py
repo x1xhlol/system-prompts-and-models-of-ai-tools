@@ -1,17 +1,10 @@
-"""
-Skill Registry + Runtime — Dealix AI Revenue OS
-نظام المهارات: تسجيل وإدارة وتنفيذ مهارات CRM بشكل آمن.
-"""
+"""Skill Registry + Runtime — Dealix AI Revenue OS — نظام المهارات"""
 from __future__ import annotations
 
-import asyncio
-import logging
-import os
-import uuid
+import asyncio, logging, os, uuid
 from datetime import datetime, timezone
 from enum import Enum
 from typing import Any, Callable, Coroutine, Optional
-
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
@@ -56,7 +49,6 @@ class SkillDefinition(BaseModel):
     version: str = "1.0.0"
     model_config = {"arbitrary_types_allowed": True}
 
-
 class UserContext(BaseModel):
     user_id: str
     tenant_id: str
@@ -77,13 +69,11 @@ class SkillResult(BaseModel):
     duration_ms: Optional[int] = None
     approval_request_id: Optional[str] = None
 
-
 class SkillHealthReport(BaseModel):
     skill_id: str
     healthy: bool
     checked_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     error: Optional[str] = None
-
 
 class SkillRegistry:
     """Manages all registered domain skills."""
@@ -137,7 +127,6 @@ class SkillRegistry:
 
     def get_handler(self, skill_id: str) -> Optional[Callable]:
         return self._handlers.get(skill_id)
-
 
 class SkillRuntime:
     """Executes skills safely with validation, logging, and approval gating."""
