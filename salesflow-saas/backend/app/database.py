@@ -39,6 +39,10 @@ else:
 
 async_session = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
+# Aliases for backward compatibility with workers
+SessionLocal = async_session
+async_session_factory = async_session
+
 
 class Base(DeclarativeBase):
     pass
