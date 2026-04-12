@@ -24,3 +24,6 @@ export type { EmptyStateProps } from './empty-state';
 
 export { CommandInput } from './command-input';
 export type { CommandInputProps } from './command-input';
+
+export { ToastProvider, useToast } from './toast';
+export type { ToastType, Toast, ToastContextType } from './toast';
