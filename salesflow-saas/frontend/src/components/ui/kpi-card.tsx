@@ -19,7 +19,7 @@ interface KpiCardProps {
 
 function useCountUp(target: number, duration: number = 1200) {
   const [current, setCurrent] = useState(0);
-  const frameRef = useRef<number>();
+  const frameRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const start = performance.now();

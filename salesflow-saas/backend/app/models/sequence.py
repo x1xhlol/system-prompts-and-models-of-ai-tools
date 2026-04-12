@@ -101,7 +101,7 @@ class SequenceEvent(BaseModel):
     channel = Column(String(50), nullable=False)
     status = Column(String(50), nullable=False, default=SequenceEventStatus.SENT.value)
     sent_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
-    metadata = Column(JSONB, default=dict)
+    event_metadata = Column("metadata", JSONB, default=dict)
 
     enrollment = relationship("SequenceEnrollment", back_populates="events")
     step = relationship("SequenceStep", back_populates="events")

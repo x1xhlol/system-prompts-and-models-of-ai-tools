@@ -13,7 +13,7 @@
 - FastAPI 0.115.6 on Python 3.12
 - SQLAlchemy 2.0 async with PostgreSQL 16
 - Celery 5.x with Redis broker
-- JWT authentication (python-jose)
+- JWT authentication (PyJWT)
 - Multi-tenant data isolation via `tenant_id`
 
 ### Frontend (`salesflow-saas/frontend/`)

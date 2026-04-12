@@ -13,7 +13,7 @@ test.describe("Subscriber journey (public shell)", () => {
   test("home shows Dealix value and navigation affordances", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByText("Dealix", { exact: false }).first()).toBeVisible();
-    await expect(page.getByText(/لماذا Dealix/)).toBeVisible();
+    await expect(page.getByText(/هل تواجه هذه التحديات/)).toBeVisible();
   });
 
   test("landing page loads CTA toward app", async ({ page }) => {

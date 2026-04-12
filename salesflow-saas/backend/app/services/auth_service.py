@@ -8,7 +8,8 @@ from datetime import datetime, timedelta, timezone
 from typing import Optional
 from uuid import UUID
 
-from jose import JWTError, jwt
+import jwt
+from jwt.exceptions import PyJWTError
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -75,7 +76,7 @@ class AuthService:
                 token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
             )
             return payload
-        except JWTError:
+        except PyJWTError:
             return None
 
     # ── OTP ───────────────────────────────────────

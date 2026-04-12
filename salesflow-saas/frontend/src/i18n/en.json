@@ -108,6 +108,7 @@
     "guarantee": "Full refund within 30 days if not satisfied",
     "plan": {
       "name": "Dealix All-in-One",
+      "nameAr": "ديلكس الشاملة",
       "priceMonthly": "1,499",
       "priceYearly": "14,999",
       "priceYearlySave": "Save 2 months",

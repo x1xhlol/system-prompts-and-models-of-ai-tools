@@ -216,7 +216,7 @@ class SequenceEngine:
             self.db.add(SequenceEvent(
                 enrollment_id=enrollment.id, step_id=step.id, channel=step.channel,
                 status=SequenceEventStatus.FAILED.value,
-                metadata={"reason": "no_consent", "detail": cr.message},
+                event_metadata={"reason": "no_consent", "detail": cr.message},
             ))
             enrollment.status = SequenceStatus.STOPPED.value
             await self.db.flush()
@@ -226,7 +226,7 @@ class SequenceEngine:
         self.db.add(SequenceEvent(
             enrollment_id=enrollment.id, step_id=step.id, channel=step.channel,
             status=SequenceEventStatus.SENT.value,
-            metadata={"variant": step.variant, "preview": step.template_content[:80]},
+            event_metadata={"variant": step.variant, "preview": step.template_content[:80]},
         ))
         enrollment.current_step = idx + 1
         if enrollment.current_step >= len(steps):

@@ -40,15 +40,18 @@ const stagger = {
 function Section({
   children,
   className = "",
+  id,
 }: {
   children: React.ReactNode;
   className?: string;
+  id?: string;
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
     <motion.section
       ref={ref}
+      id={id}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={stagger}

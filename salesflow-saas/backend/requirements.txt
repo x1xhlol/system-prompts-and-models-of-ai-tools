@@ -1,8 +1,8 @@
 # === Core Framework ===
 fastapi==0.115.5
 uvicorn[standard]==0.32.1
-pydantic==2.9.2
-pydantic-settings==2.6.1
+pydantic>=2.10.0,<3
+pydantic-settings>=2.10.1,<3
 pydantic-extra-types[phonenumbers]>=2.0.0  # Saudi phone validation (+966)
 python-multipart==0.0.12
 
@@ -14,17 +14,17 @@ alembic==1.14.0
 pgvector==0.3.6
 
 # === AI / LLM Providers ===
-litellm>=1.40.0              # Unified LLM provider (Groq/OpenAI/Claude/Gemini) with fallback
+litellm>=1.74.0,<2           # httpx>=0.28 compatible (older litellm capped httpx<0.28)
 instructor>=1.14.0           # Structured LLM outputs via Pydantic models
 groq==0.12.0
-openai==1.57.0
-langchain==0.3.9
+openai>=2.8.0,<3             # litellm 1.8x+ requires openai>=2.8; mem0ai 1.x supports it
+langchain==0.3.28
 langchain-groq==0.2.1
-langchain-community==0.3.9
+langchain-community==0.3.28
 langchain-anthropic==0.2.0
 langgraph==0.2.53
-crewai==0.80.0
-mem0ai==0.1.18
+crewai>=0.95.0,<1          # aligns with litellm/langchain stack; 0.80 pulled incompatible crewai-tools
+mem0ai>=1.0.0,<2             # 0.1.x capped openai<2; incompatible with current litellm
 
 # === Arabic NLP ===
 camel-tools>=1.5.0           # Arabic morphology, NER, dialect detection (NYU Abu Dhabi)
@@ -35,7 +35,7 @@ pywa>=3.0.0                  # Direct WhatsApp Cloud API (async, webhooks, templ
 twilio==9.3.7                # Twilio fallback
 
 # === Communication ===
-httpx==0.27.2
+httpx>=0.28.1,<0.29.0
 resend>=2.0.0                # Transactional email API (free tier, FastAPI-native)
 
 # === Saudi-specific ===
@@ -73,10 +73,10 @@ statsforecast>=1.7.0         # Fast statistical time-series forecasting
 # === Data & Utilities ===
 beautifulsoup4==4.12.3
 lxml==5.3.0
-requests==2.32.3
+requests>=2.32.5,<3
 python-dateutil==2.9.0
 pandas==2.2.3
-numpy==2.1.3
+numpy>=1.26.2,<2            # camel-tools requires numpy<2; langchain needs >=1.26.2 on Py3.12
 python-decouple==3.8
 paramiko==3.5.0
 qrcode==8.0

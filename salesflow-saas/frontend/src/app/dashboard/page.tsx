@@ -24,6 +24,10 @@ import {
   Receipt,
   Layers,
   LogOut,
+  MousePointerClick,
+  UserCheck,
+  TrendingUp,
+  Crosshair,
 } from "lucide-react";
 
 import { DashboardView } from "../../components/dealix/dashboard-view";
@@ -47,6 +51,17 @@ import { FullOpsView } from "../../components/dealix/full-ops-view";
 import { PipelineKanban } from "../../components/dealix/pipeline-kanban";
 import { UnifiedInbox } from "../../components/dealix/unified-inbox";
 import { LeadScoreCard } from "../../components/dealix/lead-score-card";
+
+const dashboardLeadScoreDemo = {
+  score: 82,
+  breakdown: [
+    { key: "engagement", label: "التفاعل", value: 24, icon: MousePointerClick },
+    { key: "profile", label: "الملف الشخصي", value: 20, icon: UserCheck },
+    { key: "behavior", label: "السلوك", value: 22, icon: TrendingUp },
+    { key: "intent", label: "نية الشراء", value: 16, icon: Crosshair },
+  ],
+  recommendation: "عميل واعد — تابع خلال ٢٤ ساعة",
+};
 
 export default function DashboardPage() {
   const auth = useRequireAuth();
@@ -128,7 +143,7 @@ export default function DashboardPage() {
       case "inbox":
         return <UnifiedInbox />;
       case "scoring":
-        return <LeadScoreCard score={82} breakdown={{ engagement: 24, profile: 20, behavior: 22, intent: 16 }} recommendation="عميل واعد — تابع خلال ٢٤ ساعة" />;
+        return <LeadScoreCard data={dashboardLeadScoreDemo} />;
       case "onboarding":
         return <OnboardingView />;
       default:

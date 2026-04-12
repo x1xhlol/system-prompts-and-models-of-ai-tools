@@ -92,7 +92,7 @@ def process_pending_sequences(self):
                             channel=step.channel,
                             status="failed",
                             sent_at=datetime.now(timezone.utc),
-                            metadata={"reason": "pdpl_consent_missing"},
+                            event_metadata={"reason": "pdpl_consent_missing"},
                         )
                         db.add(event)
                         enrollment.current_step += 1
@@ -181,7 +181,7 @@ def execute_sequence_step(self, enrollment_id, step_id, lead_id, channel, conten
                 channel=channel,
                 status="sent" if success else "failed",
                 sent_at=datetime.now(timezone.utc),
-                metadata={"content_preview": content[:100] if content else ""},
+                event_metadata={"content_preview": content[:100] if content else ""},
             )
             db.add(event)
 

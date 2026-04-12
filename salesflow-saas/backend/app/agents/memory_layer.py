@@ -4,17 +4,23 @@ import json
 
 try:
     from mem0 import Memory
+    from mem0.configs.base import MemoryConfig
 except ImportError:
-    # Fallback mock for testing environments where mem0ai isn't available yet
-    class Memory:
-        def __init__(self, config=None):
-            self.store = []
-            
-        def search(self, query: str, user_id: str, **kwargs):
-            return [{"text": "Mocked memory context."}]
-            
-        def add(self, text: str, user_id: str, metadata: dict = None, **kwargs):
-            self.store.append({"text": text, "user_id": user_id, "metadata": metadata})
+    Memory = None  # type: ignore[misc, assignment]
+    MemoryConfig = None  # type: ignore[misc, assignment]
+
+
+class _MockMemory:
+    """Used when mem0 is unavailable or cannot initialize (CI, missing API keys)."""
+
+    def __init__(self, config=None):
+        self.store = []
+
+    def search(self, query: str, user_id: str, **kwargs):
+        return [{"text": "Mocked memory context."}]
+
+    def add(self, text: str, user_id: str, metadata: dict = None, **kwargs):
+        self.store.append({"text": text, "user_id": user_id, "metadata": metadata})
 
 class SelfHealingMemory:
     """
@@ -33,7 +39,12 @@ class SelfHealingMemory:
                 }
             }
         }
-        self.memory = Memory(config=self.config)
+        self.memory = _MockMemory()
+        if Memory is not None and MemoryConfig is not None:
+            try:
+                self.memory = Memory(config=MemoryConfig.model_validate(self.config))
+            except Exception:
+                self.memory = _MockMemory()
 
     def get_context(self, company_name: str, context_type: str = "general") -> str:
         """
