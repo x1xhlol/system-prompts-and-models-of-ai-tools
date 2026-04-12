@@ -1,5 +1,5 @@
 # Dealix — OpenClaw runtime (aligned with MASTER-BLUEPRINT v4 + ULTIMATE_EXECUTION_MASTER_AR)
-version: "2026.4.2"
+version: "2026.4.11"
 project:
   name: "dealix-autonomous-revenue-os"
   environment: "production"
@@ -17,12 +17,44 @@ runtime:
     max_retries: 3
     backoff: "exponential"
     dead_letter_queue: true
+  # 2026.4.11: Improved stability + safer transport/routing
+  stability:
+    provider_transport: "safe"
+    connection_pooling: true
+    graceful_degradation: true
 
 security:
   zero_trust: true
   strict_approvals: true
   tenant_isolation: "required"
   before_agent_reply_hook: "app.openclaw.hooks.before_agent_reply"
+  # 2026.4.11: Enhanced exec approvals
+  exec_approvals:
+    enabled: true
+    require_approval_for:
+      - "send_whatsapp"
+      - "send_email"
+      - "send_linkedin"
+      - "trigger_voice_call"
+      - "sync_salesforce"
+      - "create_contract"
+      - "send_contract_for_signature"
+      - "create_charge"
+      - "bulk_send"
+      - "deal_commitment"
+      - "pricing_change"
+    auto_approve:
+      - "read_data"
+      - "search"
+      - "classify"
+      - "score"
+      - "summarize"
+      - "draft"
+    forbidden:
+      - "delete_tenant"
+      - "drop_table"
+      - "export_all_data"
+      - "bypass_pdpl"
   sensitive_actions:
     - "send_whatsapp"
     - "send_email"
@@ -33,7 +65,66 @@ security:
     - "send_contract_for_signature"
     - "create_charge"
 
-# In-app knowledge only (PostgreSQL + pgvector, KnowledgeService) — no external RAG SaaS as SoT
+# 2026.4.11: Enhanced subagent configuration
+subagents:
+  enabled: true
+  max_spawn_depth: 2
+  max_children_per_agent: 5
+  max_concurrent: 8
+  orchestrator_pattern: true
+  # Depth 1 = orchestrator (can spawn workers)
+  # Depth 2 = leaf workers (cannot spawn further)
+  isolation: "session"
+  timeout_minutes: 15
+
+# 2026.4.11: Multi-channel improvements
+channels:
+  whatsapp:
+    role: "primary_channel_sa"
+    provider: "baileys"
+    reaction_level: "minimal"
+    media_max_mb_inbound: 50
+    media_max_mb_outbound: 5
+    auto_chunk_long_messages: true
+    typing_indicator: true
+    # 2026.4.11: Emoji reactions support
+    reactions_enabled: true
+    default_reactions:
+      received: "👀"
+      processing: "⏳"
+      completed: "✅"
+      error: "❌"
+  slack:
+    role: "internal_team"
+    # 2026.4.11: Exec approval routing via Slack
+    exec_approval_routing: true
+  telegram:
+    role: "secondary_channel"
+    enabled: false
+  matrix:
+    role: "internal_coordination"
+    # 2026.4.11: Streaming + proxy + history + thread replies
+    streaming: true
+    enabled: false
+  email:
+    role: "outbound_primary"
+    provider: "smtp"
+
+# 2026.4.11: Active Memory plugin
+memory:
+  active_memory:
+    enabled: true
+    auto_context_injection: true
+    max_context_items: 20
+  rem_backfill:
+    enabled: true
+    replay_old_notes: true
+  built_in:
+    memory_md: true
+    user_md: true
+  external_provider: "optional"
+
+# In-app knowledge only
 knowledge:
   source_of_truth: "dealix_internal"
   components:
@@ -41,6 +132,15 @@ knowledge:
     - "sector_assets"
     - "knowledge_service"
   policy: "tenant_scoped_retrieval"
+
+# 2026.4.11: Background task flow control plane
+flows:
+  enabled: true
+  storage: "sqlite"
+  task_ledger: true
+  cli_command: "openclaw flows"
+  checkpoint_on_step: true
+  resume_on_restart: true
 
 plugins:
   boundaries: "tight"
@@ -50,6 +150,7 @@ plugins:
     - "stripe-billing"
     - "voice-agents"
     - "contract-intelligence"
+    - "active-memory"
   blocked:
     - "filesystem-write"
     - "shell-exec"
@@ -70,6 +171,11 @@ llm_routing:
     fast_classify: "low_latency"
     proposals_copy: "high_quality_copy"
     research_docs: "document_oriented"
+  # 2026.4.11: Safer provider transport
+  provider_transport:
+    health_check_interval_seconds: 30
+    failover_strategy: "automatic"
+    connection_reuse: true
 
 integrations:
   salesforce:
