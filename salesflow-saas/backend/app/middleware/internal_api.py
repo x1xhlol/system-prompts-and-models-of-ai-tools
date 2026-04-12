@@ -1,4 +1,8 @@
-"""Optional bearer token for /api/v1 when DEALIX_INTERNAL_API_TOKEN is set (production hardening)."""
+"""Optional bearer token for /api/v1 when DEALIX_INTERNAL_API_TOKEN is set (production hardening).
+
+Exemption list is broad (public marketing, demo widgets). Before strict production, see
+docs/LAUNCH_CHECKLIST.md section 6.
+"""
 
 from __future__ import annotations
 

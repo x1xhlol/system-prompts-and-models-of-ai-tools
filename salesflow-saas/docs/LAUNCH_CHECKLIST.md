@@ -21,10 +21,22 @@
   `.\scripts\grand_launch_verify.ps1 -HttpCheck -SoftReady`  
   مع `DEALIX_BASE_URL` إذا لم يكن الـ API على `http://127.0.0.1:8000`.
 
+### 2.1 بوابة الجاهزية التجارية (`go-live-gate`)
+
+- [ ] مع تشغيل الـ API وبعد ضبط `.env` الحقيقي (staging أو إنتاج): استدعِ  
+  `GET /api/v1/autonomous-foundation/integrations/go-live-gate`
+- [ ] **200** + `launch_allowed: true` يعني اجتياز الفحوص الحاسمة حسب [`go_live_matrix.py`](../backend/app/services/go_live_matrix.py). **403** مع نفس شكل JSON يعني وجود فحوص معطّلة — راجع `blocked_reasons` و`blocking`.
+- [ ] من الطرفية (خادم على 8000):  
+  `curl -sS http://127.0.0.1:8000/api/v1/autonomous-foundation/integrations/go-live-gate`
+- [ ] ملخص سريع بدون uvicorn (يحمّل التطبيق داخل العملية، مثل الاختبارات): من جذر `salesflow-saas`:  
+  `py -3 scripts/check_go_live_gate.py`  
+  (للطباعة الكاملة: `py -3 scripts/check_go_live_gate.py --json`)
+
 ## 3. الواجهة (Next.js)
 
-- [ ] ضبط `NEXT_PUBLIC_API_URL` لنقطة نهاية الـ API العامة (انظر `frontend/.env.example`).
-- [ ] التأكد من أن الـ backend يضمّن نطاق الواجهة في CORS (`FRONTEND_URL` / `main.py`).
+- [ ] ضبط **`NEXT_PUBLIC_API_URL`** لعنوان الـ API الذي يصل إليه المتصفح فعليًا (HTTPS في الإنتاج). مرجع: [`frontend/.env.example`](../frontend/.env.example).
+- [ ] **CORS:** في الباكند عرّف **`FRONTEND_URL`** (أصل الواجهة الافتراضي، مثل `https://app.dealix.sa`) في `backend/.env` — يُستخدم في [`main.py`](../backend/app/main.py) مع أصول ثابتة إضافية. لأصول إضافية (معاينة، دومين قديم): **`CORS_EXTRA_ORIGINS`** قائمة مفصولة بفواصل — انظر [`app/config.py`](../backend/app/config.py).
+- [ ] تحقق من أن قيمة `NEXT_PUBLIC_API_URL` على الواجهة **تطابق** المخطط والشهادة (لا خلط `http`/`https` أو دومين خاطئ) حتى لا تفشل طلبات `fetch` / `apiFetch`.
 
 ## 4. الأسرار والبيئة
 
@@ -34,7 +46,15 @@
 ## 5. ما بعد الإطلاق
 
 - [ ] مراقبة `/api/v1/health` و `/api/v1/ready`.
-- [ ] مراجعة `go-live-gate` عند التكاملات الحقيقية (قد يعيد 403 حتى اكتمال التهيئة — متوقع).
+- [ ] إعادة فحص **`go-live-gate`** بعد أي تغيير على أسرار الطرف الثالث (Stripe، البريد، CRM، إلخ).
+
+## 6. أمان `DEALIX_INTERNAL_API_TOKEN` (إنتاج)
+
+عند تعيين **`DEALIX_INTERNAL_API_TOKEN`** في الباكند، يُطلب `Authorization: Bearer <التوكن>` على معظم مسارات `/api/v1`، مع **قائمة إعفاءات** واسعة للمسارات العامة والتسويق والديمو — التنفيذ في [`app/middleware/internal_api.py`](../backend/app/middleware/internal_api.py).
+
+- [ ] **Staging / ديمو:** الإعفاءات الحالية تسمح للواجهة بجلب محتوى عام ولوحات ديمو دون التوكن الداخلي؛ هذا متعمد لتجربة المطوّر.
+- [ ] **إنتاج صارم:** راجع ما إذا كانت مسارات الإعفاء (مثل أجزاء من التسويق أو `dealix/generate-leads`) مقبولة لسياسة المنتج؛ يمكن لاحقًا تقييد الإعفاءات حسب `ENVIRONMENT` أو إلزام **`apiFetch` + JWT** لمسارات حساسة بدل الإعفاء.
+- [ ] إن لم تُضبط المتغير (فارغ)، الميدلوير لا يفرض التوكن — مناسب للتطوير المحلي فقط.
 
 ---
 
