@@ -168,22 +168,39 @@ class DealixKnowledge:
 
     MARKETER_FAQ = [
         {"q_ar": "كيف أسجل كمسوّق؟", "a_ar": "ادخل dealix.sa/marketers واضغط 'سجّل كمسوّق'. التسجيل مجاني ويتفعل فوراً."},
-        {"q_ar": "كم العمولة؟", "a_ar": "تبدأ من ١٠٪ (برونزي) وتوصل ٢٠٪ (ذهبي). كل ما زاد عدد العملاء زادت نسبتك."},
-        {"q_ar": "متى تنزل العمولة؟", "a_ar": "كل يوم أحد تتحول العمولات لحسابك البنكي."},
+        {"q_ar": "كم العمولة؟", "a_ar": "٢٠٪ من اشتراك كل عميل (٣٠٠ ر.س/شهر) مستمرة لمدة ٦ أشهر. قادة الفرق يحصلون على override ٧٪ لمدة ١٢ شهر."},
+        {"q_ar": "متى تنزل العمولة؟", "a_ar": "كل يوم أحد تتحول العمولات لحسابك البنكي أو STC Pay."},
+        {"q_ar": "كم مدة العمولة المستمرة؟", "a_ar": "المسوّقين: ٦ أشهر من تاريخ اشتراك العميل. مدراء التسويق: ١٢ شهر override من فريقهم."},
         {"q_ar": "كيف أتابع أدائي؟", "a_ar": "من لوحة التحكم تشوف كل شي: عملاء، عمولات، مستواك، وروابط التتبع."},
         {"q_ar": "هل فيه حد أقصى للعمولة؟", "a_ar": "لا! ما فيه حد — كل ما زاد عدد العملاء زادت عمولتك."},
     ]
 
     @classmethod
     def get_pricing_text(cls, language: str = "ar") -> str:
-        lines = []
-        for key, plan in cls.PRICING.items():
-            name = plan["name_ar"] if language == "ar" else key.title()
-            price = plan["price"]
-            features = " | ".join(plan["features_ar"][:3])
-            popular = " ⭐" if plan.get("popular") else ""
-            lines.append(f"{'🟢' if key == 'starter' else '🔵' if key == 'professional' else '🟣'} {name} — {price} ر.س/شهر{popular}\n   {features}")
-        return "\n\n".join(lines)
+        plan = cls.PRICING["all_in_one"]
+        if language == "ar":
+            features = "\n".join(f"  ✅ {f}" for f in plan["features_ar"][:6])
+            return (
+                f"🔵 *{plan['name_ar']}*\n\n"
+                f"💰 {plan['price_monthly']} ر.س/شهر\n"
+                f"💰 {plan['price_yearly']} ر.س/سنة (وفّر شهرين)\n"
+                f"👥 {plan['users_included']} مستخدم + {plan['extra_user_price']} ر.س/إضافي\n\n"
+                f"كل المميزات مفتوحة:\n{features}\n\n"
+                f"🎁 ٧ أيام تجربة مجانية — بدون بطاقة\n"
+                f"🔒 استرداد كامل خلال ٣٠ يوم"
+            )
+        features = "\n".join(f"  ✅ {f}" for f in [
+            "7 AI brains", "15 deal types", "Arabic AI negotiator",
+            "PDPL compliance", "Visual pipeline", "20 users included",
+        ])
+        return (
+            f"🔵 *{plan['name_en']}*\n\n"
+            f"💰 {plan['price_monthly']} SAR/mo\n"
+            f"💰 {plan['price_yearly']} SAR/yr (save 2 months)\n\n"
+            f"Everything included:\n{features}\n\n"
+            f"🎁 7-day free trial — no credit card\n"
+            f"🔒 30-day money-back guarantee"
+        )
 
     @classmethod
     def search_faq(cls, query: str) -> Optional[str]:
