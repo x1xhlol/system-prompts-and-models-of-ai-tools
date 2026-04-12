@@ -44,6 +44,9 @@ import { IntelligenceDashboard } from "../../components/dealix/intelligence-dash
 import { LeadGeneratorView } from "../../components/dealix/lead-generator-view";
 import { SalesOsView } from "../../components/dealix/sales-os-view";
 import { FullOpsView } from "../../components/dealix/full-ops-view";
+import { PipelineKanban } from "../../components/dealix/pipeline-kanban";
+import { UnifiedInbox } from "../../components/dealix/unified-inbox";
+import { LeadScoreCard } from "../../components/dealix/lead-score-card";
 
 export default function DashboardPage() {
   const auth = useRequireAuth();
@@ -78,6 +81,9 @@ export default function DashboardPage() {
     { id: "scripts", label: "سكربتات المبيعات", icon: Phone },
     { id: "agreements", label: "الاتفاقيات واHR", icon: FileSignature },
     { id: "guarantee", label: "الضمان الذهبي", icon: ShieldCheck },
+    { id: "pipeline", label: "مسار الصفقات", icon: Target },
+    { id: "inbox", label: "صندوق الوارد الموحد", icon: Bell },
+    { id: "scoring", label: "تقييم العملاء AI", icon: Zap },
     { id: "onboarding", label: "تأهيل المسوق", icon: BookOpen },
   ];
 
@@ -117,6 +123,12 @@ export default function DashboardPage() {
         return <AgreementsView />;
       case "guarantee":
         return <GuaranteesView />;
+      case "pipeline":
+        return <PipelineKanban />;
+      case "inbox":
+        return <UnifiedInbox />;
+      case "scoring":
+        return <LeadScoreCard score={82} breakdown={{ engagement: 24, profile: 20, behavior: 22, intent: 16 }} recommendation="عميل واعد — تابع خلال ٢٤ ساعة" />;
       case "onboarding":
         return <OnboardingView />;
       default:

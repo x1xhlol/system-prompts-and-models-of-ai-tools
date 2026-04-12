@@ -86,3 +86,15 @@ Before writing code, classify your task:
 - Always detect dialect before processing (saudi/gulf/msa)
 - Check for Arabizi and suggest Arabic conversion
 - Check code-switching (Arabic+English mixed) for readability
+
+## claude-mem (Persistent Memory)
+
+Installed and active. Automatically captures every session's work and injects context into new sessions.
+
+- **Worker**: `npx claude-mem start` (port 37777)
+- **Web UI**: http://localhost:37777
+- **Search**: Use `/mem-search` in Claude Code
+- **Data**: `~/.claude-mem/claude-mem.db` (SQLite + Chroma vectors)
+- **Privacy**: Wrap sensitive content in `<private>...</private>` tags
+- **Token savings**: ~95% reduction via 3-layer progressive retrieval
+- **Auto-captures**: tool executions, session summaries, decisions, bugs, patterns

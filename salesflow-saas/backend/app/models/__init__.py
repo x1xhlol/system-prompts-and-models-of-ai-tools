@@ -25,6 +25,8 @@ from app.models.knowledge import KnowledgeArticle, SectorAsset
 from app.models.advanced import TrustScore, Prospect, Scorecard, AIRehearsal
 from app.models.consent import PDPLConsent, PDPLConsentAudit, DataRequest
 from app.models.sequence import Sequence, SequenceStep, SequenceEnrollment, SequenceEvent
+from app.models.strategic_deal import CompanyProfile, StrategicDeal, DealMatch
+from app.models.api_key import APIKey, AppSetting
 
 __all__ = [
     "BaseModel", "TenantModel", "Tenant", "User", "Lead", "Customer",
@@ -39,4 +41,5 @@ __all__ = [
     "TrustScore", "Prospect", "Scorecard", "AIRehearsal",
     "PDPLConsent", "PDPLConsentAudit", "DataRequest",
     "Sequence", "SequenceStep", "SequenceEnrollment", "SequenceEvent",
+    "CompanyProfile", "StrategicDeal", "DealMatch",
 ]
