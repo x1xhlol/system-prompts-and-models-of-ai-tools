@@ -1,0 +1,162 @@
+{
+  "app": {
+    "name": "Dealix",
+    "tagline": "The Smart Sales System for Saudi Arabia",
+    "description": "An enterprise commercial platform that helps companies generate opportunities, build partnerships, and manage deals intelligently"
+  },
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "pricing": "Pricing",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Log In",
+    "register": "Sign Up",
+    "startFree": "Start Free",
+    "watchDemo": "Watch Demo",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "logout": "Log Out"
+  },
+  "hero": {
+    "title": "The Smart Sales System for Saudi Arabia",
+    "subtitle": "Transform your company from traditional sales to an intelligent growth engine — discover opportunities, build partnerships, and close deals",
+    "cta1": "Start Free — 14 Days",
+    "cta2": "See How It Works",
+    "stats": {
+      "companies": "500+ Companies",
+      "satisfaction": "95% Satisfaction",
+      "deals": "1000+ Deals"
+    }
+  },
+  "painPoints": {
+    "title": "Problems Every Sales Manager Faces",
+    "items": [
+      { "title": "Lost Leads", "desc": "70% of potential clients are lost due to poor follow-up" },
+      { "title": "WhatsApp Chaos", "desc": "Messages get lost and you don't know who replied" },
+      { "title": "No Reports", "desc": "You don't know your team's performance or where problems are" },
+      { "title": "Missed Opportunities", "desc": "Partnerships and deals that could change everything go unnoticed" }
+    ]
+  },
+  "features": {
+    "title": "Everything You Need in One Place",
+    "items": [
+      { "title": "Smart WhatsApp", "desc": "Communicate with clients directly via WhatsApp with Arabic auto-reply" },
+      { "title": "AI Lead Scoring", "desc": "AI evaluates every client and tells you who matters most" },
+      { "title": "Visual Pipeline", "desc": "See all your deals at a glance and move them with drag & drop" },
+      { "title": "Professional Quotes", "desc": "Create Arabic quotes with automatic VAT calculation" },
+      { "title": "PDPL Compliance", "desc": "Fully compliant with Saudi Personal Data Protection Law" },
+      { "title": "Reports & Analytics", "desc": "Know your team's performance with automatic daily reports" }
+    ]
+  },
+  "howItWorks": {
+    "title": "How Does Dealix Work?",
+    "steps": [
+      { "num": "1", "title": "Register Your Company", "desc": "Create your account in less than a minute" },
+      { "num": "2", "title": "Add Your Clients", "desc": "Import your clients or start from scratch" },
+      { "num": "3", "title": "Start Selling", "desc": "The system follows up, reminds you, and helps you close more" }
+    ]
+  },
+  "pricing": {
+    "title": "Choose Your Plan",
+    "currency": "SAR",
+    "period": "monthly",
+    "popular": "Most Popular",
+    "startTrial": "Start Free Trial",
+    "contactSales": "Contact Sales",
+    "plans": [
+      {
+        "name": "Starter",
+        "price": "59",
+        "features": ["3 users", "500 clients", "Basic WhatsApp", "Basic reports"]
+      },
+      {
+        "name": "Professional",
+        "price": "149",
+        "popular": true,
+        "features": ["10 users", "Unlimited clients", "AI scoring", "Auto sequences", "Quotes", "Advanced reports"]
+      },
+      {
+        "name": "Enterprise",
+        "price": "225",
+        "features": ["Unlimited users", "AI sales agent", "Strategic deals", "Full API", "Dedicated support"]
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to Take Your Sales to the Next Level?",
+    "subtitle": "14-day free trial — no credit card required",
+    "button": "Start Free Now"
+  },
+  "footer": {
+    "product": "Product",
+    "company": "Company",
+    "support": "Support",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "madeIn": "Made with love in Saudi Arabia"
+  },
+  "dashboard": {
+    "tabs": {
+      "overview": "Dashboard",
+      "pipeline": "Deal Pipeline",
+      "inbox": "Inbox",
+      "scoring": "Lead Scoring",
+      "leads": "Leads",
+      "deals": "Deals",
+      "partners": "Partners",
+      "analytics": "Analytics",
+      "settings": "Settings"
+    },
+    "kpis": {
+      "totalLeads": "Total Leads",
+      "newToday": "New Today",
+      "openDeals": "Open Deals",
+      "wonValue": "Won Value",
+      "conversionRate": "Conversion Rate",
+      "responseTime": "Response Time"
+    },
+    "empty": {
+      "noLeads": "No leads yet — add your first client",
+      "noDeals": "No deals yet — create your first deal",
+      "noMessages": "No messages yet — start a conversation"
+    }
+  },
+  "marketers": {
+    "title": "Join the Dealix Marketing Team",
+    "subtitle": "Earn commissions on every client you bring — no fixed salary, no limits",
+    "cta": "Register as Marketer",
+    "benefits": [
+      { "title": "Instant Commission", "desc": "Get your commission with every successful deal" },
+      { "title": "Pro Tools", "desc": "Complete tracking system and ready templates" },
+      { "title": "Ongoing Support", "desc": "Dedicated support team to help you succeed" },
+      { "title": "Full Transparency", "desc": "Track all your commissions and results in real-time" }
+    ],
+    "stats": {
+      "avgCommission": "Average Monthly Commission",
+      "activeMarketers": "Active Marketers",
+      "totalPaid": "Total Paid Out"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred — please try again",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search...",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "yes": "Yes",
+    "no": "No",
+    "sar": "SAR",
+    "noResults": "No results found"
+  }
+}
