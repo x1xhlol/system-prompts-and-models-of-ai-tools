@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
 """
-Scan frontend/src for /api/v1/... path strings and verify exact matches
-against the FastAPI OpenAPI schema.
-
-Detects:
-  - Quoted literals: '/api/v1/foo', "/api/v1/foo", `/api/v1/foo`
-  - Template tails after ${...}: `${base}/api/v1/foo` (query string stripped)
+Scan frontend/src for /api/v1/... path strings (quoted literals and template tails
+like `${base}/api/v1/foo`) and verify matches against the FastAPI OpenAPI schema.
 
 Run from anywhere:
   py -3 salesflow-saas/scripts/verify_frontend_openapi_paths.py
 
-Requires backend deps on PYTHONPATH (run after: cd salesflow-saas/backend && py -m pip install -r requirements.txt).
+Requires backend deps on PYTHONPATH (run after: cd salesflow-saas/backend && py -3 -m pip install -r requirements.txt).
 """
 from __future__ import annotations
 
@@ -19,9 +15,20 @@ import re
 import sys
 from pathlib import Path
 
-# Paths that appear in the frontend but use OpenAPI path parameters ({id}, etc.)
-# or are intentionally not registered as separate operations — extend only with a comment.
+# OpenAPI path keys that include `{param}` — frontend may call only a static prefix;
+# add here if a component uses a dynamic segment we do not parse.
 OPENAPI_PATH_ALLOWLIST: frozenset[str] = frozenset()
+
+
+def _normalize_path(raw: str) -> str | None:
+    s = raw.strip().rstrip("/")
+    if "${" in s or (s.count("{") > s.count("}") and "{" in s):
+        return None
+    if s.endswith("/api/v1") or not s.startswith("/api/v1"):
+        return None
+    if "?" in s:
+        s = s.split("?", 1)[0].rstrip("/")
+    return s or None
 
 
 def main() -> int:
@@ -39,37 +46,53 @@ def main() -> int:
     schema = app.openapi()
     open_paths = {p.rstrip("/") or "/" for p in schema.get("paths", {}).keys()}
 
-    quoted = re.compile(r"""['"`]((/api/v1/[a-zA-Z0-9_\-./]+))['"`]""")
-    after_subst = re.compile(r"\$\{[^}]+\}(/api/v1/[a-zA-Z0-9_\-./]+)")
-
     found: set[str] = set()
+
+    # Quoted literals: '/api/v1/foo' or "/api/v1/foo"
+    pat_quoted = re.compile(r"""['"`]((/api/v1/[a-zA-Z0-9_\-./?&=]+))['"`]""")
+
+    # Template: ${base}/api/v1/foo  (same line may include ?query=…)
+    pat_after_subst = re.compile(r"\$\{[^}]+\}(/api/v1/[a-zA-Z0-9_\-./]+)")
+
     for p in fe_src.rglob("*"):
         if p.suffix not in (".ts", ".tsx"):
             continue
         text = p.read_text(encoding="utf-8", errors="ignore")
-        for pat in (quoted,):
-            for m in pat.finditer(text):
-                raw = m.group(1).split("?")[0].rstrip("/")
-                if "${" in raw or "{" in raw:
-                    continue
-                if raw.endswith("/api/v1"):
-                    continue
-                found.add(raw)
-        for m in after_subst.finditer(text):
-            raw = m.group(1).split("?")[0].rstrip("/")
-            if raw.endswith("/api/v1"):
-                continue
-            found.add(raw)
 
-    missing = sorted(p for p in found if p not in open_paths and p not in OPENAPI_PATH_ALLOWLIST)
+        for m in pat_quoted.finditer(text):
+            norm = _normalize_path(m.group(1))
+            if norm:
+                found.add(norm)
+
+        for m in pat_after_subst.finditer(text):
+            # Path group stops before `?` (query string not part of OpenAPI path keys).
+            norm = _normalize_path(m.group(1))
+            if norm:
+                found.add(norm)
+
+    missing: list[str] = []
+    for path in sorted(found):
+        if path in OPENAPI_PATH_ALLOWLIST:
+            continue
+        if path in open_paths:
+            continue
+        # Accept if any OpenAPI path is this prefix followed by /{param}
+        matched = False
+        for op in open_paths:
+            if op.startswith(path + "/{") or op == path:
+                matched = True
+                break
+        if not matched:
+            missing.append(path)
+
     if missing:
-        print("Frontend paths not found as exact OpenAPI paths (may use path params or be dynamic):")
+        print("Frontend paths not found as exact OpenAPI paths (or known prefix):")
         for m in missing:
             print(f"  - {m}")
-        print("\nTip: paths with {id} in OpenAPI need allowlisting or a manual mapping.")
+        print("\nTip: path params in OpenAPI use {id}; extend OPENAPI_PATH_ALLOWLIST if intentional.")
         return 1
 
-    print(f"OK: {len(found)} /api/v1 paths in frontend match OpenAPI.")
+    print(f"OK: {len(found)} /api/v1 paths from frontend match OpenAPI.")
     return 0
 
 
