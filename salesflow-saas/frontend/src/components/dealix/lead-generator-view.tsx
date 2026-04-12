@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+import { getApiBaseUrl } from "@/lib/api-base";
 
 export function LeadGeneratorView() {
   const [sector, setSector] = useState("تقنية المعلومات");
@@ -28,7 +27,8 @@ export function LeadGeneratorView() {
     setLoading(true);
     setLeads([]);
     try {
-      const res = await fetch(`${API}/api/v1/dealix/generate-leads?sector=${encodeURIComponent(sector)}&city=${encodeURIComponent(city)}&count=${count}`, {
+      const base = getApiBaseUrl().replace(/\/$/, "");
+      const res = await fetch(`${base}/api/v1/dealix/generate-leads?sector=${encodeURIComponent(sector)}&city=${encodeURIComponent(city)}&count=${count}`, {
         method: "POST"
       });
       if (res.ok) {
@@ -56,7 +56,8 @@ export function LeadGeneratorView() {
   const runPipeline = async (lead: any) => {
     setPipelineRunning(lead.company_name);
     try {
-      const res = await fetch(`${API}/api/v1/dealix/full-power`, {
+      const base = getApiBaseUrl().replace(/\/$/, "");
+      const res = await fetch(`${base}/api/v1/dealix/full-power`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

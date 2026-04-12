@@ -126,7 +126,7 @@ async def alert_stats(tenant_id: str):
 
 @router.get("/digest", summary="Generate Arabic alert digest")
 async def generate_digest(tenant_id: str, user_id: Optional[str] = None,
-                           period: str = Query(default="daily", regex="^(daily|weekly)$")):
+                           period: str = Query(default="daily", pattern="^(daily|weekly)$")):
     return await get_alert_delivery().generate_digest(tenant_id, user_id, period)
 
 

@@ -35,6 +35,16 @@ def _exempt_path(path: str) -> bool:
         return True
     if path.startswith("/api/v1/affiliates/leaderboard"):
         return True
+    # Dashboard / demo widgets that call the API from the browser without internal token
+    # (still require JWT on routes that use Depends(get_current_user).)
+    if path in (
+        "/api/v1/agents/status",
+        "/api/v1/intelligence/health",
+        "/api/v1/intelligence/run-pipeline",
+        "/api/v1/dealix/generate-leads",
+        "/api/v1/dealix/full-power",
+    ):
+        return True
     return False
 
 

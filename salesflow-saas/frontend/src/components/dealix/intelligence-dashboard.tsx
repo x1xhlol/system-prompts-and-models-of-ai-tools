@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
-const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+import { getApiBaseUrl } from "@/lib/api-base";
 
 interface AgentStatus {
   role: string;
@@ -40,7 +39,8 @@ export function IntelligenceDashboard() {
 
   const fetchAgentStatus = async () => {
     try {
-      const res = await fetch(`${API}/api/v1/agents/status`);
+      const base = getApiBaseUrl().replace(/\/$/, "");
+      const res = await fetch(`${base}/api/v1/agents/status`);
       if (res.ok) {
         const data = await res.json();
         setAgents(data.agents || []);
@@ -50,7 +50,8 @@ export function IntelligenceDashboard() {
 
   const fetchHealth = async () => {
     try {
-      const res = await fetch(`${API}/api/v1/intelligence/health`);
+      const base = getApiBaseUrl().replace(/\/$/, "");
+      const res = await fetch(`${base}/api/v1/intelligence/health`);
       if (res.ok) setHealth(await res.json());
     } catch {}
   };
@@ -59,7 +60,8 @@ export function IntelligenceDashboard() {
     if (!leadForm.contact_name || !leadForm.company_name) return;
     setLoading(true);
     try {
-      const res = await fetch(`${API}/api/v1/intelligence/run-pipeline`, {
+      const base = getApiBaseUrl().replace(/\/$/, "");
+      const res = await fetch(`${base}/api/v1/intelligence/run-pipeline`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: `lead_${Date.now()}`, ...leadForm }),
@@ -251,7 +253,12 @@ export function IntelligenceDashboard() {
               <div style={{ fontWeight: 700, fontSize: 16, color: "#e2e8f0", marginBottom: 8 }}>{report.title}</div>
               <div style={{ fontSize: 13, color: "#64748b", marginBottom: 20 }}>{report.desc}</div>
               <button
-                onClick={() => window.open(`${API}${report.endpoint}`, "_blank")}
+                onClick={() =>
+                  window.open(
+                    `${getApiBaseUrl().replace(/\/$/, "")}${report.endpoint}`,
+                    "_blank"
+                  )
+                }
                 style={{
                   padding: "10px 20px", background: "#0a0a0f", border: "1px solid #F5A623",
                   borderRadius: 8, color: "#F5A623", cursor: "pointer", fontWeight: 600, fontSize: 14

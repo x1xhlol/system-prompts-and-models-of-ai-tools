@@ -48,17 +48,17 @@ async def test_go_live_gate_semantics(client):
 @pytest.mark.launch
 @pytest.mark.asyncio
 async def test_agents_list_and_empire_and_langgraph_health(client):
-    lst = await client.get("/api/v1/agents/list")
+    lst = await client.get("/api/v1/agent-system/list")
     assert lst.status_code == 200
     body = lst.json()
     assert body.get("total", 0) >= 1
     assert isinstance(body.get("agents"), list)
 
-    emp = await client.get("/api/v1/agents/empire/status")
+    emp = await client.get("/api/v1/agent-system/empire/status")
     assert emp.status_code == 200
     assert "empire" in emp.json() or "status" in emp.json()
 
-    lg = await client.get("/api/v1/agents/langgraph/health")
+    lg = await client.get("/api/v1/agent-system/langgraph/health")
     assert lg.status_code == 200
     lgj = lg.json()
     assert "graph_version" in lgj or "error" in lgj
@@ -113,7 +113,7 @@ async def test_ceo_langgraph_deal_cycle_via_api_mocked_engine(client, monkeypatc
     monkeypatch.setattr(lead_engine_mod.LeadEngine, "execute", fake_execute)
 
     r = await client.post(
-        "/api/v1/agents/ceo/langgraph-deal-cycle",
+        "/api/v1/agent-system/ceo/langgraph-deal-cycle",
         json={
             "company_name": "Scenario Corp LaunchTest",
             "deal_id": "SC-LT-1",

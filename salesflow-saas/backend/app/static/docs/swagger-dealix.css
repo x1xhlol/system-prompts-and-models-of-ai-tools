@@ -1,0 +1,144 @@
+/* Dealix API docs — Swagger UI theme (dark, RTL-friendly typography) */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap");
+
+.swagger-ui {
+  font-family: "DM Sans", "IBM Plex Sans Arabic", system-ui, sans-serif;
+}
+
+.swagger-ui,
+.swagger-ui .wrapper {
+  background: linear-gradient(165deg, #070b12 0%, #0f172a 45%, #0c1222 100%);
+  color: #e2e8f0;
+}
+
+.swagger-ui .topbar {
+  display: none;
+}
+
+.swagger-ui .information-container,
+.swagger-ui .scheme-container {
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(45, 212, 191, 0.18);
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  margin: 1.25rem 0;
+  padding: 1.25rem 1.5rem;
+}
+
+.swagger-ui .info .title {
+  color: #f8fafc;
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.swagger-ui .info .title small {
+  background: rgba(45, 212, 191, 0.15);
+  border: 1px solid rgba(45, 212, 191, 0.35);
+  border-radius: 999px;
+  color: #5eead4;
+  padding: 0.2rem 0.65rem;
+  vertical-align: middle;
+}
+
+.swagger-ui .info .base-url,
+.swagger-ui .info .description,
+.swagger-ui .info p,
+.swagger-ui .info li {
+  color: #cbd5e1;
+  line-height: 1.65;
+}
+
+.swagger-ui .info a,
+.swagger-ui a {
+  color: #5eead4;
+}
+
+.swagger-ui .info a:hover,
+.swagger-ui a:hover {
+  color: #99f6e4;
+}
+
+.swagger-ui .btn.authorize {
+  border-color: rgba(45, 212, 191, 0.45);
+  color: #5eead4;
+  border-radius: 10px;
+}
+
+.swagger-ui .btn.authorize:hover {
+  background: rgba(45, 212, 191, 0.12);
+}
+
+.swagger-ui .filter .operation-filter-input {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 10px;
+  color: #f1f5f9;
+  padding: 0.55rem 0.85rem;
+}
+
+.swagger-ui .opblock {
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: rgba(15, 23, 42, 0.55);
+  margin-bottom: 0.65rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+.swagger-ui .opblock .opblock-summary {
+  border-radius: 11px;
+}
+
+.swagger-ui .opblock.opblock-get .opblock-summary-method {
+  background: #2563eb;
+}
+
+.swagger-ui .opblock.opblock-post .opblock-summary-method {
+  background: #059669;
+}
+
+.swagger-ui .opblock.opblock-put .opblock-summary-method {
+  background: #d97706;
+}
+
+.swagger-ui .opblock.opblock-delete .opblock-summary-method {
+  background: #dc2626;
+}
+
+.swagger-ui .opblock .opblock-summary-path,
+.swagger-ui .opblock .opblock-summary-description {
+  color: #e2e8f0;
+}
+
+.swagger-ui .opblock-body pre,
+.swagger-ui .microlight {
+  background: #020617 !important;
+  border-radius: 8px;
+  border: 1px solid rgba(51, 65, 85, 0.6);
+}
+
+.swagger-ui table thead tr th,
+.swagger-ui table tbody tr td {
+  border-color: rgba(51, 65, 85, 0.6);
+  color: #e2e8f0;
+}
+
+.swagger-ui .model-box,
+.swagger-ui .model {
+  background: rgba(15, 23, 42, 0.65);
+  border-radius: 8px;
+}
+
+.swagger-ui section.models {
+  border-color: rgba(45, 212, 191, 0.2);
+  border-radius: 12px;
+}
+
+.swagger-ui .tab li button.tablinks {
+  color: #94a3b8;
+}
+
+.swagger-ui .tab li button.tablinks.active {
+  color: #5eead4;
+}

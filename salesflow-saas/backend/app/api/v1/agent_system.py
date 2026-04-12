@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 import logging
 
 logger = logging.getLogger("dealix.api.agents")
-router = APIRouter(prefix="/agents", tags=["AI Agent System"])
+router = APIRouter(prefix="/agent-system", tags=["AI Agent System"])
 
 
 # ═══ Schemas ═══════════════════════════════════════════════
@@ -631,16 +631,38 @@ async def agent_system_overview():
                 for k, v in sorted(layers.items())
             },
             "api_endpoints": {
-                "Empire": ["/agents/empire/status", "/agents/list", "/agents/overview"],
-                "Discovery": ["/agents/prospect", "/agents/prospect/sectors", "/agents/prospect/market-analysis",
-                              "/agents/leads/discover", "/agents/leads/sources", "/agents/leads/verify-phone"],
-                "Engagement": ["/agents/whatsapp/campaign", "/agents/whatsapp/stats", "/agents/email/start-sequence"],
-                "Qualification": ["/agents/qualify/lead", "/agents/qualify/score", "/agents/qualify/intent"],
-                "Revenue": ["/agents/close/handle-objection", "/agents/close/proposal", "/agents/forecast/revenue"],
-                "Intelligence": ["/agents/intelligence/analyze-conversation", "/agents/intelligence/deal-health", "/agents/market/competitors"],
-                "CRM": ["/agents/crm/deal", "/agents/crm/pipeline"],
-                "Content": ["/agents/content/generate"],
-                "CEO": ["/agents/ceo/daily-cycle", "/agents/ceo/optimize"],
+                "Empire": ["/agent-system/empire/status", "/agent-system/list", "/agent-system/overview"],
+                "Discovery": [
+                    "/agent-system/prospect",
+                    "/agent-system/prospect/sectors",
+                    "/agent-system/prospect/market-analysis",
+                    "/agent-system/leads/discover",
+                    "/agent-system/leads/sources",
+                    "/agent-system/leads/verify-phone",
+                ],
+                "Engagement": [
+                    "/agent-system/whatsapp/campaign",
+                    "/agent-system/whatsapp/stats",
+                    "/agent-system/email/start-sequence",
+                ],
+                "Qualification": [
+                    "/agent-system/qualify/lead",
+                    "/agent-system/qualify/score",
+                    "/agent-system/qualify/intent",
+                ],
+                "Revenue": [
+                    "/agent-system/close/handle-objection",
+                    "/agent-system/close/proposal",
+                    "/agent-system/forecast/revenue",
+                ],
+                "Intelligence": [
+                    "/agent-system/intelligence/analyze-conversation",
+                    "/agent-system/intelligence/deal-health",
+                    "/agent-system/market/competitors",
+                ],
+                "CRM": ["/agent-system/crm/deal", "/agent-system/crm/pipeline"],
+                "Content": ["/agent-system/content/generate"],
+                "CEO": ["/agent-system/ceo/daily-cycle", "/agent-system/ceo/optimize"],
             },
         }
     except Exception as e:

@@ -186,11 +186,11 @@ async def main() -> int:
     )
     results.append(await check("affiliates program (public)", "GET", "/api/v1/affiliates/program"))
     results.append(await check("affiliates leaderboard", "GET", "/api/v1/affiliates/leaderboard/top"))
-    results.append(await check("agents list", "GET", "/api/v1/agents/list"))
-    results.append(await check("agents empire status", "GET", "/api/v1/agents/empire/status"))
+    results.append(await check("agents list", "GET", "/api/v1/agent-system/list"))
+    results.append(await check("agents empire status", "GET", "/api/v1/agent-system/empire/status"))
     results.append(await check("openclaw safe core health", "GET", "/api/v1/autonomous-foundation/openclaw/health"))
     results.append(await check("openclaw runs telemetry", "GET", "/api/v1/autonomous-foundation/openclaw/runs"))
-    results.append(await check("LangGraph orchestrator health", "GET", "/api/v1/agents/langgraph/health"))
+    results.append(await check("LangGraph orchestrator health", "GET", "/api/v1/agent-system/langgraph/health"))
     results.append(
         await check(
             "integration connectivity matrix",
@@ -204,7 +204,7 @@ async def main() -> int:
             await check(
                 "LangGraph CEO deal cycle (realistic, slow)",
                 "POST",
-                "/api/v1/agents/ceo/langgraph-deal-cycle",
+                "/api/v1/agent-system/ceo/langgraph-deal-cycle",
                 timeout=120.0,
                 json={
                     "company_name": "Launch Verification Co",

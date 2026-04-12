@@ -7,6 +7,7 @@ from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
 import asyncio
@@ -79,6 +80,17 @@ async def lifespan(app: FastAPI):
 
 _docs, _redoc, _openapi = _openapi_urls()
 
+_docs_static_dir = Path(__file__).resolve().parent / "static" / "docs"
+_swagger_ui_parameters = None
+if _docs and (_docs_static_dir / "swagger-dealix.css").is_file():
+    _swagger_ui_parameters = {
+        "persistAuthorization": True,
+        "displayRequestDuration": True,
+        "filter": True,
+        "tryItOutEnabled": True,
+        "customCssUrl": "/api/docs-assets/swagger-dealix.css",
+    }
+
 app = FastAPI(
     title=f"{settings.APP_NAME} API",
     description=(
@@ -91,6 +103,7 @@ app = FastAPI(
     redoc_url=_redoc,
     openapi_url=_openapi,
     lifespan=lifespan,
+    swagger_ui_parameters=_swagger_ui_parameters,
 )
 
 app.add_middleware(InternalApiTokenMiddleware)
@@ -105,6 +118,27 @@ app.add_middleware(
 
 # API Routes
 app.include_router(api_router, prefix="/api/v1")
+
+if _docs and _docs_static_dir.is_dir():
+    app.mount(
+        "/api/docs-assets",
+        StaticFiles(directory=str(_docs_static_dir)),
+        name="docs_assets",
+    )
+
+
+@app.get("/", include_in_schema=False)
+async def root_redirect():
+    """Avoid bare 404 on API origin; send developers to interactive docs."""
+    if _docs:
+        return RedirectResponse(url=_docs, status_code=307)
+    return {
+        "service": settings.APP_NAME,
+        "api": "/api/v1",
+        "health": "/api/v1/health",
+        "note": "OpenAPI UI disabled (EXPOSE_OPENAPI=false).",
+    }
+
 
 # ── Static marketing assets (browse + direct download) ─────────
 def _resolve_salesflow_root() -> Path:

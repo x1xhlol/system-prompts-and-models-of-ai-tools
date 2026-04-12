@@ -5,6 +5,7 @@
 - [ ] `cd backend && py -m pytest tests -q` — يجب أن تمر كل الاختبارات.
 - [ ] `cd frontend && npm run lint && npm run build`.
 - [ ] من جذر `salesflow-saas`: `node scripts/sync-marketing-to-public.cjs` (يُشغَّل أيضاً تلقائياً قبل `npm run build`).
+- [ ] (اختياري) من جذر `salesflow-saas`: `py scripts/verify_frontend_openapi_paths.py` — يطابق مسارات `/api/v1` الظاهرة حرفيًا في الفرونت مع OpenAPI.
 
 ## 2. الخادم (API)
 
