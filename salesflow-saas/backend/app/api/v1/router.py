@@ -94,3 +94,7 @@ api_router.include_router(hermes_router.router)
 
 # ── Strategic Deals — B2B Deal Discovery & Negotiation ───────
 api_router.include_router(strategic_deals_router.router)
+
+# ── WhatsApp Webhook — Incoming messages & status ────────────
+from app.api.v1 import whatsapp_webhook as whatsapp_webhook_router
+api_router.include_router(whatsapp_webhook_router.router)

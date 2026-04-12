@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /settings/
+
+Sitemap: https://dealix.sa/sitemap.xml
+
+# Dealix - نظام المبيعات الذكي للسعودية
+# https://dealix.sa
