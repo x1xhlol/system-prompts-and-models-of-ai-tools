@@ -15,3 +15,12 @@ export type { BadgeProps, BadgeVariant } from './badge';
 
 export { Sidebar, useSidebar } from './sidebar';
 export type { SidebarProps, NavItem, NavSection } from './sidebar';
+
+export { KpiCard } from './kpi-card';
+export type { KpiCardProps } from './kpi-card';
+
+export { EmptyState } from './empty-state';
+export type { EmptyStateProps } from './empty-state';
+
+export { CommandInput } from './command-input';
+export type { CommandInputProps } from './command-input';

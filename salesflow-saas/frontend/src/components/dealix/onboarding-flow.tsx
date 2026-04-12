@@ -45,25 +45,17 @@ function WelcomePhase({
   const [step, setStep] = useState<'role' | 'industry'>('role');
 
   const roles: { key: Role; icon: typeof UserCircle }[] = [
-    { key: 'salesManager', icon: UserCircle },
-    { key: 'salesRep', icon: Briefcase },
-    { key: 'executive', icon: Building2 },
-    { key: 'other', icon: Users },
+    { key: 'salesManager', icon: UserCircle }, { key: 'salesRep', icon: Briefcase },
+    { key: 'executive', icon: Building2 }, { key: 'other', icon: Users },
   ];
-
   const industries: { key: Industry; label: string }[] = [
-    { key: 'realEstate', label: t('onboarding.industryRealEstate') },
-    { key: 'automotive', label: t('onboarding.industryAutomotive') },
-    { key: 'healthcare', label: t('onboarding.industryHealthcare') },
-    { key: 'services', label: t('onboarding.industryServices') },
+    { key: 'realEstate', label: t('onboarding.industryRealEstate') }, { key: 'automotive', label: t('onboarding.industryAutomotive') },
+    { key: 'healthcare', label: t('onboarding.industryHealthcare') }, { key: 'services', label: t('onboarding.industryServices') },
     { key: 'other', label: t('onboarding.industryOther') },
   ];
-
   const roleLabels: Record<Role, string> = {
-    salesManager: t('onboarding.roleSalesManager'),
-    salesRep: t('onboarding.roleSalesRep'),
-    executive: t('onboarding.roleExecutive'),
-    other: t('onboarding.roleOther'),
+    salesManager: t('onboarding.roleSalesManager'), salesRep: t('onboarding.roleSalesRep'),
+    executive: t('onboarding.roleExecutive'), other: t('onboarding.roleOther'),
   };
 
   return (

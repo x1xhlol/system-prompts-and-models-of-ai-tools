@@ -98,34 +98,27 @@ function MarketersPage() {
     setSubmitted(true);
   };
 
-  const benefitIcons = [Zap, Wrench, HeadphonesIcon, Eye];
-  const benefitKeys = [
-    { title: 'benefitInstantCommission', desc: 'benefitInstantCommissionDesc' },
-    { title: 'benefitProTools', desc: 'benefitProToolsDesc' },
-    { title: 'benefitSupport', desc: 'benefitSupportDesc' },
-    { title: 'benefitTransparency', desc: 'benefitTransparencyDesc' },
+  const benefits = [
+    { icon: Zap, title: 'benefitInstantCommission', desc: 'benefitInstantCommissionDesc' },
+    { icon: Wrench, title: 'benefitProTools', desc: 'benefitProToolsDesc' },
+    { icon: HeadphonesIcon, title: 'benefitSupport', desc: 'benefitSupportDesc' },
+    { icon: Eye, title: 'benefitTransparency', desc: 'benefitTransparencyDesc' },
   ];
-
-  const stepIcons = [UserPlus, Share2, Coins];
-  const stepKeys = [
-    { title: 'step1Title', desc: 'step1Desc' },
-    { title: 'step2Title', desc: 'step2Desc' },
-    { title: 'step3Title', desc: 'step3Desc' },
+  const steps = [
+    { icon: UserPlus, title: 'step1Title', desc: 'step1Desc' },
+    { icon: Share2, title: 'step2Title', desc: 'step2Desc' },
+    { icon: Coins, title: 'step3Title', desc: 'step3Desc' },
   ];
-
   const tiers = [
     { key: 'tierBronze', desc: 'tierBronzeDesc', pct: '10%', color: 'from-amber-700 to-amber-900', badge: 'bg-amber-700/40 text-amber-300' },
     { key: 'tierSilver', desc: 'tierSilverDesc', pct: '15%', color: 'from-slate-400 to-slate-600', badge: 'bg-slate-500/40 text-slate-200' },
     { key: 'tierGold', desc: 'tierGoldDesc', pct: '20%', color: 'from-amber-400 to-yellow-500', badge: 'bg-amber-400/30 text-amber-200' },
   ];
-
-  const toolIcons = [LayoutDashboard, Link2, FileText, BarChart3];
-  const toolKeys = ['toolDashboard', 'toolLinks', 'toolTemplates', 'toolReports'];
-
-  const faqs = Array.from({ length: 5 }, (_, i) => ({
-    q: t(`marketersPage.faq${i + 1}Q`),
-    a: t(`marketersPage.faq${i + 1}A`),
-  }));
+  const tools = [
+    { icon: LayoutDashboard, key: 'toolDashboard' }, { icon: Link2, key: 'toolLinks' },
+    { icon: FileText, key: 'toolTemplates' }, { icon: BarChart3, key: 'toolReports' },
+  ];
+  const faqs = Array.from({ length: 5 }, (_, i) => ({ q: t(`marketersPage.faq${i + 1}Q`), a: t(`marketersPage.faq${i + 1}A`) }));
 
   return (
     <div dir={dir} className="min-h-screen bg-[#0A0F1C] text-white">
@@ -177,22 +170,15 @@ function MarketersPage() {
             {t('marketersPage.benefitsTitle')}
           </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {benefitKeys.map((bk, i) => {
-              const Icon = benefitIcons[i];
-              return (
-                <GlassCard key={bk.title}>
-                  <div className="rounded-lg bg-teal-500/10 p-2.5 w-fit mb-4">
-                    <Icon className="h-5 w-5 text-teal-400" />
-                  </div>
-                  <h3 className="text-sm font-semibold text-white mb-1.5">
-                    {t(`marketersPage.${bk.title}`)}
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    {t(`marketersPage.${bk.desc}`)}
-                  </p>
-                </GlassCard>
-              );
-            })}
+            {benefits.map((b) => (
+              <GlassCard key={b.title}>
+                <div className="rounded-lg bg-teal-500/10 p-2.5 w-fit mb-4">
+                  <b.icon className="h-5 w-5 text-teal-400" />
+                </div>
+                <h3 className="text-sm font-semibold text-white mb-1.5">{t(`marketersPage.${b.title}`)}</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">{t(`marketersPage.${b.desc}`)}</p>
+              </GlassCard>
+            ))}
           </div>
         </div>
       </Section>
@@ -204,29 +190,16 @@ function MarketersPage() {
             {t('marketersPage.howItWorksTitle')}
           </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {stepKeys.map((sk, i) => {
-              const Icon = stepIcons[i];
-              return (
-                <motion.div
-                  key={sk.title}
-                  variants={fadeUp}
-                  className="text-center"
-                >
-                  <div className="mx-auto w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
-                    <Icon className="h-6 w-6 text-teal-400" />
-                  </div>
-                  <span className="inline-block text-xs text-teal-400 font-medium mb-2 tabular-nums">
-                    {i + 1}
-                  </span>
-                  <h3 className="text-sm font-semibold text-white mb-1">
-                    {t(`marketersPage.${sk.title}`)}
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    {t(`marketersPage.${sk.desc}`)}
-                  </p>
-                </motion.div>
-              );
-            })}
+            {steps.map((s, i) => (
+              <motion.div key={s.title} variants={fadeUp} className="text-center">
+                <div className="mx-auto w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
+                  <s.icon className="h-6 w-6 text-teal-400" />
+                </div>
+                <span className="inline-block text-xs text-teal-400 font-medium mb-2 tabular-nums">{i + 1}</span>
+                <h3 className="text-sm font-semibold text-white mb-1">{t(`marketersPage.${s.title}`)}</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">{t(`marketersPage.${s.desc}`)}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </Section>
@@ -234,22 +207,13 @@ function MarketersPage() {
       {/* ===== COMMISSION TIERS ===== */}
       <Section>
         <div className="max-w-4xl mx-auto px-4">
-          <motion.h2 variants={fadeUp} className="text-2xl font-bold text-center mb-10">
-            {t('marketersPage.tiersTitle')}
-          </motion.h2>
+          <motion.h2 variants={fadeUp} className="text-2xl font-bold text-center mb-10">{t('marketersPage.tiersTitle')}</motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {tiers.map((tier) => (
               <GlassCard key={tier.key} className="text-center relative overflow-hidden">
-                <div
-                  className={clsx(
-                    'absolute inset-0 opacity-[0.06] bg-gradient-to-b',
-                    tier.color,
-                  )}
-                />
+                <div className={clsx('absolute inset-0 opacity-[0.06] bg-gradient-to-b', tier.color)} />
                 <div className="relative">
-                  <span className={clsx('inline-block px-3 py-1 rounded-full text-xs font-medium mb-4', tier.badge)}>
-                    {t(`marketersPage.${tier.key}`)}
-                  </span>
+                  <span className={clsx('inline-block px-3 py-1 rounded-full text-xs font-medium mb-4', tier.badge)}>{t(`marketersPage.${tier.key}`)}</span>
                   <p className="text-4xl font-bold text-white mb-1">{tier.pct}</p>
                   <p className="text-xs text-slate-400 mb-3">{t('marketersPage.tierCommission')}</p>
                   <p className="text-xs text-slate-500">{t(`marketersPage.${tier.desc}`)}</p>
@@ -270,22 +234,16 @@ function MarketersPage() {
             {[1, 2].map((n) => (
               <GlassCard key={n}>
                 <Quote className="h-5 w-5 text-teal-500/40 mb-3" />
-                <p className="text-sm text-slate-300 leading-relaxed mb-4">
-                  {t(`marketersPage.testimonial${n}Text`)}
-                </p>
+                <p className="text-sm text-slate-300 leading-relaxed mb-4">{t(`marketersPage.testimonial${n}Text`)}</p>
                 <div className="flex items-center gap-3">
                   <div className="h-9 w-9 rounded-full bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-sm font-bold text-white">
                     {t(`marketersPage.testimonial${n}Name`).charAt(0)}
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-white">
-                      {t(`marketersPage.testimonial${n}Name`)}
-                    </p>
+                    <p className="text-sm font-medium text-white">{t(`marketersPage.testimonial${n}Name`)}</p>
                     <div className="flex items-center gap-1.5">
                       <Award className="h-3 w-3 text-amber-400" />
-                      <span className="text-xs text-slate-400">
-                        {t(`marketersPage.testimonial${n}Role`)}
-                      </span>
+                      <span className="text-xs text-slate-400">{t(`marketersPage.testimonial${n}Role`)}</span>
                     </div>
                   </div>
                 </div>
@@ -302,20 +260,12 @@ function MarketersPage() {
             {t('marketersPage.toolsTitle')}
           </motion.h2>
           <motion.div variants={fadeUp} className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {toolKeys.map((tk, i) => {
-              const Icon = toolIcons[i];
-              return (
-                <div
-                  key={tk}
-                  className="rounded-xl bg-white/5 border border-white/10 p-5 text-center hover:bg-white/[0.08] transition-colors"
-                >
-                  <Icon className="h-6 w-6 text-teal-400 mx-auto mb-3" />
-                  <p className="text-xs text-slate-300 font-medium">
-                    {t(`marketersPage.${tk}`)}
-                  </p>
-                </div>
-              );
-            })}
+            {tools.map((tl) => (
+              <div key={tl.key} className="rounded-xl bg-white/5 border border-white/10 p-5 text-center hover:bg-white/[0.08] transition-colors">
+                <tl.icon className="h-6 w-6 text-teal-400 mx-auto mb-3" />
+                <p className="text-xs text-slate-300 font-medium">{t(`marketersPage.${tl.key}`)}</p>
+              </div>
+            ))}
           </motion.div>
         </div>
       </Section>
