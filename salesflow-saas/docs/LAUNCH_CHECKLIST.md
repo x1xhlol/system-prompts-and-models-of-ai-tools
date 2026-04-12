@@ -10,6 +10,7 @@
 
 - [ ] تشغيل من **أحدث** كود في المستودع:  
   `cd backend && py -m uvicorn app.main:app --host 0.0.0.0 --port 8000`
+- [ ] **SQLite محلي فقط:** عند `DATABASE_URL=sqlite+aiosqlite://...` يُنشئ التطبيق الجداول عند الإقلاع (`init_db`) لتسهيل الاختبار؛ **الإنتاج يستخدم Postgres + Alembic** (`make migrate`) وليس الاعتماد على `create_all`.
 - [ ] إذا ظهر **404** على `/api/v1/marketing/hub` أو `/api/v1/strategy/summary` فالعملية غالباً **قديمة** — أعد تشغيل `uvicorn` بعد `git pull`.
 - [ ] اختبار HTTP:  
   `py scripts/full_stack_launch_test.py --http-only --soft-ready`  
@@ -31,6 +32,11 @@
 
 - [ ] مراقبة `/api/v1/health` و `/api/v1/ready`.
 - [ ] مراجعة `go-live-gate` عند التكاملات الحقيقية (قد يعيد 403 حتى اكتمال التهيئة — متوقع).
+- [ ] خطة التراجع والقطع: `memory/runbooks/ROLLBACK_AND_GO_LIVE.md`.
+
+## 6. تمييز السوق (قبل الإعلان)
+
+- [ ] مراجعة `docs/MARKET_POSITIONING_AR.md` ومواءمة النسخ مع الميزات المفعّلة فعلياً.
 
 ---
 
