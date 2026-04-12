@@ -75,28 +75,15 @@ function WelcomePhase({
             exit="exit"
             transition={{ duration: 0.25 }}
           >
-            <p className="text-sm font-medium text-slate-300 mb-4">
-              {t('onboarding.roleQuestion')}
-            </p>
+            <p className="text-sm font-medium text-slate-300 mb-4">{t('onboarding.roleQuestion')}</p>
             <div className="grid grid-cols-2 gap-3">
               {roles.map((r) => {
-                const Icon = r.icon;
                 const selected = role === r.key;
                 return (
-                  <button
-                    key={r.key}
-                    onClick={() => {
-                      setRole(r.key);
-                      setTimeout(() => setStep('industry'), 300);
-                    }}
-                    className={clsx(
-                      'flex flex-col items-center gap-2 p-4 rounded-xl border transition-all duration-200',
-                      selected
-                        ? 'bg-teal-500/15 border-teal-500/40 text-teal-300'
-                        : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/[0.08]',
-                    )}
-                  >
-                    <Icon className="h-5 w-5" />
+                  <button key={r.key} onClick={() => { setRole(r.key); setTimeout(() => setStep('industry'), 300); }}
+                    className={clsx('flex flex-col items-center gap-2 p-4 rounded-xl border transition-all duration-200',
+                      selected ? 'bg-teal-500/15 border-teal-500/40 text-teal-300' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/[0.08]')}>
+                    <r.icon className="h-5 w-5" />
                     <span className="text-xs font-medium">{roleLabels[r.key]}</span>
                   </button>
                 );
@@ -113,30 +100,15 @@ function WelcomePhase({
             exit="exit"
             transition={{ duration: 0.25 }}
           >
-            <p className="text-sm font-medium text-slate-300 mb-4">
-              {t('onboarding.industryQuestion')}
-            </p>
+            <p className="text-sm font-medium text-slate-300 mb-4">{t('onboarding.industryQuestion')}</p>
             <div className="grid grid-cols-2 gap-3">
-              {industries.map((ind) => {
-                const selected = industry === ind.key;
-                return (
-                  <button
-                    key={ind.key}
-                    onClick={() => {
-                      setIndustry(ind.key);
-                      setTimeout(onNext, 400);
-                    }}
-                    className={clsx(
-                      'flex items-center justify-center p-3.5 rounded-xl border text-xs font-medium transition-all duration-200',
-                      selected
-                        ? 'bg-teal-500/15 border-teal-500/40 text-teal-300'
-                        : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/[0.08]',
-                    )}
-                  >
-                    {ind.label}
-                  </button>
-                );
-              })}
+              {industries.map((ind) => (
+                <button key={ind.key} onClick={() => { setIndustry(ind.key); setTimeout(onNext, 400); }}
+                  className={clsx('flex items-center justify-center p-3.5 rounded-xl border text-xs font-medium transition-all duration-200',
+                    industry === ind.key ? 'bg-teal-500/15 border-teal-500/40 text-teal-300' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/[0.08]')}>
+                  {ind.label}
+                </button>
+              ))}
             </div>
             <button
               onClick={() => setStep('role')}
@@ -255,10 +227,8 @@ function ChecklistPhase({ onComplete }: { onComplete?: () => void }) {
   const { t } = useI18n();
 
   const [items, setItems] = useState<ChecklistItem[]>([
-    { key: 'import', label: t('onboarding.checkImportContacts'), icon: Import, done: false },
-    { key: 'whatsapp', label: t('onboarding.checkConnectWhatsApp'), icon: MessageCircle, done: false },
-    { key: 'pipeline', label: t('onboarding.checkSetupPipeline'), icon: GitBranch, done: false },
-    { key: 'team', label: t('onboarding.checkInviteTeam'), icon: Users, done: false },
+    { key: 'import', label: t('onboarding.checkImportContacts'), icon: Import, done: false }, { key: 'whatsapp', label: t('onboarding.checkConnectWhatsApp'), icon: MessageCircle, done: false },
+    { key: 'pipeline', label: t('onboarding.checkSetupPipeline'), icon: GitBranch, done: false }, { key: 'team', label: t('onboarding.checkInviteTeam'), icon: Users, done: false },
   ]);
 
   const doneCount = items.filter((i) => i.done).length;
@@ -296,26 +266,12 @@ function ChecklistPhase({ onComplete }: { onComplete?: () => void }) {
         {items.map((item) => {
           const Icon = item.icon;
           return (
-            <motion.li
-              key={item.key}
-              whileHover={{ x: 2 }}
-              className={clsx(
-                'flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-200 cursor-pointer',
-                item.done
-                  ? 'bg-teal-500/10 border-teal-500/25'
-                  : 'bg-white/5 border-white/10 hover:bg-white/[0.08]',
-              )}
-              onClick={() => toggleItem(item.key)}
-            >
-              {item.done ? (
-                <CheckCircle2 className="h-5 w-5 text-teal-400 shrink-0" />
-              ) : (
-                <div className="h-5 w-5 rounded-full border-2 border-slate-600 shrink-0" />
-              )}
+            <motion.li key={item.key} whileHover={{ x: 2 }} onClick={() => toggleItem(item.key)}
+              className={clsx('flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-200 cursor-pointer',
+                item.done ? 'bg-teal-500/10 border-teal-500/25' : 'bg-white/5 border-white/10 hover:bg-white/[0.08]')}>
+              {item.done ? <CheckCircle2 className="h-5 w-5 text-teal-400 shrink-0" /> : <div className="h-5 w-5 rounded-full border-2 border-slate-600 shrink-0" />}
               <Icon className={clsx('h-4 w-4 shrink-0', item.done ? 'text-teal-400' : 'text-slate-500')} />
-              <span className={clsx('text-sm flex-1', item.done ? 'text-teal-300 line-through' : 'text-slate-300')}>
-                {item.label}
-              </span>
+              <span className={clsx('text-sm flex-1', item.done ? 'text-teal-300 line-through' : 'text-slate-300')}>{item.label}</span>
             </motion.li>
           );
         })}
