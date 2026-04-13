@@ -231,6 +231,17 @@ Action Handler      Human Handoff
 Log to ai_conversations
 ```
 
+## LLM routing policy (per tenant)
+
+وكلاء الجدول أعلاه يستهلكون نماذج LLM عبر طبقة التطبيق. **اختيار المزود والنموذج لكل فئة مهمة** (مثل استكشاف، تفاوض، امتثال، ملخص استراتيجي، تضمينات) يُخزَّن في `tenant.settings["llm_routing"]` ويُعرض ويُحدَّث عبر واجهة موحّدة:
+
+| Method | Path | ملاحظة |
+|--------|------|--------|
+| GET | `/api/v1/ai/routing` | خريطة فعّالة + قائمة `available_providers` (بدون مفاتيح API) |
+| PUT | `/api/v1/ai/routing` | تحديث جزئي لسياسة المستأجر (صلاحيات owner / manager / admin) |
+
+تفاصيل الحقول والمسارات المجاورة: [`API-MAP.md`](API-MAP.md) (قسم AI routing). عند إضافة وكيل جديد، اربط نوع مهمته بأقرب مفتاح في سياسة التوجيه حتى يبقى السلوك قابلاً للضبط من لوحة واحدة.
+
 ## Agent Configuration
 
 Each agent is defined in `ai-agents/` with:

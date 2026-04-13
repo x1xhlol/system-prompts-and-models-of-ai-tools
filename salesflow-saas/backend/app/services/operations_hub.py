@@ -58,6 +58,7 @@ async def count_pending_approvals(db: AsyncSession, tenant_id: UUID) -> int:
 
 _DEFAULT_CONNECTORS: List[Dict[str, str]] = [
     {"connector_key": "crm_salesforce", "display_name_ar": "Salesforce CRM", "status": "unknown"},
+    {"connector_key": "crm_hubspot", "display_name_ar": "HubSpot CRM", "status": "unknown"},
     {"connector_key": "whatsapp_cloud", "display_name_ar": "واتساب Cloud API", "status": "unknown"},
     {"connector_key": "stripe_billing", "display_name_ar": "Stripe — الفوترة", "status": "unknown"},
     {"connector_key": "email_sync", "display_name_ar": "مزامنة البريد", "status": "unknown"},

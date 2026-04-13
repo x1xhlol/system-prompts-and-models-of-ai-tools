@@ -9,6 +9,8 @@
   http://localhost:3000/dealix-presentations/
   http://localhost:3000/resources
   http://localhost:3000/strategy
+  http://localhost:3000/strategy/legal/ (وثائق قانونية بعد المزامنة)
+  http://localhost:3000/strategy/COMPETITIVE_MATRIX_AR.md
 
 لتحديث النسخ بعد تعديل الملفات الأصلية:
   node scripts/sync-marketing-to-public.cjs

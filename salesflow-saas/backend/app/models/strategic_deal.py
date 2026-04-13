@@ -182,6 +182,10 @@ class StrategicDeal(TenantModel):
 
     closed_at = Column(DateTime(timezone=True), nullable=True)
 
+    # Links to core CRM entities (Sales OS — optional)
+    lead_id = Column(UUID(as_uuid=True), ForeignKey("leads.id"), nullable=True, index=True)
+    sales_deal_id = Column(UUID(as_uuid=True), ForeignKey("deals.id"), nullable=True, index=True)
+
     # Relationships
     initiator_profile = relationship(
         "CompanyProfile", back_populates="initiated_deals",
@@ -191,6 +195,8 @@ class StrategicDeal(TenantModel):
         "CompanyProfile", back_populates="targeted_deals",
         foreign_keys=[target_profile_id],
     )
+    lead = relationship("Lead", foreign_keys=[lead_id])
+    sales_deal = relationship("Deal", foreign_keys=[sales_deal_id])
 
 
 # ── Deal Match ───────────────────────────────────────────────────────────────

@@ -39,12 +39,12 @@ class LeadService:
         lead = Lead(
             id=uuid.uuid4(),
             tenant_id=uuid.UUID(tenant_id),
-            full_name=full_name,
+            name=full_name,
             phone=phone,
             email=email,
-            company_name=company_name,
-            sector=sector,
-            city=city,
+            company_name=company_name or None,
+            sector=sector or None,
+            city=city or None,
             source=source,
             status="new",
             score=0,
@@ -152,6 +152,47 @@ class LeadService:
             if hasattr(lead, key) and value is not None:
                 setattr(lead, key, value)
 
+        lead.updated_at = datetime.now(timezone.utc)
+        await self.db.flush()
+        return self._to_dict(lead)
+
+    async def get_lead_by_email(self, tenant_id: str, email: str) -> Optional[dict]:
+        from app.models.lead import Lead
+
+        if not (email or "").strip():
+            return None
+        normalized = email.strip().lower()
+        result = await self.db.execute(
+            select(Lead)
+            .where(
+                Lead.tenant_id == uuid.UUID(tenant_id),
+                func.lower(Lead.email) == normalized,
+            )
+            .limit(1)
+        )
+        lead = result.scalars().first()
+        return self._to_dict(lead) if lead else None
+
+    async def merge_lead_extra_metadata(
+        self, tenant_id: str, lead_id: str, crm_patch: dict
+    ) -> Optional[dict]:
+        """Merge into extra_metadata.crm (e.g. salesforce_lead_id, hubspot_contact_id)."""
+        from app.models.lead import Lead
+
+        result = await self.db.execute(
+            select(Lead).where(
+                Lead.id == uuid.UUID(lead_id),
+                Lead.tenant_id == uuid.UUID(tenant_id),
+            )
+        )
+        lead = result.scalar_one_or_none()
+        if not lead:
+            return None
+        base = dict(lead.extra_metadata or {})
+        crm = dict(base.get("crm") or {})
+        crm.update(crm_patch)
+        base["crm"] = crm
+        lead.extra_metadata = base
         lead.updated_at = datetime.now(timezone.utc)
         await self.db.flush()
         return self._to_dict(lead)
@@ -371,6 +412,7 @@ class LeadService:
     def _to_dict(lead) -> dict:
         if not lead:
             return {}
+        em = lead.extra_metadata if getattr(lead, "extra_metadata", None) else {}
         return {
             "id": str(lead.id),
             "tenant_id": str(lead.tenant_id),
@@ -378,15 +420,16 @@ class LeadService:
             "source": lead.source,
             "status": lead.status,
             "score": lead.score,
-            "full_name": lead.full_name,
+            "full_name": lead.name,
             "phone": lead.phone,
             "email": lead.email,
-            "company_name": lead.company_name,
-            "sector": lead.sector,
-            "city": lead.city,
+            "company_name": getattr(lead, "company_name", None) or em.get("company_name", ""),
+            "sector": getattr(lead, "sector", None) or em.get("sector", ""),
+            "city": getattr(lead, "city", None) or em.get("city", ""),
             "notes": lead.notes,
-            "qualified_at": lead.qualified_at.isoformat() if lead.qualified_at else None,
-            "converted_at": lead.converted_at.isoformat() if lead.converted_at else None,
+            "extra_metadata": dict(em) if em else {},
+            "qualified_at": lead.qualified_at.isoformat() if getattr(lead, "qualified_at", None) else None,
+            "converted_at": lead.converted_at.isoformat() if getattr(lead, "converted_at", None) else None,
             "created_at": lead.created_at.isoformat() if lead.created_at else None,
             "updated_at": lead.updated_at.isoformat() if lead.updated_at else None,
         }

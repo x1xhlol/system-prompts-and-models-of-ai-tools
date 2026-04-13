@@ -25,6 +25,8 @@ from app.api.v1 import customer_onboarding as customer_onboarding_router
 from app.api.v1 import sales_os as sales_os_router
 from app.api.v1 import operations as operations_router
 from app.api.v1 import proposals as proposals_router
+from app.api.v1 import integrations_crm as integrations_crm_router
+from app.api.v1 import ai_routing as ai_routing_router
 
 api_router = APIRouter()
 
@@ -58,6 +60,8 @@ api_router.include_router(value_proposition_router.router)
 api_router.include_router(customer_onboarding_router.router)
 api_router.include_router(sales_os_router.router)
 api_router.include_router(operations_router.router)
+api_router.include_router(integrations_crm_router.router)
+api_router.include_router(ai_routing_router.router)
 api_router.include_router(analytics.router, tags=["Analytics & AI"])
 api_router.include_router(webhooks.router, tags=["Webhooks"])
 api_router.include_router(prospecting.router, prefix="/prospecting", tags=["Prospecting"])

@@ -67,6 +67,29 @@ if (fs.existsSync(SRC_INTEGRATION)) {
   console.warn("SKIP INTEGRATION_MASTER doc (missing):", SRC_INTEGRATION);
 }
 
+const SRC_LEGAL = path.join(ROOT, "docs", "legal");
+const DEST_LEGAL = path.join(DEST_STRATEGY_DIR, "legal");
+if (fs.existsSync(SRC_LEGAL)) {
+  fs.mkdirSync(DEST_LEGAL, { recursive: true });
+  for (const f of fs.readdirSync(SRC_LEGAL)) {
+    if (f.endsWith(".md")) {
+      fs.copyFileSync(path.join(SRC_LEGAL, f), path.join(DEST_LEGAL, f));
+    }
+  }
+  console.log("OK:", DEST_LEGAL);
+} else {
+  console.warn("SKIP legal docs (missing):", SRC_LEGAL);
+}
+
+const SRC_COMPETITIVE = path.join(ROOT, "docs", "COMPETITIVE_MATRIX_AR.md");
+if (fs.existsSync(SRC_COMPETITIVE)) {
+  fs.mkdirSync(DEST_STRATEGY_DIR, { recursive: true });
+  fs.copyFileSync(SRC_COMPETITIVE, path.join(DEST_STRATEGY_DIR, "COMPETITIVE_MATRIX_AR.md"));
+  console.log("OK:", path.join(DEST_STRATEGY_DIR, "COMPETITIVE_MATRIX_AR.md"));
+} else {
+  console.warn("SKIP competitive matrix (missing):", SRC_COMPETITIVE);
+}
+
 const readme = path.join(DEST_MARKETING, "LOCAL-ONLY-NEXT.txt");
 fs.writeFileSync(
   readme,
@@ -82,6 +105,8 @@ fs.writeFileSync(
     "  http://localhost:3000/dealix-presentations/",
     "  http://localhost:3000/resources",
     "  http://localhost:3000/strategy",
+    "  http://localhost:3000/strategy/legal/ (وثائق قانونية بعد المزامنة)",
+    "  http://localhost:3000/strategy/COMPETITIVE_MATRIX_AR.md",
     "",
     "لتحديث النسخ بعد تعديل الملفات الأصلية:",
     "  node scripts/sync-marketing-to-public.cjs",

@@ -2,6 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Link from "next/link";
+import { DealixLogo3D } from "./dealix-3d-logo";
 import {
   Zap,
   MessageSquare,
@@ -85,6 +87,35 @@ const steps = [
   { num: "٣", title: "ابدأ البيع", desc: "دع الذكاء الاصطناعي يساعدك في إتمام المزيد من الصفقات" },
 ];
 
+/** فروقات يمكن التحقق منها في المستودع والوثائق — بدون أرقام سوق غير مثبتة */
+const provenDifferentiators = [
+  {
+    icon: FileText,
+    title: "مسارات API موثقة",
+    desc: "خريطة API في المستودع ومطابقة OpenAPI عبر سكربت التحقق من الفرونت.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "حوكمة وإطلاق منضبط",
+    desc: "بوابة go-live وفحوص تكامل موثقة في قائمة الإطلاق وليس مجرد وعود في الواجهة.",
+  },
+  {
+    icon: MessageSquare,
+    title: "قنوات محلية أولاً",
+    desc: "تجربة عربية RTL وواتساب ضمن مسار المنتج، وليس قالباً أمريكياً مترجماً فقط.",
+  },
+  {
+    icon: Building2,
+    title: "شراكات B2B في نفس المنصة",
+    desc: "مسارات الصفقات الاستراتيجية وPartnership Studio بجانب محرك المبيعات.",
+  },
+  {
+    icon: BrainCircuit,
+    title: "توجيه نماذج حسب المهمة",
+    desc: "سياسة LLM لكل نوع عمل دون إرسال مفاتيح إلى المتصفح.",
+  },
+] as const;
+
 const pricingPlans = [
   {
     name: "Starter",
@@ -116,25 +147,6 @@ const pricingPlans = [
   },
 ];
 
-/* ───────────── 3D Logo placeholder ───────────── */
-function DealixLogo3D() {
-  return (
-    <motion.div
-      animate={{ y: [0, -12, 0] }}
-      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-      className="relative w-48 h-48 md:w-64 md:h-64"
-    >
-      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-teal-500 via-emerald-500 to-cyan-400 opacity-80 blur-2xl animate-pulse" />
-      <div className="relative w-full h-full rounded-3xl bg-gradient-to-br from-teal-500 via-emerald-500 to-cyan-400 flex items-center justify-center shadow-2xl shadow-teal-500/30 border border-white/20">
-        <div className="text-center">
-          <Zap className="w-12 h-12 md:w-16 md:h-16 text-black mx-auto" />
-          <span className="text-xl md:text-2xl font-black text-black tracking-tighter mt-2 block">DEALIX</span>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
 /* ───────────── main component ───────────── */
 export function PremiumLanding() {
   return (
@@ -156,11 +168,12 @@ export function PremiumLanding() {
 
       {/* ═══════════ NAV ═══════════ */}
       <nav className="relative z-10 flex items-center justify-between px-6 md:px-12 py-5 max-w-7xl mx-auto">
-        <button className="px-5 py-2 rounded-xl bg-teal-500 text-black font-bold text-sm hover:bg-teal-400 transition-colors shadow-lg shadow-teal-500/20">
+        <Link href="/register" className="px-5 py-2 rounded-xl bg-teal-500 text-black font-bold text-sm hover:bg-teal-400 transition-colors shadow-lg shadow-teal-500/20">
           ابدأ مجاناً
-        </button>
+        </Link>
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/60">
           <a href="#pricing" className="hover:text-white transition-colors">الأسعار</a>
+          <a href="#differentiators" className="hover:text-white transition-colors">لماذا Dealix</a>
           <a href="#features" className="hover:text-white transition-colors">المميزات</a>
           <a href="#how" className="hover:text-white transition-colors">كيف يعمل</a>
         </div>
@@ -177,7 +190,7 @@ export function PremiumLanding() {
         <div className="flex flex-col-reverse md:flex-row items-center gap-12 md:gap-8">
           {/* left: 3D logo */}
           <motion.div variants={fadeUp} custom={2} className="shrink-0">
-            <DealixLogo3D />
+            <DealixLogo3D size={280} />
           </motion.div>
 
           {/* right: text */}
@@ -187,26 +200,27 @@ export function PremiumLanding() {
               custom={0}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight mb-6"
             >
-              نظام المبيعات الذكي
+              نظام تشغيل الإيرادات
               <br />
-              <span className="text-teal-400">للسعودية</span>
+              <span className="text-teal-400">للشركات والشراكات</span>
             </motion.h1>
             <motion.p
               variants={fadeUp}
               custom={1}
               className="text-lg md:text-xl text-white/60 mb-8 max-w-xl leading-relaxed"
             >
-              وحّد فريق مبيعاتك مع واتساب، أتمت المتابعة بالذكاء الاصطناعي، وتابع كل صفقة من البداية للإغلاق
+              منصة واحدة تدير دورة البيع كاملة: توليد العملاء، التفاوض، الإغلاق، إدارة الشركاء،
+              وتشغيل القنوات الذكية عبر واتساب وإيميل ولينكدإن.
             </motion.p>
             <motion.div variants={fadeUp} custom={2} className="flex flex-wrap gap-4">
-              <button className="px-8 py-4 rounded-2xl bg-teal-500 text-black font-black text-base hover:bg-teal-400 transition-all shadow-xl shadow-teal-500/25 flex items-center gap-2">
+              <Link href="/register" className="px-8 py-4 rounded-2xl bg-teal-500 text-black font-black text-base hover:bg-teal-400 transition-all shadow-xl shadow-teal-500/25 flex items-center gap-2">
                 ابدأ مجاناً
                 <ArrowLeft className="w-5 h-5" />
-              </button>
-              <button className="px-8 py-4 rounded-2xl bg-white/5 border border-white/10 font-bold text-base hover:bg-white/10 transition-all flex items-center gap-2">
+              </Link>
+              <Link href="/dashboard" className="px-8 py-4 rounded-2xl bg-white/5 border border-white/10 font-bold text-base hover:bg-white/10 transition-all flex items-center gap-2">
                 <Play className="w-4 h-4" />
-                شاهد العرض
-              </button>
+                استكشف المنصة
+              </Link>
             </motion.div>
           </div>
         </div>
@@ -215,18 +229,18 @@ export function PremiumLanding() {
         <motion.div
           variants={fadeUp}
           custom={3}
-          className="mt-20 grid grid-cols-3 gap-4 max-w-2xl mx-auto"
+          className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto"
         >
           {[
-            { label: "شركة سعودية", value: "+٥٠٠" },
-            { label: "رضا العملاء", value: "٩٥٪" },
-            { label: "صفقة مغلقة", value: "+١٠٠٠" },
+            { label: "اللغة والسياق", value: "عربي · سعودي أولاً" },
+            { label: "تكامل CRM", value: "Salesforce · HubSpot عبر API" },
+            { label: "الشفافية", value: "وثائق + مصفوفة تنافسية" },
           ].map((s, i) => (
             <div
               key={i}
               className="text-center py-4 px-3 rounded-2xl bg-white/[0.03] border border-white/[0.06]"
             >
-              <p className="text-2xl md:text-3xl font-black text-teal-400">{s.value}</p>
+              <p className="text-sm md:text-base font-bold text-teal-400 leading-snug">{s.value}</p>
               <p className="text-xs text-white/40 font-medium mt-1">{s.label}</p>
             </div>
           ))}
@@ -281,6 +295,40 @@ export function PremiumLanding() {
               </div>
               <h3 className="font-bold text-base mb-2">{f.title}</h3>
               <p className="text-sm text-white/50 leading-relaxed">{f.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ═══════════ PROVEN DIFFERENTIATORS ═══════════ */}
+      <Section id="differentiators" className="max-w-7xl mx-auto px-6 md:px-12 py-20">
+        <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-black text-center mb-4">
+          فروقات يمكن إثباتها — لا أرقام وهمية
+        </motion.h2>
+        <motion.p variants={fadeUp} custom={1} className="text-center text-white/50 mb-4 max-w-2xl mx-auto">
+          ما يلي مربوط بمسارات الكود والوثائق في المستودع؛ راجع المصفوفة التفصيلية للمقارنة مع فئات الأدوات العالمية.
+        </motion.p>
+        <motion.p variants={fadeUp} custom={2} className="text-center mb-10">
+          <a
+            href="/strategy/COMPETITIVE_MATRIX_AR.md"
+            className="text-sm font-semibold text-teal-400 hover:text-teal-300 underline underline-offset-4"
+          >
+            فتح مصفوفة تنافسية (Markdown)
+          </a>
+        </motion.p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {provenDifferentiators.map((d, i) => (
+            <motion.div
+              key={d.title}
+              variants={fadeUp}
+              custom={i}
+              className="rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-6 text-right hover:border-teal-500/25 transition-all"
+            >
+              <div className="w-11 h-11 rounded-xl bg-teal-500/10 flex items-center justify-center mb-4 mr-auto">
+                <d.icon className="w-5 h-5 text-teal-400" />
+              </div>
+              <h3 className="font-bold text-base mb-2">{d.title}</h3>
+              <p className="text-sm text-white/50 leading-relaxed">{d.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -342,7 +390,7 @@ export function PremiumLanding() {
             ))}
           </div>
           <p className="text-lg text-white/80 leading-relaxed mb-6">
-            &ldquo;Dealix غيّر طريقة عمل فريق المبيعات عندنا بالكامل. من أول شهر زادت مبيعاتنا ٤٠٪ وصار عندنا رؤية واضحة لكل صفقة.&rdquo;
+            &ldquo;Dealix جمع لنا المسار والقنوات في مكان واحد؛ صار عندنا رؤية أوضح لكل صفقة وتقليل تشتيت بين الأدوات.&rdquo;
           </p>
           <div>
             <p className="font-bold">عبدالله الشمري</p>

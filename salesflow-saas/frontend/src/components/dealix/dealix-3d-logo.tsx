@@ -17,6 +17,31 @@ function useIsMobile() {
   return mobile;
 }
 
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+  return reduced;
+}
+
+function StaticHandshakeMark() {
+  return (
+    <div className="relative h-full w-full rounded-3xl border border-white/20 bg-gradient-to-br from-teal-500/25 to-cyan-500/20">
+      <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_50%_50%,rgba(45,212,191,0.35),transparent_60%)]" />
+      <svg viewBox="0 0 120 120" className="h-full w-full p-8">
+        <path d="M18 72 C35 52, 48 46, 60 50" fill="none" stroke="#5eead4" strokeWidth="9" strokeLinecap="round" />
+        <path d="M102 48 C85 68, 72 74, 60 70" fill="none" stroke="#ffffff" strokeWidth="9" strokeLinecap="round" />
+        <circle cx="60" cy="60" r="5" fill="#ffffff" />
+      </svg>
+    </div>
+  );
+}
+
 function HandShape({ position, rotation, color }: {
   position: [number, number, number];
   rotation: [number, number, number];
@@ -164,27 +189,33 @@ interface DealixLogo3DProps {
 
 function DealixLogo3D({ size = 300, className }: DealixLogo3DProps) {
   const isMobile = useIsMobile();
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const lowSpec = isMobile || prefersReducedMotion;
 
   return (
     <div
       className={clsx('relative', className)}
       style={{ width: size, height: size }}
     >
+      {lowSpec ? (
+        <StaticHandshakeMark />
+      ) : (
       <Suspense fallback={<LoadingShimmer />}>
         <Canvas
           camera={{ position: [0, 0, 3], fov: 40 }}
-          dpr={isMobile ? 1 : [1, 2]}
-          gl={{ alpha: true, antialias: !isMobile }}
+          dpr={[1, 1.5]}
+          gl={{ alpha: true, antialias: true }}
           style={{ background: 'transparent' }}
         >
           <ambientLight intensity={0.4} />
           <directionalLight position={[5, 5, 5]} intensity={1} color="#ffffff" />
           <pointLight position={[0, 0, 2]} intensity={0.8} color="#14b8a6" />
           <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.3}>
-            <HandshakeScene isMobile={isMobile} />
+            <HandshakeScene isMobile={lowSpec} />
           </Float>
         </Canvas>
       </Suspense>
+      )}
 
       {/* Ambient glow behind the canvas */}
       <div className="absolute inset-0 -z-10 rounded-full bg-teal-500/10 blur-3xl" />

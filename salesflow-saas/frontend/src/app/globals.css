@@ -83,6 +83,9 @@
 
 /* Luxury Glassmorphism & High-End Effects */
 @layer utilities {
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-2xl border border-border/50 rounded-2xl shadow-xl transition-all duration-300 hover:border-primary/30;
+  }
   .glass-premium {
     @apply bg-white/5 dark:bg-black/40 backdrop-blur-2xl border border-white/10 dark:border-white/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
   }
@@ -99,6 +102,10 @@
 
 /* Animations & Scrollbar */
 @layer utilities {
+  .dealix-section-header {
+    @apply border-b border-border/50 pb-4;
+  }
+
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }

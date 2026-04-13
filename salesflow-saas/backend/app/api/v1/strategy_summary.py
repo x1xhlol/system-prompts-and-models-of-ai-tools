@@ -25,6 +25,33 @@ async def strategy_summary() -> dict:
             "Measurable self-improvement loops when enabled",
             "OpenClaw-style durable flows + revision posture (see openclaw-config.yaml)",
         ],
+        "differentiators_verifiable": [
+            {
+                "id": "api_surface",
+                "title_ar": "مسارات API موثقة ومفتوحة للتحقق",
+                "evidence": "docs/API-MAP.md + OpenAPI /docs + scripts/verify_frontend_openapi_paths.py",
+            },
+            {
+                "id": "crm_sync",
+                "title_ar": "تكامل Salesforce/HubSpot مع اختبار ودفع وسحب",
+                "evidence": "POST /api/v1/integrations/crm/*/test|push-lead|pull-*",
+            },
+            {
+                "id": "llm_routing",
+                "title_ar": "توجيه نماذج حسب المهمة دون كشف مفاتيح",
+                "evidence": "GET/PUT /api/v1/ai/routing",
+            },
+            {
+                "id": "arabic_os",
+                "title_ar": "واجهة عربية ومسارات Dealix OS في منتج واحد",
+                "evidence": "dashboard hubs + docs/DEALIX_OS_PRODUCT_GUIDE_AR.md",
+            },
+            {
+                "id": "competitive_doc",
+                "title_ar": "مصفوفة تنافسية صريحة بدون أرقام غير مثبتة",
+                "evidence": "docs/COMPETITIVE_MATRIX_AR.md (نسخة ويب /strategy/COMPETITIVE_MATRIX_AR.md بعد المزامنة)",
+            },
+        ],
         "competitive_moat": {
             "durable_runtime": "OpenClaw 2026.4.2 pattern — checkpoints, retries, bounded plugins",
             "self_improvement": "6-phase loop: signals → diagnose → experiments → A/B → governance → promote/rollback",
@@ -90,6 +117,7 @@ async def strategy_summary() -> dict:
             "full_markdown_web": "/strategy/DEALIX_NEXT_LEVEL_MASTER_PLAN_AR.md",
             "ultimate_execution_ar": "/strategy/ULTIMATE_EXECUTION_MASTER_AR.md",
             "integration_master_ar": "/strategy/INTEGRATION_MASTER_AR.md",
+            "competitive_matrix_ar": "/strategy/COMPETITIVE_MATRIX_AR.md",
             "investor_html": "/dealix-marketing/investor/00-investor-dealix-full-ar.html",
         },
         "repo_paths": {
@@ -97,5 +125,27 @@ async def strategy_summary() -> dict:
             "openclaw_config": "salesflow-saas/openclaw/openclaw-config.yaml",
             "ultimate_doc": "salesflow-saas/docs/ULTIMATE_EXECUTION_MASTER_AR.md",
             "integration_master": "salesflow-saas/docs/INTEGRATION_MASTER_AR.md",
+        },
+        "dealix_os_three_pillars": {
+            "sales": {
+                "label_ar": "محرك المبيعات",
+                "focus": "اكتشاف، قمع، قنوات، إغلاق مع حوكمة إرسال",
+                "primary_api_surface": "leads, pipeline, inbox, agents",
+            },
+            "partnerships": {
+                "label_ar": "شراكات استراتيجية",
+                "focus": "ملفات B2B، مطابقة، تفاوض، Partnership Studio",
+                "primary_api_surface": "/api/v1/strategic-deals",
+            },
+            "growth": {
+                "label_ar": "نمو واستعداد استحواذ",
+                "focus": "ذكاء استراتيجي، قوائم مهام، قرار بشري للالتزامات الكبرى",
+                "primary_api_surface": "autonomous_core, strategy_summary, growth/checklist",
+            },
+            "governance": {
+                "label_ar": "حوكمة وثقة",
+                "focus": "أوضاع تشغيل، سياسات متدرجة، go-live، سجلات",
+                "primary_api_surface": "operating-model, policy/evaluate, go-live-gate",
+            },
         },
     }

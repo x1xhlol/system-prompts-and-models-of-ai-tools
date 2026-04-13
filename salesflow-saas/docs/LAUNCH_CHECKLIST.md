@@ -7,7 +7,10 @@
 - [ ] `cd frontend && npm run lint && npm run build` (أو تُغطّى بواسطة `verify-launch.ps1`).
 - [ ] من جذر `salesflow-saas`: `node scripts/sync-marketing-to-public.cjs` (يُشغَّل أيضاً تلقائياً قبل `npm run build`).
 - [ ] **E2E (Playwright):** بعد `npm run build`، حرّر المنفذ **3000** ثم من `frontend/`: `CI=true npm run test:e2e`. إن ظهر «port already in use» أو timeout على `webServer`: من جذر `salesflow-saas` شغّل `.\scripts\kill-port-3000.ps1` ثم أعد المحاولة.
-- [ ] (اختياري) من جذر `salesflow-saas`: `py -3 scripts/verify_frontend_openapi_paths.py` (أو `python3 scripts/...`) — يطابق مسارات `/api/v1` في الفرونت مع OpenAPI (حرفيًا وفي قوالب مثل `` `${base}/api/v1/...` ``).
+- [ ] (موصى به) من جذر `salesflow-saas`: `py -3 scripts/verify_frontend_openapi_paths.py` (أو `python3 scripts/...`) — يطابق مسارات `/api/v1` في الفرونت مع OpenAPI (حرفيًا وفي قوالب مثل `` `${base}/api/v1/...` ``). يشمل استدعاءات `strategic-deals` و`integrations/crm` و`ai/routing` عند إضافتها في الواجهة.
+- [ ] مراجعة [`docs/API-MAP.md`](API-MAP.md) مقابل OpenAPI الفعلي (`/docs` على الخادم) بعد أي إصدار يضيف مسارات جديدة.
+- [ ] قراءة سريعة لـ [`docs/DEALIX_OS_PRODUCT_GUIDE_AR.md`](DEALIX_OS_PRODUCT_GUIDE_AR.md) للتأكد من توافق قصة المنتج مع الداشبورد.
+- [ ] (موصى به) تشغيل سيناريو محاكاة الإطلاق في [`docs/LAUNCH_SIMULATION.md`](LAUNCH_SIMULATION.md) وتسجيل نتيجة `go-live-gate` لكل بيئة.
 
 ## 2. الخادم (API)
 

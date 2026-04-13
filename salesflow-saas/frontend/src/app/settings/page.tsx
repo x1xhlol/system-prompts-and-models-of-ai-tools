@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
+import { useState, useEffect, useCallback, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useI18n } from '@/i18n';
+import { apiFetch } from '@/lib/api-client';
+import { getAccessToken, getStoredUser } from '@/lib/auth-storage';
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -355,6 +357,42 @@ function BillingTab({ label }: { label: L }) {
         </div>
       </Section>
 
+      <Section title={label('سياسات التسعير المؤسسي', 'Enterprise Pricing Controls')} onSave={() => {}} label={label}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <Field label={label('نموذج التسعير', 'Pricing Model')}>
+            <SelectInput
+              defaultValue="hybrid"
+              options={[
+                { value: 'seat', label: label('حسب عدد المستخدمين', 'Per seat') },
+                { value: 'volume', label: label('حسب حجم العملاء', 'Volume based') },
+                { value: 'hybrid', label: label('هجين (موصى به)', 'Hybrid (recommended)') },
+              ]}
+            />
+          </Field>
+          <Field label={label('عملة الفوترة', 'Billing Currency')}>
+            <SelectInput
+              defaultValue="SAR"
+              options={[
+                { value: 'SAR', label: 'SAR' },
+                { value: 'USD', label: 'USD' },
+              ]}
+            />
+          </Field>
+          <Field label={label('الحد الأدنى للمقاعد', 'Minimum Seats')}>
+            <TextInput defaultValue="10" dir="ltr" />
+          </Field>
+          <Field label={label('خصم الشراكات الاستراتيجية (%)', 'Strategic Partnership Discount (%)')}>
+            <TextInput defaultValue="12" dir="ltr" />
+          </Field>
+        </div>
+        <p className="text-xs text-slate-500 mt-2">
+          {label(
+            'هذه الحقول تمثل ضوابط تسعير على مستوى الشركة ويمكن تعديلها لاحقًا حسب سياسة كل قطاع.',
+            'These values are company-level pricing controls and can be tuned per vertical later.'
+          )}
+        </p>
+      </Section>
+
       {/* Invoice history */}
       <Section title={label('سجل الفواتير', 'Invoice History')} label={label}>
         <div className="space-y-2">
@@ -375,34 +413,277 @@ function BillingTab({ label }: { label: L }) {
   );
 }
 
+type CrmStatusPayload = {
+  salesforce: {
+    env_refresh_configured: boolean;
+    tenant_refresh_override: boolean;
+    domain: string;
+  };
+  hubspot: {
+    env_token_configured: boolean;
+    tenant_token_override: boolean;
+  };
+  docs: { integration_master_ar: string; api_map: string };
+};
+
+type AiRoutingPayload = {
+  effective: Record<string, { provider: string; model: string }>;
+  available_providers: string[];
+  note_ar: string;
+};
+
 function IntegrationsTab({ label }: { label: L }) {
-  const integrations = [
-    { name: 'WhatsApp', icon: '💬', connected: true, descAr: 'متصل — رقم +966 50 XXX XXXX', descEn: 'Connected — +966 50 XXX XXXX' },
-    { name: label('البريد SMTP', 'Email SMTP'), icon: '📧', connected: false, descAr: 'غير متصل', descEn: 'Not connected' },
-  ];
+  const [crm, setCrm] = useState<CrmStatusPayload | null>(null);
+  const [routing, setRouting] = useState<AiRoutingPayload | null>(null);
+  const [leadId, setLeadId] = useState('');
+  const [busy, setBusy] = useState<string | null>(null);
+  const [lastResult, setLastResult] = useState<string | null>(null);
+  const [noToken, setNoToken] = useState(false);
+
+  const user = typeof window !== 'undefined' ? getStoredUser() : null;
+  const canOps =
+    user && ['owner', 'manager', 'admin'].includes((user.role || '').toLowerCase());
+
+  const load = useCallback(async () => {
+    if (!getAccessToken()) {
+      setNoToken(true);
+      setCrm(null);
+      setRouting(null);
+      return;
+    }
+    setNoToken(false);
+    const r = await apiFetch('/api/v1/integrations/crm/status');
+    if (r.ok) setCrm((await r.json()) as CrmStatusPayload);
+    const ar = await apiFetch('/api/v1/ai/routing');
+    if (ar.ok) setRouting((await ar.json()) as AiRoutingPayload);
+  }, []);
+
+  useEffect(() => {
+    void load();
+  }, [load]);
+
+  const postAction = async (path: string, body?: object) => {
+    setBusy(path);
+    setLastResult(null);
+    try {
+      const r = await apiFetch(path, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body ?? {}),
+      });
+      const text = await r.text();
+      let msg = text;
+      try {
+        msg = JSON.stringify(JSON.parse(text), null, 2);
+      } catch {
+        /* raw */
+      }
+      setLastResult(`${r.status} ${r.statusText}\n${msg.slice(0, 4000)}`);
+      if (r.ok) void load();
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  const pushSf = () => {
+    const id = leadId.trim();
+    if (!/^[0-9a-f-]{36}$/i.test(id)) {
+      setLastResult(label('معرّف العميل المحتمل غير صالح (UUID)', 'Invalid lead id (UUID)'));
+      return;
+    }
+    void postAction(`/api/v1/integrations/crm/salesforce/push-lead/${id}`);
+  };
+
+  const pushHs = () => {
+    const id = leadId.trim();
+    if (!/^[0-9a-f-]{36}$/i.test(id)) {
+      setLastResult(label('معرّف العميل المحتمل غير صالح (UUID)', 'Invalid lead id (UUID)'));
+      return;
+    }
+    void postAction(`/api/v1/integrations/crm/hubspot/push-lead/${id}`);
+  };
+
+  const sfReady =
+    crm &&
+    (crm.salesforce.env_refresh_configured || crm.salesforce.tenant_refresh_override);
+  const hsReady = crm && (crm.hubspot.env_token_configured || crm.hubspot.tenant_token_override);
 
   return (
     <>
-      <Section title={label('التكاملات', 'Integrations')} label={label}>
-        <div className="space-y-3">
-          {integrations.map((intg, i) => (
-            <div key={i} className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/5">
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">{intg.icon}</span>
-                <div>
-                  <p className="text-sm font-medium text-white">{intg.name}</p>
-                  <p className="text-xs text-slate-500">{label(intg.descAr, intg.descEn)}</p>
-                </div>
-              </div>
-              <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${intg.connected ? 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30' : 'text-slate-400 bg-white/5 border-white/10'}`}>
-                {intg.connected ? label('متصل', 'Connected') : label('غير متصل', 'Disconnected')}
-              </span>
-            </div>
-          ))}
+      <Section title={label('تكاملات CRM', 'CRM integrations')} label={label}>
+        <div className="dealix-section-header space-y-2">
+          <p className="text-sm text-slate-400">
+            {label(
+              'حالة التهيئة من البيئة وإعدادات المستأجر — دون عرض أسرار.',
+              'Configuration hints from env and tenant settings — no secrets shown.',
+            )}
+          </p>
+          <a
+            href="/strategy/INTEGRATION_MASTER_AR.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-semibold text-primary hover:underline"
+          >
+            {label('دليل التكاملات (Markdown)', 'Integration master (Markdown)')}
+          </a>
         </div>
+
+        {noToken && (
+          <p className="text-sm text-amber-400/90">
+            {label(
+              'سجّل الدخول من صفحة تسجيل الدخول لتحميل حالة التكاملات.',
+              'Sign in from the login page to load integration status.',
+            )}
+          </p>
+        )}
+
+        {crm && (
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10">
+              <h3 className="text-sm font-bold text-white mb-2">Salesforce</h3>
+              <ul className="text-xs text-slate-400 space-y-1">
+                <li>
+                  {label('بيئة:', 'Env:')}{' '}
+                  {crm.salesforce.env_refresh_configured ? label('مهيأ', 'OK') : label('غير مهيأ', 'Missing')}
+                </li>
+                <li>
+                  {label('مستأجر:', 'Tenant:')}{' '}
+                  {crm.salesforce.tenant_refresh_override ? label('يوجد override', 'Override') : label('افتراضي', 'Default')}
+                </li>
+                <li className="break-all">domain: {crm.salesforce.domain}</li>
+              </ul>
+              <p className="text-xs mt-2 text-slate-500">
+                {sfReady
+                  ? label('جاهز لمحاولة الاختبار', 'Ready to test')
+                  : label('أضف refresh token وعميل OAuth', 'Add OAuth client + refresh token')}
+              </p>
+            </div>
+            <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10">
+              <h3 className="text-sm font-bold text-white mb-2">HubSpot</h3>
+              <ul className="text-xs text-slate-400 space-y-1">
+                <li>
+                  {label('بيئة:', 'Env:')}{' '}
+                  {crm.hubspot.env_token_configured ? label('مهيأ', 'OK') : label('غير مهيأ', 'Missing')}
+                </li>
+                <li>
+                  {label('مستأجر:', 'Tenant:')}{' '}
+                  {crm.hubspot.tenant_token_override ? label('يوجد رمز', 'Token set') : label('افتراضي', 'Default')}
+                </li>
+              </ul>
+              <p className="text-xs mt-2 text-slate-500">
+                {hsReady
+                  ? label('جاهز لمحاولة الاختبار', 'Ready to test')
+                  : label('أضف مفتاح/رمز HubSpot', 'Add HubSpot token')}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {canOps && crm && (
+          <div className="pt-4 border-t border-white/10 space-y-3">
+            <h3 className="text-sm font-semibold text-white">
+              {label('اختبار ومزامنة', 'Test & sync')}
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                disabled={!!busy || !sfReady}
+                onClick={() => void postAction('/api/v1/integrations/crm/salesforce/test')}
+                className="px-3 py-2 rounded-lg bg-primary/20 text-primary border border-primary/30 text-xs font-semibold disabled:opacity-40"
+              >
+                {busy === '/api/v1/integrations/crm/salesforce/test' ? '…' : 'SF test'}
+              </button>
+              <button
+                type="button"
+                disabled={!!busy || !sfReady}
+                onClick={() => void postAction('/api/v1/integrations/crm/salesforce/pull-leads')}
+                className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-xs font-semibold disabled:opacity-40"
+              >
+                {busy === '/api/v1/integrations/crm/salesforce/pull-leads' ? '…' : 'SF pull'}
+              </button>
+              <button
+                type="button"
+                disabled={!!busy || !hsReady}
+                onClick={() => void postAction('/api/v1/integrations/crm/hubspot/test')}
+                className="px-3 py-2 rounded-lg bg-primary/20 text-primary border border-primary/30 text-xs font-semibold disabled:opacity-40"
+              >
+                {busy === '/api/v1/integrations/crm/hubspot/test' ? '…' : 'HS test'}
+              </button>
+              <button
+                type="button"
+                disabled={!!busy || !hsReady}
+                onClick={() => void postAction('/api/v1/integrations/crm/hubspot/pull-contacts')}
+                className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-xs font-semibold disabled:opacity-40"
+              >
+                {busy === '/api/v1/integrations/crm/hubspot/pull-contacts' ? '…' : 'HS pull'}
+              </button>
+            </div>
+            <Field label={label('معرّف عميل محتمل (UUID) لدفع واحد', 'Lead UUID for single push')}>
+              <input
+                type="text"
+                value={leadId}
+                onChange={(e) => setLeadId(e.target.value)}
+                dir="ltr"
+                placeholder="00000000-0000-0000-0000-000000000000"
+                className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-primary/40"
+              />
+            </Field>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                disabled={!!busy || !sfReady}
+                onClick={pushSf}
+                className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-xs font-semibold disabled:opacity-40"
+              >
+                SF push lead
+              </button>
+              <button
+                type="button"
+                disabled={!!busy || !hsReady}
+                onClick={pushHs}
+                className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-xs font-semibold disabled:opacity-40"
+              >
+                HS push lead
+              </button>
+            </div>
+          </div>
+        )}
+
+        {!canOps && !noToken && (
+          <p className="text-xs text-slate-500">
+            {label(
+              'عمليات الاختبار والدفع تتطلب دور مالك أو مدير أو مسؤول.',
+              'Test and push operations require owner, manager, or admin role.',
+            )}
+          </p>
+        )}
+
+        {lastResult && (
+          <pre
+            dir="ltr"
+            className="mt-4 p-3 rounded-xl bg-black/40 border border-white/10 text-[11px] text-slate-300 overflow-x-auto whitespace-pre-wrap"
+          >
+            {lastResult}
+          </pre>
+        )}
       </Section>
 
-      {/* API Key */}
+      {routing && (
+        <Section title={label('توجيه نماذج الذكاء', 'LLM routing')} label={label}>
+          <p className="text-xs text-slate-500 mb-3">{routing.note_ar}</p>
+          <p className="text-xs text-slate-500 mb-2">
+            {label('المزودون المتاحون حسب مفاتيح الخادم:', 'Available providers (server keys):')}{' '}
+            {routing.available_providers.join(', ') || '—'}
+          </p>
+          <pre
+            dir="ltr"
+            className="p-3 rounded-xl bg-black/30 border border-white/10 text-[11px] text-slate-300 overflow-x-auto"
+          >
+            {JSON.stringify(routing.effective, null, 2)}
+          </pre>
+        </Section>
+      )}
+
       <Section title={label('مفتاح API', 'API Key')} label={label}>
         <div className="flex items-center gap-3">
           <input
@@ -412,7 +693,10 @@ function IntegrationsTab({ label }: { label: L }) {
             dir="ltr"
             className="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 text-sm font-mono"
           />
-          <button className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-sm text-slate-300 transition-all">
+          <button
+            type="button"
+            className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-sm text-slate-300 transition-all"
+          >
             {label('نسخ', 'Copy')}
           </button>
         </div>

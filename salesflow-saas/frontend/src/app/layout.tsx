@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   title: "Dealix — نظام تشغيل الإيرادات B2B",
   description:
     "اكتشاف، تأهيل، قنوات متعددة، وتحليلات — مع حوكمة وذاكرة. سوق سعودي.",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

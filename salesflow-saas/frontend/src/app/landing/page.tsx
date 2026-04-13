@@ -1,5 +1,5 @@
-import HeroLanding from "../../components/dealix/hero-landing";
+import { PremiumLanding } from "../../components/dealix/premium-landing";
 
 export default function LandingPage() {
-  return <HeroLanding />;
+  return <PremiumLanding />;
 }

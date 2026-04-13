@@ -108,6 +108,7 @@ def _demo_snapshot() -> Dict[str, Any]:
         "audit_events_24h": 0,
         "connectors": [
             {"connector_key": "crm_salesforce", "display_name_ar": "Salesforce CRM", "status": "unknown", "last_success_at": None, "last_attempt_at": None, "last_error": None},
+            {"connector_key": "crm_hubspot", "display_name_ar": "HubSpot CRM", "status": "unknown", "last_success_at": None, "last_attempt_at": None, "last_error": None},
             {"connector_key": "whatsapp_cloud", "display_name_ar": "واتساب Cloud API", "status": "unknown", "last_success_at": None, "last_attempt_at": None, "last_error": None},
             {"connector_key": "stripe_billing", "display_name_ar": "Stripe — الفوترة", "status": "unknown", "last_success_at": None, "last_attempt_at": None, "last_error": None},
             {"connector_key": "email_sync", "display_name_ar": "مزامنة البريد", "status": "unknown", "last_success_at": None, "last_attempt_at": None, "last_error": None},
@@ -154,6 +155,9 @@ async def operations_snapshot(
     pending = await count_pending_approvals(db, user.tenant_id)
     ev = await count_events_since(db, user.tenant_id, 24)
     aud = await count_audits_since(db, user.tenant_id, 24)
+    from app.services.integration_probe import probe_and_persist_crm_connectors
+
+    await probe_and_persist_crm_connectors(db, user.tenant_id)
     connectors = await list_integration_connectors(db, user.tenant_id)
     tenant_id_str = str(user.tenant_id)
     esc = await refresh_pending_escalations(db, user.tenant_id)

@@ -24,6 +24,11 @@ from app.services.strategic_deals.company_profiler import CompanyProfiler
 from app.services.strategic_deals.deal_matcher import DealMatcher
 from app.services.strategic_deals.deal_negotiator import DealNegotiator, NegotiationStrategy
 from app.services.strategic_deals.deal_agent import DealAgent
+from app.services.strategic_deals.operating_modes import OperatingMode, ModeEnforcer
+from app.services.strategic_deals.deal_taxonomy import DealTaxonomyService
+from app.services.dealix_os.vertical_playbooks import get_playbook, list_playbook_ids
+from app.services.dealix_os.partner_archetypes import list_archetypes, archetype_for_deal_type
+from app.services.dealix_os.policy_engine import evaluate_action, suggested_playbook_for_industry
 
 router = APIRouter(prefix="/strategic-deals", tags=["Strategic Deals"])
 
@@ -93,6 +98,8 @@ class DealCreate(Schema):
     proposed_terms: dict = {}
     estimated_value_sar: Optional[float] = None
     channel: str = "whatsapp"
+    lead_id: Optional[UUID] = None
+    sales_deal_id: Optional[UUID] = None
 
 
 class DealResponse(Schema):
@@ -117,6 +124,8 @@ class DealResponse(Schema):
     negotiation_history: list = []
     notes: Optional[str] = None
     notes_ar: Optional[str] = None
+    lead_id: Optional[UUID] = None
+    sales_deal_id: Optional[UUID] = None
     created_at: datetime
     updated_at: Optional[datetime] = None
     closed_at: Optional[datetime] = None
@@ -161,7 +170,42 @@ class BarterScanRequest(Schema):
     profile_id: UUID
 
 
+class OperatingModeSet(Schema):
+    mode: int = Field(..., ge=0, le=4, description="OperatingMode 0–4")
+
+
+class PolicyEvaluateRequest(Schema):
+    channel: str = "whatsapp"
+    action: str = "send_custom_message"
+    deal_value_sar: float = 0.0
+    industry: Optional[str] = None
+
+
+class DealLinksUpdate(Schema):
+    lead_id: Optional[UUID] = None
+    sales_deal_id: Optional[UUID] = None
+
+
 # ── Profile Endpoints ────────────────────────────────────────────────────────
+
+
+@router.get("/profiles", response_model=list[ProfileResponse])
+async def list_profiles(
+    page: int = Query(1, ge=1),
+    per_page: int = Query(20, ge=1, le=100),
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """List company profiles for the tenant. | عرض ملفات الشركات"""
+    q = (
+        select(CompanyProfile)
+        .where(CompanyProfile.tenant_id == current_user.tenant_id)
+        .order_by(CompanyProfile.created_at.desc())
+        .offset((page - 1) * per_page)
+        .limit(per_page)
+    )
+    result = await db.execute(q)
+    return [ProfileResponse.model_validate(p) for p in result.scalars().all()]
 
 
 @router.post("/profiles", response_model=ProfileResponse, status_code=201)
@@ -339,6 +383,8 @@ async def create_deal(
         channel=data.channel,
         ai_confidence=0.0,
         negotiation_history=[],
+        lead_id=data.lead_id,
+        sales_deal_id=data.sales_deal_id,
     )
     db.add(deal)
     await db.flush()
@@ -373,6 +419,313 @@ async def list_deals(
     return [DealResponse.model_validate(d) for d in result.scalars().all()]
 
 
+@router.get("/operating-model")
+async def get_operating_model(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """Current AI operating mode and all mode definitions. | وضع التشغيل والأوصاف"""
+    mode = await ModeEnforcer.get_current_mode(str(current_user.tenant_id), db)
+    policy = ModeEnforcer.get_mode_policy(mode)
+    return {
+        "current": {
+            "mode": mode.value,
+            "name": mode.name,
+            "label_ar": policy.label_ar,
+            "description_ar": policy.description_ar,
+            "auto_send": policy.auto_send,
+            "auto_negotiate": policy.auto_negotiate,
+            "max_auto_commitment_sar": policy.max_auto_commitment_sar,
+            "allowed_channels": policy.allowed_channels,
+        },
+        "modes": ModeEnforcer.get_all_modes(),
+        "roles_ar": [
+            {"id": "owner", "label": "المالك", "scope": "تغيير وضع التشغيل، الالتزامات الكبرى"},
+            {"id": "revops", "label": "عمليات الإيرادات", "scope": "القمع، السياسات، التقارير"},
+            {"id": "partner_manager", "label": "مدير شراكات", "scope": "مسار الشراكات والتفاوض"},
+            {"id": "compliance", "label": "الامتثال", "scope": "الموافقات الحساسة والقطاعات المنظمة"},
+        ],
+        "sla_hints_ar": {
+            "response_window": "الرد على العملاء المؤهلين خلال ٢٤–٤٨ ساعة عمل",
+            "followup_cap": "حد أقصى ٣ متابعات تلقائية ثم تصعيد بشري",
+            "opt_out": "احترام طلب التوقف فوراً وتسجيله في السجل",
+        },
+    }
+
+
+@router.put("/operating-model")
+async def set_operating_model(
+    data: OperatingModeSet,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """Set tenant operating mode (stored on first company profile). | تعيين وضع التشغيل"""
+    try:
+        om = OperatingMode(data.mode)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="وضع تشغيل غير صالح | Invalid mode")
+    try:
+        await ModeEnforcer.set_mode(str(current_user.tenant_id), om, db)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    return {"status": "ok", "mode": om.value, "name": om.name}
+
+
+@router.get("/taxonomy/deal-types")
+async def taxonomy_deal_types():
+    """Full 15-type partnership taxonomy for UI. | تصنيف أنواع الصفقات"""
+    return [t.model_dump() for t in DealTaxonomyService.get_all_types()]
+
+
+@router.get("/taxonomy/deal-types/{type_id}")
+async def taxonomy_deal_type_detail(type_id: str):
+    spec = DealTaxonomyService.get_deal_type(type_id)
+    if not spec:
+        raise HTTPException(status_code=404, detail="نوع غير معروف | Unknown type")
+    return spec.model_dump()
+
+
+@router.get("/partner-archetypes")
+async def partner_archetypes():
+    """Map DB deal_type values to operational archetypes. | أنماط الشراكات التشغيلية"""
+    return {"archetypes": list_archetypes()}
+
+
+@router.get("/playbooks")
+async def playbooks_list():
+    """Vertical playbooks (sector defaults). | قوالب قطاعية"""
+    return {
+        "ids": list_playbook_ids(),
+        "items": [get_playbook(i) for i in list_playbook_ids()],
+    }
+
+
+@router.get("/playbooks/{playbook_id}")
+async def playbook_detail(playbook_id: str):
+    pb = get_playbook(playbook_id)
+    if not pb:
+        raise HTTPException(status_code=404, detail="playbook not found")
+    return pb
+
+
+@router.post("/policy/evaluate")
+async def policy_evaluate(
+    data: PolicyEvaluateRequest,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """Graded policy: auto_execute | approval_required | blocked."""
+    result = await evaluate_action(
+        tenant_id=current_user.tenant_id,
+        channel=data.channel,
+        action=data.action,
+        deal_value_sar=data.deal_value_sar,
+        industry=data.industry,
+        db=db,
+    )
+    sp = suggested_playbook_for_industry(data.industry)
+    result["suggested_playbook_id"] = sp
+    return result
+
+
+@router.get("/identity/graph")
+async def identity_graph(
+    profile_id: UUID,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """Counts and links for one company profile (light account graph)."""
+    pr = await db.execute(
+        select(CompanyProfile).where(
+            CompanyProfile.id == profile_id,
+            CompanyProfile.tenant_id == current_user.tenant_id,
+        )
+    )
+    profile = pr.scalar_one_or_none()
+    if not profile:
+        raise HTTPException(status_code=404, detail="Profile not found")
+
+    deals_init = await db.execute(
+        select(func.count()).select_from(StrategicDeal).where(
+            StrategicDeal.tenant_id == current_user.tenant_id,
+            StrategicDeal.initiator_profile_id == profile_id,
+        )
+    )
+    deals_tgt = await db.execute(
+        select(func.count()).select_from(StrategicDeal).where(
+            StrategicDeal.tenant_id == current_user.tenant_id,
+            StrategicDeal.target_profile_id == profile_id,
+        )
+    )
+    matches_a = await db.execute(
+        select(func.count()).select_from(DealMatch).where(
+            DealMatch.tenant_id == current_user.tenant_id,
+            DealMatch.company_a_id == profile_id,
+        )
+    )
+    matches_b = await db.execute(
+        select(func.count()).select_from(DealMatch).where(
+            DealMatch.tenant_id == current_user.tenant_id,
+            DealMatch.company_b_id == profile_id,
+        )
+    )
+    linked_leads = await db.execute(
+        select(func.count()).select_from(StrategicDeal).where(
+            StrategicDeal.tenant_id == current_user.tenant_id,
+            (StrategicDeal.initiator_profile_id == profile_id)
+            | (StrategicDeal.target_profile_id == profile_id),
+            StrategicDeal.lead_id.isnot(None),
+        )
+    )
+    linked_sales = await db.execute(
+        select(func.count()).select_from(StrategicDeal).where(
+            StrategicDeal.tenant_id == current_user.tenant_id,
+            (StrategicDeal.initiator_profile_id == profile_id)
+            | (StrategicDeal.target_profile_id == profile_id),
+            StrategicDeal.sales_deal_id.isnot(None),
+        )
+    )
+
+    return {
+        "profile_id": str(profile_id),
+        "company_name": profile.company_name,
+        "suggested_playbook_id": suggested_playbook_for_industry(profile.industry),
+        "archetype_hint": archetype_for_deal_type("partnership"),
+        "counts": {
+            "strategic_deals_as_initiator": deals_init.scalar() or 0,
+            "strategic_deals_as_target": deals_tgt.scalar() or 0,
+            "matches_as_party_a": matches_a.scalar() or 0,
+            "matches_as_party_b": matches_b.scalar() or 0,
+            "deals_with_lead_link": linked_leads.scalar() or 0,
+            "deals_with_sales_deal_link": linked_sales.scalar() or 0,
+        },
+    }
+
+
+@router.get("/governance/snapshot")
+async def governance_snapshot(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """North-star style KPIs + policy posture for dashboards."""
+    mode = await ModeEnforcer.get_current_mode(str(current_user.tenant_id), db)
+    policy = ModeEnforcer.get_mode_policy(mode)
+
+    tenant_id = current_user.tenant_id
+    total_deals = (await db.execute(
+        select(func.count()).select_from(StrategicDeal).where(StrategicDeal.tenant_id == tenant_id)
+    )).scalar() or 0
+    hist_rows = (
+        await db.execute(
+            select(StrategicDeal.negotiation_history).where(StrategicDeal.tenant_id == tenant_id)
+        )
+    ).all()
+    deals_with_history = sum(
+        1 for (h,) in hist_rows if isinstance(h, list) and len(h) > 0
+    )
+
+    return {
+        "operating_mode": {"value": mode.value, "name": mode.name, "label_ar": policy.label_ar},
+        "north_star_hints_ar": {
+            "touch_to_meeting": "تقليل الزمن من أول لمسة إلى اجتماع مؤهل",
+            "stage_conversion": "تحسين تحويل المراحل في القمع",
+            "partner_attribution": "مساهمة الشراكات في خط الأنابيب",
+        },
+        "governance_kpis": {
+            "auto_send_enabled": policy.auto_send,
+            "auto_negotiate_enabled": policy.auto_negotiate,
+            "max_auto_commitment_sar": policy.max_auto_commitment_sar,
+            "strategic_deals_total": total_deals,
+            "deals_with_negotiation_rounds": deals_with_history,
+        },
+    }
+
+
+@router.get("/growth/checklist")
+async def growth_ma_checklist():
+    """Light M&A / expansion checklist (human decisions required)."""
+    return {
+        "disclaimer_ar": "قائمة إرشادية فقط — لا تغني عن مستشار قانوني أو مالي.",
+        "phases": [
+            {
+                "id": "thesis",
+                "title_ar": "أطروحة الاستثمار",
+                "items_ar": [
+                    "تحديد القطاع والجغرافيا والحجم المستهدف",
+                    "ربط الصفقة بأهداف الشركة الاستراتيجية (٣–٥ نقاط)",
+                ],
+            },
+            {
+                "id": "screen",
+                "title_ar": "فرز أولي",
+                "items_ar": [
+                    "تطبيق معايير إقصاء واضحة (حجم، نمو، تركيز)",
+                    "تسجيل مصادر البيانات لكل هدف",
+                ],
+            },
+            {
+                "id": "dd_lite",
+                "title_ar": "عناية واجبة خفيفة",
+                "items_ar": [
+                    "المالية: إيرادات، هامش، تدفقات",
+                    "التقنية والمنتج: نضج، ديون تقنية، IP",
+                    "العملاء: تركيز، انحراف، مخاطر تجميع",
+                ],
+            },
+            {
+                "id": "approval",
+                "title_ar": "موافقة وإغلاق داخلي",
+                "items_ar": [
+                    "لجنة استثمار / مجلس إدارة حسب الحوكمة",
+                    "توثيق الشروط الرئيسية قبل أي التزام",
+                ],
+            },
+        ],
+    }
+
+
+@router.get("/agent-quality/snapshot")
+async def agent_quality_snapshot(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """Proxy metrics for QA / improvement loop (extend with real message logs later)."""
+    tenant_id = current_user.tenant_id
+    total = (await db.execute(
+        select(func.count()).select_from(StrategicDeal).where(StrategicDeal.tenant_id == tenant_id)
+    )).scalar() or 0
+    with_hist = (await db.execute(
+        select(StrategicDeal.negotiation_history).where(StrategicDeal.tenant_id == tenant_id)
+    )).all()
+    rounds = 0
+    for row in with_hist:
+        h = row[0] or []
+        if isinstance(h, list):
+            rounds += len(h)
+    avg_rounds = (rounds / total) if total else 0.0
+    high_conf = (await db.execute(
+        select(func.count()).select_from(StrategicDeal).where(
+            StrategicDeal.tenant_id == tenant_id,
+            StrategicDeal.ai_confidence >= 0.7,
+        )
+    )).scalar() or 0
+
+    return {
+        "labels_ar": {
+            "negotiation_depth": "عمق جولات التفاوض المسجّل",
+            "high_confidence_deals": "صفقات بثقة نموذج مرتفعة",
+        },
+        "strategic_deals_total": total,
+        "negotiation_rounds_total": rounds,
+        "avg_negotiation_rounds_per_deal": round(avg_rounds, 2),
+        "deals_high_ai_confidence": high_conf,
+        "loop_hints_ar": [
+            "اربط هذه المؤشرات لاحقاً بردود العملاء الفعلية ومعدلات التحويل",
+            "استخدم وضع «مسودات» عند ارتفاع معدل التصعيد",
+        ],
+    }
+
+
 @router.get("/{deal_id}", response_model=DealResponse)
 async def get_deal(
     deal_id: UUID,
@@ -389,6 +742,32 @@ async def get_deal(
     deal = result.scalar_one_or_none()
     if not deal:
         raise HTTPException(status_code=404, detail="الصفقة غير موجودة | Deal not found")
+    return DealResponse.model_validate(deal)
+
+
+@router.patch("/{deal_id}/links", response_model=DealResponse)
+async def patch_deal_links(
+    deal_id: UUID,
+    data: DealLinksUpdate,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """Link strategic deal to CRM lead and/or sales deal. | ربط الصفقة بعميل محتمل أو صفقة مبيعات"""
+    result = await db.execute(
+        select(StrategicDeal).where(
+            StrategicDeal.id == deal_id,
+            StrategicDeal.tenant_id == current_user.tenant_id,
+        )
+    )
+    deal = result.scalar_one_or_none()
+    if not deal:
+        raise HTTPException(status_code=404, detail="الصفقة غير موجودة | Deal not found")
+    if data.lead_id is not None:
+        deal.lead_id = data.lead_id
+    if data.sales_deal_id is not None:
+        deal.sales_deal_id = data.sales_deal_id
+    await db.flush()
+    await db.refresh(deal)
     return DealResponse.model_validate(deal)
 
 

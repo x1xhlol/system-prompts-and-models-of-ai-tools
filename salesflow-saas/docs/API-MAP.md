@@ -272,3 +272,62 @@ All routes are prefixed with `/api/v1`. Authentication is required unless marked
 | GET | `/health` | Basic health check `[public]` |
 | GET | `/health/ready` | Readiness (DB + Redis) `[public]` |
 | GET | `/health/version` | App version `[public]` |
+
+## Strategic Deals (Dealix OS / B2B)
+
+Prefix: `/strategic-deals`. Company profiles, matches, deals, negotiation, governance.
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/strategic-deals/profiles` | List tenant company profiles (paginated) |
+| POST | `/strategic-deals/profiles` | Create company profile |
+| PUT | `/strategic-deals/profiles/{id}/enrich` | AI-enrich profile |
+| POST | `/strategic-deals/profiles/{id}/analyze-needs` | Needs analysis |
+| GET | `/strategic-deals/matches` | List AI matches |
+| POST | `/strategic-deals/matches/{id}/approve` | Approve match |
+| POST | `/strategic-deals/scan` | Discovery scan |
+| POST | `/strategic-deals/barter-scan` | Barter chain scan |
+| POST | `/strategic-deals` | Create strategic deal (`lead_id`, `sales_deal_id` optional) |
+| GET | `/strategic-deals` | List deals (filters: status, deal_type, profile_id) |
+| GET | `/strategic-deals/operating-model` | Current OS mode + all modes + roles/SLA hints |
+| PUT | `/strategic-deals/operating-model` | Set operating mode (0–4) on tenant profile |
+| GET | `/strategic-deals/taxonomy/deal-types` | 15-type partnership taxonomy |
+| GET | `/strategic-deals/taxonomy/deal-types/{type_id}` | One taxonomy type |
+| GET | `/strategic-deals/partner-archetypes` | Map `deal_type` → operational archetypes |
+| GET | `/strategic-deals/playbooks` | Vertical sector playbooks |
+| GET | `/strategic-deals/playbooks/{id}` | One playbook |
+| POST | `/strategic-deals/policy/evaluate` | Graded policy: auto_execute / approval_required / blocked |
+| GET | `/strategic-deals/identity/graph` | Light account graph (`profile_id` query) |
+| GET | `/strategic-deals/governance/snapshot` | Governance KPIs + operating mode |
+| GET | `/strategic-deals/growth/checklist` | M&A-style checklist (guidance) |
+| GET | `/strategic-deals/agent-quality/snapshot` | Agent quality proxy metrics |
+| GET | `/strategic-deals/{deal_id}` | Deal detail |
+| PATCH | `/strategic-deals/{deal_id}/links` | Link CRM `lead_id` / `sales_deal_id` |
+| PUT | `/strategic-deals/{deal_id}/negotiate` | Negotiation round |
+| POST | `/strategic-deals/{deal_id}/outreach` | Outreach |
+| POST | `/strategic-deals/{deal_id}/proposal` | Generate proposal |
+| POST | `/strategic-deals/{deal_id}/term-sheet` | Term sheet |
+| GET | `/strategic-deals/analytics/overview` | Deal analytics |
+
+## Integrations (CRM)
+
+Prefix: `/integrations`. Salesforce / HubSpot sync and health (JWT).
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/integrations/crm/status` | Config presence + last probe (no secrets) |
+| POST | `/integrations/crm/salesforce/test` | Probe Salesforce token/API |
+| POST | `/integrations/crm/salesforce/push-lead/{lead_id}` | Push one lead to Salesforce |
+| POST | `/integrations/crm/salesforce/pull-leads` | Pull leads (optional `since`) |
+| POST | `/integrations/crm/hubspot/test` | Probe HubSpot API |
+| POST | `/integrations/crm/hubspot/push-lead/{lead_id}` | Push one contact to HubSpot |
+| POST | `/integrations/crm/hubspot/pull-contacts` | Pull contacts page |
+
+## AI routing (tenant)
+
+Prefix: `/ai`. Model routing policy per task category (no API keys in response).
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/ai/routing` | Effective routing map for current tenant |
+| PUT | `/ai/routing` | Update tenant `settings.llm_routing` (owner/manager) |

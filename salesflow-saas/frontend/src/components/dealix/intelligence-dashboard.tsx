@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { getApiBaseUrl } from "@/lib/api-base";
+import { apiFetch } from "@/lib/api-client";
 
 interface AgentStatus {
   role: string;
@@ -39,8 +40,7 @@ export function IntelligenceDashboard() {
 
   const fetchAgentStatus = async () => {
     try {
-      const base = getApiBaseUrl().replace(/\/$/, "");
-      const res = await fetch(`${base}/api/v1/agents/status`);
+      const res = await apiFetch("/api/v1/agents/status", { cache: "no-store" });
       if (res.ok) {
         const data = await res.json();
         setAgents(data.agents || []);
@@ -50,8 +50,7 @@ export function IntelligenceDashboard() {
 
   const fetchHealth = async () => {
     try {
-      const base = getApiBaseUrl().replace(/\/$/, "");
-      const res = await fetch(`${base}/api/v1/intelligence/health`);
+      const res = await apiFetch("/api/v1/intelligence/health", { cache: "no-store" });
       if (res.ok) setHealth(await res.json());
     } catch {}
   };
@@ -60,8 +59,7 @@ export function IntelligenceDashboard() {
     if (!leadForm.contact_name || !leadForm.company_name) return;
     setLoading(true);
     try {
-      const base = getApiBaseUrl().replace(/\/$/, "");
-      const res = await fetch(`${base}/api/v1/intelligence/run-pipeline`, {
+      const res = await apiFetch("/api/v1/intelligence/run-pipeline", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: `lead_${Date.now()}`, ...leadForm }),

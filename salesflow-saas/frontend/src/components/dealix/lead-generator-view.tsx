@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { getApiBaseUrl } from "@/lib/api-base";
+import { apiFetch } from "@/lib/api-client";
 
 export function LeadGeneratorView() {
   const [sector, setSector] = useState("تقنية المعلومات");
@@ -27,8 +28,7 @@ export function LeadGeneratorView() {
     setLoading(true);
     setLeads([]);
     try {
-      const base = getApiBaseUrl().replace(/\/$/, "");
-      const res = await fetch(`${base}/api/v1/dealix/generate-leads?sector=${encodeURIComponent(sector)}&city=${encodeURIComponent(city)}&count=${count}`, {
+      const res = await apiFetch(`/api/v1/dealix/generate-leads?sector=${encodeURIComponent(sector)}&city=${encodeURIComponent(city)}&count=${count}`, {
         method: "POST"
       });
       if (res.ok) {
@@ -56,8 +56,7 @@ export function LeadGeneratorView() {
   const runPipeline = async (lead: any) => {
     setPipelineRunning(lead.company_name);
     try {
-      const base = getApiBaseUrl().replace(/\/$/, "");
-      const res = await fetch(`${base}/api/v1/dealix/full-power`, {
+      const res = await apiFetch("/api/v1/dealix/full-power", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

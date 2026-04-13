@@ -1,20 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#0F4C81;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#00BFA6;stop-opacity:1" />
+    <linearGradient id="bg" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0b1220" />
+      <stop offset="100%" stop-color="#0d9488" />
     </linearGradient>
-    <linearGradient id="arrow" x1="0%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" style="stop-color:#00BFA6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:1" />
+    <linearGradient id="deal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5eead4" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+    <linearGradient id="growth" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#14b8a6" />
+      <stop offset="100%" stop-color="#f59e0b" />
     </linearGradient>
   </defs>
-  <!-- Background circle -->
-  <circle cx="100" cy="100" r="92" fill="url(#grad)" />
-  <!-- D letter -->
-  <path d="M70 45 L70 155 L105 155 C140 155, 155 130, 155 100 C155 70, 140 45, 105 45 Z"
-    fill="none" stroke="white" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
-  <!-- Upward arrow -->
-  <path d="M148 85 L148 40 M148 40 L132 56 M148 40 L164 56"
-    fill="none" stroke="url(#arrow)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+
+  <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#bg)" />
+
+  <!-- Two hands approaching (strategic deal / handshake) -->
+  <path d="M58 146 C80 118, 106 106, 126 112 C136 115, 144 123, 154 129"
+        fill="none" stroke="url(#deal)" stroke-width="20" stroke-linecap="round" />
+  <path d="M198 110 C176 138, 150 150, 130 144 C120 141, 112 133, 102 127"
+        fill="none" stroke="#ffffff" stroke-opacity="0.9" stroke-width="20" stroke-linecap="round" />
+
+  <!-- Deal node -->
+  <circle cx="128" cy="128" r="12" fill="#ffffff" />
+  <circle cx="128" cy="128" r="7" fill="#0d9488" />
+
+  <!-- Revenue growth arrow -->
+  <path d="M82 186 L172 186 L172 96" fill="none" stroke="url(#growth)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M154 112 L172 94 L190 112" fill="none" stroke="url(#growth)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
 </svg>

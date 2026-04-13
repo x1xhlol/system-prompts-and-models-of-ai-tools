@@ -49,6 +49,7 @@ coverage/
 # Local SQLite / CI DB artifacts (never commit)
 backend/*.db
 backend/ci_*.db
+backend/.pytest_dealix.sqlite
 
 # Playwright / E2E output
 frontend/test-results/

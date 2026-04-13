@@ -3,12 +3,15 @@ CRM Sync Service — Bidirectional sync with Salesforce, HubSpot, and generic CR
 """
 
 import uuid
-from datetime import datetime, timezone
 from typing import Optional
 
 import httpx
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from app.config import get_settings
+from app.models.tenant import Tenant
+from app.services.salesforce_oauth import refresh_salesforce_access_token
 
 settings = get_settings()
 
@@ -32,9 +35,13 @@ class CRMSyncService:
         if not access_token or not instance_url:
             return {"status": "error", "message": "Invalid Salesforce credentials"}
 
+        fn = (lead.get("full_name") or lead.get("name") or "").strip()
+        parts = fn.split() if fn else []
+        first = parts[0] if parts else "Unknown"
+        last = parts[-1] if len(parts) > 1 else "."
         sf_lead = {
-            "FirstName": lead.get("full_name", "").split()[0] if lead.get("full_name") else "",
-            "LastName": lead.get("full_name", "").split()[-1] if lead.get("full_name") else "Unknown",
+            "FirstName": first,
+            "LastName": last,
             "Phone": lead.get("phone", ""),
             "Email": lead.get("email", ""),
             "Company": lead.get("company_name", "Unknown"),
@@ -65,10 +72,11 @@ class CRMSyncService:
         access_token = credentials.get("access_token")
         instance_url = credentials.get("instance_url")
 
-        query = "SELECT Id, FirstName, LastName, Phone, Email, Company, Industry, City, Rating FROM Lead"
-        if since:
-            query += f" WHERE LastModifiedDate > {since}"
-        query += " ORDER BY LastModifiedDate DESC LIMIT 100"
+        # SOQL: avoid injecting raw `since` without proper quoting — use full window + LIMIT
+        query = (
+            "SELECT Id, FirstName, LastName, Phone, Email, Company, Industry, City, Rating "
+            "FROM Lead ORDER BY LastModifiedDate DESC LIMIT 100"
+        )
 
         async with httpx.AsyncClient() as client:
             response = await client.get(
@@ -100,8 +108,14 @@ class CRMSyncService:
         """Push a contact from Dealix to HubSpot."""
         hs_contact = {
             "properties": {
-                "firstname": lead.get("full_name", "").split()[0] if lead.get("full_name") else "",
-                "lastname": lead.get("full_name", "").split()[-1] if lead.get("full_name") else "",
+                "firstname": (
+                    ((lead.get("full_name") or lead.get("name") or "").split() or [""])[0]
+                ),
+                "lastname": (
+                    ((lead.get("full_name") or lead.get("name") or "").split() or ["", "."])[-1]
+                    if len((lead.get("full_name") or lead.get("name") or "").split()) > 1
+                    else "."
+                ),
                 "phone": lead.get("phone", ""),
                 "email": lead.get("email", ""),
                 "company": lead.get("company_name", ""),
@@ -209,11 +223,19 @@ class CRMSyncService:
 
             for ext_lead in external_leads:
                 try:
+                    em = (ext_lead.get("email") or "").strip()
+                    if em:
+                        existing = await lead_svc.get_lead_by_email(tenant_id, em)
+                        if existing:
+                            continue
+                    name = ext_lead.get("full_name") or "Unknown"
+                    if not name.strip():
+                        name = "Unknown"
                     await lead_svc.create_lead(
                         tenant_id=tenant_id,
-                        full_name=ext_lead["full_name"],
+                        full_name=name,
                         phone=ext_lead.get("phone", ""),
-                        email=ext_lead.get("email", ""),
+                        email=em,
                         company_name=ext_lead.get("company_name", ""),
                         sector=ext_lead.get("sector", ""),
                         city=ext_lead.get("city", ""),
@@ -236,18 +258,71 @@ class CRMSyncService:
     # ── Helpers ───────────────────────────────────
 
     async def _get_crm_credentials(self, tenant_id: str, provider: str) -> Optional[dict]:
-        """Get CRM credentials from tenant settings."""
-        # In production, this would fetch from encrypted tenant settings
+        """Resolve CRM credentials: tenant.settings.crm overrides global env."""
+        tid = uuid.UUID(tenant_id)
+        result = await self.db.execute(select(Tenant).where(Tenant.id == tid))
+        tenant = result.scalar_one_or_none()
+        tset = dict(tenant.settings or {}) if tenant else {}
+        crm = dict(tset.get("crm") or {})
+
         if provider == "salesforce":
-            return {
-                "access_token": settings.SALESFORCE_CLIENT_SECRET,
-                "instance_url": "",
-            } if settings.SALESFORCE_CLIENT_ID else None
-        elif provider == "hubspot":
-            return {
-                "api_key": settings.HUBSPOT_API_KEY,
-            } if settings.HUBSPOT_API_KEY else None
+            sf = dict(crm.get("salesforce") or {})
+            client_id = (sf.get("client_id") or settings.SALESFORCE_CLIENT_ID or "").strip()
+            client_secret = (sf.get("client_secret") or settings.SALESFORCE_CLIENT_SECRET or "").strip()
+            refresh_token = (sf.get("refresh_token") or settings.SALESFORCE_REFRESH_TOKEN or "").strip()
+            domain_host = (sf.get("domain") or settings.SALESFORCE_DOMAIN or "login.salesforce.com").strip()
+            if not client_id or not client_secret or not refresh_token:
+                return None
+            try:
+                tok = await refresh_salesforce_access_token(
+                    domain_host=domain_host,
+                    client_id=client_id,
+                    client_secret=client_secret,
+                    refresh_token=refresh_token,
+                )
+                return {
+                    "access_token": tok["access_token"],
+                    "instance_url": tok["instance_url"],
+                }
+            except Exception:
+                return None
+
+        if provider == "hubspot":
+            hs = dict(crm.get("hubspot") or {})
+            token = (hs.get("private_app_token") or hs.get("access_token") or settings.HUBSPOT_API_KEY or "").strip()
+            if not token:
+                return None
+            return {"api_key": token}
+
         return None
+
+    async def salesforce_identity_probe(self, credentials: dict) -> dict:
+        """Lightweight Salesforce API probe (limits resource)."""
+        access_token = credentials.get("access_token")
+        instance_url = credentials.get("instance_url")
+        if not access_token or not instance_url:
+            return {"ok": False, "error": "missing_token_or_instance"}
+        async with httpx.AsyncClient() as client:
+            r = await client.get(
+                f"{instance_url}/services/data/{settings.SALESFORCE_API_VERSION}/limits",
+                headers={"Authorization": f"Bearer {access_token}"},
+                timeout=25.0,
+            )
+        if r.status_code == 200:
+            return {"ok": True, "status_code": r.status_code}
+        return {"ok": False, "status_code": r.status_code, "detail": r.text[:300]}
+
+    async def hubspot_identity_probe(self, api_key: str) -> dict:
+        async with httpx.AsyncClient() as client:
+            r = await client.get(
+                "https://api.hubapi.com/crm/v3/objects/contacts",
+                params={"limit": 1},
+                headers={"Authorization": f"Bearer {api_key}"},
+                timeout=25.0,
+            )
+        if r.status_code == 200:
+            return {"ok": True, "status_code": r.status_code}
+        return {"ok": False, "status_code": r.status_code, "detail": r.text[:300]}
 
     @staticmethod
     def _score_to_sf_rating(score: int) -> str:

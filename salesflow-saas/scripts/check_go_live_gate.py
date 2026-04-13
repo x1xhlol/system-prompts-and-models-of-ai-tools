@@ -21,6 +21,12 @@ from pathlib import Path
 
 
 def main() -> int:
+    if hasattr(sys.stdout, "reconfigure"):
+        try:
+            sys.stdout.reconfigure(encoding="utf-8")
+        except Exception:
+            pass
+
     saas = Path(__file__).resolve().parent.parent
     backend = saas / "backend"
     os.environ.setdefault("DATABASE_URL", "sqlite+aiosqlite:///./go_live_gate_cli.db")

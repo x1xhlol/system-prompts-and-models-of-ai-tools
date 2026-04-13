@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRequireAuth } from "@/contexts/auth-context";
+import { useRouter } from "next/navigation";
 import {
   BarChart3,
   Users,
@@ -28,6 +29,13 @@ import {
   UserCheck,
   TrendingUp,
   Crosshair,
+  SlidersHorizontal,
+  Activity,
+  BookMarked,
+  Handshake,
+  Share2,
+  Rocket,
+  Megaphone,
 } from "lucide-react";
 
 import { DashboardView } from "../../components/dealix/dashboard-view";
@@ -51,6 +59,15 @@ import { FullOpsView } from "../../components/dealix/full-ops-view";
 import { PipelineKanban } from "../../components/dealix/pipeline-kanban";
 import { UnifiedInbox } from "../../components/dealix/unified-inbox";
 import { LeadScoreCard } from "../../components/dealix/lead-score-card";
+import { GoLiveReadinessCard } from "../../components/dealix/go-live-readiness-card";
+import { OperatingModelView } from "../../components/dealix/operating-model-view";
+import { PartnershipStudioView } from "../../components/dealix/partnership-studio-view";
+import { GrowthPlaybookView } from "../../components/dealix/growth-playbook-view";
+import { GovernanceMetricsView } from "../../components/dealix/governance-metrics-view";
+import { IdentityGraphView } from "../../components/dealix/identity-graph-view";
+import { VerticalPlaybooksView } from "../../components/dealix/vertical-playbooks-view";
+import { AgentQualityView } from "../../components/dealix/agent-quality-view";
+import { MarketerHubView } from "../../components/dealix/marketer-hub-view";
 
 const dashboardLeadScoreDemo = {
   score: 82,
@@ -63,9 +80,69 @@ const dashboardLeadScoreDemo = {
   recommendation: "عميل واعد — تابع خلال ٢٤ ساعة",
 };
 
+const HUB_ORDER = ["platform", "sales", "partnerships", "growth"] as const;
+type HubId = (typeof HUB_ORDER)[number];
+
+const HUB_LABELS: Record<HubId, string> = {
+  platform: "المنصة والحوكمة",
+  sales: "محرك المبيعات",
+  partnerships: "الشراكات الاستراتيجية",
+  growth: "النمو والاستراتيجية",
+};
+
+const NAV_ITEMS = [
+  { id: "overview", label: "لوحة القيادة والمراقبة", icon: BarChart3, hub: "platform" as const },
+  { id: "go-live", label: "جاهزية الإطلاق", icon: ShieldCheck, hub: "platform" as const },
+  { id: "operating-model", label: "نموذج التشغيل OS", icon: SlidersHorizontal, hub: "platform" as const },
+  { id: "governance-metrics", label: "الحوكمة والمؤشرات", icon: ShieldCheck, hub: "platform" as const },
+  { id: "agent-quality", label: "جودة الوكلاء", icon: Activity, hub: "platform" as const },
+  { id: "onboarding", label: "تأهيل المسوق", icon: BookOpen, hub: "platform" as const },
+  { id: "agreements", label: "الاتفاقيات واHR", icon: FileSignature, hub: "platform" as const },
+  { id: "guarantee", label: "الضمان الذهبي", icon: ShieldCheck, hub: "platform" as const },
+  { id: "leads", label: "توليد العملاء — AI", icon: Target, hub: "sales" as const },
+  { id: "pipeline", label: "مسار الصفقات", icon: Target, hub: "sales" as const },
+  { id: "inbox", label: "صندوق الوارد الموحد", icon: Bell, hub: "sales" as const },
+  { id: "scoring", label: "تقييم العملاء AI", icon: Zap, hub: "sales" as const },
+  { id: "scripts", label: "سكربتات المبيعات", icon: Phone, hub: "sales" as const },
+  { id: "presentations", label: "البرزنتيشنات القطاعية", icon: MonitorPlay, hub: "sales" as const },
+  { id: "properties", label: "إدارة المخزون العقاري", icon: Building2, hub: "sales" as const },
+  { id: "marketer-hub", label: "مركز المسوق", icon: Megaphone, hub: "sales" as const },
+  { id: "affiliates", label: "المسوقين والموظفين", icon: Users, hub: "sales" as const },
+  { id: "agents", label: "الوكلاء الأذكياء", icon: BrainCircuit, hub: "sales" as const },
+  { id: "revenue", label: "المالية والتحصيل", icon: DollarSign, hub: "sales" as const },
+  { id: "sales-os", label: "دفتر العمولة (Sales OS)", icon: Receipt, hub: "sales" as const },
+  { id: "full-ops", label: "التشغيل الشامل (Full Ops)", icon: Layers, hub: "sales" as const },
+  { id: "analytics", label: "التحليلات ونبض السوق", icon: BarChart3, hub: "sales" as const },
+  { id: "knowledge", label: "الذكاء والمعرفة", icon: Brain, hub: "sales" as const },
+  { id: "partnership-studio", label: "Partnership Studio", icon: Handshake, hub: "partnerships" as const },
+  { id: "identity-graph", label: "طبقة الكيان الموحّد", icon: Share2, hub: "partnerships" as const },
+  { id: "vertical-playbooks", label: "Playbooks قطاعية", icon: BookMarked, hub: "partnerships" as const },
+  { id: "growth-playbook", label: "نمو واستعداد استحواذ", icon: Rocket, hub: "growth" as const },
+  { id: "intelligence", label: "الذكاء المستقل — Manus", icon: BrainCircuit, hub: "growth" as const },
+  { id: "business-impact", label: "القيمة للشركات", icon: LineChart, hub: "growth" as const },
+  { id: "customer-journey", label: "مسار التشغيل مع العميل", icon: ClipboardList, hub: "growth" as const },
+] as const;
+type DashboardTabId = (typeof NAV_ITEMS)[number]["id"];
+
 export default function DashboardPage() {
   const auth = useRequireAuth();
-  const [activeTab, setActiveTab] = useState("overview");
+  const router = useRouter();
+  const allowedTabs = useMemo(() => new Set<DashboardTabId>(NAV_ITEMS.map((n) => n.id)), []);
+  const [activeTab, setActiveTabState] = useState<DashboardTabId>("overview");
+
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("section") || "overview";
+    if (allowedTabs.has(requested as DashboardTabId)) {
+      setActiveTabState(requested as DashboardTabId);
+    }
+  }, [allowedTabs]);
+
+  const setActiveTab = (tab: DashboardTabId) => {
+    const next = new URLSearchParams(window.location.search);
+    next.set("section", tab);
+    setActiveTabState(tab);
+    router.push(`/dashboard?${next.toString()}`);
+  };
 
   if (auth.loading) {
     return (
@@ -78,36 +155,28 @@ export default function DashboardPage() {
     return null;
   }
 
-  const NAV_ITEMS = [
-    { id: "overview", label: "لوحة القيادة والمراقبة", icon: BarChart3 },
-    { id: "business-impact", label: "القيمة للشركات", icon: LineChart },
-    { id: "customer-journey", label: "مسار التشغيل مع العميل", icon: ClipboardList },
-    { id: "intelligence", label: "الذكاء المستقل — Manus", icon: BrainCircuit },
-    { id: "leads", label: "توليد العملاء — AI", icon: Target },
-    { id: "properties", label: "إدارة المخزون العقاري", icon: Building2 },
-    { id: "affiliates", label: "المسوقين والموظفين", icon: Users },
-    { id: "agents", label: "الوكلاء الأذكياء", icon: BrainCircuit },
-    { id: "revenue", label: "المالية والتحصيل", icon: DollarSign },
-    { id: "sales-os", label: "دفتر العمولة (Sales OS)", icon: Receipt },
-    { id: "full-ops", label: "التشغيل الشامل (Full Ops)", icon: Layers },
-    { id: "analytics", label: "التحليلات ونبض السوق", icon: BarChart3 },
-    { id: "knowledge", label: "الذكاء والمعرفة", icon: Brain },
-    { id: "presentations", label: "البرزنتيشنات القطاعية", icon: MonitorPlay },
-    { id: "scripts", label: "سكربتات المبيعات", icon: Phone },
-    { id: "agreements", label: "الاتفاقيات واHR", icon: FileSignature },
-    { id: "guarantee", label: "الضمان الذهبي", icon: ShieldCheck },
-    { id: "pipeline", label: "مسار الصفقات", icon: Target },
-    { id: "inbox", label: "صندوق الوارد الموحد", icon: Bell },
-    { id: "scoring", label: "تقييم العملاء AI", icon: Zap },
-    { id: "onboarding", label: "تأهيل المسوق", icon: BookOpen },
-  ];
-
   const renderContent = () => {
     switch (activeTab) {
       case "overview":
         return <DashboardView />;
       case "business-impact":
         return <BusinessImpactView />;
+      case "go-live":
+        return <GoLiveReadinessCard />;
+      case "operating-model":
+        return <OperatingModelView />;
+      case "governance-metrics":
+        return <GovernanceMetricsView />;
+      case "agent-quality":
+        return <AgentQualityView />;
+      case "partnership-studio":
+        return <PartnershipStudioView />;
+      case "identity-graph":
+        return <IdentityGraphView />;
+      case "vertical-playbooks":
+        return <VerticalPlaybooksView />;
+      case "growth-playbook":
+        return <GrowthPlaybookView />;
       case "customer-journey":
         return <CustomerOnboardingJourneyView />;
       case "intelligence":
@@ -116,6 +185,8 @@ export default function DashboardPage() {
         return <LeadGeneratorView />;
       case "properties":
         return <PropertiesView />;
+      case "marketer-hub":
+        return <MarketerHubView />;
       case "affiliates":
         return <AffiliatesView />;
       case "agents":
@@ -165,27 +236,35 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-          {NAV_ITEMS.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => setActiveTab(item.id)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
-                activeTab === item.id
-                  ? "bg-primary/10 text-primary font-bold border border-primary/20 shadow-sm"
-                  : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground font-medium"
-              }`}
-            >
-              <item.icon className={`w-5 h-5 ${activeTab === item.id ? "text-primary" : "opacity-70"}`} />
-              <span>{item.label}</span>
-            </button>
+        <nav className="flex-1 p-2 space-y-2 overflow-y-auto">
+          {HUB_ORDER.map((hub) => (
+            <div key={hub} className="space-y-0.5">
+              <p className="px-3 pt-2 pb-1 text-[10px] uppercase tracking-wider text-muted-foreground/90 font-bold">
+                {HUB_LABELS[hub]}
+              </p>
+              {NAV_ITEMS.filter((item) => item.hub === hub).map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setActiveTab(item.id)}
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 ${
+                    activeTab === item.id
+                      ? "bg-primary/10 text-primary font-bold border border-primary/20 shadow-sm"
+                      : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground font-medium"
+                  }`}
+                >
+                  <item.icon className={`w-5 h-5 shrink-0 ${activeTab === item.id ? "text-primary" : "opacity-70"}`} />
+                  <span className="text-sm text-right leading-snug">{item.label}</span>
+                </button>
+              ))}
+            </div>
           ))}
         </nav>
 
         <div className="p-4 mt-auto border-t border-border/50 bg-secondary/10">
           <button
             type="button"
+            onClick={() => router.push("/settings")}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:bg-secondary/50 transition-all font-medium"
           >
             <Settings className="w-5 h-5" />
@@ -236,25 +315,23 @@ export default function DashboardPage() {
 
         <div className="flex-1 w-full max-w-[1600px] mx-auto pb-24 lg:pb-0">{renderContent()}</div>
 
-        <nav className="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-card/80 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl flex items-center justify-around py-4 px-4 z-50">
-          {[
-            { id: "overview", icon: BarChart3 },
-            { id: "agents", icon: BrainCircuit },
-            { id: "presentations", icon: MonitorPlay },
-            { id: "scripts", icon: Phone },
-          ].map((item) => (
+        <nav className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl bg-card/80 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl py-3 px-3 z-50 overflow-x-auto">
+          <div className="flex items-center gap-2 min-w-max">
+          {NAV_ITEMS.map((item) => (
             <button
               key={item.id}
               type="button"
               onClick={() => setActiveTab(item.id)}
-              className={`flex flex-col items-center gap-1 transition-all ${
-                activeTab === item.id ? "text-primary scale-110" : "text-muted-foreground opacity-60"
+              className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all ${
+                activeTab === item.id ? "text-primary bg-primary/10" : "text-muted-foreground opacity-70"
               }`}
+              aria-label={item.label}
             >
-              <item.icon className="w-6 h-6" />
-              {activeTab === item.id && <span className="w-1 h-1 bg-primary rounded-full" />}
+              <item.icon className="w-5 h-5" />
+              <span className="text-[10px] whitespace-nowrap">{item.label}</span>
             </button>
           ))}
+          </div>
         </nav>
       </main>
     </div>

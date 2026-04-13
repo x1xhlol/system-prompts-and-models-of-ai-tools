@@ -11,6 +11,9 @@ class Lead(BaseModel):
     tenant_id = Column(UUID(as_uuid=True), ForeignKey("tenants.id"), nullable=False, index=True)
     assigned_to = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=True)
     name = Column(String(255), nullable=False)
+    company_name = Column(String(255), nullable=True)
+    sector = Column(String(100), nullable=True)
+    city = Column(String(100), nullable=True)
     phone = Column(String(20))
     email = Column(String(255))
     source = Column(String(100))  # whatsapp, website, referral, social, phone
