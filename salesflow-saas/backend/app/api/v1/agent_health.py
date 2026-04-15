@@ -11,9 +11,20 @@ import logging
 from app.database import get_db
 
 router = APIRouter(prefix="/agent-health", tags=["Agent Health"])
-logger = logging.getLogger("dealix.agent_health")
+# The scripts are typically in backend/app/api/v1
+# We know the absolute structure from the project root
+from pathlib import Path
+import os
 
-PROMPTS_DIR = Path(__file__).parent.parent.parent.parent / "ai-agents" / "prompts"
+_current_dir = Path(__file__).resolve()
+# We are in backned/app/api/v1/agent_health.py -> 4 parents up -> then up out of salesflow-saas to ai-agents
+PROMPTS_DIR = _current_dir.parent.parent.parent.parent.parent / "ai-agents" / "prompts"
+
+if not PROMPTS_DIR.exists():
+    # If the app is run from a different level
+    PROMPTS_DIR = _current_dir.parent.parent.parent.parent / "ai-agents" / "prompts"
+    if not PROMPTS_DIR.exists():
+        PROMPTS_DIR = Path("C:/Users/samim/system-prompts-and-models-of-ai-tools/ai-agents/prompts")
 
 
 @router.get("/status")
