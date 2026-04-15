@@ -39,6 +39,24 @@
 
 **اختياري (لا يمنع الإطلاق):** `HUBSPOT_API_KEY`, `UNIFONIC_APP_SID`, `RAPIDAPI_KEY`, `ENVIRONMENT=production` (يُنصح)، `API_URL` / `FRONTEND_URL` للإنتاج.
 
+**استكشاف الإيرادات / بحث مرخّص (اختياري):**
+
+| المتغير | الفئة | ملاحظات |
+|---------|--------|---------|
+| `TAVILY_API_KEY` | ذكاء | بحث ويب عبر [Tavily](https://tavily.com) لمسار `POST /api/v1/dealix/enrich-exploration` عند التفعيل |
+| `DEALIX_ALLOW_LICENSED_SEARCH` | ذكاء | `false` يعطّل Tavily حتى لو المفتاح موجود |
+| `DEALIX_TAVILY_TENANT_ALLOWLIST` | ذكاء | قائمة `tenant_id` مفصولة بفواصل؛ إن وُجدت، فقط هذه المستأجرين يستخدمون Tavily (ضبط التكلفة) |
+| `DEALIX_INTEL_RATE_LIMIT` | تشغيل | حد أقصى لطلبات الذكاء لكل نافذة زمنية (افتراضي ٦٠/ساعة لكل IP) |
+| `DEALIX_INTEL_RATE_WINDOW_SEC` | تشغيل | عرض النافذة بالثواني |
+| `DEALIX_INTEL_CACHE_TTL_SEC` | تشغيل | TTL للتخزين المؤقت لنتائج التوليد/الإثراء |
+| `DEALIX_DEEP_ENRICH_DEFAULT` | ذكاء | توسيع ثقيل اختياري لاحقاً |
+| `DEALIX_DEEP_ENRICH_TENANTS` | ذكاء | قائمة مستأجرين مسموح لهم بمسارات إثراء عميق عند التفعيل |
+| `NEXT_PUBLIC_SALES_CONTACT_URL` | واجهة | رابط موحّد لـ CTA «تحدث مع المبيعات» في الواجهة العامة |
+| `DEALIX_KNOWLEDGE_RAG_ENRICH` | ذكاء | `false` يعطّل حقن مقتطفات `SectorAsset` في مسار الإثراء |
+| `DEALIX_ENRICH_IDEMPOTENT_DAILY` | تشغيل | تخزين مؤقت يومي لكل (شركة+قطاع+مدينة) لتقليل تكرار استدعاءات الإثراء |
+| `DEALIX_ASYNC_ENRICH_JOBS` | تشغيل | `false` يعطّل `POST /dealix/enrich-exploration/async` |
+| `SERPER_API_KEY` / `BRAVE_API_KEY` | ذكاء | بدائل محتملة لـ Tavily — تتطلب تكوين كود مخصص قبل الاستخدام |
+
 ---
 
 ## 3. ويبهوكات (Webhooks)

@@ -47,7 +47,15 @@ def _exempt_path(path: str) -> bool:
         "/api/v1/intelligence/run-pipeline",
         "/api/v1/dealix/generate-leads",
         "/api/v1/dealix/full-power",
+        "/api/v1/dealix/enrich-exploration",
+        "/api/v1/dealix/enrich-exploration/async",
+        "/api/v1/dealix/channel-drafts",
+        "/api/v1/dealix/intelligence-flags",
     ):
+        return True
+    if path.startswith("/api/v1/dealix/enrich-exploration/jobs/"):
+        return True
+    if path.startswith("/api/v1/dealix/ai-eval/"):
         return True
     return False
 

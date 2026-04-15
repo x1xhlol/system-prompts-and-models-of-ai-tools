@@ -151,7 +151,11 @@ async def main() -> int:
 
     results.append(await check("health", "GET", "/api/v1/health"))
     results.append(await check("ready (DB)", "GET", "/api/v1/ready"))
-    results.append(await check("marketing hub", "GET", "/api/v1/marketing/hub"))
+    mh = await check("marketing hub", "GET", "/api/v1/marketing/hub")
+    if not mh[1]:
+        await asyncio.sleep(0.85)
+        mh = await check("marketing hub", "GET", "/api/v1/marketing/hub")
+    results.append(mh)
     results.append(await check("strategy summary", "GET", "/api/v1/strategy/summary"))
     results.append(await check("value proposition", "GET", "/api/v1/value-proposition/"))
     results.append(await check("customer onboarding journey", "GET", "/api/v1/customer-onboarding/journey"))

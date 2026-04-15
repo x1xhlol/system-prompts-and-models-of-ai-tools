@@ -11,9 +11,12 @@
 
 ## 2. البناء والتحقق
 
-1. `.\verify-launch.ps1` (أو pytest + lint + build يدوياً كما في قائمة الإطلاق).
-2. `py -3 scripts/verify_frontend_openapi_paths.py`
-3. تشغيل API: `py -3 -m uvicorn app.main:app --host 127.0.0.1 --port 8000` من `backend/`.
+1. `.\verify-launch.ps1 -WithOpenApiGate` (أو `.\verify-launch.ps1` ثم الخطوتين 2–3 يدوياً).
+2. إن لم تستخدم `-WithOpenApiGate`: `py -3 scripts/verify_frontend_openapi_paths.py`
+3. إن لم تستخدم `-WithOpenApiGate`: `py -3 scripts/check_go_live_gate.py`
+4. `py -3 scripts/release_hardening_gate.py`
+5. `py -3 scripts/ai_quality_gate.py`
+4. تشغيل API: `py -3 -m uvicorn app.main:app --host 127.0.0.1 --port 8000` من `backend/`.
 
 ## 3. بوابة go-live
 
@@ -32,3 +35,4 @@
 
 - وثّق التاريخ، البيئة (staging)، ونسخة الـ commit.
 - أي فشل: أضف بنداً في `LAUNCH_CHECKLIST` أو issue مع `blocked_reasons` المنسوخة من الـ API.
+- نفّذ من `backend/`: `py -3 scripts/revenue_discovery_e2e_probe.py` (ومع JWT عند اختبار الربط الاستراتيجي).

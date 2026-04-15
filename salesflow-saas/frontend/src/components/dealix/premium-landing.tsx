@@ -116,36 +116,26 @@ const provenDifferentiators = [
   },
 ] as const;
 
-const pricingPlans = [
+/** تسعير B2B المؤسسي يُدار عبر المبيعات والعقود — لا أرقام علنية في الموقع. */
+const SALES_CONTACT_HREF =
+  typeof process !== "undefined" && process.env.NEXT_PUBLIC_SALES_CONTACT_URL
+    ? process.env.NEXT_PUBLIC_SALES_CONTACT_URL
+    : "mailto:sales@dealix.com?subject=%D8%B7%D9%84%D8%A8%20%D8%B9%D8%B1%D8%B6%20%D9%85%D8%A4%D8%B3%D8%B3%D9%8A%20Dealix";
+
+const enterprisePackages = [
   {
-    name: "Starter",
-    nameAr: "الأساسية",
-    price: "٥٩",
-    period: "شهرياً",
-    features: ["٣ مستخدمين", "٥٠٠ عميل محتمل", "واتساب أساسي", "تقارير أساسية", "دعم بالإيميل"],
-    cta: "ابدأ مجاناً",
-    highlighted: false,
+    title: "استكشاف الإيرادات والشراكات",
+    bullets: ["مساحة عمل لسياق ICP وإشارات السوق", "ربط بمسارات الصفقات الاستراتيجية", "حوكمة وموافقات قبل الإرسال عبر القنوات"],
   },
   {
-    name: "Professional",
-    nameAr: "الاحترافية",
-    price: "١٤٩",
-    period: "شهرياً",
-    features: ["١٠ مستخدمين", "عملاء غير محدودين", "واتساب + إيميل + SMS", "تقييم AI للعملاء", "Pipeline بصري", "عروض أسعار", "تقارير متقدمة", "دعم أولوية"],
-    cta: "ابدأ التجربة المجانية",
-    highlighted: true,
-    badge: "الأكثر شعبية",
+    title: "تشغيل مؤسسي",
+    bullets: ["تكاملات CRM مرخّصة وقابلة للتدقيق", "PDPL وسياسات معالجة واضحة", "وثائق API واختبارات إطلاق"],
   },
   {
-    name: "Enterprise",
-    nameAr: "المؤسسية",
-    price: "٢٢٥",
-    period: "شهرياً",
-    features: ["مستخدمين غير محدودين", "كل مميزات الاحترافية", "PDPL كامل", "API مفتوح", "مدير حساب مخصص", "تدريب الفريق", "SLA ٩٩.٩٪"],
-    cta: "تواصل معنا",
-    highlighted: false,
+    title: "دعم وتفعيل",
+    bullets: ["مدير حساب وتفعيل فريق", "قطاعات عمودية وplaybooks", "تدريب على الاستخدام الآمن للذكاء الاصطناعي"],
   },
-];
+] as const;
 
 /* ───────────── main component ───────────── */
 export function PremiumLanding() {
@@ -168,11 +158,14 @@ export function PremiumLanding() {
 
       {/* ═══════════ NAV ═══════════ */}
       <nav className="relative z-10 flex items-center justify-between px-6 md:px-12 py-5 max-w-7xl mx-auto">
-        <Link href="/register" className="px-5 py-2 rounded-xl bg-teal-500 text-black font-bold text-sm hover:bg-teal-400 transition-colors shadow-lg shadow-teal-500/20">
-          ابدأ مجاناً
-        </Link>
+        <a
+          href={SALES_CONTACT_HREF}
+          className="px-5 py-2 rounded-xl bg-teal-500 text-black font-bold text-sm hover:bg-teal-400 transition-colors shadow-lg shadow-teal-500/20"
+        >
+          تحدث مع المبيعات
+        </a>
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/60">
-          <a href="#pricing" className="hover:text-white transition-colors">الأسعار</a>
+          <a href="#enterprise" className="hover:text-white transition-colors">عرض مؤسسي</a>
           <a href="#differentiators" className="hover:text-white transition-colors">لماذا Dealix</a>
           <a href="#features" className="hover:text-white transition-colors">المميزات</a>
           <a href="#how" className="hover:text-white transition-colors">كيف يعمل</a>
@@ -213,10 +206,13 @@ export function PremiumLanding() {
               وتشغيل القنوات الذكية عبر واتساب وإيميل ولينكدإن.
             </motion.p>
             <motion.div variants={fadeUp} custom={2} className="flex flex-wrap gap-4">
-              <Link href="/register" className="px-8 py-4 rounded-2xl bg-teal-500 text-black font-black text-base hover:bg-teal-400 transition-all shadow-xl shadow-teal-500/25 flex items-center gap-2">
-                ابدأ مجاناً
+              <a
+                href={SALES_CONTACT_HREF}
+                className="px-8 py-4 rounded-2xl bg-teal-500 text-black font-black text-base hover:bg-teal-400 transition-all shadow-xl shadow-teal-500/25 flex items-center gap-2"
+              >
+                طلب عرض مؤسسي
                 <ArrowLeft className="w-5 h-5" />
-              </Link>
+              </a>
               <Link href="/dashboard" className="px-8 py-4 rounded-2xl bg-white/5 border border-white/10 font-bold text-base hover:bg-white/10 transition-all flex items-center gap-2">
                 <Play className="w-4 h-4" />
                 استكشف المنصة
@@ -399,60 +395,42 @@ export function PremiumLanding() {
         </motion.div>
       </Section>
 
-      {/* ═══════════ PRICING ═══════════ */}
-      <Section id="pricing" className="max-w-7xl mx-auto px-6 md:px-12 py-20">
+      {/* ═══════════ ENTERPRISE (no public pricing) ═══════════ */}
+      <Section id="enterprise" className="max-w-7xl mx-auto px-6 md:px-12 py-20">
         <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-black text-center mb-4">
-          أسعار بسيطة وشفافة
+          عرض مؤسسي — ذكاء الإيرادات والشراكات
         </motion.h2>
-        <motion.p variants={fadeUp} custom={1} className="text-center text-white/50 mb-12 max-w-lg mx-auto">
-          ابدأ مجاناً لمدة ١٤ يوم — بدون بطاقة ائتمانية
+        <motion.p variants={fadeUp} custom={1} className="text-center text-white/50 mb-4 max-w-2xl mx-auto leading-relaxed">
+          التسعير والعقود يُبنى حسب حجم الفريق، القطاع، والتكاملات — نناقش احتياجك مع فريق المبيعات دون التزام.
+        </motion.p>
+        <motion.p variants={fadeUp} custom={2} className="text-center text-white/40 text-sm mb-12 max-w-xl mx-auto">
+          لينكدإن والقنوات الحساسة تمر عبر مسودات وموافقة بشرية؛ لا أتمتة تخالف شروط المنصات.
         </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-          {pricingPlans.map((plan, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          {enterprisePackages.map((pkg, i) => (
             <motion.div
-              key={i}
+              key={pkg.title}
               variants={fadeUp}
               custom={i}
               whileHover={{ y: -4 }}
-              className={`relative rounded-3xl p-7 text-right transition-all ${
-                plan.highlighted
-                  ? "bg-teal-500/10 border-2 border-teal-500/40 shadow-xl shadow-teal-500/10"
-                  : "bg-white/[0.03] border border-white/[0.08]"
-              }`}
+              className="rounded-3xl p-7 text-right bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl transition-all hover:border-teal-500/25"
             >
-              {plan.badge && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-teal-500 text-black text-xs font-black">
-                  {plan.badge}
-                </span>
-              )}
-
-              <p className="text-sm text-white/50 font-medium">{plan.nameAr}</p>
-              <h3 className="text-sm font-bold text-white/70 mt-1">{plan.name}</h3>
-
-              <div className="flex items-baseline gap-1 mt-4 mb-6">
-                <span className="text-4xl font-black text-white">{plan.price}</span>
-                <span className="text-sm text-white/40 font-medium">ر.س / {plan.period}</span>
-              </div>
-
+              <h3 className="text-lg font-black text-teal-400 mb-4">{pkg.title}</h3>
               <ul className="space-y-3 mb-8">
-                {plan.features.map((f, j) => (
-                  <li key={j} className="flex items-center gap-2 text-sm text-white/70">
-                    <CheckCircle2 className={`w-4 h-4 shrink-0 ${plan.highlighted ? "text-teal-400" : "text-white/30"}`} />
-                    <span>{f}</span>
+                {pkg.bullets.map((b) => (
+                  <li key={b} className="flex items-start gap-2 text-sm text-white/70">
+                    <CheckCircle2 className="w-4 h-4 shrink-0 text-teal-400 mt-0.5" />
+                    <span>{b}</span>
                   </li>
                 ))}
               </ul>
-
-              <button
-                className={`w-full py-3 rounded-xl font-bold text-sm transition-all ${
-                  plan.highlighted
-                    ? "bg-teal-500 text-black hover:bg-teal-400 shadow-lg shadow-teal-500/20"
-                    : "bg-white/5 border border-white/10 hover:bg-white/10"
-                }`}
+              <a
+                href={SALES_CONTACT_HREF}
+                className="block w-full py-3 rounded-xl font-bold text-sm text-center bg-teal-500 text-black hover:bg-teal-400 shadow-lg shadow-teal-500/20 transition-all"
               >
-                {plan.cta}
-              </button>
+                تحدث مع المبيعات
+              </a>
             </motion.div>
           ))}
         </div>
@@ -469,12 +447,15 @@ export function PremiumLanding() {
             جاهز تنقل مبيعاتك للمستوى التالي؟
           </h2>
           <p className="text-white/50 mb-8 max-w-md mx-auto">
-            انضم لأكثر من ٥٠٠ شركة سعودية حققت نمو في المبيعات مع Dealix
+            نرسم معك مسار الاستكشاف، الحوكمة، والتكاملات — بما يتوافق مع PDPL ومسارات المنصة الموثقة.
           </p>
-          <button className="px-10 py-4 rounded-2xl bg-teal-500 text-black font-black text-lg hover:bg-teal-400 transition-all shadow-xl shadow-teal-500/25 mb-4">
-            ابدأ مجاناً الآن
-          </button>
-          <p className="text-sm text-white/40">١٤ يوم تجربة مجانية — بدون بطاقة</p>
+          <a
+            href={SALES_CONTACT_HREF}
+            className="inline-block px-10 py-4 rounded-2xl bg-teal-500 text-black font-black text-lg hover:bg-teal-400 transition-all shadow-xl shadow-teal-500/25 mb-4"
+          >
+            تحدث مع المبيعات
+          </a>
+          <p className="text-sm text-white/40">عرض مؤسسي مخصص — بدون تسعير علني</p>
         </motion.div>
       </Section>
 
@@ -496,7 +477,7 @@ export function PremiumLanding() {
             {/* links */}
             <div className="flex items-center gap-6 text-sm text-white/40">
               <a href="#features" className="hover:text-white/70 transition-colors">المنتج</a>
-              <a href="#pricing" className="hover:text-white/70 transition-colors">الأسعار</a>
+              <a href="#enterprise" className="hover:text-white/70 transition-colors">عرض مؤسسي</a>
               <a href="#" className="hover:text-white/70 transition-colors">عن Dealix</a>
               <a href="#" className="hover:text-white/70 transition-colors">تواصل</a>
             </div>

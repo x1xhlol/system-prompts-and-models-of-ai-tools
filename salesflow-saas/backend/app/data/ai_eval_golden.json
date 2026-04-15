@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "channel_drafts": {
+    "required_keys": ["whatsapp_draft_ar", "email_subject_ar", "email_body_ar", "linkedin", "governance"],
+    "linkedin": {
+      "required_keys": ["human_in_loop_required", "policy_note_ar", "draft_ar"]
+    }
+  },
+  "enrich_exploration": {
+    "required_top_keys": ["provenance", "rag_playbook_refs"]
+  },
+  "human_review": {
+    "cadence_ar": "أسبوعيًا: مراجعة عيّنة من مخرجات الإثراء مقابل provenance ومسودات القنوات.",
+    "owner_hint_ar": "RevOps + امتثال — سجل في سجلات ai_audit"
+  }
+}

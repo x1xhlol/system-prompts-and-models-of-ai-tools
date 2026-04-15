@@ -30,6 +30,18 @@ jobs:
           DATABASE_URL: sqlite+aiosqlite:///./ci_dealix.db
           DEALIX_INTERNAL_API_TOKEN: ""
         run: python -m pytest tests -q --tb=line
+      - name: OpenAPI vs frontend API paths
+        working-directory: salesflow-saas
+        env:
+          DATABASE_URL: sqlite+aiosqlite:///./openapi_verify.db
+          DEALIX_INTERNAL_API_TOKEN: ""
+        run: python scripts/verify_frontend_openapi_paths.py
+      - name: Go-live gate (in-process CLI)
+        working-directory: salesflow-saas
+        env:
+          DATABASE_URL: sqlite+aiosqlite:///./go_live_gate_ci.db
+          DEALIX_INTERNAL_API_TOKEN: ""
+        run: python scripts/check_go_live_gate.py
 
   frontend:
     runs-on: ubuntu-latest

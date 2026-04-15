@@ -4,6 +4,9 @@
 
 - [ ] **اختبارات الباكند:** من `backend/` شغّل `python -m pytest tests -q` (مثل CI على Linux) أو على ويندوز إذا الأمر `python` غير موجود: `py -3 -m pytest tests -q`.
 - [ ] **بوابة موحّدة (موصى به):** من جذر `salesflow-saas`: `.\verify-launch.ps1` — يشغّل pytest + مزامنة التسويق + lint + build.
+- [ ] **نفس البوابة + OpenAPI + go-live CLI:** `.\verify-launch.ps1 -WithOpenApiGate` — يضيف `scripts/verify_frontend_openapi_paths.py` و`scripts/check_go_live_gate.py` (بدون تشغيل uvicorn).
+- [ ] **Release hardening (عقود الوثائق/البيئة):** `py -3 scripts/release_hardening_gate.py`.
+- [ ] **AI quality gate (golden + endpoint):** `py -3 scripts/ai_quality_gate.py`.
 - [ ] `cd frontend && npm run lint && npm run build` (أو تُغطّى بواسطة `verify-launch.ps1`).
 - [ ] من جذر `salesflow-saas`: `node scripts/sync-marketing-to-public.cjs` (يُشغَّل أيضاً تلقائياً قبل `npm run build`).
 - [ ] **E2E (Playwright):** بعد `npm run build`، حرّر المنفذ **3000** ثم من `frontend/`: `CI=true npm run test:e2e`. إن ظهر «port already in use» أو timeout على `webServer`: من جذر `salesflow-saas` شغّل `.\scripts\kill-port-3000.ps1` ثم أعد المحاولة.
@@ -11,6 +14,7 @@
 - [ ] مراجعة [`docs/API-MAP.md`](API-MAP.md) مقابل OpenAPI الفعلي (`/docs` على الخادم) بعد أي إصدار يضيف مسارات جديدة.
 - [ ] قراءة سريعة لـ [`docs/DEALIX_OS_PRODUCT_GUIDE_AR.md`](DEALIX_OS_PRODUCT_GUIDE_AR.md) للتأكد من توافق قصة المنتج مع الداشبورد.
 - [ ] (موصى به) تشغيل سيناريو محاكاة الإطلاق في [`docs/LAUNCH_SIMULATION.md`](LAUNCH_SIMULATION.md) وتسجيل نتيجة `go-live-gate` لكل بيئة.
+- [ ] (موصى به) فحص أتمتة المسار الكامل على API حي: من `backend/` شغّل `py -3 scripts/revenue_discovery_e2e_probe.py` (أضف `--jwt` لمسار strategic-deals الكامل).
 
 ## 2. الخادم (API)
 
@@ -50,6 +54,7 @@
 
 - [ ] مراقبة `/api/v1/health` و `/api/v1/ready`.
 - [ ] إعادة فحص **`go-live-gate`** بعد أي تغيير على أسرار الطرف الثالث (Stripe، البريد، CRM، إلخ).
+- [ ] اعتماد دورة تشغيل أسبوعية/شهرية كما في [`docs/DEALIX_POST_LAUNCH_OPS_AR.md`](DEALIX_POST_LAUNCH_OPS_AR.md).
 
 ## 6. أمان `DEALIX_INTERNAL_API_TOKEN` (إنتاج)
 
@@ -61,4 +66,4 @@
 
 ---
 
-*سكربت موحّد (PowerShell): `verify-launch.ps1 -HttpCheck -SoftReady` — مع `-BaseUrl` إن لزم.*
+*سكربت موحّد (PowerShell): `verify-launch.ps1`؛ مع OpenAPI + go-live CLI: `-WithOpenApiGate`؛ مع API حي: `-HttpCheck -SoftReady` — مع `-BaseUrl` إن لزم.*

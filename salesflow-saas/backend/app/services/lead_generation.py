@@ -32,8 +32,10 @@ class GoogleMapsLeadScraper:
     def __init__(self):
         self.groq = AsyncGroq(api_key=os.getenv("GROQ_API_KEY", ""))
 
-    async def generate_leads_for_sector(self, sector: str, city: str, count: int = 10) -> list:
-        """Generate qualified lead list for a sector in Saudi Arabia."""
+    async def generate_leads_for_sector(
+        self, sector: str, city: str, count: int = 10
+    ) -> tuple[list, dict]:
+        """Generate qualified lead list for a sector in Saudi Arabia. Returns (leads, sector_insights)."""
 
         prompt = f"""أنت نظام جيل leads في السوق السعودي.
 
@@ -75,11 +77,12 @@ class GoogleMapsLeadScraper:
         )
         data = json.loads(response.choices[0].message.content)
         leads = data.get("leads", [])
+        sector_insights = data.get("sector_insights") if isinstance(data.get("sector_insights"), dict) else {}
         for lead in leads:
             lead["source"] = "ai_generated"
             lead["generated_at"] = datetime.utcnow().isoformat()
             lead["status"] = "new"
-        return leads
+        return leads, sector_insights
 
     async def bulk_generate(self, sectors: list = None, cities: list = None) -> dict:
         """Generate leads across multiple sectors and cities."""
@@ -94,7 +97,10 @@ class GoogleMapsLeadScraper:
 
         results = await asyncio.gather(*tasks, return_exceptions=True)
         for result in results:
-            if isinstance(result, list):
+            if isinstance(result, tuple) and len(result) == 2:
+                chunk, _insights = result
+                all_leads.extend(chunk)
+            elif isinstance(result, list):
                 all_leads.extend(result)
 
         return {

@@ -7,11 +7,13 @@
 #
 # -HttpOnly : only hit the API (py scripts/full_stack_launch_test.py --http-only); skips pytest/lint/build.
 # -BaseUrl : sets DEALIX_BASE_URL for HTTP phase (e.g. http://127.0.0.1:8001 when 8000 runs an old build).
+# -WithOpenApiGate : after lint/build, run OpenAPI + go-live + hardening + AI-quality gates (no uvicorn).
 
 param(
     [switch]$HttpCheck,
     [switch]$SoftReady,
     [switch]$HttpOnly,
+    [switch]$WithOpenApiGate,
     [string]$BaseUrl = ""
 )
 
@@ -74,6 +76,41 @@ try {
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 } finally {
     Pop-Location
+}
+
+if ($WithOpenApiGate) {
+    Write-Host "== OpenAPI vs frontend paths ==" -ForegroundColor Cyan
+    Push-Location $root
+    try {
+        & py -3 scripts/verify_frontend_openapi_paths.py
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    } finally {
+        Pop-Location
+    }
+    Write-Host "== Go-live gate (in-process, no server) ==" -ForegroundColor Cyan
+    Push-Location $root
+    try {
+        & py -3 scripts/check_go_live_gate.py
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    } finally {
+        Pop-Location
+    }
+    Write-Host "== Release hardening gate (env/docs/api contracts) ==" -ForegroundColor Cyan
+    Push-Location $root
+    try {
+        & py -3 scripts/release_hardening_gate.py
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    } finally {
+        Pop-Location
+    }
+    Write-Host "== AI quality gate (golden + endpoint) ==" -ForegroundColor Cyan
+    Push-Location $root
+    try {
+        & py -3 scripts/ai_quality_gate.py
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    } finally {
+        Pop-Location
+    }
 }
 
 if ($HttpCheck) {

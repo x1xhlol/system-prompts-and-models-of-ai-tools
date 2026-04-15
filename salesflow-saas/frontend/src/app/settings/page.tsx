@@ -337,8 +337,10 @@ function BillingTab({ label }: { label: L }) {
       <Section title={label('الباقة الحالية', 'Current Plan')} label={label}>
         <div className="flex items-center justify-between p-4 rounded-xl bg-gradient-to-bl from-primary/10 via-transparent to-transparent border border-primary/20">
           <div>
-            <p className="text-lg font-bold text-white">{label('الباقة الاحترافية', 'Professional Plan')}</p>
-            <p className="text-sm text-slate-400">{label('١٤٩ ر.س / شهرياً', 'SAR 149 / month')}</p>
+            <p className="text-lg font-bold text-white">{label('اشتراك مؤسسي', 'Enterprise subscription')}</p>
+            <p className="text-sm text-slate-400">
+              {label('التسعير حسب العقد — تواصل مع المبيعات للتفاصيل.', 'Pricing per contract — contact sales for details.')}
+            </p>
           </div>
           <button className="px-5 py-2 rounded-xl bg-primary/20 hover:bg-primary/30 text-primary border border-primary/30 text-sm font-semibold transition-all">
             {label('ترقية', 'Upgrade')}

@@ -56,7 +56,7 @@ export function LandingView({ onEnterApp }: { onEnterApp: () => void }) {
         </div>
         <div className="hidden md:flex items-center gap-8 text-sm font-medium opacity-80">
           <a href="#" className="hover:text-primary transition-colors">المميزات</a>
-          <a href="#" className="hover:text-primary transition-colors">الأسعار</a>
+          <a href="#" className="hover:text-primary transition-colors">عرض مؤسسي</a>
           <a href="#" className="hover:text-primary transition-colors">عنا</a>
         </div>
         <button 

@@ -331,3 +331,20 @@ Prefix: `/ai`. Model routing policy per task category (no API keys in response).
 |--------|-------|-------------|
 | GET | `/ai/routing` | Effective routing map for current tenant |
 | PUT | `/ai/routing` | Update tenant `settings.llm_routing` (owner/manager) |
+
+## Dealix Master API (demo / internal widgets)
+
+Prefix: `/dealix`. Several routes are `[public]` when `DEALIX_INTERNAL_API_TOKEN` is unset (see `internal_api.py`). Responses may include `discovery_manifest` / `sector_insights` for provenance and workspace UI.
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| POST | `/dealix/generate-leads` | Sector/city lead list + `discovery_manifest`, optional cache + rate limit |
+| POST | `/dealix/enrich-exploration` | Single-lead structured enrichment + vertical playbook linkage + optional Tavily |
+| POST | `/dealix/channel-drafts` | Governed WhatsApp/Email/LinkedIn (human-in-loop) draft templates `[public]` |
+| GET | `/dealix/intelligence-flags` | Effective intel feature flags for tenant/session (no secrets) `[public]` |
+| POST | `/dealix/enrich-exploration/async` | Queue enrichment; poll `GET .../jobs/{job_id}` `[public]` |
+| GET | `/dealix/enrich-exploration/jobs/{job_id}` | Job status: `pending` / `running` / `done` / `error` `[public]` |
+| GET | `/dealix/ai-eval/golden` | Golden rubric JSON for QA / regression `[public]` |
+| POST | `/dealix/full-power` | Research + pipeline bundle (existing) |
+| POST | `/dealix/research-company` | Company deep research |
+| POST | `/dealix/daily-leads` | Hub batch generation |
