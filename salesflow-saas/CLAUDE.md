@@ -24,13 +24,38 @@ Dealix is an AI-powered CRM built for the Saudi market. It combines Salesforce-g
 - Alembic for migrations
 - Money fields use `Numeric` type (never Float)
 
-## AI Architecture
+## AI Architecture — Autonomous Revenue OS (Level 5)
 - Provider abstraction: Groq → OpenAI fallback
 - Model router: task-specific model selection
 - Arabic NLP: intent, sentiment, entity extraction
-- Lead scoring: 0-100 composite score
-- Conversation intelligence: Arabic dialogue analysis
-- Sales agent: autonomous WhatsApp qualification bot
+- Lead scoring: 0-100 composite score (4 axes)
+- Multi-agent system: **20 specialized AI agents**
+
+### Agent System (`services/agents/`)
+- `router.py` — Agent registry with priority, parallel/sequential execution, retry
+- `executor.py` — LLM calls + output parsing + escalation + action dispatch
+- `autonomous_pipeline.py` — 11-stage state machine (NEW → WON/LOST)
+- `action_dispatcher.py` — Routes 13 action types to external services
+- `manus_orchestrator.py` — Multi-agent orchestration layer
+
+### AI Agent Prompts (`ai-agents/prompts/`) — 20 files
+| Category | Agents |
+|----------|--------|
+| Sales Core | closer, lead_qualification, outreach_writer, meeting_booking |
+| Communication | arabic_whatsapp, english_conversation, voice_call |
+| Intelligence | objection_handler, proposal_drafter, sector_strategist, ai_rehearsal |
+| Analytics | revenue_attribution, management_summary, knowledge_retrieval |
+| Compliance | compliance_reviewer, fraud_reviewer, qa_reviewer |
+| Affiliates | affiliate_evaluator, onboarding_coach, guarantee_reviewer |
+
+### Pipeline Stages
+`NEW → QUALIFYING → QUALIFIED → OUTREACH → MEETING_SCHEDULED → MEETING_PREP → NEGOTIATION → CLOSING → WON/LOST/NURTURING`
+
+### Key API Endpoints
+- `POST /pipeline/process-lead` — Full autonomous pipeline
+- `POST /pipeline/advance-stage` — Manual stage advance
+- `GET /agent-health/status` — System health check
+- `POST /agent-health/self-improve` — Trigger optimization cycle
 
 ## PDPL Compliance (Critical)
 - Check consent before ANY outbound message

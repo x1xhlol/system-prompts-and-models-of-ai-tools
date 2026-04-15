@@ -75,6 +75,16 @@ class AgentExecutor:
             # 1. Load system prompt
             system_prompt = self._load_prompt(agent_type)
 
+            # 1b. Enrich input with memory context
+            if lead_id:
+                try:
+                    from app.services.agents.memory import agent_memory
+                    input_data = await agent_memory.build_agent_context(
+                        lead_id, agent_type, input_data
+                    )
+                except Exception:
+                    pass  # Memory is optional enhancement
+
             # 2. Build user message from input data
             user_message = self._build_user_message(agent_type, input_data)
 
@@ -91,6 +101,20 @@ class AgentExecutor:
             output = llm_response.parse_json()
             if output is None:
                 output = {"raw_response": llm_response.content}
+
+            # 4b. Store output in memory
+            if lead_id:
+                try:
+                    from app.services.agents.memory import agent_memory
+                    await agent_memory.remember(
+                        lead_id=lead_id,
+                        agent_type=agent_type,
+                        event="agent_execution",
+                        data=output,
+                        tenant_id=tenant_id or "",
+                    )
+                except Exception:
+                    pass  # Memory storage is optional
 
             # 5. Check escalation
             escalation = self._check_escalation(agent_type, output, input_data)
@@ -110,7 +134,47 @@ class AgentExecutor:
                 actions=actions,
             )
 
-            # 7. Log to database
+            # 7. Quality gate for customer-facing agents
+            try:
+                from app.services.agents.quality_gate import QualityGate
+                gate = QualityGate(self.db)
+                final_output, qa_result = await gate.check_and_correct(
+                    agent_type, output, input_data, tenant_id
+                )
+                if final_output != output:
+                    output = final_output
+                    result.output = output
+                    result.output["_qa_applied"] = True
+                result.output["_qa_score"] = qa_result.get("qa_score", 100)
+            except Exception as qe:
+                logger.debug(f"Quality gate skipped: {qe}")
+
+            # 8. Dispatch actions to external services
+            if actions:
+                try:
+                    from app.services.agents.action_dispatcher import ActionDispatcher
+                    dispatcher = ActionDispatcher(self.db)
+                    dispatch_results = await dispatcher.dispatch(actions, tenant_id)
+                    result.output["_dispatch_results"] = dispatch_results
+                except Exception as de:
+                    logger.warning(f"Action dispatch partial failure: {de}")
+
+            # 7b. Handle escalations formally
+            if escalation and escalation.get("needed"):
+                try:
+                    from app.services.agents.escalation_handler import handle_agent_escalation
+                    await handle_agent_escalation(
+                        agent_type=agent_type,
+                        escalation=escalation,
+                        input_data=input_data,
+                        output=output,
+                        tenant_id=tenant_id or "",
+                        lead_id=lead_id or "",
+                    )
+                except Exception as ee:
+                    logger.warning(f"Escalation handler error: {ee}")
+
+            # 8. Log to database
             await self._log_conversation(
                 tenant_id=tenant_id,
                 agent_type=agent_type,
@@ -126,7 +190,8 @@ class AgentExecutor:
                 f"Agent {agent_type} executed: "
                 f"tokens={llm_response.tokens_used} "
                 f"latency={latency}ms "
-                f"status={result.status}"
+                f"status={result.status} "
+                f"actions={len(actions)}"
             )
 
             return result
@@ -158,24 +223,100 @@ class AgentExecutor:
     async def execute_event(self, event_type: str, input_data: dict,
                             tenant_id: str = None, **kwargs) -> list[AgentResult]:
         """Execute all agents registered for an event type."""
-        agent_ids = self.router.get_agents_for_event(event_type)
+        from app.services.agents.router import ExecutionMode
+        import asyncio
+
+        exec_mode = self.router.get_execution_mode(event_type)
+        agent_configs = self.router.get_agents_config_for_event(event_type)
+
+        if not agent_configs:
+            agent_ids = self.router.get_agents_for_event(event_type)
+            results = []
+            for agent_id in agent_ids:
+                result = await self.execute(
+                    agent_type=agent_id,
+                    input_data=input_data,
+                    tenant_id=tenant_id,
+                    **kwargs,
+                )
+                results.append(result)
+                if result.escalation and result.escalation.get("needed"):
+                    break
+            return results
+
+        if exec_mode == ExecutionMode.PARALLEL:
+            return await self._execute_event_parallel(agent_configs, input_data, tenant_id, **kwargs)
+        else:
+            return await self._execute_event_sequential(agent_configs, input_data, tenant_id, **kwargs)
+
+    async def _execute_event_sequential(self, agent_configs, input_data: dict,
+                                         tenant_id: str, **kwargs) -> list[AgentResult]:
+        """Execute agents one after another, chaining outputs."""
         results = []
+        chain_data = dict(input_data)
 
-        for agent_id in agent_ids:
-            result = await self.execute(
-                agent_type=agent_id,
-                input_data=input_data,
-                tenant_id=tenant_id,
-                **kwargs,
-            )
-            results.append(result)
+        for agent_cfg in agent_configs:
+            try:
+                import asyncio
+                result = await asyncio.wait_for(
+                    self.execute(
+                        agent_type=agent_cfg.agent_id,
+                        input_data=chain_data,
+                        tenant_id=tenant_id,
+                        **kwargs,
+                    ),
+                    timeout=agent_cfg.timeout_seconds,
+                )
+                results.append(result)
 
-            # Stop chain if escalation needed
-            if result.escalation and result.escalation.get("needed"):
-                logger.info(f"Agent chain stopped at {agent_id} due to escalation")
-                break
+                # Chain output into next agent's input
+                if result.output and isinstance(result.output, dict):
+                    chain_data = {**chain_data, f"{agent_cfg.agent_id}_output": result.output}
+
+                # Stop on escalation
+                if result.escalation and result.escalation.get("needed"):
+                    logger.info(f"Sequential chain stopped at {agent_cfg.agent_id} — escalation")
+                    break
+
+                # Stop on required agent failure
+                if result.status == "error" and agent_cfg.required:
+                    logger.error(f"Required agent {agent_cfg.agent_id} failed, stopping chain")
+                    break
+
+            except Exception as e:
+                logger.error(f"Agent {agent_cfg.agent_id} error in chain: {e}")
+                if agent_cfg.required:
+                    break
 
         return results
+
+    async def _execute_event_parallel(self, agent_configs, input_data: dict,
+                                       tenant_id: str, **kwargs) -> list[AgentResult]:
+        """Execute agents simultaneously."""
+        import asyncio
+
+        async def _run(agent_cfg):
+            try:
+                return await asyncio.wait_for(
+                    self.execute(
+                        agent_type=agent_cfg.agent_id,
+                        input_data=input_data,
+                        tenant_id=tenant_id,
+                        **kwargs,
+                    ),
+                    timeout=agent_cfg.timeout_seconds,
+                )
+            except Exception as e:
+                logger.error(f"Parallel agent {agent_cfg.agent_id} failed: {e}")
+                return AgentResult(
+                    agent_type=agent_cfg.agent_id,
+                    output={"error": str(e)},
+                    status="error",
+                )
+
+        tasks = [_run(cfg) for cfg in agent_configs]
+        results = await asyncio.gather(*tasks, return_exceptions=False)
+        return list(results)
 
     # ── Prompt Loading ──────────────────────────────
 
@@ -202,6 +343,7 @@ class AgentExecutor:
             "onboarding_coach": "affiliate-onboarding-coach.md",
             "guarantee_reviewer": "guarantee-claim-reviewer.md",
             "voice_call": "voice-call-flow-agent.md",
+            "ai_rehearsal": "ai-rehearsal-agent.md",
         }
 
         filename = filename_map.get(agent_type)
@@ -241,17 +383,29 @@ Respond ONLY with valid JSON."""
     def _get_temperature(self, agent_type: str) -> float:
         """Agent-specific temperature settings."""
         # Creative agents need higher temperature
-        creative = {"outreach_writer": 0.7, "proposal_drafter": 0.5, "sector_strategist": 0.5}
+        creative = {
+            "outreach_writer": 0.7, "proposal_drafter": 0.5,
+            "sector_strategist": 0.5, "objection_handler": 0.4,
+            "closer_agent": 0.4, "onboarding_coach": 0.5,
+            "ai_rehearsal": 0.4,
+        }
         # Analytical agents need low temperature
         analytical = {
             "lead_qualification": 0.1, "compliance_reviewer": 0.1,
             "fraud_reviewer": 0.1, "revenue_attribution": 0.1,
+            "guarantee_reviewer": 0.1, "qa_reviewer": 0.2,
+            "affiliate_evaluator": 0.2,
         }
         return creative.get(agent_type, analytical.get(agent_type, 0.3))
 
     def _get_max_tokens(self, agent_type: str) -> int:
         """Agent-specific max token settings."""
-        verbose = {"proposal_drafter": 4096, "management_summary": 4096, "sector_strategist": 3000}
+        verbose = {
+            "proposal_drafter": 4096, "management_summary": 4096,
+            "sector_strategist": 3000, "ai_rehearsal": 3000,
+            "objection_handler": 2500, "closer_agent": 2500,
+            "onboarding_coach": 3000,
+        }
         return verbose.get(agent_type, 2048)
 
     # ── Escalation Rules ──────────────────────────
@@ -267,16 +421,38 @@ Respond ONLY with valid JSON."""
             confidence = output.get("confidence", 1.0)
             if confidence < 0.5:
                 return {"needed": True, "reason": "Low confidence response", "target": "human_agent"}
+            sentiment = output.get("sentiment", "neutral")
+            if sentiment == "negative":
+                return {"needed": True, "reason": "Negative client sentiment detected", "target": "human_agent"}
 
         if agent_type == "lead_qualification":
             score = output.get("score", 50)
             if 40 <= score <= 60:
                 return {"needed": True, "reason": "Ambiguous qualification score", "target": "sales_manager"}
+            if score >= 90:
+                return {"needed": True, "reason": "VIP lead detected — immediate human attention", "target": "vip_handler"}
 
         if agent_type == "fraud_reviewer":
             risk_score = output.get("risk_score", 0)
             if risk_score > 80:
                 return {"needed": True, "reason": "High fraud risk detected", "target": "admin"}
+
+        if agent_type == "compliance_reviewer":
+            overall_risk = output.get("overall_risk", "low")
+            if overall_risk in ("high", "critical"):
+                return {"needed": True, "reason": f"Compliance risk: {overall_risk}", "target": "legal_team"}
+
+        if agent_type == "guarantee_reviewer":
+            claim_amount = output.get("claim_amount_sar", 0)
+            if claim_amount > 50000:
+                return {"needed": True, "reason": "Guarantee claim > 50K SAR", "target": "ceo"}
+            elif claim_amount > 5000:
+                return {"needed": True, "reason": "Guarantee claim > 5K SAR", "target": "finance"}
+
+        if agent_type == "objection_handler":
+            severity = output.get("objection_severity", "low")
+            if severity == "deal_breaker":
+                return {"needed": True, "reason": "Deal-breaking objection detected", "target": "sales_manager"}
 
         return None
 
@@ -286,6 +462,7 @@ Respond ONLY with valid JSON."""
         """Build a list of actions to execute based on agent output."""
         actions = []
 
+        # ── WhatsApp Response ────────────────────────
         if agent_type == "arabic_whatsapp" and output.get("response_message_ar"):
             actions.append({
                 "type": "send_whatsapp",
@@ -293,27 +470,135 @@ Respond ONLY with valid JSON."""
                 "phone": input_data.get("contact_phone", ""),
             })
 
+        # ── English Response ─────────────────────────
+        if agent_type == "english_conversation" and output.get("response_message_en"):
+            actions.append({
+                "type": "send_email",
+                "message": output["response_message_en"],
+                "email": input_data.get("contact_email", ""),
+            })
+
+        # ── Meeting Booking ──────────────────────────
         if agent_type == "meeting_booking" and output.get("meeting_booked", {}).get("confirmed"):
+            meeting = output["meeting_booked"]
             actions.append({
                 "type": "create_meeting",
-                "datetime": output["meeting_booked"].get("datetime"),
+                "datetime": meeting.get("datetime"),
+                "duration_minutes": meeting.get("duration_minutes", 30),
+                "location": meeting.get("location", "google_meet"),
                 "lead_id": input_data.get("lead_id"),
             })
+            # Send confirmation via WhatsApp
+            if output.get("confirmation_message_ar"):
+                actions.append({
+                    "type": "send_whatsapp",
+                    "message": output["confirmation_message_ar"],
+                    "phone": input_data.get("contact_phone", ""),
+                })
 
+        # ── Outreach Writer ──────────────────────────
         if agent_type == "outreach_writer" and output.get("draft_message"):
+            channel = output.get("channel", input_data.get("channel", "whatsapp"))
             actions.append({
                 "type": "queue_message",
-                "channel": input_data.get("channel", "whatsapp"),
+                "channel": channel,
                 "message": output["draft_message"],
+                "optimal_send_time": output.get("optimal_send_time"),
             })
+            # Queue A/B variant if available
+            if output.get("draft_message_alt"):
+                actions.append({
+                    "type": "queue_ab_variant",
+                    "channel": channel,
+                    "message": output["draft_message_alt"],
+                })
 
+        # ── Lead Qualification ───────────────────────
         if agent_type == "lead_qualification":
             actions.append({
                 "type": "update_lead_score",
                 "lead_id": input_data.get("lead_id"),
                 "score": output.get("score", 0),
+                "classification": output.get("classification", "cold"),
                 "status": output.get("status_recommendation", "contacted"),
+                "priority": output.get("priority", "medium"),
             })
+            # Auto-route hot leads
+            if output.get("score", 0) >= 80:
+                actions.append({
+                    "type": "trigger_event",
+                    "event": "lead_qualified",
+                    "lead_id": input_data.get("lead_id"),
+                })
+
+        # ── Closer Agent ─────────────────────────────
+        if agent_type == "closer_agent":
+            if output.get("response_message_ar"):
+                actions.append({
+                    "type": "send_whatsapp",
+                    "message": output["response_message_ar"],
+                    "phone": input_data.get("contact_phone", ""),
+                })
+            if output.get("payment_link_needed"):
+                actions.append({
+                    "type": "generate_payment_link",
+                    "lead_id": input_data.get("lead_id"),
+                    "amount_sar": output.get("amount_sar", 0),
+                })
+
+        # ── Proposal Drafter ─────────────────────────
+        if agent_type == "proposal_drafter" and output.get("proposal"):
+            actions.append({
+                "type": "create_proposal",
+                "proposal_data": output["proposal"],
+                "lead_id": input_data.get("lead_id"),
+            })
+
+        # ── Compliance Reviewer ──────────────────────
+        if agent_type == "compliance_reviewer":
+            if not output.get("compliant", True):
+                actions.append({
+                    "type": "block_action",
+                    "reason": "Compliance check failed",
+                    "issues": output.get("issues", []),
+                })
+
+        # ── Fraud Reviewer ───────────────────────────
+        if agent_type == "fraud_reviewer":
+            risk = output.get("risk_score", 0)
+            if risk > 60:
+                actions.append({
+                    "type": "suspend_entity",
+                    "entity_type": output.get("fraud_type", "unknown"),
+                    "risk_score": risk,
+                    "affected": output.get("affected_entities", {}),
+                })
+
+        # ── Objection Handler ────────────────────────
+        if agent_type == "objection_handler" and output.get("response_ar"):
+            actions.append({
+                "type": "send_whatsapp",
+                "message": output["response_ar"],
+                "phone": input_data.get("contact_phone", ""),
+            })
+
+        # ── Guarantee Reviewer ───────────────────────
+        if agent_type == "guarantee_reviewer":
+            decision = output.get("decision", "")
+            if decision == "approved":
+                actions.append({
+                    "type": "process_refund",
+                    "amount_sar": output.get("approved_amount_sar", 0),
+                    "customer_id": input_data.get("customer_id"),
+                })
+            # Try retention offer first
+            retention = output.get("retention_offer", {})
+            if retention.get("offered"):
+                actions.append({
+                    "type": "send_retention_offer",
+                    "offer": retention,
+                    "customer_id": input_data.get("customer_id"),
+                })
 
         return actions
 

@@ -13,6 +13,8 @@ celery_app = Celery(
         "app.workers.notification_tasks",
         "app.workers.affiliate_tasks",
         "app.workers.sequence_tasks",
+        "app.workers.agent_tasks",
+        "app.workers.pipeline_tasks",
     ],
 )
 
@@ -80,5 +82,11 @@ celery_app.conf.beat_schedule = {
     "autopilot-lead-scoring": {
         "task": "app.workers.sequence_tasks.autopilot_lead_scoring",
         "schedule": 21600.0,  # every 6 hours
+    },
+    # ── Autonomous Pipeline Tasks ───────────────────
+    "pipeline-daily-sweep": {
+        "task": "app.workers.pipeline_tasks.run_daily_pipeline_sweep",
+        "schedule": 86400.0,  # daily
+        "args": ["default"],
     },
 }

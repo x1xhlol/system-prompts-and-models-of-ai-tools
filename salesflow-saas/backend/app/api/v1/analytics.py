@@ -173,9 +173,6 @@ async def run_daily(
 @router.get("/orchestrator/states")
 async def get_states():
     """Get the lead lifecycle state machine."""
-    from app.ai.orchestrator import Orchestrator
-    return Orchestrator.__init__  # Will return states without DB
-    # Simplified response
     return {
         "states": {
             "new": {"next_states": ["contacted", "lost"], "auto_agent": "lead_qualification"},

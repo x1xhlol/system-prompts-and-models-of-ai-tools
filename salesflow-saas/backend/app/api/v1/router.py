@@ -27,6 +27,9 @@ from app.api.v1 import operations as operations_router
 from app.api.v1 import proposals as proposals_router
 from app.api.v1 import integrations_crm as integrations_crm_router
 from app.api.v1 import ai_routing as ai_routing_router
+from app.api.v1 import pipeline_engine as pipeline_engine_router
+from app.api.v1 import agent_health as agent_health_router
+from app.api.v1 import agent_dashboard as agent_dashboard_router
 
 api_router = APIRouter()
 
@@ -106,3 +109,12 @@ api_router.include_router(whatsapp_webhook_router.router)
 # ── Omnichannel — Unified channel management ─────────────────
 from app.api.v1 import channels as channels_router
 api_router.include_router(channels_router.router)
+
+# ── Pipeline Engine — Autonomous AI Sales Pipeline ────────────
+api_router.include_router(pipeline_engine_router.router)
+
+# ── Agent Health — AI System Diagnostics ──────────────────────
+api_router.include_router(agent_health_router.router)
+
+# ── Agent Dashboard — AI Performance Analytics ────────────────
+api_router.include_router(agent_dashboard_router.router)

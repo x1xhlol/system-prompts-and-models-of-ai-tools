@@ -85,12 +85,50 @@ class WhatsAppBrain:
         handler = handlers.get(mode, self._handle_general)
         response = await handler(message, caller, intent, history, db)
 
+        # Try AI agent for richer responses (non-blocking enhancement)
+        if db and intent not in ("greeting", "pricing") and mode == ConversationMode.SALES:
+            try:
+                ai_response = await self._get_ai_agent_response(
+                    message, caller, intent, db
+                )
+                if ai_response:
+                    response = ai_response
+            except Exception as e:
+                logger.debug(f"AI agent enhancement skipped: {e}")
+
         self._add_to_history(phone, "assistant", response)
         logger.info(
             f"[WhatsAppBrain] {phone} mode={mode.value} intent={intent} "
             f"caller={caller.caller_type} lang={language}"
         )
         return response
+
+    async def _get_ai_agent_response(
+        self, message: str, caller: CallerProfile, intent: str, db
+    ) -> str | None:
+        """Try to get a response from the arabic_whatsapp AI agent."""
+        try:
+            from app.services.agents.executor import AgentExecutor
+            executor = AgentExecutor(db)
+            result = await executor.execute(
+                agent_type="arabic_whatsapp",
+                input_data={
+                    "message": message,
+                    "contact_phone": caller.phone,
+                    "contact_name": caller.name,
+                    "caller_type": caller.caller_type,
+                    "language": caller.language,
+                    "intent": intent,
+                },
+                tenant_id=caller.tenant_id or None,
+            )
+            if result.status == "success" and result.output:
+                ai_msg = result.output.get("response_message_ar")
+                if ai_msg and len(ai_msg) > 10:
+                    return ai_msg
+        except Exception as e:
+            logger.debug(f"AI agent response failed: {e}")
+        return None
 
     async def identify_caller(self, phone: str, db: Any = None) -> CallerProfile:
         profile = CallerProfile(phone=phone)
