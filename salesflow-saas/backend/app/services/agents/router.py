@@ -531,6 +531,97 @@ AGENT_REGISTRY: dict[str, EventConfig] = {
         execution_mode=ExecutionMode.SEQUENTIAL,
         description="Win/loss analysis — competitive intel + management reporting",
     ),
+
+    # ══════════════════════════════════════════════════
+    # ── Advanced Strategic & M&A Core (The 7 New Agents)
+    # ══════════════════════════════════════════════════
+
+    # ── Alliance Structuring ────────────────────────
+    "partnership.model_recommended": EventConfig(
+        agents=[
+            AgentConfig("alliance_structuring", priority=1, required=True, timeout_seconds=90),
+            AgentConfig("finance_automation", priority=2, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Structure alliance mode (Rev-share/JV) and calculate financial impact",
+    ),
+    "partnership.term_sheet_ready": EventConfig(
+        agents=[
+            AgentConfig("alliance_structuring", priority=1, required=True),
+            AgentConfig("contract_lifecycle", priority=2, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Generate Term Sheet from Alliance model",
+    ),
+
+    # ── M&A Target Screening & DD ───────────────────
+    "ma.screening_completed": EventConfig(
+        agents=[
+            AgentConfig("due_diligence_analyst", priority=1, required=True, timeout_seconds=120),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Run initial comprehensive DD (Financial, Ops, Legal)",
+    ),
+    "ma.valuation_ready": EventConfig(
+        agents=[
+            AgentConfig("valuation_synergy", priority=1, required=True, timeout_seconds=90),
+            AgentConfig("finance_automation", priority=2, required=False),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Valuation execution + revenue/cost synergy analysis",
+    ),
+
+    # ── Strategic Negotiation ────────────────────────
+    "ma.offer_strategy_ready": EventConfig(
+        agents=[
+            AgentConfig("executive_negotiator", priority=1, required=True, timeout_seconds=90),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Prepare executive negotiation playbook (BATNA, ZOPA, Scenarios)",
+    ),
+
+    # ── Post-Merger Integration (PMI) ────────────────
+    "ma.integration_kickoff": EventConfig(
+        agents=[
+            AgentConfig("post_merger_integration", priority=1, required=True, timeout_seconds=120),
+            AgentConfig("strategic_pmo", priority=2, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Kickoff 30/60/90 days integration PMO & tracking",
+    ),
+
+    # ── Execution PMO ──────────────────────────────
+    "growth.milestone_achieved": EventConfig(
+        agents=[
+            AgentConfig("strategic_pmo", priority=1, required=True),
+            AgentConfig("sovereign_intelligence", priority=2, required=False),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Track growth milestone and pass to sovereign intelligence",
+    ),
+    "growth.execution_blocker_detected": EventConfig(
+        agents=[
+            AgentConfig("strategic_pmo", priority=1, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Handle strategic blocker, assign SLAs and owners",
+    ),
+
+    # ── Sovereign Level ─────────────────────────────
+    "governance.executive_escalation": EventConfig(
+        agents=[
+            AgentConfig("sovereign_intelligence", priority=1, required=True, timeout_seconds=120),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="C-suite/Board level escalation and dashboarding",
+    ),
+    "board_briefing_requested": EventConfig(
+        agents=[
+            AgentConfig("sovereign_intelligence", priority=1, required=True, timeout_seconds=120),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Generate 360° Sovereign Board Briefing",
+    ),
 }
 
 

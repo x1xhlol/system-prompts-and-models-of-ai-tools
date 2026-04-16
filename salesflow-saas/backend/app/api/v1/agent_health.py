@@ -33,7 +33,7 @@ async def full_system_status(db: AsyncSession = Depends(get_db)):
     🏥 Full AI agent ecosystem health check.
     
     Checks:
-    1. All 30 prompt files exist and are readable
+    1. All 37 prompt files exist and are readable
     2. Agent router has all events registered
     3. Pipeline engine is configured correctly
     4. LLM provider is reachable
@@ -120,7 +120,7 @@ async def full_system_status(db: AsyncSession = Depends(get_db)):
 
 @router.get("/prompts")
 async def check_prompt_files():
-    """Check all 30 AI agent prompt files."""
+    """Check all 37 AI agent prompt files."""
     return _check_prompts()
 
 
@@ -156,7 +156,7 @@ async def get_agent_details():
         "guarantee_reviewer": "guarantee-claim-reviewer.md",
         "voice_call": "voice-call-flow-agent.md",
         "ai_rehearsal": "ai-rehearsal-agent.md",
-        # Strategic Growth & Enterprise Agents
+        # 10 Strategic Growth & Enterprise Agents
         "partnership_scout": "partnership-scout-agent.md",
         "ma_growth": "ma-growth-agent.md",
         "contract_lifecycle": "contract-lifecycle-agent.md",
@@ -167,6 +167,14 @@ async def get_agent_details():
         "marketing_automation": "marketing-automation-agent.md",
         "finance_automation": "finance-automation-agent.md",
         "competitive_intel": "competitive-intelligence-agent.md",
+        # 7 Advanced Strategic & M&A Core
+        "alliance_structuring": "alliance-structuring-agent.md",
+        "due_diligence_analyst": "due-diligence-agent.md",
+        "valuation_synergy": "valuation-synergy-agent.md",
+        "strategic_pmo": "strategic-pmo-agent.md",
+        "executive_negotiator": "executive-negotiator-agent.md",
+        "post_merger_integration": "post-merger-integration-agent.md",
+        "sovereign_intelligence": "sovereign-growth-agent.md",
     }
 
     detail = []
@@ -248,6 +256,14 @@ def _check_prompts() -> dict:
         "marketing-automation-agent.md",
         "finance-automation-agent.md",
         "competitive-intelligence-agent.md",
+        # 7 Advanced Strategic & M&A Core
+        "alliance-structuring-agent.md",
+        "due-diligence-agent.md",
+        "valuation-synergy-agent.md",
+        "strategic-pmo-agent.md",
+        "executive-negotiator-agent.md",
+        "post-merger-integration-agent.md",
+        "sovereign-growth-agent.md",
     ]
 
     files = []

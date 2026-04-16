@@ -356,6 +356,14 @@ class AgentExecutor:
             "marketing_automation": "marketing-automation-agent.md",
             "finance_automation": "finance-automation-agent.md",
             "competitive_intel": "competitive-intelligence-agent.md",
+            # ── 7 Advanced Strategic & M&A Core ──
+            "alliance_structuring": "alliance-structuring-agent.md",
+            "due_diligence_analyst": "due-diligence-agent.md",
+            "valuation_synergy": "valuation-synergy-agent.md",
+            "strategic_pmo": "strategic-pmo-agent.md",
+            "executive_negotiator": "executive-negotiator-agent.md",
+            "post_merger_integration": "post-merger-integration-agent.md",
+            "sovereign_intelligence": "sovereign-growth-agent.md",
         }
 
         filename = filename_map.get(agent_type)
@@ -414,6 +422,11 @@ Respond ONLY with valid JSON."""
             "ma_growth": 0.2, "contract_lifecycle": 0.1,
             "supply_chain": 0.2, "dynamic_pricing": 0.15,
             "finance_automation": 0.1, "competitive_intel": 0.2,
+            # Advanced Core
+            "alliance_structuring": 0.2, "due_diligence_analyst": 0.1,
+            "valuation_synergy": 0.1, "strategic_pmo": 0.2,
+            "executive_negotiator": 0.4, "post_merger_integration": 0.2,
+            "sovereign_intelligence": 0.3,
         }
         return creative.get(agent_type, analytical.get(agent_type, 0.3))
 
@@ -430,6 +443,11 @@ Respond ONLY with valid JSON."""
             "supply_chain": 3000, "customer_success": 3000,
             "dynamic_pricing": 2500, "marketing_automation": 4096,
             "finance_automation": 4096, "competitive_intel": 3500,
+            # Advanced Core
+            "alliance_structuring": 4096, "due_diligence_analyst": 6000,
+            "valuation_synergy": 5000, "strategic_pmo": 4096,
+            "executive_negotiator": 5000, "post_merger_integration": 6000,
+            "sovereign_intelligence": 8000,  # Apex agent needs max context
         }
         return verbose.get(agent_type, 2048)
 
@@ -506,6 +524,18 @@ Respond ONLY with valid JSON."""
             threat = output.get("competitive_intel", {}).get("threat_level", "low")
             if threat in ("high", "critical"):
                 return {"needed": True, "reason": f"Competitive threat level: {threat}", "target": "strategy_team"}
+
+        # ── Advanced M&A Core Escalations ───────────────
+        if agent_type == "due_diligence_analyst":
+            risk = output.get("due_diligence_report", {}).get("overall_risk", "low")
+            if risk in ("high", "critical"):
+                return {"needed": True, "reason": "DD discovered high risk factors — board review required", "target": "board"}
+
+        if agent_type == "sovereign_intelligence":
+            alerts = output.get("sovereign_intelligence", {}).get("strategic_alerts", [])
+            has_critical = any(a.get("severity") == "critical" for a in alerts)
+            if has_critical:
+                return {"needed": True, "reason": "Critical strategic alert raised in Sovereign Report", "target": "ceo"}
 
         return None
 
@@ -771,6 +801,59 @@ Respond ONLY with valid JSON."""
                     "competitor": ci.get("competitor_profile", {}).get("name"),
                     "battle_card": ci["battle_card"],
                 })
+
+        # ── Advanced M&A Core Actions ────────────────
+        if agent_type == "alliance_structuring" and output.get("alliance_structure"):
+            actions.append({
+                "type": "save_alliance_model",
+                "partner_name": output["alliance_structure"].get("partner_name"),
+                "financial_model": output["alliance_structure"].get("financial_model"),
+                "term_sheet": output["alliance_structure"].get("term_sheet"),
+            })
+
+        if agent_type == "due_diligence_analyst" and output.get("due_diligence_report"):
+            actions.append({
+                "type": "finalize_dd_report",
+                "target_company": output["due_diligence_report"].get("target_company"),
+                "go_no_go_decision": output["due_diligence_report"].get("go_no_go"),
+                "risk_level": output["due_diligence_report"].get("overall_risk"),
+            })
+
+        if agent_type == "valuation_synergy" and output.get("valuation_report"):
+            actions.append({
+                "type": "save_valuation",
+                "blended_valuation_sar": output["valuation_report"].get("blended_valuation_sar"),
+                "recommended_price_sar": output["valuation_report"].get("offer_recommendation", {}).get("recommended_price_sar"),
+            })
+
+        if agent_type == "strategic_pmo" and output.get("pmo_output"):
+            actions.append({
+                "type": "update_pmo_tracker",
+                "initiative": output["pmo_output"].get("initiative"),
+                "workstreams": output["pmo_output"].get("workstreams"),
+            })
+
+        if agent_type == "executive_negotiator" and output.get("negotiation_prep"):
+            actions.append({
+                "type": "save_negotiation_playbook",
+                "tactics": output["negotiation_prep"].get("closing_tactics"),
+                "batna": output["negotiation_prep"].get("batna"),
+            })
+
+        if agent_type == "post_merger_integration" and output.get("pmi_plan"):
+            actions.append({
+                "type": "update_pmi_dashboard",
+                "day_1_readiness": output["pmi_plan"].get("day_1_readiness"),
+                "synergy_tracking": output["pmi_plan"].get("synergy_tracker"),
+            })
+
+        if agent_type == "sovereign_intelligence" and output.get("sovereign_intelligence"):
+            actions.append({
+                "type": "publish_sovereign_dashboard",
+                "report_date": output["sovereign_intelligence"].get("report_date"),
+                "top_opportunities": output["sovereign_intelligence"].get("top_opportunities"),
+                "board_recommendations": output["sovereign_intelligence"].get("board_recommendations"),
+            })
 
         return actions
 
