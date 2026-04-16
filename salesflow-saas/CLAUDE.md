@@ -1,7 +1,9 @@
 # CLAUDE.md — Dealix Project Context for AI Agents
 
 ## Quick Context
-Dealix is an AI-powered CRM built for the Saudi market. It combines Salesforce-grade AI with WhatsApp-first communication, PDPL compliance, and Arabic-first UX.
+Dealix is a **Sovereign Enterprise Growth OS for GCC Companies**. It manages Revenue, Partnerships, Corporate Development/M&A, Expansion, PMI, and Trust/Governance — with AI agents, durable workflows, and policy-enforced execution.
+
+**Operating Constitution**: See `MASTER_OPERATING_PROMPT.md` for the canonical reference.
 
 ## Key Directories
 - `backend/app/api/v1/` — API routes (FastAPI)
@@ -17,6 +19,10 @@ Dealix is an AI-powered CRM built for the Saudi market. It combines Salesforce-g
 - `frontend/src/app/` — Next.js pages
 - `seeds/` — Industry templates (JSON)
 - `memory/` — Project knowledge base
+- `docs/governance/` — Governance framework (execution-fabric, trust-fabric, compliance, radar)
+- `docs/adr/` — Architecture Decision Records
+- `scripts/` — Architecture brief and tooling
+- `MASTER_OPERATING_PROMPT.md` — Operating constitution (five planes, six tracks, policy classes)
 
 ## Database
 - PostgreSQL 16 with async driver (asyncpg)
@@ -123,3 +129,13 @@ Installed and active. Automatically captures every session's work and injects co
 - **Privacy**: Wrap sensitive content in `<private>...</private>` tags
 - **Token savings**: ~95% reduction via 3-layer progressive retrieval
 - **Auto-captures**: tool executions, session summaries, decisions, bugs, patterns
+
+## Governance Framework (Tier-1)
+
+- **Five Planes**: Decision, Execution, Trust, Data, Operating — see `docs/ai-operating-model.md`
+- **Six Tracks**: Revenue, Intelligence, Compliance, Expansion, Operations, Trust — see `docs/dealix-six-tracks.md`
+- **Policy Classes**: A (auto), B (approval), C (forbidden) — enforced by `openclaw/policy.py`
+- **Contradiction Engine**: Detect/track system conflicts — `services/contradiction_engine.py`
+- **Evidence Packs**: Tamper-evident audit proof — `services/evidence_pack_service.py`
+- **Saudi Compliance Matrix**: Live PDPL/ZATCA/SDAIA/NCA controls — `services/saudi_compliance_matrix.py`
+- **Architecture Preflight**: `python scripts/architecture_brief.py` (run from repo root)

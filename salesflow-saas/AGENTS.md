@@ -160,3 +160,30 @@ The **institutional** operating prompt and governance library live at the **repo
 - [`../docs/adr/0001-tier1-execution-policy-spikes.md`](../docs/adr/0001-tier1-execution-policy-spikes.md) — Temporal / OPA / OpenFGA spike policy.
 
 This file (`salesflow-saas/AGENTS.md`) is **app-specific** (stack, conventions, Class A/B/C for shipping). It must **not** contradict root policy or the governance library.
+
+## Governance integration (Tier-1 surfaces)
+
+Class A/B/C enforcement, evidence, and structured outputs align with the root [`../docs/governance/approval-policy.md`](../docs/governance/approval-policy.md) and app policy classes above. Tier-1 read APIs (snapshots for executive / trust dashboards):
+
+- `GET /api/v1/executive-room/snapshot` — Executive Room
+- `GET /api/v1/contradictions/` — Contradiction engine
+- `GET /api/v1/evidence-packs/` — Evidence pack viewer
+- `GET /api/v1/approval-center/` — Approval center
+- `GET /api/v1/connectors/governance` — Connector governance
+- `GET /api/v1/model-routing/dashboard` — Model routing
+- `GET /api/v1/compliance/matrix/` — Saudi compliance matrix
+- `GET /api/v1/forecast-control/unified` — Actual vs forecast
+
+**Architecture preflight** (from repo root — canonical monorepo script):
+
+```bash
+cd ..   # repository root (parent of salesflow-saas)
+py -3 scripts/architecture_brief.py
+```
+
+Optional app-local brief (if maintained under `salesflow-saas/scripts/`):
+
+```bash
+cd salesflow-saas
+py -3 scripts/architecture_brief.py
+```

@@ -20,7 +20,8 @@
 
 - [ ] تشغيل من **أحدث** كود في المستودع:  
   `cd backend && python -m uvicorn app.main:app --host 0.0.0.0 --port 8000`  
-  (ويندوز: `py -3 -m uvicorn app.main:app --host 0.0.0.0 --port 8000`)
+  (ويندوز إن لم يُعثر على `python`: `py -3 -m uvicorn app.main:app --host 0.0.0.0 --port 8000`)
+- [ ] **SQLite محلي فقط:** عند `DATABASE_URL=sqlite+aiosqlite://...` يُنشئ التطبيق الجداول عند الإقلاع (`init_db`) لتسهيل الاختبار؛ **الإنتاج يستخدم Postgres + Alembic** (`make migrate`) وليس الاعتماد على `create_all`.
 - [ ] إذا ظهر **404** على `/api/v1/marketing/hub` أو `/api/v1/strategy/summary` فالعملية غالباً **قديمة** — أعد تشغيل `uvicorn` بعد `git pull`.
 - [ ] اختبار HTTP (من مجلد `backend/`):  
   `py -3 scripts/full_stack_launch_test.py --http-only --soft-ready`  
@@ -53,8 +54,9 @@
 ## 5. ما بعد الإطلاق
 
 - [ ] مراقبة `/api/v1/health` و `/api/v1/ready`.
-- [ ] إعادة فحص **`go-live-gate`** بعد أي تغيير على أسرار الطرف الثالث (Stripe، البريد، CRM، إلخ).
+- [ ] إعادة فحص **`go-live-gate`** بعد أي تغيير على أسرار الطرف الثالث (Stripe، البريد، CRM، إلخ) — قد يعيد **403** حتى اكتمال التهيئة (متوقع أثناء الإعداد).
 - [ ] اعتماد دورة تشغيل أسبوعية/شهرية كما في [`docs/DEALIX_POST_LAUNCH_OPS_AR.md`](DEALIX_POST_LAUNCH_OPS_AR.md).
+- [ ] خطة التراجع: راجع [`memory/runbooks/production-deployment-guide.md`](../../memory/runbooks/production-deployment-guide.md) وأي runbook تراجع مع الفريق.
 
 ## 6. أمان `DEALIX_INTERNAL_API_TOKEN` (إنتاج)
 
@@ -63,6 +65,10 @@
 - [ ] **Staging / ديمو:** الإعفاءات الحالية تسمح للواجهة بجلب محتوى عام ولوحات ديمو دون التوكن الداخلي؛ هذا متعمد لتجربة المطوّر.
 - [ ] **إنتاج صارم:** راجع ما إذا كانت مسارات الإعفاء (مثل أجزاء من التسويق أو `dealix/generate-leads`) مقبولة لسياسة المنتج؛ يمكن لاحقًا تقييد الإعفاءات حسب `ENVIRONMENT` أو إلزام **`apiFetch` + JWT** لمسارات حساسة بدل الإعفاء.
 - [ ] إن لم تُضبط المتغير (فارغ)، الميدلوير لا يفرض التوكن — مناسب للتطوير المحلي فقط.
+
+## 7. تمييز السوق (قبل الإعلان)
+
+- [ ] مراجعة [`docs/MARKET_POSITIONING_AR.md`](MARKET_POSITIONING_AR.md) ومواءمة النسخ مع الميزات المفعّلة فعلياً.
 
 ---
 

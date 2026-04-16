@@ -30,6 +30,14 @@ from app.api.v1 import ai_routing as ai_routing_router
 from app.api.v1 import pipeline_engine as pipeline_engine_router
 from app.api.v1 import agent_health as agent_health_router
 from app.api.v1 import agent_dashboard as agent_dashboard_router
+from app.api.v1 import contradiction as contradiction_router
+from app.api.v1 import evidence_packs as evidence_packs_router
+from app.api.v1 import executive_room as executive_room_router
+from app.api.v1 import connector_governance as connector_governance_router
+from app.api.v1 import model_routing as model_routing_router
+from app.api.v1 import saudi_compliance as saudi_compliance_router
+from app.api.v1 import forecast_control as forecast_control_router
+from app.api.v1 import approval_center as approval_center_router
 
 api_router = APIRouter()
 
@@ -105,6 +113,16 @@ api_router.include_router(strategic_deals_router.router)
 # ── WhatsApp Webhook — Incoming messages & status ────────────
 from app.api.v1 import whatsapp_webhook as whatsapp_webhook_router
 api_router.include_router(whatsapp_webhook_router.router)
+
+# ── Tier-1 Governance & Trust Surfaces ───────────────────────
+api_router.include_router(contradiction_router.router)
+api_router.include_router(evidence_packs_router.router)
+api_router.include_router(executive_room_router.router)
+api_router.include_router(connector_governance_router.router)
+api_router.include_router(model_routing_router.router)
+api_router.include_router(saudi_compliance_router.router)
+api_router.include_router(forecast_control_router.router)
+api_router.include_router(approval_center_router.router)
 
 # ── Omnichannel — Unified channel management ─────────────────
 from app.api.v1 import channels as channels_router

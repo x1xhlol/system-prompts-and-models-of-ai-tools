@@ -28,9 +28,11 @@ Frontend: `http://localhost:3000`
 
 **If the browser shows connection refused on `:3000` or `:8000`:** nothing is listening on that port yet. Start the stack (`docker compose up` from this folder) or run `uvicorn` / `npm run dev` manually. Confirm with `curl -sSf http://127.0.0.1:8000/api/v1/health` and ensure the browser is on the same machine as the server (not WSL/remote without port forwarding).
 
-**Without Docker:** install Python 3.12+ and Node 22+, copy `.env` and `frontend/.env.local`, run Postgres/Redis (or point `DATABASE_URL` / `REDIS_URL` at existing instances), then `cd backend && uvicorn app.main:app --reload --host 0.0.0.0 --port 8000` and `cd frontend && npm run dev`.
+**Without Docker:** install Python 3.12+ and Node 22+, copy `.env` and `frontend/.env.local`, run Postgres/Redis (or point `DATABASE_URL` / `REDIS_URL` at existing instances), then `cd backend && uvicorn app.main:app --reload --host 0.0.0.0 --port 8000` and `cd frontend && npm run dev`. If `DATABASE_URL` uses SQLite (`sqlite+aiosqlite`), the API runs `init_db()` on startup so tables exist for local smoke tests; production should use Postgres + Alembic migrations.
 
 **E2E locally:** after `npm ci`, run `npx playwright install chromium` once, then `npm run test:e2e` (matches CI).
+
+**Staging env templates:** `.env.staging.example` (repo root) and `frontend/.env.staging.example` — copy to `.env` / `frontend/.env.local` on the host; see `docs/STAGING_ENV_CHECKLIST.md`.
 
 **Customer onboarding (B2B):** `GET /api/v1/customer-onboarding/journey` and `docs/CUSTOMER_OS_ONBOARDING_AR.md`. Dashboard tab: **مسار التشغيل مع العميل**.
 

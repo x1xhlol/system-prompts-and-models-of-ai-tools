@@ -13,6 +13,7 @@ from contextlib import asynccontextmanager
 import asyncio
 
 from app.config import get_settings
+from app.database import IS_SQLITE, init_db
 from app.api.v1.router import api_router
 from app.flows.self_improvement_flow import self_improvement_flow
 from app.middleware.internal_api import InternalApiTokenMiddleware
@@ -61,6 +62,8 @@ async def lifespan(app: FastAPI):
     print(f"   Environment: {settings.ENVIRONMENT}")
     print(f"   LLM Primary: {settings.LLM_PRIMARY_PROVIDER}")
     print(f"   LLM Fallback: {settings.LLM_FALLBACK_PROVIDER}")
+    if IS_SQLITE:
+        await init_db()
     yield
     # Shutdown
     stop_event.set()

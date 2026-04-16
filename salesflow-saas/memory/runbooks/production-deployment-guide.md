@@ -41,7 +41,7 @@ apt install git -y
 # 5. انسخ المشروع
 git clone https://github.com/VoXc2/system-prompts-and-models-of-ai-tools.git
 cd system-prompts-and-models-of-ai-tools
-git checkout claude/complete-system-prompts-wqJCm
+git checkout main
 cd salesflow-saas
 ```
 

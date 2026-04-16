@@ -1,0 +1,218 @@
+{
+  "project": "Dealix",
+  "root": "/home/user/system-prompts-and-models-of-ai-tools/salesflow-saas",
+  "checks": {
+    "governance_docs": {
+      "label": "Governance Documents",
+      "total": 14,
+      "found": 14,
+      "items": {
+        "MASTER_OPERATING_PROMPT.md": {
+          "exists": true,
+          "path": "MASTER_OPERATING_PROMPT.md"
+        },
+        "ai-operating-model.md": {
+          "exists": true,
+          "path": "docs/ai-operating-model.md"
+        },
+        "dealix-six-tracks.md": {
+          "exists": true,
+          "path": "docs/dealix-six-tracks.md"
+        },
+        "execution-fabric.md": {
+          "exists": true,
+          "path": "docs/governance/execution-fabric.md"
+        },
+        "trust-fabric.md": {
+          "exists": true,
+          "path": "docs/governance/trust-fabric.md"
+        },
+        "saudi-compliance-and-ai-governance.md": {
+          "exists": true,
+          "path": "docs/governance/saudi-compliance-and-ai-governance.md"
+        },
+        "technology-radar-tier1.md": {
+          "exists": true,
+          "path": "docs/governance/technology-radar-tier1.md"
+        },
+        "partnership-os.md": {
+          "exists": true,
+          "path": "docs/governance/partnership-os.md"
+        },
+        "ma-os.md": {
+          "exists": true,
+          "path": "docs/governance/ma-os.md"
+        },
+        "expansion-os.md": {
+          "exists": true,
+          "path": "docs/governance/expansion-os.md"
+        },
+        "pmi-os.md": {
+          "exists": true,
+          "path": "docs/governance/pmi-os.md"
+        },
+        "executive-board-os.md": {
+          "exists": true,
+          "path": "docs/governance/executive-board-os.md"
+        },
+        "execution-matrix-90d-tier1.md": {
+          "exists": true,
+          "path": "docs/execution-matrix-90d-tier1.md"
+        },
+        "ADR-0001": {
+          "exists": true,
+          "path": "docs/adr/0001-tier1-execution-policy-spikes.md"
+        }
+      }
+    },
+    "backend_models": {
+      "label": "Backend Models (Tier-1)",
+      "total": 3,
+      "found": 3,
+      "items": {
+        "contradiction.py": {
+          "exists": true,
+          "path": "backend/app/models/contradiction.py"
+        },
+        "evidence_pack.py": {
+          "exists": true,
+          "path": "backend/app/models/evidence_pack.py"
+        },
+        "compliance_control.py": {
+          "exists": true,
+          "path": "backend/app/models/compliance_control.py"
+        }
+      }
+    },
+    "backend_services": {
+      "label": "Backend Services (Tier-1)",
+      "total": 6,
+      "found": 6,
+      "items": {
+        "contradiction_engine.py": {
+          "exists": true,
+          "path": "backend/app/services/contradiction_engine.py"
+        },
+        "evidence_pack_service.py": {
+          "exists": true,
+          "path": "backend/app/services/evidence_pack_service.py"
+        },
+        "connector_governance.py": {
+          "exists": true,
+          "path": "backend/app/services/connector_governance.py"
+        },
+        "model_routing_dashboard.py": {
+          "exists": true,
+          "path": "backend/app/services/model_routing_dashboard.py"
+        },
+        "saudi_compliance_matrix.py": {
+          "exists": true,
+          "path": "backend/app/services/saudi_compliance_matrix.py"
+        },
+        "forecast_control_center.py": {
+          "exists": true,
+          "path": "backend/app/services/forecast_control_center.py"
+        }
+      }
+    },
+    "backend_apis": {
+      "label": "Backend APIs (Tier-1)",
+      "total": 8,
+      "found": 8,
+      "items": {
+        "contradiction.py": {
+          "exists": true,
+          "path": "backend/app/api/v1/contradiction.py"
+        },
+        "evidence_packs.py": {
+          "exists": true,
+          "path": "backend/app/api/v1/evidence_packs.py"
+        },
+        "executive_room.py": {
+          "exists": true,
+          "path": "backend/app/api/v1/executive_room.py"
+        },
+        "connector_governance.py": {
+          "exists": true,
+          "path": "backend/app/api/v1/connector_governance.py"
+        },
+        "model_routing.py": {
+          "exists": true,
+          "path": "backend/app/api/v1/model_routing.py"
+        },
+        "saudi_compliance.py": {
+          "exists": true,
+          "path": "backend/app/api/v1/saudi_compliance.py"
+        },
+        "forecast_control.py": {
+          "exists": true,
+          "path": "backend/app/api/v1/forecast_control.py"
+        },
+        "approval_center.py": {
+          "exists": true,
+          "path": "backend/app/api/v1/approval_center.py"
+        }
+      }
+    },
+    "frontend_components": {
+      "label": "Frontend Components (Tier-1)",
+      "total": 9,
+      "found": 9,
+      "items": {
+        "executive-room.tsx": {
+          "exists": true,
+          "path": "frontend/src/components/dealix/executive-room.tsx"
+        },
+        "evidence-pack-viewer.tsx": {
+          "exists": true,
+          "path": "frontend/src/components/dealix/evidence-pack-viewer.tsx"
+        },
+        "approval-center.tsx": {
+          "exists": true,
+          "path": "frontend/src/components/dealix/approval-center.tsx"
+        },
+        "connector-governance-board.tsx": {
+          "exists": true,
+          "path": "frontend/src/components/dealix/connector-governance-board.tsx"
+        },
+        "saudi-compliance-dashboard.tsx": {
+          "exists": true,
+          "path": "frontend/src/components/dealix/saudi-compliance-dashboard.tsx"
+        },
+        "actual-vs-forecast-dashboard.tsx": {
+          "exists": true,
+          "path": "frontend/src/components/dealix/actual-vs-forecast-dashboard.tsx"
+        },
+        "risk-heatmap.tsx": {
+          "exists": true,
+          "path": "frontend/src/components/dealix/risk-heatmap.tsx"
+        },
+        "policy-violations-board.tsx": {
+          "exists": true,
+          "path": "frontend/src/components/dealix/policy-violations-board.tsx"
+        },
+        "partner-pipeline-board.tsx": {
+          "exists": true,
+          "path": "frontend/src/components/dealix/partner-pipeline-board.tsx"
+        }
+      }
+    }
+  },
+  "counts": {
+    "total_models": 32,
+    "total_services": 80,
+    "total_api_routes": 58,
+    "total_frontend_components": 48,
+    "total_agents": 19,
+    "total_governance_docs": 17,
+    "total_legal_docs": 7,
+    "total_tests": 19
+  },
+  "summary": {
+    "total_checks": 40,
+    "passed": 40,
+    "failed": 0,
+    "score_percent": 100.0,
+    "tier1_ready": true
+  }
+}

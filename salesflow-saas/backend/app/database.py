@@ -61,6 +61,8 @@ async def get_db():
 
 
 async def init_db():
+    import app.models  # noqa: F401 — register all models on Base.metadata before create_all
+
     async with engine.begin() as conn:
         if not IS_SQLITE:
             for ext in ["CREATE EXTENSION IF NOT EXISTS vector",
