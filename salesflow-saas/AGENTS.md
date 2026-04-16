@@ -120,3 +120,27 @@ cd frontend && npm run dev
 5. Deploy to production with canary (10%)
 6. Monitor 30 min → full rollout
 7. Rollback plan documented per release
+
+## Governance Integration (Tier-1)
+
+All agents operate under the governance framework defined in `MASTER_OPERATING_PROMPT.md`:
+
+- **Trust Plane**: Every agent action is classified as A/B/C via `openclaw/policy.py`. Class B actions (messaging, payments, CRM sync) require approval tokens.
+- **Evidence Packs**: Agent outputs logged to `ai_conversations` contribute to evidence pack assembly.
+- **Contradiction Detection**: Agent-generated content is subject to contradiction checks against governance docs.
+- **Structured Outputs**: All critical agent outputs use defined schemas (LeadScoreCard, QualificationMemo, ProposalPack, etc.).
+
+### New Tier-1 API Surfaces
+- `GET /api/v1/executive-room/snapshot` — Executive Room
+- `GET /api/v1/contradictions/` — Contradiction Engine
+- `GET /api/v1/evidence-packs/` — Evidence Pack Viewer
+- `GET /api/v1/approval-center/` — Approval Center
+- `GET /api/v1/connectors/governance` — Connector Governance
+- `GET /api/v1/model-routing/dashboard` — Model Routing
+- `GET /api/v1/compliance/matrix/` — Saudi Compliance Matrix
+- `GET /api/v1/forecast-control/unified` — Actual vs Forecast
+
+### Architecture Preflight
+```bash
+python scripts/architecture_brief.py   # Run from salesflow-saas/ root
+```
