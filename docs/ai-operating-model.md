@@ -1,6 +1,8 @@
-# AI operating model — decision, execution, control, data, trust
+# AI operating model — decision, execution, control, data, trust, operating
 
 This repository follows the **Master Operating Prompt** ([`MASTER_OPERATING_PROMPT.md`](../MASTER_OPERATING_PROMPT.md)): a governed hybrid stack, not “agents only.”
+
+**Dealix six tracks** (Revenue, Partnership, CorpDev/M&A, Expansion, PMI, Trust & exec): [`dealix-six-tracks.md`](dealix-six-tracks.md).
 
 ## Governance library (full index)
 
@@ -16,6 +18,11 @@ This repository follows the **Master Operating Prompt** ([`MASTER_OPERATING_PROM
 | [governance/design-and-arabic.md](governance/design-and-arabic.md) | Design system, RTL, Arabic-first |
 | [governance/discovery-and-output-checklist.md](governance/discovery-and-output-checklist.md) | Discovery, phasing, 20-point report, Arabic bootstrap |
 | [governance/strategic-ops-pmi.md](governance/strategic-ops-pmi.md) | M&A, PMI, strategic ops |
+| [governance/execution-fabric.md](governance/execution-fabric.md) | Celery/LangGraph today vs Temporal target (Tier-1) |
+| [governance/technology-radar-tier1.md](governance/technology-radar-tier1.md) | Official vs optional vs pilot stack |
+| [governance/saudi-compliance-and-ai-governance.md](governance/saudi-compliance-and-ai-governance.md) | PDPL posture, NCA readiness, NIST/OWASP alignment |
+| [execution-matrix-90d-tier1.md](execution-matrix-90d-tier1.md) | Phase 0–1 outcomes vs agent matrix |
+| [blueprint-master-architecture.md](blueprint-master-architecture.md) | Master blueprint index |
 
 ## Planes at a glance
 
@@ -26,6 +33,9 @@ This repository follows the **Master Operating Prompt** ([`MASTER_OPERATING_PROM
 | **Control** | Policy, approvals, RBAC, secrets, promotion, audit | Ad-hoc rules only in prompts |
 | **Data** | Operational truth, contracts, metrics definitions, lineage | Duplicate conflicting metric meanings |
 | **Trust** | Evidence packs, tool verification, security gate, evals | Claims without proof |
+| **Operating** (Tier-1 naming) | Repo-native discipline, CI/CD, branch/env governance, SDLC, delivery evidence | “Control on paper” without pipeline and audit trail |
+
+**Operating** extends **Control** into how changes ship: see [planes-and-runtime.md — Operating plane](governance/planes-and-runtime.md#operating-plane-tier-1-naming).
 
 ## Flow (conceptual)
 
@@ -51,16 +61,21 @@ flowchart LR
     Evidence[EvidenceAndVerification]
     Obs[ObservabilityAndSecurityGate]
   end
+  subgraph operatingPlane [OperatingPlane]
+    RepoCI[RepoCICDAndPromotion]
+  end
   decisionPlane --> controlPlane
   controlPlane --> executionPlane
   executionPlane --> dataPlane
+  operatingPlane --> controlPlane
   trustPlane -.-> decisionPlane
   trustPlane -.-> executionPlane
   trustPlane -.-> controlPlane
   trustPlane -.-> dataPlane
+  trustPlane -.-> operatingPlane
 ```
 
-Trust wraps every plane: verification, audit, telemetry, and gates apply to cognition outputs, policy decisions, workflow steps, and data mutations.
+Trust wraps every plane: verification, audit, telemetry, and gates apply to cognition outputs, policy decisions, workflow steps, data mutations, and **operating** evidence (CI, merges, deployments).
 
 ## Starting path by product type
 

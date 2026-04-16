@@ -2,6 +2,8 @@
 
 يمثل هذا المستند البنية الهندسية (Architecture Backbone) لتحويل Dealix من "نظام أتمتة مبيعات" إلى "نظام تشغيل نمو سيادي" (Level 5 Autonomy for Holding & Enterprise Scaling).
 
+**فهرس Tier-1 (إنجليزي، يحدّث مع المستودع):** [`docs/blueprint-master-architecture.md`](docs/blueprint-master-architecture.md) — يربط المسارات الستة، الطائرات، مصفوفة التنفيذ، وحوكمة التسليم. **المسارات التشغيلية الستة:** [`docs/dealix-six-tracks.md`](docs/dealix-six-tracks.md). **طبقة التنفيذ الحتمية (حالي مقابل Temporal):** [`docs/governance/execution-fabric.md`](docs/governance/execution-fabric.md).
+
 ---
 
 ## 1. 🗺️ خريطة الخدمات (Service Map)

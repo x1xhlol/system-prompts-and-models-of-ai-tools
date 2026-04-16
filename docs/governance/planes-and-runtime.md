@@ -22,6 +22,18 @@
 
 **Rule:** cognition loops belong in the decision layer; commitments belong in the execution layer.
 
+## Operating plane (Tier-1 naming)
+
+For **enterprise / Tier-1** discussions, it helps to name a sixth surface explicitly — the **Operating plane** — so repo and delivery governance are not folded only into “Control” in conversation.
+
+| Surface | Owns (examples) | Relationship to existing table |
+|---------|-----------------|--------------------------------|
+| **Operating** | Git-native engineering, `AGENTS.md` / `CLAUDE.md`, Cursor/Claude commands, CI/CD, branch rulesets, environments (dev → prod), artifact provenance, merge queue, runbooks | **Control** policies (approvals, RBAC, secrets, promotion) **execute through** operating practices; treat **Control ⊂ Operating** for delivery: you cannot run a governed control plane without repo and pipeline discipline. |
+
+**Trust** remains a **cross-cutting** concern (wraps decision, execution, control, data, and operating evidence), as in [`../ai-operating-model.md`](../ai-operating-model.md).
+
+**Dealix product lanes** (Revenue, Partnership, CorpDev, Expansion, PMI, Trust exec) are mapped in [`../dealix-six-tracks.md`](../dealix-six-tracks.md).
+
 ## Technology mapping (when to use what)
 
 - **Repo-native coding agents** — repository inspection, edits, refactors, tests, release prep, architecture discovery.

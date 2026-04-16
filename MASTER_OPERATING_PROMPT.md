@@ -20,6 +20,13 @@ Deep-dive topics live under [`docs/governance/`](docs/governance/) (keep this fi
 | Discovery, phasing, 20-point checklist, Arabic bootstrap | [`docs/governance/discovery-and-output-checklist.md`](docs/governance/discovery-and-output-checklist.md) |
 | Strategic ops, M&A, PMI | [`docs/governance/strategic-ops-pmi.md`](docs/governance/strategic-ops-pmi.md) |
 | Planes + product routing (overview) | [`docs/ai-operating-model.md`](docs/ai-operating-model.md) |
+| Six operational tracks (Dealix) | [`docs/dealix-six-tracks.md`](docs/dealix-six-tracks.md) |
+| Execution fabric (current vs Tier-1 target) | [`docs/governance/execution-fabric.md`](docs/governance/execution-fabric.md) |
+| Technology radar (official / optional / pilot) | [`docs/governance/technology-radar-tier1.md`](docs/governance/technology-radar-tier1.md) |
+| Saudi compliance & AI governance register | [`docs/governance/saudi-compliance-and-ai-governance.md`](docs/governance/saudi-compliance-and-ai-governance.md) |
+| Master architecture blueprint (index) | [`docs/blueprint-master-architecture.md`](docs/blueprint-master-architecture.md) |
+| 90-day Tier-1 execution matrix | [`docs/execution-matrix-90d-tier1.md`](docs/execution-matrix-90d-tier1.md) |
+| ADR: Temporal / OPA / OpenFGA spikes | [`docs/adr/0001-tier1-execution-policy-spikes.md`](docs/adr/0001-tier1-execution-policy-spikes.md) |
 
 ---
 

@@ -14,5 +14,10 @@ This folder expands each major theme for navigation, review, and agent onboardin
 | [design-and-arabic.md](design-and-arabic.md) | Design system, RTL, Arabic-first / bilingual product rules |
 | [discovery-and-output-checklist.md](discovery-and-output-checklist.md) | Repository discovery, capability maps, 20-point reporting, Arabic bootstrap |
 | [strategic-ops-pmi.md](strategic-ops-pmi.md) | Strategic ops, M&A, PMI / post-close governance |
+| [execution-fabric.md](execution-fabric.md) | Durable execution: current stack vs Temporal target |
+| [technology-radar-tier1.md](technology-radar-tier1.md) | Tier-1 technology radar (official / optional / pilot) |
+| [saudi-compliance-and-ai-governance.md](saudi-compliance-and-ai-governance.md) | PDPL/NCA readiness register, NIST/OWASP AI governance |
+
+**Tier-1 index docs (repo `docs/`):** [dealix-six-tracks.md](../dealix-six-tracks.md), [blueprint-master-architecture.md](../blueprint-master-architecture.md), [execution-matrix-90d-tier1.md](../execution-matrix-90d-tier1.md), [adr/0001-tier1-execution-policy-spikes.md](../adr/0001-tier1-execution-policy-spikes.md).
 
 Repo entry points: [`../../AGENTS.md`](../../AGENTS.md), [`../../CLAUDE.md`](../../CLAUDE.md), [`../ai-operating-model.md`](../ai-operating-model.md).

@@ -54,3 +54,20 @@ Expect: severity classification, stored findings, and **release-blocking** rules
 - Launch discipline: `salesflow-saas/docs/LAUNCH_CHECKLIST.md`, `salesflow-saas/verify-launch.ps1`.
 
 See also: [planes-and-runtime.md](planes-and-runtime.md), [github-and-release.md](github-and-release.md).
+
+---
+
+## Target Tier-1 components (policy, IAM, secrets) — vs current
+
+The following are **architecture targets** for enterprise-grade trust. They are **not** all implemented as named products in this repo today. Track status in [`../dealix-six-tracks.md`](../dealix-six-tracks.md) and [`technology-radar-tier1.md`](technology-radar-tier1.md).
+
+| Component | Role | Target use in Dealix | Current (typical) |
+|-----------|------|----------------------|-------------------|
+| **OPA / Rego** | Policy decision point over JSON inputs (deploy, tenancy, risk) | Central PDP for “may this workflow step run?” | Application policy in Python (`dealix_os/policy_engine.py`, services) — evolve toward policy-as-data |
+| **OpenFGA** or **Cedar** | Fine-grained **authorization** (ReBAC / analyzable policies) | DD room, term sheet, board memo, agent-on-behalf-of-user | RBAC in app + tenant checks — evolve toward explicit relationship model |
+| **HashiCorp Vault** (or cloud equivalent) | **Secrets**, dynamic credentials, audit | Short-lived DB/API credentials, connector secrets | Env + platform secrets — tighten rotation and audit story |
+| **Keycloak** (or enterprise IdP) | **Identity**, SSO, brokering | B2B tenants, executive users | JWT / tenant auth in app — map to IdP roadmap |
+
+**Integration pattern:** policy engines and PDPs should consume the same **A/R/S** and **actor_type** fields as events (see [events-and-schema.md](events-and-schema.md)) — avoid duplicating conflicting rules in prompts.
+
+**Spike gate:** no production dependency on OPA/OpenFGA/Vault/Keycloak until ADR + security review + tests; see [`../adr/0001-tier1-execution-policy-spikes.md`](../adr/0001-tier1-execution-policy-spikes.md).

@@ -48,5 +48,7 @@ For policy scanning, evidence packs, and release gates in Cursor, use `/review-p
 - **[MASTER_OPERATING_PROMPT.md](MASTER_OPERATING_PROMPT.md)** — full Master Operating Prompt (enterprise fabric).
 - **[docs/ai-operating-model.md](docs/ai-operating-model.md)** — planes overview + mermaid + product routing.
 - **[docs/governance/README.md](docs/governance/README.md)** — governance library index.
+- **[docs/dealix-six-tracks.md](docs/dealix-six-tracks.md)** — six OS tracks + honest status vs Tier-1 target.
+- **[docs/blueprint-master-architecture.md](docs/blueprint-master-architecture.md)** — blueprint index; **[docs/adr/0001-tier1-execution-policy-spikes.md](docs/adr/0001-tier1-execution-policy-spikes.md)** — gated spikes (Temporal, OPA, OpenFGA).
 
 Discovery before code; Phase 1 only until evidence; no policy logic in prompts where it belongs in policy systems.

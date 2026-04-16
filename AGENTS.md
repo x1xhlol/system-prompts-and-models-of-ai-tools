@@ -60,6 +60,13 @@ Use these for depth, onboarding, and review. Each expands themes from the master
 | [docs/governance/design-and-arabic.md](docs/governance/design-and-arabic.md) | Design system, IBM Plex / 29LT Azal, RTL, Arabic-first |
 | [docs/governance/discovery-and-output-checklist.md](docs/governance/discovery-and-output-checklist.md) | Repo discovery, capability maps, phasing, 20-point checklist, Arabic bootstrap |
 | [docs/governance/strategic-ops-pmi.md](docs/governance/strategic-ops-pmi.md) | Strategic ops, M&A, PMI / post-close |
+| [docs/governance/execution-fabric.md](docs/governance/execution-fabric.md) | Celery/LangGraph today vs Temporal target |
+| [docs/governance/technology-radar-tier1.md](docs/governance/technology-radar-tier1.md) | Official vs optional vs pilot stack |
+| [docs/governance/saudi-compliance-and-ai-governance.md](docs/governance/saudi-compliance-and-ai-governance.md) | PDPL/NCA readiness, NIST/OWASP alignment |
+| [docs/dealix-six-tracks.md](docs/dealix-six-tracks.md) | Six Dealix OS tracks + code pointers + status snapshot |
+| [docs/blueprint-master-architecture.md](docs/blueprint-master-architecture.md) | Master blueprint index |
+| [docs/execution-matrix-90d-tier1.md](docs/execution-matrix-90d-tier1.md) | Phase 0–1 outcomes vs matrix |
+| [docs/adr/0001-tier1-execution-policy-spikes.md](docs/adr/0001-tier1-execution-policy-spikes.md) | Gated spikes: Temporal, OPA, OpenFGA |
 
 Operating overview with diagram: **[`docs/ai-operating-model.md`](docs/ai-operating-model.md)**.
 

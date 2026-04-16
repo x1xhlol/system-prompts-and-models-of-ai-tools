@@ -133,19 +133,29 @@ The **institutional** operating prompt and governance library live at the **repo
 
 **Operating overview**
 
-- [`../docs/ai-operating-model.md`](../docs/ai-operating-model.md) — five planes, mermaid flow, product-type routing, Dealix code pointers.
+- [`../docs/ai-operating-model.md`](../docs/ai-operating-model.md) — planes (incl. operating), mermaid flow, product-type routing, Dealix code pointers.
+- [`../docs/dealix-six-tracks.md`](../docs/dealix-six-tracks.md) — six OS tracks, code pointers, implementation status snapshot.
+- [`../docs/blueprint-master-architecture.md`](../docs/blueprint-master-architecture.md) — master blueprint index.
+- [`../docs/execution-matrix-90d-tier1.md`](../docs/execution-matrix-90d-tier1.md) — Phase 0–1 Tier-1 execution matrix.
 
 **Governance library** (`../docs/governance/`)
 
 - [`../docs/governance/README.md`](../docs/governance/README.md) — index of governance docs.
-- [`../docs/governance/planes-and-runtime.md`](../docs/governance/planes-and-runtime.md) — planes, layers, runtimes.
+- [`../docs/governance/planes-and-runtime.md`](../docs/governance/planes-and-runtime.md) — planes, layers, runtimes, operating plane.
 - [`../docs/governance/approval-policy.md`](../docs/governance/approval-policy.md) — A/R/S, Class A/B/C, evidence packs, cross-matrices.
 - [`../docs/governance/events-and-schema.md`](../docs/governance/events-and-schema.md) — events, JSON Schema, AsyncAPI.
-- [`../docs/governance/trust-fabric.md`](../docs/governance/trust-fabric.md) — trust substrate, tool verification, security gate.
+- [`../docs/governance/trust-fabric.md`](../docs/governance/trust-fabric.md) — trust substrate, tool verification, security gate, Tier-1 targets (OPA, FGA, Vault, IdP).
+- [`../docs/governance/execution-fabric.md`](../docs/governance/execution-fabric.md) — Celery/LangGraph vs Temporal criteria.
 - [`../docs/governance/connectors-and-data-plane.md`](../docs/governance/connectors-and-data-plane.md) — facades, data plane, semantic metrics.
 - [`../docs/governance/github-and-release.md`](../docs/governance/github-and-release.md) — GitHub SDLC, environments, OIDC.
 - [`../docs/governance/design-and-arabic.md`](../docs/governance/design-and-arabic.md) — design system, RTL, Arabic-first.
 - [`../docs/governance/discovery-and-output-checklist.md`](../docs/governance/discovery-and-output-checklist.md) — discovery, phasing, 20-point report, Arabic bootstrap.
 - [`../docs/governance/strategic-ops-pmi.md`](../docs/governance/strategic-ops-pmi.md) — strategic ops, M&A, PMI.
+- [`../docs/governance/technology-radar-tier1.md`](../docs/governance/technology-radar-tier1.md) — official / optional / pilot stack.
+- [`../docs/governance/saudi-compliance-and-ai-governance.md`](../docs/governance/saudi-compliance-and-ai-governance.md) — PDPL/NCA readiness, NIST/OWASP.
+
+**ADR (gated spikes)**
+
+- [`../docs/adr/0001-tier1-execution-policy-spikes.md`](../docs/adr/0001-tier1-execution-policy-spikes.md) — Temporal / OPA / OpenFGA spike policy.
 
 This file (`salesflow-saas/AGENTS.md`) is **app-specific** (stack, conventions, Class A/B/C for shipping). It must **not** contradict root policy or the governance library.
