@@ -1,0 +1,37 @@
+{
+  "theme": "dark",
+  "projectInstructions": "Follow Dealix OS Sovereign architecture. Do not execute DB changes directly; use action dispatchers. Ensure Universal JSON Output Contract.",
+  "customCommands": [
+    {
+      "name": "repo-map",
+      "description": "Generates a comprehensive layout of the core OS structure including agents and memory.",
+      "command": "python scripts/repo_mapper.py"
+    },
+    {
+      "name": "canary-check",
+      "description": "Runs local tests before allowing any production deployment simulation.",
+      "command": "pytest tests/ --cov"
+    },
+    {
+      "name": "security-preflight",
+      "description": "Pre-commit security validation against known PDPL patterns.",
+      "command": "python scripts/security_gate.py"
+    }
+  ],
+  "hooks": {
+    "PreToolUse": [
+      {
+        "pattern": "git push .*",
+        "command": "pytest tests/ && python scripts/audit_changelog.py",
+        "description": "Require unit tests and audit logging before interacting directly with code promotion."
+      }
+    ],
+    "PostToolUse": [
+      {
+        "pattern": "write_to_file",
+        "command": "python scripts/reformat_and_validate.py",
+        "description": "Ensure newly written markdown or python files follow architectural constraints."
+      }
+    ]
+  }
+}
