@@ -2,6 +2,11 @@
 
 **Goal:** Executive-visible surfaces backed by **trusted data only** (no hallucinated KPIs).
 
+## Structured weekly contract (WS8 — single UI/API shape)
+
+**Canonical schema:** [`ExecWeeklyGovernanceContract`](../salesflow-saas/backend/app/schemas/structured_outputs.py) — حقول `changes_summary`, `pending_decisions`, `blockers_summary`, `at_risk_items`, `next_best_actions`, `week_of`, `provenance`.  
+**Legacy / PMI richness:** [`ExecWeeklyPack`](../salesflow-saas/backend/app/schemas/structured_outputs.py) (RAG، synergy SAR، إلخ) يبقى للتقارير المالية؛ الواجهات التنفيذية الجديدة تفضّل `ExecWeeklyGovernanceContract`.
+
 ## Milestones
 
 0. **Class B bundle API (pilot)** — `GET /api/v1/approval-center/class-b-decision-bundle` returns a validated bundle (`validate_class_b_bundle`); frontend can bind read-only viewers to this shape before DB-backed queues exist.  

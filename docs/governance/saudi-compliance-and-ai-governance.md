@@ -43,6 +43,18 @@ Use as a **risk and testing** frame for agentic features:
 
 Pair with [trust-fabric.md](trust-fabric.md): red-team workflows, structured output validation, tool allowlists, and rollback plans for Class B / R2+.
 
+### Plane overlay (where each frame lands)
+
+| Plane | NIST GenAI emphasis | OWASP LLM emphasis |
+|-------|---------------------|-------------------|
+| **Decision** | Map/manage model behavior in prompts & memos | Prompt injection, insecure output handling |
+| **Trust** | Measure/manage evaluations & incidents | Sensitive disclosure, excessive agency (governance) |
+| **Connector** | Map third-party tool/data exposure | Supply chain for tools/MCP |
+| **Data** | Map PDPL-relevant flows | Training data poisoning (if applicable) |
+| **Runtime / cost** | Manage capacity & monitoring | Unbounded tool loops, denial of wallet |
+
+Detailed control rows live in [pdpl-nca-ai-control-matrices.md](pdpl-nca-ai-control-matrices.md). External link list: [`../references/tier1-external-index.md`](../references/tier1-external-index.md).
+
 **References (external):** NIST publications portal; OWASP LLM Top 10 and GenAI security project pages.
 
 ---

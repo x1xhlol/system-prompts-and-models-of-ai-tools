@@ -83,6 +83,24 @@ For Class B and any R2/R3 decision: sources, assumptions, timestamps/freshness, 
 
 A **decision memo without an evidence pack is incomplete.**
 
+## Class B decision bundle gate (P0 — Tier-1 enterprise)
+
+Any **Class B or higher** response that represents a governed decision MUST expose the unified bundle (see [`decision_plane_contracts.py`](../../salesflow-saas/backend/app/services/core_os/decision_plane_contracts.py)) with at minimum:
+
+| Key | Role |
+|-----|------|
+| `memo_json` | `DecisionMemo` including non-empty `required_approvals` |
+| `evidence_pack_json` | Structured evidence |
+| `risk_register_json` | List (may be empty only if explicitly allowed by policy) |
+| `approval_packet_json` | A/R/S + actor |
+| `execution_intent_json` | Workflow key + idempotency + side-effect class |
+
+**Correlation / trace (P0):** For `requested_side_effect_class` of `external_message` or `external_commitment`, `execution_intent_json.correlation_id` MUST be non-empty (enforced by `validate_class_b_bundle`). Prefer propagating the same value into `audit_metadata.trace_id` on the memo when OpenTelemetry is enabled. See [`trust-fabric.md`](trust-fabric.md) observability section.
+
+## Operational severity (V0–V3)
+
+Policy violations, contradictions, connector failures, and workflow failures SHOULD be classified with one scale for dashboards and release gates — see [`operational-severity-model.md`](operational-severity-model.md) and [`../RELEASE_READINESS_MATRIX_AR.md`](../RELEASE_READINESS_MATRIX_AR.md).
+
 ## GitHub governance (surface)
 
 See [github-and-release.md](github-and-release.md) for the full model. Summary: protected `main`, required reviews and checks, CODEOWNERS as team scales, secret scanning and dependency review, OIDC for deploy keys where possible, environment promotion (dev → staging → canary → prod).

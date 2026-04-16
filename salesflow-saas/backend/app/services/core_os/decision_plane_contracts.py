@@ -86,7 +86,14 @@ def validate_class_b_bundle(bundle: Dict[str, Any]) -> None:
         raise ValueError("memo_json.required_approvals must be non-empty for Class B paths")
     EvidencePack.model_validate(bundle["evidence_pack_json"])
     ApprovalPacket.model_validate(bundle["approval_packet_json"])
-    ExecutionIntent.model_validate(bundle["execution_intent_json"])
+    ei = ExecutionIntent.model_validate(bundle["execution_intent_json"])
+    if ei.requested_side_effect_class in ("external_message", "external_commitment"):
+        cid = (ei.correlation_id or "").strip()
+        if not cid:
+            raise ValueError(
+                "execution_intent_json.correlation_id is required for "
+                f"requested_side_effect_class={ei.requested_side_effect_class!r} (traceability / OTel)"
+            )
     rr = bundle["risk_register_json"]
     if not isinstance(rr, list):
         raise ValueError("risk_register_json must be a list")

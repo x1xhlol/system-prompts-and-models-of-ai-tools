@@ -67,6 +67,48 @@ def test_assemble_decision_bundle_keys():
     validate_class_b_bundle(bundle)
 
 
+def test_validate_class_b_bundle_requires_correlation_for_external_commitment():
+    memo = DecisionMemo(
+        objective="x",
+        decision_context="c",
+        inputs_used=["i"],
+        assumptions=["a"],
+        recommendation_ar="r",
+        alternatives_considered=["b"],
+        expected_financial_impact=FinancialImpact(),
+        risk_register=[],
+        confidence_score=50.0,
+        required_approvals=["CFO"],
+        next_best_action="n",
+        rollback_plan="rb",
+        evidence_links=[],
+        audit_metadata=AuditMetadata(agent_id="a", timestamp="2026-01-01T00:00:00Z"),
+    )
+    ep = EvidencePack(pack_id=new_evidence_pack_id(), provenance_score=1.0)
+    ap = ApprovalPacket(
+        approval_class="A2",
+        reversibility_class="R2",
+        sensitivity_class="S2",
+        actor_type="executor_system",
+        approvers_required=["CFO"],
+    )
+    ei = ExecutionIntent(
+        workflow_key="w",
+        idempotency_key="k",
+        requested_side_effect_class="external_commitment",
+        correlation_id="   ",
+        payload_summary="x",
+    )
+    bundle = assemble_decision_bundle(
+        evidence_pack=ep,
+        approval_packet=ap,
+        execution_intent=ei,
+        memo_json=memo.to_json(),
+    )
+    with pytest.raises(ValueError, match="correlation_id"):
+        validate_class_b_bundle(bundle)
+
+
 def test_validate_class_b_bundle_rejects_missing_memo_approvals():
     memo = DecisionMemo(
         objective="x",

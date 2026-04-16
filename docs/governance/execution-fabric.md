@@ -60,3 +60,23 @@ Any new execution path that sends customer messages, moves money, signs contract
 3. Pass **security gate** and release checklist for the environment.
 
 See also: [events-and-schema.md](events-and-schema.md), [trust-fabric.md](trust-fabric.md), [github-and-release.md](github-and-release.md).
+
+---
+
+## LangGraph durability modes (policy sketch)
+
+Classify each graph by **how state must survive** process restarts and deploys:
+
+| Mode | When to use | Notes |
+|------|-------------|--------|
+| **`exit`** | Ephemeral assistance, no business state | Graph ends with the HTTP/session; no recovery requirement. |
+| **`async`** | Bounded background continuation acceptable | Tasks may be lost on crash unless explicitly checkpointed — document the loss window. |
+| **`sync` / durable checkpoint** | HITL waits, multi-step approvals, or any path that can cause **external_message** / **external_commitment** | Require checkpointing + idempotency keys aligned with `ExecutionIntent`; prefer graduating external effects to Temporal per division-of-labor above. |
+
+External references: LangGraph durable execution — [`../references/tier1-external-index.md`](../references/tier1-external-index.md).
+
+## HITL taxonomy (approve / edit / reject)
+
+Human-in-the-loop steps on governed paths MUST record one of: **`approve`** (proceed as proposed), **`edit`** (proceed with amended structured payload), **`reject`** (terminate with reason). Map API fields and audit events to this taxonomy consistently (LangChain HITL vocabulary — same external index).
+
+**Rule:** `reject` on Class B / R2+ MUST emit a policy-safe audit row and MUST NOT leave dangling `ExecutionIntent` rows marked runnable.

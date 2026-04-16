@@ -6,7 +6,8 @@
 **Living registers:** [`architecture-register.md`](architecture-register.md) (subsystem status), [`adr/0002-execution-matrix-canonical-source.md`](adr/0002-execution-matrix-canonical-source.md) (matrix source of truth).
 
 **PR #16 closure bundle (merged):** [`salesflow-saas/docs/tier1-master-closure-checklist.md`](../salesflow-saas/docs/tier1-master-closure-checklist.md) (50-item master gates) + supporting tracks under [`salesflow-saas/docs/`](../salesflow-saas/docs/) and [`salesflow-saas/docs/governance/`](../salesflow-saas/docs/governance/) — use alongside this index; prefer **one** status column between the register and the master checklist to avoid drift.  
-**Arabic master index (15 sections):** [`TIER1_MASTER_CLOSURE_CHECKLIST_AR.md`](TIER1_MASTER_CLOSURE_CHECKLIST_AR.md).
+**Arabic master index (15 sections):** [`TIER1_MASTER_CLOSURE_CHECKLIST_AR.md`](TIER1_MASTER_CLOSURE_CHECKLIST_AR.md).  
+**فهرس مصدر الحقيقة:** [`SOURCE_OF_TRUTH_INDEX.md`](SOURCE_OF_TRUTH_INDEX.md) (canonical vs shadow).
 
 | WS | Name | SLA (target) | Primary deliverable docs / code |
 |----|------|--------------|-----------------------------------|

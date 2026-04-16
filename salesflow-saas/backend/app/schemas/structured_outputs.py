@@ -269,3 +269,25 @@ class ExecWeeklyPack(BaseModel):
     people_update: str
     risk_summary: List[str]
     provenance: Provenance
+
+
+class ExecWeeklyGovernanceContract(BaseModel):
+    """Unified executive weekly contract (WS8) — structured fields for UI/API.
+
+    Use alongside :class:`ExecWeeklyPack` for legacy synergy/RAG rows; prefer this
+    model for new executive surfaces and approval-room summaries.
+    """
+
+    week_of: str = Field(description="ISO week label, e.g. 2026-W16")
+    changes_summary: str = Field(description="What moved this week (facts + links)")
+    pending_decisions: List[str] = Field(
+        default_factory=list, description="Items awaiting human decision"
+    )
+    blockers_summary: str = Field(description="Single narrative of blockers")
+    at_risk_items: List[str] = Field(
+        default_factory=list, description="Initiatives or gates at risk"
+    )
+    next_best_actions: List[str] = Field(
+        default_factory=list, description="Prioritized next actions with owners if known"
+    )
+    provenance: Provenance

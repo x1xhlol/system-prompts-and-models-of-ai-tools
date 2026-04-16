@@ -69,9 +69,9 @@ async def class_b_decision_bundle_demo() -> Dict[str, Any]:
     execution_intent = ExecutionIntent(
         workflow_key="governance_class_b_review_v1",
         idempotency_key="class-b-demo-approval-center-001",
-        requested_side_effect_class="internal_write",
+        requested_side_effect_class="external_message",
         correlation_id="corr_class_b_demo",
-        payload_summary="Record approval decision in internal audit trail",
+        payload_summary="Demo external-class path; correlation_id mandatory per validate_class_b_bundle",
     )
     bundle = assemble_decision_bundle(
         evidence_pack=evidence,

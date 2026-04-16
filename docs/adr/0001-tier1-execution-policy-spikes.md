@@ -59,3 +59,15 @@ Each spike produces: design note, threat assumptions, test commands and results,
 
 - [`../execution-matrix-90d-tier1.md`](../execution-matrix-90d-tier1.md) Phase 0–1  
 - [`../blueprint-master-architecture.md`](../blueprint-master-architecture.md)
+
+---
+
+## Annex — Temporal operational criteria (high-risk paths)
+
+When Temporal moves from *Planned* to *Pilot* for **high-risk** workflow types (money movement, regulated messaging, cross-tenant admin):
+
+1. **Pinned workflow types** — register each workflow type + task queue in the service catalog; no anonymous “catch-all” workers for governed domains.  
+2. **Rollback rehearsal** — run a **simulated rollback** (cancel + compensation or documented manual playbook) in staging before every production worker upgrade that changes workflow code.  
+3. **Worker versioning** — adopt Temporal’s worker versioning policy before expanding beyond the pilot; track preview/beta notes in [`../references/tier1-external-index.md`](../references/tier1-external-index.md) (Temporal changelog link).
+
+These criteria are **release gate** rows in [`../RELEASE_READINESS_MATRIX_AR.md`](../RELEASE_READINESS_MATRIX_AR.md) when Temporal is claimed for a candidate build.

@@ -19,6 +19,11 @@ class AuditMetadata(BaseModel):
     policy_check_passed: bool = False
     agent_id: str
     timestamp: str
+    trace_id: Optional[str] = Field(
+        default=None,
+        description="Distributed trace id (align with OpenTelemetry trace_id when OTel is enabled)",
+    )
+    span_id: Optional[str] = Field(default=None, description="Optional OTel span id for log correlation")
 
 class DecisionMemo(BaseModel):
     """

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Optional: run only when pushing to main. CI remains source of truth.
+set -euo pipefail
+
+protected_branch="refs/heads/main"
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  if [[ "${remote_ref:-}" != "$protected_branch" ]]; then
+    continue
+  fi
+  repo_root="$(git rev-parse --show-toplevel)"
+  cd "$repo_root"
+  if command -v python3 >/dev/null 2>&1; then
+    python3 scripts/architecture_brief.py
+  elif command -v py >/dev/null 2>&1; then
+    py -3 scripts/architecture_brief.py
+  else
+    echo "pre-push: python3/py not found; skipping architecture_brief" >&2
+  fi
+done

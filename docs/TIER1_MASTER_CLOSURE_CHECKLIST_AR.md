@@ -29,12 +29,14 @@
 
 ---
 
-## §2 سلامة الريبو والأوامر
+## §2 سلامة الريبو والأوامر (Root-safe)
 
 | # | البند | الحالة | الدليل في الريبو | المالك | معيار الخروج |
 |---|--------|--------|-------------------|--------|---------------|
-| 2.1 | أوامر من جذر الريبو | Pilot | [`scripts/architecture_brief.py`](../scripts/architecture_brief.py) + CI | DevEx | `architecture_brief` في CI |
+| 2.0 | **أول خطوة:** `cwd` = جذر الريبو (مسار المستودع الذي يحتوي `scripts/` و`docs/`) قبل أي أمر أو سكربت | Pilot | هذا القسم + [`scripts/architecture_brief.py`](../scripts/architecture_brief.py) | DevEx | لا تشغيل من مجلدات فرعية بلا `PYTHONPATH`/مسارات صريحة |
+| 2.1 | أوامر من جذر الريبو | Pilot | [`scripts/architecture_brief.py`](../scripts/architecture_brief.py) + CI | DevEx | `architecture_brief` في CI (`docs-governance`) |
 | 2.2 | توافق أوامر Cursor/Claude | DocOnly | [`.cursor/commands/`](../.cursor/commands/) + [`CLAUDE.md`](../CLAUDE.md) | AI Platform | جدول تطابق في [`governance/discovery-and-output-checklist.md`](governance/discovery-and-output-checklist.md) |
+| 2.3 | Hook اختياري pre-push للفرع الحساس | DocOnly | [`.githooks/README.md`](../.githooks/README.md) | DevEx | **مصدر الحقيقة = CI**؛ الـ hook تكميلي فقط |
 
 ---
 
@@ -54,7 +56,7 @@
 |---|--------|--------|-------------------|--------|---------------|
 | 4.1 | مخططات منظمة (17 نوعًا) | Production | [`salesflow-saas/backend/app/schemas/structured_outputs.py`](../salesflow-saas/backend/app/schemas/structured_outputs.py) | AI Lead | Pydantic يمر |
 | 4.2 | حزمة قرار موحّدة | Production | [`decision_plane_contracts.py`](../salesflow-saas/backend/app/services/core_os/decision_plane_contracts.py) | Backend | مفاتيح bundle كاملة |
-| 4.3 | فرض مسار Class B | Pilot | `GET /api/v1/approval-center/class-b-decision-bundle` | AI Lead | استجابة = bundle + اختبار |
+| 4.3 | فرض مسار Class B + **correlation لـ external** | Pilot | `GET /api/v1/approval-center/class-b-decision-bundle` + `validate_class_b_bundle` | AI Lead | `external_*` بدون `correlation_id` = رفض؛ راجع [`approval-policy.md`](governance/approval-policy.md) |
 
 ---
 
@@ -94,7 +96,7 @@
 |---|--------|--------|-------------------|--------|---------------|
 | 8.1 | قائمة تسليم GitHub/OIDC | DocOnly | [`github-enterprise-delivery-completion.md`](github-enterprise-delivery-completion.md) | DevOps | rulesets موثّقة |
 | 8.2 | CI يغطي التطبيق | Production | [`.github/workflows/dealix-ci.yml`](../.github/workflows/dealix-ci.yml) | Platform | pytest + frontend |
-| 8.3 | CI preflight للوثائق | Pilot | [`.github/workflows/repo-preflight.yml`](../.github/workflows/repo-preflight.yml) | DevEx | عند تغيير docs/scripts |
+| 8.3 | CI حوكمة الوثائق (P0) | Pilot | [`.github/workflows/docs-governance.yml`](../.github/workflows/docs-governance.yml) | DevEx | `architecture_brief` + `check_docs_links` |
 
 ---
 

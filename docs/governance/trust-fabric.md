@@ -71,3 +71,22 @@ The following are **architecture targets** for enterprise-grade trust. They are 
 **Integration pattern:** policy engines and PDPs should consume the same **A/R/S** and **actor_type** fields as events (see [events-and-schema.md](events-and-schema.md)) — avoid duplicating conflicting rules in prompts.
 
 **Spike gate:** no production dependency on OPA/OpenFGA/Vault/Keycloak until ADR + security review + tests; see [`../adr/0001-tier1-execution-policy-spikes.md`](../adr/0001-tier1-execution-policy-spikes.md).
+
+---
+
+## Runtime policies (Tier-1 operational — beyond the radar)
+
+These are **enforcement expectations** once a component is in-path in production (pair with [`github-and-release.md`](github-and-release.md) and [`operational-severity-model.md`](operational-severity-model.md)).
+
+### OpenFGA — pinned authorization models
+
+- **No production call path** without a recorded **`authorization_model_id`** (or equivalent immutable model version) in configuration and deploy manifests. Models are **immutable** in OpenFGA; pin IDs per environment and rotate via controlled rollout — see [`../references/tier1-external-index.md`](../references/tier1-external-index.md) (OpenFGA links).
+- Agent-on-behalf-of-user flows MUST be modeled explicitly (no implicit super-user tuples).
+
+### Vault (or equivalent) — dual audit devices
+
+- Production clusters MUST enable **at least two** independent audit devices (e.g. file + SIEM socket) so tampering or loss of one sink does not erase the audit trail — see Vault audit documentation in [`../references/tier1-external-index.md`](../references/tier1-external-index.md).
+
+### OpenTelemetry — log correlation
+
+- Critical paths (approvals, external commitments, connector facade calls) MUST emit **`trace_id`**, **`span_id`**, and a stable **`correlation_id`** (or equivalent) in structured logs and audit receipts so SIEM queries can join API ↔ worker ↔ workflow — see OTel logging spec in [`../references/tier1-external-index.md`](../references/tier1-external-index.md).

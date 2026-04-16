@@ -27,3 +27,7 @@
 ## Evidence
 
 Store screenshots or org policy links (internal) as evidence for enterprise questionnaires; do not commit secrets.
+
+## Observability (OTel-style correlation)
+
+Deploy and approval workflows SHOULD propagate **`trace_id` / `span_id` / `correlation_id`** into internal audit exports so GitHub Actions events can be joined with application logs — aligned with [`governance/trust-fabric.md`](governance/trust-fabric.md) runtime policies.

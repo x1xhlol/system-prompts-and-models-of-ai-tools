@@ -19,3 +19,29 @@ Authoritative definitions: [`semantic-metrics-dictionary.md`](semantic-metrics-d
 ## Lineage / catalog
 
 Single choice documented in [`lineage-catalog-choice.md`](lineage-catalog-choice.md) until an ADR changes it.
+
+---
+
+## Dual connector strategy (runtime tools vs data movement)
+
+| Layer | Purpose | Examples | Governance |
+|-------|---------|-----------|------------|
+| **Runtime tool connectors** | LLM/agent tool calls during a session (read/write bounded) | MCP tools, built-in HTTP tools behind facade | Decision plane + tool verification + allowlists |
+| **Data movement connectors** | Scheduled/batch replication or sync between systems | ELT/CDC-style pipelines (Airbyte-class) | Execution plane ownership, SLAs, backfill runbooks |
+
+**Rule:** never confuse the two in architecture diagrams — they share “connector” language but have different failure domains, retention, and approval classes.
+
+### MCP Tasks / async operations (watchlist)
+
+Long-running MCP operations (tasks that outlive a single HTTP interaction) MUST have: visible **status polling** or webhook, **timeout**, **idempotency key**, and an owner in [`semantic-metrics-dictionary.md`](semantic-metrics-dictionary.md) or the connector runbook. Track vendor-specific “MCP Tasks” behavior as **V1–V2** severity candidates when SLAs slip — see [`governance/operational-severity-model.md`](governance/operational-severity-model.md). External overview: [`references/tier1-external-index.md`](references/tier1-external-index.md) (Airbyte MCP).
+
+---
+
+## Great Expectations (GE) as a release gate
+
+When GE is in-path:
+
+- Tie **checkpoint success** explicitly to [`RELEASE_READINESS_MATRIX_AR.md`](RELEASE_READINESS_MATRIX_AR.md) (row: schema adherence / data quality) and to promotion of workflows that consume the underlying datasets.  
+- Failed checkpoints are **V2** by default if customer reports or downstream models consume the data; **V3** if PII/regulated fields are involved.
+
+Reference: GE checkpoints — [`references/tier1-external-index.md`](references/tier1-external-index.md).

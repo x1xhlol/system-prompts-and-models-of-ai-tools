@@ -14,7 +14,9 @@ This checklist helps **internal teams** prepare for **B2B / enterprise** convers
 8. [`completion-program-workstreams.md`](completion-program-workstreams.md) — eight workstreams from constitution to production.  
 9. [`architecture-register.md`](architecture-register.md) — subsystem status snapshot.  
 10. [`TIER1_MASTER_CLOSURE_CHECKLIST_AR.md`](TIER1_MASTER_CLOSURE_CHECKLIST_AR.md) — إغلاق Tier-1 (عربي) + [`salesflow-saas/docs/tier1-master-closure-checklist.md`](../salesflow-saas/docs/tier1-master-closure-checklist.md) (50 بندًا).  
-11. [`governance/pdpl-nca-ai-control-matrices.md`](governance/pdpl-nca-ai-control-matrices.md) — **بوابة إصدار enterprise:** اتبع قسم «Enterprise release gate» قبل وسم الإصدار.
+11. [`SOURCE_OF_TRUTH_INDEX.md`](SOURCE_OF_TRUTH_INDEX.md) — مصدر واحد لكل موضوع (تقليل drift بين `docs/` و`salesflow-saas/docs/`).  
+12. [`RELEASE_READINESS_MATRIX_AR.md`](RELEASE_READINESS_MATRIX_AR.md) — صف لكل RC: docs truth، موصلات، أمان، سعودي، provenance.  
+13. [`governance/pdpl-nca-ai-control-matrices.md`](governance/pdpl-nca-ai-control-matrices.md) — **بوابة إصدار enterprise:** اتبع قسم «Enterprise release gate» قبل وسم الإصدار.
 
 ## 2. Product and legal surface
 
