@@ -23,7 +23,7 @@
 ## Gate 3: Decision Plane
 | # | Item | Required Evidence | Status |
 |---|------|------------------|--------|
-| 3.1 | 17 structured output schemas defined | `schemas/structured_outputs.py` | Done |
+| 3.1 | 17 structured output schemas defined | [`backend/app/schemas/structured_outputs.py`](../backend/app/schemas/structured_outputs.py) | Done |
 | 3.2 | Provenance on every output (trace_id, confidence, freshness) | `Provenance` class | Done |
 | 3.3 | No free-text in approval/commitment paths | Schema enforcement | Pending wiring |
 | 3.4 | Schema adherence measured for critical outputs | Monitoring | Target |

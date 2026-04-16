@@ -65,4 +65,4 @@ See [design-and-arabic.md](design-and-arabic.md).
 - **Quarterly:** re-read this register against shipped features and incident postmortems.  
 - **Per major release:** update PDPL/NCA mapping appendix when product surface area changes.
 
-See also: [technology-radar-tier1.md](technology-radar-tier1.md), [`../execution-matrix-90d-tier1.md`](../execution-matrix-90d-tier1.md).
+See also: [technology-radar-tier1.md](technology-radar-tier1.md), [`../execution-matrix-90d-tier1.md`](../execution-matrix-90d-tier1.md), [pdpl-nca-ai-control-matrices.md](pdpl-nca-ai-control-matrices.md).

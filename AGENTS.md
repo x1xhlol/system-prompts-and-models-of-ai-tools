@@ -67,6 +67,9 @@ Use these for depth, onboarding, and review. Each expands themes from the master
 | [docs/blueprint-master-architecture.md](docs/blueprint-master-architecture.md) | Master blueprint index |
 | [docs/execution-matrix-90d-tier1.md](docs/execution-matrix-90d-tier1.md) | Phase 0–1 outcomes vs matrix |
 | [docs/enterprise-readiness.md](docs/enterprise-readiness.md) | B2B / enterprise preparation checklist |
+| [docs/completion-program-workstreams.md](docs/completion-program-workstreams.md) | Eight workstreams: docs → enterprise runtime |
+| [docs/architecture-register.md](docs/architecture-register.md) | Subsystem status (Current / Partial / Pilot / Production) |
+| [docs/adr/0002-execution-matrix-canonical-source.md](docs/adr/0002-execution-matrix-canonical-source.md) | Canonical `Execution_Matrix.md` vs draft v2 |
 | [docs/adr/0001-tier1-execution-policy-spikes.md](docs/adr/0001-tier1-execution-policy-spikes.md) | Gated spikes: Temporal, OPA, OpenFGA |
 
 Operating overview with diagram: **[`docs/ai-operating-model.md`](docs/ai-operating-model.md)**.

@@ -17,7 +17,8 @@ This folder expands each major theme for navigation, review, and agent onboardin
 | [execution-fabric.md](execution-fabric.md) | Durable execution: current stack vs Temporal target |
 | [technology-radar-tier1.md](technology-radar-tier1.md) | Tier-1 technology radar (official / optional / pilot) |
 | [saudi-compliance-and-ai-governance.md](saudi-compliance-and-ai-governance.md) | PDPL/NCA readiness register, NIST/OWASP AI governance |
+| [pdpl-nca-ai-control-matrices.md](pdpl-nca-ai-control-matrices.md) | WS7 operational control matrices (templates) |
 
-**Tier-1 index docs (repo `docs/`):** [dealix-six-tracks.md](../dealix-six-tracks.md), [blueprint-master-architecture.md](../blueprint-master-architecture.md), [execution-matrix-90d-tier1.md](../execution-matrix-90d-tier1.md), [enterprise-readiness.md](../enterprise-readiness.md), [adr/0001-tier1-execution-policy-spikes.md](../adr/0001-tier1-execution-policy-spikes.md).
+**Tier-1 index docs (repo `docs/`):** [dealix-six-tracks.md](../dealix-six-tracks.md), [blueprint-master-architecture.md](../blueprint-master-architecture.md), [completion-program-workstreams.md](../completion-program-workstreams.md), [architecture-register.md](../architecture-register.md), [execution-matrix-90d-tier1.md](../execution-matrix-90d-tier1.md), [enterprise-readiness.md](../enterprise-readiness.md), [adr/0001-tier1-execution-policy-spikes.md](../adr/0001-tier1-execution-policy-spikes.md), [adr/0002-execution-matrix-canonical-source.md](../adr/0002-execution-matrix-canonical-source.md).
 
 Repo entry points: [`../../AGENTS.md`](../../AGENTS.md), [`../../CLAUDE.md`](../../CLAUDE.md), [`../ai-operating-model.md`](../ai-operating-model.md).

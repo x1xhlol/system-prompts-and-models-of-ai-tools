@@ -45,4 +45,7 @@ Use this to avoid claiming components that are not yet wired in production. Refr
 - Architecture pack (layers): [`Architecture_Pack.md`](../Architecture_Pack.md)  
 - Tier-1 blueprint (index): [`docs/blueprint-master-architecture.md`](blueprint-master-architecture.md)  
 - 90-day Tier-1 matrix: [`docs/execution-matrix-90d-tier1.md`](execution-matrix-90d-tier1.md)  
-- Enterprise readiness checklist: [`docs/enterprise-readiness.md`](enterprise-readiness.md)
+- Enterprise readiness checklist: [`docs/enterprise-readiness.md`](enterprise-readiness.md)  
+- Completion Program (WS1–WS8): [`docs/completion-program-workstreams.md`](completion-program-workstreams.md)  
+- Architecture register (subsystem status): [`docs/architecture-register.md`](architecture-register.md)  
+- Execution matrix canonical source: [`docs/adr/0002-execution-matrix-canonical-source.md`](adr/0002-execution-matrix-canonical-source.md)

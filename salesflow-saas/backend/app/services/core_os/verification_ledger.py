@@ -42,29 +42,43 @@ class VerificationLedger:
             "timestamps": {"started": timestamp},
             "side_effects": [],
             "evidence_paths": [],
-            "verification_status": "unverified"
+            "verification_status": "unverified",
+            "contradiction_flag": False,
         }
         
         self._write_proof(run_id, proof)
         return run_id
         
-    def resolve_proof(self, run_id: str, side_effects: List[str], 
-                      evidence_paths: List[str], status: str):
+    def resolve_proof(
+        self,
+        run_id: str,
+        side_effects: List[str],
+        evidence_paths: List[str],
+        status: str,
+        *,
+        contradiction_flag: bool = False,
+    ):
         """
         Updates the proof AFTER execution with actual side effects and sets status to verified.
         Status must be 'verified', 'partially_verified', 'unverified', or 'contradicted'.
+        If contradiction_flag is True, status is forced to 'contradicted' and the flag is stored.
         """
         valid_statuses = ["verified", "partially_verified", "unverified", "contradicted"]
         if status not in valid_statuses:
             raise ValueError(f"Status must be one of {valid_statuses}")
-            
+
+        final_status = "contradicted" if contradiction_flag else status
+        if final_status not in valid_statuses:
+            final_status = "contradicted"
+
         proof = self._read_proof(run_id)
         if not proof:
             raise KeyError(f"Run ID {run_id} not found in ledger.")
-            
+
         proof["side_effects"] = side_effects
         proof["evidence_paths"] = evidence_paths
-        proof["verification_status"] = status
+        proof["verification_status"] = final_status
+        proof["contradiction_flag"] = bool(contradiction_flag)
         proof["timestamps"]["resolved"] = datetime.utcnow().isoformat()
         
         self._write_proof(run_id, proof)

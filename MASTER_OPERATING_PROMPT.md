@@ -27,6 +27,9 @@ Deep-dive topics live under [`docs/governance/`](docs/governance/) (keep this fi
 | Master architecture blueprint (index) | [`docs/blueprint-master-architecture.md`](docs/blueprint-master-architecture.md) |
 | 90-day Tier-1 execution matrix | [`docs/execution-matrix-90d-tier1.md`](docs/execution-matrix-90d-tier1.md) |
 | Enterprise readiness (B2B checklist) | [`docs/enterprise-readiness.md`](docs/enterprise-readiness.md) |
+| Completion Program (8 workstreams) | [`docs/completion-program-workstreams.md`](docs/completion-program-workstreams.md) |
+| Architecture register (subsystem status) | [`docs/architecture-register.md`](docs/architecture-register.md) |
+| ADR: Execution matrix canonical (v1 vs v2) | [`docs/adr/0002-execution-matrix-canonical-source.md`](docs/adr/0002-execution-matrix-canonical-source.md) |
 | ADR: Temporal / OPA / OpenFGA spikes | [`docs/adr/0001-tier1-execution-policy-spikes.md`](docs/adr/0001-tier1-execution-policy-spikes.md) |
 
 ---

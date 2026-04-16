@@ -1,6 +1,8 @@
 # Dealix Sovereign Growth OS: Master Execution Matrix v2.0
 
-تمثل هذه المصفوفة المحرك التشغيلي (Operational Backbone) الفعلي والنهائي لـ **Dealix Sovereign Growth OS**. توضح كل التفاصيل التنفيذية لتشغيل الـ 16 وكيلًا عبر 4 عائلات استراتيجية، مع دمج الأدوات المتقدمة (LangGraph, Claude Code, Repomix, Atomic Chat, Shannon, Goose) وتطبيق الحوكمة (Policy-as-code) وقيود الإثبات (Verification Layer).
+> **DRAFT — non-canonical until merged.** The authoritative agent matrix for numbering, cross-repo links, and Phase 0–1 planning is **[`Execution_Matrix.md`](Execution_Matrix.md)**. This v2 document captures **proposed** enhancements (e.g. evidence columns, alternate tooling). Merge policy: [`docs/adr/0002-execution-matrix-canonical-source.md`](docs/adr/0002-execution-matrix-canonical-source.md).
+
+تمثل هذه المصفوفة مسودة تطوير للمحرك التشغيلي (Operational Backbone) لـ **Dealix Sovereign Growth OS**. توضح تفاصيل مقترحة لتشغيل الوكلاء عبر العائلات الاستراتيجية، مع دمج أفكار أدوات وتشغيل (قد لا تكون كلها مدمجة في الكود بعد).
 
 ---
 

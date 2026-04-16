@@ -10,7 +10,9 @@ This checklist helps **internal teams** prepare for **B2B / enterprise** convers
 4. [`governance/trust-fabric.md`](governance/trust-fabric.md) — trust substrate and tool verification.  
 5. [`governance/saudi-compliance-and-ai-governance.md`](governance/saudi-compliance-and-ai-governance.md) — PDPL / NCA readiness register and AI governance frames.  
 6. [`governance/github-and-release.md`](governance/github-and-release.md) — branch protection, environments, OIDC, audit retention.  
-7. [`execution-matrix-90d-tier1.md`](execution-matrix-90d-tier1.md) — Phase 0–1 measurable outcomes.
+7. [`execution-matrix-90d-tier1.md`](execution-matrix-90d-tier1.md) — Phase 0–1 measurable outcomes.  
+8. [`completion-program-workstreams.md`](completion-program-workstreams.md) — eight workstreams from constitution to production.  
+9. [`architecture-register.md`](architecture-register.md) — subsystem status snapshot.
 
 ## 2. Product and legal surface
 

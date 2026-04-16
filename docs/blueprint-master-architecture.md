@@ -19,7 +19,7 @@ For the classic “8 layers” service map (signal, memory, reasoning, orchestra
 
 ## Agents, events, and HITL
 
-- **16 agents × events × KPIs × gates:** [`Execution_Matrix.md`](../Execution_Matrix.md); alternate or delta matrix: [`Execution_Matrix_v2.md`](../Execution_Matrix_v2.md) (keep a single source of truth — avoid conflicting agent IDs between files).
+- **16 agents × events × KPIs × gates:** [`Execution_Matrix.md`](../Execution_Matrix.md) (**canonical** per [`adr/0002-execution-matrix-canonical-source.md`](adr/0002-execution-matrix-canonical-source.md)); draft deltas: [`Execution_Matrix_v2.md`](../Execution_Matrix_v2.md) (non-authoritative until merged).
 
 ## Execution and trust (Tier-1)
 
@@ -37,6 +37,12 @@ For the classic “8 layers” service map (signal, memory, reasoning, orchestra
 ## 90-day execution focus
 
 - [`execution-matrix-90d-tier1.md`](execution-matrix-90d-tier1.md)
+
+## Completion Program (docs → runtime)
+
+- Master workstream index: [`completion-program-workstreams.md`](completion-program-workstreams.md)  
+- Subsystem status register: [`architecture-register.md`](architecture-register.md)  
+- Execution matrix canonical decision: [`adr/0002-execution-matrix-canonical-source.md`](adr/0002-execution-matrix-canonical-source.md)
 
 ## Enterprise readiness
 
