@@ -29,3 +29,21 @@ Any AI acting in this system must strictly adopt one of these roles:
 - `Observer`: Monitors and scores (No commit).
 - `Recommender`: Proposes and generates memos (No direct commit).
 - `Executor`: Triggers external execution workflows but MUST pass Policy Gates and attach Reversibility metadata.
+
+## 6. 📜 Master operating prompt (canonical)
+
+The full institutional constitution lives in **[`MASTER_OPERATING_PROMPT.md`](MASTER_OPERATING_PROMPT.md)** (planes, trust fabric, events, GitHub governance, Arabic-first, output checklist). This `AGENTS.md` is the **short constitution**; the master file is the **long-form reference** for serious projects and Dealix.
+
+## 7. 🏷️ Policy classes (A / R / S)
+
+Every material action MUST carry **Approval class (A0–A3)**, **Reversibility class (R0–R3)**, and **Sensitivity class (S0–S3)**. See **[`docs/governance/approval-policy.md`](docs/governance/approval-policy.md)**.
+
+## 8. 📐 AI operating model (planes)
+
+Decision vs execution vs control vs data vs trust — see **[`docs/ai-operating-model.md`](docs/ai-operating-model.md)** and the implementation pointers inside it (e.g. `salesflow-saas/backend/app/services/agents/`).
+
+## 9. ✅ Action classes (ship discipline)
+
+- **Class A** — Auto-allowed: discovery, maps, internal drafts, tests, lint, read-only analysis.  
+- **Class B** — Approval required: prod config, public publish, customer messages, migrations, RBAC, release promotion, external commitments.  
+- **Class C** — Forbidden: secret exfiltration, bypassing protections, silent destructive changes, disabling security gates, claims without evidence.

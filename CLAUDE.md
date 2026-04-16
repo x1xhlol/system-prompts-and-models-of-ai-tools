@@ -25,3 +25,11 @@ Agent logic outputs MUST follow the `DecisionMemo` structured contract (JSON Sch
 ## 5. 🔌 Integration & Connectors
 - Do NOT integrate directly with vendor APIs from Agent scripts.
 - Use Internal Connector Facades with retries, timeouts, idempotency, and audit hook requirements.
+
+## 6. 📜 Canonical master prompt & docs
+
+- **[`MASTER_OPERATING_PROMPT.md`](MASTER_OPERATING_PROMPT.md)** — full Master Operating Prompt (enterprise fabric: planes, trust, events, GitHub, Arabic-first).  
+- **[`docs/ai-operating-model.md`](docs/ai-operating-model.md)** — planes summary and repo pointers.  
+- **[`docs/governance/approval-policy.md`](docs/governance/approval-policy.md)** — A/R/S classes and action classes A/B/C.
+
+Discovery before code; Phase 1 only until evidence; no policy logic in prompts where it belongs in policy systems.

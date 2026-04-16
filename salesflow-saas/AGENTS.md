@@ -120,3 +120,15 @@ cd frontend && npm run dev
 5. Deploy to production with canary (10%)
 6. Monitor 30 min → full rollout
 7. Rollback plan documented per release
+
+## Repository constitution (monorepo root)
+
+The **institutional** operating prompt and governance docs live at the **repository root** (parent of `salesflow-saas/`):
+
+- [`../MASTER_OPERATING_PROMPT.md`](../MASTER_OPERATING_PROMPT.md) — Master Operating Prompt (planes, trust fabric, events, GitHub, Arabic-first).
+- [`../AGENTS.md`](../AGENTS.md) — short agents constitution (references master + A/R/S).
+- [`../CLAUDE.md`](../CLAUDE.md) — Claude/repo-native rules.
+- [`../docs/ai-operating-model.md`](../docs/ai-operating-model.md) — decision / execution / control / data / trust summary + pointers into this app.
+- [`../docs/governance/approval-policy.md`](../docs/governance/approval-policy.md) — approval, reversibility, sensitivity, action classes.
+
+This file (`salesflow-saas/AGENTS.md`) is **app-specific** (stack, conventions, Class A/B/C for shipping). Align both layers: app rules must not contradict root policy.

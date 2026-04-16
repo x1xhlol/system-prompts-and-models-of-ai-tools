@@ -1,23 +1,56 @@
-# Governance & Approval Policy Models
+# Approval, reversibility, sensitivity — policy model
 
-Every action by any Agent must be assigned to an **Approval Class**, a **Reversibility Class**, and a **Sensitivity Class**.
+Canonical context: [`MASTER_OPERATING_PROMPT.md`](../../MASTER_OPERATING_PROMPT.md). This file is the **short operational reference** for classifying work before it ships.
 
-## 1. Approval Classes
-- **Class A (Auto Allowed)**: Repo inspection, summaries, drafts, testing, local DB reads.
-- **Class B (Approval Required)**: Changes to config, database migrations, marketing email blasts, pricing changes, public publishing. (Requires VP/Manager Gate).
-- **Class C (Board Level/Forbidden)**: Term sheets, M&A initiation, destructive changes. (Requires CEO/Board Gate).
+## Approval class (A)
 
-## 2. Reversibility Classes
-- **R0**: Fully auto-reversible (e.g. Git reset locally).
-- **R1**: Reversible with limited intervention (e.g. drafting an email).
-- **R2**: Costly/painful to reverse (e.g. generating an expensive comprehensive report).
-- **R3**: Irreversible / External Commitment (e.g. signing a digital contract, creating an external Dealroom).
+| Class | Who signs off | Typical examples |
+|-------|----------------|------------------|
+| **A0** | None | Read-only discovery, local drafts, internal notes |
+| **A1** | Manager / lead | Staging config, non-prod feature flags, routine refactors behind flag |
+| **A2** | Function head + legal/finance as needed | Billing, contracts, data retention, permission model changes |
+| **A3** | Executive / board | Irreversible commitments, major market launch, regulated disclosures |
 
-## 3. Sensitivity Classes
-- **S0**: Public data.
-- **S1**: Internal operational data.
-- **S2**: Confidential (Pricing margins, employee data). Must use local/private AI.
-- **S3**: Highly Sensitive (M&A targeting, legal disputes, board packets). Strictly guarded.
+## Reversibility class (R)
 
-## 4. Policy Engine Execution Constraint
-No Agent may commit an action of `R2/R3` or dealing with `S2/S3` without an `Evidence Pack` accompanying a `Decision Memo` that has explicitly secured authorization via the `Execution Plane`.
+| Class | Reverse | Typical examples |
+|-------|---------|------------------|
+| **R0** | Automatic | Feature flag off, revert commit, rollback migration (if designed) |
+| **R1** | Limited ops effort | Revert deploy, disable integration, compensate with credits |
+| **R2** | Costly / painful | Customer-visible data already acted on, partial external commitments |
+| **R3** | Irreversible or binding externally | Signed terms, regulatory filing, money movement, public statement |
+
+**Rule of thumb:** R2/R3 require explicit HITL (human-in-the-loop) or committee path before execution-plane runs.
+
+## Sensitivity class (S)
+
+| Class | Data |
+|-------|------|
+| **S0** | Public / low sensitivity |
+| **S1** | Internal operational |
+| **S2** | Confidential / commercial |
+| **S3** | Regulated / highly sensitive / personal / board |
+
+**Rule:** No S2/S3 across tools, providers, or LLM endpoints without policy review and routing (e.g. local/private inference where required).
+
+## Actor type
+
+`human` | `observer_agent` | `recommender_agent` | `executor_system` | `automated_workflow`
+
+Observers and recommenders do **not** commit. Executors and workflows act only through **execution plane** paths with policy metadata.
+
+## Action classes (ship discipline)
+
+- **Class A** — Auto-allowed: maps, docs, tests generation, lint, read-only analysis.  
+- **Class B** — Approval required: prod config, public publish, customer messages, migrations, RBAC, release promotion, external APIs.  
+- **Class C** — Forbidden: exfiltration, bypass protections, silent destructive changes, disabling gates, claims without evidence.
+
+## Evidence pack (minimum)
+
+For Class B and any R2/R3 decision: sources, assumptions, timestamps/freshness, compliance notes where relevant, alternatives, rollback/compensation, provenance score, pointers to tests or run artifacts.
+
+A **decision memo without an evidence pack is incomplete.**
+
+## GitHub governance (surface)
+
+Protected `main`; required reviews and checks; CODEOWNERS as team scales; secret scanning and dependency review; prefer OIDC for cloud deploy keys. Align branch rules with environment promotion (dev → staging → canary → prod).

@@ -1,37 +1,21 @@
 {
   "theme": "dark",
-  "projectInstructions": "Follow Dealix OS Sovereign architecture. Agentic by design, governed by policy, proven by evidence. No Action without Evidence Pack. Enforce Separation of Decision and Execution.",
+  "projectInstructions": "Follow Dealix Sovereign OS: MASTER_OPERATING_PROMPT.md (canonical), AGENTS.md, CLAUDE.md, docs/ai-operating-model.md, docs/governance/approval-policy.md. Agentic by design, governed by policy, proven by evidence. Decision plane = structured cognition; execution plane = durable workflows only. No external commitment without approval + reversibility + evidence.",
   "customCommands": [
     {
       "name": "architecture-map",
-      "description": "Generates a comprehensive layout of the core OS structure including decision/execution planes.",
-      "command": "python scripts/repo_mapper.py"
+      "description": "Code-backed discovery brief: constitution files + key app paths (run from repo root).",
+      "command": "python scripts/architecture_brief.py"
     },
     {
       "name": "canary-check",
-      "description": "Runs local security, format, and unit tests before promotion.",
-      "command": "pytest tests/ --cov"
+      "description": "Backend unit tests (Dealix FastAPI) before promotion.",
+      "command": "cd salesflow-saas/backend && pytest -v --tb=short"
     },
     {
       "name": "security-preflight",
-      "description": "White-box security stage and audit verification mapping (Shannon style).",
-      "command": "python scripts/security_gate.py"
+      "description": "Launch verification wrapper (staging-style gates; extend with -WithOpenApiGate as needed).",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File salesflow-saas/verify-launch.ps1"
     }
-  ],
-  "hooks": {
-    "PreToolUse": [
-      {
-        "pattern": "git push .*",
-        "command": "pytest tests/ && python scripts/audit_changelog.py",
-        "description": "Prevent code pushing without verification ledger proof and policy compliance checks."
-      }
-    ],
-    "PostToolUse": [
-      {
-        "pattern": "write_to_file",
-        "command": "python scripts/validate_universal_contract.py",
-        "description": "Check if agent scripts adhere to Decision Memo structured outputs."
-      }
-    ]
-  }
+  ]
 }

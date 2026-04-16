@@ -1,30 +1,29 @@
-# Dealix Sovereign Growth OS: AI Operating Model
+# AI operating model — decision, execution, control, data, trust
 
-## 1. Core Operating Doctrine
-The operating fabric distinguishes between **Decision** and **Execution** planes:
+This repository follows the **Master Operating Prompt** ([`MASTER_OPERATING_PROMPT.md`](../MASTER_OPERATING_PROMPT.md)): a governed hybrid stack, not “agents only.”
 
-- **Decision Plane**: Agent cognition, analysis loops, scenario evaluation, structured output (`Decision Memo`). Handled by Agents like M&A Screener and Partnership Scout.
-- **Execution Plane**: Deterministic workflows, retries, worker durability. LangGraph states acting to commit external business processes.
+## Planes (summary)
 
-## 2. Infrastructure Routing (Provider Abstraction)
-We do not hardwire to one vendor. Use `ProviderRouter` to intelligently select:
-- **Cloud Models** (Claude 3.5, GPT-4o) for heavy reasoning and coding.
-- **Local/Private Inference** (Atomic Chat adapters / Llama-3) for PDPL compliance, Arabic parsing of sensitive contracts, and internal drafting.
+| Plane | Owns | Must not |
+|-------|------|-----------|
+| **Decision** | Analysis, memos, structured recommendations, scenarios | Durable external commitments |
+| **Execution** | Workflows, retries, idempotency, compensation, side effects | Unstructured “trust me” narration |
+| **Control** | Policy, approvals, RBAC, secrets, promotion, audit | Ad-hoc rules in prompts |
+| **Data** | Operational truth, contracts, metrics definitions, lineage | Duplicate conflicting metric meanings |
+| **Trust** | Evidence packs, tool verification, security gate, evals | Claims without proof |
 
-## 3. Tool Verification (ToolProof Pattern)
-Every meaningful script interaction requires Verification:
-1. `run_id` linked to the interaction.
-2. `intended_action` vs `claimed_action`.
-3. Evaluated status: `verified`, `partially_verified`, `unverified`, `contradicted`.
-If the system claims an action but evidence lacks, it is automatically marked `contradicted`.
+## Dealix implementation pointers
 
-## 4. Connector Facade Rule
-Agents do NOT talk directly to external APIs (like Stripe, Salesforce). They must route through an internal Connector Facade which enforces:
-- Idempotency
-- Timeouts/Retries
-- Audit Logging
-- Reversibility plans
+- **Agents / routing / pipeline:** [`salesflow-saas/backend/app/services/agents/`](../salesflow-saas/backend/app/services/agents/) — `router.py`, `executor.py`, `autonomous_pipeline.py`.
+- **Prompts (runtime path):** [`salesflow-saas/ai-agents/prompts/`](../salesflow-saas/ai-agents/prompts/) — loaded by `AgentExecutor` (`PROMPTS_DIR`); policy stays in code/services, not inside markdown prompts.
+- **Core OS (memos / governance direction):** [`salesflow-saas/backend/app/services/core_os/`](../salesflow-saas/backend/app/services/core_os/) — e.g. decision memo and related structures where present.
+- **Launch & evidence discipline:** [`salesflow-saas/docs/LAUNCH_CHECKLIST.md`](../salesflow-saas/docs/LAUNCH_CHECKLIST.md), [`salesflow-saas/verify-launch.ps1`](../salesflow-saas/verify-launch.ps1).
 
-## 5. Memory & Second Brain
-Filesystem-based JSON indexed memory in `/memory`.
-Includes: ADRs, Postmortems, Growth Experiments, Security Checks, and Escalation Memos.
+## Operating sequence for any major change
+
+1. Repository discovery (architecture + capability + gap + risk + trust).  
+2. Smallest phase that proves value with tests and rollback.  
+3. Evidence: tests, logs, or contract checks — as defined in the phase.  
+4. Only then expand scope.
+
+See also: [`approval-policy.md`](governance/approval-policy.md).
