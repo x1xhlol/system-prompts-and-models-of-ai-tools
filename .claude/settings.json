@@ -1,20 +1,20 @@
 {
   "theme": "dark",
-  "projectInstructions": "Follow Dealix OS Sovereign architecture. Do not execute DB changes directly; use action dispatchers. Ensure Universal JSON Output Contract.",
+  "projectInstructions": "Follow Dealix OS Sovereign architecture. Agentic by design, governed by policy, proven by evidence. No Action without Evidence Pack. Enforce Separation of Decision and Execution.",
   "customCommands": [
     {
-      "name": "repo-map",
-      "description": "Generates a comprehensive layout of the core OS structure including agents and memory.",
+      "name": "architecture-map",
+      "description": "Generates a comprehensive layout of the core OS structure including decision/execution planes.",
       "command": "python scripts/repo_mapper.py"
     },
     {
       "name": "canary-check",
-      "description": "Runs local tests before allowing any production deployment simulation.",
+      "description": "Runs local security, format, and unit tests before promotion.",
       "command": "pytest tests/ --cov"
     },
     {
       "name": "security-preflight",
-      "description": "Pre-commit security validation against known PDPL patterns.",
+      "description": "White-box security stage and audit verification mapping (Shannon style).",
       "command": "python scripts/security_gate.py"
     }
   ],
@@ -23,14 +23,14 @@
       {
         "pattern": "git push .*",
         "command": "pytest tests/ && python scripts/audit_changelog.py",
-        "description": "Require unit tests and audit logging before interacting directly with code promotion."
+        "description": "Prevent code pushing without verification ledger proof and policy compliance checks."
       }
     ],
     "PostToolUse": [
       {
         "pattern": "write_to_file",
-        "command": "python scripts/reformat_and_validate.py",
-        "description": "Ensure newly written markdown or python files follow architectural constraints."
+        "command": "python scripts/validate_universal_contract.py",
+        "description": "Check if agent scripts adhere to Decision Memo structured outputs."
       }
     ]
   }

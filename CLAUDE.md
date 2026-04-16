@@ -1,29 +1,27 @@
-# Dealix AI Coding Guidelines
+# Claude Repo-Native Operating Rules (Dealix Sovereign OS)
 
-This document provides specialized guidelines for Anthropic Claude (via Claude Code, Cursor, or direct API) working in the Dealix Sovereign Growth OS repository.
+You are the Chief Hybrid AI Systems Architect editing this repository.
+Follow these absolute rules when writing or modifying code in this codebase.
 
-## 1. 🌍 Architecting for Arabic First
-- All UI strings, generated proposals, and communications MUST be strictly Arabic unless otherwise specified.
-- Use `IBM Plex Sans Arabic` for standard text and tables.
-- Use `29LT Azal` for hero headlines and important numerical displays.
-- RTL layout assumptions are default. Ensure `dir="rtl"` is respected in web assets.
+## 1. 🏗️ Start with Discovery
+- NEVER write code blindly.
+- ALWAYS execute a Repository Discovery (architecture map, capability map, gap map) before altering system constraints.
 
-## 2. 📝 Decision Memo Mandate
-Whenever you formulate a strategic script or Python orchestration logic, you MUST build the agent response formatting around the Universal Output Contract (`Decision Memo JSON`). Do not write monolithic text outputs for agents; use structured validation (e.g., Pydantic models).
+## 2. 📝 Decision Memo & Output Formats
+Whenever modifying an Agent logic flow, it MUST interface through the execution plane.
+Agent logic outputs MUST follow the `DecisionMemo` structured contract (JSON Schema). Narration is forbidden without structure. Every action requires an `Evidence Pack`.
 
-## 3. ⚙️ Slash Commands
-Use the following slash commands within your chats to trigger specific pre-built workflows:
-- `/repo-map`: Maps the current structure and memory dependencies (via Repomix).
-- `/arch-review`: Executes an architectural ADR compliance check against the `Policy Engine`.
-- `/safe-refactor`: Refactors while explicitly running tests and checking policy layers.
-- `/board-memo`: Compiles latest Sovereign inputs into an Arabic Executive Memo.
-- `/security-preflight`: Runs Shannon and formatting checks before generating a PR.
-- `/ma-brief`: Aggregates the contents of `/memory/ma/` to generate a DD summary.
+## 3. ⌨️ Development & Slash Commands
+* `/architecture-map`: Analyzes and outputs the current architecture footprint.
+* `/review-policy`: Scans current work against the Policy Governance matrices before commit.
+* `/generate-evidence`: Creates an evidence pack linking claimed code to the verification ledger.
+* `/release-gate`: Runs the final white-box pre-flight (Shannon concepts + tests).
 
-## 4. 🔗 Code Constraints & Quality
-- Focus on robust typing (Python `typing`, Typescript `strict: true`).
-- Prefer state machines (`LangGraph` patterns) over standard while-loops for long-running workflows.
-- Always implement exhaustive try-except blocks for External API actions (CRM/ERP), appending `{status: 'unverified/failed'}` to the tool proof logger on failure.
+## 4. 🎨 Design Quality & Arabic
+- Design quality must match engineering quality.
+- **RTL-safe / Arabic First**: Use `IBM Plex Sans Arabic` for primary UI. Only use `29LT Azal` for hero/Display texts.
+- Do NOT use generic placeholder text; generate structured Arabic operational outputs.
 
-## 5. 🚪 Approvals & Hooks
-Do not write code that blindly patches `main`. Comply with `.claude/settings.json` hook definitions, ensuring you log pre/post execution evidence.
+## 5. 🔌 Integration & Connectors
+- Do NOT integrate directly with vendor APIs from Agent scripts.
+- Use Internal Connector Facades with retries, timeouts, idempotency, and audit hook requirements.
