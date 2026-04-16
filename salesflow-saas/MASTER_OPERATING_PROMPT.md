@@ -144,6 +144,17 @@ Full specification: [`docs/governance/technology-radar-tier1.md`](docs/governanc
 | Executive Board OS | `docs/governance/executive-board-os.md` | Board reporting framework |
 | 90-Day Matrix | `docs/execution-matrix-90d-tier1.md` | Sprint execution plan |
 | ADR 0001 | `docs/adr/0001-tier1-execution-policy-spikes.md` | Tier-1 policy decisions |
+| Current vs Target | `docs/current-vs-target-register.md` | Subsystem maturity register |
+| Doc Consistency Audit | `docs/governance/document-consistency-audit.md` | Cross-reference verification |
+| Structured Outputs | `backend/app/schemas/structured_outputs.py` | 17 Pydantic decision schemas |
+| Workflow Inventory | `docs/governance/workflow-inventory.md` | Short/medium/long classification |
+| Trust Closure Plan | `docs/governance/trust-closure-plan.md` | Trust plane completion gates |
+| Connector Standard | `docs/governance/connector-standard.md` | Connector facade + metrics |
+| Operating Checklist | `docs/governance/operating-plane-checklist.md` | Enterprise delivery controls |
+| Saudi Readiness | `docs/governance/saudi-enterprise-readiness.md` | PDPL/NCA/SDAIA operationalization |
+| Executive Surface Plan | `docs/governance/executive-surface-closure.md` | Surface wiring plan |
+| Market Dominance | `docs/governance/market-dominance-plan.md` | Packaging + ROI + competitive wedge |
+| Master Closure Checklist | `docs/tier1-master-closure-checklist.md` | 50-item definitive checklist |
 | Architecture | `docs/ARCHITECTURE.md` | System diagram |
 | Data Model | `docs/DATA-MODEL.md` | Database schema |
 | Agent Map | `docs/AGENT-MAP.md` | 19 AI agents |
