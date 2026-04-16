@@ -238,21 +238,11 @@ class CEOLangGraphOrchestrator:
         logger.info("LangGraph node: salesforce sync (stub/log)")
         return {"history_log": ["Synced to Salesforce Agentforce (log)."]}
 
-    def self_improve_node(self, state: CEOState) -> Dict[str, Any]:
+    async def self_improve_node(self, state: CEOState) -> Dict[str, Any]:
         try:
-            result = self_improvement_flow.run(
-                tenant_id=state.get("tenant_id", "default_tenant"),
-                input_state={
-                    "signals": state.get("osint_signals", []),
-                    "bottlenecks": [],
-                    "experiments": [{"name": "subject-line-ab", "channel": "email"}],
-                    "ab_results": {"winner": "variant_b"},
-                    "governance_passed": True,
-                    "promoted": True,
-                },
-            )
-            rid = result.get("run_id", "n/a")
-            return {"history_log": [f"Self-improve loop completed: run_id={rid}"]}
+            result = await self_improvement_flow.run(state.get("tenant_id", "default_tenant"), None)
+            rid = result.get("cycle_id", result.get("run_id", "n/a"))
+            return {"history_log": [f"Self-improve loop completed: cycle_id={rid}"]}
         except Exception as e:
             logger.exception("self_improve_node")
             return {"history_log": [f"Self-improve loop error: {e}"]}

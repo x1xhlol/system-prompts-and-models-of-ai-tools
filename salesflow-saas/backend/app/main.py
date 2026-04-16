@@ -51,17 +51,7 @@ async def lifespan(app: FastAPI):
 
     async def _self_improvement_worker():
         while not stop_event.is_set():
-            self_improvement_flow.run(
-                tenant_id="system_tenant",
-                input_state={
-                    "signals": [],
-                    "bottlenecks": [],
-                    "experiments": [{"name": "always-on-ab-loop"}],
-                    "ab_results": {},
-                    "governance_passed": True,
-                    "promoted": True,
-                },
-            )
+            await self_improvement_flow.run("system_tenant", None)
             await asyncio.sleep(max(60, settings.SELF_IMPROVEMENT_INTERVAL_SECONDS))
 
     worker_task = asyncio.create_task(_self_improvement_worker())

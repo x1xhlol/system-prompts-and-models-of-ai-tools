@@ -111,7 +111,7 @@ def _register_task_router() -> None:
         return await prospecting_durable_flow.run(tenant_id, payload)
 
     async def _self_improve(tenant_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
-        return self_improvement_flow.run(tenant_id, payload)
+        return await self_improvement_flow.run(tenant_id, None)
 
     task_router.register("prospecting_flow", _prospecting)
     task_router.register("self_improvement_flow", _self_improve)
@@ -230,7 +230,7 @@ async def run_prospecting_flow(payload: DealPayload) -> Dict[str, Any]:
 async def run_self_improvement_flow(payload: DealPayload) -> Dict[str, Any]:
     _register_task_router()
     if not settings.OPENCLAW_SAFE_CORE_ENABLED:
-        return self_improvement_flow.run(payload.tenant_id, payload.deal)
+        return await self_improvement_flow.run(payload.tenant_id, None)
     result = await openclaw_gateway.execute(
         tenant_id=payload.tenant_id,
         task_type="self_improvement_flow",

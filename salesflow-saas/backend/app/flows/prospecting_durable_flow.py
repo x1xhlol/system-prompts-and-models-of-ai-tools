@@ -7,6 +7,7 @@ Enhanced version that integrates with the new agent system.
 from __future__ import annotations
 
 import logging
+import uuid
 from typing import Any, Dict
 
 logger = logging.getLogger("dealix.flows.prospecting")
@@ -29,6 +30,7 @@ class ProspectingDurableFlow:
         flow_result = {
             "flow": "prospecting_crew_v2",
             "tenant_id": tenant_id,
+            "run_id": str(uuid.uuid4()),
             "deal": deal.get("company_name", "Unknown"),
             "steps": [],
             "status": "running",
