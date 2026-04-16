@@ -71,6 +71,9 @@ Use these for depth, onboarding, and review. Each expands themes from the master
 | [docs/architecture-register.md](docs/architecture-register.md) | Subsystem status (Current / Partial / Pilot / Production) |
 | [docs/adr/0002-execution-matrix-canonical-source.md](docs/adr/0002-execution-matrix-canonical-source.md) | Canonical `Execution_Matrix.md` vs draft v2 |
 | [docs/adr/0001-tier1-execution-policy-spikes.md](docs/adr/0001-tier1-execution-policy-spikes.md) | Gated spikes: Temporal, OPA, OpenFGA |
+| [docs/TIER1_MASTER_CLOSURE_CHECKLIST_AR.md](docs/TIER1_MASTER_CLOSURE_CHECKLIST_AR.md) | Tier-1 master closure (Arabic, 15 sections, repo links) |
+| [docs/glossary-dealix-planes-tracks.md](docs/glossary-dealix-planes-tracks.md) | Planes / tracks / fabrics glossary |
+| [salesflow-saas/docs/tier1-master-closure-checklist.md](salesflow-saas/docs/tier1-master-closure-checklist.md) | Tier-1 gates (English, 50 items) |
 
 Operating overview with diagram: **[`docs/ai-operating-model.md`](docs/ai-operating-model.md)**.
 

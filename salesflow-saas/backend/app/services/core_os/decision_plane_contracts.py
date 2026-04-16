@@ -60,6 +60,38 @@ def new_evidence_pack_id(prefix: str = "ep") -> str:
     return f"{prefix}_{uuid4().hex[:12]}"
 
 
+CLASS_B_BUNDLE_KEYS = (
+    "memo_json",
+    "evidence_pack_json",
+    "risk_register_json",
+    "approval_packet_json",
+    "execution_intent_json",
+)
+
+
+def validate_class_b_bundle(bundle: Dict[str, Any]) -> None:
+    """
+    Enforce Tier-1 Class B response shape: all bundle keys present and sub-objects valid.
+    Raises ValueError with a short message suitable for HTTP 400.
+    """
+    missing = [k for k in CLASS_B_BUNDLE_KEYS if k not in bundle or bundle[k] is None]
+    if missing:
+        raise ValueError(f"Class B bundle missing keys: {', '.join(missing)}")
+
+    # Local import avoids import cycle at module load.
+    from app.services.core_os.decision_memo import DecisionMemo
+
+    memo = DecisionMemo.model_validate(bundle["memo_json"])
+    if not memo.required_approvals:
+        raise ValueError("memo_json.required_approvals must be non-empty for Class B paths")
+    EvidencePack.model_validate(bundle["evidence_pack_json"])
+    ApprovalPacket.model_validate(bundle["approval_packet_json"])
+    ExecutionIntent.model_validate(bundle["execution_intent_json"])
+    rr = bundle["risk_register_json"]
+    if not isinstance(rr, list):
+        raise ValueError("risk_register_json must be a list")
+
+
 def assemble_decision_bundle(
     *,
     evidence_pack: EvidencePack,

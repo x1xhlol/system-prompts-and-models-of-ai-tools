@@ -1,0 +1,35 @@
+# Preflight when repo-level governance / scripts change (no salesflow-saas code required)
+name: Repo preflight
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "scripts/architecture_brief.py"
+      - "MASTER_OPERATING_PROMPT.md"
+      - "AGENTS.md"
+      - "CLAUDE.md"
+      - "Execution_Matrix.md"
+      - "Execution_Matrix_v2.md"
+  pull_request:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "scripts/architecture_brief.py"
+      - "MASTER_OPERATING_PROMPT.md"
+      - "AGENTS.md"
+      - "CLAUDE.md"
+      - "Execution_Matrix.md"
+      - "Execution_Matrix_v2.md"
+
+jobs:
+  architecture_brief:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Architecture brief (constitution paths)
+        run: python scripts/architecture_brief.py

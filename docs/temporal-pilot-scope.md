@@ -7,6 +7,10 @@
 1. **Partner approval** — human waits, multi-day SLA, idempotent notifications.  
 2. **DD room state machine** — long-running, audit-heavy, compensating actions on red-flag.
 
+## Interim (pre-Temporal) hardening
+
+Until ADR-0001 exit criteria are met, strengthen **LangGraph checkpoints + Celery idempotency** on the flows listed in [`workflows-inventory.md`](workflows-inventory.md) so long steps survive restarts without duplicate side effects.
+
 ## Non-goals for pilot v0
 
 - Replacing all Celery workloads.  

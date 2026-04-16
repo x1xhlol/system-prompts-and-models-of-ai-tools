@@ -1,4 +1,8 @@
-"""Contradiction Engine API — detect and manage system contradictions."""
+"""Contradiction Engine API — detect and manage system contradictions.
+
+See repo root: `docs/trust/ledger-vs-tool-verification.md` for how this relates to
+`VerificationLedger` / `tool_verification`.
+"""
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel as PydanticBase

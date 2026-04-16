@@ -38,3 +38,13 @@
 ## Region / residency flags
 
 Define configuration keys for **data region** and **LLM routing** per tenant; document in ADR when enforced in `policy_engine` or external PDP.
+
+---
+
+## Enterprise release gate (operational)
+
+Before tagging an **enterprise** release candidate:
+
+1. Reconcile this matrix with [`../enterprise-readiness.md`](../enterprise-readiness.md) and [`saudi-compliance-and-ai-governance.md`](saudi-compliance-and-ai-governance.md).  
+2. Attach evidence: PDPL rows above filled (no `…` placeholders for production claims), NCA gap register owner + date, AI RMF row sign-off.  
+3. Cross-check [`../TIER1_MASTER_CLOSURE_CHECKLIST_AR.md`](../TIER1_MASTER_CLOSURE_CHECKLIST_AR.md) §14 and [`../../salesflow-saas/docs/tier1-master-closure-checklist.md`](../../salesflow-saas/docs/tier1-master-closure-checklist.md) Gate 8.

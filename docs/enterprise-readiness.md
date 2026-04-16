@@ -12,7 +12,9 @@ This checklist helps **internal teams** prepare for **B2B / enterprise** convers
 6. [`governance/github-and-release.md`](governance/github-and-release.md) — branch protection, environments, OIDC, audit retention.  
 7. [`execution-matrix-90d-tier1.md`](execution-matrix-90d-tier1.md) — Phase 0–1 measurable outcomes.  
 8. [`completion-program-workstreams.md`](completion-program-workstreams.md) — eight workstreams from constitution to production.  
-9. [`architecture-register.md`](architecture-register.md) — subsystem status snapshot.
+9. [`architecture-register.md`](architecture-register.md) — subsystem status snapshot.  
+10. [`TIER1_MASTER_CLOSURE_CHECKLIST_AR.md`](TIER1_MASTER_CLOSURE_CHECKLIST_AR.md) — إغلاق Tier-1 (عربي) + [`salesflow-saas/docs/tier1-master-closure-checklist.md`](../salesflow-saas/docs/tier1-master-closure-checklist.md) (50 بندًا).  
+11. [`governance/pdpl-nca-ai-control-matrices.md`](governance/pdpl-nca-ai-control-matrices.md) — **بوابة إصدار enterprise:** اتبع قسم «Enterprise release gate» قبل وسم الإصدار.
 
 ## 2. Product and legal surface
 

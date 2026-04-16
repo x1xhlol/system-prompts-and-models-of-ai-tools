@@ -42,7 +42,9 @@ For the classic “8 layers” service map (signal, memory, reasoning, orchestra
 
 - Master workstream index: [`completion-program-workstreams.md`](completion-program-workstreams.md)  
 - Subsystem status register: [`architecture-register.md`](architecture-register.md)  
-- Execution matrix canonical decision: [`adr/0002-execution-matrix-canonical-source.md`](adr/0002-execution-matrix-canonical-source.md)
+- Execution matrix canonical decision: [`adr/0002-execution-matrix-canonical-source.md`](adr/0002-execution-matrix-canonical-source.md)  
+- Tier-1 master closure (Arabic): [`TIER1_MASTER_CLOSURE_CHECKLIST_AR.md`](TIER1_MASTER_CLOSURE_CHECKLIST_AR.md) — English 50-gate checklist: [`../salesflow-saas/docs/tier1-master-closure-checklist.md`](../salesflow-saas/docs/tier1-master-closure-checklist.md)  
+- Glossary: [`glossary-dealix-planes-tracks.md`](glossary-dealix-planes-tracks.md)
 
 ## Enterprise readiness
 

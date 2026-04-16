@@ -2,7 +2,9 @@
 
 **Canonical:** [`MASTER_OPERATING_PROMPT.md`](../../MASTER_OPERATING_PROMPT.md).
 
-**Tier-1 bundle (tracks, radar, execution/trust specs, Saudi register, ADR gates):** [`../dealix-six-tracks.md`](../dealix-six-tracks.md), [`../blueprint-master-architecture.md`](../blueprint-master-architecture.md), [`technology-radar-tier1.md`](technology-radar-tier1.md), [`execution-fabric.md`](execution-fabric.md), [`saudi-compliance-and-ai-governance.md`](saudi-compliance-and-ai-governance.md), [`../enterprise-readiness.md`](../enterprise-readiness.md).
+**Tier-1 bundle (tracks, radar, execution/trust specs, Saudi register, ADR gates):** [`../dealix-six-tracks.md`](../dealix-six-tracks.md), [`../blueprint-master-architecture.md`](../blueprint-master-architecture.md), [`../TIER1_MASTER_CLOSURE_CHECKLIST_AR.md`](../TIER1_MASTER_CLOSURE_CHECKLIST_AR.md), [`technology-radar-tier1.md`](technology-radar-tier1.md), [`execution-fabric.md`](execution-fabric.md), [`saudi-compliance-and-ai-governance.md`](saudi-compliance-and-ai-governance.md), [`../enterprise-readiness.md`](../enterprise-readiness.md).
+
+**Cursor / Claude command parity:** أوامر الجذر في [`.cursor/commands/`](../../.cursor/commands/) يجب أن تعكس نفس التدفقات المذكورة في [`CLAUDE.md`](../../CLAUDE.md) (architecture-map، review-policy، generate-evidence، release-gate). عند إضافة أمر جديد، حدّث الملفين معًا.
 
 ## Before writing code
 

@@ -1,13 +1,16 @@
 """Tests for decision plane bundle (Completion Program WS2)."""
 from __future__ import annotations
 
-from app.services.core_os.decision_memo import DecisionMemo, AuditMetadata, FinancialImpact
+import pytest
+
+from app.services.core_os.decision_memo import AuditMetadata, DecisionMemo, FinancialImpact
 from app.services.core_os.decision_plane_contracts import (
     ApprovalPacket,
     EvidencePack,
     ExecutionIntent,
     assemble_decision_bundle,
     new_evidence_pack_id,
+    validate_class_b_bundle,
 )
 
 
@@ -61,3 +64,43 @@ def test_assemble_decision_bundle_keys():
     }
     assert bundle["approval_packet_json"]["approval_class"] == "A2"
     assert bundle["execution_intent_json"]["idempotency_key"] == "idem-001"
+    validate_class_b_bundle(bundle)
+
+
+def test_validate_class_b_bundle_rejects_missing_memo_approvals():
+    memo = DecisionMemo(
+        objective="x",
+        decision_context="c",
+        inputs_used=["i"],
+        assumptions=["a"],
+        recommendation_ar="r",
+        alternatives_considered=["b"],
+        expected_financial_impact=FinancialImpact(),
+        risk_register=[],
+        confidence_score=50.0,
+        required_approvals=[],  # invalid for Class B
+        next_best_action="n",
+        rollback_plan="rb",
+        evidence_links=[],
+        audit_metadata=AuditMetadata(agent_id="a", timestamp="2026-01-01T00:00:00Z"),
+    )
+    ep = EvidencePack(pack_id=new_evidence_pack_id(), provenance_score=1.0)
+    ap = ApprovalPacket(
+        approval_class="A1",
+        reversibility_class="R0",
+        sensitivity_class="S0",
+        actor_type="human",
+    )
+    ei = ExecutionIntent(
+        workflow_key="w",
+        idempotency_key="k",
+        requested_side_effect_class="none",
+    )
+    bundle = assemble_decision_bundle(
+        evidence_pack=ep,
+        approval_packet=ap,
+        execution_intent=ei,
+        memo_json=memo.to_json(),
+    )
+    with pytest.raises(ValueError, match="required_approvals"):
+        validate_class_b_bundle(bundle)

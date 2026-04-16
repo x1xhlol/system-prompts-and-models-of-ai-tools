@@ -8,6 +8,7 @@ from app.services.core_os.decision_plane_contracts import (
     ExecutionIntent,
     assemble_decision_bundle,
     new_evidence_pack_id,
+    validate_class_b_bundle,
 )
 from app.services.core_os.verification_ledger import VerificationLedger
 
@@ -18,4 +19,5 @@ __all__ = [
     "VerificationLedger",
     "assemble_decision_bundle",
     "new_evidence_pack_id",
+    "validate_class_b_bundle",
 ]

@@ -4,6 +4,7 @@
 
 ## Milestones
 
+0. **Class B bundle API (pilot)** — `GET /api/v1/approval-center/class-b-decision-bundle` returns a validated bundle (`validate_class_b_bundle`); frontend can bind read-only viewers to this shape before DB-backed queues exist.  
 1. **Read-only executive dashboard** — memos + evidence pack viewer fed from APIs returning [`decision_plane_contracts.assemble_decision_bundle`](../salesflow-saas/backend/app/services/core_os/decision_plane_contracts.py) payloads.  
 2. **Approval center** — queue of Class B items with A/R/S and approver roles.  
 3. **Policy violations board** — feed from audit log + tool ledger contradictions.  

@@ -10,6 +10,11 @@
 | `partner_sourced_pipeline_sar` | Pipeline attributed to partner channel | CRM attribution | Partnerships |
 | `synergy_realization_sar` | Post-close synergy captured vs plan | Finance + PMI tracker | CorpDev |
 
+## Dominance / governance
+
+- **Owner** column is mandatory for every business-critical key; assign in release planning.  
+- **CI / dashboard gate:** new executive widgets must only plot keys present in this table (see [`TIER1_MASTER_CLOSURE_CHECKLIST_AR.md`](TIER1_MASTER_CLOSURE_CHECKLIST_AR.md) §15).
+
 ## Rules
 
 - Do not redefine the same key in multiple services.  
