@@ -288,6 +288,249 @@ AGENT_REGISTRY: dict[str, EventConfig] = {
         execution_mode=ExecutionMode.SEQUENTIAL,
         description="Autonomous: closing stage → close + compliance",
     ),
+
+    # ══════════════════════════════════════════════════
+    # ── Strategic Growth & Enterprise Agents ─────────
+    # ══════════════════════════════════════════════════
+
+    # ── Partnerships ─────────────────────────────────
+    "partnership_opportunity": EventConfig(
+        agents=[
+            AgentConfig("partnership_scout", priority=1, required=True, timeout_seconds=60),
+            AgentConfig("competitive_intel", priority=1, required=False),
+        ],
+        execution_mode=ExecutionMode.PARALLEL,
+        description="New partnership opportunity detected — scout + competitive analysis",
+    ),
+    "partnership_proposal_requested": EventConfig(
+        agents=[
+            AgentConfig("partnership_scout", priority=1, required=True, timeout_seconds=60),
+            AgentConfig("contract_lifecycle", priority=2, required=True),
+            AgentConfig("compliance_reviewer", priority=3, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Partnership proposal needed — scout → contract → compliance",
+    ),
+
+    # ── M&A & Strategic Growth ───────────────────────
+    "acquisition_target_identified": EventConfig(
+        agents=[
+            AgentConfig("ma_growth", priority=1, required=True, timeout_seconds=120),
+            AgentConfig("competitive_intel", priority=1, required=False),
+            AgentConfig("finance_automation", priority=2, required=True),
+        ],
+        execution_mode=ExecutionMode.PARALLEL,
+        description="M&A target found — valuation + competitive + financial analysis",
+    ),
+    "growth_strategy_requested": EventConfig(
+        agents=[
+            AgentConfig("business_development", priority=1, required=True, timeout_seconds=90),
+            AgentConfig("ma_growth", priority=2, required=False),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Strategic growth analysis — BizDev → M&A options",
+    ),
+
+    # ── Contracts ────────────────────────────────────
+    "contract_creation_requested": EventConfig(
+        agents=[
+            AgentConfig("contract_lifecycle", priority=1, required=True, timeout_seconds=60),
+            AgentConfig("compliance_reviewer", priority=2, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Contract needed — draft + compliance review",
+    ),
+    "contract_review_requested": EventConfig(
+        agents=[
+            AgentConfig("contract_lifecycle", priority=1, required=True),
+            AgentConfig("fraud_reviewer", priority=2, required=False),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Incoming contract — review risks + fraud check",
+    ),
+    "contract_expiring_soon": EventConfig(
+        agents=[
+            AgentConfig("contract_lifecycle", priority=1, required=True),
+            AgentConfig("customer_success", priority=2, required=False),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Contract expiring — renewal + customer health check",
+    ),
+
+    # ── Business Development ─────────────────────────
+    "market_expansion_requested": EventConfig(
+        agents=[
+            AgentConfig("business_development", priority=1, required=True, timeout_seconds=90),
+            AgentConfig("sector_strategist", priority=1, required=False),
+            AgentConfig("competitive_intel", priority=1, required=False),
+        ],
+        execution_mode=ExecutionMode.PARALLEL,
+        description="Market expansion — BizDev + sector + competitive intel",
+    ),
+    "new_revenue_stream_analysis": EventConfig(
+        agents=[
+            AgentConfig("business_development", priority=1, required=True),
+            AgentConfig("dynamic_pricing", priority=2, required=False),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="New revenue stream — BizDev analysis + pricing strategy",
+    ),
+
+    # ── Supply Chain & Procurement ───────────────────
+    "procurement_rfq": EventConfig(
+        agents=[
+            AgentConfig("supply_chain", priority=1, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="RFQ received — evaluate suppliers and pricing",
+    ),
+    "supplier_evaluation": EventConfig(
+        agents=[
+            AgentConfig("supply_chain", priority=1, required=True),
+            AgentConfig("fraud_reviewer", priority=2, required=False),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Evaluate supplier — quality + fraud check",
+    ),
+    "inventory_alert": EventConfig(
+        agents=[
+            AgentConfig("supply_chain", priority=1, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Inventory low — reorder analysis",
+    ),
+
+    # ── Customer Success & Retention ─────────────────
+    "customer_health_check": EventConfig(
+        agents=[
+            AgentConfig("customer_success", priority=1, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Customer health check — churn risk + upsell opportunities",
+    ),
+    "customer_complaint": EventConfig(
+        agents=[
+            AgentConfig("customer_success", priority=1, required=True),
+            AgentConfig("compliance_reviewer", priority=2, required=False),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Customer complaint — resolve + compliance check",
+    ),
+    "upsell_opportunity_detected": EventConfig(
+        agents=[
+            AgentConfig("customer_success", priority=1, required=True),
+            AgentConfig("dynamic_pricing", priority=2, required=False),
+            AgentConfig("outreach_writer", priority=3, required=False),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Upsell opportunity — CS assessment + pricing + outreach",
+    ),
+    "quarterly_business_review": EventConfig(
+        agents=[
+            AgentConfig("customer_success", priority=1, required=True, timeout_seconds=60),
+            AgentConfig("revenue_attribution", priority=1, required=False),
+        ],
+        execution_mode=ExecutionMode.PARALLEL,
+        description="QBR preparation — customer success + revenue analysis",
+    ),
+
+    # ── Dynamic Pricing ──────────────────────────────
+    "pricing_review_requested": EventConfig(
+        agents=[
+            AgentConfig("dynamic_pricing", priority=1, required=True),
+            AgentConfig("competitive_intel", priority=1, required=False),
+        ],
+        execution_mode=ExecutionMode.PARALLEL,
+        description="Pricing review — dynamic pricing + competitive analysis",
+    ),
+    "discount_approval_requested": EventConfig(
+        agents=[
+            AgentConfig("dynamic_pricing", priority=1, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Discount requested — profitability check",
+    ),
+
+    # ── Marketing Automation ─────────────────────────
+    "campaign_creation_requested": EventConfig(
+        agents=[
+            AgentConfig("marketing_automation", priority=1, required=True, timeout_seconds=60),
+            AgentConfig("compliance_reviewer", priority=2, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Marketing campaign — create + compliance review",
+    ),
+    "lead_nurture_triggered": EventConfig(
+        agents=[
+            AgentConfig("marketing_automation", priority=1, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Lead nurture — drip campaign automation",
+    ),
+    "retargeting_triggered": EventConfig(
+        agents=[
+            AgentConfig("marketing_automation", priority=1, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Retargeting — re-engage inactive leads",
+    ),
+
+    # ── Finance Automation ───────────────────────────
+    "invoice_generation": EventConfig(
+        agents=[
+            AgentConfig("finance_automation", priority=1, required=True),
+            AgentConfig("compliance_reviewer", priority=2, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Invoice creation — ZATCA compliant + compliance",
+    ),
+    "collection_overdue": EventConfig(
+        agents=[
+            AgentConfig("finance_automation", priority=1, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Overdue payment — automated collection workflow",
+    ),
+    "financial_report_requested": EventConfig(
+        agents=[
+            AgentConfig("finance_automation", priority=1, required=True, timeout_seconds=60),
+            AgentConfig("management_summary", priority=2, required=False),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Financial report — finance + management summary",
+    ),
+    "cashflow_forecast_requested": EventConfig(
+        agents=[
+            AgentConfig("finance_automation", priority=1, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Cash flow forecast — predict inflows/outflows",
+    ),
+
+    # ── Competitive Intelligence ─────────────────────
+    "competitor_alert": EventConfig(
+        agents=[
+            AgentConfig("competitive_intel", priority=1, required=True),
+            AgentConfig("dynamic_pricing", priority=2, required=False),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Competitor movement — intel + pricing response",
+    ),
+    "battlecard_requested": EventConfig(
+        agents=[
+            AgentConfig("competitive_intel", priority=1, required=True),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Battle card needed for sales team",
+    ),
+    "win_loss_analysis": EventConfig(
+        agents=[
+            AgentConfig("competitive_intel", priority=1, required=True),
+            AgentConfig("management_summary", priority=2, required=False),
+        ],
+        execution_mode=ExecutionMode.SEQUENTIAL,
+        description="Win/loss analysis — competitive intel + management reporting",
+    ),
 }
 
 

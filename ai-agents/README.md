@@ -1,21 +1,25 @@
-# 🤖 Dealix AI Agent System
+# 🤖 Dealix Autonomous Enterprise OS — AI Agent System
 
 ## نظرة عامة
 
-20 وكيل AI متخصص يعملون بشكل مستقل لإدارة دورة حياة المبيعات B2B في السوق السعودي.
+30 وكيل AI متخصص يعملون بشكل مستقل بالكامل لإدارة **كل جوانب عمليات الشركة** — من المبيعات والشراكات والاستحواذات والتسويق والمالية وسلسلة التوريد والعقود وتطوير الأعمال — نيابةً عن الشركات والمتاجر في السوق السعودي والخليجي والعالمي.
+
+> **الرؤية**: نظام تشغيل مستقل (Level 5 Autonomy) يدير ويشغّل ويوسّع الشركات بشكل كامل 24/7.
 
 ## البنية
 
 ```
-ai-agents/prompts/          ← 20 ملف تعليمات (System Prompts)
+ai-agents/prompts/          ← 30 ملف تعليمات (System Prompts)
 salesflow-saas/backend/
 ├── app/services/agents/
 │   ├── __init__.py          ← Module exports
-│   ├── router.py            ← Event → Agent routing (30 events)
+│   ├── router.py            ← Event → Agent routing (60+ events)
 │   ├── executor.py          ← LLM execution engine
 │   ├── autonomous_pipeline.py ← 11-stage state machine
-│   ├── action_dispatcher.py ← 13 action types → services
-│   └── manus_orchestrator.py ← Multi-agent orchestration
+│   ├── action_dispatcher.py ← 20+ action types → services
+│   ├── manus_orchestrator.py ← Multi-agent orchestration
+│   ├── memory.py            ← Agent memory & context
+│   └── quality_gate.py      ← Output quality validation
 ├── app/api/v1/
 │   ├── pipeline_engine.py   ← Pipeline REST API
 │   └── agent_health.py      ← Health check + diagnostics
@@ -27,7 +31,9 @@ salesflow-saas/backend/
     └── self_improvement_flow.py    ← 6-phase self-optimization
 ```
 
-## الوكلاء الـ 20
+## الوكلاء (30 وكيل)
+
+### 🔷 المبيعات والتواصل (20 وكيل أساسي)
 
 | # | الوكيل | الملف | المهمة |
 |---|--------|-------|--------|
@@ -52,12 +58,40 @@ salesflow-saas/backend/
 | 19 | Voice Call | `voice-call-flow-agent.md` | مكالمات هاتفية |
 | 20 | AI Rehearsal | `ai-rehearsal-agent.md` | تحضير اجتماعات |
 
+### 🔶 النمو الاستراتيجي والمؤسسي (10 وكلاء متقدمين)
+
+| # | الوكيل | الملف | المهمة |
+|---|--------|-------|--------|
+| 21 | Partnership Scout | `partnership-scout-agent.md` | استكشاف وبناء الشراكات (توزيع، JV، White-label) |
+| 22 | M&A Growth | `ma-growth-agent.md` | الاستحواذات والدمج والتوسع الجغرافي |
+| 23 | Contract Lifecycle | `contract-lifecycle-agent.md` | إدارة دورة حياة العقود |
+| 24 | Business Development | `business-development-agent.md` | تطوير الأعمال واكتشاف الفرص |
+| 25 | Supply Chain | `supply-chain-agent.md` | إدارة سلسلة التوريد والمشتريات |
+| 26 | Customer Success | `customer-success-agent.md` | نجاح العملاء والاحتفاظ |
+| 27 | Dynamic Pricing | `dynamic-pricing-agent.md` | التسعير الذكي الديناميكي |
+| 28 | Marketing Automation | `marketing-automation-agent.md` | التسويق المؤتمت متعدد القنوات |
+| 29 | Finance Automation | `finance-automation-agent.md` | المالية والفواتير والتحصيل |
+| 30 | Competitive Intelligence | `competitive-intelligence-agent.md` | الاستخبارات التنافسية |
+
 ## مراحل Pipeline
 
 ```
 NEW → QUALIFYING → QUALIFIED → OUTREACH → MEETING_SCHEDULED →
 MEETING_PREP → NEGOTIATION → CLOSING → WON / LOST / NURTURING
 ```
+
+## أنواع الشراكات المدعومة
+
+| النوع | الوكيل | الوصف |
+|-------|--------|-------|
+| توزيع | Partnership Scout | الشريك يبيع منتجاتنا |
+| تقنية | Partnership Scout | تكامل API |
+| Joint Venture | M&A Growth | كيان مشترك |
+| White-label | Partnership Scout | إعادة تغليف |
+| Franchise | M&A Growth | امتياز تجاري |
+| M&A | M&A Growth | اندماج واستحواذ |
+| Referral | Partnership Scout | إحالات |
+| Co-Marketing | Marketing Automation | حملات مشتركة |
 
 ## API Endpoints
 
@@ -68,7 +102,7 @@ POST /api/v1/pipeline/process-lead?tenant_id=xxx
 # تقدم يدوي
 POST /api/v1/pipeline/advance-stage?tenant_id=xxx
 
-# فحص صحة النظام
+# فحص صحة النظام (30 وكيل)
 GET /api/v1/agent-health/status
 
 # تحسين ذاتي
@@ -85,4 +119,5 @@ POST /api/v1/pipeline/run-agent/{agent_type}?tenant_id=xxx
 3. أضف الـ mapping في `executor.py` → `filename_map`
 4. أضف الـ actions في `executor.py` → `_build_actions`
 5. أضف الـ temperature/tokens في `executor.py`
-6. شغل `python tests/test_agent_system.py` للتحقق
+6. أضف الملف في `agent_health.py` → `expected_files` + `filename_map`
+7. شغل `python tests/test_agent_system.py` للتحقق

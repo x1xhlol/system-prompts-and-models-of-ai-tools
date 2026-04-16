@@ -13,9 +13,10 @@ sys.path.insert(0, str(BACKEND_DIR))
 
 PROMPTS_DIR = Path(__file__).parent.parent.parent / "ai-agents" / "prompts"
 
-# ── Test 1: All 20 prompt files exist ────────────────────
+# ── Test 1: All 30 prompt files exist ────────────────────
 
 EXPECTED_PROMPTS = [
+    # Original 20 Sales Agents
     "closer-agent.md",
     "lead-qualification-agent.md",
     "arabic-whatsapp-agent.md",
@@ -36,11 +37,22 @@ EXPECTED_PROMPTS = [
     "guarantee-claim-reviewer.md",
     "voice-call-flow-agent.md",
     "ai-rehearsal-agent.md",
+    # 10 Strategic Growth & Enterprise Agents
+    "partnership-scout-agent.md",
+    "ma-growth-agent.md",
+    "contract-lifecycle-agent.md",
+    "business-development-agent.md",
+    "supply-chain-agent.md",
+    "customer-success-agent.md",
+    "dynamic-pricing-agent.md",
+    "marketing-automation-agent.md",
+    "finance-automation-agent.md",
+    "competitive-intelligence-agent.md",
 ]
 
 
 def test_prompt_files_exist():
-    """All 20 prompt files should exist."""
+    """All 30 prompt files should exist."""
     missing = []
     for filename in EXPECTED_PROMPTS:
         path = PROMPTS_DIR / filename

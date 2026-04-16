@@ -324,6 +324,7 @@ class AgentExecutor:
         """Load system prompt from the ai-agents/prompts directory."""
         # Map agent_type to filename
         filename_map = {
+            # ── Original 20 Sales Agents ──
             "closer_agent": "closer-agent.md",
             "lead_qualification": "lead-qualification-agent.md",
             "arabic_whatsapp": "arabic-whatsapp-agent.md",
@@ -344,6 +345,17 @@ class AgentExecutor:
             "guarantee_reviewer": "guarantee-claim-reviewer.md",
             "voice_call": "voice-call-flow-agent.md",
             "ai_rehearsal": "ai-rehearsal-agent.md",
+            # ── 10 Strategic Growth & Enterprise Agents ──
+            "partnership_scout": "partnership-scout-agent.md",
+            "ma_growth": "ma-growth-agent.md",
+            "contract_lifecycle": "contract-lifecycle-agent.md",
+            "business_development": "business-development-agent.md",
+            "supply_chain": "supply-chain-agent.md",
+            "customer_success": "customer-success-agent.md",
+            "dynamic_pricing": "dynamic-pricing-agent.md",
+            "marketing_automation": "marketing-automation-agent.md",
+            "finance_automation": "finance-automation-agent.md",
+            "competitive_intel": "competitive-intelligence-agent.md",
         }
 
         filename = filename_map.get(agent_type)
@@ -388,6 +400,9 @@ Respond ONLY with valid JSON."""
             "sector_strategist": 0.5, "objection_handler": 0.4,
             "closer_agent": 0.4, "onboarding_coach": 0.5,
             "ai_rehearsal": 0.4,
+            # Strategic agents
+            "partnership_scout": 0.5, "business_development": 0.5,
+            "marketing_automation": 0.6, "customer_success": 0.4,
         }
         # Analytical agents need low temperature
         analytical = {
@@ -395,6 +410,10 @@ Respond ONLY with valid JSON."""
             "fraud_reviewer": 0.1, "revenue_attribution": 0.1,
             "guarantee_reviewer": 0.1, "qa_reviewer": 0.2,
             "affiliate_evaluator": 0.2,
+            # Strategic analytical
+            "ma_growth": 0.2, "contract_lifecycle": 0.1,
+            "supply_chain": 0.2, "dynamic_pricing": 0.15,
+            "finance_automation": 0.1, "competitive_intel": 0.2,
         }
         return creative.get(agent_type, analytical.get(agent_type, 0.3))
 
@@ -405,6 +424,12 @@ Respond ONLY with valid JSON."""
             "sector_strategist": 3000, "ai_rehearsal": 3000,
             "objection_handler": 2500, "closer_agent": 2500,
             "onboarding_coach": 3000,
+            # Strategic agents (complex analysis → need more tokens)
+            "partnership_scout": 4096, "ma_growth": 5000,
+            "contract_lifecycle": 5000, "business_development": 4096,
+            "supply_chain": 3000, "customer_success": 3000,
+            "dynamic_pricing": 2500, "marketing_automation": 4096,
+            "finance_automation": 4096, "competitive_intel": 3500,
         }
         return verbose.get(agent_type, 2048)
 
@@ -453,6 +478,34 @@ Respond ONLY with valid JSON."""
             severity = output.get("objection_severity", "low")
             if severity == "deal_breaker":
                 return {"needed": True, "reason": "Deal-breaking objection detected", "target": "sales_manager"}
+
+        # ── Strategic Agent Escalations ────────────────
+        if agent_type == "ma_growth":
+            valuation = output.get("ma_analysis", {}).get("estimated_valuation_sar", 0)
+            if valuation > 10_000_000:
+                return {"needed": True, "reason": f"M&A deal > 10M SAR (valuation: {valuation:,.0f})", "target": "ceo"}
+            elif valuation > 1_000_000:
+                return {"needed": True, "reason": f"M&A deal > 1M SAR", "target": "board"}
+
+        if agent_type == "contract_lifecycle":
+            risk = output.get("contract", {}).get("risk_analysis", {}).get("overall_risk", "low")
+            if risk in ("high", "critical"):
+                return {"needed": True, "reason": f"Contract risk: {risk}", "target": "legal"}
+
+        if agent_type == "finance_automation":
+            cashflow = output.get("finance", {}).get("cashflow_forecast", {})
+            if cashflow.get("risk_alert") == "critical":
+                return {"needed": True, "reason": "Critical cash flow risk", "target": "cfo"}
+
+        if agent_type == "customer_success":
+            churn = output.get("customer_success", {}).get("customer_health", {}).get("churn_risk", "low")
+            if churn == "critical":
+                return {"needed": True, "reason": "Critical churn risk — VIP customer", "target": "account_manager"}
+
+        if agent_type == "competitive_intel":
+            threat = output.get("competitive_intel", {}).get("threat_level", "low")
+            if threat in ("high", "critical"):
+                return {"needed": True, "reason": f"Competitive threat level: {threat}", "target": "strategy_team"}
 
         return None
 
@@ -598,6 +651,125 @@ Respond ONLY with valid JSON."""
                     "type": "send_retention_offer",
                     "offer": retention,
                     "customer_id": input_data.get("customer_id"),
+                })
+
+        # ── Partnership Scout ────────────────────────
+        if agent_type == "partnership_scout" and output.get("partnership_analysis"):
+            analysis = output["partnership_analysis"]
+            actions.append({
+                "type": "create_partnership_record",
+                "partner_name": analysis.get("partner_name"),
+                "partnership_type": analysis.get("partnership_type"),
+                "compatibility_score": analysis.get("compatibility_score"),
+            })
+            if analysis.get("partnership_proposal_ar"):
+                actions.append({
+                    "type": "queue_message",
+                    "channel": "email",
+                    "message": analysis["partnership_proposal_ar"],
+                })
+
+        # ── M&A Growth ───────────────────────────────
+        if agent_type == "ma_growth" and output.get("ma_analysis"):
+            ma = output["ma_analysis"]
+            actions.append({
+                "type": "create_ma_opportunity",
+                "target_company": ma.get("target_company"),
+                "valuation_sar": ma.get("estimated_valuation_sar"),
+                "go_no_go": ma.get("go_no_go"),
+            })
+
+        # ── Contract Lifecycle ───────────────────────
+        if agent_type == "contract_lifecycle" and output.get("contract"):
+            contract = output["contract"]
+            actions.append({
+                "type": "create_contract",
+                "contract_type": contract.get("type"),
+                "value_sar": contract.get("key_terms", {}).get("value_sar"),
+                "action_required": contract.get("action_required"),
+            })
+
+        # ── Business Development ─────────────────────
+        if agent_type == "business_development" and output.get("opportunity"):
+            opp = output["opportunity"]
+            actions.append({
+                "type": "create_business_opportunity",
+                "title": opp.get("title_ar"),
+                "market": opp.get("market"),
+                "opportunity_score": opp.get("opportunity_score"),
+            })
+
+        # ── Supply Chain ─────────────────────────────
+        if agent_type == "supply_chain" and output.get("supply_chain"):
+            sc = output["supply_chain"]
+            if sc.get("recommendation"):
+                actions.append({
+                    "type": "create_purchase_order",
+                    "supplier": sc["recommendation"].get("supplier"),
+                    "total_cost_sar": sc["recommendation"].get("total_cost_sar"),
+                })
+
+        # ── Customer Success ─────────────────────────
+        if agent_type == "customer_success" and output.get("customer_success"):
+            cs = output["customer_success"]
+            if cs.get("message_to_customer_ar"):
+                actions.append({
+                    "type": "send_whatsapp",
+                    "message": cs["message_to_customer_ar"],
+                    "phone": input_data.get("contact_phone", ""),
+                })
+            for action in cs.get("retention_actions", []):
+                if action.get("urgency") == "now":
+                    actions.append({
+                        "type": "trigger_event",
+                        "event": "upsell_opportunity_detected",
+                        "lead_id": input_data.get("lead_id"),
+                    })
+
+        # ── Dynamic Pricing ──────────────────────────
+        if agent_type == "dynamic_pricing" and output.get("pricing"):
+            pricing = output["pricing"]
+            actions.append({
+                "type": "update_pricing",
+                "recommended_price_sar": pricing.get("recommended_price_sar"),
+                "strategy": pricing.get("strategy"),
+            })
+
+        # ── Marketing Automation ─────────────────────
+        if agent_type == "marketing_automation" and output.get("campaign"):
+            campaign = output["campaign"]
+            actions.append({
+                "type": "launch_campaign",
+                "campaign_type": campaign.get("type"),
+                "name": campaign.get("name_ar"),
+                "schedule": campaign.get("schedule"),
+            })
+
+        # ── Finance Automation ───────────────────────
+        if agent_type == "finance_automation" and output.get("finance"):
+            fin = output["finance"]
+            if fin.get("invoice"):
+                actions.append({
+                    "type": "issue_invoice",
+                    "invoice_data": fin["invoice"],
+                    "zatca_compliant": fin["invoice"].get("zatca_compliant", True),
+                })
+            for col in fin.get("collection", {}).get("collection_actions", []):
+                if col.get("message_ar"):
+                    actions.append({
+                        "type": "send_collection_reminder",
+                        "message": col["message_ar"],
+                        "invoice_id": col.get("invoice_id"),
+                    })
+
+        # ── Competitive Intelligence ─────────────────
+        if agent_type == "competitive_intel" and output.get("competitive_intel"):
+            ci = output["competitive_intel"]
+            if ci.get("battle_card"):
+                actions.append({
+                    "type": "update_battlecard",
+                    "competitor": ci.get("competitor_profile", {}).get("name"),
+                    "battle_card": ci["battle_card"],
                 })
 
         return actions

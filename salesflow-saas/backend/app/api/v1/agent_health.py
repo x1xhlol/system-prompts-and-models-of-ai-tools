@@ -33,7 +33,7 @@ async def full_system_status(db: AsyncSession = Depends(get_db)):
     🏥 Full AI agent ecosystem health check.
     
     Checks:
-    1. All 20 prompt files exist and are readable
+    1. All 30 prompt files exist and are readable
     2. Agent router has all events registered
     3. Pipeline engine is configured correctly
     4. LLM provider is reachable
@@ -120,7 +120,7 @@ async def full_system_status(db: AsyncSession = Depends(get_db)):
 
 @router.get("/prompts")
 async def check_prompt_files():
-    """Check all 20 AI agent prompt files."""
+    """Check all 30 AI agent prompt files."""
     return _check_prompts()
 
 
@@ -156,6 +156,17 @@ async def get_agent_details():
         "guarantee_reviewer": "guarantee-claim-reviewer.md",
         "voice_call": "voice-call-flow-agent.md",
         "ai_rehearsal": "ai-rehearsal-agent.md",
+        # Strategic Growth & Enterprise Agents
+        "partnership_scout": "partnership-scout-agent.md",
+        "ma_growth": "ma-growth-agent.md",
+        "contract_lifecycle": "contract-lifecycle-agent.md",
+        "business_development": "business-development-agent.md",
+        "supply_chain": "supply-chain-agent.md",
+        "customer_success": "customer-success-agent.md",
+        "dynamic_pricing": "dynamic-pricing-agent.md",
+        "marketing_automation": "marketing-automation-agent.md",
+        "finance_automation": "finance-automation-agent.md",
+        "competitive_intel": "competitive-intelligence-agent.md",
     }
 
     detail = []
@@ -205,6 +216,7 @@ async def get_improvement_history():
 def _check_prompts() -> dict:
     """Check all prompt files exist and are readable."""
     expected_files = [
+        # Original 20 Sales Agents
         "closer-agent.md",
         "lead-qualification-agent.md",
         "arabic-whatsapp-agent.md",
@@ -225,6 +237,17 @@ def _check_prompts() -> dict:
         "guarantee-claim-reviewer.md",
         "voice-call-flow-agent.md",
         "ai-rehearsal-agent.md",
+        # 10 Strategic Growth & Enterprise Agents
+        "partnership-scout-agent.md",
+        "ma-growth-agent.md",
+        "contract-lifecycle-agent.md",
+        "business-development-agent.md",
+        "supply-chain-agent.md",
+        "customer-success-agent.md",
+        "dynamic-pricing-agent.md",
+        "marketing-automation-agent.md",
+        "finance-automation-agent.md",
+        "competitive-intelligence-agent.md",
     ]
 
     files = []
