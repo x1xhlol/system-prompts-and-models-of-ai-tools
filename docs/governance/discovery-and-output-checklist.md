@@ -2,6 +2,8 @@
 
 **Canonical:** [`MASTER_OPERATING_PROMPT.md`](../../MASTER_OPERATING_PROMPT.md).
 
+**Tier-1 bundle (tracks, radar, execution/trust specs, Saudi register, ADR gates):** [`../dealix-six-tracks.md`](../dealix-six-tracks.md), [`../blueprint-master-architecture.md`](../blueprint-master-architecture.md), [`technology-radar-tier1.md`](technology-radar-tier1.md), [`execution-fabric.md`](execution-fabric.md), [`saudi-compliance-and-ai-governance.md`](saudi-compliance-and-ai-governance.md), [`../enterprise-readiness.md`](../enterprise-readiness.md).
+
 ## Before writing code
 
 Produce a **code-backed** map (paths, modules, configs), not guesses:

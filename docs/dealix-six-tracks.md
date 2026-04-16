@@ -31,9 +31,9 @@ Use this to avoid claiming components that are not yet wired in production. Refr
 | Area | Status | Notes |
 |------|--------|--------|
 | Decision plane (memos, structured outputs, routing) | **Partial** | LangGraph / agents / `AgentExecutor`; tighten schema + evidence on all governed paths |
-| Execution plane (durable, crash-proof, versioned workers) | **Partial** | Celery + flows today; **Temporal** is a documented Tier-1 target only — see [`docs/governance/execution-fabric.md`](governance/execution-fabric.md) (when added) |
+| Execution plane (durable, crash-proof, versioned workers) | **Partial** | Celery + flows today; **Temporal** is a documented Tier-1 target only — see [`docs/governance/execution-fabric.md`](governance/execution-fabric.md) |
 | Trust plane (tool verification, evals, red-team) | **Partial** | Audit, `security_gate`, policy engine; expand verification ledger consistently |
-| Data plane (semantic metrics, single lineage catalog) | **Partial** | Postgres + patterns; semantic layer / lineage tool TBD per [`technology-radar-tier1.md`](governance/technology-radar-tier1.md) (when added) |
+| Data plane (semantic metrics, single lineage catalog) | **Partial** | Postgres + patterns; semantic layer / lineage tool TBD per [`technology-radar-tier1.md`](governance/technology-radar-tier1.md) |
 | Operating plane (GitHub rulesets, env promotion, OIDC) | **Partial** | Documented in [`github-and-release.md`](governance/github-and-release.md); enforce per org tier |
 | OPA / OpenFGA / Vault / Keycloak as policy & IAM | **Planned** | Target architecture only until ADR + spike + evidence |
 
@@ -43,5 +43,6 @@ Use this to avoid claiming components that are not yet wired in production. Refr
 
 - Master execution matrix (agents × events × HITL): [`Execution_Matrix.md`](../Execution_Matrix.md)  
 - Architecture pack (layers): [`Architecture_Pack.md`](../Architecture_Pack.md)  
-- Tier-1 blueprint (index): [`docs/blueprint-master-architecture.md`](blueprint-master-architecture.md) (when present)  
-- 90-day Tier-1 matrix: [`docs/execution-matrix-90d-tier1.md`](execution-matrix-90d-tier1.md) (when present)
+- Tier-1 blueprint (index): [`docs/blueprint-master-architecture.md`](blueprint-master-architecture.md)  
+- 90-day Tier-1 matrix: [`docs/execution-matrix-90d-tier1.md`](execution-matrix-90d-tier1.md)  
+- Enterprise readiness checklist: [`docs/enterprise-readiness.md`](enterprise-readiness.md)

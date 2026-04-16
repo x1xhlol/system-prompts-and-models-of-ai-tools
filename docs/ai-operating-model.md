@@ -22,6 +22,7 @@ This repository follows the **Master Operating Prompt** ([`MASTER_OPERATING_PROM
 | [governance/technology-radar-tier1.md](governance/technology-radar-tier1.md) | Official vs optional vs pilot stack |
 | [governance/saudi-compliance-and-ai-governance.md](governance/saudi-compliance-and-ai-governance.md) | PDPL posture, NCA readiness, NIST/OWASP alignment |
 | [execution-matrix-90d-tier1.md](execution-matrix-90d-tier1.md) | Phase 0–1 outcomes vs agent matrix |
+| [enterprise-readiness.md](enterprise-readiness.md) | Enterprise / B2B readiness checklist |
 | [blueprint-master-architecture.md](blueprint-master-architecture.md) | Master blueprint index |
 
 ## Planes at a glance

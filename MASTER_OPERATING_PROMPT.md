@@ -26,6 +26,7 @@ Deep-dive topics live under [`docs/governance/`](docs/governance/) (keep this fi
 | Saudi compliance & AI governance register | [`docs/governance/saudi-compliance-and-ai-governance.md`](docs/governance/saudi-compliance-and-ai-governance.md) |
 | Master architecture blueprint (index) | [`docs/blueprint-master-architecture.md`](docs/blueprint-master-architecture.md) |
 | 90-day Tier-1 execution matrix | [`docs/execution-matrix-90d-tier1.md`](docs/execution-matrix-90d-tier1.md) |
+| Enterprise readiness (B2B checklist) | [`docs/enterprise-readiness.md`](docs/enterprise-readiness.md) |
 | ADR: Temporal / OPA / OpenFGA spikes | [`docs/adr/0001-tier1-execution-policy-spikes.md`](docs/adr/0001-tier1-execution-policy-spikes.md) |
 
 ---

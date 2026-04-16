@@ -137,6 +137,7 @@ The **institutional** operating prompt and governance library live at the **repo
 - [`../docs/dealix-six-tracks.md`](../docs/dealix-six-tracks.md) — six OS tracks, code pointers, implementation status snapshot.
 - [`../docs/blueprint-master-architecture.md`](../docs/blueprint-master-architecture.md) — master blueprint index.
 - [`../docs/execution-matrix-90d-tier1.md`](../docs/execution-matrix-90d-tier1.md) — Phase 0–1 Tier-1 execution matrix.
+- [`../docs/enterprise-readiness.md`](../docs/enterprise-readiness.md) — B2B / enterprise readiness checklist.
 
 **Governance library** (`../docs/governance/`)
 

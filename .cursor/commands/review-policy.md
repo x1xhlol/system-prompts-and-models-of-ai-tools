@@ -7,6 +7,7 @@ Scan the current change or branch against the policy library before commit or PR
 1. [docs/governance/approval-policy.md](../../docs/governance/approval-policy.md) — A/R/S, Class A/B/C, evidence packs.
 2. [docs/governance/trust-fabric.md](../../docs/governance/trust-fabric.md) — security gate, tool verification, audit.
 3. [docs/governance/github-and-release.md](../../docs/governance/github-and-release.md) — branch and environment rules.
+4. [docs/enterprise-readiness.md](../../docs/enterprise-readiness.md) — B2B checklist before promising enterprise posture.
 
 ## Output
 

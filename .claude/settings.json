@@ -1,6 +1,6 @@
 {
   "theme": "dark",
-  "projectInstructions": "Follow Dealix Sovereign OS: MASTER_OPERATING_PROMPT.md (canonical), AGENTS.md, CLAUDE.md, docs/ai-operating-model.md, docs/governance/approval-policy.md. Agentic by design, governed by policy, proven by evidence. Decision plane = structured cognition; execution plane = durable workflows only. No external commitment without approval + reversibility + evidence.",
+  "projectInstructions": "Follow Dealix Sovereign OS: MASTER_OPERATING_PROMPT.md (canonical), AGENTS.md, CLAUDE.md, docs/ai-operating-model.md, docs/dealix-six-tracks.md, docs/governance/approval-policy.md, docs/governance/technology-radar-tier1.md, docs/enterprise-readiness.md. Agentic by design, governed by policy, proven by evidence. Decision plane = structured cognition; execution plane = durable workflows only. No external commitment without approval + reversibility + evidence. Tier-1 targets (Temporal, OPA, OpenFGA) require ADR docs/adr/0001-tier1-execution-policy-spikes.md exit criteria before production claims.",
   "customCommands": [
     {
       "name": "architecture-map",

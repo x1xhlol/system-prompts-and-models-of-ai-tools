@@ -15,6 +15,7 @@ CONSTITUTION_PATHS = [
     "docs/dealix-six-tracks.md",
     "docs/blueprint-master-architecture.md",
     "docs/execution-matrix-90d-tier1.md",
+    "docs/enterprise-readiness.md",
     "docs/adr/0001-tier1-execution-policy-spikes.md",
     "docs/governance/README.md",
     "docs/governance/approval-policy.md",
