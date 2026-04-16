@@ -3,6 +3,24 @@
 This document is the **canonical operating constitution** for AI-assisted engineering in this repository.  
 Root [`AGENTS.md`](AGENTS.md) and [`CLAUDE.md`](CLAUDE.md) summarize and enforce it; details live here and in [`docs/ai-operating-model.md`](docs/ai-operating-model.md) and [`docs/governance/approval-policy.md`](docs/governance/approval-policy.md).
 
+## Table of contents — expanded governance library
+
+Deep-dive topics live under [`docs/governance/`](docs/governance/) (keep this file canonical; use links for navigation and onboarding).
+
+| Topic | Expanded doc |
+|-------|----------------|
+| Governance index | [`docs/governance/README.md`](docs/governance/README.md) |
+| Planes, layers, runtimes | [`docs/governance/planes-and-runtime.md`](docs/governance/planes-and-runtime.md) |
+| Approvals, reversibility, sensitivity, action classes | [`docs/governance/approval-policy.md`](docs/governance/approval-policy.md) |
+| Events, schemas, contracts | [`docs/governance/events-and-schema.md`](docs/governance/events-and-schema.md) |
+| Trust fabric, tool verification, observability, security gate | [`docs/governance/trust-fabric.md`](docs/governance/trust-fabric.md) |
+| Data plane, connectors, semantic metrics | [`docs/governance/connectors-and-data-plane.md`](docs/governance/connectors-and-data-plane.md) |
+| GitHub, CI/CD, environments, retention | [`docs/governance/github-and-release.md`](docs/governance/github-and-release.md) |
+| Design system, Arabic-first / bilingual | [`docs/governance/design-and-arabic.md`](docs/governance/design-and-arabic.md) |
+| Discovery, phasing, 20-point checklist, Arabic bootstrap | [`docs/governance/discovery-and-output-checklist.md`](docs/governance/discovery-and-output-checklist.md) |
+| Strategic ops, M&A, PMI | [`docs/governance/strategic-ops-pmi.md`](docs/governance/strategic-ops-pmi.md) |
+| Planes + product routing (overview) | [`docs/ai-operating-model.md`](docs/ai-operating-model.md) |
+
 ---
 
 ## Roles (operating stance)

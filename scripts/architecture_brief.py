@@ -6,13 +6,30 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-# Paths that should exist for Dealix + constitution wiring
-KEY_PATHS = [
+# Constitution + governance library + Cursor command stubs
+CONSTITUTION_PATHS = [
     "MASTER_OPERATING_PROMPT.md",
     "AGENTS.md",
     "CLAUDE.md",
     "docs/ai-operating-model.md",
+    "docs/governance/README.md",
     "docs/governance/approval-policy.md",
+    "docs/governance/planes-and-runtime.md",
+    "docs/governance/events-and-schema.md",
+    "docs/governance/trust-fabric.md",
+    "docs/governance/connectors-and-data-plane.md",
+    "docs/governance/github-and-release.md",
+    "docs/governance/design-and-arabic.md",
+    "docs/governance/discovery-and-output-checklist.md",
+    "docs/governance/strategic-ops-pmi.md",
+    ".cursor/commands/architecture-map.md",
+    ".cursor/commands/review-policy.md",
+    ".cursor/commands/generate-evidence.md",
+    ".cursor/commands/release-gate.md",
+]
+
+# Dealix application spine (sample)
+SPINE_PATHS = [
     "salesflow-saas/AGENTS.md",
     "salesflow-saas/backend/app/main.py",
     "salesflow-saas/backend/app/services/agents/router.py",
@@ -27,14 +44,14 @@ KEY_PATHS = [
 
 def main() -> None:
     print(f"Repository root: {ROOT}\n")
-    print("--- Constitution & governance ---")
-    for rel in KEY_PATHS[:6]:
+    print("--- Constitution, governance library, Cursor commands ---")
+    for rel in CONSTITUTION_PATHS:
         p = ROOT / rel
         tag = "OK" if p.exists() else "MISS"
         print(f"  [{tag}] {rel}")
 
     print("\n--- Application spine (sample) ---")
-    for rel in KEY_PATHS[6:]:
+    for rel in SPINE_PATHS:
         p = ROOT / rel
         tag = "OK" if p.exists() else "MISS"
         extra = ""
@@ -46,7 +63,10 @@ def main() -> None:
                 pass
         print(f"  [{tag}] {rel}{extra}")
 
-    print("\nNext: read MASTER_OPERATING_PROMPT.md + docs/ai-operating-model.md; then map stack per AGENTS.md before coding.")
+    print(
+        "\nNext: read MASTER_OPERATING_PROMPT.md (TOC) + docs/governance/README.md; "
+        "then docs/ai-operating-model.md; map stack per AGENTS.md before coding."
+    )
 
 
 if __name__ == "__main__":

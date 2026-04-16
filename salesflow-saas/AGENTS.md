@@ -123,12 +123,29 @@ cd frontend && npm run dev
 
 ## Repository constitution (monorepo root)
 
-The **institutional** operating prompt and governance docs live at the **repository root** (parent of `salesflow-saas/`):
+The **institutional** operating prompt and governance library live at the **repository root** (parent of `salesflow-saas/`). This app must stay aligned with those files.
 
-- [`../MASTER_OPERATING_PROMPT.md`](../MASTER_OPERATING_PROMPT.md) — Master Operating Prompt (planes, trust fabric, events, GitHub, Arabic-first).
-- [`../AGENTS.md`](../AGENTS.md) — short agents constitution (references master + A/R/S).
-- [`../CLAUDE.md`](../CLAUDE.md) — Claude/repo-native rules.
-- [`../docs/ai-operating-model.md`](../docs/ai-operating-model.md) — decision / execution / control / data / trust summary + pointers into this app.
-- [`../docs/governance/approval-policy.md`](../docs/governance/approval-policy.md) — approval, reversibility, sensitivity, action classes.
+**Entry points**
 
-This file (`salesflow-saas/AGENTS.md`) is **app-specific** (stack, conventions, Class A/B/C for shipping). Align both layers: app rules must not contradict root policy.
+- [`../MASTER_OPERATING_PROMPT.md`](../MASTER_OPERATING_PROMPT.md) — canonical Master Operating Prompt (TOC links to all topics).
+- [`../AGENTS.md`](../AGENTS.md) — repo agents constitution + full governance index.
+- [`../CLAUDE.md`](../CLAUDE.md) — Claude/repo-native rules; Cursor slash commands live under [`../.cursor/commands/`](../.cursor/commands/).
+
+**Operating overview**
+
+- [`../docs/ai-operating-model.md`](../docs/ai-operating-model.md) — five planes, mermaid flow, product-type routing, Dealix code pointers.
+
+**Governance library** (`../docs/governance/`)
+
+- [`../docs/governance/README.md`](../docs/governance/README.md) — index of governance docs.
+- [`../docs/governance/planes-and-runtime.md`](../docs/governance/planes-and-runtime.md) — planes, layers, runtimes.
+- [`../docs/governance/approval-policy.md`](../docs/governance/approval-policy.md) — A/R/S, Class A/B/C, evidence packs, cross-matrices.
+- [`../docs/governance/events-and-schema.md`](../docs/governance/events-and-schema.md) — events, JSON Schema, AsyncAPI.
+- [`../docs/governance/trust-fabric.md`](../docs/governance/trust-fabric.md) — trust substrate, tool verification, security gate.
+- [`../docs/governance/connectors-and-data-plane.md`](../docs/governance/connectors-and-data-plane.md) — facades, data plane, semantic metrics.
+- [`../docs/governance/github-and-release.md`](../docs/governance/github-and-release.md) — GitHub SDLC, environments, OIDC.
+- [`../docs/governance/design-and-arabic.md`](../docs/governance/design-and-arabic.md) — design system, RTL, Arabic-first.
+- [`../docs/governance/discovery-and-output-checklist.md`](../docs/governance/discovery-and-output-checklist.md) — discovery, phasing, 20-point report, Arabic bootstrap.
+- [`../docs/governance/strategic-ops-pmi.md`](../docs/governance/strategic-ops-pmi.md) — strategic ops, M&A, PMI.
+
+This file (`salesflow-saas/AGENTS.md`) is **app-specific** (stack, conventions, Class A/B/C for shipping). It must **not** contradict root policy or the governance library.

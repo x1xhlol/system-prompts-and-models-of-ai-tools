@@ -1,6 +1,6 @@
 # Approval, reversibility, sensitivity — policy model
 
-Canonical context: [`MASTER_OPERATING_PROMPT.md`](../../MASTER_OPERATING_PROMPT.md). This file is the **short operational reference** for classifying work before it ships.
+Canonical context: [`MASTER_OPERATING_PROMPT.md`](../../MASTER_OPERATING_PROMPT.md). This file is the **operational reference** for classifying work before it ships. Expanded topics: [README.md](README.md).
 
 ## Approval class (A)
 
@@ -22,6 +22,17 @@ Canonical context: [`MASTER_OPERATING_PROMPT.md`](../../MASTER_OPERATING_PROMPT.
 
 **Rule of thumb:** R2/R3 require explicit HITL (human-in-the-loop) or committee path before execution-plane runs.
 
+### Reversibility vs approval (cross-check)
+
+| Reversibility | Typical minimum approval | Notes |
+|---------------|-------------------------|--------|
+| **R0** | A0–A1 | Auto or lead sign-off per team policy |
+| **R1** | A1 | Revert still needs accountable owner |
+| **R2** | A2 | Legal/finance/functional head as appropriate |
+| **R3** | A3 | Exec/board path for binding or public commitments |
+
+Higher sensitivity (below) can **raise** the required approval even when reversibility is R0–R1 (e.g. S3 bulk export is never A0).
+
 ## Sensitivity class (S)
 
 | Class | Data |
@@ -32,6 +43,15 @@ Canonical context: [`MASTER_OPERATING_PROMPT.md`](../../MASTER_OPERATING_PROMPT.
 | **S3** | Regulated / highly sensitive / personal / board |
 
 **Rule:** No S2/S3 across tools, providers, or LLM endpoints without policy review and routing (e.g. local/private inference where required).
+
+### Sensitivity vs action class
+
+| Data / context | Default action class | Approval note |
+|----------------|---------------------|----------------|
+| **S0** | Class A possible | Still follow repo conventions |
+| **S1** | Class A for read-only; Class B for writes affecting others | Team policy |
+| **S2** | Class B minimum for export, integration, or model routing | No silent tool/provider hops |
+| **S3** | Class B minimum; often A2–A3 | No LLM or third-party tool without explicit routing review |
 
 ## Actor type
 
@@ -45,6 +65,18 @@ Observers and recommenders do **not** commit. Executors and workflows act only t
 - **Class B** — Approval required: prod config, public publish, customer messages, migrations, RBAC, release promotion, external APIs.  
 - **Class C** — Forbidden: exfiltration, bypass protections, silent destructive changes, disabling gates, claims without evidence.
 
+### Mapping A / R / S to Class A / B / C
+
+| Pattern | Class | Rationale |
+|---------|-------|-----------|
+| Read-only discovery, local drafts, unit tests, lint | **A** | No durable external commitment |
+| R2/R3 or external side effect (message send, contract, money, public URL) | **B** or blocked until A met | Execution plane + HITL |
+| R3 with inadequate A (e.g. board doc at S3 with A1 only) | **C** (do not ship) | Policy violation |
+| Any claim of “done” without tests/logs/artifact | **C** | Evidence discipline |
+| S2/S3 sent to new vendor, model, or MCP without review | **B** minimum | Data residency and tool governance |
+
+**Executor systems and automated workflows** may only perform Class A actions autonomously where policy explicitly allows; otherwise they enqueue or pause for approval.
+
 ## Evidence pack (minimum)
 
 For Class B and any R2/R3 decision: sources, assumptions, timestamps/freshness, compliance notes where relevant, alternatives, rollback/compensation, provenance score, pointers to tests or run artifacts.
@@ -53,4 +85,4 @@ A **decision memo without an evidence pack is incomplete.**
 
 ## GitHub governance (surface)
 
-Protected `main`; required reviews and checks; CODEOWNERS as team scales; secret scanning and dependency review; prefer OIDC for cloud deploy keys. Align branch rules with environment promotion (dev → staging → canary → prod).
+See [github-and-release.md](github-and-release.md) for the full model. Summary: protected `main`, required reviews and checks, CODEOWNERS as team scales, secret scanning and dependency review, OIDC for deploy keys where possible, environment promotion (dev → staging → canary → prod).
