@@ -174,6 +174,11 @@ related:
 1. [`FIRST_THREE_CLIENTS_PLAN_AR.md`](FIRST_THREE_CLIENTS_PLAN_AR.md) — استهداف، رسائل، إيقاع أسبوع، إغلاق pilot.  
 2. [`LIVE_DEPLOYMENT_GUIDE_AR.md`](LIVE_DEPLOYMENT_GUIDE_AR.md) — تركيب عند عميل، بيئة، بوابات، مراقبة.  
 3. [`AUTOMATED_REVENUE_ENGINE_AR.md`](AUTOMATED_REVENUE_ENGINE_AR.md) — تدفق capture→qualify→outreach مع حدود قانونية وبوابة بشرية.
+4. [`GTM_W1_PIPELINE_OUTREACH_EXECUTION_AR.md`](GTM_W1_PIPELINE_OUTREACH_EXECUTION_AR.md) — تنفيذ أسبوع 1 وبوابة `8+ demos`.
+5. [`GTM_W2_DEMO_PROPOSAL_ENGINE_AR.md`](GTM_W2_DEMO_PROPOSAL_ENGINE_AR.md) — تنفيذ أسبوع 2 وبوابة `4+ proposals`.
+6. [`GTM_W3_FIRST_PAID_CLOSE_AR.md`](GTM_W3_FIRST_PAID_CLOSE_AR.md) — تنفيذ أسبوع 3 (أول عميل مدفوع + تجهيز النشر).
+7. [`GTM_W4_PILOT_EVIDENCE_LOOP_AR.md`](GTM_W4_PILOT_EVIDENCE_LOOP_AR.md) — تنفيذ أسبوع 4 (pilot حي + case-study + referral).
+8. [`GTM_GOVERNANCE_KPI_RHYTHM_AR.md`](GTM_GOVERNANCE_KPI_RHYTHM_AR.md) — الإيقاع اليومي/الأسبوعي وبوابات KPI.
 
 ---
 

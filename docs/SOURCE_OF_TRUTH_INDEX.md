@@ -15,6 +15,11 @@
 | أول 3 عملاء B2B (AR) | [`FIRST_THREE_CLIENTS_PLAN_AR.md`](FIRST_THREE_CLIENTS_PLAN_AR.md) | — | Founder + Sales | أسبوعيًا حتى 3 pilots موقّعة |
 | دليل النشر الحي عند عميل (AR) | [`LIVE_DEPLOYMENT_GUIDE_AR.md`](LIVE_DEPLOYMENT_GUIDE_AR.md) | — | Platform + Release | مع كل pilot أو تغيير بيئة |
 | محرك إيراد آلي — حدود وتشغيل (AR) | [`AUTOMATED_REVENUE_ENGINE_AR.md`](AUTOMATED_REVENUE_ENGINE_AR.md) | — | Growth + Platform | عند تغيير سياسة outreach أو قناة inbound |
+| تنفيذ GTM أسبوع 1 (AR) | [`GTM_W1_PIPELINE_OUTREACH_EXECUTION_AR.md`](GTM_W1_PIPELINE_OUTREACH_EXECUTION_AR.md) | — | Founder + Sales | يوميًا خلال الأسبوع 1 |
+| تنفيذ GTM أسبوع 2 (AR) | [`GTM_W2_DEMO_PROPOSAL_ENGINE_AR.md`](GTM_W2_DEMO_PROPOSAL_ENGINE_AR.md) | — | Founder + Sales + Product | يوميًا خلال الأسبوع 2 |
+| تنفيذ GTM أسبوع 3 (AR) | [`GTM_W3_FIRST_PAID_CLOSE_AR.md`](GTM_W3_FIRST_PAID_CLOSE_AR.md) | — | Founder + Sales + Release | يوميًا خلال الأسبوع 3 |
+| تنفيذ GTM أسبوع 4 (AR) | [`GTM_W4_PILOT_EVIDENCE_LOOP_AR.md`](GTM_W4_PILOT_EVIDENCE_LOOP_AR.md) | — | Program + Product + Sales | مرتين أسبوعيًا خلال الأسبوع 4 |
+| إيقاع GTM + KPI (AR) | [`GTM_GOVERNANCE_KPI_RHYTHM_AR.md`](GTM_GOVERNANCE_KPI_RHYTHM_AR.md) | — | Founder + Program | يومي + أسبوعي خلال 30 يوم |
 | إغلاق Tier-1 (50 بندًا EN) | [`salesflow-saas/docs/tier1-master-closure-checklist.md`](../salesflow-saas/docs/tier1-master-closure-checklist.md) | — | Program | مع PR إغلاق |
 | سجل الأنظمة الفرعية | [`architecture-register.md`](architecture-register.md) | تكرار حالة في checklists طالما عمود واحد للحالة | Platform | أسبوعيًا |
 | مصفوفة التنفيذ | [`adr/0002-execution-matrix-canonical-source.md`](adr/0002-execution-matrix-canonical-source.md) + الملف الذي يحدده الـ ADR | نسخ قديمة بأسماء متعددة إن وُجدت | PMO | عند إعادة تسمية المصفوفة |
