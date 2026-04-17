@@ -36,6 +36,18 @@ async def list_evidence_packs(pack_type: Optional[str] = None) -> Dict[str, Any]
 @router.get("/{pack_id}")
 async def get_evidence_pack(pack_id: str) -> Dict[str, Any]:
     """Get a specific evidence pack."""
+    if pack_id == "tier1-demo":
+        return {
+            "id": pack_id,
+            "status": "ready",
+            "sources": ["ci:dealix-ci", "pytest:evidence_packs"],
+            "assumptions": ["Demo pack for Executive / Trust surfaces"],
+            "confidence": 0.85,
+            "approvals": ["governance_lead"],
+            "verification_status": "partially_verified",
+            "actual_tool_call": None,
+            "contradictions": [],
+        }
     return {"id": pack_id, "status": "not_found"}
 
 

@@ -53,6 +53,7 @@ async def test_live_readiness_endpoint(client):
     assert "categories" in payload
     assert "blocking" in payload
     assert "integration_docs" in payload
+    assert "trust_severity_note" in payload
 
 
 @pytest.mark.asyncio
@@ -68,6 +69,8 @@ async def test_go_live_gate_returns_403_with_report_when_not_fully_ready(client)
     assert "summary" in payload
     assert "cli_examples" in payload
     assert "warnings" in payload
+    assert "trust_severity_note" in payload
+    assert payload["trust_severity_note"]["policy_docs"]
     if not payload["launch_allowed"]:
         assert response.status_code == 403
         assert payload["readiness_percent"] < 100.0

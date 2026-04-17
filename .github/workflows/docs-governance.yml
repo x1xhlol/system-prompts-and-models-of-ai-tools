@@ -6,9 +6,15 @@ on:
     branches: [main]
     paths:
       - "docs/**"
+      - "salesflow-saas/docs/**"
       - "scripts/architecture_brief.py"
       - "scripts/check_docs_links.py"
+      - "scripts/check_no_overclaim.py"
+      - "scripts/check_release_readiness_matrix.py"
+      - "scripts/check_source_of_truth_index.py"
+      - "scripts/check_glossary_consistency.py"
       - ".github/workflows/docs-governance.yml"
+      - ".github/workflows/release-readiness-rc-gate.yml"
       - "MASTER_OPERATING_PROMPT.md"
       - "AGENTS.md"
       - "CLAUDE.md"
@@ -19,9 +25,15 @@ on:
     branches: [main]
     paths:
       - "docs/**"
+      - "salesflow-saas/docs/**"
       - "scripts/architecture_brief.py"
       - "scripts/check_docs_links.py"
+      - "scripts/check_no_overclaim.py"
+      - "scripts/check_release_readiness_matrix.py"
+      - "scripts/check_source_of_truth_index.py"
+      - "scripts/check_glossary_consistency.py"
       - ".github/workflows/docs-governance.yml"
+      - ".github/workflows/release-readiness-rc-gate.yml"
       - "MASTER_OPERATING_PROMPT.md"
       - "AGENTS.md"
       - "CLAUDE.md"
@@ -49,3 +61,43 @@ jobs:
         with:
           python-version: "3.12"
       - run: python scripts/check_docs_links.py
+
+  no_overclaim:
+    name: Docs no-overclaim scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/check_no_overclaim.py
+
+  release_readiness_matrix:
+    name: Release readiness matrix structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/check_release_readiness_matrix.py
+
+  glossary_consistency:
+    name: Glossary contract names (minimal)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/check_glossary_consistency.py
+
+  source_of_truth_index:
+    name: Source of truth index (minimal)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/check_source_of_truth_index.py

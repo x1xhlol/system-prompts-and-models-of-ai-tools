@@ -3,12 +3,15 @@
 from fastapi import APIRouter
 from typing import Any, Dict
 
+from app.services.core_os.tier1_demo_bundle import build_exec_weekly_governance_contract_from_demo_bundle
+
 router = APIRouter(prefix="/executive-room", tags=["Executive Room"])
 
 
 @router.get("/snapshot")
 async def executive_snapshot() -> Dict[str, Any]:
     """Full executive room snapshot."""
+    exec_weekly = build_exec_weekly_governance_contract_from_demo_bundle()
     return {
         "revenue": {
             "actual": 0,
@@ -45,6 +48,7 @@ async def executive_snapshot() -> Dict[str, Any]:
             "ready": 0,
             "pending_review": 0,
         },
+        "tier1_exec_surface": exec_weekly.model_dump(mode="json"),
     }
 
 

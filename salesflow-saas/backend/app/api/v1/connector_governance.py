@@ -9,7 +9,16 @@ router = APIRouter(prefix="/connectors", tags=["Connector Governance"])
 @router.get("/governance")
 async def governance_board() -> Dict[str, Any]:
     """Get connector governance board."""
-    return {"connectors": [], "total": 0}
+    return {
+        "connectors": [],
+        "total": 0,
+        "tier1_connector_surface": {
+            "policy_ref": "docs/ws5-connector-events-metrics.md",
+            "approval_hook": "Class B before external_commitment",
+            "audit_coverage": "trace_id/correlation_id required on facade calls",
+            "health_model": "healthy|degraded|error",
+        },
+    }
 
 
 @router.post("/{connector_key}/health-check")

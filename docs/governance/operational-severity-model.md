@@ -16,3 +16,12 @@ Use this scale for **policy violations**, **ledger contradictions**, **connector
 
 - اربط كل حدث حوكمة بـ `severity` (V0–V3) في السجلات واللوحات.  
 - صفوف [`RELEASE_READINESS_MATRIX_AR.md`](../RELEASE_READINESS_MATRIX_AR.md) تلخص أعلى خطورة مفتوحة لكل مرشح إصدار.
+
+## V2 / V3 وعلاقتها ببوابة الإطلاق (`go-live-gate`)
+
+- **V2 (Customer-impacting):** يجب أن يوقف ترقية **canary → prod** (أو يفرض استثناءً مسجّلًا) حتى يُخفّف الخطر؛ لا يكفي تسجيل الحدث في لوحة فقط.  
+- **V3 (Regulatory / release-blocking):** **Stop ship** لمرشحي الإصدار؛ لا يُعتبر RC enterprise جاهزًا مع تعارضات V3 مفتوحة — انظر [`enterprise-readiness.md`](../enterprise-readiness.md) §8 و[`trust-fabric.md`](trust-fabric.md).
+
+**تنفيذ API اليوم:** استجابة `GET /api/v1/autonomous-foundation/integrations/go-live-gate` تعكس أساسًا **جاهزية التكامل/البيئة** (`build_go_live_readiness_report` + [`go_live_matrix.py`](../../salesflow-saas/backend/app/services/go_live_matrix.py)). سياسة **V3 على مسار التعارضات** تبقى بوابة ثقة منفصلة في الوثائق وفي اختبارات `POST /api/v1/contradictions/` حتى تُربَط قائمة التعارضات المفتوحة بذات التقرير؛ عندها يمكن دمج `launch_allowed=false` أو إثراء `blocked_reasons` دون تغيير معنى فحوص البيئة الحالية.
+
+**عقد الاستجابة:** يُنصح بإرجاع حقل توضيحي (مثل `trust_severity_note`) يربط المستهلك بـ operational-severity وenterprise-readiness حتى لا يُخلط بين «تكامل الإنتاج جاهز» و«لم يبقَ خطر V3 في سجل الثقة».

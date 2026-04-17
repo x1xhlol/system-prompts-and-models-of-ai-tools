@@ -30,6 +30,12 @@ class ContradictionResolve(PydanticBase):
 @router.post("/")
 async def register_contradiction(body: ContradictionCreate) -> Dict[str, Any]:
     """Register a new contradiction."""
+    sev = (body.severity or "").strip().lower()
+    if sev in ("v3", "critical") and not (body.evidence or {}):
+        raise HTTPException(
+            status_code=422,
+            detail="severity V3/critical requires non-empty evidence (trust plane receipt)",
+        )
     return {
         "status": "registered",
         "source_a": body.source_a,

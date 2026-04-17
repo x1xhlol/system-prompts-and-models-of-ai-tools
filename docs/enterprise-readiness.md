@@ -52,4 +52,22 @@ Revisit this file after each major release or enterprise pilot; update [`dealix-
 
 ## 7. Maintainer sync
 
-`scripts/architecture_brief.py` includes this path in `CONSTITUTION_PATHS`; `.claude/settings.json` references it in `projectInstructions` for Claude Code. Update both when adding new enterprise-facing governance files.
+`scripts/architecture_brief.py` includes this path in `CONSTITUTION_PATHS` (بما فيها [`FINAL_TIER1_CLOSURE_PROGRAM_AR.md`](FINAL_TIER1_CLOSURE_PROGRAM_AR.md))؛ `.claude/settings.json` references it in `projectInstructions` for Claude Code. Update both when adding new enterprise-facing governance files.
+
+## 8. Tier-1 complete (Definition of Done — operational)
+
+Use this as the **release bar** alongside [`RELEASE_READINESS_MATRIX_AR.md`](RELEASE_READINESS_MATRIX_AR.md) and [`TIER1_MASTER_CLOSURE_CHECKLIST_AR.md`](TIER1_MASTER_CLOSURE_CHECKLIST_AR.md) §16.
+
+| Gate | Evidence |
+|------|----------|
+| Source of truth | [`SOURCE_OF_TRUTH_INDEX.md`](SOURCE_OF_TRUTH_INDEX.md) — owners and review cadence filled for critical topics |
+| RC row | [`RELEASE_READINESS_MATRIX_AR.md`](RELEASE_READINESS_MATRIX_AR.md) — one completed row per enterprise candidate |
+| Docs CI | GitHub Actions workflow **`Docs governance`**: `architecture_brief`, `check_docs_links`, `check_no_overclaim`, `check_release_readiness_matrix`, `check_source_of_truth_index` |
+| RC strict row (optional) | Workflow **`Release readiness RC row gate`**: runs `RELEASE_MATRIX_RC_ROW_REQUIRED=1` when the PR label is `release-candidate` or the PR changes `docs/RELEASE_READINESS_MATRIX_AR.md` — see [`governance/github-and-release.md`](governance/github-and-release.md) |
+| Backend CI | **`Dealix CI`**: pytest, OpenAPI path verify, `check_no_overclaim`, `check_release_readiness_matrix`, **`check_go_live_gate` with `DEALIX_CI_FAIL_ON_GO_LIVE=1`** |
+| Runtime Class B | `POST /api/v1/approval-center/validate-class-b-bundle` + bundle validation on approve/reject when `decision_bundle` is supplied |
+| Golden path | [`golden-path-partner-intake-runbook.md`](golden-path-partner-intake-runbook.md) + `test_tier1_golden_path_partner` |
+| Saudi sensitive path | Proposal `send` with `external_company_contacts` requires `pdpl_processing_class` + `owasp_surface_ref` (422 otherwise) |
+| Severity V3 / critical contradictions | `POST /api/v1/contradictions` requires `evidence` when severity is `critical` or `V3` |
+| No open V3 | Operational rule: no enterprise RC with unresolved **V3** per [`governance/operational-severity-model.md`](governance/operational-severity-model.md) |
+| Revenue go-live (commercial) | [`GO_LIVE_REVENUE_ACTIVATION_SYSTEM_AR.md`](GO_LIVE_REVENUE_ACTIVATION_SYSTEM_AR.md) + [`FIRST_THREE_CLIENTS_PLAN_AR.md`](FIRST_THREE_CLIENTS_PLAN_AR.md) + [`LIVE_DEPLOYMENT_GUIDE_AR.md`](LIVE_DEPLOYMENT_GUIDE_AR.md) — pilot scope, deploy, and handoff evidence |

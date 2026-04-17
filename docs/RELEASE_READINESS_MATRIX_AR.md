@@ -18,6 +18,12 @@
 
 **حالات مقترحة للعمود «الحالة»:** `OK` | `Risk` | `Blocked` — مع أعلى [`operational-severity-model.md`](governance/operational-severity-model.md) مفتوحة في الملاحظات.
 
+## صف مرشح إصدار (نموذج — للتحقق الآلي `RELEASE_MATRIX_RC_ROW_REQUIRED`)
+
+| البُعد | الحالة | الدليل | المالك |
+|--------|--------|--------|--------|
+| **RC-2026-W16-demo** | OK | تجميعي: الصفوف أعلاه + CI `docs-governance` / `Dealix CI` | Release |
+
 ## بوابة جودة البيانات (Great Expectations)
 
 عند تفعيل GE: اربط **checkpoint** ناجحًا بصف «schema adherence» أو صف فرعي «data quality»؛ لا تعتبر GE مجرد ملحق Data plane — انظر [`ws5-connector-events-metrics.md`](ws5-connector-events-metrics.md).

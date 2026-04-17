@@ -160,4 +160,22 @@
 
 ---
 
+## §16 تعريف إغلاق Tier-1 الكامل (DoD — قابل للقياس)
+
+يُعتبر **Tier-1 مغلقًا تشغيليًا** عند اكتمال الدليل لكل بند أدناه (PR، اختبار، أو صف في المصفوفة):
+
+| # | البند | الدليل في الريبو | CI / اختبار |
+|---|--------|------------------|--------------|
+| 16.1 | مصدر الحقيقة محدّث | [`SOURCE_OF_TRUTH_INDEX.md`](SOURCE_OF_TRUTH_INDEX.md) | مراجعة يدوية + عدم وجود Shadow حرج بلا مالك |
+| 16.2 | صف مرشح إصدار (RC) | [`RELEASE_READINESS_MATRIX_AR.md`](RELEASE_READINESS_MATRIX_AR.md) | اختياري: `RELEASE_MATRIX_RC_ROW_REQUIRED=1` + [`scripts/check_release_readiness_matrix.py`](../scripts/check_release_readiness_matrix.py) |
+| 16.3 | لا ادّعاء prod زائد | [`salesflow-saas/docs/governance/document-consistency-audit.md`](../salesflow-saas/docs/governance/document-consistency-audit.md) | Job **`no_overclaim`** في [`.github/workflows/docs-governance.yml`](../.github/workflows/docs-governance.yml) و[`dealix-ci.yml`](../.github/workflows/dealix-ci.yml) عبر [`scripts/check_no_overclaim.py`](../scripts/check_no_overclaim.py) |
+| 16.4 | روابط وجود ملفات دستور | [`scripts/architecture_brief.py`](../scripts/architecture_brief.py) | Job **`architecture_brief`** في `docs-governance` |
+| 16.5 | روابط Markdown نسبية | [`scripts/check_docs_links.py`](../scripts/check_docs_links.py) | Job **`docs_links`** في `docs-governance` |
+| 16.6 | Go-live gate | [`salesflow-saas/scripts/check_go_live_gate.py`](../salesflow-saas/scripts/check_go_live_gate.py) | **`DEALIX_CI_FAIL_ON_GO_LIVE=1`** في `dealix-ci` (فشل عند `launch_allowed≠true`) |
+| 16.7 | لا إصدار مع V3 مفتوحة | [`governance/operational-severity-model.md`](governance/operational-severity-model.md) | مراجعة يدوية + تدقيق تناقضات |
+| 16.8 | مسار ذهبي حي | [`golden-path-partner-intake-runbook.md`](golden-path-partner-intake-runbook.md) | `pytest` **`test_tier1_golden_path_partner`** |
+| 16.9 | برنامج الإغلاق التشغيلي النهائي (AR) | [`FINAL_TIER1_CLOSURE_PROGRAM_AR.md`](FINAL_TIER1_CLOSURE_PROGRAM_AR.md) | مضمّن في [`scripts/architecture_brief.py`](../scripts/architecture_brief.py) `CONSTITUTION_PATHS` + مراجعة Program/Architect عند تغيير المعايير |
+
+---
+
 *آخر تحديث: يُحدَّث مع كل إصدار يغيّر الحوكمة أو مسارات Class B.*

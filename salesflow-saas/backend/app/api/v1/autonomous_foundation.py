@@ -168,6 +168,20 @@ def build_go_live_readiness_report() -> Dict[str, Any]:
         )
     if getattr(settings, "ENVIRONMENT", "") == "development" and launch_allowed:
         warnings.append("ENVIRONMENT=development — use production settings before real go-live.")
+    trust_severity_note = {
+        "policy_docs": [
+            "docs/governance/operational-severity-model.md",
+            "docs/enterprise-readiness.md",
+        ],
+        "summary_ar": (
+            "بوابة الإطلاق الحالية تقيس التكامل والبيئة؛ امتثال V2/V3 للتعارضات والثقة "
+            "يُدار عبر مصفوفة الجاهزية وسجل الثقة وليس فقط عبر launch_allowed."
+        ),
+        "summary_en": (
+            "This gate primarily reflects env/integration readiness; V2/V3 trust backlog is "
+            "governed via release matrix and contradiction policy in addition to launch_allowed."
+        ),
+    }
     return {
         "gate": "go_live",
         "launch_mode": "full_commercial",
@@ -197,6 +211,7 @@ def build_go_live_readiness_report() -> Dict[str, Any]:
             "frontend_env_example": "salesflow-saas/frontend/.env.example",
         },
         "cli_examples": cli_examples,
+        "trust_severity_note": trust_severity_note,
         "warnings": warnings,
         "notes": [
             "الفحوص الإلزامية تشمل: أمان، قاعدة بيانات، ذكاء، بريد، Salesforce، واتساب (ومنع الوضع التجريبي)، Stripe + webhook، Twilio، توقيع إلكتروني.",
@@ -444,6 +459,7 @@ async def live_readiness_report() -> Dict[str, Any]:
         "missing_optional": report["missing_optional"],
         "integration_docs": report["integration_docs"],
         "cli_examples": report["cli_examples"],
+        "trust_severity_note": report["trust_severity_note"],
         "notes": report["notes"],
     }
 

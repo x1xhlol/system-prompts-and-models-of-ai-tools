@@ -34,6 +34,7 @@ Deep-dive topics live under [`docs/governance/`](docs/governance/) (keep this fi
 | ADR: Execution matrix canonical (v1 vs v2) | [`docs/adr/0002-execution-matrix-canonical-source.md`](docs/adr/0002-execution-matrix-canonical-source.md) |
 | ADR: Temporal / OPA / OpenFGA spikes | [`docs/adr/0001-tier1-execution-policy-spikes.md`](docs/adr/0001-tier1-execution-policy-spikes.md) |
 | Tier-1 Master Closure (AR checklist) | [`docs/TIER1_MASTER_CLOSURE_CHECKLIST_AR.md`](docs/TIER1_MASTER_CLOSURE_CHECKLIST_AR.md) |
+| Final Tier-1 closure program (AR — operating law) | [`docs/FINAL_TIER1_CLOSURE_PROGRAM_AR.md`](docs/FINAL_TIER1_CLOSURE_PROGRAM_AR.md) |
 | Tier-1 gates (EN, 50 items) | [`salesflow-saas/docs/tier1-master-closure-checklist.md`](salesflow-saas/docs/tier1-master-closure-checklist.md) |
 | Glossary (planes / tracks / fabrics) | [`docs/glossary-dealix-planes-tracks.md`](docs/glossary-dealix-planes-tracks.md) |
 | Track artifact paths (Revenue–PMI) | [`docs/tracks-tier1-artifact-paths.md`](docs/tracks-tier1-artifact-paths.md) |

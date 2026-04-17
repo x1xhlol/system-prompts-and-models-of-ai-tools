@@ -4,11 +4,11 @@ Dealix Proposals & Quotes API
 """
 
 from datetime import datetime, timezone
-from typing import Optional
+from typing import Literal, Optional
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, Query
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 from sqlalchemy import select, func, and_
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -51,6 +51,25 @@ class ProposalUpdateRequest(BaseModel):
 class SendRequest(BaseModel):
     channel: str = Field(pattern=r"^(whatsapp|email)$", default="whatsapp")
     recipient: str
+    # Tier-1 / WS7: external proposal with company contacts → PDPL + OWASP mapping required
+    external_company_contacts: bool = False
+    pdpl_processing_class: Optional[Literal["public", "internal", "personal", "sensitive"]] = None
+    ecc_control_owner: Optional[str] = None
+    owasp_surface_ref: Optional[str] = None
+
+    @model_validator(mode="after")
+    def saudi_sensitive_path(self) -> "SendRequest":
+        if self.external_company_contacts:
+            if not self.pdpl_processing_class:
+                raise ValueError(
+                    "pdpl_processing_class required when external_company_contacts is true"
+                )
+            if not self.owasp_surface_ref:
+                raise ValueError(
+                    "owasp_surface_ref required when external_company_contacts is true "
+                    "(map to OWASP LLM / control matrix)"
+                )
+        return self
 
 
 class AcceptRequest(BaseModel):

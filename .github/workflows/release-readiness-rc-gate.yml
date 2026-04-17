@@ -1,0 +1,39 @@
+# Optional strict RC row check when PR is tagged release-candidate or touches the matrix file.
+name: Release readiness RC row gate
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+jobs:
+  strict_rc_row:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Decide strict matrix check
+        id: gate
+        env:
+          LABEL_NAMES: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+        run: |
+          set -e
+          if echo "$LABEL_NAMES" | grep -q 'release-candidate'; then
+            echo "run=1" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if git diff --name-only "${{ github.event.pull_request.base.sha }}...HEAD" | grep -q '^docs/RELEASE_READINESS_MATRIX_AR\.md$'; then
+            echo "run=1" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "run=0" >> "$GITHUB_OUTPUT"
+      - name: Strict RC row (RELEASE_MATRIX_RC_ROW_REQUIRED)
+        if: steps.gate.outputs.run == '1'
+        run: RELEASE_MATRIX_RC_ROW_REQUIRED=1 python scripts/check_release_readiness_matrix.py
+      - name: Skip strict RC row gate
+        if: steps.gate.outputs.run != '1'
+        run: echo "Skipping strict RC row gate (no release-candidate label; matrix file unchanged in this PR)."

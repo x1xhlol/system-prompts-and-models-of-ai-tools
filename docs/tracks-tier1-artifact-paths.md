@@ -11,3 +11,5 @@
 | **PMI** | PMI program plan | `PMIProgramPlan` | [`strategic_pmo.py`](../salesflow-saas/backend/app/services/strategic_deals/strategic_pmo.py) | قالب ثم توليد |
 
 **بوابات الهيمنة:** التزام schema على مسار Class B (`approval-center` bundle)؛ مقاييس الأعمال من [`semantic-metrics-dictionary.md`](semantic-metrics-dictionary.md) فقط في لوحات جديدة.
+
+**إيراد وتشغيل (بعد Tier-1):** [`GO_LIVE_REVENUE_ACTIVATION_SYSTEM_AR.md`](GO_LIVE_REVENUE_ACTIVATION_SYSTEM_AR.md) + [`FIRST_THREE_CLIENTS_PLAN_AR.md`](FIRST_THREE_CLIENTS_PLAN_AR.md) + [`LIVE_DEPLOYMENT_GUIDE_AR.md`](LIVE_DEPLOYMENT_GUIDE_AR.md) + [`AUTOMATED_REVENUE_ENGINE_AR.md`](AUTOMATED_REVENUE_ENGINE_AR.md).
