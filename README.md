@@ -10,13 +10,6 @@
 
 ---
 
-<p align="center">
-❤️ Love when open-source tools give back to open-source repos. Kilo Code is an AI coding agent with the system prompt, source code, and agent architecture all in the open on their GitHub repo.  
-<a href="https://github.com/Kilo-Org/kilocode">Let’s show them some love</a> ❤️
-</p>
-
----
-
 <a href="https://discord.gg/NwzrWErdMU" target="_blank">
   <img src="https://img.shields.io/discord/1402660735833604126?label=LeaksLab%20Discord&logo=discord&style=for-the-badge" alt="LeaksLab Discord" />
 </a>
