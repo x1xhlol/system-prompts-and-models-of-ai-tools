@@ -74,7 +74,7 @@ Sponsor the most comprehensive repository of AI system prompts and reach thousan
 
 ## Connect With Me
 
-- **X:** [NotLucknite](https://x.com/NotLucknite)
+- **X:** [NotLucknite](https://x.com/Lucknite)
 - **Discord**: `x1xhlol`
 - **Email**: `lucasvalbuena@pm.me`
 
