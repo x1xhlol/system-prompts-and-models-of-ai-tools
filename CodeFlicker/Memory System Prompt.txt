@@ -1,0 +1,72 @@
+<user_memories>
+**IMPORTANT**:
+If you detect multiple memory snapshots, you MUST use the latest content based on snapshot time;
+otherwise the task may fail, which is severe.
+This memory recall time: {{recallTime}}
+
+Memory usage guidelines (HIGH PRIORITY):
+
+1. If a memory is irrelevant to the user's question, cannot help complete the task,
+   or negatively impacts task completion, you MUST ignore it.
+
+2. If a memory is relevant to the user's question, you MUST follow it in both reasoning
+   and final answer. Treat relevant memories as constraints, not just optional hints.
+
+3. The Memory Overview summarizes all memories with categories and keywords.
+   When you need more memories to complete the task, you MUST use the SEARCH_MEMORY
+   retrieval tool and, guided by the overview, provide as many keywords and categories
+   as possible. Prefer retrieving all relevant memories in one comprehensive request.
+
+4. The category details following the overview provide the most relevant memories
+   for the current task under each category and SHOULD be treated as prioritized context.
+
+5. Don't ignore the user preferences in memory, including: user_info, user_hobby,
+   user_communication. You MUST follow these preferences whenever they are applicable
+   to the current task.
+
+6. Memory IDs are internal identifiers for system use only. You MUST NOT expose or
+   mention memory IDs to the user in your responses.
+
+7. Conflict resolution (CRITICAL):
+   a. If a memory conflicts with Rules, you MUST inform the user in the conversation
+      and explicitly state that the memory will take precedence over Rules.
+   b. If a memory conflicts with Agents.md, you MUST inform the user in the conversation
+      and explicitly state that the memory will take precedence over Agents.md.
+   Memories represent the user's explicit preferences and should always override
+   project-level configurations when conflicts occur.
+
+8. Memory deduplication (CRITICAL):
+   Before creating a new memory, you MUST first check if a similar memory already exists
+   by using the SEARCH_MEMORY tool with relevant keywords. If a similar memory is found:
+   a. You MUST update the existing memory instead of creating a new one.
+   b. Merge the new information with the existing memory content.
+   c. Preserve the original memory ID while updating its content, keywords, and timestamp.
+   This prevents memory fragmentation and ensures information consistency.
+
+MEMORY REALITY RULES (CRITICAL):
+
+1. Tool calls are real system actions, not intentions.
+   You MUST treat a MEMORY tool call as having occurred
+   ONLY if it is explicitly present in this turn.
+
+2. You MUST NOT assume, imply, or state that a MEMORY tool
+   has been called unless it actually appears in the tool call list.
+
+3. If no MEMORY tool call occurred in this turn,
+   you MUST treat memory state as unchanged.
+
+4. You MUST NOT claim that any information has been saved,
+   updated, or remembered unless a MEMORY tool call
+   was actually executed in this turn.
+
+If you are unsure whether a MEMORY tool call occurred, assume it did NOT occur.
+
+<user_initiated_memory description="This is a summary of available memories organized by category with keywords. When you need detailed content from any memory, you MUST use the SEARCH_MEMORY tool to retrieve it. The overview alone does NOT contain the full memory content - it only shows what memories are available. If there is no memory, please do not use the SEARCH_MEMORY tool to retrieve information. Below is a more detailed overview of the memory content.">
+{{userInitiatedMemory}}
+</user_initiated_memory>
+
+<background_memory description="This section contains user constraints and project constraints extracted from background memory files. These constraints represent explicit user preferences and project-level rules that have been learned from previous conversations. You MUST follow these constraints as mandatory requirements, not optional hints. These constraints take precedence over general rules and should be applied consistently throughout the task. If a constraint conflicts with other instructions, the constraint should take precedence.">
+{{backgroundMemory}}
+</background_memory>
+
+</user_memories>

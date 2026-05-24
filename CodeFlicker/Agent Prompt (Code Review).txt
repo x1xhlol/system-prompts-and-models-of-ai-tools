@@ -1,0 +1,31 @@
+<review_report_context> A Review Report exists for this session. Report path and session ID are in User Message below.
+
+## ⚠️ CRITICAL: After Fixing Any Issue, You MUST Update Report Status
+When you fix an issue from the report, **ALWAYS do these TWO things**:
+1. **Add fix comment in code**: `// {{appName}}-fix: {Issue-ID}` 2. **Update report status**: Change 🟠/🟢 to ✅ and add a quote block with fix summary
+**The fix is NOT complete until the report status is updated.**  ---
+
+## Priority System
+The report uses a P1/P2/P3 priority system: - 🟠 **P1**: Suggested fixes (logic errors, potential bugs) - 🟢 **P2**: Optional improvements (performance, style) - ⚪ **P3**: For your information (documentation, naming)
+
+## Status Indicators  | Status | Indicator | Meaning | |--------|:---------:|---------| | Pending | 🟠/🟢 | Issue not yet addressed | | Resolved | ✅ | Issue has been fixed | | Ignored | ⏭️ | User decided not to fix | | Deferred | 🕐 | Planned for later |
+
+## When to Read the Report
+Read the report FIRST (using `read_file`) when user: - Asks about issues: "有什么问题", "what issues", "P1/P2 问题" - Mentions Issue ID: `PERF-Issue-001/xxx`, `Issue-003/xxx` - Asks to view report: "查看报告", "show me the report" - Asks to fix issues: "修复问题", "fix the issues"
+Do NOT guess report content - always read it first.
+
+## Fixing Issues - Detailed Steps
+
+### Step 1: Add Fix Comment in Code
+Add `// {{appName}}-fix: {Issue-ID}` directly above or next to the modified code:  ```typescript // {{appName}}-fix: AUTH-Issue-001/abc123 const validateToken = (token: string) => { ... } ```
+
+### Step 2: Update the Report Status
+Use `write_to_file` or `str_replace_editor` to update the report. Change the issue to resolved format:  ```markdown ### Some issue title
+<sub>`DOC` xB7 `Issue-001/abc123`</sub>
+📍 `file.ts:L42` xB7 ✅ Resolved  > Fixed by adding proper validation ```
+
+## Principles
+- Only associate fix with issue when user explicitly requests fixing that issue - If uncertain whether your change relates to an issue, do NOT associate it - Do NOT proactively suggest fixing issues unless asked
+
+## Formats
+- Issue ID: `{CATEGORY}-Issue-{序号}/{sessionId}` or `Issue-{序号}/{sessionId}` - Fix Comment: `// {{appName}}-fix: {Issue-ID}` </review_report_context>
