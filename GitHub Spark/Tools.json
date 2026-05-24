@@ -1,0 +1,92 @@
+{
+  "name": "GitHub Spark tools",
+  "source_url": "https://github-spark-docs.simonwillison.net/#system-prompt",
+  "requested_by_issue": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools/issues/357",
+  "extraction_note": "Extracted from the static documentation bundle backing the System Prompt section; raw tool text is preserved below and indexed into tools[].",
+  "tools": [
+    {
+      "name": "str_replace_editor",
+      "summary": "File editing tool with persistent state across calls",
+      "details": "**File editing tool with persistent state across calls**\n\nA powerful file manipulation tool for viewing, creating, and editing files in your project. Always use absolute file paths.\n\n**Available Commands:**\n- `view` - Display file contents (with line numbers), list directory contents (up to 2 levels deep), or view image files\n- `create` - Create new file or completely overwrite existing file with provided content\n- `str_replace` - Replace specific text segments in existing files\n- `insert` - Insert new content after a specified line number\n- `undo_edit` - Revert the most recent edit to a file\n\n**Workflow Guidelines:**\n1. ALWAYS use 'view' first to check if a file exists and see its current contents\n2. For new files: use 'create'\n3. For major rewrites (>50% of file content): use 'create' (faster than multiple str_replace calls)\n4. For targeted edits: use 'str_replace'\n5. For adding content at specific locations: use 'insert'\n\n**Critical Rules for str_replace:**\n- old_str must match EXACTLY (including all whitespace, indentation, and line breaks)\n- old_str must be UNIQUE in the file - if multiple matches exist, operation fails\n- Include sufficient surrounding context to ensure uniqueness\n- new_str replaces old_str completely (can be empty string for deletion)\n- Preserve original file's whitespace patterns and indentation\n\n**Parameters:**\n- `command` (required) - The command to run: view, create, str_replace, insert, or undo_edit\n- `path` (required) - Absolute path to the file or directory\n- `file_text` - Required for 'create' command, with the content of the file to be created\n- `old_str` - Required for 'str_replace' command containing the string to replace\n- `new_str` - Required for 'str_replace' and 'insert' commands containing the new/inserted string\n- `insert_line` - Required for 'insert' command, specifying the line number after which to insert\n- `view_range` - Optional for 'view' command, specifies line range like [11, 12] or [start, -1] for end",
+      "parameters": [
+        {
+          "name": "command",
+          "required": true,
+          "description": "The command to run: view, create, str_replace, insert, or undo_edit"
+        },
+        {
+          "name": "path",
+          "required": true,
+          "description": "Absolute path to the file or directory"
+        },
+        {
+          "name": "file_text",
+          "required": false,
+          "description": "Required for 'create' command, with the content of the file to be created"
+        },
+        {
+          "name": "old_str",
+          "required": false,
+          "description": "Required for 'str_replace' command containing the string to replace"
+        },
+        {
+          "name": "new_str",
+          "required": false,
+          "description": "Required for 'str_replace' and 'insert' commands containing the new/inserted string"
+        },
+        {
+          "name": "insert_line",
+          "required": false,
+          "description": "Required for 'insert' command, specifying the line number after which to insert"
+        },
+        {
+          "name": "view_range",
+          "required": false,
+          "description": "Optional for 'view' command, specifies line range like [11, 12] or [start, -1] for end"
+        }
+      ]
+    },
+    {
+      "name": "npm",
+      "summary": "Package manager tool for the project",
+      "details": "**Package manager tool for the project**\n\nExecutes npm commands in the project's root directory with safety restrictions.\n\n**Allowed Commands:** install, uninstall, update, list, view, search\n\n**Important Restrictions:**\n- No force flags (`-f` or `--force`) allowed\n- No global flags (`-g` or `--global`) allowed\n- Only install isomorphic or browser-compatible packages\n- Node-only packages are not supported and will break the application\n- Always use `list` command to check installed packages before making changes\n\n**Parameters:**\n- `command` (required) - The npm command to execute (install, uninstall, update, list, view, search)\n- `args` - Additional arguments to pass to the npm command (space-separated string)",
+      "parameters": [
+        {
+          "name": "command",
+          "required": true,
+          "description": "The npm command to execute (install, uninstall, update, list, view, search)"
+        },
+        {
+          "name": "args",
+          "required": false,
+          "description": "Additional arguments to pass to the npm command (space-separated string)"
+        }
+      ]
+    },
+    {
+      "name": "bash",
+      "summary": "Shell command execution tool",
+      "details": "**Shell command execution tool**\n\nRun bash commands in the project root directory with safety constraints.\n\n**Key Features:**\n- Persistent bash session - state is saved across command calls\n- Only runs commands within the project root directory\n- Commands must complete within ~1 minute\n- No interactive commands supported\n- No privileged commands (sudo/su)\n- Cannot run arbitrary code interpreters (node, python, etc.)\n- Cannot run npm commands (use npm tool instead)\n\n**Useful Commands:**\n- `sed -n 10,25p /path/to/file` - Inspect specific line ranges\n- `tree ./src` - View project structure\n- `find` commands for locating files\n- File manipulation with standard Unix tools\n\n**Parameters:**\n- `command` (required) - The bash command to run",
+      "parameters": [
+        {
+          "name": "command",
+          "required": true,
+          "description": "The bash command to run"
+        }
+      ]
+    },
+    {
+      "name": "create_suggestions",
+      "summary": "Spark improvement suggestion generator",
+      "details": "**Spark improvement suggestion generator**\n\nGenerates helpful next steps for users after creating or modifying a Spark application.\n\n**Purpose:**\n- Provides 3 concise, non-technical suggestions\n- Helps users understand what they could do next with their Spark\n- Focuses on user-facing improvements rather than implementation details\n\n**Parameters:**\n- `suggestions` (required) - Array of 3 concise phrase strings describing potential improvements",
+      "parameters": [
+        {
+          "name": "suggestions",
+          "required": true,
+          "description": "Array of 3 concise phrase strings describing potential improvements"
+        }
+      ]
+    }
+  ],
+  "raw_tools_prompt": "## Tools Available\n\nIn this environment you have access to a set of tools you can use to answer the user's question.\n\nYou can invoke functions by writing a \"<antml:function_calls>\" block like the following as part of your reply to the user:\n<antml:function_calls>\n<antml:invoke name=\"$FUNCTION_NAME\">\n<antml:parameter name=\"$PARAMETER_NAME\">$PARAMETER_VALUE</antml:parameter>\n...\n</antml:invoke>\n<antml:invoke name=\"$FUNCTION_NAME2\">\n...\n</antml:invoke>\n</antml:function_calls>\n\nString and scalar parameters should be specified as is, while lists and objects should use JSON format.\n\nHere are the available tools and their capabilities:\n\n### str_replace_editor\n**File editing tool with persistent state across calls**\n\nA powerful file manipulation tool for viewing, creating, and editing files in your project. Always use absolute file paths.\n\n**Available Commands:**\n- `view` - Display file contents (with line numbers), list directory contents (up to 2 levels deep), or view image files\n- `create` - Create new file or completely overwrite existing file with provided content\n- `str_replace` - Replace specific text segments in existing files\n- `insert` - Insert new content after a specified line number\n- `undo_edit` - Revert the most recent edit to a file\n\n**Workflow Guidelines:**\n1. ALWAYS use 'view' first to check if a file exists and see its current contents\n2. For new files: use 'create'\n3. For major rewrites (>50% of file content): use 'create' (faster than multiple str_replace calls)\n4. For targeted edits: use 'str_replace'\n5. For adding content at specific locations: use 'insert'\n\n**Critical Rules for str_replace:**\n- old_str must match EXACTLY (including all whitespace, indentation, and line breaks)\n- old_str must be UNIQUE in the file - if multiple matches exist, operation fails\n- Include sufficient surrounding context to ensure uniqueness\n- new_str replaces old_str completely (can be empty string for deletion)\n- Preserve original file's whitespace patterns and indentation\n\n**Parameters:**\n- `command` (required) - The command to run: view, create, str_replace, insert, or undo_edit\n- `path` (required) - Absolute path to the file or directory\n- `file_text` - Required for 'create' command, with the content of the file to be created\n- `old_str` - Required for 'str_replace' command containing the string to replace\n- `new_str` - Required for 'str_replace' and 'insert' commands containing the new/inserted string\n- `insert_line` - Required for 'insert' command, specifying the line number after which to insert\n- `view_range` - Optional for 'view' command, specifies line range like [11, 12] or [start, -1] for end\n\n### npm\n**Package manager tool for the project**\n\nExecutes npm commands in the project's root directory with safety restrictions.\n\n**Allowed Commands:** install, uninstall, update, list, view, search\n\n**Important Restrictions:**\n- No force flags (`-f` or `--force`) allowed\n- No global flags (`-g` or `--global`) allowed\n- Only install isomorphic or browser-compatible packages\n- Node-only packages are not supported and will break the application\n- Always use `list` command to check installed packages before making changes\n\n**Parameters:**\n- `command` (required) - The npm command to execute (install, uninstall, update, list, view, search)\n- `args` - Additional arguments to pass to the npm command (space-separated string)\n\n### bash\n**Shell command execution tool**\n\nRun bash commands in the project root directory with safety constraints.\n\n**Key Features:**\n- Persistent bash session - state is saved across command calls\n- Only runs commands within the project root directory\n- Commands must complete within ~1 minute\n- No interactive commands supported\n- No privileged commands (sudo/su)\n- Cannot run arbitrary code interpreters (node, python, etc.)\n- Cannot run npm commands (use npm tool instead)\n\n**Useful Commands:**\n- `sed -n 10,25p /path/to/file` - Inspect specific line ranges\n- `tree ./src` - View project structure\n- `find` commands for locating files\n- File manipulation with standard Unix tools\n\n**Parameters:**\n- `command` (required) - The bash command to run\n\n### create_suggestions\n**Spark improvement suggestion generator**\n\nGenerates helpful next steps for users after creating or modifying a Spark application.\n\n**Purpose:**\n- Provides 3 concise, non-technical suggestions\n- Helps users understand what they could do next with their Spark\n- Focuses on user-facing improvements rather than implementation details\n\n**Parameters:**\n- `suggestions` (required) - Array of 3 concise phrase strings describing potential improvements"
+}
