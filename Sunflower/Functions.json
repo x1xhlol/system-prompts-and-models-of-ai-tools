@@ -1,0 +1,207 @@
+[
+  {
+		"name": "get_conversation",
+		"description": "Returns a complete email or newsletter conversation and all messages and contents within it. Use this to read a message when a user requests more details, or for you to understand it better.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"conversationId": {
+					"type": "integer",
+					"description": "ID of the email conversation to fetch"
+				}
+			},
+			"required": [
+				"conversationId"
+			]
+		}
+	},
+	{
+		"name": "get_inbox_feed",
+		"description": "Use this function when the user is asking for a **general overview of their inbox, wants to browse recent emails, or see what's new.**  This function returns a **time-ordered feed** of conversations, showing the most recent emails based on the specified date range and filters.\n\n**Use this function when the user's request sounds like they are *browsing* or wanting to see a list of emails, not searching for something specific.**  It is best for time-sensitive requests and checking recent inbox activity.\n\nExamples of when to use this function:\n- \"What's in my inbox today?\"\n- \"Show me recent emails.\"\n- \"What are my newsletters from this week?\"\n- \"Show me unread emails from yesterday.\"\n- \"Give me a summary of my inbox.\"\n- \"What's new?\"\n- **\"Did I get an email about the deadline?\" (Use this function if the context implies the user is checking *recently* for a deadline email, especially if there's a sense of urgency or time sensitivity. If they just want to find *any* email about deadlines, use `search_messages`.)**\n\n**Do NOT use this function if the user is asking to find *specific* emails based on keywords or content *unless the context is clearly about recent inbox activity*. For general content searches, use `search_messages`.**",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"dateRange": {
+					"type": "string",
+					"description": "Date range for inbox items: 'recent', 'today', 'yesterday', 'week', or 'custom'. 'Recent' grabs the most recent 24 hours, grouped by day."
+				},
+				"attachmentContentType": {
+					"type": ["string", "null"],
+					"description": "Filter by attachment content type"
+				},
+				"endDate": {
+					"type": ["string", "null"],
+					"description": "End date for custom range (YYYY-MM-DD format, required if dateRange is 'custom')"
+				},
+				"filter": {
+					"type": ["string", "null"],
+					"description": "Use a predefined smart filter template from a mailbox: meetings, updates, promotions, newsletters, messages, personal, everything, social, pinned, important, forums, sent, drafts, archive, snoozed, trash"
+				},
+				"limit": {
+					"type": ["integer", "null"],
+					"description": "Maximum number of conversations to return (default: 100)"
+				},
+				"startDate": {
+					"type": ["string", "null"],
+					"description": "Start date for custom range (YYYY-MM-DD format, required if dateRange is 'custom')"
+				}
+			},
+			"required": [
+				"dateRange"
+			]
+		}
+	},
+	{
+		"name": "apply_operation",
+		"description": "Applies the given operation to one or more conversations.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"conversationIds": {
+					"type": "array",
+					"items": {
+						"type": "integer"
+					},
+					"description": "The ids of the email conversations to modify"
+				},
+				"operation": {
+					"type": "string",
+					"description": "Operation to take on the conversations. One of the following:\n      markRead: Mark as read\n      markUnread: Mark as unread\n      archive: Archive and remove the INBOX label.\n      pin: Pin and add the IMPORTANT label\n      unpin: Unpin and remove the IMPORTANT label.\n      apply_labels_<labelID>: Apply the given labelId.\n      remove_labels_<labelID>: Remove the given labelId."
+				}
+			},
+			"required": [
+				"conversationIds",
+				"operation"
+			]
+		}
+	},
+	{
+		"name": "get_label_statistics",
+		"description": "Returns statistics about label usage over a specified time interval. Useful to provide overview views of the inbox.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"dateRange": {
+					"type": "string",
+					"description": "Date range for statistics: 'today', 'yesterday', 'week', or 'custom'"
+				},
+				"endDate": {
+					"type": ["string", "null"],
+					"description": "End date for custom range (YYYY-MM-DD format, required if dateRange is 'custom')"
+				},
+				"startDate": {
+					"type": ["string", "null"],
+					"description": "Start date for custom range (YYYY-MM-DD format, required if dateRange is 'custom')"
+				}
+			},
+			"required": [
+				"dateRange"
+			]
+		}
+	},
+	{
+		"name": "search_messages",
+		"description": "Use this function when the user is asking to **find *specific* emails based on *content* keywords or search terms.** This function performs a **targeted search** through email subjects, bodies, senders, labels, etc. to locate messages matching the user's query.\n\n**Use this function when the user's request sounds like they are *searching for* something specific, not just browsing their inbox.**  It is best for finding emails regardless of when they were received.\n\nExamples of when to use this function:\n- \"Find my utility bills.\"\n- \"Search for emails about 'Project X'.\"\n- \"Locate emails from John about the meeting.\"\n- \"Find emails labeled 'Important' that mention 'deadline'.\"\n- **\"Did I get an email about the deadline?\" (Use this function if the user likely wants to find *any* email about deadlines, not just recent ones.  If time sensitivity seems less important, use this.)**\n\n**Do NOT use this function if the user is asking for a general overview of their inbox, recent emails, or what's new, *especially when time sensitivity is implied*. For those requests, use `get_inbox_feed`.**",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"query": {
+					"type": "string",
+					"description": "The search query text.\n\n      **Understanding Search Types:**\n\n      * **General Keyword Search (Default):**  For most searches, simply provide your keywords (e.g., \"utility bill\"). **This is the recommended default.**  The function will intelligently search across all relevant parts of the message: subject, snippet, labels, email body (text and html), and sender's address to find the most relevant messages.  Think of this as a broad, comprehensive search.\n\n      * **Field-Specific Search (Targeted):**  If you need to **specifically search within a particular email field**, use the format `column:value` (e.g., `subject:utility bill`).  This is useful when you are certain you want to narrow your search to a specific area, like only looking at email subjects. **Use this when the user's request clearly indicates a specific field of interest.**\n\n      Supported columns for field-specific searches: cc, to, from, snippet, subject, rawLabels.\n\n      SQLite Full Text Search operators (AND, OR, NOT) are supported in both general keyword and field-specific searches.\n\n      **Choosing the Right Search Type:**\n\n      The function should **default to a general keyword search** unless the user's request strongly implies a field-specific search.  For example:\n\n      * **General Keyword Search Examples:** \"find emails about project X\", \"search for messages with attachment\", \"show me emails from last week\".\n      * **Field-Specific Search Examples:** \"find emails with the *subject* 'urgent'\", \"show me emails *from* john about...\", \"search *labels* for 'important'\".\n\n      **Important Note:** If the query only contains keywords without any column specifiers, it will ALWAYS perform a general keyword search. Field-specific searches are ONLY triggered by the `column:value` format."
+				}
+			},
+			"required": [
+				"query"
+			]
+		}
+	},
+	{
+		"name": "open_url",
+		"description": "Opens the provided URL in the user's default browser",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"url": {
+					"type": "string",
+					"description": "The URL to open in the user's default browser"
+				}
+			},
+			"required": [
+				"url"
+			]
+		}
+	},
+	{
+		"name": "copy_text",
+		"description": "Copys the provided content to the clipboard for the user.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"toCopy": {
+					"type": "string",
+					"description": "The content to copy to the clipboard"
+				}
+			},
+			"required": [
+				"toCopy"
+			]
+		}
+	},
+	{
+		"name": "recall",
+		"description": "Recalls data previously stored in memory at the current key. Returns a Memory object with the value of the memory.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"key": {
+					"type": "string",
+					"description": "A unique identifier of the data you want to retrieve"
+				}
+			},
+			"required": [
+				"key"
+			]
+		}
+	},
+	{
+		"name": "remember",
+		"description": "Stores any value in long term memory. Returns the value saved if successful, or an error otherwise. This is a key value store - there's one value per key, and you can overwrite the existing memory simply by remembering the same key again.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"key": {
+					"type": "string",
+					"description": "A unique identifier for the data. Ideally, a slug of some kind using underscores."
+				},
+				"value": {
+					"type": "string",
+					"description": "The actual data to be stored. Can be as long as you need."
+				},
+				"description": {
+					"type": ["string", "null"],
+					"description": "A short, human redable summary of the data. No more than 15 words."
+				}
+			},
+			"required": [
+				"key",
+				"value"
+			]
+		}
+	},
+	{
+		"name": "remove_memory",
+		"description": "Clears and removes the memory at a particular key",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"key": {
+					"type": "string",
+					"description": "A unique identifier of the data you want to clear"
+				}
+			},
+			"required": [
+				"key"
+			]
+		}
+	}
+]
