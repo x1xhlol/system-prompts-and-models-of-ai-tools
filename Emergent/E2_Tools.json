@@ -1,0 +1,261 @@
+﻿{
+  "tools": [
+    {
+      "name": "mcp_bulk_file_writer",
+      "description": "Write multiple files simultaneously for improved performance. Handles bulk operations efficiently with atomic writes.",
+      "parameters": {
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {"type": "string", "description": "Absolute path to the file"},
+              "content": {"type": "string", "description": "Raw text content for the file"}
+            },
+            "required": ["path", "content"]
+          }
+        },
+        "capture_logs_backend": {"type": "boolean"},
+        "capture_logs_frontend": {"type": "boolean"},
+        "status": {"type": "boolean"}
+      }
+    },
+    {
+      "name": "plan",
+      "description": "Generate or update a structured implementation plan based on chat history. Writes to /app/plan.md.",
+      "parameters": {
+        "operation": {"type": "string", "enum": ["create", "update"]},
+        "thought": {"type": "string", "description": "Initial thought or context for the plan"}
+      }
+    },
+    {
+      "name": "todo_write",
+      "description": "Create and manage a structured task list for the coding session. Tracks progress using pending, in_progress, completed, cancelled.",
+      "parameters": {
+        "todos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "content": {"type": "string", "description": "Brief description of the task"},
+              "status": {"type": "string", "enum": ["pending", "in_progress", "completed", "cancelled"]}
+            },
+            "required": ["content", "status"]
+          }
+        }
+      }
+    },
+    {
+      "name": "testing_agent_v3",
+      "description": "Expert testing agent that helps test backend and frontend using test cases, curl, playwright script and browser automation.",
+      "parameters": {
+        "task": {"type": "string", "description": "Detailed task containing original problem statement, features to test, testing type, etc. in JSON format"}
+      }
+    },
+    {
+      "name": "design_agent",
+      "description": "Specializes in creating top-tier UI/UX design guidelines for any web experience. Produces a clear blueprint for implementation.",
+      "parameters": {
+        "task": {"type": "string", "description": "Detailed task containing problem statement, app type, target audience, and key functionalities"}
+      }
+    },
+    {
+      "name": "troubleshoot_agent",
+      "description": "Provides deep technical root cause analysis (RCA) for persistent errors and system issues with read-only access (10 steps max).",
+      "parameters": {
+        "task": {"type": "string", "description": "ISSUE, COMPONENT, ERROR_MESSAGES, RECENT_ACTIONS, PREVIOUS_FIX_ATTEMPTS, RELEVANT_FILES"}
+      }
+    },
+    {
+      "name": "image_selector_tool",
+      "description": "Fetch images from unsplash.com and/or pexels.com based on search keywords and color filters.",
+      "parameters": {
+        "search_query": {"type": "string", "description": "Concise query like 'urban sunset skyline'"},
+        "image_count": {"type": "number", "description": "Number of images to retrieve (max 7)"},
+        "color": {"type": "string", "description": "Optional color filter (black, white, red, etc.)"}
+      }
+    },
+    {
+      "name": "integration_playbook_expert_v2",
+      "description": "Creates comprehensive, step-by-step playbook for integrating third-party APIs and services (OpenAI, Stripe, Auth0, etc.).",
+      "parameters": {
+        "query": {"type": "string", "description": "INTEGRATION: [Name/type] CONSTRAINTS: [limitations]"}
+      }
+    },
+    {
+      "name": "emergent_integrations_manager",
+      "description": "Get the Emergent LLM key for llm integration (openai, anthropic, google).",
+      "parameters": {}
+    },
+    {
+      "name": "mcp_execute_bash",
+      "description": "Execute bash commands with full shell features (foreground/background, timeout, cwd).",
+      "parameters": {
+        "command": {"type": "string", "description": "Bash command to execute"},
+        "timeout": {"type": "integer"},
+        "cwd": {"type": "string"}
+      }
+    },
+    {
+      "name": "mcp_search_replace",
+      "description": "Search and replace exact string in file. Preserves formatting.",
+      "parameters": {
+        "path": {"type": "string"},
+        "old_str": {"type": "string", "description": "Exact string to replace"},
+        "new_str": {"type": "string", "description": "Replacement string"},
+        "replace_all": {"type": "boolean"},
+        "run_lint": {"type": "boolean"},
+        "status": {"type": "boolean"}
+      }
+    },
+    {
+      "name": "mcp_view_file",
+      "description": "View file or directory contents (max 2000 lines).",
+      "parameters": {
+        "path": {"type": "string"},
+        "view_range": {"type": "array", "items": {"type": "integer"}}
+      }
+    },
+    {
+      "name": "mcp_view_bulk",
+      "description": "View multiple files or directories in sequence.",
+      "parameters": {
+        "paths": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    {
+      "name": "mcp_glob_files",
+      "description": "Fast file pattern matching using glob patterns (respects .gitignore).",
+      "parameters": {
+        "pattern": {"type": "string"},
+        "path": {"type": "string"}
+      }
+    },
+    {
+      "name": "mcp_insert_text",
+      "description": "Insert text at a specific line number in a file.",
+      "parameters": {
+        "path": {"type": "string"},
+        "new_str": {"type": "string"},
+        "insert_line": {"type": "integer"},
+        "run_lint": {"type": "boolean"}
+      }
+    },
+    {
+      "name": "mcp_create_file",
+      "description": "Create a new file with specified content.",
+      "parameters": {
+        "path": {"type": "string"},
+        "file_text": {"type": "string"},
+        "overwrite": {"type": "boolean"},
+        "run_lint": {"type": "boolean"}
+      }
+    },
+    {
+      "name": "mcp_lint_python",
+      "description": "Python linting using ruff. Auto-fixes safe issues.",
+      "parameters": {
+        "path_pattern": {"type": "string"},
+        "fix": {"type": "boolean"},
+        "exclude_patterns": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    {
+      "name": "mcp_lint_javascript",
+      "description": "JavaScript/TypeScript linting using ESLint. Auto-fixes safe issues.",
+      "parameters": {
+        "path_pattern": {"type": "string"},
+        "fix": {"type": "boolean"},
+        "exclude_patterns": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    {
+      "name": "mcp_screenshot_tool",
+      "description": "Execute Playwright script to take screenshot of webpage.",
+      "parameters": {
+        "page_url": {"type": "string"},
+        "script": {"type": "string"},
+        "capture_logs": {"type": "boolean"}
+      }
+    },
+    {
+      "name": "web_search_tool_v2",
+      "description": "Search the web for programming, APIs, versions, bugs, and current information.",
+      "parameters": {
+        "query": {"type": "string"},
+        "search_context_size": {"type": "string", "enum": ["low", "medium", "high"]}
+      }
+    },
+    {
+      "name": "crawl_tool",
+      "description": "Scrape/extract complete content from specific webpages.",
+      "parameters": {
+        "url": {"type": "string"},
+        "extraction_method": {"type": "string", "enum": ["scrape"]},
+        "formats": {"type": "string", "enum": ["html", "markdown", "json"]},
+        "question": {"type": "string"}
+      }
+    },
+    {
+      "name": "analyze_file_tool",
+      "description": "AI-powered analysis on document files for insights and patterns.",
+      "parameters": {
+        "source": {"type": "string"},
+        "analysis_type": {"type": "string", "enum": ["general", "structure", "content", "sentiment", "security", "performance", "compliance", "custom"]},
+        "query": {"type": "string"},
+        "headers": {"type": "object"},
+        "timeout": {"type": "number"}
+      }
+    },
+    {
+      "name": "extract_file_tool",
+      "description": "Extract specific structured data from document files.",
+      "parameters": {
+        "source": {"type": "string"},
+        "prompt": {"type": "string"},
+        "headers": {"type": "object"},
+        "timeout": {"type": "number"}
+      }
+    },
+    {
+      "name": "get_assets_tool",
+      "description": "Retrieve attached assets from the database for the current job/run.",
+      "parameters": {}
+    },
+    {
+      "name": "ask_human",
+      "description": "Ask human user for clarification, additional info, or confirmation.",
+      "parameters": {
+        "question": {"type": "string"}
+      }
+    },
+    {
+      "name": "think",
+      "description": "Append thought to log (analyzing, planning, reasoning).",
+      "parameters": {
+        "thought": {"type": "string"}
+      }
+    },
+    {
+      "name": "finish",
+      "description": "Provide concise summary for clarity and handoff.",
+      "parameters": {
+        "summary": {"type": "string"}
+      }
+    },
+    {
+      "name": "support_agent",
+      "description": "Handle questions about Emergent capabilities, platform topics, refunds.",
+      "parameters": {
+        "task": {"type": "string"}
+      }
+    },
+    {
+      "name": "deployment_agent",
+      "description": "Expert agent to debug native deployment issues on Emergent.",
+      "parameters": {
+        "task": {"type": "string"}
+      }
+    }
+  ]
+}
