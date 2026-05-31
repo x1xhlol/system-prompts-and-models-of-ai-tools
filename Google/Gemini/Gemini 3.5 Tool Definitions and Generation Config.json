@@ -1,0 +1,122 @@
+"toolConfig": {
+    "functionCallingConfig": {
+      "mode": "AUTO"
+    }
+  },
+  "generationConfig": {
+    "temperature": 0.4,
+    "topP": 0.95,
+    "topK": 40,
+    "candidateCount": 1,
+    "maxOutputTokens": 8192,
+    "stopSequences": [],
+    "presencePenalty": 0.0,
+    "frequencyPenalty": 0.0,
+    "responseMimeType": "text/plain"
+  },
+  "safetySettings": [
+    {
+      "category": "HARM_CATEGORY_HARASSMENT",
+      "threshold": "BLOCK_LOW_AND_ABOVE"
+    },
+    {
+      "category": "HARM_CATEGORY_HATE_SPEECH",
+      "threshold": "BLOCK_LOW_AND_ABOVE"
+    },
+    {
+      "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+      "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    },
+    {
+      "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+      "threshold": "BLOCK_LOW_AND_ABOVE"
+    }
+  ]
+}
+"tools": [
+    {
+      "functionDeclarations": [
+        {
+          "name": "google_search",
+          "description": "Search the web for relevant information when up-to-date knowledge or factual verification is needed. The results will include relevant snippets from web pages.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "queries": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "The list of queries to issue searches with"
+              }
+            },
+            "required": [
+              "queries"
+            ]
+          }
+        },
+        {
+          "name": "retrieve_personal_data",
+          "description": "Search the user's latest personal Google data (including Search, YouTube, Gemini chat history, Photos, and Gmail) for relevant information if it is needed to fulfill the user request. The user has provided explicit consent to use this data.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "query": {
+                "type": "STRING",
+                "description": "A single, precise, first-person query to issue searches with."
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "fetch_images",
+          "description": "Retrieves high-quality photographs, diagrams, and visual references to support visual identification, comparisons, and illustrating concepts.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "queries": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "The query to retrieve images for."
+              }
+            },
+            "required": [
+              "queries"
+            ]
+          }
+        },
+        {
+          "name": "ds_python_interpreter",
+          "description": "Executes arbitrary Python code in a sandboxed secure environment. Used for data processing, math computations, and generating local files dynamically.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "code": {
+                "type": "STRING",
+                "description": "The literal Python code block string to execute."
+              }
+            },
+            "required": [
+              "code"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "toolConfig": {
+    "functionCallingConfig": {
+      "mode": "AUTO",
+      "allowedFunctionNames": [
+        "google_search",
+        "retrieve_personal_data",
+        "fetch_images",
+        "ds_python_interpreter"
+      ]
+    }
+  },
