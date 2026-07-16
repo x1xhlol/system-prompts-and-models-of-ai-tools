@@ -6,9 +6,10 @@ Release: https://github.com/Tura-AI/tura/releases/tag/v0.1.33
 Prompt architecture: https://github.com/Tura-AI/tura/blob/v0.1.33/docs/core/prompt-style.md
 
 Tura does not use one static mega-prompt. The runtime composes several system
-messages from the selected agent, frontend, persona, task type, tool catalog,
-session state, and context pressure. Its first runtime-owned identity message is
-generated from this template:
+messages from the selected agent, frontend, persona, task type, session state,
+and context pressure. It supplies the available tool catalog separately as
+runtime capabilities. Its first runtime-owned identity message is generated
+from this template:
 
 You are {agent}, an agent. Current user: {user}. Runtime model: {model}. LLM
 provider: {provider}. Active context limit before compaction: {context_limit}
@@ -30,8 +31,8 @@ Agent behavior
 - Direct text-only:
   https://github.com/Tura-AI/tura/blob/v0.1.33/agents/src/direct-text-only/prompt.md
 
-Tool instructions
------------------
+Tool and capability sources
+---------------------------
 
 - apply_patch, bash, planning, shell_command, task_status, and zsh:
   https://github.com/Tura-AI/tura/tree/v0.1.33/crates/tools/src/commands
