@@ -1,26 +1,5 @@
-name: Docs / Typo / Inquiry
-description: Fix a typo, clarify README, or ask a question about the repository.
-title: ""
-labels:
-  - question
-body:
-  - type: dropdown
-    id: category
-    attributes:
-      label: Category
-      description: What kind of issue is this?
-      options:
-        - Documentation / README
-        - Typo
-        - Folder layout / organization
-        - General question
-    validations:
-      required: true
-  - type: textarea
-    id: details
-    attributes:
-      label: Details
-      description: Provide the location (file path or section) and what should change or what you're asking.
-      placeholder: "..."
-    validations:
-      required: true
+blank_issues_enabled: false
+contact_links:
+  - name: Community discussions
+    url: https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools/discussions
+    about: Ask usage questions and discuss prompt research with the community.

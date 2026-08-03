@@ -1,0 +1,26 @@
+name: Docs / Typo / Inquiry
+description: Fix a typo, clarify README, or ask a question about the repository.
+title: "[Docs] "
+labels:
+  - question
+body:
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: What kind of issue is this?
+      options:
+        - Documentation / README
+        - Typo
+        - Folder layout / organization
+        - General question
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Provide the location (file path or section) and what should change or what you're asking.
+      placeholder: "..."
+    validations:
+      required: true
