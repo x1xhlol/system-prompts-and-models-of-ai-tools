@@ -1,0 +1,38 @@
+name: Bug Report
+description: Report an error in a system prompt, broken link, or incorrect content.
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: input
+    id: vendor
+    attributes:
+      label: Vendor / Tool
+      description: Which AI tool or vendor is affected (e.g., Cursor, Claude Code, Windsurf).
+      placeholder: "e.g., Cursor"
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: File path
+      description: Path of the affected file inside this repository, if known.
+      placeholder: "e.g., Cursor Prompts/Agent Prompt.txt"
+    validations:
+      required: false
+  - type: textarea
+    id: summary
+    attributes:
+      label: What is wrong?
+      description: A clear description of the issue and how it should look.
+      placeholder: "Describe the problem..."
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce / evidence
+      description: Reproduction steps, screenshots, or links to upstream sources.
+      placeholder: "1. ...\n2. ..."
+    validations:
+      required: false
