@@ -323,7 +323,7 @@ const prompt = spark.llmPrompt`Generate a summary of: ${content}`
 
 ```typescript
 const result = await spark.llm(prompt)
-const jsonResult = await spark.llm(prompt, "gpt-4", true)
+const jsonResult = await spark.llm(prompt, "gpt-4o-mini", true)
 ```
 
 **Complete Example:**

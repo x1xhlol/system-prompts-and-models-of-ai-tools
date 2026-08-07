@@ -11,36 +11,47 @@
       "parameters": [
         {
           "name": "command",
+          "type": "string",
+          "enum": ["view", "create", "str_replace", "insert", "undo_edit"],
           "required": true,
           "description": "The command to run: view, create, str_replace, insert, or undo_edit"
         },
         {
           "name": "path",
+          "type": "string",
           "required": true,
           "description": "Absolute path to the file or directory"
         },
         {
           "name": "file_text",
+          "type": "string",
           "required": false,
           "description": "Required for 'create' command, with the content of the file to be created"
         },
         {
           "name": "old_str",
+          "type": "string",
           "required": false,
           "description": "Required for 'str_replace' command containing the string to replace"
         },
         {
           "name": "new_str",
+          "type": "string",
           "required": false,
           "description": "Required for 'str_replace' and 'insert' commands containing the new/inserted string"
         },
         {
           "name": "insert_line",
+          "type": "integer",
           "required": false,
           "description": "Required for 'insert' command, specifying the line number after which to insert"
         },
         {
           "name": "view_range",
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
           "required": false,
           "description": "Optional for 'view' command, specifies line range like [11, 12] or [start, -1] for end"
         }
@@ -53,11 +64,14 @@
       "parameters": [
         {
           "name": "command",
+          "type": "string",
+          "enum": ["install", "uninstall", "update", "list", "view", "search"],
           "required": true,
           "description": "The npm command to execute (install, uninstall, update, list, view, search)"
         },
         {
           "name": "args",
+          "type": "string",
           "required": false,
           "description": "Additional arguments to pass to the npm command (space-separated string)"
         }
@@ -70,6 +84,7 @@
       "parameters": [
         {
           "name": "command",
+          "type": "string",
           "required": true,
           "description": "The bash command to run"
         }
@@ -82,6 +97,11 @@
       "parameters": [
         {
           "name": "suggestions",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 3,
           "required": true,
           "description": "Array of 3 concise phrase strings describing potential improvements"
         }
