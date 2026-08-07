@@ -182,10 +182,10 @@
             "type": "string",
             "description": "Element reference from read_page, such as ref_1."
           },
-      "value": {
-        "type": ["string", "boolean"],
-        "description": "Value to set; string for text/dropdowns or boolean for checkboxes."
-      }
+          "value": {
+            "type": ["string", "boolean"],
+            "description": "Value to set; string for text/dropdowns or boolean for checkboxes."
+          }
         },
         "required": [
           "tab_id",
