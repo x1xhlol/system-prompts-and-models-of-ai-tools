@@ -16,6 +16,14 @@ body:
         - General question
     validations:
       required: true
+  - type: input
+    id: location
+    attributes:
+      label: File path or section
+      description: Which file path or section is relevant to this request?
+      placeholder: "e.g., README.md or Cursor Prompts/Agent Prompt.txt"
+    validations:
+      required: true
   - type: textarea
     id: details
     attributes:
