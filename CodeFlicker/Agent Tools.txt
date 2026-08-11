@@ -1,0 +1,950 @@
+# CodeFlicker (KwaiPilot) Agent Tools
+
+Total: 32 tools
+Source: Decrypted from runtime AES-256-GCM encrypted request + kwaipilot-binary.exe
+Mode: agent (Duet)
+Model: GLM_5_TOC
+
+---
+
+## ask_user_questions
+
+Use this tool when you need to ask the user questions. This allows you to:  1. Gather user preferences or requirements  2. Clarify ambiguous instructions  3. Get decisions on implementation choices as you work  4. Offer choices to the user about what direction to take.
+
+---
+
+## browser_agent
+
+[Disable concurrent calls] Tool Description: Launch a browser sub-agent to execute specified browser tasks.
+  - **Note**: This tool was previously named "browser_action" and has been renamed to "browser_agent". Use this tool for all browser-related operations.
+  - Capabilities: The sub-agent has a series of specialized tools that can interact with web page content (clicking, inputting, navigating, etc.).
+  - End Condition: Your task description (Task) must define a clear "return condition" (when to stop).
+  - **Task Decomposition**: 
+    - The sub-agent is designed for single, well-defined browser operations
+    - If a task requires visiting more than 2 different pages or 2 different domains, consider breaking it into smaller sub-tasks
+    - The sub-agent will automatically return a <decompose> tag when it encounters tasks that are too large in scope
+    - When you receive a <decompose> tag, it means you should create multiple browser_agent tool calls for different parts of the task
+  - **<decompose> Tag Explanation**: When the sub-agent encounters a task that spans multiple pages or domains, it will return <decompose description="reason">content</decompose>. This is NOT an error - it's a request for the main agent to decompose the large task into smaller, manageable sub-tasks.
+    - **Example**: If sub-agent returns <decompose description="Task scope too large">This task requires visiting 4 different pages across 2 domains. Suggested breakdown: 1) Page A to B, 2) Page C to D.</decompose>, you should create separate browser_agent tool calls for each sub-task
+  - Error Handling: Critical Note: If the sub-agent returns that open_browser_url failed, this is a browser-level issue beyond your control. You must ask the user how to proceed.
+  - **【MUST STRICTLY COMPLY】The language of parameters taskName and task must match the language of the user's request. This is a rule displayed to users and must be strictly complied with.**
+  - **【MUST STRICTLY COMPLY】If you encounter a <need_human> tag, the Main Agent must immediately stop all attempts with the browser_agent tool, cease any further operations, directly output the sub-agent's return result to the user, and ask the user for help. If there are other suggestions, you can provide them and let the user choose. This is a rule displayed to users and must be strictly complied with.**
+  Important: "kuaishou.com" is the domain of Kuaishou (快手) company.
+
+### Parameters
+
+- **expectedOutput** (string): Describe what the Main Agent expects back, such as:
+- **tabId** (string): Tab ID to continue working on.  
+- **task** (string) (required): Specific task instruction. This is a clear, executable instruction text.
+- **taskName** (string): Task Name. This is the identifier for the sub-agent execution step and the grouping basis.
+
+---
+
+## codebase_search
+
+[Allow concurrent calls] Find snippets of code from the codebase most relevant to the search query.
+Some examples of codebase_search:
+- {"query":"class ThreadNamePatternInterceptor"}
+- {"query":"contentProcessForPromotion RetainEndNodeUtils","target_directories":"kwaishop-aftersales/solution-retain"}
+- {"query":"FrogCanvas.runGame 工具面板 游戏面板 共享 实例"}
+
+### Parameters
+
+- **explanation** (string): One sentence explanation as to why this tool is being used, and how it contributes to the goal.
+- **query** (string) (required): The search query to find relevant code.
+- **target_directories** (array): Glob patterns for directories to search over.
+
+---
+
+## command_status_check
+
+[Disable concurrent calls] Check the status and output of a previously executed command. This tool can ONLY be used immediately after calling the 'execute_command' tool - it cannot be used independently or as a standalone tool. If the previous tool call was not 'execute_command', this tool must not be used. Use this tool when you've executed a command with 'is_background: true' and 'ignore_output: false' and need to monitor its progress. The tool will wait for the specified duration and return the current terminal output along with a status indicator. IMPORTANT: This tool can be called at most 5 times consecutively to prevent infinite loops.
+
+### Parameters
+
+- **check_duration** (number) (required): The number of seconds to wait before checking the command status. Keep this value small (typically 1-5 seconds) since background commands already wait 3 seconds by default, non-background commands wai
+
+---
+
+## create_plan
+
+Use this tool to create a concise, actionable plan for accomplishing the user's request.  **IMPORTANT: This tool is for CREATING new plans only.** - To UPDATE an existing plan, use the 
+
+---
+
+## execute_command
+
+[Disable concurrent calls] [Disable concurrent calls] Request to execute a CLI command on the system. IMPORTANT: Each command execution starts in a fresh shell session with the working directory reset to the workspace root. The working directory does NOT persist from previous commands - if you need to run a command in a specific directory, include 'cd <directory> &&' in your command. CRITICAL SYSTEM INFO: Current OS is Windows 10.0.26200, Shell is cmd.exe. You MUST provide commands that are compatible with Windows 10.0.26200 and cmd.exe. DO NOT use commands from other operating systems (e.g., Windows PowerShell commands on macOS/Linux, or bash commands on Windows). IMPORTANT FOR LONG COMMANDS: If the command is very long (exceeds 2000 characters), you should prefer creating a temporary script file and executing it instead of passing the entire command directly. This approach is more reliable and avoids potential shell parsing issues with extremely long commands.
+
+### Parameters
+
+- **command** (string) (required): The CLI command to execute. CRITICAL: This will run on Windows 10.0.26200 with cmd.exe. You MUST provide a valid command for this system. Use Windows commands like: dir, cd, copy, findstr, type, etc. 
+- **ignore_output** (boolean): Whether you care about monitoring the command's output or success status. Set to 'true' when you don't need to know if the command succeeded or failed (e.g., downloading a large file where you don't c
+- **is_background** (boolean): Whether the command runs indefinitely until manual termination. Set to 'true' for commands like 'npm run dev', 'watch', file monitoring, development servers, or any process that continues running unti
+- **requires_approval** (boolean): A boolean indicating whether this command is potentially dangerous and requires explicit user approval before execution. Set to true for commands that can cause data loss, system changes, or security 
+
+---
+
+## fetch_web
+
+[Allow concurrent calls] Fetch and extract the detailed content from a specific website URL. This tool can extract main content from web pages, articles, documentation, and other text-based web content.
+
+### Parameters
+
+- **nocache** (string): Whether to bypass cache and fetch fresh content. Defaults to true.
+- **url** (string) (required): The complete URL of the website to fetch content from. Must be a valid HTTP or HTTPS URL.
+
+---
+
+## grep_search
+
+[Allow concurrent calls] Search for text patterns in files using regular expressions (regex).
+Some examples of grep_search:
+- {"path":"rn-ky/src/KyShopCar/pages/ProductAssociation","regex":"const handleNext.*useCallback.*async.*=>""}
+- {"path":"datafetch","regex":"mobile_configs = {"}
+- {"path":"A-flow/ks-flow-assistant/apps/assistant-client/chat","regex":"AIMessageBase|AiMessageBase","file_pattern":"*.vue"}
+
+### Parameters
+
+- **file_pattern** (string): Glob pattern to filter files (e.g., "*.ts" for TypeScript files)
+- **path** (string) (required): The directory to search in (relative to the current working directory c:/Users/ASUS/Desktop/CPA). (e.g., 'src/components', 'lib/utils')
+- **regex** (string) (required): The regular expression pattern to search for. Uses Rust regex syntax. (e.g., "async fns+(w+)", ".header")
+
+---
+
+## list_files
+
+[Allow concurrent calls] List files and directories within the specified directory.
+
+### Parameters
+
+- **path** (string) (required): The path of the directory to list contents for (relative to the current working directory c:/Users/ASUS/Desktop/CPA).
+- **recursive** (boolean): Whether to list files recursively.
+
+---
+
+## mermaid
+
+[Disable concurrent calls] Renders a Mermaid diagram from the provided code.
+
+PROACTIVELY USE DIAGRAMS when they would better convey information than prose alone. The diagrams produced by this tool are shown to the user.
+
+You should create diagrams WITHOUT being explicitly asked in these scenarios:
+- When explaining system architecture or component relationships
+- When describing workflows, data flows, or user journeys
+- When explaining algorithms or complex processes
+- When illustrating class hierarchies or entity relationships
+- When showing state transitions or event sequences
+
+Diagrams are especially valuable for visualizing:
+- Application architecture and dependencies
+- API interactions and data flow
+- Component hierarchies and relationships
+- State machines and transitions
+- Sequence and timing of operations
+- Decision trees and conditional logic
+
+Citations:
+- **MUST include `citations` when diagram nodes correspond to actual source code** (e.g., files, classes, functions, modules you have read or know exist). Citations make diagram elements clickable and link to code locations.
+- Only omit citations for purely conceptual diagrams that have no corresponding source code (e.g., abstract workflow concepts, external systems).
+- **CRITICAL: Only use file paths you have confirmed exist** (e.g., files you read via tools in this conversation). Do NOT guess or fabricate file paths.
+
+**Simple format** (path only):
+```json
+{ "UC": "src/api.ts#L10-L50" }
+```
+
+**Full format** (with metadata for tooltip):
+```json
+{
+  "UC": {
+    "path": "src/api.ts#L10-L50",
+    "description": "User controller entry point",
+    "status": "changed",
+    "issues": [{ "severity": "warning", "title": "Missing input validation" }]
+  }
+}
+```
+
+**Path format:**
+- Relative paths from workspace root with optional line range
+- Example: `src/api.ts#L10-L50` → `{workspace}/src/api.ts` lines 10-50
+- Line formats: `#L10` (single line), `#L10-L50` or `#L10-50` (range)
+- Do NOT use `file://` prefix
+
+**Metadata fields (optional):**
+- `description`: Brief description for tooltip
+- `status`: `changed` | `affected` | `normal`
+- `issues`: Array of { severity: `critical` | `error` | `warning` | `info`, title: string }
+
+**Citation keys vary by diagram type:**
+- **flowchart**: node IDs as defined in code (e.g., `A`, `api`, `userService`)
+- **sequenceDiagram**: participant alias or display text (e.g., `U` for "participant U as User")
+- **classDiagram**: class names (e.g., `User`, `Order`, `PaymentService`)
+- **stateDiagram**: state names (e.g., `Idle`, `Processing`, `Completed`)
+- **erDiagram**: entity names (e.g., `USER`, `ORDER`, `PRODUCT`)
+- **journey**: section or task text content (e.g., `Browse Products`, `Checkout`)
+
+### Parameters
+
+- **citations** (): Optional map of citation keys to file paths (simple string) or metadata objects (with path, description, status, issues). Keys depend on diagram type: flowchart uses node IDs, sequenceDiagram uses par
+- **code** (string) (required): The Mermaid diagram code to render (DO NOT override with custom colors or other styles, DO NOT use HTML tags in node labels)
+
+---
+
+## multi_replace_in_file
+
+[Disable concurrent calls] Apply precise, targeted modifications to an existing file using `oldString` and `newString` operations. This tool is for surgical edits only; provide an array of operations where each operation specifies the exact text to search for and what to replace it with. The `oldString` text must exactly match the existing content, including whitespace and indentation.
+
+### Parameters
+
+- **operations** (array) (required): Array of oldString and newString operations to perform on the file.
+- **path** (string) (required): The path of the file to modify.
+
+---
+
+## preview_agent
+
+[Disable concurrent calls] ═══════════════════════════════════════════════════════════════════
+ CRITICAL TOOL - HIGH PRIORITY (Overrides general tool-usage rules)
+═══════════════════════════════════════════════════════════════════
+
+ WHEN TO CALL (Mandatory in ANY of these situations):
+
+1. Direct user command:
+   - "start", "run", "launch", "preview", "启动", "运行", "跑一下"
+
+2. Implicit user intent:
+   - "Does it work?", "Show me the app", "我想看看效果"
+
+3. User mentions commands/ports:
+   - "npm dev", "localhost:3000", "vite", "yarn start"
+
+4. Agent self-decision:
+   - You decide to verify your changes by running the project
+
+─────────────────────────────────────────────────────────────────
+ FORBIDDEN BEFORE CALLING (Critical - Do NOT violate):
+─────────────────────────────────────────────────────────────────
+
+ DO NOT read_file to find start commands (including start.md)
+ DO NOT list_files to explore project structure
+ DO NOT grep_search to find package.json scripts
+ DO NOT execute_command to start directly (e.g., npm start)
+
+ MUST call preview_agent immediately when triggered
+ Trust this tool to analyze repo, terminals, and Spectra context
+ Rely on <spectra_recap> as primary signal
+
+─────────────────────────────────────────────────────────────────
+ WHAT THIS TOOL RETURNS:
+─────────────────────────────────────────────────────────────────
+
+- action: "start" | "restart" | "reuse" | "ask_user"
+- action_reason: explanation of the decision
+- start_md_path: absolute path to start.md file
+- start_md_updated: boolean (if true, start.md was auto-generated)
+- start_md_content: content of start.md
+- candidates: array of options (only when action="ask_user")
+- recommended_target: string or null (specific project to start)
+
+Tool outputs streaming progress before structured data:
+  "Analyzing repository structure..."
+  "Found 17 subprojects..."
+  "---"
+  [YAML structured data]
+
+Display progress text to user in real-time.
+Tool automatically writes start.md (you do NOT need to write it).
+
+─────────────────────────────────────────────────────────────────
+⚡ REQUIRED NEXT STEPS (Based on action field):
+─────────────────────────────────────────────────────────────────
+
+1. If action="ask_user" (CRITICAL - Must follow exactly):
+
+   You MUST immediately call preview_ask tool
+   DO NOT skip this - user CANNOT choose without preview_ask!
+
+   Step-by-step conversion:
+   a) Parse "candidates" array from response
+   b) Create ONE question: "请选择要启动的项目：" or "Which project?"
+   c) For each candidate, create an option:
+      • label: candidate.name (e.g., "kdev-workbench")
+      • description: brief summary (e.g., "KDev 工作台 (端口 8010)")
+      • isRecommended: true ONLY for first candidate
+   d) Call preview_ask with converted options
+   e) After user selects, read start.md and execute selected project
+
+   Example conversion:
+   Input:  {"action":"ask_user","candidates":[{"name":"workbench","port":8010},...]}
+   Output: preview_ask({"questions":[{"question":"请选择要启动的项目：",
+           "options":[{"label":"workbench","description":"端口 8010","isRecommended":true}]}]})
+
+2. If action="reuse":
+
+   Tell user to reuse existing running instance
+   Show action_reason (explains why reuse is recommended)
+   DO NOT start or restart
+
+3. If action="start" or "restart":
+
+   Step A: Read start.md
+   ────────────────────
+   → Use start_md_path from response
+   → If start_md_updated=true, DO NOT rewrite it
+
+   Step B: Execute commands
+   ─────────────────────────
+   IF recommended_target exists (e.g., "project/workbench"):
+     → Find that specific project in start.md
+     → Execute its command directly
+
+   ELSE IF recommended_target is null:
+     → Parse start.md "## Quick Start" section
+     → Look for "### Step 1:", "### Step 2:", etc.
+     → Execute steps in order
+     → Wait for ready signals between steps (e.g., "Server ready")
+
+   Example multi-step parsing:
+   ```markdown
+   ## Quick Start
+   ### Step 1: Start Backend
+   ```bash
+   cd server && npm run dev
+   ```
+   Wait for "Server ready" message.
+
+   ### Step 2: Start Frontend
+   ```bash
+   cd client && npm run dev
+   ```
+   ```
+
+   Step C: Monitor and open preview
+   ──────────────────────────────────
+   → Monitor terminal output for ready signals
+   → Open preview URL when application is ready
+
+ CRITICAL: Always read start.md before executing. DO NOT guess commands.
+
+─────────────────────────────────────────────────────────────────
+ EXAMPLES:
+─────────────────────────────────────────────────────────────────
+
+ WRONG (Violates FORBIDDEN rules):
+   User: "启动"
+   Agent: read_file("package.json")  ← WRONG!
+
+ CORRECT:
+   User: "启动"
+   Agent: preview_agent({user_intent:"user-requested-start", user_task:"启动"})
+
+ CORRECT (Agent autonomy):
+   User: "Fix the login bug"
+   (You fixed it and want to verify)
+   Agent: preview_agent({user_intent:"verify-changes", user_task:"Verify login fix"})
+
+─────────────────────────────────────────────────────────────────
+  IMPORTANT NOTES:
+─────────────────────────────────────────────────────────────────
+
+• This tool does NOT execute commands - it only analyzes and guides
+• It runs a sub-agent to inspect repo, terminals, Spectra, and intent
+• Trust the tool - it has deep knowledge of project structure
+• The tool auto-generates start.md if missing or outdated
+
+### Parameters
+
+- **target_hint** (string): Optional project name or path hint mentioned by the user.
+- **user_intent** (string) (required): User intent category (e.g., user-requested-start, user-requested-restart, verify-changes, preview-only).
+- **user_task** (string) (required): Raw user request or task content.
+
+---
+
+## preview_ask
+
+[Disable concurrent calls] ═══════════════════════════════════════════════════════════════════
+ CRITICAL TOOL - MUST be called after preview_agent returns action="ask_user"
+═══════════════════════════════════════════════════════════════════
+
+ WHEN TO CALL:
+
+ Immediately after preview_agent returns: {"action": "ask_user", "candidates": [...]}
+ DO NOT skip - user CANNOT choose without this tool!
+
+─────────────────────────────────────────────────────────────────
+ USAGE FLOW:
+─────────────────────────────────────────────────────────────────
+
+1. Call preview_agent first
+2. If response has action="ask_user" → MUST call preview_ask
+3. Convert candidates to preview_ask format (see below)
+4. After user selects → read start.md and execute
+
+─────────────────────────────────────────────────────────────────
+ HOW TO CONVERT CANDIDATES:
+─────────────────────────────────────────────────────────────────
+
+Input from preview_agent:
+  {
+    "action": "ask_user",
+    "candidates": [
+      {"id": "project/workbench", "name": "kdev-workbench", "port": 8010, ...},
+      {"id": "project/kat", "name": "kat", "port": 8090, ...}
+    ],
+    "recommended_target": "project/workbench"
+  }
+
+Output to preview_ask:
+  {
+    "questions": [{
+      "question": "请选择要启动的项目：",
+      "options": [
+        {
+          "label": "kdev-workbench",
+          "description": "KDev 工作台 (端口 8010)",
+          "isRecommended": true
+        },
+        {
+          "label": "kat",
+          "description": "接口自动化平台 (端口 8090)",
+          "isRecommended": false
+        }
+      ]
+    }]
+  }
+
+─────────────────────────────────────────────────────────────────
+ CONVERSION RULES:
+─────────────────────────────────────────────────────────────────
+
+1. question: Create ONE question
+   - Chinese: "请选择要启动的项目："
+   - English: "Which project would you like to start?"
+
+2. For each candidate → create an option:
+   • label: use candidate.name directly
+   • description: combine port/path info (2-10 words)
+   • isRecommended: true ONLY for first candidate
+
+3. Set first candidate as recommended (or match recommended_target)
+
+─────────────────────────────────────────────────────────────────
+  CRITICAL REMINDERS:
+─────────────────────────────────────────────────────────────────
+
+• This tool creates interactive UI for user to choose
+• User selection is returned in next message
+• After user selects, read start.md and execute the chosen project
+• Skipping this tool = user cannot choose = workflow breaks!
+
+### Parameters
+
+- **questions** (array) (required): Questions to ask the user (1-4 questions)
+
+---
+
+## project_preview
+
+[Disable concurrent calls] Spin up a browser preview for a web server. This allows the USER to interact with the web server normally as well as provide console logs and other information from the web server. Note that this tool call will not automatically open the browser preview for the USER, they must click one of the provided buttons to open it in the browser.
+
+STRICT RULES - VIOLATION WILL CAUSE FAILURE:
+- You MUST call this tool exactly ONCE per chatId. Any duplicate call is FORBIDDEN and will fail.
+- You MUST verify the server is already running and accessible at the provided URL BEFORE calling this tool. Do NOT call if the server is not running.
+- You MUST NOT provide start_script_content unless you have EXECUTED the start command and CONFIRMED the server started successfully. If uncertain, omit this parameter entirely.
+
+### Parameters
+
+- **preview_summary** (string): Optional preview summary for Spectra recap. Only provide after preview is confirmed running.
+- **preview_url** (string) (required): The URL of the target web server to provide a browser preview for. This should contain the scheme (e.g. http:// or https://), domain (e.g. localhost or 127.0.0.1), and port (e.g. :8080), and path (e.g
+- **start_script_content** (string): CRITICAL: You MUST NOT provide this parameter unless you have EXECUTED the start command and VERIFIED the server is running successfully.
+
+---
+
+## read_file
+
+[Allow concurrent calls] Read the contents of a file. Reading behavior: if both start_line_one_indexed and end_line_one_indexed are provided, read from start to end; if neither are provided, it will default to reading lines 1-1000; if only start_line_one_indexed is provided, read from start to end of file; if only end_line_one_indexed is provided, read from beginning to end line. 
+    
+    IMPORTANT: 
+    1. MANDATORY LINE COUNT RULE: When reading a file for the FIRST TIME, you MUST read between 500 and 1000 lines. For example, if you want to read from line 1, set end_line_one_indexed to at least 500. Do NOT read fewer than 500 lines on initial read - this wastes tool calls and loses context.
+    2. RECOMMENDED: Read as much content as possible in a single call (up to 1000 lines) to get better context understanding. More context helps you make better decisions.
+    3. Only read fewer than 500 lines when you have ALREADY read the file before and need to focus on a specific small section.
+    4. This tool adds line number for each line content (such as 000001|The first line content).
+    5. IMAGE FILE SUPPORT: This tool supports reading image files (.png, .jpg, .jpeg, .gif, .webp, .bmp, .svg). Images are automatically compressed if larger than 5MB and uploaded to CDN. The CDN URL is returned for LLM analysis.
+
+### Parameters
+
+- **end_line_one_indexed** (number): The one-indexed line number to end reading at (inclusive). If provided without start_line_one_indexed, reads from the beginning of the file to this line.
+- **path** (string) (required): The path of the file to read (relative to the current working directory c:/Users/ASUS/Desktop/CPA). 
+- **start_line_one_indexed** (number): The one-indexed line number to start reading from (inclusive). If provided without end_line_one_indexed, reads from this line to the end of the file.
+
+---
+
+## read_lints
+
+[Allow concurrent calls] Read linter errors from the current workspace. You can provide paths to specific files or directories, or omit the argument to get diagnostics for all files.
+
+USAGE GUIDELINES:
+- If a file path is provided, returns diagnostics for that file only
+- If a directory path is provided, returns diagnostics for all files within that directory  
+- If no path is provided, returns diagnostics for all files in the workspace
+- This tool can return linter errors that were already present before your edits, so avoid calling it with a very wide scope of files
+
+IMPORTANT RULES:
+- NEVER call this tool on a file unless you've edited it or are about to edit it
+- Use this tool to check for linter errors after making code changes
+- For complex changes, you may need to run it after editing each file
+- If you've introduced linter errors, fix them if clear how to (or you can easily figure out how to)
+- Do not make uneducated guesses or compromise type safety
+- DO NOT loop more than 3 times on fixing linter errors on the same file
+
+### Parameters
+
+- **paths** (array): Optional. An array of paths to files or directories to read linter errors for. You can use either relative paths in the workspace or absolute paths. If provided, returns diagnostics for the specified 
+
+---
+
+## read_todo
+
+[Allow concurrent calls] Use this tool to retrieve the current todo list and its status.
+
+---
+
+## replace_in_file
+
+[Disable concurrent calls] 
+Performs exact string replace in file. 
+
+Usage:
+- You must use your `read_file` tool at least once in the conversation before editing. This tool will error if you attempt an edit without reading the file.
+- When editing text from Read tool output, ensure you preserve the exact indentation (tabs/spaces) as it appears AFTER the line number prefix. The line number prefix format is: line number + tab. Everything after that tab is the actual file content to match. Never include any part of the line number prefix in the oldString or newString.
+- ALWAYS prefer editing existing files in the codebase. NEVER write new files unless explicitly required.
+- Only use emojis if the user explicitly requests it. Avoid adding emojis to files unless asked.
+- Will ONLY replace the first match occurrence. If `oldString` is not unique in the file, provide a larger string with more surrounding context to make it unique.
+
+IMPORTANT: When editing files from other repositories (via <repository> tags), always use absolute paths. The user will see a confirmation dialog with the exact path you provide, so clarity is critical.
+
+### Parameters
+
+- **newString** (string) (required): The text to replace it with (must be different from oldString)
+- **oldString** (string) (required): The exact text to replace
+- **path** (string) (required): The path to the file to modify (relative to the current working directory c:/Users/ASUS/Desktop/CPA).
+
+---
+
+## search_file
+
+[Allow concurrent calls] Fast file pattern matching tool that works with any codebase size. Returns relative paths of files from the workspace root.
+    - Supports glob patterns like "**/*.js" or "src/**/*.ts"
+    - Returns matching file paths sorted by modification time
+    - Use this tool when you need to find files by name patterns
+
+### Parameters
+
+- **maxResults** (integer): Optional. Maximum number of files to return. Defaults to 100.
+- **query** (string) (required): The glob pattern to match files against
+
+---
+
+## search_memory
+
+[Disable concurrent calls] Search through stored memory items to find relevant information from previous interactions, events, and context. This tool helps retrieve historical data, user preferences, past conversations, and behavioral patterns. Use this tool when you need to recall memories to complete a task.
+
+### Parameters
+
+- **category** (string): List the categories of memories you want to recall. Separate each category with a comma. Category must be from: user_info, user_hobby, user_communication, project_tech_stack, project_configuration, pr
+- **depth** (string): Select recall depth based on memory overview and task requirements. Two levels available: 'shallow': Smaller search scope, fewer but highly relevant memories returned. Use when task information is suf
+- **keywords** (string) (required): Keywords to describe the memory you want to recall. Provide up to 5 keywords, each not exceeding 10 characters. Separate each keyword with a comma. Based on task requirements, list as many relevant ke
+- **query** (string) (required): What you want to recall, please keep it semantically clear, complete, and concise.
+- **type** (string): Search type: 'all' to retrieve all memories without filtering, 'search' (default) to perform keyword-based search. Use 'all' when you need to see all available memories.
+
+---
+
+## search_spec
+
+Search through stored specification items to find relevant AI-generated code planning and planning rationale. This tool helps retrieve detailed specifications, design decisions, and planning documents that are crucial for future code generation. Specifications contain the detailed planning and rationale generated during AI code creation processes.
+
+---
+
+## search_web
+
+[Allow concurrent calls] Search Google to find relevant information and websites. This tool returns search results with key websites that you can then analyze for content.
+
+### Parameters
+
+- **gl** (string): The country/region for search results (default: us). Use country codes like us, cn, uk, etc.
+- **hl** (string): The language for the search interface (default: en). Use language codes like en, zh, fr, etc.
+- **query** (string) (required): The search query string. Be specific and use relevant keywords for better results.
+
+---
+
+## switch_mode
+
+[Disable concurrent calls] Switch the Agent to a more appropriate **operating mode**.
+
+**IMPORTANT**: This tool should be used **proactively**. When there is any indication that planning would benefit the user, recommend switching early rather than struggling without a plan.
+
+This tool is used when the Agent determines that the current task is **complex** to benefit from explicit planning before implementation.
+
+---
+
+### When to Use
+
+* The task requires **decomposition into multiple steps** before acting
+* The task is complex, such like refactor
+* The user's request is **ambiguous or broad**, needing structured analysis
+* Proceeding without planning would:
+  * introduce hidden assumptions
+  * lead to incomplete or incorrect implementation
+  * result in rework due to unclear requirements
+* When the user explicitly requests to use a specific mode
+  (e.g., "use plan mode", "switch to planning", "I want to make a plan")
+* When the user's request involves **any of the following signals**:
+  * mentions "plan", "design", "architecture", "migration", "refactor large scope"
+  * asks for comparison, trade-off analysis, or decision support
+  * implies multi-step workflow or long-term changes
+* **When in doubt** about whether planning is needed, **prefer to recommend a switch** rather than risk under-delivering
+
+### When NOT to Use
+
+* The user explicitly states they only want a quick fix or brief explanation
+* The task is clearly a single-step action with no ambiguity
+
+---
+
+### Usage Notes
+
+* **Proactive over reactive**: It is better to recommend a mode switch that the user declines than to fail silently without proper planning.
+* If unsure whether planning is required, **recommend the switch** and let the user decide.
+
+---
+
+### Example
+
+User: "Help me design a migration plan, I'm not sure about the requirements yet."
+→ `switch_mode(target_mode = "plan")`
+
+User: "Refactor this entire module to use the new API design pattern."
+→ `switch_mode(target_mode = "plan")`
+
+### Parameters
+
+- **reason** (string) (required): Brief reason (max 200 chars). Do not include the mode name in the reason.
+- **target_mode** (string) (required): Target mode to recommend. Only plan mode is available.
+
+---
+
+## terminal_output
+
+[Disable concurrent calls] Read output from a terminal by its process ID (PID).
+
+IMPORTANT LIMITATION:
+✅ CAN read output from terminals started via execute_command tool (with is_background=true)
+❌ CANNOT read output from VSCode native terminals (user manually opened)
+   - Reason: VSCode API does not provide terminal output history
+   - You can detect these terminals exist, but cannot read their output
+
+Recommended workflow:
+1. Use execute_command with is_background=true to start a process
+2. Get the PID from the execute_command response
+3. Call terminal_output({ terminal_id: "12345" }) to read its output
+
+Alternative: Use command_status_check for real-time monitoring during command execution.
+
+### Parameters
+
+- **line_count** (number): Optional max number of lines to return from the tail of the terminal output.
+- **terminal_id** (string) (required): Terminal process ID (PID) as a string. Example: "12345"
+
+---
+
+## update_memory
+
+[Disable concurrent calls] Update, add, or delete memories based on the user's intent to maintain memory consistency. Use this tool when the user explicitly requests to remember something, or when the user's intent is to add, delete, or modify a memory. Before performing the operation, if the relevant memory does not already exist, use search_memory first to check the current memory status.
+
+### Parameters
+
+- **action** (string) (required): The type of action to take on the MEMORY. Must be one of 'create', 'update', or 'delete'
+- **category** (string): Memory category. Must be one of: user_info, user_hobby, user_communication, project_tech_stack, project_configuration, project_environment_configuration, project_introduction, development_code_specifi
+- **content** (string): Content of a new or updated MEMORY. When deleting an existing MEMORY, leave this blank.
+- **dimension** (string) (required): Dimension of the memory: 'user' for user-level preferences, 'repos' for repository-level knowledge
+- **id** (string): Id of an existing MEMORY to update or delete. When creating a new MEMORY, leave this blank. The id must be a memory ID, taken from the memory id in user_memories, or from the MemoryId returned by the 
+- **keywords** (string): Keywords to associate with the MEMORY, using English comma separators. These will be used to filter or retrieve the MEMORY. When deleting, leave this blank.
+- **reason** (string) (required): Reason for saving this memory - declare why this memory is being saved
+- **title** (string): Descriptive title for a new or updated MEMORY. This is required when creating or updating a memory. When deleting an existing MEMORY, leave this blank.
+
+---
+
+## use_skill
+
+[Disable concurrent calls] Use a skill to help with the current task. Skills are specialized instruction sets that provide domain-specific guidance. You must first call this tool to load the skill content before following its instructions.
+
+### Parameters
+
+- **reason** (string): The reason for using this skill. Helps with context and logging.
+- **skill_name** (string) (required): The name of the skill to use. Must match an available skill name.
+
+---
+
+## use_subagent
+
+[Disable concurrent calls] Use a Codeflicker subagent to handle a specialized task in an isolated context. Subagents are defined in .codeflicker/agents/ or ~/.codeflicker/agents/ as .md files with name and description in frontmatter and the system prompt in the body. Call this tool with subagent_name and task; the subagent runs with its own system prompt and returns the result.
+
+### Parameters
+
+- **background** (boolean): When true, run the subagent in the background and do not wait for its final result. Overrides the subagent default background setting from metadata.
+- **fork** (boolean): When true, conceptually treat this subagent as a fork of the current session. This is a hint for UI/logging and does not change execution semantics yet.
+- **reason** (string): Why this subagent is being used; helps with context and logging.
+- **subagent_name** (string) (required): The name of the subagent to use (must match an available subagent name).
+- **task** (string) (required): The task or prompt to send to the subagent.
+
+---
+
+## view_code_item
+
+[Allow concurrent calls] View the content of up to 5 code item nodes in a file, each as a class or a function. You must use fully qualified code item names, such as those return by the grep_search or other tools. 
+    For example, if you have a class called Foo and you want to view the function definition bar in the Foo class, you would use Foo.bar as the NodeName. 
+    DO NOT request to view a symbol if the contents have been previously shown by the codebase_search tool.
+
+### Parameters
+
+- **file** (string) (required): The path of the file (relative to the current working directory c:/Users/ASUS/Desktop/CPA or absolute path). 
+- **node_paths** (array) (required): Array of up to 5 fully qualified code item names to view. Use "ClassName.methodName" for class methods (e.g., "Foo.bar"), or just the name for top-level functions/classes (e.g., "myFunction", "MyClass
+
+---
+
+## view_file_outline
+
+[Allow concurrent calls] View the outline (structure) of a file using tree-sitter parsing. Returns top-level definitions including functions, classes, methods, interfaces, types, variables, and constants. 
+    Useful for understanding file structure before reading specific sections. 
+    Supported file extensions: ts, tsx, mts, cts, js, jsx, mjs, cjs, py, pyw, pyi, java, c, h, cpp, cc, cxx, hpp, hxx, hh, go, rs, md, markdown, mdx
+
+### Parameters
+
+- **path** (string) (required): The path of the file to view outline (relative to the current working directory c:/Users/ASUS/Desktop/CPA). 
+
+---
+
+## write_review_report
+
+Write or update the review report in the thread directory. This is the ONLY way for Review Agent to output review reports.  The report will be written to 
+
+---
+
+## write_to_file
+
+[Disable concurrent calls] Write a file to the local filesystem. This tool will overwrite the entire file content if the file exists.
+
+IMPORTANT: When editing files from other repositories (via <repository> tags), always use absolute paths.
+
+### Parameters
+
+- **content** (string) (required): The content to write to the file.
+- **path** (string) (required): The path of the file to write to.
+
+---
+
+## write_todo
+
+[Disable concurrent calls] Use this tool to create and manage a structured task list for your current coding session.This helps you track progress, organize complex tasks, and demonstrate thoroughness to the user.
+  It also helps the user understand the progress of the task and overall progress of their requests.
+  
+  ## When to Use This Tool
+  Use this tool proactively in these scenarios:
+  
+  1. Complex multi-step tasks - When a task requires 3 or more distinct steps or actions
+  2. Non-trivial and complex tasks - Tasks that require careful planning or multiple operations
+  3. User explicitly requests todo list - When the user directly asks you to use the todo list
+  4. User provides multiple tasks - When users provide a list of things to be done (numbered or comma-separated)
+  5. After receiving new instructions - Immediately capture user requirements as todos. Feel free to edit the todo list based on new information.
+  6. When you start working on a task - Mark it as in_progress BEFORE beginning work. Ideally you should only have one todo as in_progress at a time
+  7. After completing a task - Mark it as completed and add any new follow-up tasks discovered during implementation
+  
+  ## When NOT to Use This Tool
+  
+  Skip using this tool when:
+  1. There is only a single, straightforward task
+  2. The task is trivial and tracking it provides no organizational benefit
+  3. The task can be completed in less than 3 trivial steps
+  4. The task is purely conversational or informational
+  
+  NOTE that you should not use this tool if there is only one trivial task to do. In this case you are better off just doing the task directly.
+  
+  ## Examples of When to Use the Todo List
+  
+  <example>
+  User: I want to add a dark mode toggle to the application settings. Make sure you run the tests and build when you're done!
+  Assistant: I'll help add a dark mode toggle to your application settings. Let me create a todo list to track this implementation.
+  *Creates todo list with the following items:*
+  1. Create dark mode toggle component in Settings page
+  2. Add dark mode state management (context/store)
+  3. Implement CSS-in-JS styles for dark theme
+  4. Update existing components to support theme switching
+  5. Run tests and build process, addressing any failures or errors that occur
+  *Begins working on the first task*
+
+<reasoning>
+The assistant used the todo list because:
+1. Adding dark mode is a multi-step feature requiring UI, state management, and styling changes
+2. The user explicitly requested tests and build be run afterward
+3. The assistant inferred that tests and build need to pass by adding "Ensure tests and build succeed" as the final task
+</reasoning>
+</example>
+
+<example>
+User: Help me rename the function getCwd to getCurrentWorkingDirectory across my project
+Assistant: Let me first search through your codebase to find all occurrences of 'getCwd'.
+*Uses grep or search tools to locate all instances of getCwd in the codebase*
+Assistant: I've found 15 instances of 'getCwd' across 8 different files. Let me create a todo list to track these changes.
+*Creates todo list with specific items for each file that needs updating*
+
+<reasoning>
+The assistant used the todo list because:
+1. First, the assistant searched to understand the scope of the task
+2. Upon finding multiple occurrences across different files, it determined this was a complex task with multiple steps
+3. The todo list helps ensure every instance is tracked and updated systematically
+4. This approach prevents missing any occurrences and maintains code consistency
+</reasoning>
+</example>
+
+
+<example>
+User: I need to implement these features for my e-commerce site: user registration, product catalog, shopping cart, and checkout flow.
+Assistant: I'll help implement these features. First, let's add all the features to the todo list.
+*Creates a todo list breaking down each feature into specific tasks based on the project architecture*
+Assistant: Let's start with user registration. This will involve creating database models, API endpoints, and frontend forms that integrate with your existing authentication system.
+
+<reasoning>
+The assistant used the todo list because:
+1. The user provided multiple complex features to implement in a comma separated list
+2. The todo list helps organize these large features into manageable tasks
+3. This approach allows for tracking progress across the entire implementation
+</reasoning>
+</example>
+
+<example>
+User: Can you help optimize my React application? It's rendering slowly and has performance issues.
+Assistant: I'll help optimize your React application. First, let me examine your codebase to identify potential performance bottlenecks.
+*Reviews component structure, render patterns, state management, and data fetching*
+Assistant: After analyzing your codebase, I've identified several performance issues. Let me create a todo list to track our optimization efforts.
+*Creates todo list with items like: 1) Implement memoization for expensive calculations in ProductList, 2) Add virtualization for long lists in Dashboard, 3) Optimize image loading in Gallery component, 4) Fix state update loops in ShoppingCart, 5) Review bundle size and implement code splitting*
+Let's start by implementing memoization for the expensive calculations in your ProductList component.
+
+<reasoning>
+The assistant used the todo list because:
+1. First, the assistant examined the codebase to identify specific performance issues
+2. Based on this analysis, it identified multiple optimization opportunities
+3. Performance optimization is a non-trivial task requiring multiple steps
+4. The todo list helps methodically track improvements across different components
+5. This systematic approach ensures all performance bottlenecks are addressed
+</reasoning>
+</example>
+
+## Examples of When NOT to Use the Todo List
+
+<example>
+User: How do I print 'Hello World' in Python?
+Assistant: In Python, you can print "Hello World" with this simple code:
+
+python
+print("Hello World")
+
+This will output the text "Hello World" to the console when executed.
+
+<reasoning>
+The assistant did not use the todo list because this is a single, trivial task that can be completed in one step. There's no need to track multiple tasks or steps for such a straightforward request.
+</reasoning>
+</example>
+
+<example>
+User: What does the git status commanddo?
+Assistant: The git status command shows the current state of your working directory and staging area. It displays which changes have been staged, which haven't, and which files aren't being tracked by Git. This is a fundamental commandfor understanding the current state of your repository before making commits.
+
+<reasoning>
+The assistant did not use the todo list because this is an informational request with no actual coding task to complete. The user is simply asking for an explanation, not for the assistant to perform multiple steps or tasks.
+</reasoning>
+</example>
+
+<example>
+User: Can you add a comment to the calculateTotal function to explain what it does?
+Assistant: Sure, let me add a comment to the calculateTotal function to explain what it does.
+* Uses the Edit tool to add a comment to the calculateTotal function *
+
+<reasoning>
+The assistant did not use the todo list because this is a single, straightforward task confined to one location in the code. Adding a comment doesn't require tracking multiple steps or systematic organization.
+</reasoning>
+</example>
+
+<example>
+User: Run npm install for me and tell me what happens.
+Assistant: I'll run the npm install commandfor you.
+
+*Executes: npm install*
+
+The command completed successfully. Here's the output:
+[Output of npm install command]
+
+All dependencies have been installed according to your package.json file.
+
+<reasoning>
+The assistant did not use the todo list because this is a single command execution with immediate results. There are no multiple steps to track or organize, making the todo list unnecessary for this straightforward task.
+</reasoning>
+</example>
+
+
+## Task States and Management
+
+1. **Task States**: Use these states to track progress:
+   - pending: Task not yet started
+   - in_progress: Currently working on (limit to ONE task at a time)
+   - completed: Task finished successfully
+
+   **IMPORTANT**: Task descriptions must have one form:
+   - content: The imperative form describing what needs to be done (e.g., "Run tests", "Build the project")
+
+2. **Task Management**:
+   - Update task status in real-time as you work
+   - Mark tasks complete IMMEDIATELY after finishing (don't batch completions)
+   - Exactly ONE task must be in_progress at any time (not less, not more)
+   - Complete current tasks before starting new ones
+   - Remove tasks that are no longer relevant from the list entirely
+
+3. **Task Completion Requirements**:
+   - ONLY mark a task as completed when you have FULLY accomplished it
+   - If you encounter errors, blockers, or cannot finish, keep the task as in_progress
+   - When blocked, create a new task describing what needs to be resolved
+   - Never mark a task as completed if:
+     - Tests are failing
+     - Implementation is partial
+     - You encountered unresolved errors
+     - You couldn't find necessary files or dependencies
+
+4. **Task Breakdown**:
+   - Create specific, actionable items
+   - Break complex tasks into smaller, manageable steps
+   - Use clear, descriptive task names
+   - Always provide one form:
+     - content: "Fix authentication bug"
+
+## Limits
+
+Keep todos under 10 per call to maintain focus and manageability.
+
+## Plan Reference (Optional)
+
+If a plan exists for this session, you can reference specific sections using `planRef`:
+
+- `planPath`: Relative path to the plan file (required if using planRef)
+- `anchorId`: Anchor ID from the plan (optional, for precise section targeting)
+
+The `anchorId` references anchors in the plan file, which are HTML comments like `<!-- anchor:data-model -->`.
+
+If no plan exists or the TODO is not related to any plan section, omit `planRef`.
+
+When in doubt, use this tool. Being proactive with task management demonstrates attentiveness and ensures you complete all requirements successfully.
+
+### Parameters
+
+- **merge** (boolean) (required): Whether to merge the todos with the existing todos. If true, the todos will be merged into the existing todos based on the id field. You can leave unchanged properties undefined. If false, the new tod
+- **todos** (array) (required): Array of TODO items to update or create
