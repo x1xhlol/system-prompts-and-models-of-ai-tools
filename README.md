@@ -20,6 +20,45 @@
 
 ---
 
+## 🗂 Directory of AI Tools & System Prompts
+
+| Category / Tool | Path |
+| :--- | :--- |
+| **Amp** | [`./Amp`](./Amp) |
+| **Anthropic (Claude)** | [`./Anthropic`](./Anthropic) |
+| **Augment Code** | [`./Augment Code`](./Augment%20Code) |
+| **Cluely** | [`./Cluely`](./Cluely) |
+| **CodeBuddy** | [`./CodeBuddy Prompts`](./CodeBuddy%20Prompts) |
+| **Comet Assistant** | [`./Comet Assistant`](./Comet%20Assistant) |
+| **Cursor** | [`./Cursor Prompts`](./Cursor%20Prompts) |
+| **Devin AI** | [`./Devin AI`](./Devin%20AI) |
+| **dia** | [`./dia`](./dia) |
+| **Emergent** | [`./Emergent`](./Emergent) |
+| **Google** | [`./Google`](./Google) |
+| **Junie** | [`./Junie`](./Junie) |
+| **Kiro** | [`./Kiro`](./Kiro) |
+| **Leap.new** | [`./Leap.new`](./Leap.new) |
+| **Lovable** | [`./Lovable`](./Lovable) |
+| **Manus Agent** | [`./Manus Agent Tools & Prompt`](./Manus%20Agent%20Tools%20%26%20Prompt) |
+| **Notion AI** | [`./NotionAi`](./NotionAi) |
+| **Open Source Prompts** | [`./Open Source prompts`](./Open%20Source%20prompts) |
+| **Orchids.app** | [`./Orchids.app`](./Orchids.app) |
+| **Perplexity** | [`./Perplexity`](./Perplexity) |
+| **Poke** | [`./Poke`](./Poke) |
+| **Qoder** | [`./Qoder`](./Qoder) |
+| **Replit** | [`./Replit`](./Replit) |
+| **Same.dev** | [`./Same.dev`](./Same.dev) |
+| **Trae** | [`./Trae`](./Trae) |
+| **Traycer AI** | [`./Traycer AI`](./Traycer%20AI) |
+| **v0** | [`./v0 Prompts and Tools`](./v0%20Prompts%20and%20Tools) |
+| **VSCode Agent** | [`./VSCode Agent`](./VSCode%20Agent) |
+| **Warp.dev** | [`./Warp.dev`](./Warp.dev) |
+| **Windsurf** | [`./Windsurf`](./Windsurf) |
+| **Xcode** | [`./Xcode`](./Xcode) |
+| **Z.ai Code** | [`./Z.ai Code`](./Z.ai%20Code) |
+
+---
+
 ## Support the Project
 
 If you find this collection valuable and appreciate the effort involved in obtaining and sharing these insights, please consider supporting the project.
