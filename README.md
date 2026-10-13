@@ -60,3 +60,92 @@ Sponsor the most comprehensive repository of AI system prompts and reach thousan
 - **Email**: `lucasvalbuena@pm.me`
 
 **Drop a star if you find this useful!**
+---
+
+## 🚀 Quick Start Guide
+
+This repository contains system prompts, tool definitions, and related prompt artifacts for a wide range of AI tools.
+
+### Option 1: Browse Online
+Navigate the folders in the repository and open the tool/vendor you want.
+
+### Option 2: Clone Locally
+```bash
+git clone https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools.git
+cd system-prompts-and-models-of-ai-tools
+```
+
+### Option 3: Use as a Knowledge Base
+1. Collect prompts relevant to your workflow
+2. Load them into your preferred assistant, project, or note system
+3. Build a comparison/reference workspace for prompt engineering
+
+### Most Requested Additions Merged Here
+- [Claude Design](./Anthropic/Claude%20Design/Create%20Design%20System.txt)
+- [Claude Fable 5](./Anthropic/Claude%20Fable%205.txt)
+- [Gemini 3.5 Prompt](./Google/Gemini/Gemini%203.5%20Prompt.txt)
+- [GitHub Copilot](./GitHub/Copilot/Prompt.txt)
+- [GitHub Spark](./GitHub/Spark/System%20Prompt.txt)
+- [MiCode](./Xiaomi/MiCode/System%20Prompt.md)
+
+---
+
+## 📖 Repository Structure
+
+The rebuilt workspace is organized primarily by **vendor / model family**.
+
+Typical structure:
+
+```
+Vendor or Tool/
+├── Prompt.txt / System Prompt.txt / *.md
+├── Tools.json
+└── Additional versions or related notes
+```
+
+Useful generated indexes:
+
+- [Catalog](./CATALOG.md)
+- [Prompt Index JSON](./prompts-index.json)
+- [Prompt Inventory JSON](./prompts.json)
+- [Rebuild Summary](./REBUILD_SUMMARY.md)
+
+---
+
+## 💡 Use Cases
+
+### 🎯 For Developers
+- Review prompt behavior across coding agents
+- Compare tool schemas and agent capabilities
+- Reuse prompt patterns for internal assistants
+
+### 📝 For Researchers
+- Track system-instruction evolution across tools
+- Study prompt design patterns by vendor and product
+- Build datasets for prompt analysis
+
+### 🏢 For Teams
+- Create internal reference libraries
+- Standardize prompt review workflows
+- Preserve historical prompt/tool snapshots
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome.
+
+### Suggested contribution flow
+1. Add or update a tool/vendor folder
+2. Keep filenames descriptive and consistent
+3. Include tools/config JSON when available
+4. Prefer clear provenance in PR descriptions
+5. Update indexes or docs when structure changes substantially
+
+### Recommended PR details
+- Type: New Prompt / Update / Fix / Documentation
+- Tool or Vendor
+- Brief description of what changed
+- Source / verification notes if available
+
+Thanks to everyone who helps expand and clean up the repository.

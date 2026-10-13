@@ -1,0 +1,535 @@
+{
+  "1system-prompts-CN": {
+    "count": 31,
+    "paths": [
+      "1system-prompts-CN/Anthropic/Claude Code/Prompt_CN.md",
+      "1system-prompts-CN/Anthropic/Claude Code/temp_chunk_1_CN.md",
+      "1system-prompts-CN/Anthropic/Claude for Chrome/Prompt_CN.md",
+      "1system-prompts-CN/Anthropic/Claude for Chrome/Tools.json",
+      "1system-prompts-CN/Augment Code/claude-4-sonnet-agent-prompts_CN.md",
+      "1system-prompts-CN/Augment Code/claude-4-sonnet-tools.json",
+      "1system-prompts-CN/Augment Code/gpt-5-agent-prompts_CN.md",
+      "1system-prompts-CN/Augment Code/gpt-5-tools.json",
+      "1system-prompts-CN/Cursor Prompts/Agent CLI Prompt 2025-08-07_CN.md",
+      "1system-prompts-CN/Cursor Prompts/Agent Prompt 2.0_CN.md",
+      "1system-prompts-CN/Cursor Prompts/Agent Prompt 2025-09-03_CN.md",
+      "1system-prompts-CN/Cursor Prompts/Agent Prompt v1.0_CN.md",
+      "1system-prompts-CN/Cursor Prompts/Agent Prompt v1.2_CN.md",
+      "1system-prompts-CN/Cursor Prompts/Agent Tools v1.0.json",
+      "1system-prompts-CN/Cursor Prompts/Chat Prompt.md",
+      "1system-prompts-CN/Google/Antigravity/Fast Prompt_CN.md",
+      "1system-prompts-CN/Google/Antigravity/planning-mode_CN.md",
+      "1system-prompts-CN/Google/Gemini/AI Studio vibe-coder_CN.md",
+      "1system-prompts-CN/Kiro/Mode_Clasifier_Prompt_CN.md",
+      "1system-prompts-CN/Kiro/Spec_Prompt_CN.md",
+      "1system-prompts-CN/Kiro/Vibe_Prompt_CN.md",
+      "1system-prompts-CN/Qoder/Quest Action_CN.md",
+      "1system-prompts-CN/Qoder/Quest Design_CN.md",
+      "1system-prompts-CN/Qoder/prompt_CN.md",
+      "1system-prompts-CN/Xcode/DocumentAction_CN.md",
+      "1system-prompts-CN/Xcode/ExplainAction_CN.md",
+      "1system-prompts-CN/Xcode/MessageAction_CN.md",
+      "1system-prompts-CN/Xcode/PlaygroundAction_CN.md",
+      "1system-prompts-CN/Xcode/PreviewAction_CN.md",
+      "1system-prompts-CN/Xcode/System.md",
+      "1system-prompts-CN/Xcode/System_CN.md"
+    ]
+  },
+  "Anthropic": {
+    "count": 10,
+    "paths": [
+      "Anthropic/Claude Code/Prompt.txt",
+      "Anthropic/Claude Code/Tools.json",
+      "Anthropic/Claude Code 2.0.txt",
+      "Anthropic/Claude Design/Create Design System.txt",
+      "Anthropic/Claude Fable 5.txt",
+      "Anthropic/Claude Sonnet 4.6.txt",
+      "Anthropic/Claude for Chrome/Prompt.txt",
+      "Anthropic/Claude for Chrome/Tools.json",
+      "Anthropic/Opus 4.5 Prompt.txt",
+      "Anthropic/Sonnet 4.5 Prompt.txt"
+    ]
+  },
+  "Atlassian": {
+    "count": 1,
+    "paths": [
+      "Atlassian/Rovo Dev CLI/prompt.txt"
+    ]
+  },
+  "Augment Code": {
+    "count": 4,
+    "paths": [
+      "Augment Code/claude-4-sonnet-agent-prompts.txt",
+      "Augment Code/claude-4-sonnet-tools.json",
+      "Augment Code/gpt-5-agent-prompts.txt",
+      "Augment Code/gpt-5-tools.json"
+    ]
+  },
+  "Augument": {
+    "count": 1,
+    "paths": [
+      "Augument/prompt.txt"
+    ]
+  },
+  "BLACKBOX IDE": {
+    "count": 1,
+    "paths": [
+      "BLACKBOX IDE/Agent Prompt.txt"
+    ]
+  },
+  "Browser Use": {
+    "count": 6,
+    "paths": [
+      "Browser Use/system_prompt.md",
+      "Browser Use/system_prompt.txt",
+      "Browser Use/system_prompt_flash.md",
+      "Browser Use/system_prompt_no_thinking.md",
+      "Browser Use/task_planer.txt",
+      "Browser Use/validator_of_output.txt"
+    ]
+  },
+  "Cluely": {
+    "count": 2,
+    "paths": [
+      "Cluely/Default Prompt.txt",
+      "Cluely/Enterprise Prompt.txt"
+    ]
+  },
+  "CodeBuddy Prompts": {
+    "count": 2,
+    "paths": [
+      "CodeBuddy Prompts/Chat Prompt.txt",
+      "CodeBuddy Prompts/Craft Prompt.txt"
+    ]
+  },
+  "CodeFlicker": {
+    "count": 11,
+    "paths": [
+      "CodeFlicker/Agent Prompt (Browser SubAgent).txt",
+      "CodeFlicker/Agent Prompt (Code Review).txt",
+      "CodeFlicker/Agent Prompt (Discuss Mode).txt",
+      "CodeFlicker/Agent Prompt (Duet Mode).txt",
+      "CodeFlicker/Agent Prompt (Jam Mode).txt",
+      "CodeFlicker/Agent Prompt (Plan Mode).txt",
+      "CodeFlicker/Agent Prompt (Preview SubAgent).txt",
+      "CodeFlicker/Agent Prompt (Research SubAgent).txt",
+      "CodeFlicker/Agent Tools.txt",
+      "CodeFlicker/Memory System Prompt.txt",
+      "CodeFlicker/Review Report Templates.txt"
+    ]
+  },
+  "CodinIT.dev": {
+    "count": 1,
+    "paths": [
+      "CodinIT.dev/prompt.txt"
+    ]
+  },
+  "Comet Assistant": {
+    "count": 2,
+    "paths": [
+      "Comet Assistant/System Prompt.txt",
+      "Comet Assistant/tools.json"
+    ]
+  },
+  "Confer": {
+    "count": 1,
+    "paths": [
+      "Confer/Promp.txt"
+    ]
+  },
+  "Cursor Prompts": {
+    "count": 12,
+    "paths": [
+      "Cursor Prompts/Agent CLI Prompt 2025-08-07.txt",
+      "Cursor Prompts/Agent Prompt 2.0.txt",
+      "Cursor Prompts/Agent Prompt 2025-09-03.txt",
+      "Cursor Prompts/Agent Prompt v1.0.txt",
+      "Cursor Prompts/Agent Prompt v1.2.txt",
+      "Cursor Prompts/Agent Tools v1.0.json",
+      "Cursor Prompts/Chat Prompt.txt",
+      "Cursor Prompts/Claude-3.7-Sonnet Agent Prompt.txt",
+      "Cursor Prompts/Claude-3.7-Sonnet Chat Prompt.txt",
+      "Cursor Prompts/Composer Agent Prompt.md",
+      "Cursor Prompts/GPT-4o Agent Functions.json",
+      "Cursor Prompts/GPT-4o Agent Prompt.txt"
+    ]
+  },
+  "Devin AI": {
+    "count": 3,
+    "paths": [
+      "Devin AI/CLI/Prompt.txt",
+      "Devin AI/DeepWiki Prompt.txt",
+      "Devin AI/Prompt.txt"
+    ]
+  },
+  "Emergent": {
+    "count": 4,
+    "paths": [
+      "Emergent/E2_System_Prompt.txt",
+      "Emergent/E2_Tools.json",
+      "Emergent/Prompt.txt",
+      "Emergent/Tools.json"
+    ]
+  },
+  "FlintK12": {
+    "count": 3,
+    "paths": [
+      "FlintK12/prompt.txt",
+      "FlintK12/tools.txt",
+      "FlintK12/user-info.txt"
+    ]
+  },
+  "GitHub": {
+    "count": 3,
+    "paths": [
+      "GitHub/Copilot/Prompt.txt",
+      "GitHub/Spark/System Prompt.txt",
+      "GitHub/Spark/Tools.json"
+    ]
+  },
+  "Google": {
+    "count": 12,
+    "paths": [
+      "Google/Antigravity/Fast Prompt.txt",
+      "Google/Antigravity/Planning Prompt.txt",
+      "Google/Antigravity/Tools.json",
+      "Google/Antigravity/planning-mode.txt",
+      "Google/Gemini/AI Studio vibe-coder.txt",
+      "Google/Gemini/Enterprise/Gemini-2.5-Flash.md",
+      "Google/Gemini/Enterprise/Gemini-2.5-Pro.md",
+      "Google/Gemini/Enterprise/Title-Generator.txt",
+      "Google/Gemini/Gemini 3 Flash Web.txt",
+      "Google/Gemini/Gemini 3.5 Prompt.txt",
+      "Google/Gemini/Gemini 3.5 Tool Definitions and Generation Config.json",
+      "Google/Gemini/Lyria 3.txt"
+    ]
+  },
+  "Grok": {
+    "count": 1,
+    "paths": [
+      "Grok/Twitter Translate Grok prompt 09/09/2025.txt"
+    ]
+  },
+  "Highlight": {
+    "count": 1,
+    "paths": [
+      "Highlight/Prompt.txt"
+    ]
+  },
+  "Humanizer AI Prompt": {
+    "count": 1,
+    "paths": [
+      "Humanizer AI Prompt/convert_or_generate_with_human_touch.txt"
+    ]
+  },
+  "Junie": {
+    "count": 1,
+    "paths": [
+      "Junie/Prompt.txt"
+    ]
+  },
+  "Kagi": {
+    "count": 1,
+    "paths": [
+      "Kagi/Assistant Prompt.txt"
+    ]
+  },
+  "Kiro": {
+    "count": 3,
+    "paths": [
+      "Kiro/Mode_Clasifier_Prompt.txt",
+      "Kiro/Spec_Prompt.txt",
+      "Kiro/Vibe_Prompt.txt"
+    ]
+  },
+  "Leap.new": {
+    "count": 2,
+    "paths": [
+      "Leap.new/Prompts.txt",
+      "Leap.new/tools.json"
+    ]
+  },
+  "Lightfield CRM": {
+    "count": 1,
+    "paths": [
+      "Lightfield CRM/System Prompt.txt"
+    ]
+  },
+  "Lovable": {
+    "count": 2,
+    "paths": [
+      "Lovable/Agent Prompt.txt",
+      "Lovable/Agent Tools.json"
+    ]
+  },
+  "Manus Agent Tools & Prompt": {
+    "count": 4,
+    "paths": [
+      "Manus Agent Tools & Prompt/Agent loop.txt",
+      "Manus Agent Tools & Prompt/Modules.txt",
+      "Manus Agent Tools & Prompt/Prompt.txt",
+      "Manus Agent Tools & Prompt/tools.json"
+    ]
+  },
+  "Meta": {
+    "count": 2,
+    "paths": [
+      "Meta/Instagram Prompt.txt",
+      "Meta/WhatsApp Prompt.txt"
+    ]
+  },
+  "Minimax": {
+    "count": 1,
+    "paths": [
+      "Minimax/system_prompt.md"
+    ]
+  },
+  "Mistral": {
+    "count": 1,
+    "paths": [
+      "Mistral/Mistral prompt.txt"
+    ]
+  },
+  "Moonshot AI": {
+    "count": 3,
+    "paths": [
+      "Moonshot AI/Kimi K2.5.txt",
+      "Moonshot AI/context.txt",
+      "Moonshot AI/tools.json"
+    ]
+  },
+  "NotionAi": {
+    "count": 36,
+    "paths": [
+      "NotionAi/Prompt.txt",
+      "NotionAi/notion-ai_20260322/modules/asana/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/box/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/calendar/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/calendar/skills/meeting-follow-up.md",
+      "NotionAi/notion-ai_20260322/modules/calendar/skills/meeting-prep.md",
+      "NotionAi/notion-ai_20260322/modules/calendar/skills/optimize-schedule.md",
+      "NotionAi/notion-ai_20260322/modules/calendar/skills/project-planning.md",
+      "NotionAi/notion-ai_20260322/modules/calendar/skills/scheduling.md",
+      "NotionAi/notion-ai_20260322/modules/confluence/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/discord/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/fs/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/github/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/gmail/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/googleCalendar/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/googleDrive/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/helpdocs/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/jira/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/linear/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/mail/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/mail/mail-guidelines.md",
+      "NotionAi/notion-ai_20260322/modules/notion/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/notion/databases/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/notion/databases/data-source-sqlite-tables.md",
+      "NotionAi/notion-ai_20260322/modules/notion/databases/formula-spec.md",
+      "NotionAi/notion-ai_20260322/modules/notion/databases/meeting-notes.md",
+      "NotionAi/notion-ai_20260322/modules/notion/pages/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/notion/pages/page-content-spec.md",
+      "NotionAi/notion-ai_20260322/modules/notion/teamspaces/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/notion/threads/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/notion/users/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/search/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/slack/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/test/AGENTS.md",
+      "NotionAi/notion-ai_20260322/modules/web/AGENTS.md",
+      "NotionAi/tools.json"
+    ]
+  },
+  "Open Source prompts": {
+    "count": 10,
+    "paths": [
+      "Open Source prompts/Aider/Prompt.txt",
+      "Open Source prompts/Bolt/Prompt.txt",
+      "Open Source prompts/Cline/Prompt.txt",
+      "Open Source prompts/Codex CLI/Prompt.txt",
+      "Open Source prompts/Codex CLI/openai-codex-cli-system-prompt-20250820.txt",
+      "Open Source prompts/Gemini CLI/google-gemini-cli-system-prompt.txt",
+      "Open Source prompts/Localforge/Prompt.txt",
+      "Open Source prompts/Lumo/Prompt.txt",
+      "Open Source prompts/RooCode/Prompt.txt",
+      "Open Source prompts/Suna/Prompt.txt"
+    ]
+  },
+  "OpenAI": {
+    "count": 6,
+    "paths": [
+      "OpenAI/ChatGPT/Monday",
+      "OpenAI/ChatGPT/Prompts/chat-gpt-llm.txt",
+      "OpenAI/ChatGPT/Prompts/chat-gpt-reasoning-plugin.txt",
+      "OpenAI/ChatGPT/Prompts/chat-gpt-web-browsing-plugin.txt",
+      "OpenAI/ChatGPT 4o.txt",
+      "OpenAI/ChatGPT 4o_extended.txt"
+    ]
+  },
+  "Orchids.app": {
+    "count": 2,
+    "paths": [
+      "Orchids.app/Decision-making prompt.txt",
+      "Orchids.app/System Prompt.txt"
+    ]
+  },
+  "Parahelp": {
+    "count": 2,
+    "paths": [
+      "Parahelp/manager_prompt.txt",
+      "Parahelp/planning_prompt.txt"
+    ]
+  },
+  "Perplexity": {
+    "count": 1,
+    "paths": [
+      "Perplexity/Prompt.txt"
+    ]
+  },
+  "Poke": {
+    "count": 7,
+    "paths": [
+      "Poke/Poke agent.txt",
+      "Poke/Poke_p1.txt",
+      "Poke/Poke_p2.txt",
+      "Poke/Poke_p3.txt",
+      "Poke/Poke_p4.txt",
+      "Poke/Poke_p5.txt",
+      "Poke/Poke_p6.txt"
+    ]
+  },
+  "Puch AI": {
+    "count": 1,
+    "paths": [
+      "Puch AI/prompt.txt"
+    ]
+  },
+  "Qoder": {
+    "count": 4,
+    "paths": [
+      "Qoder/Lawd-STAR",
+      "Qoder/Quest Action.txt",
+      "Qoder/Quest Design.txt",
+      "Qoder/prompt.txt"
+    ]
+  },
+  "Replit": {
+    "count": 2,
+    "paths": [
+      "Replit/Prompt.txt",
+      "Replit/Tools.json"
+    ]
+  },
+  "Same.dev": {
+    "count": 2,
+    "paths": [
+      "Same.dev/Prompt.txt",
+      "Same.dev/Tools.json"
+    ]
+  },
+  "Sunflower": {
+    "count": 2,
+    "paths": [
+      "Sunflower/Functions.json",
+      "Sunflower/System Prompt.txt"
+    ]
+  },
+  "Trae": {
+    "count": 4,
+    "paths": [
+      "Trae/Builder Prompt.txt",
+      "Trae/Builder Tools.json",
+      "Trae/Chat Prompt.txt",
+      "Trae/SOLO Coder Prompt.txt"
+    ]
+  },
+  "Traycer AI": {
+    "count": 4,
+    "paths": [
+      "Traycer AI/phase_mode_prompts.txt",
+      "Traycer AI/phase_mode_tools.json",
+      "Traycer AI/plan_mode_prompts",
+      "Traycer AI/plan_mode_tools.json"
+    ]
+  },
+  "VSCode Agent": {
+    "count": 9,
+    "paths": [
+      "VSCode Agent/Prompt.txt",
+      "VSCode Agent/chat-titles.txt",
+      "VSCode Agent/claude-sonnet-4.txt",
+      "VSCode Agent/gemini-2.5-pro.txt",
+      "VSCode Agent/gpt-4.1.txt",
+      "VSCode Agent/gpt-4o.txt",
+      "VSCode Agent/gpt-5-mini.txt",
+      "VSCode Agent/gpt-5.txt",
+      "VSCode Agent/nes-tab-completion.txt"
+    ]
+  },
+  "Warp.dev": {
+    "count": 1,
+    "paths": [
+      "Warp.dev/Prompt.txt"
+    ]
+  },
+  "Windsurf": {
+    "count": 2,
+    "paths": [
+      "Windsurf/Prompt Wave 11.txt",
+      "Windsurf/Tools Wave 11.txt"
+    ]
+  },
+  "Xcode": {
+    "count": 12,
+    "paths": [
+      "Xcode/DocumentAction.md",
+      "Xcode/DocumentAction.txt",
+      "Xcode/ExplainAction.md",
+      "Xcode/ExplainAction.txt",
+      "Xcode/MessageAction.md",
+      "Xcode/MessageAction.txt",
+      "Xcode/PlaygroundAction.md",
+      "Xcode/PlaygroundAction.txt",
+      "Xcode/PreviewAction.md",
+      "Xcode/PreviewAction.txt",
+      "Xcode/System.md",
+      "Xcode/System.txt"
+    ]
+  },
+  "Xiaomi": {
+    "count": 1,
+    "paths": [
+      "Xiaomi/MiCode/System Prompt.md"
+    ]
+  },
+  "Z.ai Code": {
+    "count": 1,
+    "paths": [
+      "Z.ai Code/prompt.txt"
+    ]
+  },
+  "Zed": {
+    "count": 1,
+    "paths": [
+      "Zed/System Prompt.txt"
+    ]
+  },
+  "ZeroTwo": {
+    "count": 1,
+    "paths": [
+      "ZeroTwo/Prompt.txt"
+    ]
+  },
+  "dia": {
+    "count": 1,
+    "paths": [
+      "dia/Prompt.txt"
+    ]
+  },
+  "v0 Prompts and Tools": {
+    "count": 2,
+    "paths": [
+      "v0 Prompts and Tools/Prompt.txt",
+      "v0 Prompts and Tools/Tools.json"
+    ]
+  }
+}

@@ -1,0 +1,1242 @@
+[
+  {
+    "path": "1system-prompts-CN/Anthropic/Claude Code/Prompt_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Anthropic/Claude Code/temp_chunk_1_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Anthropic/Claude for Chrome/Prompt_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Anthropic/Claude for Chrome/Tools.json",
+    "family": "1system-prompts-CN",
+    "ext": ".json"
+  },
+  {
+    "path": "1system-prompts-CN/Augment Code/claude-4-sonnet-agent-prompts_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Augment Code/claude-4-sonnet-tools.json",
+    "family": "1system-prompts-CN",
+    "ext": ".json"
+  },
+  {
+    "path": "1system-prompts-CN/Augment Code/gpt-5-agent-prompts_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Augment Code/gpt-5-tools.json",
+    "family": "1system-prompts-CN",
+    "ext": ".json"
+  },
+  {
+    "path": "1system-prompts-CN/Cursor Prompts/Agent CLI Prompt 2025-08-07_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Cursor Prompts/Agent Prompt 2.0_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Cursor Prompts/Agent Prompt 2025-09-03_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Cursor Prompts/Agent Prompt v1.0_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Cursor Prompts/Agent Prompt v1.2_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Cursor Prompts/Agent Tools v1.0.json",
+    "family": "1system-prompts-CN",
+    "ext": ".json"
+  },
+  {
+    "path": "1system-prompts-CN/Cursor Prompts/Chat Prompt.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Google/Antigravity/Fast Prompt_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Google/Antigravity/planning-mode_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Google/Gemini/AI Studio vibe-coder_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Kiro/Mode_Clasifier_Prompt_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Kiro/Spec_Prompt_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Kiro/Vibe_Prompt_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Qoder/Quest Action_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Qoder/Quest Design_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Qoder/prompt_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Xcode/DocumentAction_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Xcode/ExplainAction_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Xcode/MessageAction_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Xcode/PlaygroundAction_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Xcode/PreviewAction_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Xcode/System.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "1system-prompts-CN/Xcode/System_CN.md",
+    "family": "1system-prompts-CN",
+    "ext": ".md"
+  },
+  {
+    "path": "Anthropic/Claude Code/Prompt.txt",
+    "family": "Anthropic",
+    "ext": ".txt"
+  },
+  {
+    "path": "Anthropic/Claude Code/Tools.json",
+    "family": "Anthropic",
+    "ext": ".json"
+  },
+  {
+    "path": "Anthropic/Claude Code 2.0.txt",
+    "family": "Anthropic",
+    "ext": ".txt"
+  },
+  {
+    "path": "Anthropic/Claude Design/Create Design System.txt",
+    "family": "Anthropic",
+    "ext": ".txt"
+  },
+  {
+    "path": "Anthropic/Claude Fable 5.txt",
+    "family": "Anthropic",
+    "ext": ".txt"
+  },
+  {
+    "path": "Anthropic/Claude Sonnet 4.6.txt",
+    "family": "Anthropic",
+    "ext": ".txt"
+  },
+  {
+    "path": "Anthropic/Claude for Chrome/Prompt.txt",
+    "family": "Anthropic",
+    "ext": ".txt"
+  },
+  {
+    "path": "Anthropic/Claude for Chrome/Tools.json",
+    "family": "Anthropic",
+    "ext": ".json"
+  },
+  {
+    "path": "Anthropic/Opus 4.5 Prompt.txt",
+    "family": "Anthropic",
+    "ext": ".txt"
+  },
+  {
+    "path": "Anthropic/Sonnet 4.5 Prompt.txt",
+    "family": "Anthropic",
+    "ext": ".txt"
+  },
+  {
+    "path": "Atlassian/Rovo Dev CLI/prompt.txt",
+    "family": "Atlassian",
+    "ext": ".txt"
+  },
+  {
+    "path": "Augment Code/claude-4-sonnet-agent-prompts.txt",
+    "family": "Augment Code",
+    "ext": ".txt"
+  },
+  {
+    "path": "Augment Code/claude-4-sonnet-tools.json",
+    "family": "Augment Code",
+    "ext": ".json"
+  },
+  {
+    "path": "Augment Code/gpt-5-agent-prompts.txt",
+    "family": "Augment Code",
+    "ext": ".txt"
+  },
+  {
+    "path": "Augment Code/gpt-5-tools.json",
+    "family": "Augment Code",
+    "ext": ".json"
+  },
+  {
+    "path": "Augument/prompt.txt",
+    "family": "Augument",
+    "ext": ".txt"
+  },
+  {
+    "path": "BLACKBOX IDE/Agent Prompt.txt",
+    "family": "BLACKBOX IDE",
+    "ext": ".txt"
+  },
+  {
+    "path": "Browser Use/system_prompt.md",
+    "family": "Browser Use",
+    "ext": ".md"
+  },
+  {
+    "path": "Browser Use/system_prompt.txt",
+    "family": "Browser Use",
+    "ext": ".txt"
+  },
+  {
+    "path": "Browser Use/system_prompt_flash.md",
+    "family": "Browser Use",
+    "ext": ".md"
+  },
+  {
+    "path": "Browser Use/system_prompt_no_thinking.md",
+    "family": "Browser Use",
+    "ext": ".md"
+  },
+  {
+    "path": "Browser Use/task_planer.txt",
+    "family": "Browser Use",
+    "ext": ".txt"
+  },
+  {
+    "path": "Browser Use/validator_of_output.txt",
+    "family": "Browser Use",
+    "ext": ".txt"
+  },
+  {
+    "path": "Cluely/Default Prompt.txt",
+    "family": "Cluely",
+    "ext": ".txt"
+  },
+  {
+    "path": "Cluely/Enterprise Prompt.txt",
+    "family": "Cluely",
+    "ext": ".txt"
+  },
+  {
+    "path": "CodeBuddy Prompts/Chat Prompt.txt",
+    "family": "CodeBuddy Prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "CodeBuddy Prompts/Craft Prompt.txt",
+    "family": "CodeBuddy Prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "CodeFlicker/Agent Prompt (Browser SubAgent).txt",
+    "family": "CodeFlicker",
+    "ext": ".txt"
+  },
+  {
+    "path": "CodeFlicker/Agent Prompt (Code Review).txt",
+    "family": "CodeFlicker",
+    "ext": ".txt"
+  },
+  {
+    "path": "CodeFlicker/Agent Prompt (Discuss Mode).txt",
+    "family": "CodeFlicker",
+    "ext": ".txt"
+  },
+  {
+    "path": "CodeFlicker/Agent Prompt (Duet Mode).txt",
+    "family": "CodeFlicker",
+    "ext": ".txt"
+  },
+  {
+    "path": "CodeFlicker/Agent Prompt (Jam Mode).txt",
+    "family": "CodeFlicker",
+    "ext": ".txt"
+  },
+  {
+    "path": "CodeFlicker/Agent Prompt (Plan Mode).txt",
+    "family": "CodeFlicker",
+    "ext": ".txt"
+  },
+  {
+    "path": "CodeFlicker/Agent Prompt (Preview SubAgent).txt",
+    "family": "CodeFlicker",
+    "ext": ".txt"
+  },
+  {
+    "path": "CodeFlicker/Agent Prompt (Research SubAgent).txt",
+    "family": "CodeFlicker",
+    "ext": ".txt"
+  },
+  {
+    "path": "CodeFlicker/Agent Tools.txt",
+    "family": "CodeFlicker",
+    "ext": ".txt"
+  },
+  {
+    "path": "CodeFlicker/Memory System Prompt.txt",
+    "family": "CodeFlicker",
+    "ext": ".txt"
+  },
+  {
+    "path": "CodeFlicker/Review Report Templates.txt",
+    "family": "CodeFlicker",
+    "ext": ".txt"
+  },
+  {
+    "path": "CodinIT.dev/prompt.txt",
+    "family": "CodinIT.dev",
+    "ext": ".txt"
+  },
+  {
+    "path": "Comet Assistant/System Prompt.txt",
+    "family": "Comet Assistant",
+    "ext": ".txt"
+  },
+  {
+    "path": "Comet Assistant/tools.json",
+    "family": "Comet Assistant",
+    "ext": ".json"
+  },
+  {
+    "path": "Confer/Promp.txt",
+    "family": "Confer",
+    "ext": ".txt"
+  },
+  {
+    "path": "Cursor Prompts/Agent CLI Prompt 2025-08-07.txt",
+    "family": "Cursor Prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Cursor Prompts/Agent Prompt 2.0.txt",
+    "family": "Cursor Prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Cursor Prompts/Agent Prompt 2025-09-03.txt",
+    "family": "Cursor Prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Cursor Prompts/Agent Prompt v1.0.txt",
+    "family": "Cursor Prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Cursor Prompts/Agent Prompt v1.2.txt",
+    "family": "Cursor Prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Cursor Prompts/Agent Tools v1.0.json",
+    "family": "Cursor Prompts",
+    "ext": ".json"
+  },
+  {
+    "path": "Cursor Prompts/Chat Prompt.txt",
+    "family": "Cursor Prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Cursor Prompts/Claude-3.7-Sonnet Agent Prompt.txt",
+    "family": "Cursor Prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Cursor Prompts/Claude-3.7-Sonnet Chat Prompt.txt",
+    "family": "Cursor Prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Cursor Prompts/Composer Agent Prompt.md",
+    "family": "Cursor Prompts",
+    "ext": ".md"
+  },
+  {
+    "path": "Cursor Prompts/GPT-4o Agent Functions.json",
+    "family": "Cursor Prompts",
+    "ext": ".json"
+  },
+  {
+    "path": "Cursor Prompts/GPT-4o Agent Prompt.txt",
+    "family": "Cursor Prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Devin AI/CLI/Prompt.txt",
+    "family": "Devin AI",
+    "ext": ".txt"
+  },
+  {
+    "path": "Devin AI/DeepWiki Prompt.txt",
+    "family": "Devin AI",
+    "ext": ".txt"
+  },
+  {
+    "path": "Devin AI/Prompt.txt",
+    "family": "Devin AI",
+    "ext": ".txt"
+  },
+  {
+    "path": "Emergent/E2_System_Prompt.txt",
+    "family": "Emergent",
+    "ext": ".txt"
+  },
+  {
+    "path": "Emergent/E2_Tools.json",
+    "family": "Emergent",
+    "ext": ".json"
+  },
+  {
+    "path": "Emergent/Prompt.txt",
+    "family": "Emergent",
+    "ext": ".txt"
+  },
+  {
+    "path": "Emergent/Tools.json",
+    "family": "Emergent",
+    "ext": ".json"
+  },
+  {
+    "path": "FlintK12/prompt.txt",
+    "family": "FlintK12",
+    "ext": ".txt"
+  },
+  {
+    "path": "FlintK12/tools.txt",
+    "family": "FlintK12",
+    "ext": ".txt"
+  },
+  {
+    "path": "FlintK12/user-info.txt",
+    "family": "FlintK12",
+    "ext": ".txt"
+  },
+  {
+    "path": "GitHub/Copilot/Prompt.txt",
+    "family": "GitHub",
+    "ext": ".txt"
+  },
+  {
+    "path": "GitHub/Spark/System Prompt.txt",
+    "family": "GitHub",
+    "ext": ".txt"
+  },
+  {
+    "path": "GitHub/Spark/Tools.json",
+    "family": "GitHub",
+    "ext": ".json"
+  },
+  {
+    "path": "Google/Antigravity/Fast Prompt.txt",
+    "family": "Google",
+    "ext": ".txt"
+  },
+  {
+    "path": "Google/Antigravity/Planning Prompt.txt",
+    "family": "Google",
+    "ext": ".txt"
+  },
+  {
+    "path": "Google/Antigravity/Tools.json",
+    "family": "Google",
+    "ext": ".json"
+  },
+  {
+    "path": "Google/Antigravity/planning-mode.txt",
+    "family": "Google",
+    "ext": ".txt"
+  },
+  {
+    "path": "Google/Gemini/AI Studio vibe-coder.txt",
+    "family": "Google",
+    "ext": ".txt"
+  },
+  {
+    "path": "Google/Gemini/Enterprise/Gemini-2.5-Flash.md",
+    "family": "Google",
+    "ext": ".md"
+  },
+  {
+    "path": "Google/Gemini/Enterprise/Gemini-2.5-Pro.md",
+    "family": "Google",
+    "ext": ".md"
+  },
+  {
+    "path": "Google/Gemini/Enterprise/Title-Generator.txt",
+    "family": "Google",
+    "ext": ".txt"
+  },
+  {
+    "path": "Google/Gemini/Gemini 3 Flash Web.txt",
+    "family": "Google",
+    "ext": ".txt"
+  },
+  {
+    "path": "Google/Gemini/Gemini 3.5 Prompt.txt",
+    "family": "Google",
+    "ext": ".txt"
+  },
+  {
+    "path": "Google/Gemini/Gemini 3.5 Tool Definitions and Generation Config.json",
+    "family": "Google",
+    "ext": ".json"
+  },
+  {
+    "path": "Google/Gemini/Lyria 3.txt",
+    "family": "Google",
+    "ext": ".txt"
+  },
+  {
+    "path": "Grok/Twitter Translate Grok prompt 09/09/2025.txt",
+    "family": "Grok",
+    "ext": ".txt"
+  },
+  {
+    "path": "Highlight/Prompt.txt",
+    "family": "Highlight",
+    "ext": ".txt"
+  },
+  {
+    "path": "Humanizer AI Prompt/convert_or_generate_with_human_touch.txt",
+    "family": "Humanizer AI Prompt",
+    "ext": ".txt"
+  },
+  {
+    "path": "Junie/Prompt.txt",
+    "family": "Junie",
+    "ext": ".txt"
+  },
+  {
+    "path": "Kagi/Assistant Prompt.txt",
+    "family": "Kagi",
+    "ext": ".txt"
+  },
+  {
+    "path": "Kiro/Mode_Clasifier_Prompt.txt",
+    "family": "Kiro",
+    "ext": ".txt"
+  },
+  {
+    "path": "Kiro/Spec_Prompt.txt",
+    "family": "Kiro",
+    "ext": ".txt"
+  },
+  {
+    "path": "Kiro/Vibe_Prompt.txt",
+    "family": "Kiro",
+    "ext": ".txt"
+  },
+  {
+    "path": "Leap.new/Prompts.txt",
+    "family": "Leap.new",
+    "ext": ".txt"
+  },
+  {
+    "path": "Leap.new/tools.json",
+    "family": "Leap.new",
+    "ext": ".json"
+  },
+  {
+    "path": "Lightfield CRM/System Prompt.txt",
+    "family": "Lightfield CRM",
+    "ext": ".txt"
+  },
+  {
+    "path": "Lovable/Agent Prompt.txt",
+    "family": "Lovable",
+    "ext": ".txt"
+  },
+  {
+    "path": "Lovable/Agent Tools.json",
+    "family": "Lovable",
+    "ext": ".json"
+  },
+  {
+    "path": "Manus Agent Tools & Prompt/Agent loop.txt",
+    "family": "Manus Agent Tools & Prompt",
+    "ext": ".txt"
+  },
+  {
+    "path": "Manus Agent Tools & Prompt/Modules.txt",
+    "family": "Manus Agent Tools & Prompt",
+    "ext": ".txt"
+  },
+  {
+    "path": "Manus Agent Tools & Prompt/Prompt.txt",
+    "family": "Manus Agent Tools & Prompt",
+    "ext": ".txt"
+  },
+  {
+    "path": "Manus Agent Tools & Prompt/tools.json",
+    "family": "Manus Agent Tools & Prompt",
+    "ext": ".json"
+  },
+  {
+    "path": "Meta/Instagram Prompt.txt",
+    "family": "Meta",
+    "ext": ".txt"
+  },
+  {
+    "path": "Meta/WhatsApp Prompt.txt",
+    "family": "Meta",
+    "ext": ".txt"
+  },
+  {
+    "path": "Minimax/system_prompt.md",
+    "family": "Minimax",
+    "ext": ".md"
+  },
+  {
+    "path": "Mistral/Mistral prompt.txt",
+    "family": "Mistral",
+    "ext": ".txt"
+  },
+  {
+    "path": "Moonshot AI/Kimi K2.5.txt",
+    "family": "Moonshot AI",
+    "ext": ".txt"
+  },
+  {
+    "path": "Moonshot AI/context.txt",
+    "family": "Moonshot AI",
+    "ext": ".txt"
+  },
+  {
+    "path": "Moonshot AI/tools.json",
+    "family": "Moonshot AI",
+    "ext": ".json"
+  },
+  {
+    "path": "NotionAi/Prompt.txt",
+    "family": "NotionAi",
+    "ext": ".txt"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/asana/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/box/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/calendar/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/calendar/skills/meeting-follow-up.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/calendar/skills/meeting-prep.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/calendar/skills/optimize-schedule.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/calendar/skills/project-planning.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/calendar/skills/scheduling.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/confluence/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/discord/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/fs/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/github/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/gmail/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/googleCalendar/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/googleDrive/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/helpdocs/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/jira/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/linear/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/mail/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/mail/mail-guidelines.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/notion/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/notion/databases/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/notion/databases/data-source-sqlite-tables.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/notion/databases/formula-spec.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/notion/databases/meeting-notes.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/notion/pages/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/notion/pages/page-content-spec.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/notion/teamspaces/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/notion/threads/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/notion/users/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/search/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/slack/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/test/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/notion-ai_20260322/modules/web/AGENTS.md",
+    "family": "NotionAi",
+    "ext": ".md"
+  },
+  {
+    "path": "NotionAi/tools.json",
+    "family": "NotionAi",
+    "ext": ".json"
+  },
+  {
+    "path": "Open Source prompts/Aider/Prompt.txt",
+    "family": "Open Source prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Open Source prompts/Bolt/Prompt.txt",
+    "family": "Open Source prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Open Source prompts/Cline/Prompt.txt",
+    "family": "Open Source prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Open Source prompts/Codex CLI/Prompt.txt",
+    "family": "Open Source prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Open Source prompts/Codex CLI/openai-codex-cli-system-prompt-20250820.txt",
+    "family": "Open Source prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Open Source prompts/Gemini CLI/google-gemini-cli-system-prompt.txt",
+    "family": "Open Source prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Open Source prompts/Localforge/Prompt.txt",
+    "family": "Open Source prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Open Source prompts/Lumo/Prompt.txt",
+    "family": "Open Source prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Open Source prompts/RooCode/Prompt.txt",
+    "family": "Open Source prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "Open Source prompts/Suna/Prompt.txt",
+    "family": "Open Source prompts",
+    "ext": ".txt"
+  },
+  {
+    "path": "OpenAI/ChatGPT/Monday",
+    "family": "OpenAI",
+    "ext": "(none)"
+  },
+  {
+    "path": "OpenAI/ChatGPT/Prompts/chat-gpt-llm.txt",
+    "family": "OpenAI",
+    "ext": ".txt"
+  },
+  {
+    "path": "OpenAI/ChatGPT/Prompts/chat-gpt-reasoning-plugin.txt",
+    "family": "OpenAI",
+    "ext": ".txt"
+  },
+  {
+    "path": "OpenAI/ChatGPT/Prompts/chat-gpt-web-browsing-plugin.txt",
+    "family": "OpenAI",
+    "ext": ".txt"
+  },
+  {
+    "path": "OpenAI/ChatGPT 4o.txt",
+    "family": "OpenAI",
+    "ext": ".txt"
+  },
+  {
+    "path": "OpenAI/ChatGPT 4o_extended.txt",
+    "family": "OpenAI",
+    "ext": ".txt"
+  },
+  {
+    "path": "Orchids.app/Decision-making prompt.txt",
+    "family": "Orchids.app",
+    "ext": ".txt"
+  },
+  {
+    "path": "Orchids.app/System Prompt.txt",
+    "family": "Orchids.app",
+    "ext": ".txt"
+  },
+  {
+    "path": "Parahelp/manager_prompt.txt",
+    "family": "Parahelp",
+    "ext": ".txt"
+  },
+  {
+    "path": "Parahelp/planning_prompt.txt",
+    "family": "Parahelp",
+    "ext": ".txt"
+  },
+  {
+    "path": "Perplexity/Prompt.txt",
+    "family": "Perplexity",
+    "ext": ".txt"
+  },
+  {
+    "path": "Poke/Poke agent.txt",
+    "family": "Poke",
+    "ext": ".txt"
+  },
+  {
+    "path": "Poke/Poke_p1.txt",
+    "family": "Poke",
+    "ext": ".txt"
+  },
+  {
+    "path": "Poke/Poke_p2.txt",
+    "family": "Poke",
+    "ext": ".txt"
+  },
+  {
+    "path": "Poke/Poke_p3.txt",
+    "family": "Poke",
+    "ext": ".txt"
+  },
+  {
+    "path": "Poke/Poke_p4.txt",
+    "family": "Poke",
+    "ext": ".txt"
+  },
+  {
+    "path": "Poke/Poke_p5.txt",
+    "family": "Poke",
+    "ext": ".txt"
+  },
+  {
+    "path": "Poke/Poke_p6.txt",
+    "family": "Poke",
+    "ext": ".txt"
+  },
+  {
+    "path": "Puch AI/prompt.txt",
+    "family": "Puch AI",
+    "ext": ".txt"
+  },
+  {
+    "path": "Qoder/Lawd-STAR",
+    "family": "Qoder",
+    "ext": "(none)"
+  },
+  {
+    "path": "Qoder/Quest Action.txt",
+    "family": "Qoder",
+    "ext": ".txt"
+  },
+  {
+    "path": "Qoder/Quest Design.txt",
+    "family": "Qoder",
+    "ext": ".txt"
+  },
+  {
+    "path": "Qoder/prompt.txt",
+    "family": "Qoder",
+    "ext": ".txt"
+  },
+  {
+    "path": "Replit/Prompt.txt",
+    "family": "Replit",
+    "ext": ".txt"
+  },
+  {
+    "path": "Replit/Tools.json",
+    "family": "Replit",
+    "ext": ".json"
+  },
+  {
+    "path": "Same.dev/Prompt.txt",
+    "family": "Same.dev",
+    "ext": ".txt"
+  },
+  {
+    "path": "Same.dev/Tools.json",
+    "family": "Same.dev",
+    "ext": ".json"
+  },
+  {
+    "path": "Sunflower/Functions.json",
+    "family": "Sunflower",
+    "ext": ".json"
+  },
+  {
+    "path": "Sunflower/System Prompt.txt",
+    "family": "Sunflower",
+    "ext": ".txt"
+  },
+  {
+    "path": "Trae/Builder Prompt.txt",
+    "family": "Trae",
+    "ext": ".txt"
+  },
+  {
+    "path": "Trae/Builder Tools.json",
+    "family": "Trae",
+    "ext": ".json"
+  },
+  {
+    "path": "Trae/Chat Prompt.txt",
+    "family": "Trae",
+    "ext": ".txt"
+  },
+  {
+    "path": "Trae/SOLO Coder Prompt.txt",
+    "family": "Trae",
+    "ext": ".txt"
+  },
+  {
+    "path": "Traycer AI/phase_mode_prompts.txt",
+    "family": "Traycer AI",
+    "ext": ".txt"
+  },
+  {
+    "path": "Traycer AI/phase_mode_tools.json",
+    "family": "Traycer AI",
+    "ext": ".json"
+  },
+  {
+    "path": "Traycer AI/plan_mode_prompts",
+    "family": "Traycer AI",
+    "ext": "(none)"
+  },
+  {
+    "path": "Traycer AI/plan_mode_tools.json",
+    "family": "Traycer AI",
+    "ext": ".json"
+  },
+  {
+    "path": "VSCode Agent/Prompt.txt",
+    "family": "VSCode Agent",
+    "ext": ".txt"
+  },
+  {
+    "path": "VSCode Agent/chat-titles.txt",
+    "family": "VSCode Agent",
+    "ext": ".txt"
+  },
+  {
+    "path": "VSCode Agent/claude-sonnet-4.txt",
+    "family": "VSCode Agent",
+    "ext": ".txt"
+  },
+  {
+    "path": "VSCode Agent/gemini-2.5-pro.txt",
+    "family": "VSCode Agent",
+    "ext": ".txt"
+  },
+  {
+    "path": "VSCode Agent/gpt-4.1.txt",
+    "family": "VSCode Agent",
+    "ext": ".txt"
+  },
+  {
+    "path": "VSCode Agent/gpt-4o.txt",
+    "family": "VSCode Agent",
+    "ext": ".txt"
+  },
+  {
+    "path": "VSCode Agent/gpt-5-mini.txt",
+    "family": "VSCode Agent",
+    "ext": ".txt"
+  },
+  {
+    "path": "VSCode Agent/gpt-5.txt",
+    "family": "VSCode Agent",
+    "ext": ".txt"
+  },
+  {
+    "path": "VSCode Agent/nes-tab-completion.txt",
+    "family": "VSCode Agent",
+    "ext": ".txt"
+  },
+  {
+    "path": "Warp.dev/Prompt.txt",
+    "family": "Warp.dev",
+    "ext": ".txt"
+  },
+  {
+    "path": "Windsurf/Prompt Wave 11.txt",
+    "family": "Windsurf",
+    "ext": ".txt"
+  },
+  {
+    "path": "Windsurf/Tools Wave 11.txt",
+    "family": "Windsurf",
+    "ext": ".txt"
+  },
+  {
+    "path": "Xcode/DocumentAction.md",
+    "family": "Xcode",
+    "ext": ".md"
+  },
+  {
+    "path": "Xcode/DocumentAction.txt",
+    "family": "Xcode",
+    "ext": ".txt"
+  },
+  {
+    "path": "Xcode/ExplainAction.md",
+    "family": "Xcode",
+    "ext": ".md"
+  },
+  {
+    "path": "Xcode/ExplainAction.txt",
+    "family": "Xcode",
+    "ext": ".txt"
+  },
+  {
+    "path": "Xcode/MessageAction.md",
+    "family": "Xcode",
+    "ext": ".md"
+  },
+  {
+    "path": "Xcode/MessageAction.txt",
+    "family": "Xcode",
+    "ext": ".txt"
+  },
+  {
+    "path": "Xcode/PlaygroundAction.md",
+    "family": "Xcode",
+    "ext": ".md"
+  },
+  {
+    "path": "Xcode/PlaygroundAction.txt",
+    "family": "Xcode",
+    "ext": ".txt"
+  },
+  {
+    "path": "Xcode/PreviewAction.md",
+    "family": "Xcode",
+    "ext": ".md"
+  },
+  {
+    "path": "Xcode/PreviewAction.txt",
+    "family": "Xcode",
+    "ext": ".txt"
+  },
+  {
+    "path": "Xcode/System.md",
+    "family": "Xcode",
+    "ext": ".md"
+  },
+  {
+    "path": "Xcode/System.txt",
+    "family": "Xcode",
+    "ext": ".txt"
+  },
+  {
+    "path": "Xiaomi/MiCode/System Prompt.md",
+    "family": "Xiaomi",
+    "ext": ".md"
+  },
+  {
+    "path": "Z.ai Code/prompt.txt",
+    "family": "Z.ai Code",
+    "ext": ".txt"
+  },
+  {
+    "path": "Zed/System Prompt.txt",
+    "family": "Zed",
+    "ext": ".txt"
+  },
+  {
+    "path": "ZeroTwo/Prompt.txt",
+    "family": "ZeroTwo",
+    "ext": ".txt"
+  },
+  {
+    "path": "dia/Prompt.txt",
+    "family": "dia",
+    "ext": ".txt"
+  },
+  {
+    "path": "v0 Prompts and Tools/Prompt.txt",
+    "family": "v0 Prompts and Tools",
+    "ext": ".txt"
+  },
+  {
+    "path": "v0 Prompts and Tools/Tools.json",
+    "family": "v0 Prompts and Tools",
+    "ext": ".json"
+  }
+]

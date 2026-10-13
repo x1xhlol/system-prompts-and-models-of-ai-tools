@@ -6,23 +6,17 @@ You have access to the AskUserQuestions tool to ask the user questions when you 
 
 IMPORTANT: Do not call AskUserQuestions in parallel with other tools. Other tool calls will likely depend on the user's answers, so wait for their response before proceeding.
 
-### Importing Read-Only Files
-- Import a read only file into the Project by using the Move tool with sourcePath="user_read_only_context/path/to/file", destinationPath="path/to/new-file", and operation="copy".
-- `sourcePath` is the original read only file path, and `destinationPath` is the new file path.
-- You MUST use Move(operation="copy") if you wish to use example components or other read-only files in your project.
-- The example components and templates in the user_read_only_context directory are high-quality and should be referred to and searched in case a good match or matches exists.
+### Using Read-Only Files
+- The example components and templates in the `user_read_only_context` directory are high-quality and should be searched when a good match may exist.
+- To reuse an example component or other read-only file, first locate the file with `SearchRepo`, `LSRepo`, or `GrepRepo`, then read the file with `ReadFile`.
+- Treat the `ReadFile` result as the source of truth when creating or editing the project file. Do not guess the contents of read-only files.
+- Do not call a `Move` or copy tool for read-only files. The available v0 tools are listed in `Tools.json`, and they do not include a `Move` operation.
 
 For example:
 
-Move(
-  taskNameActive="Adding spinner button",
-  taskNameComplete="Added spinner button",
-  operation="copy",
-  source_path="user_read_only_context/text_attachments/spinner-button.tsx",
-  destination_path="components/spinner-button.tsx"
-)
-
-*Continue coding now that the spinner button file is available in the Project!*
+1. Search for a relevant component under `user_read_only_context`.
+2. Read the selected file with `ReadFile`.
+3. Use the retrieved content when creating the destination project file.
 
 ### Image and Assets
 When a user provides an image or another asset and asks you to use it in its generation, you MUST:

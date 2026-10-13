@@ -1,0 +1,234 @@
+source_path,dest_path,status,sha256_before,sha256_after,bytes
+.devcontainer/devcontainer.json,.devcontainer/devcontainer.json,added,,3eaf033fb30213153f6fc5bd05169e1dffecbe7ec45e75bbc87b70a39ae8279f,79
+.github/PULL_REQUEST_TEMPLATE.md,.github/PULL_REQUEST_TEMPLATE.md,added,,250deb72033122e1a2255c06fbf95aa7889fcccf67ad8f8d708f076b1a0be1c0,563
+1system-prompts-CN/Anthropic/Claude Code/Prompt_CN.md,1system-prompts-CN/Anthropic/Claude Code/Prompt_CN.md,added,,5ca594c54c51f676b3e1cf00d6d96769c5c3461ecc531c4f811c8296820a25c9,14348
+1system-prompts-CN/Anthropic/Claude Code/temp_chunk_1_CN.md,1system-prompts-CN/Anthropic/Claude Code/temp_chunk_1_CN.md,added,,fe2dacf562c661631078d71316c454cedfa20e6645c44a90a7d7697435d804c9,61700
+1system-prompts-CN/Anthropic/Claude for Chrome/Prompt_CN.md,1system-prompts-CN/Anthropic/Claude for Chrome/Prompt_CN.md,added,,882c115e3b31be0a7a501d8356f7f8d33a4ad4c77f2fc11301486034cb679883,38493
+1system-prompts-CN/Anthropic/Claude for Chrome/Tools.json,1system-prompts-CN/Anthropic/Claude for Chrome/Tools.json,added,,6980566027f6a3b83f2f0c381f4eb1b12cf50eb090147dd3e7667d36b6019b65,24056
+1system-prompts-CN/Augment Code/claude-4-sonnet-agent-prompts_CN.md,1system-prompts-CN/Augment Code/claude-4-sonnet-agent-prompts_CN.md,added,,72bce1ad4e8efbacf7f6f0a63dc50edfdd47542d3130162ec9f87f2b1fbe4152,9162
+1system-prompts-CN/Augment Code/claude-4-sonnet-tools.json,1system-prompts-CN/Augment Code/claude-4-sonnet-tools.json,added,,44304e0ff21623151d8c479caa9033c9c61629f8e2842722e76c357e8d4db9fd,28992
+1system-prompts-CN/Augment Code/gpt-5-agent-prompts_CN.md,1system-prompts-CN/Augment Code/gpt-5-agent-prompts_CN.md,added,,7591ef504a4e20f9f47dd2758aa0325b98bca067965c530674ad378fa480dcec,13366
+1system-prompts-CN/Augment Code/gpt-5-tools.json,1system-prompts-CN/Augment Code/gpt-5-tools.json,added,,2870be55958c405528a7c93d94d5ad4177d2bcfc2372a4051d9a864e26ba4463,19181
+1system-prompts-CN/Cursor Prompts/Agent CLI Prompt 2025-08-07_CN.md,1system-prompts-CN/Cursor Prompts/Agent CLI Prompt 2025-08-07_CN.md,added,,1cef42995eca37d96762ebb377f0bdb34eb37a1d726fab5a7597e5f0a30e6242,13135
+1system-prompts-CN/Cursor Prompts/Agent Prompt 2.0_CN.md,1system-prompts-CN/Cursor Prompts/Agent Prompt 2.0_CN.md,added,,8bacb013f3a636d9b6866b62d33e9cc5d10d3de4f5c0357df6588e6a28478857,30615
+1system-prompts-CN/Cursor Prompts/Agent Prompt 2025-09-03_CN.md,1system-prompts-CN/Cursor Prompts/Agent Prompt 2025-09-03_CN.md,added,,d84c4ff726fc4e098cea4d5a607e5b5c93825af782d8c928b688a7874171c2d1,18009
+1system-prompts-CN/Cursor Prompts/Agent Prompt v1.0_CN.md,1system-prompts-CN/Cursor Prompts/Agent Prompt v1.0_CN.md,added,,a1aa36572bb3bd148c36c2d87d73ef7c4a3325e1cd3a0b6e56191cd3be1ded79,8181
+1system-prompts-CN/Cursor Prompts/Agent Prompt v1.2_CN.md,1system-prompts-CN/Cursor Prompts/Agent Prompt v1.2_CN.md,added,,942adc09cf3dc275f39f430ff1f64cf88742062d721896adcd598ea681271d5e,30097
+1system-prompts-CN/Cursor Prompts/Agent Tools v1.0.json,1system-prompts-CN/Cursor Prompts/Agent Tools v1.0.json,added,,ed9113196d044aefdc8e3301b280c0611b6418bc0fff3f681998581c11620d57,23545
+1system-prompts-CN/Cursor Prompts/Chat Prompt.md,1system-prompts-CN/Cursor Prompts/Chat Prompt.md,added,,25b380ca07cdf91ec119d50b9fb94b50391ba00e332b8765a4b5959467e9bc18,20410
+1system-prompts-CN/Google/Antigravity/Fast Prompt_CN.md,1system-prompts-CN/Google/Antigravity/Fast Prompt_CN.md,added,,2e6c2aad8c9fea6aaa9df1959abe8c32c7c1f37796b2334b30a1d0aa87e69555,11173
+1system-prompts-CN/Google/Antigravity/planning-mode_CN.md,1system-prompts-CN/Google/Antigravity/planning-mode_CN.md,added,,d2ee230c481a776172fc1a04cc6a7c4a459c73425558cb653a6bc59dc5e7d557,20456
+1system-prompts-CN/Google/Gemini/AI Studio vibe-coder_CN.md,1system-prompts-CN/Google/Gemini/AI Studio vibe-coder_CN.md,added,,c2ca95b070bb60e5280b22ce34a934d1371e8c4aaf6573d3611585928f56e057,29179
+1system-prompts-CN/Kiro/Mode_Clasifier_Prompt_CN.md,1system-prompts-CN/Kiro/Mode_Clasifier_Prompt_CN.md,added,,562de94609a9da4952cac8a44b90ec9847e71222bf25cb87d190cab4df770e8c,2737
+1system-prompts-CN/Kiro/Spec_Prompt_CN.md,1system-prompts-CN/Kiro/Spec_Prompt_CN.md,added,,83ea0d9988b1570e5f512bd409804778fa4c9284b6e621f3671defa9feaa7a43,27327
+1system-prompts-CN/Kiro/Vibe_Prompt_CN.md,1system-prompts-CN/Kiro/Vibe_Prompt_CN.md,added,,ae1bfc3aa738f3c1fd5aa223b845753896ff4741b2a40a82d78b8b9ade31458c,12622
+1system-prompts-CN/Qoder/Quest Action_CN.md,1system-prompts-CN/Qoder/Quest Action_CN.md,added,,d9fb8ed92cc24de875663abaf9ed2d17e2c149916bb8a73401f8c0e49ba01be5,10719
+1system-prompts-CN/Qoder/Quest Design_CN.md,1system-prompts-CN/Qoder/Quest Design_CN.md,added,,d7ad54178a96aefcaa25f243bfa24bc77c581017e723cf7f3870895c3eefcb11,21961
+1system-prompts-CN/Qoder/prompt_CN.md,1system-prompts-CN/Qoder/prompt_CN.md,added,,f2c6b11e856e508d97a9e5f5b2127b10de81754de490a3542deb55d69dec3c6d,16233
+1system-prompts-CN/Xcode/DocumentAction_CN.md,1system-prompts-CN/Xcode/DocumentAction_CN.md,added,,b281a5015e1d4549c90c19c861520c2b71027ad8bf44e249b457dc36c8c9bc4d,356
+1system-prompts-CN/Xcode/ExplainAction_CN.md,1system-prompts-CN/Xcode/ExplainAction_CN.md,added,,cf353a8b500c3f8ded46613b8e58170da2e7209e0f68f13cd5fdbc3faba5724f,244
+1system-prompts-CN/Xcode/MessageAction_CN.md,1system-prompts-CN/Xcode/MessageAction_CN.md,added,,7e887bd1a30fd3ecab4630cbe4d5024086fc2b1492850ebc8094eb781bcb0795,224
+1system-prompts-CN/Xcode/PlaygroundAction_CN.md,1system-prompts-CN/Xcode/PlaygroundAction_CN.md,added,,11982c109320e2d0393d5be42dcd58998aecd51709f4c6ef6f5e2dd6ac327710,406
+1system-prompts-CN/Xcode/PreviewAction_CN.md,1system-prompts-CN/Xcode/PreviewAction_CN.md,added,,d18d2ac39df755ca091a703b4248f46afa3468e3bf9ab3ad7c62543b4c39b06c,1854
+1system-prompts-CN/Xcode/System.md,1system-prompts-CN/Xcode/System.md,added,,69a41118bf183c0274280ca451748ddf3115fadcd60a30cc06ec3d5ccb3e3436,3456
+1system-prompts-CN/Xcode/System_CN.md,1system-prompts-CN/Xcode/System_CN.md,added,,2cceda542d9ad20e420a8faa03b99ddf9cec5c48f7447523fd9091e6306ba9b9,3392
+Anthropic/Claude Design/Create Design System.txt,Anthropic/Claude Design/Create Design System.txt,added,,0d1b20cfe25257e6dbaefcc3b73b259a18a01b124f91d8d00f0539358810bbac,16920
+Anthropic/Claude Fable 5.txt,Anthropic/Claude Fable 5.txt,added,,920d838534e1d06c719f1748729a6b1bb9ac65657b0af511e4e34877f1a4f953,119995
+Anthropic/Opus 4.5 Prompt.txt,Anthropic/Opus 4.5 Prompt.txt,added,,ec6148b35c2c37c06aa94e6c62809678b39874109b900ff89fdf60b1e74a1ddb,118973
+Antigravity/Fast Prompt.txt,Google/Antigravity/Fast Prompt.txt,overwritten,362e936b326e4d739fac708b2d6b505b1b5a915cf1b3f1ae1b919ca2571214a9,eec790fa26f8b2313d8f996e6b280103856669a0a2c1e3f6320bd93592f40bad,8896
+Antigravity/Planning Prompt.txt,Google/Antigravity/Planning Prompt.txt,added,,d925143984d645e4dd5821f8ec2872237c473cdd83abe6da84aec77c7f02540a,9510
+Antigravity/Tools.json,Google/Antigravity/Tools.json,added,,785e12c3b51ff54c297edad48910a4b3523f16aaee7c0a55a85c2335135cc28a,21459
+Augument/prompt.txt,Augument/prompt.txt,added,,7418a116d792ec4911ee80f1b47c77f2700be9d3e7b02c8ee4078b218194d2dd,3535
+BLACKBOX IDE/Agent Prompt.txt,BLACKBOX IDE/Agent Prompt.txt,added,,b5b511d9ea609ba2ee49dc9c4d1bf6bd8e2380b9d538509ccdd0107e37c386bc,126956
+Browser Use/system_prompt.txt,Browser Use/system_prompt.txt,added,,20edab1902aca5fb3557d375c3f962b04be71080c448725ffa046163d0cb34e0,4878
+Browser Use/task_planer.txt,Browser Use/task_planer.txt,added,,652d9309d5283695836ec6449467262de145096c60e74073d7895cb63936b277,997
+Browser Use/validator_of_output.txt,Browser Use/validator_of_output.txt,added,,6d182c1d3d255df8f9dc416cdddf8c2760c8b54c595ff2aac09443b7585a7213,1087
+CONTRIBUTING.md,CONTRIBUTING.md,added,,25e58876d2614351ec10f12bed18acd420a0ab57c4d5106b7151d666c514a316,2547
+ChatGPT/Monday,OpenAI/ChatGPT/Monday,added,,776ca75d63cacf9d78b2c4fe62d7865c3cb3c7e8ab785f61eefa06ae800376d4,1366
+ChatGPT Prompts/chat-gpt-llm.txt,OpenAI/ChatGPT/Prompts/chat-gpt-llm.txt,added,,654364decd24203cd6247494804e53f7e0065f7e1cc853e2aa25df1883661300,2862
+ChatGPT Prompts/chat-gpt-reasoning-plugin.txt,OpenAI/ChatGPT/Prompts/chat-gpt-reasoning-plugin.txt,added,,40f3187368b0af73bece5a43d840622d45f825736fb972b6ad0c3ebaad66441f,1441
+ChatGPT Prompts/chat-gpt-web-browsing-plugin.txt,OpenAI/ChatGPT/Prompts/chat-gpt-web-browsing-plugin.txt,added,,b103ce6631a5afc1ed349c926d76bcbd5ba6e3dc22c632ce028f73d2d1cd3221,2471
+CodeFlicker/Agent Prompt (Browser SubAgent).txt,CodeFlicker/Agent Prompt (Browser SubAgent).txt,added,,d200fc3cff1c26cdc0966034a2f582ccc97c3badb1002407ff0c220e58ad0892,3791
+CodeFlicker/Agent Prompt (Code Review).txt,CodeFlicker/Agent Prompt (Code Review).txt,added,,ef85e029805264591ed8850c720c6e140b834377d8a1689f95640e8645bd8be8,2330
+CodeFlicker/Agent Prompt (Discuss Mode).txt,CodeFlicker/Agent Prompt (Discuss Mode).txt,added,,b73b7c0cb93389278ef99285dc2e301ccba8ea29826b83aa5210b599f77b98d1,13526
+CodeFlicker/Agent Prompt (Duet Mode).txt,CodeFlicker/Agent Prompt (Duet Mode).txt,added,,7495301b8ec8910237eba7025e385cafc09f9571dbb6ada68ca90e354f17e415,9265
+CodeFlicker/Agent Prompt (Jam Mode).txt,CodeFlicker/Agent Prompt (Jam Mode).txt,added,,1a86fc9ee28a92a3b7b38ffef6dc7d9fcbb3b8fb9c63b59d9ffbffb37f13c27d,8278
+CodeFlicker/Agent Prompt (Plan Mode).txt,CodeFlicker/Agent Prompt (Plan Mode).txt,added,,be8278c4dd925b6590a29e4818941a516bd0b931dfa4bbbb7c8a004cbb089bb4,9169
+CodeFlicker/Agent Prompt (Preview SubAgent).txt,CodeFlicker/Agent Prompt (Preview SubAgent).txt,added,,deae3b6cd494c6cbe638a2ffc4224f40d7041f7df45e2169cc61483ebbedba33,13428
+CodeFlicker/Agent Prompt (Research SubAgent).txt,CodeFlicker/Agent Prompt (Research SubAgent).txt,added,,1dc66f51692dd45e8a0ab3c3d2151b277accb9fb3f2da9971e3e00430194b5f6,4605
+CodeFlicker/Agent Tools.txt,CodeFlicker/Agent Tools.txt,added,,1a0fcbbac3575617f5a2879a4255d3d5faeeccebd8f3257d33d2626616d1fb5f,52011
+CodeFlicker/Memory System Prompt.txt,CodeFlicker/Memory System Prompt.txt,added,,89b46ea9df92dff41a52f24731eb0adf6043213f29719f240a76a0d780722458,4212
+CodeFlicker/Review Report Templates.txt,CodeFlicker/Review Report Templates.txt,added,,079db4f7c15e22f3a28db690e342685020f35a0eccfcc7222d86418868991604,6391
+CodinIT.dev/prompt.txt,CodinIT.dev/prompt.txt,added,,f4880015666beead5e329e7c39942c2e97ca4bda716131f11579bd0d34de6117,32759
+Comet Assistant/tools.json,Comet Assistant/tools.json,overwritten,9ec55c214550e07074b16d0decf11692bc7c3417d8d7700194a350928e51e915,c7184ed0f5fe5f881551f7653b530f7a19adc70889c35b94ddf2ab3c3a32c8e5,11998
+Confer/Promp.txt,Confer/Promp.txt,added,,c093642172724e9f86ad7e72748fba41e58972abc355bd001a80204d3d107c0c,2453
+Cursor Prompts/Agent CLI Prompt 2025-08-07.txt,Cursor Prompts/Agent CLI Prompt 2025-08-07.txt,overwritten,7bc79653ca2c2c113e2cf60ea44a89991155be82d815c95096d30cc0b540027c,ba0a951dab49409891732e6e490b75a2b3a5df50d746bfe13b9bc0f309bf5e02,14067
+Cursor Prompts/Claude-3.7-Sonnet Agent Prompt.txt,Cursor Prompts/Claude-3.7-Sonnet Agent Prompt.txt,added,,1c69bf4f561496f56dc9b908813beef21cb5cbeff9bb5dfe571840253c124f85,17525
+Cursor Prompts/Claude-3.7-Sonnet Chat Prompt.txt,Cursor Prompts/Claude-3.7-Sonnet Chat Prompt.txt,added,,1cb8330b41211f66fcea2c2b238c61f9bc719b380f01ba0b9f9f11ae1a637d7c,12569
+Cursor Prompts/Composer Agent Prompt.md,Cursor Prompts/Composer Agent Prompt.md,added,,a6608f6b4bd2c9d150e391a63432d3b2c1f0086f4ab026bd679f2cca1749b9ec,27550
+Cursor Prompts/GPT-4o Agent Functions.json,Cursor Prompts/GPT-4o Agent Functions.json,added,,62835a604b63823408530b8a0425518469360e9bd9580ed9f9ea55ccfbcf9fec,8490
+Cursor Prompts/GPT-4o Agent Prompt.txt,Cursor Prompts/GPT-4o Agent Prompt.txt,added,,d94822649eb3816c39150c31c5e6b544b987a2e6024dc8e44c8d1362481311d1,5432
+Devin Cli /Prompt.txt,Devin AI/CLI/Prompt.txt,added,,6817ddccc82690bc296c00031c5a0ff66b69b8559f6ce8740ca61509196cf11f,63129
+Emergent/E2_System_Prompt.txt,Emergent/E2_System_Prompt.txt,added,,43ded8c04aa54f4c98a3e79307a3e5e45512904ede51a506e4fd063790da6b16,59236
+Emergent/E2_Tools.json,Emergent/E2_Tools.json,added,,19cb27ada4bbb5aeeaabecf2cea1549fab55c715d6e4da328f287d36b3ea1bbf,9555
+FlintK12/prompt.txt,FlintK12/prompt.txt,added,,7abc829705488226296b35d8397c77db719ee40d48fc97f9ff32afaf5207c39d,17653
+FlintK12/tools.txt,FlintK12/tools.txt,added,,21d2154ad07beca169f4f8d90b1130f7dc3b6dce1a1ef1a034ac9b3a7bd8924d,17145
+FlintK12/user-info.txt,FlintK12/user-info.txt,added,,40ff7c0599ca3305fd96b9b606593275e03c018ba81d7c28ad6a69a8390d4059,989
+GitHub Copilot/Prompt.txt,GitHub/Copilot/Prompt.txt,added,,836d549a4cf8fb8556f3ffc42a8e637de4711b7869e8ee062bb1cfa12f2c81bb,1315
+GitHub Spark/README.md,GitHub/Spark/README.md,added,,b16f3ff0ec12dfff4a8375088c9b4bcdf2545108bbe1a16d003fc4d8981817d5,651
+GitHub Spark/System Prompt.txt,GitHub/Spark/System Prompt.txt,added,,1d4b73d067e0db990c1e91befac76b07a50b0ff3e73d2f6e20f55d83576e387c,35986
+GitHub Spark/Tools.json,GitHub/Spark/Tools.json,added,,dc13f61e73bf7bf4e0ad974838c25c6eadc4c334430a7b924bb960bd1910e9c3,11614
+Google/Gemini/Enterprise/Gemini-2.5-Flash.md,Google/Gemini/Enterprise/Gemini-2.5-Flash.md,added,,794817a57148c5e638b27089a1b1747774fc832cf5b05ecce9f95199f69f35b8,12986
+Google/Gemini/Enterprise/Gemini-2.5-Pro.md,Google/Gemini/Enterprise/Gemini-2.5-Pro.md,added,,512cb3f073a4eb1b3c1419dbbd8cdb6aee2a1522055326d84c0647995995dedf,15806
+Google/Gemini/Enterprise/Title-Generator.txt,Google/Gemini/Enterprise/Title-Generator.txt,added,,26df770252a97bae456b9054f78467dfff4c44ec5c5c2e7f08863237332d01a0,2774
+Google/Gemini/Gemini 3 Flash Web.txt,Google/Gemini/Gemini 3 Flash Web.txt,added,,6f7b7c7abdfe979bde9816fa9e1ed147d06387cf02ff082ea8eec8954e26c3b1,5158
+Google/Gemini/Gemini 3.5 Prompt.txt,Google/Gemini/Gemini 3.5 Prompt.txt,added,,9199fec5d9f0a087bf05891fd01cb402d5c6019472185ecea98ed6093c06a351,4291
+Google/Gemini/Gemini 3.5 Tool Definitions and Generation Config.json,Google/Gemini/Gemini 3.5 Tool Definitions and Generation Config.json,added,,17b4907a336387032e71df8b2a77f4d65fb78af1ba225e8506c875a1d0ddea0e,3612
+Google/Gemini/Lyria 3.txt,Google/Gemini/Lyria 3.txt,added,,f121381ccfb45214c80554b90571442af7e07081b52460f3b14af144e9b2d845,3099
+Grok/Twitter Translate Grok prompt 09/09/2025.txt,Grok/Twitter Translate Grok prompt 09/09/2025.txt,added,,78e4d967026b3ec6ff6c11a36171d4afef6205a725df39e0bb805f126dcf2d60,608
+Highlight/Prompt.txt,Highlight/Prompt.txt,added,,e6182bc5d23399532a2221114cd45e1e9ba9efb4981fe2c31f5dc0fa1dd17271,7889
+Humanizer AI Prompt/convert_or_generate_with_human_touch.txt,Humanizer AI Prompt/convert_or_generate_with_human_touch.txt,added,,cd88844c88996f86bde784bf221bc4b6278bb33be7eff1982df3d5561142ffcf,9229
+Kagi/Assistant Prompt.txt,Kagi/Assistant Prompt.txt,added,,e27fdc9eaa89e660b1090dd2ea7b952dadba780db80a21736964bc70ef13dd0b,1885
+Lightfield CRM/System Prompt.txt,Lightfield CRM/System Prompt.txt,added,,f99673ba16d1ed06b7ddff18576da52d7bde94b5b5cffa6d8847418357dd0acf,9492
+Lovable/Agent Tools.json,Lovable/Agent Tools.json,overwritten,f1c7771d6b929a6b37a6b5d37479eb4572ad4261c1839ae6459540fac2429430,83cefb6e3cdef42341d85a12409da5d57be206e7c6a49e0e9e8d69931479e19e,27940
+Meta AI/Instagram Prompt.txt,Meta/Instagram Prompt.txt,added,,e6382c89bb9e6969c904fac46f617692738ff949a9d33b14c290e369109143fc,3390
+Meta AI/WhatsApp Prompt.txt,Meta/WhatsApp Prompt.txt,added,,77dfce75983fed26e6e3966611618f25f3b6857ff05ebefcbfe0a0c5973a5583,1945
+Minimax/system_prompt.md,Minimax/system_prompt.md,added,,87faaee5df9c94e3e2ffb17901ec78461fa5479d23b7f022aec8818a7bc52184,20766
+Mistral/Mistral prompt.txt,Mistral/Mistral prompt.txt,added,,604f4c6f4a8eaf505bf67e994d0196a29ec50ef80f843c3239d3727a774a031c,6616
+Moonshot AI/Kimi K2.5.txt,Moonshot AI/Kimi K2.5.txt,added,,a14bd335a9cd835827201f519680f4c904dd8572bf57185cb1d01af8ef6ec7c8,8666
+Moonshot AI/context.txt,Moonshot AI/context.txt,added,,6eec44653f56086d186e863d8f9a7bb2c46f7d2cef3329ccfa20bc93d3c7a9d4,2032
+Moonshot AI/tools.json,Moonshot AI/tools.json,added,,1e9dd3985e5a19e9d072e7274150369384b2c6a302663f4eb354b269d4187fad,6502
+NotionAi/notion-ai_20260322/modules/asana/AGENTS.md,NotionAi/notion-ai_20260322/modules/asana/AGENTS.md,added,,b255c0c6e0678ce279083dfaf3c7d83263bbff669f4d285d555c1d79ec985265,190
+NotionAi/notion-ai_20260322/modules/asana/index.ts,NotionAi/notion-ai_20260322/modules/asana/index.ts,added,,f72f9cd6bfe0900fc9d313c9cc872febb9e4dffce02817c12a14f862568a4372,1094
+NotionAi/notion-ai_20260322/modules/asana/integration.ts,NotionAi/notion-ai_20260322/modules/asana/integration.ts,added,,030413e301f8390adce08dab3926cbe22fca3e96a2a4857c816a55dc169ae263,437
+NotionAi/notion-ai_20260322/modules/box/AGENTS.md,NotionAi/notion-ai_20260322/modules/box/AGENTS.md,added,,7e2392a61c4f362adea8d39d983e18b58519b31cc1d19d73a075825557ef5e64,347
+NotionAi/notion-ai_20260322/modules/box/index.ts,NotionAi/notion-ai_20260322/modules/box/index.ts,added,,702486b45bc30422e594736582f697cb7a60e66ff517227d7eabbd265e4df939,1408
+NotionAi/notion-ai_20260322/modules/box/integration.ts,NotionAi/notion-ai_20260322/modules/box/integration.ts,added,,949507945dadd7cab9453ade73090971bf2db9615fd7f33147c7562b0776c95c,279
+NotionAi/notion-ai_20260322/modules/calendar/AGENTS.md,NotionAi/notion-ai_20260322/modules/calendar/AGENTS.md,added,,ef61c27eb8a6d3797e996f64d91e5e1c7359f0d5d20949bd16649ef555f04b8f,2847
+NotionAi/notion-ai_20260322/modules/calendar/index.ts,NotionAi/notion-ai_20260322/modules/calendar/index.ts,added,,43e0a5401123efc7dfc93cce808a25cc052ccdf31ffa3128a7c1776609a360f1,669
+NotionAi/notion-ai_20260322/modules/calendar/integration.ts,NotionAi/notion-ai_20260322/modules/calendar/integration.ts,added,,36baea9efb7a90cb5169b5b775d70c30bef3daa8e324d2ddfa491d0b6ff9696e,1042
+NotionAi/notion-ai_20260322/modules/calendar/skills/meeting-follow-up.md,NotionAi/notion-ai_20260322/modules/calendar/skills/meeting-follow-up.md,added,,4e3f7e6bc1d0c6206bb40c23145dd832d788eb8c34c99076d6c000fd1e45de57,5003
+NotionAi/notion-ai_20260322/modules/calendar/skills/meeting-prep.md,NotionAi/notion-ai_20260322/modules/calendar/skills/meeting-prep.md,added,,e84de5149df74cf69381f2d69644ad3932ce09806ae2f51bbdb67152fa826f15,3479
+NotionAi/notion-ai_20260322/modules/calendar/skills/optimize-schedule.md,NotionAi/notion-ai_20260322/modules/calendar/skills/optimize-schedule.md,added,,4ae0396e310322e686e4fd53686b94d7603e696891a4f249eb08e6bcf008eef0,3283
+NotionAi/notion-ai_20260322/modules/calendar/skills/project-planning.md,NotionAi/notion-ai_20260322/modules/calendar/skills/project-planning.md,added,,e95ec84c57b4927401a623ed19b5cf9f192027685b0c363d1edc7c6cf81d85a6,1616
+NotionAi/notion-ai_20260322/modules/calendar/skills/scheduling.md,NotionAi/notion-ai_20260322/modules/calendar/skills/scheduling.md,added,,c3fbd50d1f7e1284f57ea2cb2a4990f9cc9c5ddeb525f2dc0486137f0913083d,5277
+NotionAi/notion-ai_20260322/modules/calendar/tools/events.ts,NotionAi/notion-ai_20260322/modules/calendar/tools/events.ts,added,,144122729273bace50ba118aeb4333ac06ba61e115f2d5cb5db74e824e639149,8674
+NotionAi/notion-ai_20260322/modules/calendar/triggers.ts,NotionAi/notion-ai_20260322/modules/calendar/triggers.ts,added,,fe9e40d2e9c421eae55a66b1a839809c07308ac3657dc3cf4de8647ad3f156c2,4403
+NotionAi/notion-ai_20260322/modules/confluence/AGENTS.md,NotionAi/notion-ai_20260322/modules/confluence/AGENTS.md,added,,a9a9593d0c86a6d2825064c9329835fe0da8ebfd49f5709b44a716904b6a7a75,261
+NotionAi/notion-ai_20260322/modules/confluence/index.ts,NotionAi/notion-ai_20260322/modules/confluence/index.ts,added,,dfc3818f984ab33e4339f5fa5c4b0cb55faa5c121195bf860bf0ed362af3e1a7,1523
+NotionAi/notion-ai_20260322/modules/confluence/integration.ts,NotionAi/notion-ai_20260322/modules/confluence/integration.ts,added,,cee3f3a78c569d75d28f025c2e6c4d8278778e08aa77447db597c5d8fa667dd1,282
+NotionAi/notion-ai_20260322/modules/discord/AGENTS.md,NotionAi/notion-ai_20260322/modules/discord/AGENTS.md,added,,2c6f7c0c531da61ae575d828fa51e83bd4c5e73c7d848b67c4fead6e7272af09,149
+NotionAi/notion-ai_20260322/modules/discord/index.ts,NotionAi/notion-ai_20260322/modules/discord/index.ts,added,,03c56cf8ff53ca4342a0fad0ff27500ff3578f98d02884caa2178dddaea6f4f5,556
+NotionAi/notion-ai_20260322/modules/discord/integration.ts,NotionAi/notion-ai_20260322/modules/discord/integration.ts,added,,e8cb6e2e7d968d7e92402607e2086022bc8d1b515af94cac7a6b36d6a20415fe,235
+NotionAi/notion-ai_20260322/modules/fs/AGENTS.md,NotionAi/notion-ai_20260322/modules/fs/AGENTS.md,added,,3d1fdf159588b579192bb621f6d04fafe934333da6f5295a7a455f3fe9a8a97b,980
+NotionAi/notion-ai_20260322/modules/fs/index.ts,NotionAi/notion-ai_20260322/modules/fs/index.ts,added,,382d9bba81b9b4f85c81616ff6189820b53843453a1c1dda4e680b43b1659af0,399
+NotionAi/notion-ai_20260322/modules/fs/integration.ts,NotionAi/notion-ai_20260322/modules/fs/integration.ts,added,,a0432604d5ffceaebaf46f3d11093cfa5235ade62255dcbe370e23656e8ff876,189
+NotionAi/notion-ai_20260322/modules/github/AGENTS.md,NotionAi/notion-ai_20260322/modules/github/AGENTS.md,added,,1ecb37149fa8e25a86bf770e34b93a9b087aee7f934477db193d836b66410336,185
+NotionAi/notion-ai_20260322/modules/github/index.ts,NotionAi/notion-ai_20260322/modules/github/index.ts,added,,00a657bf8272ad81c97ef1dae0c3eed8a70fe04bb1abde322b6e8eb5c22500a4,2572
+NotionAi/notion-ai_20260322/modules/github/integration.ts,NotionAi/notion-ai_20260322/modules/github/integration.ts,added,,462cd4f52b2c716acca379a2f63ffff943e56c7aa1ef105dea50436b78ec3d1d,440
+NotionAi/notion-ai_20260322/modules/gmail/AGENTS.md,NotionAi/notion-ai_20260322/modules/gmail/AGENTS.md,added,,012d861a84446946e3106f3c111c719107424818de6d3499bd8794e2ac097f13,219
+NotionAi/notion-ai_20260322/modules/gmail/index.ts,NotionAi/notion-ai_20260322/modules/gmail/index.ts,added,,aee3290854db5026d8f31f543b4b5592359c9481bb1db36ba6c04ea812039a5b,1514
+NotionAi/notion-ai_20260322/modules/gmail/integration.ts,NotionAi/notion-ai_20260322/modules/gmail/integration.ts,added,,f733c2c341b2aa2e6745fc40e145f4229f5cdf0cd02a2f0bb433417e8a5229b8,283
+NotionAi/notion-ai_20260322/modules/googleCalendar/AGENTS.md,NotionAi/notion-ai_20260322/modules/googleCalendar/AGENTS.md,added,,8c7348143128364f9875e676ecdad377b3cc1451a2c542e287b76234e832e718,207
+NotionAi/notion-ai_20260322/modules/googleCalendar/index.ts,NotionAi/notion-ai_20260322/modules/googleCalendar/index.ts,added,,fb0141d88849b2b2b5c74ef1688f86633f2712c4eb4c622464c8ffc2e650fb7c,1511
+NotionAi/notion-ai_20260322/modules/googleCalendar/integration.ts,NotionAi/notion-ai_20260322/modules/googleCalendar/integration.ts,added,,9cadb2243e942d87d30c8f86acad261176ba860561985403a1588a8c4586cfe1,301
+NotionAi/notion-ai_20260322/modules/googleDrive/AGENTS.md,NotionAi/notion-ai_20260322/modules/googleDrive/AGENTS.md,added,,c578ede49dc25595423f7ea88e624572d83ebe7705307d59aba25df8bd4713cd,313
+NotionAi/notion-ai_20260322/modules/googleDrive/index.ts,NotionAi/notion-ai_20260322/modules/googleDrive/index.ts,added,,9ba5f0b3eaabfb7cfdd0c03c8a1225bcb7f8624366980431cd3e5429942aac1b,2268
+NotionAi/notion-ai_20260322/modules/googleDrive/integration.ts,NotionAi/notion-ai_20260322/modules/googleDrive/integration.ts,added,,5985a33b4d2579846f053caff78bfd5f95d35a09d222b884a43c0f01edc3d620,295
+NotionAi/notion-ai_20260322/modules/helpdocs/AGENTS.md,NotionAi/notion-ai_20260322/modules/helpdocs/AGENTS.md,added,,c05a030c94c66b55c225ccc172b96cea2c4f33d861f9292e9fa5695354a74ce1,606
+NotionAi/notion-ai_20260322/modules/helpdocs/index.ts,NotionAi/notion-ai_20260322/modules/helpdocs/index.ts,added,,8bd4a9e6884b43b6e3db2f622347c3829300c774936170a2fbfaada4bd862e69,510
+NotionAi/notion-ai_20260322/modules/helpdocs/integration.ts,NotionAi/notion-ai_20260322/modules/helpdocs/integration.ts,added,,6b5a05f549582cb245022f1b4dc4f6f95cf69957f85e169dd863894ec3cbe57c,201
+NotionAi/notion-ai_20260322/modules/jira/AGENTS.md,NotionAi/notion-ai_20260322/modules/jira/AGENTS.md,added,,3b086f79426d4f85e85bae37289d8a1a0313dc1c1afef2a7be1504822c565b27,178
+NotionAi/notion-ai_20260322/modules/jira/index.ts,NotionAi/notion-ai_20260322/modules/jira/index.ts,added,,4fb4c554f76f7024b540c595c105d476f5db4d56d72030fce6a8765738f6d06e,957
+NotionAi/notion-ai_20260322/modules/jira/integration.ts,NotionAi/notion-ai_20260322/modules/jira/integration.ts,added,,22f3e19d0ee4940fa4a47a1e69ba819d4d1f56d4dc4ce1adf38128f864bcd2d6,281
+NotionAi/notion-ai_20260322/modules/linear/AGENTS.md,NotionAi/notion-ai_20260322/modules/linear/AGENTS.md,added,,13b2ea52a1acc427690c7a00772f6b3d67c959e0fd34f3a9281b42adb4998080,183
+NotionAi/notion-ai_20260322/modules/linear/index.ts,NotionAi/notion-ai_20260322/modules/linear/index.ts,added,,ea6dc008e260a3b79e13ae06b3e9fff062689ee7dbdb498986bf778446228b48,1061
+NotionAi/notion-ai_20260322/modules/linear/integration.ts,NotionAi/notion-ai_20260322/modules/linear/integration.ts,added,,df376b1250c3fbe00f3f9b3b69fc3d965e2b15a98ca30fad1efb0ddecec8bfa3,285
+NotionAi/notion-ai_20260322/modules/mail/AGENTS.md,NotionAi/notion-ai_20260322/modules/mail/AGENTS.md,added,,0e4eda6e98ac93b95958ff7c0ef497724479cdf9c1a2654e1e9ebf0fa3f29772,407
+NotionAi/notion-ai_20260322/modules/mail/index.ts,NotionAi/notion-ai_20260322/modules/mail/index.ts,added,,44b34435820692f12f7cde77bb6e5715d126b0be489a8e023a72b40d74a736fe,3641
+NotionAi/notion-ai_20260322/modules/mail/integration.ts,NotionAi/notion-ai_20260322/modules/mail/integration.ts,added,,3cdfe10674b76fcf61063b7c6ecfe414031925814f96b65320b35e7cdc302a01,897
+NotionAi/notion-ai_20260322/modules/mail/mail-guidelines.md,NotionAi/notion-ai_20260322/modules/mail/mail-guidelines.md,added,,9e866d735ddfebf2fb4b84abc087f2b35d56e850ec949b47c00329041ff2c076,7728
+NotionAi/notion-ai_20260322/modules/mail/triggers.ts,NotionAi/notion-ai_20260322/modules/mail/triggers.ts,added,,cf54c5af59eb378201d8827f26b827665fd11d88baae4aa652b62489ac63d21d,2989
+NotionAi/notion-ai_20260322/modules/microsoftTeams/index.ts,NotionAi/notion-ai_20260322/modules/microsoftTeams/index.ts,added,,0a3b21e7f7649bf139118feae365ccddda1d8c390cfff06cd21cd3d875604232,2810
+NotionAi/notion-ai_20260322/modules/notion/AGENTS.md,NotionAi/notion-ai_20260322/modules/notion/AGENTS.md,added,,cee4294a63512089baef61fdc433280a36bf4eaed68e1e7dc08d1ff6c4a82f7c,2738
+NotionAi/notion-ai_20260322/modules/notion/agents/index.ts,NotionAi/notion-ai_20260322/modules/notion/agents/index.ts,added,,61b2e41f581b8c92865a3af92aa72cbe532cbe285e0b96558f1b3077abbfc421,768
+NotionAi/notion-ai_20260322/modules/notion/analytics/index.ts,NotionAi/notion-ai_20260322/modules/notion/analytics/index.ts,added,,804b7fac7fb297318106d6685c1d981ce09d905f14b1cba2683ccc0f288c2eff,3694
+NotionAi/notion-ai_20260322/modules/notion/databases/AGENTS.md,NotionAi/notion-ai_20260322/modules/notion/databases/AGENTS.md,added,,a6a5c08b448d77861ff735e9f378ffbb93e60293a2b16a6c2e65b7fafa3bbd28,5344
+NotionAi/notion-ai_20260322/modules/notion/databases/data-source-sqlite-tables.md,NotionAi/notion-ai_20260322/modules/notion/databases/data-source-sqlite-tables.md,added,,00e955bac56ade3b4688f51f4e7b507aa7474258f8ec510f29d43bb59441d12c,6083
+NotionAi/notion-ai_20260322/modules/notion/databases/dataSourceTypes.ts,NotionAi/notion-ai_20260322/modules/notion/databases/dataSourceTypes.ts,added,,db0116d9677938902ee18becd3b5c161e8252ebaa3b5465ca3c81c2bf127e6bd,5447
+NotionAi/notion-ai_20260322/modules/notion/databases/formula-spec.md,NotionAi/notion-ai_20260322/modules/notion/databases/formula-spec.md,added,,42c695359d468957825426255d0812c7234de12ec6ef5f6840697108de1657a0,11917
+NotionAi/notion-ai_20260322/modules/notion/databases/index.ts,NotionAi/notion-ai_20260322/modules/notion/databases/index.ts,added,,37fddcc0099cd467a24ba4b2e1aa62ca75a1553a9ea3b2f67976a40eba6985a0,1187
+NotionAi/notion-ai_20260322/modules/notion/databases/layout.ts,NotionAi/notion-ai_20260322/modules/notion/databases/layout.ts,added,,95c7e283a031d81ee40de2fca013cb75adb186367bc587b1bb493fac68ac3b23,1154
+NotionAi/notion-ai_20260322/modules/notion/databases/meeting-notes.md,NotionAi/notion-ai_20260322/modules/notion/databases/meeting-notes.md,added,,f5977b46e6cfc9147e95fe38c1e129d4b85d62a1bcbe222f75f3b4cbf0d42282,5103
+NotionAi/notion-ai_20260322/modules/notion/databases/viewTypes.ts,NotionAi/notion-ai_20260322/modules/notion/databases/viewTypes.ts,added,,61e999649c0c8e5aa881ebfbd7bedeaec01cd8e5b4d3e669892a99a1f26fa742,12161
+NotionAi/notion-ai_20260322/modules/notion/discussions/index.ts,NotionAi/notion-ai_20260322/modules/notion/discussions/index.ts,added,,161cba7ecb3ea3fe96748180a9bd222d031a983c034e3b4046f2b4c0add09ba9,338
+NotionAi/notion-ai_20260322/modules/notion/index.ts,NotionAi/notion-ai_20260322/modules/notion/index.ts,added,,a4f65bcccf5c130b5050d3ae9cf3d7dee5530e993dd8e071b3b5e41dc098ea0b,5427
+NotionAi/notion-ai_20260322/modules/notion/integration.ts,NotionAi/notion-ai_20260322/modules/notion/integration.ts,added,,e3088140c8940e90bb66d4430bb6698b46960eb97cd3da3af0fc50b6773bc13e,2688
+NotionAi/notion-ai_20260322/modules/notion/notifications/index.ts,NotionAi/notion-ai_20260322/modules/notion/notifications/index.ts,added,,3b37e98cc09c416856bead417c3a54ee243c1adf1b17c51f17fa0b7719620817,265
+NotionAi/notion-ai_20260322/modules/notion/pages/AGENTS.md,NotionAi/notion-ai_20260322/modules/notion/pages/AGENTS.md,added,,2a651c8cf1013e4e84dc9d4c09c4744f3be20cb25ccf96008b3fb8aed451c62f,3869
+NotionAi/notion-ai_20260322/modules/notion/pages/index.ts,NotionAi/notion-ai_20260322/modules/notion/pages/index.ts,added,,d4946a277a32bd476a69b5cccb08e93de564e1f299ea1eec51a8c4c871caa334,5489
+NotionAi/notion-ai_20260322/modules/notion/pages/page-content-spec.md,NotionAi/notion-ai_20260322/modules/notion/pages/page-content-spec.md,added,,3977e08f83b3e2d9d9c799569a84bb638a5acc5b9c3883fd912a5cb35d9aef15,7518
+NotionAi/notion-ai_20260322/modules/notion/permissions/index.ts,NotionAi/notion-ai_20260322/modules/notion/permissions/index.ts,added,,2483d2ace2da3ec3c95cd647109b8bc7683fae7b7467effcb4c962d718af2d33,694
+NotionAi/notion-ai_20260322/modules/notion/search.ts,NotionAi/notion-ai_20260322/modules/notion/search.ts,added,,c2ebd60c2ceae4f1356d088866372c9775c2afbc5699583e7e996c0c739500e0,1559
+NotionAi/notion-ai_20260322/modules/notion/teamspaces/AGENTS.md,NotionAi/notion-ai_20260322/modules/notion/teamspaces/AGENTS.md,added,,e06b3aaf066860dd5b0c35934bc6909f7728a3926775396f2b64af5f6403272e,261
+NotionAi/notion-ai_20260322/modules/notion/teamspaces/index.ts,NotionAi/notion-ai_20260322/modules/notion/teamspaces/index.ts,added,,3ac4cbd57d5974177798bb458cd1402cfd1f4c4d7e675ff89736e6179bd75693,847
+NotionAi/notion-ai_20260322/modules/notion/threads/AGENTS.md,NotionAi/notion-ai_20260322/modules/notion/threads/AGENTS.md,added,,ca9652d5cf5e9eb5609b335d126aacc0f553d0e439f5b611f65682a60950b1af,212
+NotionAi/notion-ai_20260322/modules/notion/threads/index.ts,NotionAi/notion-ai_20260322/modules/notion/threads/index.ts,added,,4071d67e3e845d16737ffbb5cd2b3a0e728355bf8323d692f3fc9d6fdbfc8f0f,1872
+NotionAi/notion-ai_20260322/modules/notion/triggers.ts,NotionAi/notion-ai_20260322/modules/notion/triggers.ts,added,,22f4bd1dbadddb5bcb31561137f54d528d92b413d40cc75fc68891d927019528,7600
+NotionAi/notion-ai_20260322/modules/notion/users/AGENTS.md,NotionAi/notion-ai_20260322/modules/notion/users/AGENTS.md,added,,5a59acd66b70cff03f767517287d9fb8ec773df98d934151b108598fe142f482,1858
+NotionAi/notion-ai_20260322/modules/notion/users/index.ts,NotionAi/notion-ai_20260322/modules/notion/users/index.ts,added,,cc8f8569eeda02c8646bc65baa7ad153f60b5de0f0980f5275ff6215ec1a798a,2691
+NotionAi/notion-ai_20260322/modules/outlook/index.ts,NotionAi/notion-ai_20260322/modules/outlook/index.ts,added,,b0d6f5887388a3290f85455de286424ede896835bdec60924b46a08fb97d7884,1564
+NotionAi/notion-ai_20260322/modules/salesforce/index.ts,NotionAi/notion-ai_20260322/modules/salesforce/index.ts,added,,fb38fdf2d70361436a584ce6abe9c15a2c17c34f0e7ae19043af5bf152b3d8bc,2111
+NotionAi/notion-ai_20260322/modules/search/AGENTS.md,NotionAi/notion-ai_20260322/modules/search/AGENTS.md,added,,8957d8d5165127d35c9f9f23e6bc26eaff3a12082c49776c65df38c0bd050baa,4071
+NotionAi/notion-ai_20260322/modules/search/index.ts,NotionAi/notion-ai_20260322/modules/search/index.ts,added,,f687170dd5432a85ee07ea25ecd4fa92f2cd66a62a9515416a2acad0a9d081c1,167
+NotionAi/notion-ai_20260322/modules/search/integration.ts,NotionAi/notion-ai_20260322/modules/search/integration.ts,added,,c2ebf71258c2852f8aa5f42514199f82712dde6c8f078a1cd7c7ac887dd5db8a,287
+NotionAi/notion-ai_20260322/modules/search/triggers.ts,NotionAi/notion-ai_20260322/modules/search/triggers.ts,added,,cc6a0877729dc679b24d6c6ea42c1b88a1f62d6a6a17b5291dcdc78d2f4d3aad,168
+NotionAi/notion-ai_20260322/modules/sharepoint/index.ts,NotionAi/notion-ai_20260322/modules/sharepoint/index.ts,added,,3e13d24f9c15e8e0f780e17c0c425ff39394bb6f5b7d664e5a844d83291dfc14,293
+NotionAi/notion-ai_20260322/modules/sharepoint/integration.ts,NotionAi/notion-ai_20260322/modules/sharepoint/integration.ts,added,,c0099733d1756a3e5c57363a28e5eeca69baeaf83e02385c5abcb50a6f6e5ec3,294
+NotionAi/notion-ai_20260322/modules/slack/AGENTS.md,NotionAi/notion-ai_20260322/modules/slack/AGENTS.md,added,,c2661293865abc8665198a29605c99fd7fbaea8f8993aff9f33fcb90c24835c2,482
+NotionAi/notion-ai_20260322/modules/slack/index.ts,NotionAi/notion-ai_20260322/modules/slack/index.ts,added,,af52bd9976ff7a24afc7422083981b9ef6fda4429e291a7e42fe7d0b74a0e27b,6463
+NotionAi/notion-ai_20260322/modules/slack/integration.ts,NotionAi/notion-ai_20260322/modules/slack/integration.ts,added,,1533146edcc850d3c11a12af0cafb90f06695cfeb276e299071664833f46ad99,409
+NotionAi/notion-ai_20260322/modules/slack/triggers.ts,NotionAi/notion-ai_20260322/modules/slack/triggers.ts,added,,7f576e5cfdecb70abdc844465d52a65602906e241b6ec137d59be02247cec70d,2688
+NotionAi/notion-ai_20260322/modules/test/AGENTS.md,NotionAi/notion-ai_20260322/modules/test/AGENTS.md,added,,b315aa1184e3015877b5d6ee8c93bb7cac433f1489ab7e63a81dbf694de54171,208
+NotionAi/notion-ai_20260322/modules/test/index.ts,NotionAi/notion-ai_20260322/modules/test/index.ts,added,,8ebd4c338f29cceede39cb47d04e347a9ec6cd345a90f9e9944ee90ccb573752,750
+NotionAi/notion-ai_20260322/modules/test/integration.ts,NotionAi/notion-ai_20260322/modules/test/integration.ts,added,,901f08f5567a18a9cb7e8a0329fd6f200bd0c50035c97a317616a5b0504eac27,411
+NotionAi/notion-ai_20260322/modules/test/triggers.ts,NotionAi/notion-ai_20260322/modules/test/triggers.ts,added,,a03b1d355292adae6302c4e8d05e2bbe18da978ec155c7bfe5cefdb2437461d6,183
+NotionAi/notion-ai_20260322/modules/test/types.ts,NotionAi/notion-ai_20260322/modules/test/types.ts,added,,cf2902bf2967753f37cd6a60b13449fd03429ecd1cd4defd9a99a51b56d308f6,746
+NotionAi/notion-ai_20260322/modules/web/AGENTS.md,NotionAi/notion-ai_20260322/modules/web/AGENTS.md,added,,154cb5a52f4d7335b1dd3911301b4b5475194abf328e112d177a09d229d4dd31,696
+NotionAi/notion-ai_20260322/modules/web/index.ts,NotionAi/notion-ai_20260322/modules/web/index.ts,added,,6ff64f5e187b68521bec1c5ac219da2d7f3e36cfb40b46e9843e26d9a7fa1abe,1315
+NotionAi/notion-ai_20260322/modules/web/integration.ts,NotionAi/notion-ai_20260322/modules/web/integration.ts,added,,9edf6cb353bff7e726e69ad648a085cb2068b4a3f196acc2da1cc3f5d8c345ab,275
+NotionAi/notion-ai_20260322/modules/web/triggers.ts,NotionAi/notion-ai_20260322/modules/web/triggers.ts,added,,3acd9e715cadb7c57e43a9d219ee86dc867d4e65645db5692513a0dc60d9ead3,165
+NotionAi/notion-ai_20260322/root/connections.ts,NotionAi/notion-ai_20260322/root/connections.ts,added,,221d764a8907b6469e80c302b852f7ec60b8f613ff6d7a0b5daa5f8a9bb84bcf,1744
+OmniMind 2.0,OmniMind 2.0,added,,f57c409373019c2e6c4de48e9a1308e8da8cfb721de1611e5765dfce0c55617e,22
+Open Source prompts/Aider/Prompt.txt,Open Source prompts/Aider/Prompt.txt,added,,9862c345389069f594c1dc5aae32b542cb3c5a5b649737f96183256107fa2409,2465
+Open Source prompts/Localforge/Prompt.txt,Open Source prompts/Localforge/Prompt.txt,added,,1132d377db1611a43f3d792f7ac8b6b559af589b2481e4e81f986df47e641b67,11268
+Open Source prompts/Suna/Prompt.txt,Open Source prompts/Suna/Prompt.txt,added,,598023b803e4d9b8a68705b710cf089bf45a23ba2415c5347a6471a0d61a3763,33692
+OpenAI/ChatGPT 4o.txt,OpenAI/ChatGPT 4o.txt,added,,962a6001f70acb2e1a6aa97133d254c89d8c5916d1a18135b1305aa991696551,8023
+OpenAI/ChatGPT 4o_extended.txt,OpenAI/ChatGPT 4o_extended.txt,added,,a0dd5ef0fbd627336a2bf822b42fa391f9e417a48f8dc5ea8822d24a06f42d56,4913
+Parahelp/README.md,Parahelp/README.md,added,,511be0ff241e0a7a736b1b0d465a867f59324dd6d3165ac31a76a79bf3895989,125
+Parahelp/manager_prompt.txt,Parahelp/manager_prompt.txt,added,,db2902722a6a957e5cd99e8dbd346d401dc897430b3b5ecf96209bc9e7b43421,3404
+Parahelp/planning_prompt.txt,Parahelp/planning_prompt.txt,added,,948166df7195102c2593b894b184dbf808089bbb87afef5eb82649b4185d21be,4181
+Perplexity/Prompt.txt,Perplexity/Prompt.txt,overwritten,aead2f394deadfcb402c48559529309a7820aadb52d72955b699f016b5df6445,7e2cfbbf0cac0fd992b4835162f2ff7be421e5c7c7ab0ceca45f478c9f5cd488,14281
+Puch AI/prompt.txt,Puch AI/prompt.txt,added,,06e8386b454b7ca3a1bc12479992c1fbfdd28a2b87b79f5f6578ae0e1a7a5714,7983
+Qoder/Lawd-STAR,Qoder/Lawd-STAR,added,,a57d30c22fc6382da4d2babe17d9a7d790bcc3f97de4f7378bd8844f9524b995,20
+README.md,README.md,overwritten,d6a46add590432b899a4b3994006816f7ee02d3fe886e2fdc433a7f21601ad79,ccd1061063a4c1bb358fbe8ecac6c502f71cdb5678362aa57ab3764056a1dd2f,323
+Rovo Dev Cli (Atlassian)/prompt.txt,Atlassian/Rovo Dev CLI/prompt.txt,added,,d4fad61686fc5edf9d9aab51ef098452d7aa508d096e7c19720c59c0fd6c2220,45046
+Sunflower/Functions.json,Sunflower/Functions.json,added,,139d65dcfec4ec762d194adfe322b34d1929f06ef3e6c01b33adc0dc6329506a,9915
+Sunflower/System Prompt.txt,Sunflower/System Prompt.txt,added,,a2dba428538f00457b6bc7469d451ad3cbe32f338db7104b7e9fb1c427c44987,10033
+Trae/SOLO Coder Prompt.txt,Trae/SOLO Coder Prompt.txt,added,,ab653e806e28ec0f7ff974ab6c06cb1177afd58cec2988b64f98f98311ab78f5,15876
+Traycer AI/phase_mode_tools.json,Traycer AI/phase_mode_tools.json,overwritten,20f01bdcaad34335401a998bf71b864ed718554596ba4ab33cb328cd7673d1d7,11f1f2ee13da65c006aaeb924bff412a955144e4ae8ab4283d078d8894e37467,18620
+Xcode/DocumentAction.md,Xcode/DocumentAction.md,added,,1193d0978788594be85a949923ac9af628380d20081b9a8f42c0dd48207f9db5,374
+Xcode/ExplainAction.md,Xcode/ExplainAction.md,added,,ee4aa3a933139e184c5190027b3095f02ae08b59f2e98deedb5f3e6c1495e72a,245
+Xcode/MessageAction.md,Xcode/MessageAction.md,added,,b18b38ec60aad2b5b1a4265935112549bca42f6feebe0874220e979dd3d27381,235
+Xcode/PlaygroundAction.md,Xcode/PlaygroundAction.md,added,,0f982f1967b9a3c9fcbd76092c362fe2c356bf35a0185607b0720a29a8f78ac5,414
+Xcode/PreviewAction.md,Xcode/PreviewAction.md,added,,497e1c4845a84810d5ca5003eaad3fd0669eaa9cba77de7158be074647d67c5e,1938
+Xcode/System.md,Xcode/System.md,added,,d67ef77c44cd2ebf7cb7c1435367ffcb307dff0e9ef3f544c7d5136326cc4060,4009
+Xiaomi/MiCode_System_Prompt.md,Xiaomi/MiCode/System Prompt.md,added,,5afb85caac88e680e7bcf17eedb2a46d7df70de077806f3bdc9ecc87f03d601e,27907
+Zed/System Prompt.txt,Zed/System Prompt.txt,added,,253433b68b538eac45a79c902952104091011589a83affd8c1e3a096177de898,8035
+ZeroTwo/Prompt.txt,ZeroTwo/Prompt.txt,added,,250b7d0db401b66489a1e5a8ca50e050074f97647f43b4f57f0f71185b8dc1a3,43157
+brower-use/system_prompt.md,Browser Use/system_prompt.md,added,,27a25a055c18d1803375add8d0f9a17cd97a5c50b24da923f84873613ca7d266,16426
+brower-use/system_prompt_flash.md,Browser Use/system_prompt_flash.md,added,,56b9aaefeab2c4a8e9c77091cec03270b52ef6e812fcfbe6b2242df28d9d1fab,14096
+brower-use/system_prompt_no_thinking.md,Browser Use/system_prompt_no_thinking.md,added,,f6352bf3fc5670e834b2426c6d480a5dc828e76b158595f721165001f3d7f2e0,16322
+prompts-index.json,prompts-index.json,added,,1dab958cee74f431b597d95c3c1bfbbb6ecd206ace31093483c46d0515309f78,147829
+prompts.json,prompts.json,added,,4c2a0e30afb9e92122127d7c0c925ece8eee785a22594fa5d31cf00018dcaf20,2283259
+v0 Prompts and Tools/Prompt.txt,v0 Prompts and Tools/Prompt.txt,overwritten,241401a44c24fe3b6e6465bf78947327d42dec84b04953fd752bbc70c504444d,b0e4b3ac6c7fcf2f222e782228ff71872a089a992b937b1457963165fca723bd,46079
