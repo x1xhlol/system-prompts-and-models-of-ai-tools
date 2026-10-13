@@ -1,0 +1,30 @@
+name: Feature Request
+description: Request a new AI tool, vendor, or system prompt to be added to the collection.
+title: "[Request] "
+labels:
+  - enhancement
+body:
+  - type: input
+    id: vendor
+    attributes:
+      label: Vendor / Tool
+      description: Name of the AI tool or vendor you want added.
+      placeholder: "e.g., Augment Code"
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source URL
+      description: Link to the official docs, repo, or other verifiable source.
+      placeholder: "https://..."
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Why should this be added?
+      description: Brief explanation of the tool's relevance and what prompts/entries are available.
+      placeholder: "Explain..."
+    validations:
+      required: true

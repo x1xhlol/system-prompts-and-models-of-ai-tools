@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Community discussions
+    url: https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools/discussions
+    about: Ask usage questions and discuss prompt research with the community.
