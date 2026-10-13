@@ -11,6 +11,10 @@
 
 ---
 
+## Usage
+
+See [USAGE.md](USAGE.md) for the file-type guide, browsing commands, and notes on using the collected prompt and tool artifacts.
+
 ## Security Notice for AI Startups
 
 > **Warning:** If you're an AI startup, make sure your data is secure. Exposed prompts or AI models can easily become a target for hackers.
