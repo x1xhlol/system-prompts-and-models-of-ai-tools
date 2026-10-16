@@ -101,3 +101,7 @@ Sponsor the most comprehensive repository of AI system prompts and reach thousan
 </a>
 
 **Drop a star if you find this useful!**
+
+---
+
+*Forked by khaledradwan130 — for study & reference.*
