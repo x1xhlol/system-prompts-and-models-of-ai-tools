@@ -60,3 +60,7 @@ Sponsor the most comprehensive repository of AI system prompts and reach thousan
 - **Email**: `lucasvalbuena@pm.me`
 
 **Drop a star if you find this useful!**
+
+---
+
+*Forked by khaledradwan130 — for study & reference.*
